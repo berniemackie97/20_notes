@@ -1,7 +1,7 @@
 # `graphic.dll` — Overview (C3-era Rendering Backend)
-This section documents the full behavior and API surface of `graphic.dll` as used by the Conquer 5517 client.
+The full behaviour and API surface of `graphic.dll`, as the Conquer 5517 client uses it.
 
-## Goal
+## Scope
 Provide a self-contained, implementation-ready specification of what `graphic.dll` does: rendering, text, camera, object lifetimes, configuration files, and device-loss/reset behavior.
 
 ## Where this fits
@@ -19,4 +19,3 @@ This documentation set focuses on the DLL itself:
 - `02_init_and_device_reset.md` — initialization and device lifecycle
 - `03_camera.md` — camera globals and projection/ortho behavior
 - `04_fonts_and_text.md` — font configuration, caching, and text draw
-

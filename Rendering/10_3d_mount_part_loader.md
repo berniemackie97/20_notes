@@ -6,8 +6,6 @@ texture + speed + future-decoded trailing fields). Distinct from the existing
 `MountTypeDatRecord` (`mounttype.dat` action-scale / color / sound table) — this
 slice is the 3D-mesh side of the mount system.
 
----
-
 ## Retail oracle (`40_tools/fight-master/my_client/3DBaseCode/3DMount.{h,cpp}`)
 
 Class surface (retail signatures, complete — header is 32 lines, cpp is 75 lines):
@@ -61,8 +59,6 @@ typedef struct {
 } C3DObjPartInfo;   // 36 bytes
 ```
 
----
-
 ## client-5517 evolution (`GameRole.dll`)
 
 5517 keeps the same external shape but rewrote the loader internals. Verified at
@@ -96,8 +92,6 @@ C3DMount_CreateNew(idType):
 The constructor `C3DMount_Constructor` (`0x10001600`) calls
 `sub_10004430(this)` (the C3DRolePart base constructor) and assigns the
 C3DMount vtable at `data_1001a1ac`. Retail body is empty per `3DMount.cpp:17`.
-
----
 
 ## Managed port seams (`Conquer.Assets.RolePart`)
 
@@ -174,8 +168,6 @@ dotnet test tests/Conquer.Tests/Conquer.Tests.csproj \
   by the managed `Role3DClientSceneMultiPartRenderStage` slice (Codex slice B).
 - `SetDefaultMotion` — the retail call dropped in 5517; motion is sourced from
   the visual-track configurator now.
-
----
 
 ## Cross-refs
 

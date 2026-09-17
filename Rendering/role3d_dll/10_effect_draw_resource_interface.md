@@ -6,7 +6,7 @@ The effect render backends in `Role3D.dll` (`Effect_RenderWithContext`, `Effect_
 
 and then drive that resource exclusively through its virtual method table (vtable). This document records the *exact vtable offsets and call contracts* exercised by `Role3D.dll`.
 
-The concrete implementing class lives outside `Role3D.dll` (it is returned by `GraphicData.dll`’s dataset query), so the most stable representation is an interface defined by vtable slot offsets.
+The concrete implementing class lives outside `Role3D.dll` (it is returned by `GraphicData.dll`'s dataset query), so the most stable representation is an interface defined by vtable slot offsets.
 
 ## Method summary (by vtable byte offset)
 
@@ -79,4 +79,4 @@ Observed contract:
 - When `effect->renderFlag != 0` (`effect+0x1BC`), the backend allocates/feeds a local accumulator block and substitutes `byteB = 1` when source `byteB == 0`.
 - When `effect->renderFlag == 0`, draw call uses raw `byteB` and null accumulator pointer.
 
-The exact meaning of `byteA`/`byteB` is defined by the resource’s `Draw2D` implementation, but their storage location and substitution rule are proven by `Role3D.dll`.
+The exact meaning of `byteA`/`byteB` is defined by the resource's `Draw2D` implementation, but their storage location and substitution rule are proven by `Role3D.dll`.

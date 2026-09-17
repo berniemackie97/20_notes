@@ -1,6 +1,6 @@
 # `GraphicData.dll` — `immediate.ini` loader semantics
 
-This document captures verified behavior for `GameDataSet_LoadImmediateIni` (`0x1001DC10`).
+Verified behaviour of `GameDataSet_LoadImmediateIni` (`0x1001DC10`).
 
 ## File and open mode
 

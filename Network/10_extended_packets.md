@@ -1,7 +1,6 @@
 # Extended Packets — Pet, Mentor, Arena, Quiz, Title, Cross-Server War
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
 ## CMsgPetInfo (Type 2051)
 
@@ -49,9 +48,6 @@ Synchronises the player's pet/mount list. The server sends the full list; the cl
    - Calls `CHero__AddPet` (0x662AE7) to add the pet to the hero's list
 3. Posts `PostMainWndMsg_0x464(0x469, param)` to signal the UI.
 
----
-
-
 ## CMsgMentor (Type 2064)
 
 **Direction**: Bidirectional
@@ -85,9 +81,6 @@ Manages the mentor/education system — handles name changes, student listings, 
 | 2 | Clear via virtual call 276, set coords via virtual call 288 (`param1`, `param2`), iterate `count` entries (stride 48) calling virtual call 240, post 0x485 |
 | 3 | Set name on entity: if entity ID at `+8` matches hero → virtual call 280 on hero; else find entity by ID → virtual call 280 on entity. Post 0x445 + 0x446 |
 | 4 | Call `CHero__SetMentorProgressFields(+20, +8, +12, +24)`, post 0x488 |
-
----
-
 
 ## CMsgMentorNotify (Type 2065)
 
@@ -133,9 +126,6 @@ Displays formatted mentor/education notifications. Uses string list entries for 
 | 21 | 0x494 | Multi-path: clear education, set name, or update relationship based on `param3` |
 | 22 | 0x49B | Set name on entity if matches hero |
 | 23 | 0x494 | Find entity by name, update relationship |
-
----
-
 
 ## CMsgMentorSync (Type 2066)
 
@@ -185,9 +175,6 @@ Synchronises mentor/student entity data — creates or updates mentor and studen
 | 5 | Rank display with timer/count data, multiple UI field updates. Post 0x50A(1) + 0x50F(1) |
 | 6 | Status flag check — if hero has status 0x3E, update education score, refresh name board + UI. Post 0x445 + 0x446 |
 
----
-
-
 ## CMsgMentorRelation (Type 2067)
 
 **Direction**: S→C
@@ -219,9 +206,6 @@ Updates education/mentor relationship status — handles assignment of experienc
 | 6 | Conditional update by sub-mode: find mentor entity (by name or ID), apply exp + spawn effects if not already active |
 | 7 | Reset: clear all education mgr relationships (exp=0, spawn params=0) |
 | 8 | Signal: post 0x49B(1) — simple UI refresh |
-
----
-
 
 ## CMsgQuiz (Type 2068)
 
@@ -260,9 +244,6 @@ Manages the quiz/trivia minigame — delivers questions, options, scores, and re
 | 5 | Show results: parse timer data from string list, update multiple UI fields, post 0x50A(1) + 0x50F(1) |
 | 7 | Set UI fields from `+6` and `+8`. If `+10` is 1 → post 0x508(1), if 2 → post 0x508(0) |
 
----
-
-
 ## CMsgQuizSignal (Type 2069)
 
 **Direction**: S→C
@@ -283,9 +264,6 @@ Trivial signal packet — relays a single parameter to the UI.
 
 ### Processing Logic
 Posts `PostMainWndMsg_0x464(0x509, +4)` — signals the quiz UI with the given parameter value.
-
----
-
 
 ## CMsgTitleVisual (Type 2070)
 
@@ -314,9 +292,6 @@ Applies or removes title/rank visual effects on entities. Uses the title visual 
 |------|-------------|
 | 1 | Add title visual: register title via title manager, resolve entity (hero or by ID), load title visual asset from `g_TitleVisualAssetTable[slot]`, attach to entity's render component. Posts 0xCE9 + 0x3FB |
 | 2 | Remove title visual: unregister from title manager, resolve entity, remove visual asset from render component. Posts 0xCE9 + 0x3FB |
-
----
-
 
 ## CMsgEudemonAttrib (Type 2071)
 
@@ -352,9 +327,6 @@ Updates eudemon (pet/companion) attributes. Checks 8 flag bytes to determine whi
 2. Scan flags `+20` through `+27` to determine category (1–8). First flag set wins (priority order: +20, +21, +22, +23, +24, +26, +25, +27).
 3. Call `CHero__SetEudemonAttrib(eudemonId, param1, param2, category)` to update the eudemon's attributes.
 
----
-
-
 ## CMsgRaceTrackPropSync (Type 2072)
 
 **Direction**: S→C
@@ -382,9 +354,6 @@ Synchronises race track prop entities. Creates or updates props in the `CRaceTra
    - If not found and `propType != 0`: create new prop via `CRaceTrackPropMgr__func_000(entityId, propSubType, propType)`.
    - If `propType == 0`: assertion/debug log.
 
----
-
-
 ## CMsgRaceTrackEffect (Type 2073)
 
 **Wire type**: 2073 (0x0819)
@@ -410,9 +379,6 @@ Applies visual effects to race track props. Collects a DWORD list of effect IDs 
 ### Processing Logic
 1. Builds a DWORD buffer from `effectCount` entries starting at `+16`.
 2. Calls `CRaceTrackPropEffectMgr__func_000(effectType, entityId, param1, param2, effectIdBuffer)` on the effect manager singleton.
-
----
-
 
 ## CMsgNonSuch (Type 2077)
 
@@ -464,9 +430,6 @@ Manages the "Nonsuch" (unique/special) equipment crafting system. Processes batc
 - Max-life effect id is exactly 301. It adds primary value at `CItem+0x1C0` when primary
   effect `+0x1CC == 301`; otherwise it may add secondary value `+0x1D4` when secondary effect
   `+0x1DC == 301` and the **signed** primary effect id is below 100.
-
----
-
 
 ## Account-login alert data (Type 2078; formerly labeled CMsgTitleLabel)
 
@@ -522,9 +485,6 @@ It does not overwrite this packet's hero+0xDE0 record.
 - `0x75AFA0` zeroes an inbound object before copying received bytes; it does not
   construct a server response or prove that the server sent zero-valued fields.
 - The exact retail-server values require a retail packet trace or server evidence.
-
----
-
 
 ## CMsgServerState (Type 2079)
 
@@ -630,9 +590,6 @@ values. Canyon's location-byte boolean and the references' extra 2079 dword must
 not be imported as additional 5517 field semantics. Full source provenance,
 scope limits and the existing server bytes are recorded in that comparison.
 
----
-
-
 ## CMsgChangeName (Type 2080)
 
 **Wire type**: 2080 (0x0820)
@@ -661,9 +618,6 @@ Handles name change request results — displays success/failure messages and up
 | 3 | Set parameters: update singleton (0x431D1D) fields 0x4 and 0x8 from `param1` and `param2`. Post 0xDCF |
 | 4 | Signal: post 0xDD8 |
 
----
-
-
 ## CMsgArenaChallenge (Type 2210)
 
 **Wire type**: 2210 (0x08A2)
@@ -682,9 +636,6 @@ Arena challenge notification. Allocates a 0x20 challenge info object, populates 
 | +32 | 16 bytes | Player 2 name (null-terminated string) |
 | +48 | DWORD | Player 2 score/rank |
 
----
-
-
 ## CMsgBattleObserver (Type 2211)
 
 **Wire type**: 2211 (0x08A3)
@@ -701,9 +652,6 @@ Battle observer/spectator control. Dispatches on WORD[+4] mode:
 | 2 | Populate arena: calls `sub_6674F1` to clear hero state, sets arena IDs via `sub_66744B(DWORD[+18], DWORD[+22])`. Iterates DWORD[+14] player entries at stride-36 starting at +30, adds each via `CHero__AddStringToMap`. Posts 0xBE9/0xBEC/0xC90/0xC9E depending on arena type |
 | 3 | Same as mode 1: exit observer + post 0xBEA |
 | 4 | Chat message: formats "StrBattleObserver" string with player names from +58 and +26, displays in system chat (channel 2005, red color) |
-
----
-
 
 ## CMsgFamilyArena (Type 2212)
 
@@ -727,9 +675,6 @@ Family arena master control packet. Dispatches on WORD[+4] mode (1-13):
 | 10 | Open with winner flag: posts 0xC36 + 0xC33 + 0xC3D with WORD[+8] encoded in param |
 | 13 | Same as mode 10: posts 0xC36 + 0xC33 |
 
----
-
-
 ## CMsgFamilyArenaRoster (Type 2213)
 
 **Wire type**: 2213 (0x08A5)
@@ -751,9 +696,6 @@ Iterates DWORD[+24] entries at stride-80 starting at +28. Each entry contains:
 
 Adds each entry via `sub_698126`. Posts 0xC3B.
 
----
-
-
 ## CMsgFamilyArenaBracket (Type 2214)
 
 **Wire type**: 2214 (0x08A6)
@@ -763,9 +705,6 @@ Adds each entry via `sub_698126`. Posts 0xC3B.
 
 Updates the family arena match bracket/schedule. Clears existing bracket via `sub_698145`. Iterates DWORD[+8] entries at stride-24 starting at +16. Each entry contains a DWORD ID at +0 and a string name at +4. Adds each via `sub_69810B(WORD index, entry)`. Sets round/phase info via `sub_6982A0(WORD[+4], WORD[+6])`. Posts 0xC3C.
 
----
-
-
 ## CMsgFamilyArenaRanking (Type 2215)
 
 **Wire type**: 2215 (0x08A7)
@@ -774,9 +713,6 @@ Updates the family arena match bracket/schedule. Clears existing bracket via `su
 **Packet object**: Standard layout — payload pointer at `this+257` (byte offset 1028), inline buffer at `this+4`.
 
 Updates the family arena ranking list. Clears existing via `sub_69813D`. Iterates DWORD[+4] entries at stride-16 starting at +8. Each entry contains a string name. Adds each via `sub_6980A0(rank, entry)` where rank is 1-based. Posts 0xC3A.
-
----
-
 
 ## CMsgFamilyArenaMatchInfo (Type 2216)
 
@@ -789,9 +725,6 @@ Delivers detailed family arena match information. Clears previous state via `sub
 
 DWORD[+8] controls arena phase (0-5): sets phase via `sub_698340` with corresponding sub-mode. Posts 0xC35 + 0xC2B.
 
----
-
-
 ## CMsgFamilyArenaChallenge (Type 2217)
 
 **Wire type**: 2217 (0x08A9)
@@ -800,9 +733,6 @@ DWORD[+8] controls arena phase (0-5): sets phase via `sub_698340` with correspon
 **Packet object**: Standard layout — payload pointer at `this+257` (byte offset 1028), inline buffer at `this+4`.
 
 Family arena specific challenge notification. Allocates a 0x38 challenge object, populates with 4 strings (player/family names at +8, +24, +48, +64) and 2 DWORDs (+40, +80). Calls `sub_667462` to register the challenge. Posts 0xBE9 (if arena UI active) and 0xC32.
-
----
-
 
 ## CMsgElitePKArena (Type 2218)
 
@@ -820,9 +750,6 @@ Elite PK arena state control. Dispatches on WORD[+4] mode:
 | 3 | Match result: plays "SportsVictory" or "SportsFailure" screen effect based on DWORD[+8] == 1 |
 | 4 | Disable arena: calls `sub_69A58F(0)`, posts 0xC8D with param 0 |
 | 5 | Enable arena: calls `sub_69A58F(1)` |
-
----
-
 
 ## CMsgElitePKGame (Type 2219)
 
@@ -849,9 +776,6 @@ Elite PK tournament game state — the most complex handler in this batch. WORD[
 
 Posts 0xC84/0xC85/0xC86/0xC87/0xC8B depending on state. If WORD[+4] == 3, also posts 0xC8B with WORD[+14].
 
----
-
-
 ## CMsgDetainedItemList (Type 2220)
 
 **Wire type**: 2220 (0x08AC)
@@ -867,9 +791,6 @@ Populates the detained (confiscated) item list. Only processes mode 1 (WORD[+4] 
 
 Adds each via `sub_6AA5F4`. Sets total count via `MFC__SetDword_0x4(DWORD[+8])`. Posts 0xCB8.
 
----
-
-
 ## CMsgServerPKToggle (Type 2221)
 
 **Wire type**: 2221 (0x08AD)
@@ -881,9 +802,6 @@ Toggles server-wide PK (player-killing) permission. Reads WORD[+8]: if 0, PK is 
 - PK forbidden: shows "StrServerForbidPK" in system chat (red, channel 2005)
 - PK open: shows "StrServerOpenPK" in system chat (red, channel 2005)
 
----
-
-
 ## CMsgElitePKChallenge (Type 2222)
 
 **Wire type**: 2222 (0x08AE)
@@ -892,9 +810,6 @@ Toggles server-wide PK (player-killing) permission. Reads WORD[+8]: if 0, PK is 
 **Packet object**: Standard layout — payload pointer at `this+257` (byte offset 1028), inline buffer at `this+4`.
 
 Elite PK challenge notification. Clears previous challenge data via `sub_691891`, loads two player entries from payload +4 and +28 (each 24 bytes: DWORD ID + string name) via `sub_69187F`. Calls `sub_691912` to finalize, then registers challenge via `sub_667462` with player names, IDs, and scores from offsets +8/+4/+32/+28/+24/+48. Posts 0xBE9 (if arena UI active) and 0xC8E.
-
----
-
 
 ## CMsgElitePKPlayerList (Type 2223)
 
@@ -918,9 +833,6 @@ Elite PK player list management. Dispatches on WORD[+4] mode:
 - Iterates DWORD[+16] entries at stride-36 via `sub_6917DD`
 - Sets phase via `CElitePKGameMgr__func_004(DWORD[+8], DWORD[+12])`
 - Posts 0xC8B with DWORD[+8]
-
----
-
 
 ## CMsgWarFlag (Type 2224)
 
@@ -949,9 +861,6 @@ Dispatches on WORD[+4] mode (0-13):
 | 12 | Single flag update: calls `sub_6D1D64(DWORD[+8], WORD[+32], WORD[+34])` |
 | 13 | Toggle game mode: sets `GetSingletonPtr_43C8C8` DWORD_0x4 to (BYTE[+8] == 0) + 1 |
 
----
-
-
 ## CMsgGuildWarScore (Type 2225)
 
 **Wire type**: 2225 (0x08B1)
@@ -960,9 +869,6 @@ Dispatches on WORD[+4] mode (0-13):
 **Packet object**: Standard layout — payload pointer at `this+257` (byte offset 1028), inline buffer at `this+4`.
 
 Simple guild war score/rank update. Calls `sub_696A92` with a string from payload +8 and a DWORD from +268 (score value). Posts 0xCDC.
-
----
-
 
 ## CMsgGuildWarRoster (Type 2226)
 
@@ -984,9 +890,6 @@ Iterates DWORD[+8] entries at stride-344 starting at +24. Each entry is a large 
 - WORD at +354/+356/+358/+360: additional stats
 
 Adds each entry via `sub_6968FF`. Posts 0xCDB.
-
----
-
 
 ## TeamPK / Team Arena / Team Pop PK Packet Types
 
@@ -1013,8 +916,6 @@ These 16 packet types handle the TeamPK (team player-killing), Team Arena, and T
 | 2252 | 0x08CC | CMsgTeamPopPKGame | 0x6E2D6C | 0x6E2EE6 |
 | 2253 | 0x08CD | CMsgTeamPopPKRanking | 0x72E132 | 0x72E1F6 |
 
----
-
 ## CMsgTeamPKAward (Type 2230)
 
 **Wire type**: 2230 (0x08B6)
@@ -1031,8 +932,6 @@ Pre-game and post-game award/status packet for the TeamPK subsystem. Dispatches 
 | +12 | DWORD | Entity ID (compared against local hero; used by action 6) |
 | +44 | WORD | Round number (used by action 2) |
 
----
-
 ## CMsgTeamPKChallenge (Type 2231)
 
 **Wire type**: 2231 (0x08B7)
@@ -1046,8 +945,6 @@ TeamPK challenge notification. The process handler is shared with `CMsgTeamPopPK
 |--------|------|-------|
 | +4 | 60 bytes | Team 1 block (DWORD entityID at +0, string name at +24, DWORD score at +56) |
 | +64 | 60 bytes | Team 2 block (DWORD entityID at +0, string name at +24, DWORD score at +56) |
-
----
 
 ## CMsgTeamPKGame (Type 2232)
 
@@ -1067,8 +964,6 @@ Primary TeamPK game state packet with a large multi-path handler. Dispatches on 
 | +20 | DWORD | Entry count (used by actions 5+, 6) |
 | +24 | variable | Team entries array (stride 154 bytes per entry) |
 
----
-
 ## CMsgTeamPKRanking (Type 2233)
 
 **Wire type**: 2233 (0x08B9)
@@ -1086,8 +981,6 @@ TeamPK ranking display packet. Dispatches on WORD[+4] action type. Actions 0 and
 | +16 | DWORD | Entry count |
 | +20 | variable | Ranking entries array (stride 44 bytes per entry) |
 
----
-
 ## CMsgTeamPKDominateTeamName (Type 2240)
 
 **Wire type**: 2240 (0x08C0)
@@ -1102,8 +995,6 @@ Dominate team name assignment and notification. Dispatches on WORD[+4] action ty
 | +4 | WORD | Action type (0-3) |
 | +8 | DWORD | Value / team data (used by action 1) |
 | +12 | char[] | Team name (null-terminated string) |
-
----
 
 ## CMsgTeamArenaHero (Type 2241)
 
@@ -1131,8 +1022,6 @@ Team arena hero state control. Very large handler with nested switches on WORD[+
 | +4 | WORD | Action type (1, 2, 3, 6, 7, 8, 9, 10, 13) |
 | +8 | DWORD | State / match phase / result flag |
 
----
-
 ## CMsgTeamArenaSchedule (Type 2242)
 
 **Wire type**: 2242 (0x08C2)
@@ -1151,8 +1040,6 @@ Populates the team arena match schedule display. If DWORD[+12] == 0, resets the 
 | +20 | DWORD | Entry count |
 | +24 | variable | Schedule entries array (stride 48 bytes per entry) |
 
----
-
 ## CMsgTeamArenaRankPage (Type 2243)
 
 **Wire type**: 2243 (0x08C3)
@@ -1168,8 +1055,6 @@ Paginated team arena rank listing display. If WORD[+6] == 0, resets the display.
 | +6 | WORD | Current page (0 = reset display) |
 | +8 | DWORD | Entry count |
 | +12 | variable | Rank entries array (stride 40 bytes per entry) |
-
----
 
 ## CMsgTeamArenaRankList (Type 2244)
 
@@ -1198,8 +1083,6 @@ Entry sub-layout (44 bytes per entry):
 | +36 | DWORD | Stat field 6 |
 | +40 | DWORD | Stat field 7 |
 
----
-
 ## CMsgTeamArenaState (Type 2245)
 
 **Wire type**: 2245 (0x08C5)
@@ -1221,8 +1104,6 @@ Arena state and timer update with competition progression. Clears state via `sub
 | +32 | DWORD | Value 6 (state index 9) |
 | +36 | DWORD | Value 7 (state index 3) |
 
----
-
 ## CMsgTeamArenaChallenge (Type 2246)
 
 **Wire type**: 2246 (0x08C6)
@@ -1243,8 +1124,6 @@ Team arena challenge notification — structurally very similar to `CMsgTeamPKCh
 | +40 | 16 bytes | Player/team name 2 (null-terminated string) |
 | +56 | DWORD | Score 2 |
 
----
-
 ## CMsgTeamArenaPlayerInfo (Type 2247)
 
 **Wire type**: 2247 (0x08C7)
@@ -1262,8 +1141,6 @@ Populates team arena player and team info display. Requires DWORD[+8] != 0 (asse
 | +12 | DWORD | Entry count |
 | +16 | variable | Player entries array (stride 40 bytes per entry) |
 
----
-
 ## CMsgTeamPopPKAward (Type 2250)
 
 **Wire type**: 2250 (0x08CA)
@@ -1280,8 +1157,6 @@ Near-identical to `CMsgTeamPKAward` (type 2230) but for the ranked/pop TeamPK va
 | +12 | DWORD | Entity ID (compared against local hero; used by action 6) |
 | +44 | WORD | Round number (used by action 2) |
 
----
-
 ## CMsgTeamPopPKChallenge (Type 2251)
 
 **Wire type**: 2251 (0x08CB)
@@ -1295,8 +1170,6 @@ Pop/ranked TeamPK challenge notification. Shares the identical `CMsgTeamPKChalle
 |--------|------|-------|
 | +4 | 60 bytes | Team 1 block (DWORD entityID at +0, string name at +24, DWORD score at +56) |
 | +64 | 60 bytes | Team 2 block (DWORD entityID at +0, string name at +24, DWORD score at +56) |
-
----
 
 ## CMsgTeamPopPKGame (Type 2252)
 
@@ -1316,8 +1189,6 @@ Near-identical to `CMsgTeamPKGame` (type 2232) but for the ranked/pop TeamPK var
 | +20 | DWORD | Entry count (used by actions 5+, 6) |
 | +24 | variable | Team entries array (stride 154 bytes per entry) |
 
----
-
 ## CMsgTeamPopPKRanking (Type 2253)
 
 **Wire type**: 2253 (0x08CD)
@@ -1334,5 +1205,3 @@ Near-identical to `CMsgTeamPKRanking` (type 2233) but for the ranked/pop TeamPK 
 | +12 | DWORD | Phase (used by action 2) |
 | +16 | DWORD | Entry count |
 | +20 | variable | Ranking entries array (stride 44 bytes per entry) |
-
----

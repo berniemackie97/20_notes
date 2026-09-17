@@ -2,7 +2,7 @@
 
 ## Intent
 
-This document defines the project-layer boundaries for `10_work` so implementation quality and maintainability stay consistent as reverse-engineering coverage grows.
+Project-layer boundaries for `10_work`, so implementation quality stays consistent as reverse-engineering coverage grows.
 
 ## Project Responsibilities
 
@@ -72,5 +72,5 @@ Automated coverage:
 
 ## Startup Parity Notes
 
-- `20_notes/Architecture/01_play_launcher_startup_and_handoff.md` captures verified `play.exe` startup and launcher handoff behavior for clean 5517.
-- `20_notes/Architecture/02_conquer_client_startup_chain.md` captures verified `Conquer.exe` startup from CRT entry to the first stable frame-driving idle loop.
+- `01_play_launcher_startup_and_handoff.md` captures verified `play.exe` startup and launcher handoff behavior for clean 5517.
+- `02_conquer_client_startup_chain.md` captures verified `Conquer.exe` startup from CRT entry to the first stable frame-driving idle loop.

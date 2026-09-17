@@ -1,8 +1,7 @@
 # CRoleAction Class — Entity Action/Command Processor
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Role.cpp
-## Used by: CRole (via vtable dispatch)
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Role.cpp`
+## Used by: CRole (via vtable dispatch)
 
 ## Overview
 

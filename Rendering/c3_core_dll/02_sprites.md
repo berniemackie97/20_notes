@@ -1,6 +1,6 @@
 # Sprite subsystem (`Sprite_*`)
 
-This document describes the `Sprite_*` API implemented in `c3_core_dll.dll` as used by the client.
+The `Sprite_*` API in `c3_core_dll.dll`, as the client uses it.
 
 ## Exported entry points
 
@@ -88,8 +88,8 @@ Observed behavior:
 - Writes D3D render states:
   - `SetRenderState(D3DRS_SRCBLEND=19, a2)`
   - `SetRenderState(D3DRS_DESTBLEND=20, a3)`
-- Binds the sprite’s underlying texture to stage 0 via `SetTexture(stage=0, sprite->texture->d3dTexture)`.
-- Submits the sprite’s vertex data using `DrawPrimitiveUP(D3DPT_TRIANGLESTRIP=5, primitiveCount=2, pVertices=sprite, vertexStride=28)`.
+- Binds the sprite's underlying texture to stage 0 via `SetTexture(stage=0, sprite->texture->d3dTexture)`.
+- Submits the sprite's vertex data using `DrawPrimitiveUP(D3DPT_TRIANGLESTRIP=5, primitiveCount=2, pVertices=sprite, vertexStride=28)`.
 - Returns boolean success (both `SetTexture` and `DrawPrimitiveUP` must succeed).
 
 ### `Sprite_Draw` (ordinal `142`, `0x10015EE0`)
@@ -100,7 +100,7 @@ Signature (export name):
 
 Observed behavior:
 
-This function selects a blend-state preset based on `a2` (0/1/2) and on the sprite’s texture format / alpha.
+This function selects a blend-state preset based on `a2` (0/1/2) and on the sprite's texture format / alpha.
 
 - If `a2 == 0`:
   - sets `D3DRS_SRCBLEND` to `5` and `D3DRS_DESTBLEND` to `6`
@@ -112,7 +112,7 @@ This function selects a blend-state preset based on `a2` (0/1/2) and on the spri
 - If `a2 == 2`:
   - sets `D3DRS_SRCBLEND=5`, `D3DRS_DESTBLEND=6`, and also sets render state `168` to `7`
 
-After setting states, it binds the sprite’s underlying texture and submits a triangle-strip exactly like `Sprite_DrawEx`.
+After setting states, it binds the sprite's underlying texture and submits a triangle-strip exactly like `Sprite_DrawEx`.
 
 If `a2 == 2`, it resets render state `168` back to `-1` before returning.
 
@@ -625,7 +625,7 @@ and retained diffuse state of MapItemFlash, uploaded-format fallback outcomes ac
 devices, full inherited target/texture-stage/blend-operation state at every consumer,
 and any mode-2 retail consumer/alpha-target/downstream-alpha use. Exact GPU rounding and
 driver acceptance of the `0xFFFFFFFF` mask are not established by CPU replay. These
-limits prevent claiming universal closure or “no remaining unknowns.”
+limits prevent claiming universal closure or "no remaining unknowns."
 
 To establish a positive retail mode-2 result, a native capture must identify the
 actual `Sprite_Draw` invocation, its caller/mode provenance, active target and
@@ -661,7 +661,7 @@ Signature (export name):
 
 Observed behavior:
 
-- Computes normalized texture UV coordinates from the provided `RECT` relative to the underlying texture’s width/height.
+- Computes normalized texture UV coordinates from the provided `RECT` relative to the underlying texture's width/height.
   - If `RECT` is null, it sets UVs to cover the full texture `[0..1]`.
 - Computes screen-space vertex coordinates from `(x, y)`:
   - writes `x - 0.5` and `y - 0.5` into the left/top vertex positions (the `-0.5` offset is applied consistently).

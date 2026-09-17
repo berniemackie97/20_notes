@@ -11,7 +11,7 @@ All three effect render backends consume the same record layout:
 - `Effect_RenderWithOffsets` (`0x10009140`)
 - `Effect_RenderScreenSpace` (`0x10009570`)
 
-This document defines each field that is *proven by use sites*.
+Each field below is *proven by use sites*.
 
 ## Record shape
 
@@ -56,7 +56,7 @@ Immediately after each record is initialized, creation requests draw resource:
 In all effect render backends:
 
 - If `enabled == 0`, the part is not processed.
-- Some scan loops stop at the first record with `enabled == 0` (treating the array as “shortened” even if `partCount` is larger).
+- Some scan loops stop at the first record with `enabled == 0` (treating the array as "shortened" even if `partCount` is larger).
 
 ## Relationship to `GraphicData.dll` lookups
 

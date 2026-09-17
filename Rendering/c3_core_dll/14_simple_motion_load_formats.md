@@ -1,6 +1,6 @@
 # `c3_core_dll.dll` — `C3SimpleMotion_LoadFromStream` (`SMOT`) payload format
 
-This document captures the verified on-disk `SMOT` payload decode performed by
+The verified on-disk `SMOT` payload decode performed by
 `C3SimpleMotion_LoadFromStream` (`0x10014DA0`).
 
 Verified in BNinja (`C3_CORE_DLL.dll.bndb`) after deobfuscation and type cleanup.

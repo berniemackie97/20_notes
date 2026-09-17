@@ -1,6 +1,6 @@
 # `GameData.dll` Action-Control Motion Easing
 
-This note records the native contract used by
+The native contract used by
 `Conquer.exe::Role_AdvanceMotionInterpolationAndRefreshPosition` (`0x64EAB2`) to ease a role's
 screen-space motion. The source is `ini/ActionCtrl.ini`; `ini/ActionDelay.ini` is a separate
 wound/block/death-delay table and is not the easing source.

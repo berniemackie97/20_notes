@@ -1,37 +1,40 @@
-# Rendering / UI / Animation Gap Analysis (5517 Client)
-## Goal
-Document all *Windows-specific* and *engine/DLL-specific* rendering, UI, input, timing, and animation touchpoints observed in the original client.
+# Rendering, UI and animation — dependency map (5517)
 
-This document is based on:
-- IDA import table inspection (Win32 + external DLL boundaries)
-- Decompilation of key frame-loop and render-path functions
+Every *Windows-specific* and *engine/DLL-specific* rendering, UI, input, timing
+and animation touchpoint observed in the original client.
 
----
+Descriptive only: it records what the client depends on and how those
+dependencies behave, and does not prescribe a rewrite architecture. Verified
+observations only - open questions, TODOs and next deobfuscation targets are kept
+out, so this stays an implementation-ready reference rather than a work journal.
 
-## Executive Summary
-The original client is *not* “just a DirectX app” in the typical sense; most rendering-facing work is performed via a proprietary `graphic.dll` API (centered around `CMyBitmap::*` static methods), plus additional proprietary DLLs for assets and 3D (`GraphicData.dll`, `Role3D.dll`, `RoleView.dll`, `GameData.dll`).
+Sources: IDA import table inspection across the Win32 and external-DLL
+boundaries, plus decompilation of the frame-loop and render-path functions.
 
-Windows specificity comes from:
-- Win32 windowing/event loop (`USER32`, MFC `CWnd` usage)
-- GDI utilities (`GDI32`) for bitmaps/fonts/regions
+The client is not a DirectX application in the ordinary sense. Nearly all
+rendering-facing work goes through a proprietary `graphic.dll` API centred on
+`CMyBitmap::*` static methods, with `GraphicData.dll`, `Role3D.dll`,
+`RoleView.dll` and `GameData.dll` supplying assets and 3D objects. Four layers
+produce the observed behaviour: Win32/MFC windowing and message processing;
+`graphic.dll` device lifecycle and draw primitives; `RoleView.dll` and
+`Role3D.dll` visual objects and effects; and data-driven resource lookup through
+`GraphicData.dll` and `GameData.dll`.
+
+Windows specificity enters at five points:
+
+- Win32 windowing and event loop (`USER32`, MFC `CWnd`)
+- GDI utilities (`GDI32`) for bitmaps, fonts and regions
 - DirectInput (`DINPUT8`)
 - WinMM timing (`timeGetTime`, `timeSetEvent`)
-- Device-loss semantics exposed through `graphic.dll` (`IfDeviceLost`, `ResetDevice`, `Flip`, etc.)
+- device-loss semantics exposed through `graphic.dll` (`IfDeviceLost`,
+  `ResetDevice`, `Flip`)
 
-The original client’s rendering and UI behavior is a product of:
-1) Win32/MFC windowing + message processing,
-2) `graphic.dll` device lifecycle + draw primitives,
-3) `RoleView.dll` / `Role3D.dll` visual objects + effects,
-4) data-driven resource lookup via `GraphicData.dll` / `GameData.dll`.
-
----
-
-## External Engine / DLL Boundaries (Observed)
+## External engine and DLL boundaries
 Strings in the binary reference these external modules:
 - `graphic.dll` (primary render + text + sprite/bitmap primitives)
 - `GraphicData.dll` (dataset queries)
 - `Role3D.dll` (3D object/effect creation)
-- `RoleView.dll` (creates “role view” objects used for rendering entities/effects)
+- `RoleView.dll` (creates "role view" objects used for rendering entities/effects)
 - `GameData.dll` (`RoleDataQuery`, etc.)
 - `NDSound.dll` (DX* sound wrappers)
 - `Assist.dll` (monitor manager)
@@ -63,9 +66,7 @@ From `RoleView.dll`:
 From `GameData.dll`:
 - `RoleDataQuery`, `RoleDataDestroy`
 
----
-
-## Windows-Specific Dependencies (Observed)
+## Windows-specific dependencies
 
 ### Windowing + message loop
 Imports include `PeekMessageW`, `GetMessageW`, `TranslateMessage`, `DispatchMessageW`, `CreateWindowExW`, `BeginPaint/EndPaint`, and heavy use of Win32 window state APIs (`GetClientRect`, `SetCapture`, `GetFocus`, etc.).
@@ -84,12 +85,10 @@ Imports include `CreateDIBSection`, `BitBlt`, `CreateFontA`, region APIs (`Creat
 `timeGetTime` and `timeSetEvent` from `WINMM` are imported and used. These imply the client expects millisecond-resolution time sources and possibly multimedia timer callbacks.
 
 ### Audio
-Audio is mediated by `NDSound.dll` exports like `_DXPlaySound`, `_DXSetVolume`, `_DXProcessSound`, etc.  
+Audio is mediated by `NDSound.dll` exports like `_DXPlaySound`, `_DXSetVolume`, `_DXProcessSound`, etc.
 RE verification in `Rendering/ndsound_dll/` confirms DirectSound-style buffer control semantics (volume in `[-5000, 0]` dB range, positional attenuation/pan updates, replay/loop handling in per-frame `_DXProcessSound@8`).
 
----
-
-## Verified Call-Sites / Flows (Decompiled)
+## Verified call sites and flows
 
 ### 1) 3D + font initialization uses HWND (`graphic.dll`)
 Function `Exe_GfxInit_CreateFonts` (`0x66DC5A`) shows init is HWND-based and includes font creation:
@@ -98,17 +97,17 @@ dword_96AB2C = hwnd;
 if (!CMyBitmap::Init3DEx(hwnd, width, height, 1, 1u) || !CMyBitmap::GameFontCreate())
   return 0;
 ```
-This is a hard Windows dependency (HWND), and implies the original “engine” controls swap-chain/device creation.
+This is a hard Windows dependency (HWND), and implies the original "engine" controls swap-chain/device creation.
 
 ### 2) Main per-frame loop in `CMyShellDlg_RunFrameTick` (`0x5DCFAA`, MFC dialog)
-`CMyShellDlg_RunFrameTick` behaves like a central “tick + render” driver:
+`CMyShellDlg_RunFrameTick` behaves like a central "tick + render" driver:
 - optionally processes network: `CNetMsg__ProcessMsg(...)`
 - polls device loss: `CMyBitmap::IfDeviceLost()`
   - on state `2`: triggers reset path and calls `CMyBitmap::ResetDevice()`
 - clears frame: `CMyBitmap::ClearBuffer(1, 0, 0xFF000000)`
 - updates numerous managers (map, UI subsystems, movies, etc.)
 
-This function is the best “anchor” for:
+This function is the best "anchor" for:
 - determining frame pacing/ticks and ordering
 - locating where UI draw happens relative to world draw
 - identifying implicit assumptions about resource lifetime and draw ordering
@@ -164,7 +163,7 @@ Inside `Exe_TickMapProjectionAndDispatchMapRender` (`0x5ACAC3`):
     - managed scene-object state was also missing the transform-driven misc source from RoleView key `9`; that is now preserved
   - consequence:
     - if the live diagnostics now show correct tile/projected/projection-center values, then the remaining
-      “sky only / no visible hero” mismatch is no longer explained by a missing startup center producer
+      "sky only / no visible hero" mismatch is no longer explained by a missing startup center producer
     - the remaining startup visual blocker is downstream of scene-object bootstrap: the missing `I3DRole` load/bind/render consumer
   - live movement commit cadence is separate from the first-frame bootstrap path:
     - immediate packet ingress uses role vtable `+0x80` -> `Role_TryApplyIncomingActionInfoWithConditionalStateSync`
@@ -425,7 +424,7 @@ pair `this+0x0C/+0x10` (the first test uses the tile pair reprojected from the r
 
 Practical parity consequence:
 - a managed scenery runtime that renders the loaded list directly can never match native object visibility/order.
-- a managed scenery runtime that treats the tile-attached terrain-object path as “draw the terrain-object list entries directly”
+- a managed scenery runtime that treats the tile-attached terrain-object path as "draw the terrain-object list entries directly"
   will still diverge from native, because native is drawing cached quarter-tile composites rather than the raw scene entries.
 
 Current verified next gap after this slice:
@@ -1177,7 +1176,7 @@ Boss-life overlay details (Conquer.exe):
   - `data_96AEC8`: `"LinePerLayer"` (`CBossEffectMgr_LoadLinePerLayerConfig`, `0x6804D9`, default `1`)
 
 Inside the CHero map component callback path:
-- CHero vtable slot `+0x4` points to `CHero_Render` (`0x65E472`)  
+- CHero vtable slot `+0x4` points to `CHero_Render` (`0x65E472`)
   (vtable bytes at `0x86AD08`: `... 72 E4 65 00 70 E0 65 00 ...`)
 - `CHero_Render` calls `CHero_TickAndRenderRoleVisuals` at `0x65E479`
 - `CHero_TickAndRenderRoleVisuals` calls `Role_TickAndRender` at `0x66F843`
@@ -1198,14 +1197,14 @@ Camera-build wrappers used in this chain:
 - destroys existing role view (virtual destructor)
 - chooses a type (e.g., 4 becomes 10 for large IDs)
 - calls `RoleViewCreate(type)`
-- initializes it with a “look”/ID and sets transforms via vtable calls
+- initializes it with a "look"/ID and sets transforms via vtable calls
 - consults `RoleDataQuery` for data-driven decisions
 
 `CPlayer__AddVisualEffect` also uses `RoleViewCreate` for timed effects; it sets expiry times using `timeGetTime()`.
 
 **Implication:** entity visuals/effects are implemented as objects from `RoleView.dll`, so parity requires either:
 - reimplementing `RoleView` semantics ourselves, or
-- providing a compatibility layer that exposes equivalent “role view” APIs in the new client.
+- providing a compatibility layer that exposes equivalent "role view" APIs in the new client.
 
 Current managed boundary after the latest startup/bootstrap verification:
 - type-1 map rendering already submits the local hero first and persists a player scene object with:
@@ -1232,37 +1231,22 @@ Verified native coordinate-space rule for player render input:
   - the RoleView projection-base offset used by the offscreen 3D render
   - the composite screen point used when the offscreen bitmap is drawn back into the world
 
----
-
-## Documentation Completeness
-This document records verified observations only. Items that are not yet documented (open questions, TODOs, next deob targets) live outside `analysis/conquer_docs/` so this folder remains an implementation-ready reference, not a work journal.
-
----
-
-## Device-Lost / Reset (Observed Semantics)
+## Device loss and reset
 The render loop polls `CMyBitmap::IfDeviceLost()` and branches on at least three outcomes:
 
 - `0`: normal operation (render continues).
-- `1`: “device lost” (but not reset yet). The client records a `timeGetTime()` timestamp via `Exe_DeviceLost_RecordTimestamp_OnSingleton` (`0x76E1B2`) on a singleton (`s__GetSingletonPtr_53A304()`).
-- `2`: “device needs reset” (or reset-ready). The client:
+- `1`: "device lost" (but not reset yet). The client records a `timeGetTime()` timestamp via `Exe_DeviceLost_RecordTimestamp_OnSingleton` (`0x76E1B2`) on a singleton (`s__GetSingletonPtr_53A304()`).
+- `2`: "device needs reset" (or reset-ready). The client:
   1) records a timestamp via `Exe_DeviceReset_RecordTimestamp_OnSingleton` (`0x738C69`) on the same singleton,
   2) calls `C3DGameMap__ReleaseRenderObjectList(...)` (`0x620361`) to release per-map render object nodes before reset,
   3) calls `Exe_DestroyGlobalSingleton_dword_957F18` (`0x5DF50D`) (destroys global singleton `dword_957F18` via its vtable, then nulls it),
   4) calls `CMyBitmap::ResetDevice()`.
 
-**Implication:** the client expects a defined *device/graphics-context loss* model and a well-defined “invalidate GPU resources → recreate → resume” hook order. This is observable behavior in the original.
+**Implication:** the client expects a defined *device/graphics-context loss* model and a well-defined "invalidate GPU resources → recreate → resume" hook order. This is observable behavior in the original.
 
+## Related
 
----
-
-## Scope Note
-This document is descriptive: it records what the original client depends on and how those dependencies behave. It does not prescribe a rewrite architecture.
-
----
-
-## Notes
-See dedicated module documentation for deeper details:
-- `analysis/conquer_docs/Rendering/01_graphic_dll_api_surface.md` (EXE import surface)
-- `analysis/conquer_docs/Rendering/graphic_dll/README.md` (the `graphic.dll` IDB documentation set)
-- `analysis/conquer_docs/Rendering/02_roleview_object_interface.md` (EXE-side `RoleViewCreate` usage)
-- `analysis/conquer_docs/Rendering/03_targetbmp_and_mybitmap_object_interfaces.md` (EXE-side TargetBmp/MyBitmap usage)
+- [01_graphic_dll_api_surface.md](01_graphic_dll_api_surface.md) — the EXE import surface.
+- [02_roleview_object_interface.md](02_roleview_object_interface.md) — EXE-side `RoleViewCreate` usage.
+- [03_targetbmp_and_mybitmap_object_interfaces.md](03_targetbmp_and_mybitmap_object_interfaces.md) — EXE-side TargetBmp and MyBitmap usage.
+- [graphic_dll/README.md](graphic_dll/README.md) — the full `graphic.dll` documentation set.

@@ -9,17 +9,17 @@ Entry point:
 
 Behavior:
 
-1. Allocates `0x54` bytes from `graphic.dll`’s heap wrapper.
+1. Allocates `0x54` bytes from `graphic.dll`'s heap wrapper.
 2. Constructs a `C3MotionTracker` instance (`C3MotionTracker_Ctor` at `0x10004A70`).
-3. Calls the object’s virtual init method at vtable offset `+0x04` (index `1`) with `(path, enableNameHash)`.
+3. Calls the object's virtual init method at vtable offset `+0x04` (index `1`) with `(path, enableNameHash)`.
 4. If init succeeds (non-zero), returns the object pointer.
-5. If init fails (zero), calls the object’s scalar-deleting destructor (`C3MotionTracker_ScalarDeletingDtor`, vtable offset `+0x4C`) with argument `1` and returns `0`.
+5. If init fails (zero), calls the object's scalar-deleting destructor (`C3MotionTracker_ScalarDeletingDtor`, vtable offset `+0x4C`) with argument `1` and returns `0`.
 
 The init routine and file format are documented in `analysis/conquer_docs/Rendering/graphic_dll/14_motion_file_loading.md`.
 
 ## `C3MotionTracker` vtable and method semantics used by the client
 
-`C3MotionTracker`’s primary vtable is `g_C3MotionTracker_Vtbl` (`0x100395AC`).
+`C3MotionTracker`'s primary vtable is `g_C3MotionTracker_Vtbl` (`0x100395AC`).
 
 The following methods are the ones exercised by the mesh object (`C3DObjX`) when binding motions:
 

@@ -1,7 +1,6 @@
 # CItem & CItemData Classes — Item System
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Item.cpp / ItemData.cpp
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Item.cpp` / `ItemData.cpp`.
 
 ## Item ID Structure (Conquer Online Item Type System)
 
@@ -57,8 +56,6 @@ Gems (sub 201/202): returns (item_id % 10000) / 1000
 Weapons (major 4-5): returns 1000 * ((item_id % 100000) / 1000)
 Weapons (major 7/10): returns 10000 * ((item_id % 100000) / 10000)
 ```
-
----
 
 ## CItemData Record Layout (192 bytes)
 From CItemData__CopyFrom @ 0x67983E and CItemData__ClearFields @ 0x6788DA:
@@ -128,8 +125,6 @@ struct CItemData {
 // Total: 192 bytes
 ```
 
----
-
 ## CItem Object Layout (~500 bytes)
 From accessor analysis:
 
@@ -195,8 +190,6 @@ struct CItem {
 };
 ```
 
----
-
 ## ItemTypeDataSingleton Startup Chain
 
 The item-data singleton rooted at `data_96AE88` is not a CSV loader and not a simple
@@ -259,7 +252,7 @@ discovered during slice 17 tracing:
 Field 18 (`+0x30`) is the only field actively consumed by the frame-interval pipeline — a
 signed 16-bit value that contributes directly to `CRole+0x48` when the role's mount type id
 resolves to a record in the primary tree. See
-`20_notes/Rendering/roleview_dll/09_role_scale_formula.md` and
+`../Rendering/roleview_dll/09_role_scale_formula.md` and
 `13_role_compute_frame_interval.md` (slice 17) for the full accumulator chain.
 
 Managed parity: `Conquer.Assets.Item.ItemTypeDatRecord.SpeedPercentOffsetFieldIndex = 18`
@@ -331,8 +324,6 @@ The exact item contribution consumed by `CHero_GetEffectiveMaxLife` / `MaxMana` 
   0 for positive durability or 1 for zero. CMsgTick subtype 17 sets it on the non-positive path,
   but its positive path updates current durability without clearing an existing 1.
 
----
-
 ## Upgrade Experience Tables
 
 ### Standard Upgrade (GetUpgradeExp @ 0x67B411)
@@ -373,8 +364,6 @@ Exp:   20    20    90   240   720   2160   6480  19440   58320   2700   5500   9
 ```
 Difference from standard: index 2 is 90 instead of 80.
 
----
-
 ## Equipment Slot System (NormalizeEquipmentSlot @ 0x67B8A1)
 
 Maps item sub-types to canonical equipment positions:
@@ -399,8 +388,6 @@ Slot ID  →  Canonical  Description
 177      →  117        (alias → weapon)
 178      →  118        (alias → boots)
 ```
-
----
 
 ## Socket/Gem System
 
@@ -437,8 +424,6 @@ Type 12 (gem): socket_score >= 5
 Equipment: socket_score >= 8
 Both require: not bound, not special locked
 ```
-
----
 
 ## Functions (verified through decompilation)
 

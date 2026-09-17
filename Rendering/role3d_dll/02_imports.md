@@ -21,4 +21,3 @@ Notable imported `graphic.dll` symbols used by Role3D:
 - `GetC3Camera`, `GetResLimitInterface`, `GetCurrentFPS`
 - `BeginProjectiveShadowMap`, `EndProjectiveShadowMap`, `ClearBuffer`
 - `DestroyShapeInfo`, `DestroyPtclInfo`, `DestroyPtcl3Info`
-

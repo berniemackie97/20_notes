@@ -1,6 +1,6 @@
 # `graphic.dll` — Motion file loading (`C3MotionTracker_InitFromMotionFile`)
 
-This document describes how the client loads a motion container from a motion file/resource stream.
+How the client loads a motion container from a motion file or resource stream.
 
 The motion container is created via `MotionCreate(...)` and initialized by a vtable method that parses the file and loads one or more `C3Motion` records.
 
@@ -18,7 +18,7 @@ In the stock pipeline this `path` is typically the same `.c3` resource used for 
 
 If `Common_OpenRes` fails, initialization fails immediately.
 
-Before parsing, it calls methods on `g_ResLimitInterfacePtr` to validate the motion file’s byte size against the client’s resource limits:
+Before parsing, it calls methods on `g_ResLimitInterfacePtr` to validate the motion file's byte size against the client's resource limits:
 
 - vtable slot `+0x00` (method index `0`) -> file-size gate (`category 0` in `GraphicData.dll` policy)
 
@@ -99,4 +99,4 @@ Managed runtime parity for `C3DObjX` binding now additionally mirrors native tra
 For verified `MOTI` payload decode formats (`KKEY` / `ZKEY` / `XKEY` / fallback),
 see:
 
-- `20_notes/Rendering/c3_core_dll/12_motion_load_formats.md`
+- `../c3_core_dll/12_motion_load_formats.md`

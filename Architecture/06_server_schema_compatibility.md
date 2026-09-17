@@ -1,8 +1,8 @@
 # Server Schema Compatibility (`conquer.sql`)
 
-This note records the current server-side schema facts verified from the workspace backup:
+Server-side schema facts verified from the workspace backup:
 
-- source: `/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/conquer.sql`
+- source: `conquer.sql`
 - relevant retail table: `cq_user`
 - relevant retail membership tables: `cq_family_attr`, `cq_synattr`
 - optional extension table: `map_ground_items`

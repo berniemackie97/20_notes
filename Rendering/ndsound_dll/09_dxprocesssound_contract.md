@@ -1,11 +1,9 @@
-# `_DXProcessSound@8` Contract (Verified)
+# `_DXProcessSound@8` Contract
 
 ## Export -> engine mapping
 
 - `_DXProcessSound@8` (`0x10008940`) -> `NdSoundEngine_ProcessFrame` (`0x10007366`)
 - SEH helper in wrapper prologue: `EhHandler_DXProcessSound` (`0x1000D258`)
-
----
 
 ## `_DXProcessSound@8`
 
@@ -16,8 +14,6 @@ Verified wrapper behavior:
 1. Forwards `listenerX` and `listenerY` unchanged to `NdSoundEngine_ProcessFrame(g_NdSoundEngineSingleton, listenerX, listenerY)`.
 2. Returns the helper return value directly (legacy side-effect API; not a strict success/fail code).
 
----
-
 ## `NdSoundEngine_ProcessFrame` execution gate
 
 Frame logic executes only when:
@@ -26,8 +22,6 @@ Frame logic executes only when:
 - mute/suspend gate is clear (`engine+0x18 == 0`).
 
 Otherwise the function exits without running vector processing.
-
----
 
 ## Verified frame transitions
 
@@ -54,8 +48,6 @@ Otherwise the function exits without running vector processing.
    - restart gate: when `instance+0x24 == 0` and `instance+0xb0 != 0`, calls `NdSound2dInstance_StartFromCurrentSettings(instance)`,
    - aging counter at `instance+0x28` increments when non-zero,
    - disposal check uses pre-increment value: remove when previous counter `> 100`.
-
----
 
 ## Contract helpers in managed code
 

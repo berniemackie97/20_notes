@@ -1,9 +1,8 @@
 # Frame Loop Architecture — CMyShellDlg_RunFrameTick
-## Source: `F:\CQ2ClientRelease-42.0.1\MyShell\MyShellDlg.cpp` (debug string at 0x93F3CE)
+
+Source: `F:\CQ2ClientRelease-42.0.1\MyShell\MyShellDlg.cpp` (debug string at 0x93F3CE).
 ## Entry: `CMyShellDlg_RunFrameTick` (`0x5dcfb0`)
 ## Verified via BNinja HLIL decompile of `0x5dcfb0`
-
----
 
 ## Summary
 
@@ -54,8 +53,6 @@ strictly between a leading `[` and the first `]` (no trimming), keys lose traili
 are lowercased, and values skip leading spaces/TABs and end at TAB, semicolon, CR, or LF. Ordinary
 spaces inside or at the end of a value are retained.
 
----
-
 ## Global State
 
 | Symbol | Address | Purpose |
@@ -64,8 +61,6 @@ spaces inside or at the end of a value are retained.
 | `data_957de8` | 0x957de8 | `CFrameEventList` singleton (floating text / damage numbers) |
 | `data_958651` | 0x958651 | Anti-addiction grade-100 WM_0x471 sent flag |
 | `data_958652` | 0x958652 | Anti-addiction grade-100 WM_0x472 sent flag |
-
----
 
 ## Frame Tick Sequence (verified order, BNinja HLIL `0x5dcfb0`)
 
@@ -158,8 +153,6 @@ spaces inside or at the end of a value are retained.
 65   5dd710      CMyBitmap_End3DAndFlip()                                    present DirectX back-buffer
 ```
 
----
-
 ## Key Frame Loop Singletons
 
 | Singleton Getter | Singleton Address | Type |
@@ -173,8 +166,6 @@ spaces inside or at the end of a value are retained.
 | `&data_957de8` | 0x957de8 | `CFrameEventList` (static) |
 | `&data_96b018` | 0x96b018 | Entity registry (static) |
 | `&data_96b090` | 0x96b090 | `CMapViewportState` (static) |
-
----
 
 ## CScheduledWindowMsg0CBC — 5-Second Periodic Timer
 
@@ -220,8 +211,6 @@ void CScheduledWindowMsg0CBC_Fire(obj) {
 
 **Behavior**: one-shot timer. `WM_0CBC` handler must rearm by setting
 `obj->fired_gate = 0` and `obj->arm_timestamp_ms = timeGetTime()` to restart the 5s cycle.
-
----
 
 ## CDummyMovieMgr — Sound Keyframe Tick
 
@@ -321,8 +310,6 @@ void CDummyMovieMgr_TickSoundKeyframes(obj) {
 | `+0x10` | Get sound handle by ID + flags |
 | `+0x14` | Stop BGM by handle |
 | `+0x18` | Play BGM by ID |
-
----
 
 ## CGameMap_TickFirstActiveComponent — Frame Step 15
 
@@ -554,8 +541,6 @@ Coord sources (also leaf interfaces):
 | `IGroundEntityLayerProjectionOffsetSource.GetComponentRenderProjectionOffset()` | `CGameMap_GetComponentRenderProjectionOffset` |
 | `IGroundEntityLayerHeroTileCoordSource.GetHeroTileCoord()` | `CHero_GetSingletonPtr` + two `XteaProtectedInt_Get` trampolines |
 
----
-
 ## CShowHandMgr — Card Animation Tick
 
 **Tick function**: `CShowHandMgr_Tick` (`0x6b87fd`).
@@ -588,13 +573,11 @@ void CShowHandMgr_Tick(sceneMgr) {
 **Purpose**: Texas Hold'em card-dealing animation system. Ticks all in-flight card animation
 entities each frame and manages card spawn/process lifecycle.
 
----
-
 ## CHero Idle System — Frame Loop Integration
 
 Called at step 14 (`0x5dd04c`) from `CMyShellDlg_RunFrameTick`.
 Full function verified at `CHero_TickPreFrameAutoRunAndIdleDecision` (`0x65cc70`).
-See `20_notes/Entity_System/chero_class.md § Idle State System` for complete docs.
+See `../Entity_System/chero_class.md § Idle State System` for complete docs.
 
 Cancellation conditions form one short-circuit OR ladder. If any predicate is true, the native
 function makes exactly one call to `CHero_CancelAutoRunAndClearIdle`:
@@ -620,8 +603,6 @@ fresh type-6 command with payload `0xFA`. Cancel submits payload `0x64` only whe
 `0x1E`/`0x1F` are clear and interaction suppression is false, then restores the cached mounted
 interval when status flag `0x32` is set.
 
----
-
 ## CFrameEventList — Floating Text Lifecycle
 
 **Static object**: `data_957de8` (0x957de8).
@@ -631,15 +612,11 @@ interval when status flag `0x32` is set.
 
 Entry lifecycle: `BeginTick` (purge) → render active entries → `EndFrameDispatch`.
 
----
-
 ## Device-Reset Flag
 
 `var_8_1` in frame locals = device-reset flag (set to 1 when `CMyBitmap::IfDeviceLost() != 0`).
 Several render calls are gated: `if var_8_1 == 0`.
 When device-reset: chat backgrounds are flipped instead of normal scene.
-
----
 
 ## Anti-Addiction System
 

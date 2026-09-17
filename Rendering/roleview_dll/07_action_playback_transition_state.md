@@ -1,6 +1,6 @@
 # `RoleView.dll` — Action Playback + Transition State (Type 2 / Type 10)
 
-This document pins the BNinja-verified body-motion playback transition path used by:
+The BNinja-verified body-motion playback transition path, used by:
 
 - `RoleView_UpdateRolePartMotionsForAction` (`0x10002DC8`)
 - `RoleView_Type2_UpdateRolePartMotionsForAction` (`0x10003E39`)
@@ -1244,7 +1244,7 @@ Managed parity note for the current client slice:
     from `Role_SetTilePositionAndProjectScreenCoordinates`
   - materializing the live `role+0x350/+0x354` cursor through
     `ClientWorldRoleSceneMaterializationRuntime`, rather than reprojecting a static packet tile while motion is active
-  - using the local hero’s projected screen pair as the projection-center base input for
+  - using the local hero's projected screen pair as the projection-center base input for
     `Role3DClientSceneProjectionTickSnapshotFromCommandStateOrProjectedWorldStateSourceRuntime`
 - this is intentionally narrower than full native role object construction: it mirrors the verified tile -> screen
   projection side effect needed for first world-frame centering, without claiming full `CRole` entity or RoleView
@@ -1366,8 +1366,8 @@ This bridge explains why playback still works when blend duration resolves to ze
 
 The part-motion record layouts forwarded further downstream are documented in:
 
-- `20_notes/Rendering/role3d_dll/04_i3drole_object.md`
-- `20_notes/Rendering/role3d_dll/05_partinfo_and_mesh_instances.md`
+- `../role3d_dll/04_i3drole_object.md`
+- `../role3d_dll/05_partinfo_and_mesh_instances.md`
 
 Those docs pin the final Role3D record shapes for slot `43` (`+0xAC`) and slot `44` (`+0xB0`).
 

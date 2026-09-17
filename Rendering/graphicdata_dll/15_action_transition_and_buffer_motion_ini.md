@@ -1,9 +1,9 @@
 # `GraphicData.dll` — `ActionTransition.ini` and `BufferMotion.ini` loaders
 
-This document captures the verified behavior of two text INI loaders called by `GameDataSet_Initialize`.
+Verified behaviour of the two text INI loaders `GameDataSet_Initialize` calls.
 
 `ini/MeshLod.ini` is loaded in the same initialization phase, but its parser/runtime usage is documented separately:
-`20_notes/Rendering/graphicdata_dll/17_mesh_lod_ini_and_model_variant_resolution.md`
+`17_mesh_lod_ini_and_model_variant_resolution.md`
 
 ## Call order in initialization
 
@@ -64,7 +64,7 @@ Verified behavior:
 
 1. looks up source section `oldActionId` in the top-level transition map (`this + 0xAC` / `this + 0xB0`);
 2. if source section missing, returns `0`;
-3. looks up target entry `newActionId` in that section’s transition-entry map;
+3. looks up target entry `newActionId` in that section's transition-entry map;
 4. if target entry missing, returns `0`;
 5. on hit, returns the stored `transition_time`.
 
@@ -103,4 +103,4 @@ For action transitions specifically:
 
 Bridging evidence for the second point is in:
 
-- `20_notes/Rendering/roleview_dll/07_action_playback_transition_state.md` (`Conquer.exe` per-tick slot `+0x0C` + property `0x0A` feed).
+- `../roleview_dll/07_action_playback_transition_state.md` (`Conquer.exe` per-tick slot `+0x0C` + property `0x0A` feed).

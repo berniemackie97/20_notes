@@ -354,7 +354,6 @@ This survived re-checking, and is now established three independent ways:
 So the XP gauge's `Show` queries a section that genuinely does not resolve. The sibling files are
 shipped but dead in this build.
 
-
 ## Correction: the gauges are NOT percentage gauges
 
 An earlier revision of this note read the `min = 0, max = 0x64` in

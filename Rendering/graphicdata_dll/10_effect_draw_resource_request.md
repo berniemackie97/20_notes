@@ -7,7 +7,7 @@
 Entry point:
 - `GameDataSet_RequestEffectDrawResource` (`0x10006A90`) (base vtable offset `+0x1C`)
 
-This document describes the *externally observable* behavior as exercised by `Role3D.dll`’s effect render backends.
+*Externally observable* behaviour, as exercised by `Role3D.dll`'s effect render backends.
 
 ## Return value and readiness
 
@@ -16,7 +16,7 @@ Return value:
 - `0` if the requested effect draw resource is not ready (and a load is scheduled), or
 - a non-zero pointer to the effect draw resource object when available.
 
-`Role3D.dll` treats a return value of `0` as “not ready” and aborts the current effect render path.
+`Role3D.dll` treats a return value of `0` as "not ready" and aborts the current effect render path.
 
 ## Scheduling vs immediate load (`mode`)
 
@@ -41,7 +41,7 @@ Important parity point:
 
 ## Request aging (`maxAgeMs`)
 
-The request tracks a `lastTouchMs` timestamp and a maximum “age” value:
+The request tracks a `lastTouchMs` timestamp and a maximum "age" value:
 
 - each request refreshes `lastTouchMs = timeGetTime()`
 - if `maxAgeMs` passed to the request is larger than the stored maximum, the stored maximum is raised
@@ -83,6 +83,6 @@ BNinja rename applied for this slice:
 
 ## Returned object interface
 
-The returned pointer is the “effect draw resource object” driven through a vtable by `Role3D.dll`. The exact vtable methods and call contracts used by the effect backends are documented in:
+The returned pointer is the "effect draw resource object" driven through a vtable by `Role3D.dll`. The exact vtable methods and call contracts used by the effect backends are documented in:
 
 - `analysis/conquer_docs/Rendering/role3d_dll/10_effect_draw_resource_interface.md`

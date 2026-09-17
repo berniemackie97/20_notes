@@ -1,8 +1,7 @@
 # CRole Class — Base Entity
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Role.cpp (debug string at 0x93E950)
-## IDA Folder: /Entity_Role/CRole (40 functions)
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Role.cpp` (debug string at 0x93E950).
+## IDA Folder: /Entity_Role/CRole (40 functions)
 
 ## Overview
 
@@ -160,8 +159,6 @@ CRole uses three separate bitset regions for entity status:
 
 ## Functions (40 total)
 
----
-
 ### Lifecycle & Initialization (4 functions)
 
 #### CRole__Init (0x64D260, size=703)
@@ -203,8 +200,6 @@ CRole uses three separate bitset regions for entity status:
 - Sets health = 100
 ```
 
----
-
 ### Visual / RoleView (4 functions)
 
 #### CRole__CreateRoleView (0x64D51F, size=296)
@@ -235,8 +230,6 @@ CRole uses three separate bitset regions for entity status:
 - Returns 1 on success, 0 on failure
 - Assert: nPosition >= 1 && nPosition <= 18
 ```
-
----
 
 ### Animation (3 functions)
 
@@ -270,8 +263,6 @@ Action type handling:
 - On success: memcpy(this+122, Src, 0x11C) — copies entire action block
 - Returns 1 on success, 0 on rejection
 ```
-
----
 
 ### Rendering (5 functions)
 
@@ -366,8 +357,6 @@ rounding rules are documented in
 - Converts to 3D coordinates via the map screen-to-projection helper (`0x61E319`)
 ```
 
----
-
 ### Position & Direction (4 functions)
 
 #### Role_SetTilePositionAndProjectScreenCoordinates (0x6E4C79, size=159)
@@ -417,8 +406,6 @@ rounding rules are documented in
 - Checks idle timeout (5000ms threshold)
 - Shows/hides name tag based on activity
 ```
-
----
 
 ### Status Flags & Properties (7 functions)
 
@@ -472,8 +459,6 @@ rounding rules are documented in
   - Triggers the HP-decrease notification helper (`0x738C69`) at `hero+11312`
 - Delegates to CFDword__func_000(container, value, index)
 ```
-
----
 
 ### Field Accessors (10 functions)
 
@@ -542,8 +527,6 @@ rounding rules are documented in
 - Applies rotation via effect vtable[44] with (0, 0, angle, subobj, 1)
 ```
 
----
-
 ### Speed & Movement Calculation (1 function)
 
 #### CRole__CalcSpeedModifier (0x65127A, size=182)
@@ -556,8 +539,6 @@ rounding rules are documented in
 - If entity is not in a speed-exempt state: adjusts as 100*speed/base
 - Special case for action 713: applies additional ratio from dword_86AA64/dword_86AA98 tables
 ```
-
----
 
 ### Overlay Y-Offset Calculation (2 functions)
 
@@ -615,8 +596,6 @@ These two helpers are rotation-only branches. They do not contribute to the
 direct-render vertical terms (`var_1c` / `var_20`) used for startup/local-hero
 placement.
 
----
-
 ### Action Queue Processing (2 functions)
 
 #### CRole__ApplyActionWithQueue_6720EE (0x6720EE, size=574)
@@ -645,8 +624,6 @@ placement.
 - Removes processed entry from list
 ```
 
----
-
 ### Visual Effects (2 functions)
 
 #### CRole3D__CreateObj (0x64CB60, size=58)
@@ -667,8 +644,6 @@ placement.
 - Each effect: adds via effect_main vtable[16] when enabling, removes via the effect-removal helper (`0x651205`)
 - Tracks active state in single-byte flags at offsets 2476/2477
 ```
-
----
 
 ### Mount / Horse Configuration (2 functions)
 
@@ -697,8 +672,6 @@ placement.
   - SceneDis/SceneDis800, SceneGoon/SceneGoon800
   - HorseGrid/HorseGrid800
 ```
-
----
 
 ## Helper Address Index
 

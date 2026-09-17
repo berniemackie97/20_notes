@@ -1,9 +1,8 @@
 # CPlayer Class — Rendered Entity with Nameplate
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Player.cpp (debug string at 0x93FED8)
+
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Player.cpp` (debug string at 0x93FED8).
 ## Inherits: CRole
 ## IDA Folder: /Entity_Player/CPlayer (22 functions) + /Entity_Player/Misc (1 function)
-
----
 
 ## Memory Layout (extends CRole, ~2636 bytes total)
 ```c
@@ -455,8 +454,6 @@ Per-frame effect queue rendering:
   - Calls CPlayer__SetGuildName with empty/default name
   - Resets guild display to original after 2-second timeout
 ```
-
----
 
 ### Misc — CNpc__InitDefaults (0x66F42B, size=130)
 **IDA Folder**: /Entity_Player/Misc

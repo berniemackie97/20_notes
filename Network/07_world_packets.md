@@ -1,15 +1,13 @@
 # World Packets — Map, Weather
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
 ## MsgWeatherUpdate (Type 1016)
 **Direction**: S→C
-**Purpose**: Weather update packet (drives `CWeather__*` state updates)  
+**Purpose**: Weather update packet (drives `CWeather__*` state updates)
 **Dispatch**: Create `CMsgWeatherUpdate__Create` (0x760667), parse `CMsgWeatherUpdate__Parse` (0x7607DE), process `CMsgWeatherUpdate__Process` (0x760801)
 
-**Verified parse behavior**:
-- `CMsgWeatherUpdate__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1016`.
+**Parse**: `CMsgWeatherUpdate__Parse` — standard header validation, then `type == 1016`.
 
 **Verified field usage in `CMsgWeatherUpdate__Process`** (offsets relative to packet start):
 - `+4`, `+8`, `+12`, `+16` are passed to `CMsgWeatherUpdate__ValidateAndNormalize` and later to `CWeather__SetWeather` / `CWeather__UpdateWeatherParams` depending on sub-state.
@@ -34,26 +32,22 @@
 - This still does **not** claim native particle/visual weather rendering parity; it only removes the dead-stub gap so
   weather state reaches the same map-component layer the native handler targets.
 
-
 ## MsgWeather (Type 1028)
 **Direction**: S→C
 **Purpose**: Weather update (verified by `CWeather__SetWeather` / `CWeather__UpdateWeatherParams` calls).
 **Dispatch**: Create `CMsgWeather__Create` (0x7534A1), parse `CMsgWeather__Parse` (0x753507), process `CNetMsg__NoopProcess` (0x5AD9B1)
 
-**Verified parse behavior**:
-- `CMsgWeather__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1028`.
+**Parse**: `CMsgWeather__Parse` — standard header validation, then `type == 1028`.
 
 **Verified processing behavior**:
 - Process handler is `CNetMsg__NoopProcess` (no-op).
-
 
 ## MsgMapInfo (Type 1052)
 **Direction**: S→C
 **Purpose**: Map info + validation handshake (verified by `CMsgMapInfo__Build` and `CNetClient__Connect` usage).
 **Dispatch**: Create `CMsgMapInfo__Create` (0x754364), parse `CMsgMapInfo__Parse` (0x7544C5), process `CMsgMapInfo__Process` (0x75464C)
 
-**Verified parse behavior**:
-- `CMsgMapInfo__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1052`.
+**Parse**: `CMsgMapInfo__Parse` — standard header validation, then `type == 1052`.
 
 **Verified field usage in `CMsgMapInfo__Process`** (offsets relative to packet start):
 - `+4` (u32) gates the whole handler. If `== 0`, it routes to an error path and returns; if nonzero, it is stored into singleton offset `+2716` and used in follow‑on calls.

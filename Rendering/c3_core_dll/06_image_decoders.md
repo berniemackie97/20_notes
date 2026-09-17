@@ -1,6 +1,6 @@
 # Image decoding and container support (textures)
 
-This document describes the internal image decoding stack used to populate textures in `c3_core_dll.dll`, as invoked by:
+The internal image decoding stack that populates textures in `c3_core_dll.dll`, as invoked by:
 
 - `Texture_Load`
 - `Texture_Reload`
@@ -90,17 +90,17 @@ matches the independently composed 32x32 RGBA golden; Windows execution remains 
 - Requires the 4-byte magic `DDS ` (`0x20534444`).
 - Requires at least 0x7C bytes of header following the magic.
 
-### Mip levels and “faces”
+### Mip levels and "faces"
 
 The decoder constructs a linked structure representing one or more:
 
-- mip levels per “face”
+- mip levels per "face"
 - faces (for cubemap-like or array-like content)
 
 The loops in the implementation indicate:
 
-- `v24` is a “mip level count” value read from the header (defaulting to 1 when missing/0).
-- `v27` is a “face count” derived from header flags; it is either `1` or `6`.
+- `v24` is a "mip level count" value read from the header (defaulting to 1 when missing/0).
+- `v27` is a "face count" derived from header flags; it is either `1` or `6`.
 
 ### Supported FourCC (block/compressed and packed YUV)
 
@@ -135,7 +135,7 @@ For non-FourCC DDS formats, the decoder uses the DDS pixel-format masks and a de
 
 #### Pixel-format mapping table (`dword_100AA530`)
 
-The DDS decoder uses a built-in table located at `dword_100AA530` to match the DDS `DDS_PIXELFORMAT` fields (flags, fourCC, RGB bit count, and masks) to an output “format tag” (`outTag`).
+The DDS decoder uses a built-in table located at `dword_100AA530` to match the DDS `DDS_PIXELFORMAT` fields (flags, fourCC, RGB bit count, and masks) to an output "format tag" (`outTag`).
 
 Matching logic (as implemented) checks:
 
@@ -198,7 +198,7 @@ The engine has an internal format descriptor table at `0x100A1800` with 43 entri
 This format descriptor is used by the DDS decoder (and other image decode paths) to:
 
 - decide whether the format is block-compressed or linear
-- compute derived properties like “bits per pixel” for upload and lock/stride
+- compute derived properties like "bits per pixel" for upload and lock/stride
 - select the D3D format to request from the device when creating textures
 
 The exact meaning of the 9 descriptor fields is documented in `Rendering/c3_core_dll/03_textures.md` (format descriptor table section).

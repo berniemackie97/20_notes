@@ -1,4 +1,4 @@
-# `_DXPlayMedia@12` Contract (Verified)
+# `_DXPlayMedia@12` Contract
 
 ## Export + core implementation
 

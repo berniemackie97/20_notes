@@ -1,7 +1,6 @@
-# CNpc Class -- NPC System
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\MsgNpcInfo.cpp
+# CNpc Class — NPC System
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\MsgNpcInfo.cpp`
 
 ## Class Hierarchy
 ```
@@ -31,8 +30,6 @@ but there is no separate class between it and `CRole`. Also note `CRole` itself 
 see `Rendering/00_rendering_gap_analysis.md`.
 
 CNpc extends CPlayer (which extends CRole). It represents all non-player-controlled entities in the game world, including static NPCs, monsters, terrain objects, and special interactive objects.
-
----
 
 ## CNpc Object Layout (0xA58 = 2648 bytes)
 
@@ -98,8 +95,6 @@ CNpc extends CPlayer (which extends CRole). It represents all non-player-control
 | 0x9AC (2476-2477) | byte flags | Cleared |
 | 0xA48 (2632) | byte flag | Cleared |
 
----
-
 ## CNpc VTable (0x86AEEC, 30 entries)
 
 | Index | Address | Function | Description |
@@ -131,8 +126,6 @@ CNpc extends CPlayer (which extends CRole). It represents all non-player-control
 | 27 | 0x64E1D9 | (func) | |
 | 28 | 0x64E228 | (func) | |
 | 29 | 0x64E217 | (func) | |
-
----
 
 ## NPC Type System
 
@@ -282,8 +275,6 @@ Oracle-backed stopgap (not yet directly pinned from 5517 BNinja parser control f
   `0`, so common standard NPCs remain visible while the exact 5517 omitted-line default is still
   being re-verified
 
----
-
 ## MsgNpcInfo Packet (Type 2030)
 **Source**: MsgNpcInfo.cpp
 **Handler**: `CMsgNpcInfo__Process` @ `0x743B32`
@@ -326,8 +317,6 @@ Oracle-backed stopgap (not yet directly pinned from 5517 BNinja parser control f
 12. Overrides the display name from MsgStringList entry `0` when present.
 13. Registers the entity in the entity manager and posts the final entity update.
 
----
-
 ## Key CNpc Functions
 
 | Address | Name | Size | Description |
@@ -346,8 +335,6 @@ Oracle-backed stopgap (not yet directly pinned from 5517 BNinja parser control f
 | 0x66EB93 | CNpc__AllocateMemory | | Allocates 0xA58 bytes for NPC |
 | 0x505C58 | CSmartPtr__Create | | Creates smart pointer wrapper (ref-counted) |
 
----
-
 ## NPC Spawn Flow
 
 1. Server sends MsgNpcInfo packet with `entity_id`, `spawn_auxiliary_dword`, position, `look_composite`, and `npc_kind`
@@ -364,8 +351,6 @@ Oracle-backed stopgap (not yet directly pinned from 5517 BNinja parser control f
    - terrain lookup for `>= 5000` via `RoleDataSingleton_FindTerrainNpcRecord`
 6. Display name is finally overridden from MsgStringList entry `0` when present
 7. NPC is registered in the entity manager via `0x6E77D5`
-
----
 
 ## NPC Update Loop (CNpc__Update @ 0x6725ED)
 
@@ -398,8 +383,6 @@ Each frame:
 12. Smoothly interpolates field[195] toward field[196] by +/-6 per frame
 13. Calls vtable+152
 
----
-
 ## Entity Manager Integration
 
 NPCs are managed through a shared entity system:
@@ -408,15 +391,11 @@ NPCs are managed through a shared entity system:
 - `RefPtr__Reset(&ptr)` - Release entity reference
 - Entity IDs: NPCs use range 400001-500000, Monsters 500001-600000
 
----
-
 ## NPC Data Files
 
 - **NpcType data**: Loaded via RoleDataQuery(10, variant) - uses vtable+48 for standard, vtable+52 for terrain
 - **NpcType%d_%d format string** at 0x9358D8: Used for NPC type lookup by ID and variant
 - NPC visual data includes mesh/animation info at type_data+16 and name at type_data+4
-
-
 
 ## Helper Address Index
 

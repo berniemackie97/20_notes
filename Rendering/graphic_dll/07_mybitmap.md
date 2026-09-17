@@ -1,6 +1,6 @@
 # `graphic.dll` — MyBitmap (`MyBitmapCreate*`)
 
-This document describes the “MyBitmap” object created by the exported constructors `MyBitmapCreate`, `MyBitmapCreateEx`, and helper constructors that adapt other objects into a MyBitmap.
+The "MyBitmap" object, as built by `MyBitmapCreate`, `MyBitmapCreateEx`, and the helper constructors that adapt other objects into a MyBitmap.
 
 ## MyBitmap object shape (as constructed)
 `MyBitmap_Ctor` (0x10011DE0) initializes a 0x28-byte object with:
@@ -97,7 +97,7 @@ The MyBitmap vtable lives at `.rdata:0x10039A34` and contains at least the follo
 - `MyBitmap_DrawExWithRectAndRotate` (0x100122C0)
   - Same color behavior (`arg7 != 0` => `Sprite_SetColor(sprite, arg7.b, 0xFF, 0xFF, 0xFF)`; `arg7 == 0` => no color write).
   - Same setup but draws via `Sprite_DrawEx(sprite, arg9, arg10)`.
-- `MyBitmap_GetSpriteSize` (0x10012520): writes width/height from the sprite’s texture.
+- `MyBitmap_GetSpriteSize` (0x10012520): writes width/height from the sprite's texture.
 - `MyBitmap_GetSpriteArea` (0x10012550): returns width*height.
 - `MyBitmap_GetSpriteWidth` (0x10012560)
 - `MyBitmap_GetSpriteHeight` (0x10012570)
@@ -111,8 +111,8 @@ The MyBitmap vtable lives at `.rdata:0x10039A34` and contains at least the follo
 - `MyBitmap_LockTextureRect` (0x10012640): locks a texture rect via `Texture_LockRect`.
 - `MyBitmap_WritePixelIfLocked` (0x100126D0): writes a pixel if lock is active and within bounds.
 - `MyBitmap_UnlockTexture` (0x10012720): unlocks via `Texture_Unlock` and clears lock state.
-- `MyBitmap_ApplyMaskRegionFromSprites` (0x10012780): combines sprite and mask sprite data into a destination sprite by locking surfaces and AND’ing pixels.
-- `MyBitmap_ReloadSpriteNoFilterFromOther` (0x10012AD0): reloads sprite from another MyBitmap’s sprite path unless already matching.
+- `MyBitmap_ApplyMaskRegionFromSprites` (0x10012780): combines sprite and mask sprite data into a destination sprite by locking surfaces and AND'ing pixels.
+- `MyBitmap_ReloadSpriteNoFilterFromOther` (0x10012AD0): reloads sprite from another MyBitmap's sprite path unless already matching.
 
 ## Shared graphics-pipeline prepare mode
 
@@ -129,7 +129,7 @@ The draw-time guard is not an object-local or one-time sprite initialization fla
   preparation modes.
 
 Consequently, a model/PHY or font draw makes a later sprite draw reapply the complete sprite state
-baseline. A managed backend may organize state differently, but renderer-lifetime “prepared once”
+baseline. A managed backend may organize state differently, but renderer-lifetime "prepared once"
 state is not behaviorally equivalent when 2D and 3D draws interleave.
 
 Color-write evidence addresses:

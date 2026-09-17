@@ -1,11 +1,9 @@
-# `_DXPause@0` / `_DXContinue@0` Contracts (Verified)
+# `_DXPause@0` / `_DXContinue@0` Contracts
 
 ## Export -> engine mappings
 
 - `_DXPause@0` (`0x10008BDF`) -> `NdSoundEngine_PauseAllSound` (`0x1000529A`)
 - `_DXContinue@0` (`0x10008C50`) -> `NdSoundEngine_ResumeAllSound` (`0x100053A8`)
-
----
 
 ## `_DXPause@0`
 
@@ -23,8 +21,6 @@ Wrapper notes:
 - Export wrapper directly calls engine helper via singleton.
 - No explicit null guard in the wrapper.
 
----
-
 ## `_DXContinue@0`
 
 `_DXContinue@0()`
@@ -41,8 +37,6 @@ Wrapper notes:
 - Export wrapper directly calls engine helper via singleton.
 - No explicit null guard in the wrapper.
 
----
-
 ## Media toggle state machine
 
 `NdSoundMediaInstance_TogglePauseResume` is used by both exports:
@@ -56,8 +50,6 @@ Wrapper notes:
   - set state field to `1`.
 
 This is a true toggle helper, not separate dedicated pause/resume helpers.
-
----
 
 ## `NdSoundEngine_ProcessFrame` interplay (per-instance transitions)
 

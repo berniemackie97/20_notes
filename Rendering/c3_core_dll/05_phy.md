@@ -1,6 +1,6 @@
 # `Phy_*` routines
 
-This document describes the `Phy_*` API implemented in `c3_core_dll.dll` as used by the client.
+The `Phy_*` API in `c3_core_dll.dll`, as the client uses it.
 
 ## Exported entry points
 
@@ -342,7 +342,11 @@ Verified by disassembly:
 - optional motion sampling:
   - used-bone vector range: `phy+0x154` / `phy+0x158` (`0x1000C009..0x1000C024`)
   - call `C3MotionTracker_GetBlendedBoneMatrixAtFrame` per bone (`0x1000C03E`)
-  - destination matrix cache: `0x100B4540 + (boneIndex << 6)` (`0x1000C02B..0x1000C02E`)
+  - destination matrix cache `g_BoneMatrices`: `0x100B4540 + (boneIndex << 6)`
+    (`0x1000C02B..0x1000C02E`) - a module-global array of 64-byte 4x4 matrices, not a
+    per-`C3Phy` allocation
+  - the motion pair is built on the stack as `C3MotionBlendPair { primary, secondary }`
+    from `C3Phy+0x40` / `C3Phy+0x44` before the per-bone call
 - fallback (no motion sampling): identity-fill all `primaryMotion->boneCount` matrices (`0x1000C051..0x1000C095`)
 - per-vertex loop:
   - source stride `0x34`, destination stride `0x24` (`add edi, 0x34` at `0x1000C593`, `add ebx, 0x24` at `0x1000C586`)
@@ -445,10 +449,11 @@ Bone sampling inputs consumed above are fed by `graphic.dll` `C3DObjX` bind/fram
   - primary `C3DObjX_SetMotion*`: `phy+0x40 = tracker->GetMotionByIndex(i)` (`graphic.dll` `0x10003DD7`, `0x10003F45`)
   - blend `C3DObjX_SetBlendMotion*`: `phy+0x44 = tracker->GetMotionByIndex(i)` (`graphic.dll` `0x10003E62`, `0x10003FF2`)
 - per-submesh frame writes:
-  - `Phy_SetFrame(phy, frame)` (`graphic.dll` `0x10003F4E`, `0x1000429A`) writes
-    `primaryMotion+0x10`
-  - `Phy_SetBlendFrame(phy, frame)` (`graphic.dll` `0x10003FF9`, `0x100042DA`) writes
-    `secondaryMotion+0x14`
+  - `Phy_SetFrame` (`c3_core_dll.dll` `0x1000DEF0`; called from `graphic.dll` `0x10003F4E`,
+    `0x1000429A`) writes `primaryMotion+0x10`, reading the bound motion from `C3Phy+0x40`
+    and its `frameCount` from `motion+0x04`
+  - `Phy_SetBlendFrame` (`c3_core_dll.dll` `0x1000DF20`; called from `graphic.dll` `0x10003FF9`,
+    `0x100042DA`) writes `secondaryMotion+0x14`, reading the bound motion from `C3Phy+0x44`
   - both setters normalize independently against the bound motion's own `frameCount`:
     `uint32 frame % uint32 frameCount`; a zero `frameCount` writes frame position `0`,
     while a null bound motion returns without writing

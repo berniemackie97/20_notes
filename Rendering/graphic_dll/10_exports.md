@@ -1,6 +1,6 @@
 # `graphic.dll` — Exported Symbols (API Surface)
 
-This document lists exported symbols from `graphic.dll` as observed in the IDB. Names are recorded as they appear (mangled C++ exports where applicable).
+Exported symbols from `graphic.dll` as observed in the IDB. Names are recorded as they appear, mangled C++ exports included.
 
 ## `CMyBitmap` (class) exports
 The DLL exports many `CMyBitmap::*` static entry points (only a subset shown here; see IDB for the complete list).
@@ -116,4 +116,3 @@ Lighting-related:
 - `?Phy_SetLightPosition@@YAXHMMM@Z`
 - `?Phy_SetPointLightAttenuation@@YAXHMMM@Z`
 - `?Phy_SetSpotLightFalloff@@YAXHMMM@Z`
-

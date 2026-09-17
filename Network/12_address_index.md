@@ -1,14 +1,13 @@
 # Helper Address Index
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
 ## Session-mask audit address index — 2026-09-03
 
 Names below are analyst labels, not recovered debug symbols. Addresses identify the
 exact audited executable. Prior labels and pre-existing comments are preserved in the
-[annotation manifest](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/10_work/docs/evidence/session-mask-5517/bninja-annotations.json).
-[Full native audit](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/20_notes/Network/14_session_derived_legacy_cipher_mask.md) proves the mode-2 no-wire-effect decision.
+[annotation manifest](../../10_work/docs/evidence/session-mask-5517/bninja-annotations.json).
+[Full native audit](14_session_derived_legacy_cipher_mask.md) proves the mode-2 no-wire-effect decision.
 
 | VA | Current Binary Ninja name |
 |---|---|
@@ -51,7 +50,7 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 `CMsgMapInfoEx1203` is the alternate login-bootstrap family, not map metadata.
 `CMsgSuitStatus` (1055) and `CMsgAchievement` (1057) were misclassifications in this login context.
 
-## Helper Address Index
+## General network helper index
 
 | Function | Address |
 |---|---|

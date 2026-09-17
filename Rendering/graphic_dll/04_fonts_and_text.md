@@ -1,6 +1,6 @@
 # `graphic.dll` — Fonts and text rendering
 
-This note records the verified clean v5517 native contract between `graphic.dll`,
+The verified clean v5517 native contract between `graphic.dll`,
 `C3_CORE_DLL.dll`, and the Conquer executable. Addresses are from
 `00_clean/clean/5517-bninja/graphic.dll.bndb` unless stated otherwise.
 

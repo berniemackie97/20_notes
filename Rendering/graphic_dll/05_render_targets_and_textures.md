@@ -1,6 +1,6 @@
 # `graphic.dll` — Render Targets, Textures, and Target Surfaces
 
-This document describes the internal “target surface” path inside `graphic.dll` that creates textures and binds/restores Direct3D render targets.
+The internal "target surface" path inside `graphic.dll`: texture creation, and binding and restoring Direct3D render targets.
 
 The EXE uses `TargetBmpCreate*` and `MyBitmapCreateEx`, but the concrete device-level behavior lives in `graphic.dll` and uses `IDirect3DDevice8` calls.
 
@@ -18,7 +18,7 @@ Behavior:
    - On failure: logs `TargetTexture GetRenderTarget Error` and returns `0`.
 2) Calls `g_D3DDevice->GetDepthStencilSurface(...)` and stores the result at `this + 1004`.
    - On failure: releases the saved render target surface, logs `TargetTexture GetDepthStencilSurface Error`, returns `0`.
-3) Calls a virtual method at `(*(*(this+996)+12) + 60)` to obtain a surface into `v22[0]` (likely “get surface level 0”).
+3) Calls a virtual method at `(*(*(this+996)+12) + 60)` to obtain a surface into `v22[0]` (likely "get surface level 0").
    - On failure: releases saved surfaces, logs an error, returns `0`.
 4) Calls `g_D3DDevice->SetRenderTarget(v22[0], *(this + 1008))`.
    - On failure: releases `v22[0]` and saved surfaces and logs `g_D3DDevice->SetRenderTarget Failed!`.

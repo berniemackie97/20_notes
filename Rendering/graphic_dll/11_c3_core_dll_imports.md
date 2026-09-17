@@ -2,9 +2,9 @@
 
 ## Purpose
 
-In the 5517 client, `graphic.dll` delegates a large portion of the low-level rendering work to `c3_core_dll.dll` (module name appears as `C3_CORE_DLL` in `graphic.dll`’s import table).
+In the 5517 client, `graphic.dll` delegates a large portion of the low-level rendering work to `c3_core_dll.dll` (module name appears as `C3_CORE_DLL` in `graphic.dll`'s import table).
 
-This document enumerates the imported entry points as they appear in `graphic.dll`’s IAT and groups them by subsystem, so other documents can reference the correct owning module and the correct imported name.
+Imported entry points as they appear in `graphic.dll`'s IAT, grouped by subsystem, so other documents can cite the correct owning module and the correct imported name.
 
 ## Device / frame lifecycle
 

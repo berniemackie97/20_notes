@@ -1,6 +1,6 @@
 # `Simple3DObj` object (Role3D)
 
-This document describes the object returned by `Simple3DObjCreate` and its vtable methods that are used by `RoleView.dll`.
+The object `Simple3DObjCreate` returns, and the vtable methods `RoleView.dll` uses on it.
 
 ## Construction
 

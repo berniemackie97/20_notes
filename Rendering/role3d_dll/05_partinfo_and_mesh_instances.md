@@ -1,21 +1,21 @@
-# `Role3D.dll` — `PartInfo` and the per-part “mesh instance” interface
+# `Role3D.dll` — `PartInfo` and the per-part "mesh instance" interface
 
-This document covers the internal `PartInfo` container used by `Role3D.dll` to manage a set of renderable “parts” (sub-meshes) and the virtual-method interface that `Role3D.dll` expects each part to expose.
+The internal `PartInfo` container `Role3D.dll` uses to manage a set of renderable "parts" (sub-meshes), and the virtual-method interface it expects each part to expose.
 
 `PartInfo` is the implementation detail behind:
-- `I3DRole` (multi-part “role” objects)
-- `Simple3DObj` (single-model “simple object” rendering)
+- `I3DRole` (multi-part "role" objects)
+- `Simple3DObj` (single-model "simple object" rendering)
 
 ## `PartInfo` responsibilities
 
 `PartInfo` owns a list of part records. At render time, it:
 
 1. Validates that the part is available via `GraphicData.dll` (`GameDataSetQuery`).
-2. Resolves/caches a per-part “mesh instance” pointer (stored in the part record).
-3. Optionally applies a per-part “state/offset” value (only when a per-part dirty flag is not set).
-4. Calls the mesh instance’s render method with a set of integer render parameters.
+2. Resolves/caches a per-part "mesh instance" pointer (stored in the part record).
+3. Optionally applies a per-part "state/offset" value (only when a per-part dirty flag is not set).
+4. Calls the mesh instance's render method with a set of integer render parameters.
 
-After iterating all parts, it clears two per-part byte flags and then invokes the “effects + render” stage.
+After iterating all parts, it clears two per-part byte flags and then invokes the "effects + render" stage.
 
 ### Record-list mutation from game data
 
@@ -60,7 +60,7 @@ After all parts:
 
 ## Resolving mesh instances (`PartInfo_ResolvePartMesh`)
 
-`PartInfo_ResolvePartMesh` (`0x10006820`) resolves the per-part “mesh instance” pointer by calling into `GraphicData.dll`:
+`PartInfo_ResolvePartMesh` (`0x10006820`) resolves the per-part "mesh instance" pointer by calling into `GraphicData.dll`:
 
 1. `ds = GameDataSetQuery()`
 2. `record = ds->vfn_116(partModelId, this[61])`
@@ -70,11 +70,11 @@ After all parts:
 
 This establishes a concrete dependency chain:
 - Role3D part resolution is mediated by the `GraphicData.dll` `GameDataSetQuery` interface.
-- The actual “mesh instance” pointer is returned by a `GraphicData.dll` virtual method (vtable offset `+20`).
+- The actual "mesh instance" pointer is returned by a `GraphicData.dll` virtual method (vtable offset `+20`).
 
-## The per-part “mesh instance” virtual interface (as used by `Role3D.dll`)
+## The per-part "mesh instance" virtual interface (as used by `Role3D.dll`)
 
-`Role3D.dll` treats each part’s `meshInstance` as an object with a vtable and invokes the following slots (vtable byte offsets shown):
+`Role3D.dll` treats each part's `meshInstance` as an object with a vtable and invokes the following slots (vtable byte offsets shown):
 
 ### Iterating per-submesh bounds for hit-testing
 
@@ -179,7 +179,7 @@ Parity implication:
   part draw. For the player head-attachment path, drawing `"body"` therefore draws both the
   base body records and any attached `"head"` records currently stored in the same `PartInfo`.
 
-## What’s intentionally not assumed here
+## What's intentionally not assumed here
 
 This document describes only what `Role3D.dll` itself does and the *exact* virtual-call shapes it performs.
 

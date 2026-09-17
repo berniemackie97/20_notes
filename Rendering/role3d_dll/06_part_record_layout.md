@@ -1,6 +1,6 @@
 # `Role3D.dll` — `PartInfo` per-part record layout (as used by render + hit-test)
 
-`Role3D.dll` copies “part records” out of `GraphicData.dll`’s model→part-info lookup structures and stores them in its own `PartInfo` container. This document defines the *observable* layout of those per-part records as used by the `PartInfo` implementation.
+`Role3D.dll` copies "part records" out of `GraphicData.dll`'s model→part-info lookup structures and stores them in its own `PartInfo` container. This document defines the *observable* layout of those per-part records as used by the `PartInfo` implementation.
 
 `PartInfo_LoadFromGameData` (`0x100057A0`) is now typed as:
 
@@ -33,43 +33,43 @@ In `PartInfo_RenderAllParts` (`0x10005EB0`), the code iterates per-part records 
 - `int* rec = this + 93;`
 - `++rec` per part
 
-This indicates each per-part record is `1` dword wide *in the specific “mesh instance pointer stream”* at `this + 93`, but the record is conceptually a struct spread across multiple parallel arrays inside `PartInfo`.
+This indicates each per-part record is `1` dword wide *in the specific "mesh instance pointer stream"* at `this + 93`, but the record is conceptually a struct spread across multiple parallel arrays inside `PartInfo`.
 
 ## Parallel per-part fields used by `PartInfo` render/bind paths
 
 `PartInfo_RenderAllParts(this, a2, a3, a4, a5, a6, a7, a8)` uses the following per-part fields (relative to the `meshInstance` dword slot for that same part):
 
 Let:
-- `meshInstance = *(this + 93 + i)` (dword pointer; cached “mesh instance” object)
+- `meshInstance = *(this + 93 + i)` (dword pointer; cached "mesh instance" object)
 
 Then the function reads:
 
-- `partModelId = *(this + 65 + i)`  
+- `partModelId = *(this + 65 + i)`
   Used as input to `PartInfo_ResolvePartMesh(partModelId)` when `meshInstance == 0`.
 
-- `primaryTextureId = *(this + 69 + i)` (accessed as `*(rec - 24)` from `rec=this+93+i`)  
-  Resolved through `GameDataSetQuery()->vfn_24(primaryTextureId, 0, 0)`.  
+- `primaryTextureId = *(this + 69 + i)` (accessed as `*(rec - 24)` from `rec=this+93+i`)
+  Resolved through `GameDataSetQuery()->vfn_24(primaryTextureId, 0, 0)`.
   In `PartInfo_BindPerPartTexturesAndMaterial` (`0x10006620`), this resolved pointer is bound by mesh `vfn_58`.
 
-- `perPartStateOrOffset = *(this + 77 + i)` (accessed as `*(rec - 16)`)  
+- `perPartStateOrOffset = *(this + 77 + i)` (accessed as `*(rec - 16)`)
   When a per-part dirty flag is clear, this is applied via `meshInstance->vfn_96(perPartStateOrOffset, 0)`.
 
-- `defaultRenderArgument5 = *(this + 85 + i)` (accessed as `*(rec - 8)`)  
+- `defaultRenderArgument5 = *(this + 85 + i)` (accessed as `*(rec - 8)`)
   If caller-provided `a5 == -1`, the draw call uses `defaultRenderArgument5` instead.
 
-- `defaultRenderArgument6 = *(this + 89 + i)` (accessed as `*(rec - 4)`)  
+- `defaultRenderArgument6 = *(this + 89 + i)` (accessed as `*(rec - 4)`)
   If caller-provided `a6 == -1`, the draw call uses `defaultRenderArgument6` instead.
 
 ### Streams copied but not read by the render loop
 
-`Role3D.dll` also carries additional per-part dword streams in the same `PartInfo` storage block that are populated from `GraphicData.dll`’s part-info source records but are not referenced by `PartInfo_RenderAllParts`:
+`Role3D.dll` also carries additional per-part dword streams in the same `PartInfo` storage block that are populated from `GraphicData.dll`'s part-info source records but are not referenced by `PartInfo_RenderAllParts`:
 
-- `this + 73 + i` (dword stream at `dstPartInfo + 0x24 + 4*i`)  
+- `this + 73 + i` (dword stream at `dstPartInfo + 0x24 + 4*i`)
   Used as `secondaryTextureId`. In `PartInfo_BindPerPartTexturesAndMaterial`, it is resolved via
   `GameDataSetQuery()->vfn_24(secondaryTextureId, 0, 0)` and bound by mesh `vfn_5C`.
   `PartInfo_SetGateIdAndExtraForAllParts` can overwrite this stream at runtime.
 
-- `this + 81 + i` (dword stream at `dstPartInfo + 0x44 + 4*i`)  
+- `this + 81 + i` (dword stream at `dstPartInfo + 0x44 + 4*i`)
   Used as `materialRecordPointer`. In `PartInfo_BindPerPartTexturesAndMaterial`, non-null values are
   passed to mesh `vfn_64` as one complete `D3DMATERIAL8`.
 
@@ -107,7 +107,7 @@ At the end of each per-part iteration, the render loop clears both flags for tha
 `PartInfo_ReleaseAutoFreeMeshes` (`0x10005AE0`) iterates all parts and:
 
 - if `*(this + 65 + i) == -1` (the `partModelId` field is `-1`), then:
-  - if `meshInstance != 0`, it calls the mesh instance’s virtual destructor (`(*mesh->vtable)[0]`) and clears the cached pointer.
+  - if `meshInstance != 0`, it calls the mesh instance's virtual destructor (`(*mesh->vtable)[0]`) and clears the cached pointer.
 
 This establishes that `partModelId == -1` marks a part whose mesh instance is owned by `PartInfo` and must be released when cleaning up.
 

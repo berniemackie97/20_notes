@@ -1,11 +1,9 @@
-# `_DXSaveMusicVolume@0` / `_DXFlushVolume@0` Contracts (Verified)
+# `_DXSaveMusicVolume@0` / `_DXFlushVolume@0` Contracts
 
 ## Export -> engine mappings
 
 - `_DXSaveMusicVolume@0` (`0x100097C8`) -> `NdSoundEngine_SaveCurrentVolumesAndMuteOutput` (`0x10004F1A`)
 - `_DXFlushVolume@0` (`0x10009757`) -> `NdSoundEngine_StartSavedVolumeRestore` (`0x10004EE4`)
-
----
 
 ## `_DXSaveMusicVolume@0`
 
@@ -26,8 +24,6 @@ Wrapper notes:
 - Export wrapper directly calls engine helper via singleton.
 - No explicit null guard in the wrapper.
 
----
-
 ## `_DXFlushVolume@0`
 
 `_DXFlushVolume@0()`
@@ -44,8 +40,6 @@ Wrapper notes:
 
 - Export wrapper directly calls engine helper via singleton.
 - No explicit null guard in the wrapper.
-
----
 
 ## Delayed restore finalization (in `NdSoundEngine_ProcessFrame`)
 

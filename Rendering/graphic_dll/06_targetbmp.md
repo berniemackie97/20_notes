@@ -1,6 +1,6 @@
 # `graphic.dll` — TargetBmp (`TargetBmpCreate*`)
 
-This document describes the behavior observed in the exported constructors for TargetBmp objects created via `TargetBmpCreate` and `TargetBmpCreateEx`.
+Behaviour observed in the exported constructors for TargetBmp objects, `TargetBmpCreate` and `TargetBmpCreateEx`.
 
 ## `TargetBmpCreateEx` (0x10006610)
 Decompiled signature:
@@ -51,7 +51,7 @@ If `Texture_Create` fails:
 - The internal fields at `this+1000/1004/1008/1016` are also referenced by:
   - `TargetTexture_BindAsRenderTarget`
   - `TargetTexture_RestorePreviousRenderTarget`
-and appear to represent the “saved previous render target”, “saved depth/stencil”, “target depth/stencil”, and a validity flag.
+and appear to represent the "saved previous render target", "saved depth/stencil", "target depth/stencil", and a validity flag.
 
 ## Verified TargetBmp vtable usage from `Conquer.exe`
 

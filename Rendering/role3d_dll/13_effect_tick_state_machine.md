@@ -1,6 +1,6 @@
 # `Role3D.dll` — Effect tick/update state machine
 
-This document captures the verified tick/update logic that drives effect-instance frame progression and completion.
+The verified tick and update logic driving effect-instance frame progression and completion.
 
 Primary functions:
 

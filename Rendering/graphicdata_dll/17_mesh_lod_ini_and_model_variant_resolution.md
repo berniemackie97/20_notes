@@ -1,6 +1,6 @@
 # `GraphicData.dll` — `MeshLod.ini` parser and model-id variant resolution
 
-This document captures the verified `ini/MeshLod.ini` load path and the runtime model-id selector path used by `Role3D.dll`-driven rendering requests.
+The verified `ini/MeshLod.ini` load path, and the runtime model-id selector that `Role3D.dll`-driven rendering requests go through.
 
 ## Loader entry point
 

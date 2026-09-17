@@ -1,4 +1,4 @@
-# Startup Data Files and Native Replacement Plan (Verified)
+# Startup Data Files and Native Replacement Plan
 
 ## Scope
 
@@ -10,7 +10,7 @@ for replacing the Flash-hosted UI with a native sprite-based implementation.
 **2026-09-03 independent public-key audit:** all 256 candidate seed bytes
 **MATCH** the native constructor. The recovered 2048-bit modulus has SHA-256
 `76acb04b08190b129985f8dee2b466efcd686eb1662cb598bd1a8154cb9196f1`,
-and e = 65537. See [exact seed, modulus and per-instruction evidence](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/20_notes/Crypto/02_server_dat_rsa_public_key_5517.md).
+and e = 65537. See [exact seed, modulus and per-instruction evidence](../Crypto/02_server_dat_rsa_public_key_5517.md).
 Original-x86 seed/schedule and BIGNUM arithmetic checks passed, and the recovered
 key validates all 11 clean Server.dat blocks. No application code changed.
 
@@ -747,7 +747,7 @@ Implemented parity surface in current runtime:
      `cdit = 0`, font `12 pt 宋体`. At 96 DPI with SimSun those DLUs convert to ~`500x376` device
      pixels, matching the 500x375 retail BMP; the exact pixel size is a runtime font/DPI property and
      is **not** statically provable. See
-     `20_notes/Architecture/02_conquer_client_startup_chain.md` for the decoded template bytes.
+     `02_conquer_client_startup_chain.md` for the decoded template bytes.
    - bitmap is loaded at natural size (`LoadImageA(..., 0, 0, LR_LOADFROMFILE)`, `0x4B0A88`) and
      painted 1:1 top-left-anchored through a `CreatePatternBrush` returned from `WM_CTLCOLORDLG`
      (`0x4B0AA2`/`0x4B0B26`). **No stretch, scale, or aspect fit.**

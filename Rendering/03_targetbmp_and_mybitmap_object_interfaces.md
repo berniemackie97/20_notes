@@ -1,13 +1,11 @@
 # `TargetBmp*` and `MyBitmap*` Objects (Observed via EXE Call-Sites)
-This doc reconstructs object interfaces used by the EXE for offscreen render targets and drawables created through `graphic.dll`.
+Object interfaces the EXE uses for offscreen render targets and drawables created through `graphic.dll`, reconstructed from its call sites.
 
 Key imports:
 - `TargetBmpCreate(int)` / `TargetBmpCreateEx(int)`
 - `MyBitmapCreateEx(int)`
 
 We infer methods from vtable offset usage at call-sites.
-
----
 
 ## TargetBmp objects (from `TargetBmpCreate*`)
 
@@ -38,11 +36,9 @@ target->vtable[9](target); // +0x24 (36)
 on each.
 
 So TargetBmp has a method at:
-- `vtable + 0x24` (36): likely “Finalize/Prepare/Resize/InitRT” for the offscreen surface.
+- `vtable + 0x24` (36): likely "Finalize/Prepare/Resize/InitRT" for the offscreen surface.
 
 **Gap:** determine whether +36 depends on global device state and whether it must be called after reset.
-
----
 
 ## MyBitmap objects (from `MyBitmapCreateEx`)
 
@@ -68,11 +64,9 @@ The branch depends on whether the computed scale `v58` equals the base size `v56
 
 **Gap:** interpret the extra zeros: likely `srcX/srcY/flags` or blend parameters.
 
----
-
 ## Notes on observed usage
 The EXE treats `graphic.dll` as a renderer that provides:
 - offscreen render targets (TargetBmp)
 - drawable bitmaps/sprites (MyBitmap)
 - methods to draw those bitmaps with/without scaling
-The “device lost/reset” behavior implies these objects are tightly coupled to device lifetime and may be invalidated/recreated across resets.
+The "device lost/reset" behavior implies these objects are tightly coupled to device lifetime and may be invalidated/recreated across resets.

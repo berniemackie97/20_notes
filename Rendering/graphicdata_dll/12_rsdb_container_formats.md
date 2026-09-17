@@ -1,6 +1,6 @@
 # `GraphicData.dll` — `RSDB` container formats (`*.dbc`)
 
-This doc captures the verified `RSDB` container formats loaded by `GraphicData.dll`.
+The verified `RSDB` container formats `GraphicData.dll` loads.
 
 ## Verified loader entry points
 

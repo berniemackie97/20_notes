@@ -4,9 +4,9 @@ Date: 2026-09-03. Candidate comparison: **MATCH — all 256 bytes**.
 
 ## Provenance and scope
 
-Primary binary: `/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517/Conquer.exe`.
+Primary binary: `00_clean/clean/5517/Conquer.exe`.
 SHA-256: `b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62`.
-Binary Ninja view: `/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb`.
+Binary Ninja view: `00_clean/clean/5517-bninja/Conquer.exe.bndb`.
 
 The seed was recovered from the original instruction immediates and stores in
 `CConfigDataTableQueryProvider_ctor` at `0x765232`, not from reconstruction
@@ -199,7 +199,7 @@ a live Windows loader run.
 
 ## Verification and reproducibility
 
-[Evidence directory and reproduction instructions](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/10_work/docs/evidence/server-dat-rsa-5517/README.md) contains:
+[Evidence directory and reproduction instructions](../../10_work/docs/evidence/server-dat-rsa-5517/README.md) contains:
 
 - full Binary Ninja constructor disassembly and decompilation;
 - supporting big-number and RSA consumer extracts;

@@ -1,13 +1,10 @@
 # Else-Branch Dispatch Packets — Types 1313–10017
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
 ## Else-Branch Dispatch Types (1313–10017)
 
 The following types are dispatched via the else-branch of `CNetMsg__ProcessMsg_Dispatch` using subtraction/comparison chains rather than the main jump table. All use standard CNetMsg vtable layout unless noted.
-
----
 
 ### CMsgFamilyOccupy (Type 1313)
 **Direction**: S→C
@@ -17,8 +14,6 @@ The following types are dispatched via the else-branch of `CNetMsg__ProcessMsg_D
 
 Family/guild territory occupation notification. Process handler reads string entries from the MsgStringList buffer and dispatches family occupy text to the UI.
 
----
-
 ### CMsgLotteryAward (Type 1314)
 **Create**: `CMsgLotteryAward__Create` @ `0x74DE0F`
 **Process**: `CMsgLotteryAward__Process` @ `0x74DEBF` (IDA: `CMsgLottery__func_000`)
@@ -26,16 +21,12 @@ Family/guild territory occupation notification. Process handler reads string ent
 
 Lottery item award notification. Process handler reads item data from the payload and posts window message 0xCB1 to notify the UI of lottery winnings.
 
----
-
 ### CMsgTextMessage (Type 1350)
 **Create**: `CMsgTextMessage__Create` @ `0x75D217`
 **Process**: `CMsgTextMessage__Process` @ `0x75D2A0`
 **Alloc**: `operator new(0x414u)` — MsgStringList variant
 
 Text message set. Uses MsgStringList for variable-length string content delivery.
-
----
 
 ### CMsgNpcInfo (Type 2030)
 **Create**: `CMsgNpcInfo__Create` @ `0x7439E3`
@@ -62,8 +53,6 @@ Verified `CMsgNpcInfo__Process` flow:
 - overrides the display name from the first MsgStringList entry when present
 - registers the entity and posts the scene/update notification
 
----
-
 ### CMsgNpcAction (Type 2031)
 **Create**: `CMsgNpcAction__Create` @ `0x72CB79`
 **Process**: `CMsgNpcAction__Process` @ `0x72CC60`
@@ -73,9 +62,7 @@ NPC action dispatch. **Corrected 2026-08-29**: the sub-action is the u16 at **`+
 `+4` is the entity id. Sub-actions `2` and `3` remove that entity with no effect or animation (the
 NPC despawn); `5` calls `sub_660AC5(hero, packet+8, flag)` with the flag set for the same kind set
 2030 routes to RoleView mode 9; anything else posts `0x42A` and returns. The packet has no string
-list. Full write-up in `20_notes/Server/npcs.md`.
-
----
+list. Full write-up in `../Server/npcs.md`.
 
 ### CMsgTaskDialogEx (Type 2032)
 **Create**: `CMsgTaskDialogEx__Create` @ `0x72BBFF`
@@ -87,9 +74,7 @@ NPC conversation, both directions. **Verified 2026-08-29**: twelve fixed bytes t
 byte at `+0x0B`. Actions 1-5 and 100 append dialog lines; 100 is the terminator that shows the
 dialog; 6 raises a confirm box; 112 goes to a separate sink; **0 does nothing at all**. Text is
 tilde-encoded - `~` stands in for a space in both directions. The client over-declares its own
-outbound length by three bytes. Full write-up in `20_notes/Server/npc-dialog.md`.
-
----
+outbound length by three bytes. Full write-up in `../Server/npc-dialog.md`.
 
 ### CMsgBuddyInfoEx (Type 2033)
 **Create**: `CMsgBuddyInfoEx__Create` @ `0x75D2D9`
@@ -98,16 +83,12 @@ outbound length by three bytes. Full write-up in `20_notes/Server/npc-dialog.md`
 
 Extended buddy/friend information update. Delivers updated friend data to the social system.
 
----
-
 ### CMsgNoOp2034 (Type 2034)
 **Create**: `CMsgNoOp2034__Create` @ `0x75D18E`
 **Process**: `CNetMsg__NoopProcess` @ `0x5AD9B1` (shared no-op)
 **Alloc**: `operator new(0x408u)`
 
 Server-to-client no-op message. Parsed but has no client-side processing.
-
----
 
 ### CMsgPetSpawn (Type 2035)
 **Create**: `CMsgPetSpawn__Create` @ `0x75CE78`
@@ -116,16 +97,12 @@ Server-to-client no-op message. Parsed but has no client-side processing.
 
 Pet/entity spawn message. Process handler creates a pet entity and posts window message 0x444 to update the UI.
 
----
-
 ### CMsgNoOp2036 (Type 2036)
 **Create**: `CMsgNoOp2036__Create` @ `0x716D37`
 **Process**: `CNetMsg__NoopProcess` @ `0x5AD9B1` (shared no-op)
 **Alloc**: `operator new(0x408u)`
 
 Server-to-client no-op message. Parsed but has no client-side processing.
-
----
 
 ### CMsgHeroStatUpdate (Type 2043)
 **Create**: `CMsgHeroStatUpdate__Create` @ `0x75D0A8`
@@ -134,16 +111,12 @@ Server-to-client no-op message. Parsed but has no client-side processing.
 
 Hero stat update notification. Process handler posts window message 0x444 to trigger a UI refresh of the hero's statistics panel.
 
----
-
 ### CMsgHeroPage (Type 2044)
 **Create**: `CMsgHeroPage__Create` @ `0x744046`
 **Process**: `CMsgHeroPage__Process` @ `0x744107`
 **Alloc**: `operator new(0x408u)`
 
 Hero/entity page control. Manages paginated hero data display.
-
----
 
 ### CMsgFamilyBattleEffect (Type 2045)
 **Create**: `CMsgFamilyBattleEffect__Create` @ `0x70A355`
@@ -152,16 +125,12 @@ Hero/entity page control. Manages paginated hero data display.
 
 Family battle effect sharing. Process handler applies shared battle effects to family/guild members.
 
----
-
 ### CMsgBuddyConfirm (Type 2046)
 **Create**: `CMsgBuddyConfirm__Create` @ `0x72B454`
 **Process**: `CMsgBuddyConfirm__Process` @ `0x72B517` (IDA: `DlgTrade__OnBuddyConfirm`)
 **Alloc**: `operator new(0x408u)`
 
 Buddy/trade confirmation. Process handler handles trade confirmation between buddy entities.
-
----
 
 ### CMsgBuddyUpdate (Type 2047)
 **Create**: `CMsgBuddyUpdate__Create` @ `0x75CCA3`
@@ -170,16 +139,12 @@ Buddy/trade confirmation. Process handler handles trade confirmation between bud
 
 Buddy update with item/position data. Updates buddy entity position and associated item information.
 
----
-
 ### CMsgMagicEffect (Type 2075)
 **Create**: `CMsgMagicEffect__Create` @ `0x75C570`
 **Process**: `CMsgMagicEffect_Process` @ `0x75C5F9`
 **Alloc**: `operator new(0x408u)`
 
 Extended magic effect message. Process handler applies magic effect bitset operations on entities, setting/clearing effect flags.
-
----
 
 ### CMsgContainerInfo (Type 2101)
 **Create**: `CMsgContainerInfo__Create` @ `0x7022AF`
@@ -188,16 +153,12 @@ Extended magic effect message. Process handler applies magic effect bitset opera
 
 Container/inventory information. Process handler updates the hero's inventory containers with full item data.
 
----
-
 ### CMsgSynMemberTitle (Type 2102)
 **Create**: `CMsgSynMemberTitle__Create` @ `0x75A834`
 **Process**: `CMsgSynMemberTitle__Process` @ `0x75A8F9`
 **Alloc**: `operator new(0x408u)`
 
 Syndicate member title list. Delivers a list of syndicate member titles for display in the guild UI.
-
----
 
 ### CMsgChiefNameChange (Type 2103)
 **Create**: `CMsgChiefNameChange__Create` @ `0x6ECB23`
@@ -206,16 +167,12 @@ Syndicate member title list. Delivers a list of syndicate member titles for disp
 
 Chief/guild leader name change success notification.
 
----
-
 ### CMsgSynWarScore (Type 2110)
 **Create**: `CMsgSynWarScore__Create` @ `0x7518E3`
 **Process**: `CMsgSynWarScore__Process` @ `0x751A49`
 **Alloc**: `operator new(0x408u)`
 
 Clan/syndicate war score data. Contains war score information for the syndicate war system.
-
----
 
 ### CMsgLeaveword (Type 2170)
 **Create**: `CMsgLeaveword__Create` @ `0x72C4CD`
@@ -224,16 +181,12 @@ Clan/syndicate war score data. Contains war score information for the syndicate 
 
 Leaveword/message board entry. Handles posting and displaying messages on the in-game message board system.
 
----
-
 ### CMsgTexasNpc (Type 2171)
 **Create**: `CMsgTexasNpc__Create` @ `0x744DA5`
 **Process**: `CMsgTexasNpc__Process` @ `0x744E8B`
 **Alloc**: `operator new(0x408u)`
 
 Texas Hold'em NPC management. Controls the Texas Hold'em poker table NPCs and game state.
-
----
 
 ### CMsgTexasHoldEm (Type 2172)
 **Create**: `CMsgTexasHoldEm__Create` @ `0x75AA46`
@@ -242,16 +195,12 @@ Texas Hold'em NPC management. Controls the Texas Hold'em poker table NPCs and ga
 
 Texas Hold'em table information. Loads player hand data, pot, and table state into the Texas Hold'em UI.
 
----
-
 ### CMsgFamilyWarData (Type 2201)
 **Create**: `CMsgFamilyWarData__Create` @ `0x75A695`
 **Process**: `CMsgFamilyWarData__Process` @ `0x75A71E`
 **Alloc**: `operator new(0x408u)`
 
 Family/syndicate war data. Process handler posts window message 0xCB0 to update the family war UI with war status and participant data.
-
----
 
 ### CMsgShowHandTable (Type 2202)
 **Create**: `CMsgShowHandTable__Create` @ `0x752EA9`
@@ -260,16 +209,12 @@ Family/syndicate war data. Process handler posts window message 0xCB0 to update 
 
 ShowHand/poker table item list. Delivers the poker table state including card data and player bets for the ShowHand mini-game.
 
----
-
 ### CMsgTotemAdd (Type 2203)
 **Create**: `CMsgTotemAdd__Create` @ `0x709F7F`
 **Process**: `CMsgTotemAdd__Process` @ `0x70A063` (IDA: `Handle_Confirm_Totemaddsuc`)
 **Alloc**: `operator new(0x408u)`
 
 Totem add/remove confirmation. Handles successful totem placement or removal in the guild totem system.
-
----
 
 ### CMsgQualifyingOut (Type 2205)
 **Create**: `CMsgQualifyingOut__Create` @ `0x71B76E`
@@ -278,16 +223,12 @@ Totem add/remove confirmation. Handles successful totem placement or removal in 
 
 Qualifying/arena hero elimination notification. Process handler invokes `CHeroQualifying__func_000` to remove a player from the qualifying round and posts window message 0xD18.
 
----
-
 ### CMsgQualifyingMatch (Type 2206)
 **Create**: `CMsgQualifyingMatch__Create` @ `0x71BEF7`
 **Process**: `CMsgQualifyingMatch__Process` @ `0x71BFCD`
 **Alloc**: `operator new(0x408u)`
 
 Qualifying match data with player pairs. Contains match brackets and opponent pairings for the qualifying tournament system. Reads paired player data and posts 0xD17.
-
----
 
 ### CMsgQualifyingRank (Type 2207)
 **Create**: `CMsgQualifyingRank__Create` @ `0x71C1B3`
@@ -296,16 +237,12 @@ Qualifying match data with player pairs. Contains match brackets and opponent pa
 
 Qualifying ranking list. Delivers the full ranking leaderboard for the arena qualifying system, iterating entries and calling `QualifyingMgr__SetEntry`.
 
----
-
 ### CMsgQualifyingStat (Type 2208)
 **Create**: `CMsgQualifyingStat__Create` @ `0x71BB50`
 **Process**: `CMsgQualifyingStat__Process` @ `0x71BBFF`
 **Alloc**: `operator new(0x408u)`
 
 Qualifying player stat list. Contains per-player statistics (wins, losses, scores) for the qualifying arena system.
-
----
 
 ### CMsgQualifyingSelf (Type 2209)
 **Create**: `CMsgQualifyingSelf__Create` @ `0x71BD04`
@@ -314,8 +251,6 @@ Qualifying player stat list. Contains per-player statistics (wins, losses, score
 
 Qualifying self info. Delivers the current player's own qualifying statistics and ranking.
 
----
-
 ### CMsgDominateTeam (Type 2260)
 **Create**: `CMsgDominateTeam__Create` @ `0x72997B`
 **Process**: `CMsgDominateTeam__Process` @ `0x729A2A` (IDA: `DlgDominate__OnTeamName`)
@@ -323,16 +258,12 @@ Qualifying self info. Delivers the current player's own qualifying statistics an
 
 Dominate team name update. Sets the team name in the Dominate dialog UI.
 
----
-
 ### CMsgAchievementStar (Type 2320)
 **Create**: `CMsgAchievementStar__Create` @ `0x728E0A`
 **Process**: `CMsgAchievementStar__Process` @ `0x728E70`
 **Alloc**: `operator new(0x408u)`
 
 Achievement star/progress system. Process handler reads achievement progress entries (star count, completion status) and updates the achievement UI.
-
----
 
 ### CMsgFactionPKSetup (Type 2330)
 **Create**: `CMsgFactionPKSetup__Create` @ `0x74D417`
@@ -351,8 +282,6 @@ Faction PK setup and timer. Sub-action 1 resets the singleton and posts 0xCC2; s
 | +100 | DWORD | Round data |
 | +104 | DWORD | Target ID (-1 = none) |
 
----
-
 ### CMsgFactionPKList (Type 2331)
 **Create**: `CMsgFactionPKList__Create` @ `0x7599B4`
 **Process**: `CMsgFactionPKList__Process` @ `0x759A3D`
@@ -364,8 +293,6 @@ Faction PK participant list. Sets singleton state to 1, iterates a list of entri
 |--------|------|-------|
 | +4 | WORD | Entry count |
 | +8 | variable | Entry array (80 bytes per entry) |
-
----
 
 ### CMsgFactionPKMatch (Type 2332)
 **Create**: `CMsgFactionPKMatch__Create` @ `0x759AA9`
@@ -382,16 +309,12 @@ Faction PK match data. Process handler sets state based on WORD[+4] (0→state 2
 | +10 | WORD | Entry count |
 | +16 | variable | Match entry array (120 bytes per entry) |
 
----
-
 ### CMsgApprenticeList (Type 2333)
 **Create**: `CMsgApprenticeList__Create` @ `0x71C4F8`
 **Process**: `CMsgApprenticeList__Process` @ `0x71C5BC`
 **Alloc**: `operator new(0x408u)`
 
 Apprentice/guide name list. Delivers a list of apprentice or mentor names for the apprentice system UI.
-
----
 
 ### CMsgMapInfo (Type 2400)
 **Create**: `CMsgMapInfo__Create` @ `0x740837`
@@ -409,16 +332,12 @@ Map information. Sub-action 0 delivers map data with coordinates and a name stri
 | +24 | DWORD | Parameter (action 0) |
 | +28 | variable | Name string (action 0) |
 
----
-
 ### CMsgEctypeInvite (Type 2401)
 **Create**: `CMsgEctypeInvite__Create` @ `0x6F8F5F`
 **Process**: `CMsgEctypeInvite__Process` @ `0x6F9094` (IDA: `Handle_Ectype_Invite`)
 **Alloc**: `operator new(0x414u)` — MsgStringList variant
 
 Ectype (dungeon instance) invitation. Sub-action 0 reads inviter name and dungeon name from MsgStringList entries 0/1, formats an invitation message, and posts 0xD9C; sub-action 3 posts 0xD9B with timeout 60; sub-action 4 posts 0xD9B with param 0.
-
----
 
 ### CMsgArenaAction (Type 2410)
 **Create**: `CMsgArenaAction__Create` @ `0x74A6FB`
@@ -436,16 +355,12 @@ Arena action dispatch with 6 sub-actions (0–5). Reads 5 DWORDs from the payloa
 | +20 | DWORD | Param 4 |
 | +24 | DWORD | Param 5 |
 
----
-
 ### CMsgVerifyCheck (Type 2420)
 **Create**: `CMsgVerifyCheck__Create` @ `0x7593D9`
 **Process**: `CMsgVerifyCheck__Process` @ `0x759462` (IDA: `CMsgVerifyCheck__func_000`)
 **Alloc**: `operator new(0x408u)`
 
 Anti-cheat verification check. Sub-action 0 initializes the verification data from `CMissionSystemData`. Sub-action 2 (when `byte_949CA0` is set) performs the actual verification: compares body matrix float values via `CAntiCheatMgr__GetBodyMatrixFloat` against server-provided expected values. If verification fails, shows a MessageBox with "VerifyCheck Failed" and calls `sub_76E1E3` to disconnect. If it passes, shows "VerifyCheck OK".
-
----
 
 ### CMsgCrossSwitch (Type 2501)
 **Create**: `CMsgCrossSwitch_Create` @ `0x759776`
@@ -462,8 +377,6 @@ Cross-server switch command. Configures `CDataMigrationSubject` with source/targ
 | +16 | DWORD | Migration pair count |
 | +20 | variable | Migration pairs (8 bytes each: src_id, dst_id) |
 
----
-
 ### CMsgCrossInfo (Type 2502)
 **Create**: `CMsgCrossInfo__Create` @ `0x7592FB`
 **Process**: `CMsgCrossInfo__Process` @ `0x759384`
@@ -471,16 +384,12 @@ Cross-server switch command. Configures `CDataMigrationSubject` with source/targ
 
 Cross-server info notification. Sub-action 0 posts 0xD1D; sub-action 1 posts 0xD1E; sub-action 2 resets the cross data manager and a related singleton, then posts 0xCCF.
 
----
-
 ### CMsgCrossFlagWarData (Type 2504)
 **Create**: `CMsgCrossFlagWarData__Create` @ `0x74C15F`
 **Process**: `CMsgCrossFlagWarData__Process` @ `0x74C21A`
 **Alloc**: `operator new(0x408u)`
 
 Cross-server flag war data. Sub-action 3 iterates participants (stride 28 bytes) calling `CCrossFlagWarMgr__func_003` for each, sets war data, then posts 0xD22. Sub-action 4 sets a score value and posts 0xD22.
-
----
 
 ### CMsgCrossFlagWarStatus (Type 2505)
 **Create**: `CMsgCrossFlagWarStatus__Create` @ `0x75904E`
@@ -492,16 +401,12 @@ Cross-server flag war status updates. Three sub-actions (switch on WORD[+4]):
 - Action 1: Update positions, post 0xCCE for matching player
 - Action 2: Simple score/position update via `sub_6D1D64`
 
----
-
 ### CMsgWarflagEscort (Type 2506)
 **Create**: `CMsgWarflagEscort__Create` @ `0x7531BD`
 **Process**: `CMsgWarflagEscort__Process` @ `0x753278` (IDA: `Handle_Warflag_Escort_Suc`)
 **Alloc**: `operator new(0x408u)`
 
 War flag escort success. Sub-action 0 finds entity by ID and attaches "WarflagEscortB" effect; sub-action 1 attaches "WarflagEscortS" effect and shows a congratulatory chat message if the escorting player is self; sub-action 2 posts 0xCD0 with an entity ID.
-
----
 
 ### CMsgCrossFlagWarTeam (Type 2507)
 **Create**: `CMsgCrossFlagWarTeam__Create` @ `0x74B7ED`
@@ -510,8 +415,6 @@ War flag escort success. Sub-action 0 finds entity by ID and attaches "WarflagEs
 
 Cross-server flag war team data. Sub-action 0 delivers initial team list — iterates entries (stride 72 bytes), reads GameDataSet names and builds team data for the war flag map, posts 0xDD3. Sub-action 1 delivers detailed team info — iterates entries (stride 72 bytes) calling `CCrossFlagWarMgr__func_002` with name, rank, and score data, posts 0xD1F.
 
----
-
 ### CMsgFactionChiefBase (Type 2510)
 **Create**: `CMsgFactionChiefBase__Create` @ `0x701EE1`
 **Process**: `CMsgFactionChiefBase__Process` @ `0x702071`
@@ -519,16 +422,12 @@ Cross-server flag war team data. Sub-action 0 delivers initial team list — ite
 
 Faction chief base data. Reads 3 string entries from MsgStringList (base name, leader name, description), sets up the `CFactionChiefBaseMgr` singleton with base info (9 entries at stride 16), sets member count and base ID, then posts 0xDDE.
 
----
-
 ### CMsgSilentUpdate (Type 2520)
 **Create**: `CMsgSilentUpdate__Create` @ `0x758DF1`
 **Process**: `CMsgSilentUpdate__Process` @ `0x758E57` (IDA: `Load_SlientVersion_Ini_758E57`)
 **Alloc**: `operator new(0x408u)`
 
 Silent/background update delivery. Process handler writes received binary data to a temporary file (`temp/slient_u.tmp` with PID), then copies it to the final location and writes a version ini file. Validates that the received version doesn't match the local version before proceeding.
-
----
 
 ### CMsgEntityAction (Type 10005)
 **Direction**: S→C
@@ -555,8 +454,6 @@ Entity movement packet (S→C) with custom send method. This is the only type wi
 | +8 | DWORD | Entity ID |
 | +12 | BYTE | Movement mode (9 = 24-dir mount ride, 1 = 8-dir walk, other = 8-dir alt) |
 | +16 | DWORD | Position/map parameter (used in hero self-update path) |
-
----
 
 ### CMsgPlayerSpawn (Type 10014)
 **Direction**: S→C
@@ -737,8 +634,6 @@ Conservative scope note:
 - it still does **not** claim full native RoleView mesh draw parity yet; the remaining unresolved stage is the exact
   managed replacement for the native `Role_TickAndRender -> RoleView slot +0x10/+0x18/+0x28` draw contract.
 
----
-
 ### CMsgUserAttribEx (Type 10017)
 **Direction**: S→C
 **Create**: `CMsgUserAttribEx__Create` @ `0x7572EB`
@@ -784,41 +679,41 @@ After processing all entries, if the **last** entry's attribute ID is NOT 0 (Lif
 
 #### Attribute ID Table
 
-> ### ⚠ READ BEFORE USING THE `Name` COLUMN
->
-> **The `Entity Field` and `Handler Details` columns are reliable — they were decompiled from this
-> build. The `Name` column is not.** Names in this table came from two different sources that were
-> never distinguished:
->
-> 1. Names derived from evidence *inside this build* (a `STR_` string, a threshold, an observable
->    behaviour). These have held up under re-verification.
-> 2. Names imported from a reference-server enum for a **different client version**. These are wrong
->    far more often than not.
->
-> As of 2026-08-16, re-deriving the `MsgUserInfo` (`1006`) fields from the binary disproved **10**
-> names in this table and confirmed **5**. Do not take a name from here as a lead — several hours
-> were lost chasing `PeerageLevel` and `NobilityDonate` into the wrong subsystems entirely.
->
-> **Disproven (use the right-hand column):**
->
-> | ID | Name in this table | Actually (proven from the binary) |
-> |---|---|---|
-> | 4 | `NobilityDonate` | **money / silver** (`hero+0x0C`) — gem-compose gate needs `>= 100000`, else `STR_COMPOSE_MONEY_NOT_ENOUGH` |
-> | 6 | `Stamina` | **PK points** (`hero+0x868`) — drives the red/black name colour thresholds in `CDlgRoleAttribute_RefreshLabelsFromHero` |
-> | 7 | `PkPoints` | **current profession** (`hero+0x82C`) — feeds `CHero_FormatProfessionDisplayName` |
-> | 8 | `AddPoints` | **current physical force / stamina** (`hero+0x830`) — capped by `hero+0x834` via `CHero_GetCappedPhysicalForce`. Unspent attribute points are `hero+0x840` |
-> | 29 | `Nobility` | **emoney / CPs** (`hero+0x10`) — name change needs `>= 810`, else `STR_CHANGE_NAME_EMONEY_NOT_ENOUGH` |
-> | 37 | `PeerageLevel` | **tutor level-equivalent** (`hero+0x83C`) — the lookup key into `ini/TutorType.ini`, nothing to do with peerage |
-> | 45 | `NobilityRank` | **bound emoney** (`hero+0x14`) — second shop currency with its own price, `STR_WRAPSHOP_ERR_EMONEY` |
-> | 47 | `FactionPKRound` | **race points** (`hero+0x2E08`) — point-shop balance, `STR_RACEPOINTSHOP_POINT_LIMIT` |
-> | 50 | `CourtRank` | **previous profession** (`hero+0x854`, `CHero_GetPreviousProfession`) |
-> | 51 | `MountRank` | **first profession** (`hero+0x850`, `CHero_GetFirstProfession`) |
->
-> **Confirmed correct:** `0` (Life), `2` (Mana), `5` (Experience), `12` (Level), `22` (Reborn) —
-> note these are exactly the entries whose `Handler Details` already cited in-build evidence.
->
-> Full proofs and the accessor renames are in
-> [01_core_packets.md](01_core_packets.md) under the `MsgUserInfo (Type 1006)` section.
+##### The `Name` column is not evidence
+
+**The `Entity Field` and `Handler Details` columns are reliable — they were decompiled from this
+build. The `Name` column is not.** Names in this table came from two different sources that were
+never distinguished:
+
+1. Names derived from evidence *inside this build* (a `STR_` string, a threshold, an observable
+   behaviour). These have held up under re-verification.
+2. Names imported from a reference-server enum for a **different client version**. These are wrong
+   far more often than not.
+
+As of 2026-08-16, re-deriving the `MsgUserInfo` (`1006`) fields from the binary disproved **10**
+names in this table and confirmed **5**. Do not take a name from here as a lead — several hours
+were lost chasing `PeerageLevel` and `NobilityDonate` into the wrong subsystems entirely.
+
+**Disproven (use the right-hand column):**
+
+| ID | Name in this table | Actually (proven from the binary) |
+|---|---|---|
+| 4 | `NobilityDonate` | **money / silver** (`hero+0x0C`) — gem-compose gate needs `>= 100000`, else `STR_COMPOSE_MONEY_NOT_ENOUGH` |
+| 6 | `Stamina` | **PK points** (`hero+0x868`) — drives the red/black name colour thresholds in `CDlgRoleAttribute_RefreshLabelsFromHero` |
+| 7 | `PkPoints` | **current profession** (`hero+0x82C`) — feeds `CHero_FormatProfessionDisplayName` |
+| 8 | `AddPoints` | **current physical force / stamina** (`hero+0x830`) — capped by `hero+0x834` via `CHero_GetCappedPhysicalForce`. Unspent attribute points are `hero+0x840` |
+| 29 | `Nobility` | **emoney / CPs** (`hero+0x10`) — name change needs `>= 810`, else `STR_CHANGE_NAME_EMONEY_NOT_ENOUGH` |
+| 37 | `PeerageLevel` | **tutor level-equivalent** (`hero+0x83C`) — the lookup key into `ini/TutorType.ini`, nothing to do with peerage |
+| 45 | `NobilityRank` | **bound emoney** (`hero+0x14`) — second shop currency with its own price, `STR_WRAPSHOP_ERR_EMONEY` |
+| 47 | `FactionPKRound` | **race points** (`hero+0x2E08`) — point-shop balance, `STR_RACEPOINTSHOP_POINT_LIMIT` |
+| 50 | `CourtRank` | **previous profession** (`hero+0x854`, `CHero_GetPreviousProfession`) |
+| 51 | `MountRank` | **first profession** (`hero+0x850`, `CHero_GetFirstProfession`) |
+
+**Confirmed correct:** `0` (Life), `2` (Mana), `5` (Experience), `12` (Level), `22` (Reborn) —
+note these are exactly the entries whose `Handler Details` already cited in-build evidence.
+
+Full proofs and the accessor renames are in
+[01_core_packets.md](01_core_packets.md) under the `MsgUserInfo (Type 1006)` section.
 
 **First switch (IDs 0–27):**
 
@@ -884,5 +779,3 @@ After processing all entries, if the **last** entry's attribute ID is NOT 0 (Lif
 | 128 | ServerPatch | singleton+11560 | Direct store at `GetSingletonPtr_404460() + 11560` — server-side patch/feature flags |
 
 **Unhandled IDs in this build**: 24, 46, 53 (default case — silently skipped)
-
----

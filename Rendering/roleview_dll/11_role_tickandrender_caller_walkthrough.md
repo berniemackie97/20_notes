@@ -4,7 +4,7 @@
 **Function:** `Role_TickAndRender` at `0x64f5f7`
 **Role in pipeline:** per-frame per-entity hook. Called by the game loop for every visible `CRole`. It is the **only caller in-process of `RoleView_SharedRenderComposite`** (vtable slot `+0x28`, `RoleView.dll!0x100038a9`, verified in slice 12). It is also the call site where the action id that feeds `PlayerRoleView_UpdateRolePartMotionsForAction` (vtable slot `+0x0C`, `RoleView.dll!0x10002dc8`) is sampled each frame.
 
-This note captures the complete per-frame dispatch walk from the entry guards down to the final per-frame selector writes.
+The complete per-frame dispatch walk, from the entry guards down to the final per-frame selector writes.
 
 ## Entry guards (0x64f611 → 0x64f643)
 

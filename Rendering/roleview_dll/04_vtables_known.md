@@ -1,6 +1,6 @@
 # `RoleView.dll` — Known VTables
 
-This document records vtable pointers found in `RoleView.dll` along with their decoded function pointer arrays, extracted from `.rdata`.
+Vtable pointers found in `RoleView.dll` with their decoded function-pointer arrays, extracted from `.rdata`.
 
 Method meanings are correlated against:
 

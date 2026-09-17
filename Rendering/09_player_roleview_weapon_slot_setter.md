@@ -5,8 +5,6 @@ weapon-source id and route it to the correct hand slot, applying 5517's
 "family-500/370 left-flip" predicate plus the composite-id/105 cross-slot
 swap. Mirrors the pair end-to-end as a managed `PlayerRoleViewWeaponSlotSetter`.
 
----
-
 ## 5517 oracle (`RoleView.dll`, BNinja decomp)
 
 ### `PlayerRoleView_SetRightWeaponSource(arg1, edi)` at `0x10001af1`
@@ -89,8 +87,6 @@ return TRUE
 returns the native non-zero success flag → managed `bool` from
 `TryLoadPlayerRoleViewWeaponPartRuntime`.
 
----
-
 ## 5517 evolution from retail
 
 The retail oracle (`40_tools/fight-master/my_client/3DBaseCode/PlayerRoleView.cpp`)
@@ -105,8 +101,6 @@ checked only family-500. 5517 evolved the predicate in two directions:
 
 Neither evolution survives in retail. The managed port captures both verbatim
 so the equipped-weapon state machine in 5517 reproduces exactly.
-
----
 
 ## Managed port (`Conquer.Role`)
 
@@ -153,8 +147,6 @@ dotnet test tests/Conquer.Tests/Conquer.Tests.csproj \
   --filter "FullyQualifiedName~PlayerRoleViewWeaponSlotSetterTests" --nologo
 ```
 
----
-
 ## Where this fits in the broader port
 
 This setter pair was previously a documented gap in the managed port: the
@@ -166,8 +158,6 @@ mid-session. The setter port closes that gap.
 Wiring the setter into the managed RoleView equipment-change pipeline (so a
 gear swap on a live character routes through it) is a follow-up integration
 slice — the setter as it stands is a pure unit, ready to compose.
-
----
 
 ## Cross-refs
 

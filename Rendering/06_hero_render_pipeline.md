@@ -1,6 +1,6 @@
 # Hero Render Pipeline — End-to-End Call Chain
 
-This document traces the complete hero/role render path from Conquer.exe's per-frame
+The complete hero/role render path, traced from `Conquer.exe`'s per-frame
 tick through RoleView.dll and Role3D.dll down to the D3D8 draw calls.
 
 ## Overview

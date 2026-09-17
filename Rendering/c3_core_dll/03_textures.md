@@ -1,6 +1,6 @@
 # Texture subsystem (`Texture_*`)
 
-This document describes the `Texture_*` API implemented in `c3_core_dll.dll` as used by the client.
+The `Texture_*` API in `c3_core_dll.dll`, as the client uses it.
 
 ## Exported entry points
 
@@ -33,7 +33,7 @@ helpers can adjust their local format. Do not globally label this field as sourc
 format, `hasAlpha`, or measured GPU format. See the full provenance and acceptance
 limits in [02_sprites.md](02_sprites.md#loaded-versus-created-texture-format-provenance).
 
-Several decode and upload paths (notably DDS) use an internal “format descriptor” table located at `0x100A1800`, which is indexed by a “format tag” value (e.g. `20`, `21`, `DXT1`, `DXT5`).
+Several decode and upload paths (notably DDS) use an internal "format descriptor" table located at `0x100A1800`, which is indexed by a "format tag" value (e.g. `20`, `21`, `DXT1`, `DXT5`).
 
 ### Lookup: `C3FormatDesc_LookupByTag` (`0x1001A58C`)
 
@@ -42,7 +42,7 @@ Several decode and upload paths (notably DDS) use an internal “format descript
 
 ### Normalization helper: `C3FormatTag_NormalizeForPaletteAnd16BitVariants` (`0x1001A775`)
 
-Some loaders normalize “16-bit variant” tags back to base tags:
+Some loaders normalize "16-bit variant" tags back to base tags:
 
 - ` L16` (`0x36314C20`) → `50`
 - `AL16` (`0x36314C41`) → `51`
@@ -60,7 +60,7 @@ Field meanings are partially inferred from usage:
 
 - `tag` is the format tag used throughout the engine and by DDS.
 - `group` is a small integer classifying the format family (observed values: 0..4).
-- `bitsOrBpp` appears to be a “bits-per-pixel” or “bits-per-texel” value for linear formats; for DXT/YUV it is set to `16` (treated specially in DDS code paths).
+- `bitsOrBpp` appears to be a "bits-per-pixel" or "bits-per-texel" value for linear formats; for DXT/YUV it is set to `16` (treated specially in DDS code paths).
 - `flags` is `0` for FourCC/block formats and `1` for most linear formats (as observed in the table).
 
 Raw entries (in table order) are:
@@ -127,14 +127,14 @@ Observed behavior:
 - For each candidate descriptor `v6`:
   - if `v6[0]` (tag) is non-zero and the device indicates it supports the candidate tag for the requested usage/type, it is considered.
   - if the candidate tag exactly matches the desired tag (`*a4 == *v6`), the scan stops and returns that tag immediately.
-  - otherwise, if `v6[8]` is non-zero, it computes a “conversion cost” between descriptors and keeps the lowest-cost candidate (tie-breaking by smaller `v6[2]`).
+  - otherwise, if `v6[8]` is non-zero, it computes a "conversion cost" between descriptors and keeps the lowest-cost candidate (tie-breaking by smaller `v6[2]`).
 - Returns the chosen tag (or a default tag when no candidates qualify).
 
 The cost function is implemented by `C3FormatDesc_ComputeConversionCost` (`0x1001A5B0`).
 
 ### Format conversion cost: `C3FormatDesc_ComputeConversionCost` (`0x1001A5B0`)
 
-This routine compares two format descriptors and returns a 32-bit cost value used to choose the “closest” supported format.
+This routine compares two format descriptors and returns a 32-bit cost value used to choose the "closest" supported format.
 
 Observed behavior (high level):
 
@@ -143,24 +143,24 @@ Observed behavior (high level):
   - increases in a descriptor field add a large penalty (`<< 16`)
   - decreases add a smaller penalty
   - zero vs non-zero mismatches add fixed penalties
-- If the number of non-zero fields matches the high byte of the accumulated cost, it returns `-1` (treated as “no acceptable conversion” by the caller).
+- If the number of non-zero fields matches the high byte of the accumulated cost, it returns `-1` (treated as "no acceptable conversion" by the caller).
 
 ### Adjust dimensions / choose mip count / finalize format tag: `Texture_AdjustDimsChooseFormatAndMipCount` (`0x1001A95B`)
 
 This helper is used by the upload path to:
 
-- ensure dimensions meet the device’s requirements and maximums (using caps queried from the device)
+- ensure dimensions meet the device's requirements and maximums (using caps queried from the device)
 - optionally round up dimensions to the next power-of-two depending on caps and usage
 - clamp mip-count based on the final dimensions
 - if the chosen format is block-compressed DXT (`DXT1..DXT5`), rounds width/height up to a multiple of 4
 
-It also enforces the DXT “multiple of 4” rule even when the caller requested arbitrary dimensions.
+It also enforces the DXT "multiple of 4" rule even when the caller requested arbitrary dimensions.
 
 ## `Texture_Clear` (ordinal `156`, `0x10016340`)
 
 Initializes a `C3Texture` struct to a known empty state:
 
-- sets the first dword to `-1` (used as “no registry ID”)
+- sets the first dword to `-1` (used as "no registry ID")
 - zeros remaining fields observed in the function
 
 ## `Texture_Create` (ordinal `157`, `0x100169F0`)
@@ -182,7 +182,7 @@ Observed behavior:
   - `tex->format = (mapped or input) D3DFORMAT`
   - `*out = tex`
   - increments `g_dwTexCount`
-- If `a8 != 0`, registers the texture into `g_pTexDB` and writes the assigned slot index back into the texture’s first dword field (ID). If the registry is full (10240 entries), returns `0`.
+- If `a8 != 0`, registers the texture into `g_pTexDB` and writes the assigned slot index back into the texture's first dword field (ID). If the registry is full (10240 entries), returns `0`.
 - Returns `1` on success, `0` on failure.
 
 ### Internal format mapper: `Texture_MapToSupportedD3DFormatOrFallback` (`0x10016910`)
@@ -196,9 +196,9 @@ Observed behavior (decompiler):
   - returns `inputFormat`.
   - Special-case: if the cached fallback format is not set and `inputFormat == 22`, it caches `22` as the fallback for later failures.
 - If that fails:
-  - if a “fallback chosen” flag is set, returns the cached fallback format (`dword_100C6544`).
+  - if a "fallback chosen" flag is set, returns the cached fallback format (`dword_100C6544`).
   - otherwise tries candidate formats in order: `{ 22, 24, 23, 30 }`, returning the first one accepted by `CheckDeviceFormat`.
-    - once it finds one, it marks “fallback chosen” and caches that format for later.
+    - once it finds one, it marks "fallback chosen" and caches that format for later.
     - if none are supported, returns `0` (treated as `D3DFMT_UNKNOWN` by the caller).
 
 ## `Texture_Load` (ordinal `158`, `0x10016360`)
@@ -210,13 +210,13 @@ Signature (export name):
 Observed behavior (high level):
 
 - Enters the texture `CriticalSection`.
-- If the “use cache” flag argument is non-null, it attempts to find a matching already-loaded texture by comparing the stored `tex->name` case-insensitively with `_stricmp`.
+- If the "use cache" flag argument is non-null, it attempts to find a matching already-loaded texture by comparing the stored `tex->name` case-insensitively with `_stricmp`.
   - On cache hit, increments refcount and returns with `*out = existing`.
 - Otherwise loads texture data through the DataFile system:
   - If `DataFile_UnpackSearch(path)` succeeds, it calls `Image_LoadFromPath_Thunk(g_D3DDevice, path, ...)`.
   - Else it calls `DataFile_Load(path, &buf, &size)` and then calls `Image_LoadFromMemory_Thunk(g_D3DDevice, buf, size, ...)`, then `DataFile_Free(&buf)`.
 - After successful load, queries the D3D texture for a `D3DSURFACE_DESC`-like struct via vtable method at +56 and stores the discovered format into `tex->format`.
-- Stores width/height from the loader outputs, stores a heap-allocated copy of the path string as `tex->name`, sets refcount to `1`, increments `g_dwTexCount`, and registers into `g_pTexDB` (writing the registry index into the texture’s first dword).
+- Stores width/height from the loader outputs, stores a heap-allocated copy of the path string as `tex->name`, sets refcount to `1`, increments `g_dwTexCount`, and registers into `g_pTexDB` (writing the registry index into the texture's first dword).
 - On success returns the assigned registry index; on failure returns `-1`.
 
 ### Internal image decoding stack (used by `Texture_Load` / `Texture_Reload` / `Sprite_ReLoadNoFilter`)
@@ -230,7 +230,7 @@ The internal loaders used by `Texture_Load` are now named in IDA as:
   - creates a D3D texture/surface/volume texture based on chosen format and parameters
   - uploads decoded pixels (including palette handling when present)
 
-The decode stage is performed by a “try multiple codecs” routine now named `ImageDecoder_TryDecode` (`0x1001E957`). It attempts the following decoders (in a fixed order) until one succeeds:
+The decode stage is performed by a "try multiple codecs" routine now named `ImageDecoder_TryDecode` (`0x1001E957`). It attempts the following decoders (in a fixed order) until one succeeds:
 
 - `ImageDecoder_Decode_BMP_File` (`0x1001E927`) — checks for the BMP file header (`'BM'`) and then invokes the DIB decode.
 - `ImageDecoder_Decode_PPM_P3_P6` (`0x1001D809`) — checks for `P3` (ASCII) or `P6` (binary) portable pixmap and decodes to 32-bit pixels.
@@ -246,24 +246,24 @@ See `Rendering/c3_core_dll/06_image_decoders.md` for container/codec specifics (
 
 ## `Texture_Unload` (ordinal `161`, `0x10016640`)
 
-Decrements the texture’s refcount. When it reaches `0`:
+Decrements the texture's refcount. When it reaches `0`:
 
 - removes the texture from `g_pTexDB` if it has an assigned ID
 - frees `tex->name` if present
 - releases the underlying D3D texture COM object (`Release()`)
-- deletes the `C3Texture` object, clears the caller’s pointer, decrements `g_dwTexCount`
+- deletes the `C3Texture` object, clears the caller's pointer, decrements `g_dwTexCount`
 
 ## `Texture_LockRect` / `Texture_Unlock` (ordinals `159` / `162`)
 
 `Texture_LockRect`:
 
 - only permits locking if `tex->format` is `21` or `22` (these correspond to `D3DFMT_A8R8G8B8` and `D3DFMT_X8R8G8B8` in Direct3D 8)
-- calls the underlying D3D texture’s `LockRect(level=0, lockedRectOut, &rect, flags=0)`
+- calls the underlying D3D texture's `LockRect(level=0, lockedRectOut, &rect, flags=0)`
 - returns true only when the underlying call returns `0`
 
 `Texture_Unlock`:
 
-- calls the underlying D3D texture’s `UnlockRect(level=0)`
+- calls the underlying D3D texture's `UnlockRect(level=0)`
 
 ## `Texture_Reload` (ordinal `160`, `0x10016700`)
 
@@ -275,7 +275,7 @@ Reloads a texture in-place using `tex->name` as its path:
 
 ## Upload pipeline (decoded image → D3D texture)
 
-The final “decoded pixels into a D3D texture” stage is performed by the internal routine renamed in IDA as:
+The final "decoded pixels into a D3D texture" stage is performed by the internal routine renamed in IDA as:
 
 - `D3DTexture_LoadFromDecodedImage` (`0x1001B6B8`)
 
@@ -302,10 +302,10 @@ This is the implementation reached by both:
      - DXT1–DXT5 width/height rounding to multiples of 4
      - clamping mip count to the resulting dimensions
 5. Create the destination D3D resource via a vtable call on the device pointer:
-   - the exact method selected depends on the resource “kind” argument (2D texture vs volume texture vs cube texture), and is invoked through the device vtable at offsets `+0x50`, `+0x54`, or `+0x58`.
+   - the exact method selected depends on the resource "kind" argument (2D texture vs volume texture vs cube texture), and is invoked through the device vtable at offsets `+0x50`, `+0x54`, or `+0x58`.
 6. Upload decoded pixel data into each face/level:
    - for each face and each mip level, the code obtains a per-level subresource via a vtable call at `+0x3C` on the created resource.
    - it then calls one of two upload helpers:
      - `TextureUpload_CopyToSurfaceLevel` (`0x1001A7A6`)
      - `TextureUpload_CopyToVolumeLevel` (`0x1001A888`)
-   - these helpers set up an internal “upload job” structure and forward to a shared implementation (`TextureUpload_ExecuteJob`) that performs the actual lock/copy/unlock and any palette/colorkey transforms.
+   - these helpers set up an internal "upload job" structure and forward to a shared implementation (`TextureUpload_ExecuteJob`) that performs the actual lock/copy/unlock and any palette/colorkey transforms.

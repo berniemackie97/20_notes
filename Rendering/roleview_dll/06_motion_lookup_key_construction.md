@@ -1,6 +1,6 @@
 # `RoleView.dll` — Motion Lookup Key Construction (`GameDataSetQuery()->+0x20`)
 
-This document pins the verified caller-side key construction used by `RoleView.dll` before it queries `GraphicData.dll`.
+The verified caller-side key construction `RoleView.dll` performs before querying `GraphicData.dll`.
 
 For the action playback transition state (`+0xE0/+0xE4/+0xE8/+0xEC/+0xF4`) and blend formula used by the same dispatcher path, see:
 

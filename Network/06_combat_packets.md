@@ -1,15 +1,13 @@
 # Combat Packets — Magic, Skills, Interact, PK
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
 ## MsgFriend (Type 1019)
 **Direction**: Bidirectional
 **Dispatch**: Construct `CMsgFriend__ctor` (0x74D66D), parse `CMsgFriend__Parse` (0x74D766), process `CMsgFriend__Process` (0x74D789)
 **Size**: 36 bytes (verified send-side builder below)
 
-**Verified parse behavior**:
-- `CMsgFriend__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1019`.
+**Parse**: `CMsgFriend__Parse` — standard header validation, then `type == 1019`.
 
 **Verified field layout (offsets relative to packet start)**:
 - `+0` (u16) size (`36` in the verified builder)
@@ -51,16 +49,12 @@ struct MsgFriend {
 };
 ```
 
----
-
-
 ## MsgMagicEffect (Type 1035)
 **Direction**: S→C
 **Purpose**: Magic‑effect list update with optional `"ItemTimeOut"` notifications (verified by `CHero__Find/RemoveMagicEffectEntry_*` and `ItemTimeOut` string usage).
 **Dispatch**: Create `CMsgMagicEffect__Create` (0x75DB5B), parse `CMsgMagicEffect__Parse` (0x75DBC1), process `CMsgMagicEffect__Process` (0x75DBE4)
 
-**Verified parse behavior**:
-- `CMsgMagicEffect__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1035`.
+**Parse**: `CMsgMagicEffect__Parse` — standard header validation, then `type == 1035`.
 
 **Verified field usage in `CMsgMagicEffect__Process`** (offsets relative to packet start):
 - `+4` (u32) is a mode flag used to select between paired handler paths (`CHero__FindMagicEffectEntry_List0`/`CHero__RemoveMagicEffectEntry_List0` vs `CHero__FindMagicEffectEntry_List1`/`CHero__RemoveMagicEffectEntry_List1`) and also selects the final UI notify (`PostMainWndMsg_0x464(0x4CC)` vs `PostMainWndMsg_0x464(0x4CD)`).
@@ -68,13 +62,12 @@ struct MsgFriend {
 - Entries are a fixed stride of `0x0C` bytes starting at `+12`:
   - `entry+0` (u32) is passed to `CHero__FindMagicEffectEntry_List0`/`CHero__FindMagicEffectEntry_List1` and later to `CHero__RemoveMagicEffectEntry_List0`/`CHero__RemoveMagicEffectEntry_List1`.
   - `entry+4` (u32) is copied into `*(item+20)` when the entry update flag is nonzero.
-  - `entry+8` (u8) is an update flag: if `0`, the handler runs the “timeout” path (may show `"ItemTimeOut"` UI); if nonzero, it updates `*(item+20)` with `entry+4`.
+  - `entry+8` (u8) is an update flag: if `0`, the handler runs the "timeout" path (may show `"ItemTimeOut"` UI); if nonzero, it updates `*(item+20)` with `entry+4`.
   - `entry+9` (u8) is checked before building the `"ItemTimeOut"` message (uses `CItem__GetEffectiveId` and `CStringManager__GetStr` to format the notification).
-
 
 ## Type 1036 — experience-cap packet (class name `CMsgMagicInfo` is a MISLABEL)
 **Direction**: S→C
-**Purpose**: Updates hero fields `0xF54/0xF58` and shows “max online/battle exp” confirmation dialogs.
+**Purpose**: Updates hero fields `0xF54/0xF58` and shows "max online/battle exp" confirmation dialogs.
 **Naming warning**: the handler at 0x7165F5 has nothing to do with magic — it reads a mode byte and
 drives `STR_MAX_ONLINE_EXP` / `STR_MAX_BATTLE_EXP` dialogs. `CMsgMagicInfo` in the CQ2 ancestor is a
 different message carrying `{idOwner, dwExp, usType, usLevel}` and calling `g_objHero.AddMagic`.
@@ -82,8 +75,7 @@ Do not use this entry as the magic-set packet for ladder rung `0x4E`; that packe
 identified. Verified: `CMsgMagicInfo__Parse` (0x7165D2) checks `type == 0x40C` (1036).
 **Dispatch**: Create `CMsgMagicInfo__Create` (0x716545), parse `CMsgMagicInfo__Parse` (0x7165D2), process `CMsgMagicInfo__Process` (0x7165F5)
 
-**Verified parse behavior**:
-- `CMsgMagicInfo__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1036`.
+**Parse**: `CMsgMagicInfo__Parse` — standard header validation, then `type == 1036`.
 
 **Verified field usage in `CMsgMagicInfo__Process`** (offsets relative to packet start):
 - `+4` (u8) is a mode selector:
@@ -91,18 +83,15 @@ identified. Verified: `CMsgMagicInfo__Parse` (0x7165D2) checks `type == 0x40C` (
   - `3`: shows a confirmation message using string `"STR_MAX_ONLINE_EX"` (`CMessageBoxMgr__ShowCommandMessage` with id `3456`).
   - `4`: shows a confirmation message using string `"STR_MAX_BATTLE_EX"` (`CMessageBoxMgr__ShowCommandMessage` with id `3456`).
 
-
 ## MsgWeapSkill (Type 1024)
 **Direction**: S→C
 **Purpose**: If `+4 == 0`, builds and sends a type‑10010 action packet (`action=408`, `data=0`) and posts UI `0xDE8`.
 **Dispatch**: Create `CMsgWeapSkill__Create` (0x740951), parse `CMsgWeapSkill__Parse` (0x7409B7), process `CMsgWeapSkill__Process` (0x740A37)
 
-**Verified parse behavior**:
-- `CMsgWeapSkill__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1024`.
+**Parse**: `CMsgWeapSkill__Parse` — standard header validation, then `type == 1024`.
 
 **Verified field usage in `CMsgWeapSkill__Process`** (offsets relative to packet start):
 - `+4` (u8) is checked; when `0`, the handler builds a type‑`10010` packet via `CMsgAction__BuildType10010(408, 0)` and sends it via `CNetMsg__Send`, then triggers `PostMainWndMsg_0x464(0xDE8, 0)`.
-
 
 ## MsgWeaponSkill (Type 1025)
 **Direction**: S→C
@@ -110,8 +99,7 @@ identified. Verified: `CMsgMagicInfo__Parse` (0x7165D2) checks `type == 0x40C` (
 **Dispatch**: Create `CMsgWeaponSkill1025__Create` (0x761FD0), parse `CMsgWeaponSkill1025__Parse` (0x762036), process `CMsgWeaponSkillUpdate1025__Process` (0x762059)
 **Class name**: the ancestor source calls this `CMsgWeaponSkill` (`40_tools/eosource/soul-code/3drole/Network/MsgWeaponSkill.h`). The earlier note here labelled it `CMsgTeamMember`; that name belongs to **1026**, whose handler at 0x761AB1 carries the `MsgTeamMember.cpp` CHECK string.
 
-**Verified parse behavior**:
-- Parse calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1025`.
+**Parse**: Parse — standard header validation, then `type == 1025`.
 
 **Verified wire layout** (offsets relative to packet start):
 
@@ -213,14 +201,12 @@ feedback fires only on updates, never on the initial snapshot.
 - `14`: uses `+0x08`; calls `CHero__IsTeamPaneActive`, then routes to `CHero__SetTimestampMap_0x1240(+0x08)` if true or `CHero__SetTimestampMap_0x124C(+0x08)` if false.
 - `15`: uses `+0x08`; calls `CHero__SetDword_0x444(+0x08)` then triggers `PostMainWndMsg_0x464(0x3FC, 0)`.
 
-
 ## MsgMagicEffectSimple (Type 1103)
 **Direction**: S→C
 **Purpose**: Creates/updates a magic entry for `(magic_id, magic_level, caster_id)` and triggers a UI refresh.
 **Dispatch**: Create `CMsgMagicEffectSimple__Create` (0x760ABC), parse `CMsgMagicEffectSimple__Parse` (0x760B22), process `CMsgMagicEffectSimple__Process` (0x760B45)
 
-**Verified parse behavior**:
-- `CMsgMagicEffectSimple__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1103`.
+**Parse**: `CMsgMagicEffectSimple__Parse` — standard header validation, then `type == 1103`.
 
 **Verified field usage in `CMsgMagicEffectSimple__Process`** (offsets relative to packet start):
 - `+4` (u32) → `caster_id`
@@ -246,15 +232,13 @@ magic has accumulated experience, a following 1104.
   - If magic data provides a sound record, plays it via `DXPlaySound`.
 - Posts `PostMainWndMsg_0x464(0x406, 0)`.
 
-
 ## MsgFlushExp (Type 1104)
 **Direction**: S→C
 **Purpose**: Pushes a new experience value for one weapon skill or one magic skill without resending the whole row.
 **Dispatch**: Create `CMsgFlushExp1104__Create` (0x76179A), parse `CMsgFlushExp1104__Parse` (0x761800), process `CMsgFlushExp1104__Process` (0x761823)
 **Class name**: `CMsgFlushExp` in the ancestor source (`40_tools/eosource/soul-code/3drole/Network/MsgFlushExp.h`). The earlier note here called it `MsgMagicEffectUpdate` and read `+4`/`+8` as opaque `value_a`/`value_b`; that reading is superseded.
 
-**Verified parse behavior**:
-- Parse calls `CNetMsg__ValidateHeaderAndCopy` and checks `type == 1104` (`0x450`).
+**Parse**: standard header validation, then `type == 1104` (`0x450`).
 
 **Verified wire layout** (offsets relative to packet start):
 
@@ -294,8 +278,7 @@ value other than 0 and 1 falls straight through with no work):
 **Purpose**: Magic/skill effect execution packet (drives MagicEffect.ini visuals, per‑target effects, and hero timers).
 **Dispatch**: Create `CMsgMagicEffectEx__Create` (0x760B79), parse `CMsgMagicEffectEx__Parse` (0x760BDF), process `CMsgMagicEffectEx__Process` (0x760C02)
 
-**Verified parse behavior**:
-- `CMsgMagicEffectEx__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1105`.
+**Parse**: `CMsgMagicEffectEx__Parse` — standard header validation, then `type == 1105`.
 
 **Verified field usage in `CMsgMagicEffectEx__Process`** (offsets relative to packet start):
 - `+4` (u32) `caster_id`: compared to local hero ID and used to find the caster entity via `EntityManager__FindEntityById`.
@@ -336,7 +319,6 @@ value other than 0 and 1 falls straight through with no work):
 **Final dispatch**:
 - After the above, the handler calls `CMagicEffect__ProcessByEffectType(caster_id, magic_id, magic_level, target_count, target_entries, target_id, x, y)` to instantiate the MagicEffect.ini‑defined effect class and feed it the 32‑byte target list.
 
-
 ## MsgPKStatistic (Type 1081)
 **Direction**: S→C
 **Purpose**: PK‑statistic / anti‑cheat warning (verified by `CHEATING_PROGRAM_TIP` string usage).
@@ -346,14 +328,12 @@ value other than 0 and 1 falls straight through with no work):
 - `+4` (u32) is compared against the local hero entity ID (singleton offset `+204`).
 - If equal, it reads string‑list entry index `0` (via `MsgStringList__GetEntry`) and shows message `CHEATING_PROGRAM_TIP`.
 
-
 ## MsgPKEliteInfo (Type 1115)
 **Direction**: S→C
 **Purpose**: PK-elite UI event packet; either posts a simple event (`0xCC6`) or forwards a copied text payload (`0xD8C`).
 **Dispatch**: Create `CMsgPKEliteInfo__Create` (0x75D785), parse `CMsgPKEliteInfo__Parse` (0x75D7EB), process `CMsgPKEliteInfo__Process` (0x75D80E)
 
-**Verified parse behavior**:
-- `CMsgPKEliteInfo__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1115`.
+**Parse**: `CMsgPKEliteInfo__Parse` — standard header validation, then `type == 1115`.
 
 **Verified field usage in `CMsgPKEliteInfo__Process`** (offsets relative to packet start):
 - `+4` (u32) `mode`:
@@ -372,14 +352,12 @@ value other than 0 and 1 falls straight through with no work):
 - `mode >= 2`: returns with no post/side effect in this handler.
 - The `mode == 0` heap buffer is not freed in this function (ownership is transferred to the receiver of message `0xD8C`).
 
-
 ## MsgBattleEffectiveness (Type 1111)
 **Direction**: S→C
 **Purpose**: Updates the hero bulletin payload from a string-list triplet format when subtype `3` is received.
 **Dispatch**: Create `CMsgBattleEffectiveness__Create` (0x75ED21), parse `CMsgBattleEffectiveness__Parse` (0x75EDDD), process `CMsgBattleEffectiveness__Process` (0x75EE72)
 
-**Verified parse behavior**:
-- `CMsgBattleEffectiveness__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1111`.
+**Parse**: `CMsgBattleEffectiveness__Parse` — standard header validation, then `type == 1111`.
 
 **Verified field usage in `CMsgBattleEffectiveness__Process`** (offsets relative to packet start):
 - `+4` (u16) `pair_a` (passed to bulletin loader).

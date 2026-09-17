@@ -1,7 +1,6 @@
 # Core Packets — Login, Connection, Player Identity
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
 ## Transport framing and the client's receive path — verified 2026-08-18
 
@@ -55,8 +54,6 @@ safe rather than random: `CNetMsg__ResetPacketBuffer` (0x6DF290) does `memset(ob
 so bytes past a short packet read as **zero**. A packet must still cover every offset its handler
 reads, or those fields silently arrive as 0.
 
----
-
 ## MsgConnect (Type 1002)
 **Direction**: S→C (registered but NoopProcess in this build)
 **Purpose**: Present in the `CNetMsg` dispatch table, but **not used** for the DH handshake/crypto in this build (handshake is handled at the `CGameSocket` layer; see above).
@@ -77,7 +74,6 @@ struct MsgConnect {
     uint8_t  payload[];     // Unreferenced by client code in this build
 };
 ```
-
 
 ## MsgAccount (Type 1063) — S→C Award/CrossFlagWar Updates
 **Purpose**: Award updates and cross-flag-war list/UI updates (verified by `StrUpdateAward` and `CCrossFlagWarMgr__*` calls). Despite the IDA label "CMsgAccount", this is NOT a login packet in this build.
@@ -129,20 +125,17 @@ struct MsgConnect {
 **Mode 11 (`+4 == 11`)**:
 - Uses `+18` as the sole parameter to update the mode‑11 manager.
 
-
 ## MsgPlayer (Type 1012)
 **Direction**: C→S (client builds and sends player identity/response)
 **Purpose**: Spawn player entity in world
 **Dispatch**: Create `CMsgPlayer__Create` (0x764997), parse `CMsgPlayer__Parse` (0x7649FD), process `CMsgPlayer__Process` (0x764A42)
 
-**Verified parse behavior**:
-- `CMsgPlayer__Parse` calls `CNetMsg__ValidateHeaderAndCopy` to validate `size` and `type`, copies raw packet to object+4, and checks `type == 1012`.
+**Parse**: `CMsgPlayer__Parse` — standard header validation, then `type == 1012`.
 
 **Verified field usage in `CMsgPlayer__Process`**:
 - `packet+8` is set to `timeGetTime() ^ hero_id` (hero_id read from singleton `+204`).
 - `packet+28` is set from the first two bytes of the current player name (XOR with constants).
 - `packet+12`, `packet+16`, `packet+20`, `packet+24` are filled with random 32-bit values.
-
 
 ## MsgUserInfo (Type 1006)
 **2026-09-17 semantic audit:** [current native findings and corrections](MsgUserInfo1006-semantic-closure-2026-09-17.md),
@@ -155,8 +148,7 @@ distinct from training levels. The six numeric targets remain under receiver/dat
 **Purpose**: Full user information payload (stats, equipment, etc.)
 **Dispatch**: Create `CMsgUserInfo__Create` (0x764197), parse `CMsgUserInfo__Parse` (0x764253), process `CMsgUserInfo__Process` (0x764276)
 
-**Verified parse behavior**:
-- `CMsgUserInfo__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1006`.
+**Parse**: `CMsgUserInfo__Parse` — standard header validation, then `type == 1006`.
 
 **Verified string-list helper**:
 - `CMsgUserInfo__Process` reads string indices 0..2 from a list object at `this+0x408` using `MsgStringList__GetEntry` (same `[count][len][bytes]...` format as MsgTalk).
@@ -1001,7 +993,6 @@ cost/threshold check that reads `hero+0x14` and names its own failure string.
   - `+14` packed hair composite split by `% 1000` and `/ 1000`
 - earlier managed/server drafts that wrote `lookface` at `+6` and hair at `+10` are wrong for 5517 and cannot produce native-equivalent local-hero RoleView construction.
 
-
 ## MsgCreatePlayer (Type 1001)
 **Direction**: C→S
 **Purpose**: Create-role request and create-role cancel request on the authenticated game session.
@@ -1064,26 +1055,22 @@ struct MsgCreatePlayer1001 {
 - the shipped label/description surface for vocation/body choices lives in `ini/selectCharacter.ini`
   (`affirmPanel`, `info`, `infoII`), while the packet field mapping above is the verified native C++ contract.
 
-
 ## MsgUserAttrib (Type 1029)
 **Direction**: S→C
 **Purpose**: Attribute update (HP, MP, level, exp, etc.)
 **Dispatch**: Create `CMsgUserAttrib__Create` (0x75E446), parse `CMsgUserAttrib__Parse` (0x75E4AC), process `CMsgUserAttrib__Process` (0x75E4CF)
 
-**Verified parse behavior**:
-- `CMsgUserAttrib__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1029`.
+**Parse**: `CMsgUserAttrib__Parse` — standard header validation, then `type == 1029`.
 
 **Verified field usage in `CMsgUserAttrib__Process`** (offsets relative to packet start):
 - `+4`, `+8`, `+12` are read as 32-bit values and added to singleton fields at offsets `+4252`, `+4256`, `+4260` respectively (via `s__GetSingletonPtr_404460`).
 
-
 ## MsgPlayerSetInfo (Type 1106)
 **Direction**: S→C
-**Purpose**: Updates hero “player set” fields and marks entries in the GamePlayerSet list; includes two strings and multiple numeric fields.
+**Purpose**: Updates hero "player set" fields and marks entries in the GamePlayerSet list; includes two strings and multiple numeric fields.
 **Dispatch**: Create `CMsgPlayerSetInfo__Create` (0x760886), parse `CMsgPlayerSetInfo__Parse` (0x7608EC), process `CMsgPlayerSetInfo__Process` (0x76090F)
 
-**Verified parse behavior**:
-- `CMsgPlayerSetInfo__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1106`.
+**Parse**: `CMsgPlayerSetInfo__Parse` — standard header validation, then `type == 1106`.
 
 **Verified field usage in `CMsgPlayerSetInfo__Process`** (offsets relative to packet start):
 - `+4` (u32) `entry_id` (see flow below)
@@ -1112,7 +1099,6 @@ struct MsgCreatePlayer1001 {
   - `CHero__SetDword_0x86C(entry_id)`.
 - After applying fields, if `entry_id != 0`, calls `CGamePlayerSet__SetEntryStateById(&unk_96B018, entry_id, 2)`.
 - Always posts `PostMainWndMsg_0x464(0x40A, 0)`.
-
 
 ## MsgAction (Wire Type 10010; 1010 Not Dispatched In This Build)
 **Direction**: Bidirectional (C→S via Create/CreateWalk builders; S→C via Process handler)
@@ -1387,8 +1373,6 @@ This branch is explicitly classified as non-command-ingress for the `0x11C` stat
 3. if `path != null`, resolve again and call `_DXPlaySound@24(path, 0, 0, 0, 0, 100)` (Conquer.exe: `0x6FFEF4` -> `0x7001D4`)
 
 This is the confirmed runtime bridge between action packet subtype `0x7C`, `GraphicData.dll` sound DB lookup, and `NDSound.dll` playback.
-
----
 
 ## 2026-08-16 — the eight open `1006` fields now have targets
 
@@ -1837,4 +1821,4 @@ no inbound branch for it.
 The client's own equip guard — the category-to-position jump table at `0x6DB895`, the bow/shield
 conflicts, the dual-wield profession gate at `hero+0x82C`, the learned-magic-10311 requirement for a
 shield beside a category 5 weapon, the paired-hand unequip rule, and the 40-slot pack limit at
-`0x6DCDD9` — is written up in full in `20_notes/Server/equipment.md`.
+`0x6DCDD9` — is written up in full in `../Server/equipment.md`.

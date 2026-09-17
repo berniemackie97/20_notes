@@ -162,20 +162,20 @@ Evidence: verified from decompiled `GameDataSet_ProcessPendingResourceRequests` 
 
 Vtable offset: `+0x14` (index `5`) → `GameDataSet_RequestMesh` (`0x10005670`).
 
-`Role3D.dll` uses this method to obtain (or schedule/ensure) a runtime per-model “mesh instance” object for a given model record.
+`Role3D.dll` uses this method to obtain (or schedule/ensure) a runtime per-model "mesh instance" object for a given model record.
 
 In the `Role3D.dll` part-resolution path:
 
 1. `record = ds->GameDataSet_ResolveModelIdVariant(modelId, variantSelector)`
 2. `mesh = ds->GameDataSet_RequestMesh(record, 0, 0)`
 
-The returned pointer is stored by `Role3D.dll` in its per-part record and is treated as a polymorphic “mesh instance” object (see `analysis/conquer_docs/Rendering/role3d_dll/05_partinfo_and_mesh_instances.md`).
+The returned pointer is stored by `Role3D.dll` in its per-part record and is treated as a polymorphic "mesh instance" object (see `analysis/conquer_docs/Rendering/role3d_dll/05_partinfo_and_mesh_instances.md`).
 
 ## `GameDataSet_RequestTexture` (vtable offset `+0x18`)
 
 Vtable offset: `+0x18` (index `6`) → `GameDataSet_RequestTexture` (`0x100067A0`).
 
-`Role3D.dll` calls this method as a gating check before rendering a part. The return value is used as a boolean-style “available” result (non-zero means the part proceeds to render; zero aborts the loop).
+`Role3D.dll` calls this method as a gating check before rendering a part. The return value is used as a boolean-style "available" result (non-zero means the part proceeds to render; zero aborts the loop).
 
 ## `GameDataSet_ResolveModelIdVariant` (base vtable offset `+0x74`)
 
@@ -207,7 +207,7 @@ Verified lookup flow in `GraphicData.dll`:
 2. exact-key gate (`lower_bound != end` and `modelId >= node_key`)
 3. selector-based return of one of three stored model ids
 
-`Role3D.dll` passes a `variantSelector` owned by its `PartInfo` instance (stored at `this[61]` inside Role3D’s `PartInfo` layout).
+`Role3D.dll` passes a `variantSelector` owned by its `PartInfo` instance (stored at `this[61]` inside Role3D's `PartInfo` layout).
 
 ## `GameDataSet_RequestEffectDrawResource` (vtable offset `+0x1C`)
 
@@ -217,7 +217,7 @@ Vtable offset: `+0x1C` (index `7`) → `GameDataSet_RequestEffectDrawResource` (
 
 - `res = ds->GameDataSet_RequestEffectDrawResource(resourceId, 0, 0)`
 
-The returned object’s vtable-driven interface (the methods `Role3D.dll` calls on it) is documented in:
+The returned object's vtable-driven interface (the methods `Role3D.dll` calls on it) is documented in:
 
 - `analysis/conquer_docs/Rendering/role3d_dll/10_effect_draw_resource_interface.md`
 

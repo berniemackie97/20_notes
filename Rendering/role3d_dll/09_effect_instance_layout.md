@@ -1,6 +1,6 @@
 # `Role3D.dll` — Effect instance object layout (creation + tick + render proven)
 
-This document describes the effect-instance object as observed from native creation plus render/tick paths:
+The effect-instance object, as observed from the native creation, render and tick paths:
 
 - `PartInfo_CreateAndAppendEffectInstanceByName` (`0x1000AC40`)
 - `Effect_RenderWithContext` (`0x10008C30`)
@@ -115,7 +115,7 @@ All three render backends iterate a per-part record list at:
 - `partsBase = *(uint8_t**)this + 0x00` (i.e. `*(_DWORD*)this` is treated as a base pointer)
 - `part = partsBase + 36 * i`
 
-The record’s full layout (including unused/reserved dwords that must still be preserved) is documented in:
+The record's full layout (including unused/reserved dwords that must still be preserved) is documented in:
 
 - `analysis/conquer_docs/Rendering/role3d_dll/11_effect_part_record_layout.md`
 
@@ -123,9 +123,9 @@ The record’s full layout (including unused/reserved dwords that must still be 
 
 The render backends also read two per-part byte arrays embedded directly in the effect instance object:
 
-- `byteStreamA[i]` at `((uint8_t*)this) + 0x134 + i` (offset `+308`)  
+- `byteStreamA[i]` at `((uint8_t*)this) + 0x134 + i` (offset `+308`)
   create source: effect template `+0x1A4[i]` (`reserved_flag_0 != 0` from 3DEffect layer)
-- `byteStreamB[i]` at `((uint8_t*)this) + 0x144 + i` (offset `+324`)  
+- `byteStreamB[i]` at `((uint8_t*)this) + 0x144 + i` (offset `+324`)
   create source: effect template `+0x1B4[i]` (`reserved_flag_1` from 3DEffect layer)
 
 These bytes are passed into the resource object draw call as small per-part parameters:
@@ -133,4 +133,4 @@ These bytes are passed into the resource object draw call as small per-part para
 - When `templateRenderFlag != 0`, code uses an accumulator pointer and substitutes `byteStreamB[i] = 1` if source byte is `0`.
 - When `templateRenderFlag == 0`, code passes raw `byteStreamB[i]` and null accumulator pointer.
 
-The exact meaning of these bytes should be named once the target resource object interface is fully documented (they are consumed by the resource object’s virtual draw method).
+The exact meaning of these bytes should be named once the target resource object interface is fully documented (they are consumed by the resource object's virtual draw method).

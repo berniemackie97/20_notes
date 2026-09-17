@@ -1,9 +1,8 @@
-# Conquer Online Patch 5517 — Complete Binary Documentation
-## Client Binary: CQ2ClientRelease-42.0.1 (Win32 PE, MFC42)
+# `Conquer.exe` — binary overview
 
----
+Client binary `CQ2ClientRelease-42.0.1`. Win32 PE, x86, MFC42 (`CWinApp` subclass).
 
-## Binary Overview
+## Census
 
 | Property | Value |
 |----------|-------|
@@ -16,47 +15,13 @@
 | Organized in IDA folders | ~2,763 |
 | Level cap | 150 |
 
-## Evidence and Reference Policy
+## Evidence policy
 
-The v5517 native binaries and clean v5517 assets are authoritative. Managed tests are evidence only
-when their expected values were independently established from those sources.
+Stated once, in [README.md](README.md). In short: the v5517 binaries and clean
+v5517 assets are authoritative, the legacy source trees are leads only, and
+client/server agreement is not verification.
 
-Two additional legacy source trees are available outside this repository:
-
-- `/Volumes/EnderChest/Development/Repos/GameDev/Remakes/Conquer/Servers/Sources/ZfServer/`
-- `/Volumes/EnderChest/Development/Repos/GameDev/Remakes/Conquer/Servers/Sources/魔域/`
-
-These appear to contain high-value retail-era or ancestor code, but they are older and
-version-skewed. They are directional references, not v5517 truth. The `魔域/soul-code` subtree in
-particular contains older client C++ that can corroborate class and method names; its numeric action
-IDs, layouts, constants, and behavior must not be transferred into the reconstruction without
-independent confirmation in the v5517 binaries or clean data. `ZfServer` is useful for protocol and
-data-lineage corroboration but does not override contradictory client evidence.
-
-## Documentation Structure
-```
-conquer_docs/
-├── 01_architecture_overview.md     — This file
-├── Rendering/
-│   ├── README.md                   — Rendering/UI/animation documentation index
-│   ├── graphic_dll/                — Deep-dive docs for `graphic.dll`
-│   ├── roleview_dll/               — Deep-dive docs for `RoleView.dll`
-│   ├── role3d_dll/                 — Deep-dive docs for `Role3D.dll`
-│   ├── 00_rendering_gap_analysis.md — Windows-specific render/UI dependency map + migration plan inputs
-│   ├── 01_graphic_dll_api_surface.md — Full `graphic.dll` (CMyBitmap) import surface, categorized
-│   ├── 02_roleview_object_interface.md — Reconstructed `RoleViewCreate` object vtable surface from EXE call-sites
-│   └── 03_targetbmp_and_mybitmap_object_interfaces.md — Reconstructed offscreen + drawable object vtable surface from EXE call-sites
-├── Entity_System/
-│   ├── crole_class.md              — CRole base entity class
-│   ├── cplayer_class.md            — CPlayer rendered entity class
-│   ├── chero_class.md              — CHero local player singleton
-│   ├── citem_class.md              — CItem/CItemData item system
-│   └── cnpc_class.md               — CNpc NPC class
-├── Network/
-│   └── network_packets.md          — Complete packet documentation (150 types)
-```
-
-## Source File Structure (from debug strings)
+## Source tree (from debug strings)
 ```
 F:\CQ2ClientRelease-42.0.1\3DRole\
 ├── Network/
@@ -100,7 +65,7 @@ F:\CQ2ClientRelease-42.0.1\3DRole\
 └── ...
 ```
 
-## Class Hierarchy
+## Class hierarchy
 ```
 CRole (base entity, ~1088 bytes)
   └── CPlayer (rendered entity with nameplate, ~2636 bytes)
@@ -110,7 +75,7 @@ CItem (item instance)
 CItemData (item database/CSV parser)
 ```
 
-## IDA Folder Structure (29 top-level folders)
+## IDA folder census (29 top-level folders)
 ```
 /Crypto_OpenSSL      — OpenSSL crypto functions (33)
 /Crypto_zlib         — zlib compression (2)
@@ -143,14 +108,14 @@ CItemData (item database/CSV parser)
 /Utility             — Misc utilities (1)
 ```
 
-## Entity ID Ranges
+## Entity ID ranges
 | Range | Type | Description |
 |-------|------|-------------|
 | 1 - 999,999 | Player | Real human players (ID > 0xF423F = 999999) |
 | 400,001 - 500,000 (0x61A81-0x7A120) | NPC | Non-player characters |
 | 500,001 - 600,000 (0x7A121-0x927BF) | Monster | Monster entities |
 
-## External DLL Dependencies
+## External DLL dependencies
 | DLL | Purpose |
 |-----|---------|
 | `graphic.dll` | Low-level 2D rendering |
@@ -162,7 +127,7 @@ CItemData (item database/CSV parser)
 | `GameData.dll` | Game data queries |
 | `DINPUT8.dll` | DirectInput keyboard/mouse |
 
-## Singleton Pattern
+## Singletons
 The client uses singletons extensively via `GetSingletonPtr_XXXX()` functions:
 - `GetSingletonPtr_404460` — Game world/map singleton
 - `GetSingletonPtr_410685` — Camera/viewport singleton

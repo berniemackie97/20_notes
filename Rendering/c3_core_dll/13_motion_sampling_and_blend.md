@@ -1,6 +1,6 @@
 # `c3_core_dll.dll` — motion matrix sampling and blend parity
 
-This document captures the verified runtime sampling logic for:
+Verified runtime sampling logic for:
 
 - `C3Motion_GetBoneMatrixAtFrame` (`0x10009A20`)
 - `C3MotionTracker_GetBlendedBoneMatrixAtFrame` (`0x10009E70`)

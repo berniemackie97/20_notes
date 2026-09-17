@@ -384,7 +384,7 @@ The following are **not** resolved into one universal bit/pixel-exact result:
 - Arbitrary dynamic/external caller completeness and the temporary wrapper's
   actual uninitialized stack Z/RHW values, neither recoverable as fixed constants.
 
-Do not report “no unknowns” or “100% bit-identical across machines.” These limits do
+Do not report "no unknowns" or "100% bit-identical across machines." These limits do
 not justify guessing an angle unit, origin or sign: those are proven above.
 
 ## Binary Ninja names applied

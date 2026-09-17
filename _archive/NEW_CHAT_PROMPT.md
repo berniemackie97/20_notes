@@ -36,7 +36,7 @@ Cross-platform rewrite of Conquer Online 5517 Win32 client. .NET 10, C# 13, Silk
 - Z-up to Y-up: `CreateRotationX(+PI/2)` to stand models upright
 
 ## Current Task: Skeletal Animation Pipeline
-Read `20_notes/HANDOFF_SKELETAL_ANIMATION.md` — it has the full BNinja-verified findings for `Phy_Calculate_CPU` including:
+Read `HANDOFF_SKELETAL_ANIMATION.md` — it has the full BNinja-verified findings for `Phy_Calculate_CPU` including:
 - 2 bones per vertex, CPU-side skinning
 - Internal skinned vertex layout (0x34 stride) with bone indices at +0x18/+0x1C and weights at +0x20/+0x24
 - Element-wise 4x4 matrix blend (no quaternion slerp)
@@ -50,7 +50,7 @@ Read `20_notes/HANDOFF_SKELETAL_ANIMATION.md` — it has the full BNinja-verifie
 5. BNinja: graphic.dll `C3MotionTracker` — how MOTI chunks connect to PHY submeshes (separate slice)
 
 ## Existing Motion Docs (already written)
-- `20_notes/Rendering/c3_core_dll/12_motion_load_formats.md` — MOTI payload (KKEY/ZKEY/XKEY)
-- `20_notes/Rendering/c3_core_dll/13_motion_sampling_and_blend.md` — keyframe interpolation + blend
-- `20_notes/Rendering/c3_core_dll/14_simple_motion_load_formats.md` — SMOT (simple motion)
+- `Rendering/c3_core_dll/12_motion_load_formats.md` — MOTI payload (KKEY/ZKEY/XKEY)
+- `Rendering/c3_core_dll/13_motion_sampling_and_blend.md` — keyframe interpolation + blend
+- `Rendering/c3_core_dll/14_simple_motion_load_formats.md` — SMOT (simple motion)
 - possibly others

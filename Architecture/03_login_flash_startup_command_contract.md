@@ -1,4 +1,4 @@
-# Login Flash Startup Command Contract (Verified)
+# Login Flash Startup Command Contract
 
 ## Scope
 
@@ -855,7 +855,7 @@ Managed non-Flash replacement contract (this slice):
   - while pending, runtime draws a `DlgLogo/BgFormat` fallback or already-ready startup layers.
     **Non-parity:** only the `DlgLogo/BgFormat` *resolution rule* is native (`0x4B08B9`). Native never
     draws that bitmap outside `CStartupLogoDialog`'s one-shot init lifetime, and never in the pre-world
-    frame loop — see `20_notes/Architecture/02_conquer_client_startup_chain.md`,
+    frame loop — see `02_conquer_client_startup_chain.md`,
     "Ownership: initialization-only, single instance".
 - native Flash host boundary remains COM/ActiveX invocation:
   - `CFlashControl_SetMoviePath` (`0x5EA89A`) -> `CWnd::InvokeHelper` DISPID `0x66`

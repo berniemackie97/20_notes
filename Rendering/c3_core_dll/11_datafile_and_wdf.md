@@ -358,11 +358,11 @@ registration path. Do not conflate the two.
 
 ### `ini/c3.wdb`
 
-Binary database (magic: `BDMG`) consumed by `GraphicData.dll` (`GameDbPack_LoadAndUpdateC3Wdb`) as an indexed pack of `.dbc` resources.  
+Binary database (magic: `BDMG`) consumed by `GraphicData.dll` (`GameDbPack_LoadAndUpdateC3Wdb`) as an indexed pack of `.dbc` resources.
 It is separate from WDF and has its own header, hashed filename index, and encrypted `0x54`-byte entry descriptors.
 
-See the dedicated RE doc for exact verified layout + decrypt/hash flow:  
-`20_notes/Rendering/graphicdata_dll/11_c3_wdb_format_and_decode.md`
+See the dedicated RE doc for exact verified layout + decrypt/hash flow:
+`../graphicdata_dll/11_c3_wdb_format_and_decode.md`
 
 ## Implementation Notes for Rewrite
 

@@ -1,7 +1,7 @@
-# Static Mesh Baseline Runtime (Verified)
+# Static Mesh Baseline Runtime
 
 ## Scope
-This note documents deterministic mesh selection behavior for the OpenGL baseline runtime in `10_work/src/Conquer`.
+Deterministic mesh selection for the OpenGL baseline runtime in `10_work/src/Conquer`.
 
 ## Verified behavior
 - Runtime accepts optional mesh override: `--mesh-path=<virtual-path>` or `--mesh-path <virtual-path>`.

@@ -15,4 +15,3 @@ On first call, `GameDataSetQuery()`:
 On subsequent calls, it returns the previously-created singleton pointer.
 
 If the allocation fails, `GameDataSetQuery()` returns `0`.
-

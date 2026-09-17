@@ -2,7 +2,7 @@
 
 `graphic.dll` provides `MeshCreate(...)`, which constructs the mesh object used by the 3D pipeline for per-part rendering and hit-testing.
 
-`GraphicData.dll` calls `MeshCreate(...)` to construct mesh objects, caches them, and then returns the resulting pointer to `Role3D.dll`. `Role3D.dll` treats that pointer as its per-part “mesh instance” object.
+`GraphicData.dll` calls `MeshCreate(...)` to construct mesh objects, caches them, and then returns the resulting pointer to `Role3D.dll`. `Role3D.dll` treats that pointer as its per-part "mesh instance" object.
 
 ## `MeshCreate(meshPath)`
 
@@ -249,10 +249,9 @@ Detailed per-type on-disk vertex structure:
                            → if no match: seek back 4 bytes
 ```
 
-
 ## `C3DObjX` vtable and method semantics used by the client
 
-`C3DObjX`’s primary vtable is `g_C3DObjX_Vtbl` (`0x10039504`).
+`C3DObjX`'s primary vtable is `g_C3DObjX_Vtbl` (`0x10039504`).
 
 Only the methods that are exercised by `GraphicData.dll` and `Role3D.dll` are documented here.
 
@@ -333,7 +332,7 @@ Verified behavior (BNinja refresh 2026-03-04):
   - previous tracker at `this+0xA8` gets `LockLife(false)` when non-null
 - stores current tracker pointer at `this+0xA8`
 
-The concrete motion container constructed by the client is `C3MotionTracker` (returned by `MotionCreate`), documented in `20_notes/Rendering/graphic_dll/13_motioncreate_and_c3motiontracker.md`.
+The concrete motion container constructed by the client is `C3MotionTracker` (returned by `MotionCreate`), documented in `13_motioncreate_and_c3motiontracker.md`.
 
 `C3DObjX_SetBlendMotion` (vtable offset `+0x3C`, index `15`) → `0x10003E10`
 
@@ -461,7 +460,7 @@ The `worldMatrix` at `C3Phy+0xF4` is what `Phy_DrawNormal_CPU` uses with `SetTra
 
 `C3DObjX_Render` (vtable offset `+0x54`, index `21`) → `0x10004330`
 
-This is the primary draw method called by `Role3D.dll` (via its per-part “mesh instance” interface).
+This is the primary draw method called by `Role3D.dll` (via its per-part "mesh instance" interface).
 
 Verified control contract from disassembly (`0x10004330..0x100044fa`):
 
@@ -565,9 +564,9 @@ Therefore the texture descriptor does not carry either texture ID.
 
 Behavior:
 - Opens the specified property file as a resource stream.
-- Verifies the property file’s phy/submesh count matches `this[4]`.
+- Verifies the property file's phy/submesh count matches `this[4]`.
 - For each phy/submesh:
   - reads a small header (`faceCount` and a `seek` value),
-  - verifies the face count matches the phy’s face count field,
+  - verifies the face count matches the phy's face count field,
   - seeks, then calls `Phy_LoadFaceProperty(phy, stream)`.
 - Logs detailed mismatch/read errors and returns `0` on failure; returns `1` on success.

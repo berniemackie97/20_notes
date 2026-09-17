@@ -6,8 +6,6 @@ the retail Conquer hit-test primitive — distinct from the byte-per-pixel SWF
 alpha rasterization in `Conquer.Assets.Startup` and from the GPU-side projective
 shadow map in Role3D.dll's `3TechnicProcessorX.cpp`.
 
----
-
 ## Retail oracle (`40_tools/fight-master/my_client/3DBaseCode/AlphaMask.{h,cpp}`)
 
 Class surface (retail signatures, complete):
@@ -53,8 +51,6 @@ return TRUE;                                       // bit clear ⇒ transparent
 `MyDataFileLoad(pszFileName, dwSize)` (the .wdf-pack lookup) and recurses through
 the `Load(size, void*)` overload.
 
----
-
 ## client-5517 surviving usage
 
 The retail-era purpose — generic per-sprite click-mask for any UI bitmap — has
@@ -72,8 +68,6 @@ projective shadow path is a separate subsystem (see Phase C2 below).
 The class is small enough and self-contained enough that the managed port lands
 as a clean primitive callers can compose on demand, without driving any specific
 caller into the same slice.
-
----
 
 ## Managed port seams (`Conquer.Assets.AlphaMask`)
 
@@ -110,8 +104,6 @@ public sealed class CAlphaMask
 - The retail `Load(file)` filename → fopen → `MyDataFileLoad` chain is split: callers wrap the lookup in an `IAlphaMaskFileLoader` impl. Same end-state, but the I/O strategy is the caller's choice (loose-file priority vs. .wdf-pack priority lives in the impl, not the mask).
 - Endianness inside the buffer is not transcoded — managed reads the same byte stream the native loader would have produced. The retail `.mask` file format is a flat little-endian bitfield, which `Load(int, int, ReadOnlySpan<byte>)` consumes as-is.
 
----
-
 ## Phase C2 (deferred): projective shadow path
 
 The retail "shadow" subsystem callers might expect alongside `CAlphaMask` lives in
@@ -124,8 +116,6 @@ shadow renderer.
 - The bias matrix written into `data_10022d80..` packs the standard `[0.5, 0, 0, 0; 0, -0.5, 0, 0; 0, 0, 1, 0; tx, ty, 0, 1]` projective-texture remap with per-light texel offsets `0.5/width`, `0.5/height`
 
 That subsystem is a full C3Engine integration (shadow-map render target, render callback dispatch, camera-state save/restore, custom matrix multiply) and lands as its own slice once the C3Engine render-target seam is mirrored. It is intentionally out of scope for the `CAlphaMask` port.
-
----
 
 ## Cross-refs
 

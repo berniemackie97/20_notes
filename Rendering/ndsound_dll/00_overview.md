@@ -1,6 +1,6 @@
 # `NDsound.dll` - Overview
 
-`NDsound.dll` is the legacy audio engine wrapper used by the Windows 5517 client.  
+`NDsound.dll` is the legacy audio engine wrapper used by the Windows 5517 client.
 Its exports provide a `DX*` API surface for sound playback, per-frame audio ticking, and global volume control.
 
 ## Verified core lifecycle

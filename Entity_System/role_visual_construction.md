@@ -372,4 +372,4 @@ The managed rewrite must:
 
 ## BNinja Renames Applied
 
-See `20_notes/Rendering/roleview_dll/08_transform_look_record.md` for full rename list.
+See `../Rendering/roleview_dll/08_transform_look_record.md` for full rename list.

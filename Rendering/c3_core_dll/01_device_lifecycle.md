@@ -1,6 +1,6 @@
 # Device lifecycle (`Init3DEx` / `IfDeviceLost` / `ResetDevice` / `Begin3D` / `End3D` / `Flip`)
 
-This document describes the 3D device lifecycle entry points implemented in `c3_core_dll.dll`.
+The 3D device lifecycle entry points in `c3_core_dll.dll`.
 
 ## Globals involved
 

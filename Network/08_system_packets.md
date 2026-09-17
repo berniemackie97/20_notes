@@ -1,7 +1,6 @@
 # System Packets — Tick, Achievements, Titles, Missions, SubPro, Cross-Server
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
 ## MsgTick (Type 1009)
 **Direction**: Bidirectional (heartbeat/keepalive)
@@ -76,15 +75,12 @@ event layer would add no native-visible behavior.
 - `CMsgTick__Build_SubType40_WithDwordList` (0x6EADB7): `subtype=40`, `size=88+4*N`, `+20=N`, dword list starts at `+84`.
 - `CMsgTick__AppendDwordToSubType40List` (0x6EAE79): appends one dword at `+84 + 4*count`, increments packet size by 4 and increments `count` (`+20`).
 
----
-
 ## MsgNpcInfo (Type 2030)
 **Direction**: S->C
 **Purpose**: First-world NPC spawn/materialization packet.
 **Dispatch**: Create `CMsgNpcInfo__Create` (0x7439E3), parse `CMsgNpcInfo__Parse` (0x743A9F), process `CMsgNpcInfo__Process` (0x743B32)
 
-**Verified parse behavior**:
-- `CMsgNpcInfo__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 2030`.
+**Parse**: `CMsgNpcInfo__Parse` — standard header validation, then `type == 2030`.
 
 **Verified fixed-field usage in `CMsgNpcInfo__Process`** (offsets relative to packet start):
 - `+4` (u32) `entity_id`
@@ -128,9 +124,6 @@ event layer would add no native-visible behavior.
 - registers the final entity through `0x6E77D5(&data_96B018, entityRef)`
 - posts the entity update through `sub_6A55A6(sub_4CB09D(), entity_id)`
 
----
-
-
 ## Alternate Account Authentication Response (Type 1057; former MsgAchievement alias)
 **Direction**: S->C
 **Purpose**: Alternate account grant with primary/BGP endpoint selection and resource-version reporting; not achievement state.
@@ -145,10 +138,9 @@ event layer would add no native-visible behavior.
 - `+56` is treated as a NUL‑terminated host/IP string for the secondary `CPing__Ping`.
 
 **Other observed behavior (context only)**:
-- The continuation selects GameServer mode 2 at 0x7557F1 before rekeying outbound legacy tables at 0x755837. The tables are unused by mode 2. [Full native audit, including deployment limits](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/20_notes/Network/14_session_derived_legacy_cipher_mask.md).
+- The continuation selects GameServer mode 2 at 0x7557F1 before rekeying outbound legacy tables at 0x755837. The tables are unused by mode 2. [Full native audit, including deployment limits](14_session_derived_legacy_cipher_mask.md).
 - Reads `res.dat` and sends a type‑1052 packet via `CMsgLoginBootstrap1052__BuildAccountResourceVersionReport` + `CNetMsg__Send`.
 - Uses `CHero__GetDword_0x2E58` and `CHero__GetDword_0x2E5C` to compute a threshold `100*(a+1)+b+1`, then compares ping results to `v41`/`v44`.
-
 
 ## MsgTitle (Type 1071)
 **Direction**: S->C
@@ -168,14 +160,12 @@ event layer would add no native-visible behavior.
   - Calls `Handle_Ride_Match_Msg_First_Place(+8, { +16, +28, string@+12 })`.
   - Posts `PostMainWndMsg_0x464(0xCBD, 0)`.
 
-
 ## MsgTitleMsg (Type 1130)
 **Direction**: S->C
 **Purpose**: Title-state synchronization/update packet (gain/loss/select/list refresh flows for title IDs).
 **Dispatch**: Create `CMsgTitleMsg__Create` (0x6EC7DE), parse `CMsgTitleMsg__Parse` (0x6EC844), process `CMsgTitleMsg__Process` (0x6EC8C8)
 
-**Verified parse behavior**:
-- `CMsgTitleMsg__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1130`.
+**Parse**: `CMsgTitleMsg__Parse` — standard header validation, then `type == 1130`.
 
 **Verified field usage in `CMsgTitleMsg__Process`** (offsets relative to packet start):
 - `+4` (u32) `entity_id` (local/remote role ID target, depending on subtype).
@@ -218,14 +208,12 @@ event layer would add no native-visible behavior.
   - `+9 = subtype` (u8)
   - `+10 = 0`, `+11 = 0`
 
-
 ## MsgMissionSystemUpdate (Type 1134)
 **Direction**: S->C
 **Purpose**: Mission-system entry update packet (single/batch state transitions, value updates, and mission-fail handling).
 **Dispatch**: Create `CMsgMissionSystemUpdate__Create` (0x72D0DA), parse `CMsgMissionSystemUpdate__Parse` (0x72D140), process `CMsgMissionSystemUpdate__Process` (0x72D163)
 
-**Verified parse behavior**:
-- `CMsgMissionSystemUpdate__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1134`.
+**Parse**: `CMsgMissionSystemUpdate__Parse` — standard header validation, then `type == 1134`.
 
 **Verified field usage in `CMsgMissionSystemUpdate__Process`** (offsets relative to packet start):
 - `+4` (u16) `subtype` (switch key: `1,2,3,4,8,9` handled in this build).
@@ -273,7 +261,6 @@ event layer would add no native-visible behavior.
   - Calls `CMissionSystemData__SetEntryWord_0x4E_ById_6A4D1A(entry_id, 0)`.
 - Other subtype values in this build return without additional handling.
 
-
 ## MsgMissionSystemDetail (Type 1135)
 **Direction**: S->C
 **Purpose**: Mission-system detail payload packet (writes seven detail values for one mission entry and refreshes mission UI).
@@ -310,21 +297,30 @@ event layer would add no native-visible behavior.
   - `+8 = entry_id` (u32)
 - This builder is called from `CMsgMissionSystemUpdate__Process` subtype `3` when a matched entry has manager field `+20 == 2`.
 
-
 ## Types 1136–1149 (No Handler — Unused in This Build)
 **Status**: Fully verified — all 14 type IDs (1136, 1137, 1138, 1139, 1140, 1141, 1142, 1143, 1144, 1145, 1146, 1147, 1148, 1149) route to the default dispatch target at `0x6E137B` in `CNetMsg__ProcessMsg_Dispatch`. They have **no** create, parse, or process functions. No message object is allocated, no packet data is read. These are reserved/unused type slots in the 1002–1151 jump table for client build 42.0.1. A developer implementing this protocol should ignore these type IDs — they are dead entries with no server-side behavior expected.
 
-
-## MsgLottery (Type 1059)
+## MsgLoginSeed (Type 1059)
 **Direction**: Bidirectional
-**Purpose**: Lottery/random seed update (verified by `srand`/`rand` usage and UI post).
-**Dispatch**: Create `CMsgLottery__Create` (0x764B3D), process `CMsgLottery__Process` (0x764BC6)
+**Purpose**: Delivers the login seed, from which the client derives the RC5 credential key.
+**Dispatch**: Create `sub_764b3d` (0x764B3D), process `CMsgLoginSeed__Process_DeriveCredentialRc5KeyFromSeed` (0x764BC6)
 
-**Verified field usage in `CMsgLottery__Process`** (offsets relative to packet start):
+**Superseded name**: this packet was previously documented as `MsgLottery`, with
+`CMsgLottery__Create` / `CMsgLottery__Process`, on the strength of its `srand` /
+`rand` usage and UI post - behaviour that fits a lottery but equally fits a seed
+handshake. Neither label is in the Binary Ninja database: `0x764BC6` carries the login-seed name, and `0x764B3D` is still
+`sub_764b3d`. The field usage below was always correct - only the framing was wrong.
+See [../Server/login-credential-envelope.md](../Server/login-credential-envelope.md)
+for what the derived key is used for.
+
+**Verified field usage in `CMsgLoginSeed__Process_DeriveCredentialRc5KeyFromSeed`** (offsets relative to packet start):
 - `+4` (u32) is used as the seed to `srand`.
 - After seeding, the handler writes 16 random bytes (`rand() % 256`) into a global buffer at `0x93FD83`.
 - Ends with `PostMainWndMsg_0x464(0xCEE, 0)`.
 
+Re-verified in Binary Ninja 2026-09-17 against `Conquer.exe.bndb`: `srand(*(*(arg1 + 0x404) + 4))`,
+then `while (i u< 0x10) *(i + &g_ScreenModeHeightPixels:3) = (rand() % 0x100).b`, then
+`Conquer_PostMainWindowMessage464(0xcee, 0)`.
 
 ## MsgQualifying (Type 1062)
 **Direction**: Bidirectional
@@ -345,7 +341,6 @@ event layer would add no native-visible behavior.
 **Mode 2 (`+4 == 2`)**:
 - Uses dword at `+12` with `QualifyingMgr__SetDword_0x18_AndUpdate`.
 
-
 ## MsgRank (Type 1065)
 **Direction**: S->C
 **Purpose**: Ranking list update (verified by rank‑manager calls in `CMsgRank__Process`).
@@ -359,14 +354,12 @@ event layer would add no native-visible behavior.
 - Mode `4` uses an alternate manager but the same 4‑dword entry layout.
 - After processing, `PostMainWndMsg_0x464(0xD98, 0)` is triggered.
 
-
 ## MsgStrCheckKey (Type 1108)
 **Direction**: Bidirectional
 **Purpose**: Item data verification/update packet (applies item fields and routes updates by mode; includes target entity and item payload).
 **Dispatch**: Create `CMsgStrCheckKey__Create` (0x75F94E), parse `CMsgStrCheckKey__Parse` (0x75F9B4), process `CMsgStrCheckKey__Process` (0x75F9D7)
 
-**Verified parse behavior**:
-- `CMsgStrCheckKey__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1108`.
+**Parse**: `CMsgStrCheckKey__Parse` — standard header validation, then `type == 1108`.
 
 **Verified field usage in `CMsgStrCheckKey__Process`** (offsets relative to packet start):
 - `+4` (u32) `item_uid` (passed to `CItem__InitFromUIDAndItemId` and `CHeroItem__FindTrackedItemByUid`)
@@ -418,14 +411,12 @@ event layer would add no native-visible behavior.
 - `mode == 4` and `route_type != 0`:
   - Builds a `CItem`, initializes and copies fields, sets `CItem__SetByte_0x165(0)`, routes through `ItemPosition_NormalizeEquipmentPosition(route_type)` / `CRole__SetEquipSlotItem`, and posts `0x432` if the add path succeeds.
 
-
 ## MsgCrossSwitch (Type 1109)
 **Direction**: Bidirectional
 **Purpose**: NPC/entity spawn-switch packet with role-view construction, map tile reveal updates, and optional name override from an embedded string list.
 **Dispatch**: Create `CMsgCrossSwitch__Create` (0x75EEB0), parse `CMsgCrossSwitch__Parse` (0x75EF6C), process `CMsgCrossSwitch__Process` (0x75EF8F)
 
-**Verified parse behavior**:
-- `CMsgCrossSwitch__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1109`.
+**Parse**: `CMsgCrossSwitch__Parse` — standard header validation, then `type == 1109`.
 
 **Verified field usage in `CMsgCrossSwitch__Process`** (offsets relative to packet start):
 - `+4` (u32) `entity_id`: looked up in `EntityManager__FindEntityById`; if already present, triggers immediate replacement/removal flow.
@@ -462,14 +453,12 @@ event layer would add no native-visible behavior.
 - else uses vtable slot `+48`.
 - both branches set the role name and push appearance data into `entity[268]` via vtable method `+16`.
 
-
 ## MsgTrusteeshipState (Type 1129)
 **Direction**: S->C
 **Purpose**: Copies a 32-bit trusteeship/state value from packet payload into singleton state and triggers UI refresh message `0x4DB`.
 **Dispatch**: Create `CMsgTrusteeshipState__Create` (0x75DA61), parse `CMsgTrusteeshipState__Parse` (0x75DAC7), process `CMsgTrusteeshipState__Process` (0x75DAEA)
 
-**Verified parse behavior**:
-- `CMsgTrusteeshipState__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1129`.
+**Parse**: `CMsgTrusteeshipState__Parse` — standard header validation, then `type == 1129`.
 
 **Verified field usage in `CMsgTrusteeshipState__Process`** (offsets relative to packet start):
 - `+4` (u32) `state_value`: copied into local singleton state via `DwordPacketField__CopyU32Max4_75DB37` + `Singleton4197DD__SetDword_0x34`.
@@ -480,14 +469,12 @@ event layer would add no native-visible behavior.
 - Resolves singleton via `s__GetSingletonPtr_4197DD` and writes value to singleton dword field `+0x34` (`Singleton4197DD__SetDword_0x34`).
 - Posts `PostMainWndMsg_0x464(0x4DB, 0)`.
 
-
 ## MsgSubPro (Type 1113)
 **Direction**: Bidirectional
 **Purpose**: Synchronizes sub-profession state in `CSubProfMrg` (value arrays + triple-slot values), with subtype-driven add/subtract/reset flows and status chat notifications.
 **Dispatch**: Create `CMsgSubPro__Create` (0x75E53B), parse `CMsgSubPro__Parse` (0x75E5A1), process `CMsgSubPro__Process` (0x75E627)
 
-**Verified parse behavior**:
-- `CMsgSubPro__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1113`.
+**Parse**: `CMsgSubPro__Parse` — standard header validation, then `type == 1113`.
 
 **Verified packet layout used by `CMsgSubPro__Process`** (offsets relative to packet start):
 - `+4` (u8) `subtype` (switch key, values `0..6` used in this build).
@@ -558,14 +545,12 @@ event layer would add no native-visible behavior.
   - `+16=entry_delta`
 - `CSubProfMrg__SendSubtype2ForIndexIfCurrentNonZero` uses this builder with `subtype=2` and current value for the selected index.
 
-
 ## MsgMapInfo (Type 1110)
 **Direction**: Server to client in the verified world-entry path
 **Purpose**: Updates `CGameMap` state fields/flags and fans out UI + manager updates based on flag transitions.
 **Dispatch**: construct `CMsgMapInfo1110__Ctor` (0x732A87), parse `CMsgMapInfo1110__Parse` (0x732AED), process `CMsgMapInfo1110__Process` (0x732B10)
 
-**Verified parse behavior**:
-- `CMsgMapInfo1110__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1110`.
+**Parse**: `CMsgMapInfo1110__Parse` — standard header validation, then `type == 1110`.
 
 **Verified field usage in `CMsgMapInfo1110__Process`** (offsets relative to packet start):
 - `+4` (u32) → `CGameMap_ApplyMapIdAndRefreshWorldState` (`CGameMap.currentMapId` at `+0xE0`). The refresh chain always runs; only `forceType5TriggerRefresh` at `+0x2E4` is set conditionally when the ID changes.
@@ -608,7 +593,7 @@ event layer would add no native-visible behavior.
 - Always posts `PostMainWndMsg_0x464(0xDA5, 0)` at exit.
 
 **Bootstrap note**:
-- The managed login/bootstrap slice currently consumes `1110` as the first explicit map-state snapshot after the client’s post-`1006` `74`.
+- The managed login/bootstrap slice currently consumes `1110` as the first explicit map-state snapshot after the client's post-`1006` `74`.
 - Managed runtime mapping now stores the verified `1110` fields into shared map state:
   - `mapId` / `CGameMap+0xE0` mirror
   - `mapDocumentId` / `CGameMap+0xE4` mirror
@@ -617,7 +602,6 @@ event layer would add no native-visible behavior.
 - The current slice does **not** claim all native UI post-message side effects (`0xD9B`, `0xBF9`, `0xDDC`,
   `0xDE1`, `0xDE2`, `0xDA5`, etc.) are implemented yet; it only persists the verified state values those branches
   operate on.
-
 
 ## MsgWarFlag (Type 1083)
 **Direction**: Bidirectional

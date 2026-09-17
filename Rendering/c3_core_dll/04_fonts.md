@@ -1,6 +1,6 @@
 # `C3_CORE_DLL.dll` — `Font_*` subsystem
 
-This note records the verified native font rasterization, glyph-cache, geometry,
+Verified native font rasterization, glyph-cache, geometry,
 and fixed-function draw contract. Addresses are from
 `00_clean/clean/5517-bninja/C3_CORE_DLL.dll.bndb`.
 

@@ -6,7 +6,7 @@ Verified in BNinja (`C3_CORE_DLL.dll.bndb`) from:
 - `C3ParticleType12_AdvanceFrame` (`0x10013040`)
 - `C3ParticleType3_Draw` (`0x10012230`)
 
-This document records only scalar/runtime math that is fully visible in disassembly and now implemented in `Conquer.Assets`.
+Scalar and runtime math only - what is fully visible in disassembly, and now implemented in `Conquer.Assets`.
 
 ## Frame index normalization
 

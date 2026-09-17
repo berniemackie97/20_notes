@@ -1,6 +1,6 @@
 # `graphic.dll` — effect file loading (`C3Effect_LoadFromResource`)
 
-This document describes verified effect C3 chunk loading behavior in:
+Verified effect C3 chunk loading behaviour in:
 
 - `C3Effect_LoadFromResource` (`0x100011A0`)
 

@@ -1,6 +1,6 @@
 # `GraphicData.dll` — `common.ini` tuning and resource-limit policy files
 
-This document captures verified behavior for:
+Verified behaviour of:
 
 - `GameDataSet_LoadCommonIniTuning` (`0x10003790`)
 - `GameDataSet_LoadResLimitDatabases` (`0x10029E80`)

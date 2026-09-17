@@ -1,4 +1,4 @@
-# `_DXGet*` / `_DXCloseSound` / `_DXSetVolume` Contracts (Verified)
+# `_DXGet*` / `_DXCloseSound` / `_DXSetVolume` Contracts
 
 ## Export + core mapping
 

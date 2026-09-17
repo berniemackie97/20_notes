@@ -1,8 +1,8 @@
 # `GraphicData.dll` — Resource request semantics (`mesh` / `texture`)
 
-`GraphicData.dll` exposes “resource request” style methods on the `GameDataSetQuery()` interface that are used by `Role3D.dll` to ensure required assets are available before a draw.
+`GraphicData.dll` exposes "resource request" style methods on the `GameDataSetQuery()` interface that are used by `Role3D.dll` to ensure required assets are available before a draw.
 
-This document describes the externally-observable behavior for the specific call shapes used by `Role3D.dll`.
+Externally observable behaviour for the specific call shapes `Role3D.dll` uses.
 
 ## `GameDataSet_RequestTexture(resourceId, mode, customTimeoutMs)`
 
@@ -11,7 +11,7 @@ Entry point:
 
 Observed `Role3D.dll` usage:
 - `ds->GameDataSet_RequestTexture(textureId, 0, 0)` as a gating check inside `PartInfo_RenderAllParts`.
-- `secondary = ds->GameDataSet_RequestTexture(secondaryId, 0, 0)` as a “secondary resource” provider in the effect render backends (see below).
+- `secondary = ds->GameDataSet_RequestTexture(secondaryId, 0, 0)` as a "secondary resource" provider in the effect render backends (see below).
 
 Behavior (as exercised by the gating call above):
 
@@ -19,7 +19,7 @@ Behavior (as exercised by the gating call above):
 - If the texture is not present / not yet available, allocates internal bookkeeping and enqueues a load job, and returns `0` immediately.
 
 As a consequence:
-- `Role3D.dll` treats a return value of `0` as “not ready” and aborts the current part-render loop iteration sequence.
+- `Role3D.dll` treats a return value of `0` as "not ready" and aborts the current part-render loop iteration sequence.
 
 ### `immediate.ini` mode override in request path
 
@@ -98,7 +98,7 @@ Observed `Role3D.dll` usage:
 
 Behavior (as exercised by the call above):
 
-- If the requested mesh/model is already present in the internal cache, returns a non-zero pointer to the per-model runtime “mesh instance” object.
+- If the requested mesh/model is already present in the internal cache, returns a non-zero pointer to the per-model runtime "mesh instance" object.
 - If the mesh/model is not present, allocates internal bookkeeping and enqueues a load job, and returns `0` immediately.
 
 ### `immediate.ini` mode override in request path
@@ -114,7 +114,7 @@ This matches the assembly sequence at `0x10005710` (immediate lookup) and `0x100
 Clarification:
 - step (3) uses the original caller mode and applies even when the id is not in `immediate.ini`.
 
-The returned “mesh instance” pointer is the object that `Role3D.dll` later calls through its own expected per-part vtable (render, hit-test, param setting).
+The returned "mesh instance" pointer is the object that `Role3D.dll` later calls through its own expected per-part vtable (render, hit-test, param setting).
 
 ### Internal implementation (deep trace)
 

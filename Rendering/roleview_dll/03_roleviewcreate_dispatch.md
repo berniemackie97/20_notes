@@ -1,6 +1,6 @@
 # `RoleViewCreate` — Type Dispatch and Object Construction
 
-This document describes how the exported factory `RoleViewCreate(int type)` selects and constructs different concrete RoleView object types inside `RoleView.dll`.
+How the exported factory `RoleViewCreate(int type)` selects and constructs each concrete RoleView object type inside `RoleView.dll`.
 
 Source: decompile of `RoleViewCreate` (`0x100057E4`) in `RoleView.dll`.
 
@@ -35,7 +35,7 @@ Mapping:
 
 The type-5 constructor at `0x100058FB` shows the canonical object initialization pattern used by this DLL:
 
-- writes the object’s vtable pointer at `[this+0]` (type 5 uses `0x1001568C`)
+- writes the object's vtable pointer at `[this+0]` (type 5 uses `0x1001568C`)
 - zero-initializes multiple pointer/state fields
 - sets a sentinel `-1` into `[this+0x08]`
 - calls an internal routine at `0x10014B8E` with `(this+0x0C, 0, 0x24)` which appears to initialize an embedded fixed-size container.

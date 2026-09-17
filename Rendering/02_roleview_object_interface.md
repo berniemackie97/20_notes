@@ -1,9 +1,7 @@
 # `RoleView.dll` Object Interface (Observed via EXE Call-Sites)
-This document reconstructs the *minimum* interface of objects returned by `RoleViewCreate(...)` as observed from how `CQ2ClientRelease-42.0.1.exe` calls their vtable methods.
+The *minimum* interface of objects returned by `RoleViewCreate(...)`, reconstructed from how `CQ2ClientRelease-42.0.1.exe` calls their vtable methods.
 
-We do **not** assume we know the full `RoleView.dll` implementation. This is a “black-box ABI” spec derived from the EXE’s decompiled calls and vtable offsets.
-
----
+We do **not** assume we know the full `RoleView.dll` implementation. This is a "black-box ABI" spec derived from the EXE's decompiled calls and vtable offsets.
 
 ## PlayerRoleView vtable quick-reference (slice 11 — all 13 slots verified)
 
@@ -31,8 +29,6 @@ decompilation + disassembly; no guesses.
 at `0x10004b4d`): shares slots 0, 2, 7, 8 with PlayerRoleView. Slots 1/3/4/5/6/9/10/11/12
 have type-specific implementations (`RoleView_Type10_*`).
 
----
-
 ## Factory
 - Import: `RoleViewCreate(int type)` (from `RoleView.dll`)
 - Observed call-sites:
@@ -42,9 +38,7 @@ have type-specific implementations (`RoleView_Type10_*`).
 
 The EXE stores the returned pointer in:
 - role instance: `this + 237` (seen as `*((_DWORD*)role + 237)`)
-- some “effect container” entries also store RoleView pointers.
-
----
+- some "effect container" entries also store RoleView pointers.
 
 ## Lifecycle (vtable[0])
 **Destructor / Release**
@@ -63,8 +57,6 @@ Verified in `RoleView.dll` (updated slice 11):
 - `PlayerRoleView_VirtualDestroyAndFree(this)` null-checks this, then calls `vtable[+0x30]` = `PlayerRoleView_ScalarDeletingDestructor` (`0x10001123`) with flags=1 (destroy + free memory). Returns 0.
 - The scalar-deleting destructor calls `PlayerRoleView_Dtor` (`0x1000113f`), then conditionally `operator delete(this)` when `(flags & 1)`. Standard MSVC pattern, `retn 0x4`.
 
----
-
 ## Initialization (vtable[1] @ +0x04)
 **Set property (key/value)**
 Observed in `CRole__CreateRoleView`:
@@ -79,8 +71,6 @@ Verified in `RoleView.dll`:
 - For player RoleView objects, vtable[1] is `PlayerRoleView_SetPropertyByKey` (`0x10002779`).
 - For type 4 objects, vtable[1] is `RoleView_Type4_SetProperty` (`0x100043B5`).
 - For type 5 objects, vtable[1] is `RoleView_Type5_SetProperty` (`0x10005B64`).
-
----
 
 ## Transform / Placement (vtable @ +0x10, stdcall-like)
 **Set transform (position/rotation/scale)**
@@ -101,14 +91,12 @@ role_view->SetTransform(screen_x, screen_y, screen_z_or_0, facing_angle, scale);
 Exact parameter meanings still need confirmation, but the EXE consistently passes:
 - 3 floats that look like a position (often screen-space after world→screen conversion)
 - 1 int-ish angle (e.g., `45 * (-1 - direction)` and other angles)
-- 1 float scale (often derived from a “percent” * constant)
+- 1 float scale (often derived from a "percent" * constant)
 
 Verified in `RoleView.dll`:
 
 - Type 4: vtable slot 4 is `RoleView_Type4_SetTransform` (`0x10004453`).
 - Type 5: vtable slot 4 is `RoleView_Type5_SetTransform` (`0x10005C8F`).
-
----
 
 ## Render Parameter Update (vtable[1] again @ +0x04)
 In `CRole__Render3D` the EXE also calls:
@@ -116,8 +104,6 @@ In `CRole__Render3D` the EXE also calls:
 role_view->vtable[1](role_view, 10, some_value);
 ```
 This is implemented as a generic `(key, value)` property setter in `RoleView.dll`.
-
----
 
 ## Color / Modulation (vtable @ +0x18, stdcall-like)
 `CRole__Render3D` calls a vtable function at `+0x18` (24):
@@ -133,8 +119,6 @@ Verified in `RoleView.dll`:
 - Type 4: vtable slot 6 is `RoleView_Type4_SetColor` (`0x1000453D`).
 - Type 5: vtable slot 6 is `RoleView_Type5_SetColor` (`0x10005D3F`).
 
----
-
 ## Draw (vtable @ +0x28 / +0x2C? observed +40)
 `CRole__Render3D` invokes:
 ```c
@@ -149,26 +133,22 @@ Verified in `RoleView.dll`:
 - Type 5: vtable slot 10 is `RoleView_Type5_Render` (`0x10005DB1`).
 - Type 4: vtable slot 10 is `RoleView_Type4_TickAndRender` (`0x10004844`) (updates internal state using `timeGetTime()` and then renders).
 
----
-
 ## Effect Setup (vtable @ +0x0C, observed in AddVisualEffect)
 `CPlayer__AddVisualEffect` calls vtable `+0x0C` (12) with 7 args:
 ```c
 role_view->Configure(effect_id, 1, 0, some_arg, x, y, 1);
 ```
-This looks like a “play animation/effect” configuration call (effect id, loop flags, layer, etc.).
+This looks like a "play animation/effect" configuration call (effect id, loop flags, layer, etc.).
 
 Verified in `RoleView.dll` (type 4):
 
 - vtable slot 3 is `RoleView_Type4_Method3_Return10` (`0x1000526F`) which returns constant `10`.
   - This is consistent with the EXE passing 7 arguments at this slot in some paths; additional RoleView types may provide non-trivial implementations.
 
----
-
 ## Notes on observed usage
 Even without reversing `RoleView.dll`, the EXE defines a stable ABI surface that drives rendering:
 - factory + destruction semantics
-- property setting (including the “key=10” path)
+- property setting (including the "key=10" path)
 - transform + color modulation
 - a draw call that consumes those state changes
 
@@ -1598,7 +1578,7 @@ Verified getter cases:
   - build a body-motion lookup key through
     `PlayerRoleView_BuildBodyMotionLookupKey(this, key - 0xBB8)`
   - query `GameDataSetQuery()->vtable+0x20("body", keyLow, keyHigh, 1, 0)`
-  - return the resolved record’s vtable `+0x0C` result on hit, else `0`
+  - return the resolved record's vtable `+0x0C` result on hit, else `0`
 
 ### Body-variant rebuild chain
 

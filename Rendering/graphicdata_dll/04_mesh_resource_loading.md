@@ -1,6 +1,6 @@
 # `GraphicData.dll` — Mesh resource loading (`MeshCreate` path)
 
-This document captures the `GraphicData.dll` code path that constructs (or retrieves) a 3D mesh object through `graphic.dll`’s `MeshCreate(...)`.
+The `GraphicData.dll` path that constructs - or retrieves - a 3D mesh object through `graphic.dll`'s `MeshCreate(...)`.
 
 ## Entry point
 
@@ -17,10 +17,10 @@ This routine is part of the internal machinery behind `GameDataSet_RequestMesh(.
 When the mesh is not already loaded:
 
 1. Calls `MeshCreate(meshPath)` (import from `graphic.dll`).
-2. Calls `GraphicData_GetOrCreateMotion(meshPath, ...)` to obtain a “default motion” object for the mesh; if that fails, the mesh is released and the load fails.
+2. Calls `GraphicData_GetOrCreateMotion(meshPath, ...)` to obtain a "default motion" object for the mesh; if that fails, the mesh is released and the load fails.
 3. Inserts the mesh into an internal string-keyed cache so subsequent requests return the existing mesh pointer.
 4. Calls a virtual method on the mesh with the default motion object (mesh vtable slot used at index `14` in this context).
-5. Iterates the mesh’s sub-items and conditionally toggles per-sub-item flags using mesh virtual methods (mesh vtable slots used at indices `11`, `12`, and `28` in this context).
+5. Iterates the mesh's sub-items and conditionally toggles per-sub-item flags using mesh virtual methods (mesh vtable slots used at indices `11`, `12`, and `28` in this context).
 
 When the mesh is already loaded:
 
@@ -30,4 +30,4 @@ When the mesh is already loaded:
 
 ## Notes
 
-`GraphicData.dll` treats the mesh object returned by `MeshCreate(...)` as a polymorphic object and uses it through its vtable. The concrete mesh object is `graphic.dll`’s `C3DObjX` (returned by `MeshCreate`), and its vtable layout and per-method semantics are documented in `analysis/conquer_docs/Rendering/graphic_dll/12_meshcreate_and_c3dobjx.md`.
+`GraphicData.dll` treats the mesh object returned by `MeshCreate(...)` as a polymorphic object and uses it through its vtable. The concrete mesh object is `graphic.dll`'s `C3DObjX` (returned by `MeshCreate`), and its vtable layout and per-method semantics are documented in `analysis/conquer_docs/Rendering/graphic_dll/12_meshcreate_and_c3dobjx.md`.

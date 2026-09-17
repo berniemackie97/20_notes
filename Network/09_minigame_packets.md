@@ -1,7 +1,6 @@
 # Minigame Packets — ShowHand Poker, Race Track, Texas HoldEm
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
 ## MsgRaceTrackProp (Type 1075)
 **Direction**: Bidirectional
@@ -22,14 +21,12 @@
 - Allocates a 0x400‑byte buffer with the raw string from `+4` and posts `PostMainWndMsg_0x464(0xCEA, buffer)`.
 - Finally posts `PostMainWndMsg_0x464(0xCEF, 0)`.
 
-
 ## MsgTexasNpcInfo (Type 1126)
 **Direction**: S->C
 **Purpose**: Texas Hold'em invite/notification UI packet (message box + follow-up UI posts, or red chat notification depending on mode).
 **Dispatch**: Create `CMsgTexasNpcInfo__Create` (0x72C76E), parse `CMsgTexasNpcInfo__Parse` (0x72C820), process `CMsgTexasNpcInfo__Process` (0x72C843)
 
-**Verified parse behavior**:
-- `CMsgTexasNpcInfo__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1126`.
+**Parse**: `CMsgTexasNpcInfo__Parse` — standard header validation, then `type == 1126`.
 
 **Verified field usage in `CMsgTexasNpcInfo__Process`** (offsets relative to packet start):
 - `+4` (u8) `mode`:
@@ -59,7 +56,6 @@
 - `+8 = value` (u32)
 - `+12 = param` (u32)
 - Verified callsite (`case 3476` in UI dispatcher around `0x584268`) builds with `(mode=1, value=1, param=esi)` and sends via `CNetMsg__Send`.
-
 
 ## CMsgShowHandEnter (Type 2090)
 **Direction**: S->C
@@ -92,8 +88,6 @@ Handles player entry into a Texas Hold'em (ShowHand) poker table. Validates the 
 | +12 | DWORD | Table ID |
 | +16 | DWORD | Player entity ID |
 
----
-
 ## CMsgShowHandDealtCard (Type 2091)
 **Direction**: S->C
 
@@ -125,8 +119,6 @@ Handles card dealing during ShowHand gameplay. Validates local player is in tabl
 
 Finishes with `CShowHandMgr__SetStateTimer(WORD[+4], 1)` to advance game state.
 
----
-
 ## CMsgShowHandActivePlayer (Type 2092)
 **Direction**: S->C
 
@@ -157,8 +149,6 @@ Finishes by calling `CShowHandMgr__SetActivePlayerTurn` with player ID (DWORD[+1
 | +12 | DWORD | Total pot |
 | +16 | DWORD | Active player entity ID |
 
----
-
 ## CMsgShowHandCallAction (Type 2093)
 **Direction**: S->C
 
@@ -184,8 +174,6 @@ Applies the action via `CShowHandMgr__ApplyPlayerAction` with player ID (DWORD[+
 | +12 | DWORD | Raise amount |
 | +16 | DWORD | Player entity ID |
 
----
-
 ## CMsgShowHandLayCard (Type 2094)
 **Direction**: S->C
 
@@ -210,8 +198,6 @@ Advances state via `CShowHandMgr__SetStateTimer(WORD[+4], 4)`.
 | +4 | WORD | Sequence number |
 | +6 | WORD | Player count |
 | +16+ | stride-12 | Per-player entries: DWORD playerID, 2x (WORD suit, WORD value) |
-
----
 
 ## CMsgShowHandGameResult (Type 2095)
 **Direction**: S->C
@@ -241,8 +227,6 @@ After iteration:
 | +6 | WORD | Player count |
 | +8+ | stride-15 | Per-player: BYTE resultFlag, DWORD playerID, DWORD scoreLow, DWORD scoreHigh, WORD handRank |
 
----
-
 ## CMsgShowHandExit (Type 2096)
 **Direction**: S->C
 
@@ -267,8 +251,6 @@ Handles player exit from a ShowHand table. Only processes mode 1 (WORD[+4] == 1)
 | +8 | DWORD | Table ID |
 | +12 | DWORD | Player entity ID |
 
----
-
 ## CMsgShowHandOnlineStatus (Type 2097)
 **Direction**: S->C
 
@@ -289,8 +271,6 @@ Only processes if DWORD[+8] matches local table ID (via `CShowHandMgr__GetTableI
 | +4 | BYTE | Status (1 = online, other = offline) |
 | +8 | DWORD | Table ID |
 | +12 | DWORD | Player entity ID |
-
----
 
 ## CMsgShowHandLostInfo (Type 2098)
 **Direction**: S->C
@@ -330,8 +310,6 @@ Reconnection / state recovery packet for ShowHand. Restores game state when a pl
 | +45+ | BYTE | Per-player card count |
 | +46+ | variable | Per-player card data (suit, value, visibility) |
 | +52+ | stride-11 | Per-player entries: DWORD playerID, card data |
-
----
 
 ## CMsgArenaChallenge (Type 2210)
 **Direction**: Bidirectional

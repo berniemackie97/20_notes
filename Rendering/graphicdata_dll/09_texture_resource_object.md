@@ -1,6 +1,6 @@
 # `GraphicData.dll` — Texture resource object returned by `GameDataSet_RequestTexture`
 
-`Role3D.dll` uses `GraphicData.dll`’s `GameDataSetQuery()` interface to request textures via:
+`Role3D.dll` uses `GraphicData.dll`'s `GameDataSetQuery()` interface to request textures via:
 
 - `secondary = ds->GameDataSet_RequestTexture(textureId, 0, 0)` (vtable offset `+0x18`)
 
@@ -9,7 +9,7 @@
 - `0` if the texture is not ready (and a load is scheduled), or
 - a pointer to a texture resource object when available.
 
-This document defines the *minimal* virtual interface of that returned texture object as proven by `Role3D.dll`.
+The *minimal* virtual interface of that returned texture object, as proven by `Role3D.dll`.
 
 ## `TextureResource_IsReady` (vtable offset `+0x10`)
 
@@ -27,4 +27,3 @@ Return value:
 - `0`: not ready
 
 No other virtual methods on this object are exercised directly by `Role3D.dll` in the current reverse slice.
-

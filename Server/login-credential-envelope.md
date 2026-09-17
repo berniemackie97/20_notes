@@ -9,7 +9,7 @@ purpose.
 
 Scope distinction: this note concerns the AccountServer credential envelope.
 The later 1055-derived legacy table mask is **not** another credential transform
-or GameServer requirement. See the [2026-09-03 native consumer audit](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/20_notes/Network/14_session_derived_legacy_cipher_mask.md):
+or GameServer requirement. See the [2026-09-03 native consumer audit](../Network/14_session_derived_legacy_cipher_mask.md):
 standard GameServer traffic uses DH + CAST5-CFB64 and bypasses the rekeyed tables.
 This does not change the live credential-envelope evidence recorded below.
 

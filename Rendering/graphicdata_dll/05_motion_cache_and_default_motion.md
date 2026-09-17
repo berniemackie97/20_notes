@@ -1,4 +1,4 @@
-# `GraphicData.dll` — Motion cache and “default motion” creation
+# `GraphicData.dll` — Motion cache and "default motion" creation
 
 `GraphicData.dll` is responsible for creating (and caching) the motion container objects that are bound to meshes during mesh load.
 
@@ -22,7 +22,7 @@ Given `meshPath`:
 1. If caching is enabled for the call:
    - Looks up `meshPath` in an internal map.
    - If a cached motion exists:
-     - If the call requests “rebind/update”: invokes a motion virtual method at vtable index `8` with the `meshPath` string.
+     - If the call requests "rebind/update": invokes a motion virtual method at vtable index `8` with the `meshPath` string.
      - Otherwise increments a refcount on the cache entry.
      - Returns the cached motion pointer.
 2. If no cached motion exists (or caching is disabled for the call):
@@ -37,4 +37,3 @@ Given `meshPath`:
 ## Relationship to `graphic.dll`
 
 The motion object constructed by `GraphicData.dll` is a `graphic.dll` motion container returned by `MotionCreate(...)` (the concrete type is documented as `C3MotionTracker` in `analysis/conquer_docs/Rendering/graphic_dll/13_motioncreate_and_c3motiontracker.md`).
-

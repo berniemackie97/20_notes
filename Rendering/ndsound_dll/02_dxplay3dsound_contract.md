@@ -1,4 +1,4 @@
-# `_DXPlay3DSound@32` Contract (Verified)
+# `_DXPlay3DSound@32` Contract
 
 ## Export + core implementation
 

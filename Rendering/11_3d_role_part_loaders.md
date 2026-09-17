@@ -5,10 +5,8 @@ resolves a per-id `RolePartInfo` record and bulk-copies it into the part-slot.
 Distinct from the head-record accumulator (`C3DHead_AddRecord`) which has a
 different shape, and from `C3DMantle` which is fully removed in 5517.
 
-This note builds on note 10 (`C3DMount`); the four sister classes added here
+Builds on note 10 (`C3DMount`). The four sister classes added here
 share the loader semantics that note already covered.
-
----
 
 ## Retail oracles (`40_tools/fight-master/my_client/3DBaseCode/`)
 
@@ -40,8 +38,6 @@ SetDefaultMotion();    // dropped in 3DArmor.cpp; present in Armet/Mantle/Mount
 m_idType = idType;
 return true;
 ```
-
----
 
 ## client-5517 surviving usage (`GameRole.dll`)
 
@@ -77,8 +73,6 @@ The numeric category enum is verified at the call sites: `(*RoleDataQuery() + 8)
 This is the head-attachment chain that builds up multiple head-bone records into a
 container. Out of scope for the simple-loader managed port; flagged for a follow-up
 slice that models the accumulator semantics.
-
----
 
 ## Managed port (`Conquer.Assets.RolePart`)
 
@@ -139,8 +133,6 @@ dotnet test tests/Conquer.Tests/Conquer.Tests.csproj \
   `TrailingOpaqueBytes` until field-by-field decoding lands.
 - `nType` / `p3DMesh` resolution chain — managed `Mesh3DHandle` modeled as
   `object?` until the C3DObj cache layer lands.
-
----
 
 ## Cross-refs
 

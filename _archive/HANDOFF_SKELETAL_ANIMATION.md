@@ -2,7 +2,7 @@
 
 ## Status
 - **BNinja verification: DONE** for `Phy_Calculate_CPU` (the core skinning function)
-- **Docs update: DONE** — CPU skinning section added to `20_notes/Rendering/c3_core_dll/05_phy.md`
+- **Docs update: DONE** — CPU skinning section added to `Rendering/c3_core_dll/05_phy.md`
 - **Implementation: DONE** — see `CpuSkinning.cs`, `Role3DMultiPartMeshRenderer.cs`, `Role3DPartTransformResolver.cs`
 - **Motion chain wiring: DONE** — `Role3DClientSceneMultiPartRenderStage` passes `meshRenderer.TryResolveBone0Matrix` delegate into `ComputePartWorldMatrix`
 - BNinja DB saved with all renames applied
@@ -119,10 +119,10 @@ Key question: does our parser store SkinnedSparse ('2') vertices as 0x58 bytes (
 - Key_Process* functions (alpha/draw/texture animation keys) — lower priority
 
 ## Existing Docs to Read
-- `20_notes/Rendering/c3_core_dll/12_motion_load_formats.md` — MOTI payload parsing (KKEY/ZKEY/XKEY)
-- `20_notes/Rendering/c3_core_dll/13_motion_sampling_and_blend.md` — bone matrix interpolation + blend
-- `20_notes/Rendering/c3_core_dll/14_simple_motion_load_formats.md` — SMOT (simple motion)
-- `20_notes/Rendering/c3_core_dll/05_phy.md` — full PHY struct layout + render state
+- `Rendering/c3_core_dll/12_motion_load_formats.md` — MOTI payload parsing (KKEY/ZKEY/XKEY)
+- `Rendering/c3_core_dll/13_motion_sampling_and_blend.md` — bone matrix interpolation + blend
+- `Rendering/c3_core_dll/14_simple_motion_load_formats.md` — SMOT (simple motion)
+- `Rendering/c3_core_dll/05_phy.md` — full PHY struct layout + render state
 
 ## Existing Code
 - `PhySubmeshReader.cs` — already parses all 4 PHY types including skinned

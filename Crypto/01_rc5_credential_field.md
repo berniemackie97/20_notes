@@ -2,7 +2,7 @@
 
 ## Status: VERIFIED via IDA decompilation
 
-This document covers the legacy credential-field transform used before Msg1060/Msg1121
+The legacy credential-field transform, applied before Msg1060/Msg1121
 packet submission.
 
 ## Function Reference

@@ -1,4 +1,4 @@
-# `_DXSoundinit@4` / `_DXDestroy@0` / `_DXCloseAllSound@0` Contract (Verified)
+# `_DXSoundinit@4` / `_DXDestroy@0` / `_DXCloseAllSound@0` Contract
 
 ## Export -> engine mapping
 
@@ -13,8 +13,6 @@ Wrapper SEH helpers:
 - `EhHandler_DXCloseAllSound` (`0x1000D302`)
 - `EhHandler_NdSoundEngine_CloseAllSound` (`0x1000D207`)
 
----
-
 ## `_DXSoundinit@4`
 
 `_DXSoundinit@4(windowHandle)`
@@ -28,8 +26,6 @@ Verified behavior:
 3. Returns `NdSoundEngine_Initialize` result unchanged.
 
 No wrapper null guard exists before calling `NdSoundEngine_Initialize`; idempotence is enforced inside `NdSoundEngine_Initialize` by the initialized flag.
-
----
 
 ## `NdSoundEngine_Initialize`
 
@@ -49,8 +45,6 @@ Verified flow:
    - any other value: returns `-1`.
 
 This makes `_DXSoundinit@4` effectively idempotent once initialized.
-
----
 
 ## DirectSound bootstrap helpers
 
@@ -89,8 +83,6 @@ Verified return codes:
 - `0`: success
 - `-3`: primary buffer creation or format application failed
 
----
-
 ## `_DXDestroy@0`
 
 Verified behavior:
@@ -98,8 +90,6 @@ Verified behavior:
 1. If `g_NdSoundEngineSingleton` is non-null, calls virtual slot `0` with argument `1` (owner-release path).
 2. Clears `g_NdSoundEngineSingleton` to null.
 3. Returns the release call result; returns `0` when singleton was already null.
-
----
 
 ## `_DXCloseAllSound@0`
 
@@ -109,8 +99,6 @@ Verified behavior:
 2. Wrapper has no singleton null guard.
 
 `NdSoundEngine_CloseAllSound` iterates 3D instances then 2D instances, requests stop/refresh where applicable, releases each instance, zeroes vector slots, and clears both vectors.
-
----
 
 ## Contract helpers in managed code
 

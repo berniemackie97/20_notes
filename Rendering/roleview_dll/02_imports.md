@@ -1,6 +1,6 @@
 # `RoleView.dll` — Imports / External Dependencies
 
-This document enumerates the imported DLLs and imported symbols for `RoleView.dll` as found in the clean 5517 client distribution.
+Imported DLLs and symbols for `RoleView.dll`, as found in the clean 5517 client distribution.
 
 ## Imported DLLs
 
@@ -63,4 +63,3 @@ This document enumerates the imported DLLs and imported symbols for `RoleView.dl
 
 This DLL is built against MSVCRT and imports the expected C runtime surface (allocation, stdio, string routines, exception/runtime support).
 The exact import list is intentionally not duplicated here unless needed for a specific behavior claim.
-

@@ -1,6 +1,6 @@
 # `I3DRole` object (Role3D)
 
-This document describes the object returned by `I3DRoleCreate()` and the subset of its interface that is currently verified.
+The object `I3DRoleCreate()` returns, and the subset of its interface that is currently verified.
 
 ## Construction
 
@@ -157,7 +157,7 @@ Parity consequence:
 
 ## `I3DRole_LoadPartByName(this, partName, linkedSubmeshName, linkedPartName, sourceId, roleDataLookupIdOrZero)` (slot 4)
 
-This method is part of the “role part” pipeline:
+This method is part of the "role part" pipeline:
 
 - validates `partName` is non-null
 - calls vtable slot `+0x20` (`I3DRole_RemovePartByNameOrClearAll`) with `partName`
@@ -383,7 +383,7 @@ If either is null/empty, sets both strings to a default global string.
 
 ## `I3DRole_ApplyDefaultMeshesFromObjInfo(this, partName)` (slot 12)
 
-- Resolves each part’s mesh and uses `GraphicData` `p3DObjInfo` data to apply a default mesh id where available.
+- Resolves each part's mesh and uses `GraphicData` `p3DObjInfo` data to apply a default mesh id where available.
 
 ## `I3DRole_SetPartParamPair(this, partName, a2, a3)` (slot 13)
 

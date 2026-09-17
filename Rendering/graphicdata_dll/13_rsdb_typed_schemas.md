@@ -1,10 +1,10 @@
 # `GraphicData.dll` — typed DB schemas used by current client data
 
-This doc defines typed record schemas implemented in the rewrite on top of verified on-disk DB formats.
+Typed record schemas implemented in the rewrite on top of the verified on-disk DB formats.
 
 Source format details are in:
 
-- `20_notes/Rendering/graphicdata_dll/12_rsdb_container_formats.md`
+- `12_rsdb_container_formats.md`
 
 ## Common payload value type (RSDB-only)
 

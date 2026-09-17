@@ -1,6 +1,6 @@
 # `GraphicData.dll` — Initialization and loaded data files
 
-This document describes the one-time initialization performed by the `GameDataSetQuery()` singleton and the on-disk data files it loads to drive the rendering/asset pipeline.
+The one-time initialization the `GameDataSetQuery()` singleton performs, and the on-disk data files it loads to drive the rendering and asset pipeline.
 
 ## Initialization entry point
 
@@ -41,13 +41,13 @@ Before loading the standard `.dbc` set, initialization opens/updates `ini/c3.wdb
 This path builds an in-memory hash index of `c3.wdb` entry descriptors and serves named `.dbc` payload reads through `GameDbPack_GetEntrySizeByName` / `GameDbPack_ReadEntryByName`.
 
 Exact `c3.wdb` format/decrypt/hash details are documented in:
-`20_notes/Rendering/graphicdata_dll/11_c3_wdb_format_and_decode.md`
+`11_c3_wdb_format_and_decode.md`
 
 `RSDB` payload container layouts (single-key and dual-key index formats) are documented in:
-`20_notes/Rendering/graphicdata_dll/12_rsdb_container_formats.md`
+`12_rsdb_container_formats.md`
 
 Typed schemas currently verified (RSDB and non-RSDB `.dbc` payloads) are documented in:
-`20_notes/Rendering/graphicdata_dll/13_rsdb_typed_schemas.md`
+`13_rsdb_typed_schemas.md`
 
 ## Additional files loaded
 
@@ -76,10 +76,10 @@ Notes for this 5517 build:
 - `ini/3DSimpleObjEx.dbc` is optional (`required_flag = 0`) and present in this fixture with a valid `SIMX` header and `count = 0`.
 
 `MeshLod.ini` parsing and runtime selector semantics are documented in:
-`20_notes/Rendering/graphicdata_dll/17_mesh_lod_ini_and_model_variant_resolution.md`
+`17_mesh_lod_ini_and_model_variant_resolution.md`
 
 `common.ini` memory-profile tuning and `ResLimit.dat` / `ResLimitExclude.dat` policy formats are documented in:
-`20_notes/Rendering/graphicdata_dll/18_common_ini_and_reslimit_policy.md`
+`18_common_ini_and_reslimit_policy.md`
 
 ## How motions relate to these databases
 

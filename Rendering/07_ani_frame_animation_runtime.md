@@ -5,8 +5,6 @@ every 2D sprite path in the EXE (hero flags, team overheads, effects, map
 icons, UI buttons, cursor sets, card faces, etc.). This is the retail Conquer
 animation primitive, not the skeletal system in Role3D.dll.
 
----
-
 ## Retail oracle (`40_tools/fight-master/my_client/3DBaseCode/Ani.{h,cpp}`)
 
 Class surface (retail signatures verified):
@@ -48,8 +46,6 @@ Return contract:
 - `Show` returns `TRUE` when `uFrame + 1 >= m_iFrameAmount` → signals "this was the
   last frame" so callers can advance/loop animation state
 - Both `Show` and `ShowEx` take `uFrame % m_iFrameAmount` — caller never has to clamp
-
----
 
 ## client-5517 CAni vtable (verified via BNinja decomp)
 
@@ -141,8 +137,6 @@ when it differs.
 backdrop as `(frame 0, x, y, &RECT{0,0,0x64,0xC8}, measuredWidth, measuredHeight, 0, 0)`, so a
 100x200 source region is stretched to the measured text extent.
 
----
-
 ## Managed port seams (`Conquer.Assets.Ani`)
 
 Leaf interfaces — DI boundaries around parts we don't own yet:
@@ -233,8 +227,6 @@ public enum AniStatus
 - `Show`, `ShowEx`, `GetFrame`, `GetSize` all early-return default/false when
   `Status != Loaded || FrameAmount <= 0`.
 
----
-
 ## Call-site inventory (client-5517)
 
 Verified via BNinja xrefs to string literals `ani/*.ani`:
@@ -250,8 +242,6 @@ Verified via BNinja xrefs to string literals `ani/*.ani`:
 | `ani/EmotionIco.ani` | chat bubble icons | `CMyShellDlg__RenderStatusHintPanel` |
 | `Data/Cursor/*.ani` | mouse cursor states | cursor HUD callers |
 
----
-
 ## What this port does **not** cover yet
 
 - `IFrameSet` / DAI cache layer (`CAniFileSet::Locate`, `String2ID`, TTL = 0x7530).
@@ -263,8 +253,6 @@ Verified via BNinja xrefs to string literals `ani/*.ani`:
   `Create(AniIndexInfo*)` overload, not `Create(pszDataFile, pszIndex)`.
 - `CMyBitmap` concrete implementation. `IAniFrameBitmap` is the seam;
   managed bitmap wrapping lives in the graphic-dll port.
-
----
 
 ## Cross-refs
 

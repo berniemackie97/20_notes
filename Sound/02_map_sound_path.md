@@ -89,7 +89,6 @@ subcomponent above, whose seam needs only `Play`, `Close` and `SetPosition` — 
 Left open deliberately: whether any other 5517 subsystem needs a liveness check, and if so how it
 gets one without `Check2DSound` or `DXGetSound`. Nothing found so far requires it.
 
-
 ## Tooling caution for anyone re-checking this
 
 The reference sources under `40_tools/` are **ISO-8859 with CRLF**, and the shell's `grep` is a

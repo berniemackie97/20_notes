@@ -1,11 +1,10 @@
 # Social Packets — Chat, Team, Friends, Trade, Flowers, Coach
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
 ## MsgTalk (Type 1004)
 **Direction**: Bidirectional
-**Handler**: CTxtMsgSet__ParseMessage (0x731371)  
+**Handler**: CTxtMsgSet__ParseMessage (0x731371)
 **Parse**: `CMsgTalk__Parse` validates size/type and copies the packet to object+4.
 
 **Verified field offsets (relative to packet start)**:
@@ -18,7 +17,7 @@
 - `+20` `uint32` timestamp/packed time (used with `/ 0x2710` and `% 0x3E8` to derive time fields)
 
 **String list helper (format verified)**:
-`CTxtMsgSet__ParseMessage` reads indices 0..3 from a string-list object at `this+0x408` (ECX = `this+0x408` passed to `MsgStringList__GetEntry`).  
+`CTxtMsgSet__ParseMessage` reads indices 0..3 from a string-list object at `this+0x408` (ECX = `this+0x408` passed to `MsgStringList__GetEntry`).
 `MsgStringList__GetEntry` expects a list format: first byte = count, then repeated `[len][bytes]` entries.
 `MsgStringList__GetEntry` zeroes the destination buffer before attempting lookup and requires `destination_size > entry_len` (equal size fails).
 
@@ -46,14 +45,12 @@ Parity note:
 - It should not be replaced with a synthetic side-channel or treated as display-only text.
 - `NEW_ROLE` is a separate control branch. Startup must stop waiting for world bootstrap on this branch and hand off through `WM_COMMAND 0x464 / 3`, not `0x483`.
 
-
 ## MsgInteract (Type 1022)
 **Direction**: Bidirectional
 **Purpose**: Subtype‑driven entity/effect/map update packet; see subtype table for verified behavior.
 **Dispatch**: Construct `CMsgInteract__ctor` (0x6FADEE), parse `CMsgInteract__Parse` (0x6FB16A), process `CMsgInteract__Process` (0x6FB1CB)
 
-**Verified parse behavior**:
-- `CMsgInteract__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1022`.
+**Parse**: `CMsgInteract__Parse` — standard header validation, then `type == 1022`.
 - The five verified builders at `0x6FAE54`, `0x6FAF42`, `0x6FAFC1`, `0x6FB052`, and `0x6FB0F3` all produce a fixed 40-byte packet.
 - The mutual-interaction lifecycle is client-sent and client-processed:
   - `CHero_SendMsgInteractSubtype47` (`0x66485B`) sends subtype `47` only while
@@ -173,10 +170,9 @@ Parity note:
 - `55`: uses `+0x18`; calls `ApplyPropertyEffectFlags`.
 - `56`: jump table target is `0x6FE33A`; IDA does not decode code at that address in this build (next code is at `0x6FE358`). No packet field usage was observed for subtype `56`.
 
-
 ## MsgTeamMemberList (Type 1026)
 **Direction**: S→C
-**Purpose**: Team member list refresh/join notifications (uses string `100114`: “%s has joined the team!”).
+**Purpose**: Team member list refresh/join notifications (uses string `100114`: "%s has joined the team!").
 **Dispatch**: Create `CMsgTeamMemberList__Create` (0x761A02), parse `CMsgTeamMemberList__Parse` (0x761A68), process `CMsgTeamMemberList__Process` (0x761AB1)
 
 **Verified parse behavior**:
@@ -192,30 +188,26 @@ Parity note:
   - `entry+24` (u16) and `entry+26` (u16) are copied into fields `v12[5]` and `v12[6]`.
 - When a listed member is not already in the team and is not the local player, the handler posts system message `100114` (`%s has joined the team!`).
 
-
 ## MsgGuide (Type 1042)
 **Direction**: Bidirectional
 **Purpose**: Guide/monster transformation UI flow (verified by `Guide__*` calls and entity lookups).
 **Dispatch**: Create `CMsgGuide__Create` (0x761CD3), parse `CMsgGuide__Parse` (0x761D39), process `CMsgGuide__Process` (0x761D5C)
 
-**Verified parse behavior**:
-- `CMsgGuide__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1042`.
+**Parse**: `CMsgGuide__Parse` — standard header validation, then `type == 1042`.
 
 **Verified field usage in `CMsgGuide__Process`** (offsets relative to packet start):
 - `+8` (u32/pointer) is compared against `Concurrency::details::UMSSchedulerProxy::GetTransferListEvent()`; processing only continues if equal.
 - `+36` (u8) must be nonzero to proceed; later passed into string formatting (`Guide__FormatMonsterName`) and used as a parameter for UI/log output.
-- `+20` (u32) is treated as an entity ID (“old monster”): looked up via `EntityManager__FindEntityById`; if missing, logs `"pOldMonster"`; if found, passed to `EntityManager__RemoveEntityById_6E7B23` with flag `1`.
-- `+28` (u32) is treated as an entity ID (“new monster”): looked up via `EntityManager__FindEntityById`; if missing, logs `"pNewMonster"`; if found, used for vtable calls and UI updates.
+- `+20` (u32) is treated as an entity ID ("old monster"): looked up via `EntityManager__FindEntityById`; if missing, logs `"pOldMonster"`; if found, passed to `EntityManager__RemoveEntityById_6E7B23` with flag `1`.
+- `+28` (u32) is treated as an entity ID ("new monster"): looked up via `EntityManager__FindEntityById`; if missing, logs `"pNewMonster"`; if found, used for vtable calls and UI updates.
 - `+4` (u32) is passed to a vtable call at offset `+0xA4` on the new entity object.
-
 
 ## MsgTradeDialog (Type 1040)
 **Direction**: Bidirectional
 **Purpose**: Trade dialog state (verified by `CTradeDialog__*` and `CHero__Trade*` calls).
 **Dispatch**: Create `CMsgTradeDialog__Create` (0x72CCEF), parse `CMsgTradeDialog__Parse` (0x72CD55), process `CMsgTradeDialog__Process` (0x72CDA9)
 
-**Verified parse behavior**:
-- `CMsgTradeDialog__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1040`.
+**Parse**: `CMsgTradeDialog__Parse` — standard header validation, then `type == 1040`.
 
 **Verified field usage in `CMsgTradeDialog__Process`** (offsets relative to packet start):
 - `+4` (u32) is compared to the local player ID (singleton `+204`) to select the local/remote trade branch; the local branch triggers `CTradeDialog__SetLocalTraderId` and UI events `PostMainWndMsg_0x464(0xC6D)` and `PostMainWndMsg_0x464(0xDEA)`, the remote branch triggers `CTradeDialog__SetRemoteTraderId` and `PostMainWndMsg_0x464(0xC6C)`.
@@ -252,21 +244,18 @@ Parity note:
 - `+128` passed to `CRichEditCntrItem::Mark`.
 - `+132` passed to `CPropertySheet::EnableStackedTabs`.
 
-
 ## MsgBrocastMsg (Type 1043)
 **Direction**: S→C
 **Purpose**: Broadcast/team‑roll UI update (verified by `CTeamRollMgr__*` calls and UI posts).
 **Dispatch**: Create `CMsgBrocastMsg__Create` (0x720357), parse `CMsgBrocastMsg__Parse` (0x7203BD), process `CMsgBrocastMsg__Process` (0x720427)
 
-**Verified parse behavior**:
-- `CMsgBrocastMsg__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1043`.
+**Parse**: `CMsgBrocastMsg__Parse` — standard header validation, then `type == 1043`.
 
 **Verified field usage in `CMsgBrocastMsg__Process`** (offsets relative to packet start):
 - `+12` (u32) is a mode selector; only when `== 1` does the handler proceed.
 - `+4` (u32) and `+20` (u32) are passed to `CTeamRollMgr__SetEntryDword_0x8_ByItemId`.
 - `+4` (u32) and `timeGetTime()` are passed to `CTeamRollMgr__SetEntryDword_0xC_ByItemId`.
 - On success path, `PostMainWndMsg_0x464(0xDDA, 0)` is triggered.
-
 
 ## MsgInviteTrans (Type 1074)
 **Direction**: Bidirectional
@@ -277,14 +266,12 @@ Parity note:
 - No packet fields referenced.
 - Posts `PostMainWndMsg_0x464(0xCEF, 0)`.
 
-
 ## MsgFlower (Type 1150)
 **Direction**: Bidirectional
 **Purpose**: Flower system packet (receive/give notifications + local flower-counter sync).
 **Dispatch**: Create `CMsgFlower__Create` (0x76400B), parse `CMsgFlower__Parse` (0x7640DF), process `CMsgFlower__Process` (0x764102)
 
-**Verified parse behavior**:
-- `CMsgFlower__Parse` calls `CNetMsg__ValidateHeaderAndCopy` and checks `type == 1150`.
+**Parse**: `CMsgFlower__Parse` — standard header validation, then `type == 1150`.
 
 **Verified field usage in `CMsgFlower__Process`** (offsets relative to packet start):
 - `+4` (u16) `mode` (handled: `0`, `1`).
@@ -328,14 +315,12 @@ Evidence: `FlowerAnim__SelectBaseSpriteByTypeAndScreenWidth_70701B` / `FlowerAni
   - `+24 = arg2` (u32)
 - `SendMsgFlower_707168` wraps create/build/send for this builder.
 
-
 ## MsgFlowerRank (Type 1151)
 **Direction**: S→C
 **Purpose**: Flower-rank list + flower-UI control packet (drives `DlgFlowerRank` updates and related UI message flows).
 **Dispatch**: Create `CMsgFlowerRank__Create` (0x706D07), parse `CMsgFlowerRank__Parse` (0x706DC7), process `CMsgFlowerRank__Process` (0x706DEA)
 
-**Verified parse behavior**:
-- `CMsgFlowerRank__Parse` calls `CNetMsg__ValidateHeaderAndCopy` and checks `type == 1151`.
+**Parse**: `CMsgFlowerRank__Parse` — standard header validation, then `type == 1151`.
 
 **Verified field usage in `CMsgFlowerRank__Process`** (offsets relative to packet start):
 - `+4` (u8) `subtype` (handled: `1`, `2`, `4`, `5`).
@@ -386,16 +371,12 @@ Evidence: `FlowerAnim__SelectBaseSpriteByTypeAndScreenWidth_70701B` / `FlowerAni
   - `+8 = param` (u32)
   - `+12 = param2` (u8)
 
----
-
-
 ## MsgCoach (Type 1127)
 **Direction**: Bidirectional
 **Purpose**: Coach/apprentice relationship packet (coach/be-coach status updates, directional role actions, and coach UI/chat notifications).
 **Dispatch**: Create `CMsgCoach__Create` (0x6ED9F1), parse `CMsgCoach__Parse` (0x6EDA57), process `CMsgCoach__Process` (0x6EDAC8)
 
-**Verified parse behavior**:
-- `CMsgCoach__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1127`.
+**Parse**: `CMsgCoach__Parse` — standard header validation, then `type == 1127`.
 
 **Verified field usage in `CMsgCoach__Process`** (offsets relative to packet start):
 - `+4` (u16) `subtype` (values `0`, `1`, `2` handled in this build).
@@ -438,14 +419,12 @@ Evidence: `FlowerAnim__SelectBaseSpriteByTypeAndScreenWidth_70701B` / `FlowerAni
   - `+12 = id_b` (u32)
 - `CHero__TrySendCoachRequest_6ECEFA(target_id)` validates local/target conditions, builds subtype `0` with `(id_a=localHeroId, id_b=target_id)`, sends via `CNetMsg__Send`, and posts `PostMainWndMsg_0x464(0xCAB, 0)` on success.
 
-
 ## MsgVipTeamConfirm (Type 1128)
 **Direction**: S→C
 **Purpose**: VIP-team confirmation packet for transport/back prompts (message-box flow gated by a local VIP-team entry state).
 **Dispatch**: Create `CMsgVipTeamConfirm__Create` (0x72A561), parse `CMsgVipTeamConfirm__Parse` (0x72A5C7), process `CMsgVipTeamConfirm__Process` (0x72A623)
 
-**Verified parse behavior**:
-- `CMsgVipTeamConfirm__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1128`.
+**Parse**: `CMsgVipTeamConfirm__Parse` — standard header validation, then `type == 1128`.
 
 **Verified field usage in `CMsgVipTeamConfirm__Process`** (offsets relative to packet start):
 - `+4` (u8) `mode` (only `mode == 2` has a processing path in this handler).
@@ -470,7 +449,6 @@ Evidence: `FlowerAnim__SelectBaseSpriteByTypeAndScreenWidth_70701B` / `FlowerAni
   - `+4 = mode` (u8)
   - `+8 = id` (u32)
 - This builder does not write `+12`/`+16`; those fields are consumed on receive-side paths.
-
 
 ## MsgSchool (Type 1061)
 **Direction**: Bidirectional

@@ -2,11 +2,9 @@
 
 ## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\
 
----
-
 ## Overview
 
-This document describes the complete client-server connection lifecycle from initial TCP socket creation through DH key exchange, authentication, and encrypted packet communication. All details are decompiled from the client binary.
+The full connection lifecycle: TCP socket creation, DH key exchange, authentication, and encrypted packet traffic. Every detail below is decompiled from the client binary.
 
 ### Connection Sequence Summary
 ```
@@ -19,8 +17,6 @@ This document describes the complete client-server connection lifecycle from ini
 7. Server responds (login result)              — S→C (type TBD — see note below)
 8. Normal encrypted packet communication      — All packets encrypted + 8-byte signature
 ```
-
----
 
 ## Phase 1: TCP Connection
 
@@ -102,8 +98,6 @@ int CGameSocket__Connect(CGameSocket* this, const char* host, uint16_t port) {
 - Input validation: `host` must be non-null and length `<= 15` (dotted IPv4 literal path).
 - On successful connect, the function resets runtime transport counters:
   send queued bytes, recv available bytes, recv read cursor, and legacy cipher cursors.
-
----
 
 ## Phase 2: DH Key Exchange (Handshake)
 
@@ -321,8 +315,6 @@ Notes:
     (buffer retained), but in the `SendMsg` overflow guard path this can still lead
     to disconnect because the post-flush capacity check is enforced immediately.
 
----
-
 ## Phase 3: Pre-Shared Key & Cipher Details
 
 ### Pre-Shared Key
@@ -336,13 +328,13 @@ Usage:        Encrypts/decrypts the DH handshake exchange ONLY
 ### TQCipher64 (0x77F310)
 **CAST5 / CAST-128**, identified from original instructions and all eight OpenSSL
 CAST S-boxes. TQCipher64 is a historical project/analysis alias, not a modified
-cryptographic variant. See the [2026-09-03 native audit](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/20_notes/Network/14_session_derived_legacy_cipher_mask.md).
+cryptographic variant. See the [2026-09-03 native audit](14_session_derived_legacy_cipher_mask.md).
 - Block size: 8 bytes (64 bits)
 - S-boxes: 8 total (4 runtime + 4 key schedule), **identical to RFC 2144 CAST-128 S1–S8**
 - Rounds: 12 (key ≤ 10 bytes) or 16 (key > 10 bytes)
 - Key schedule: native OpenSSL-compatible CAST_KEY representation (32 subkey/rotation words plus short-key flag); representation details are not a different algorithm.
 - Used in **CFB-64** (Cipher Feedback, byte-granular) stream mode via `TqCipher64_Cfb64_Crypt` (0x778590)
-- See `20_notes/Crypto/00_tqcipher64.md` for complete specification
+- See `../Crypto/00_tqcipher64.md` for complete specification
 
 ### CFB-64 Stream Mode (0x778590)
 ```c
@@ -369,8 +361,6 @@ void TQCipher64_CFB64__Crypt(
 Every encrypted post-handshake packet has an 8-byte signature trailer appended:
 - **Send**: Packet data encrypted, then encrypted `TQClient` signature (8 bytes) appended
 - **Receive**: Last 8 bytes of each packet verified against `TQServer` via `CClientSecurity__GetExpectedFlag` (0x753DD1), then stripped before returning plaintext to dispatch
-
----
 
 ## Phase 4: Authentication (MsgAccount)
 
@@ -587,7 +577,7 @@ Notes:
 - Calls in `CGameMain_AccountSetupAndSendLoginAuthPacket` use output lengths `0x20` and `0x80`, both aligned to the 8-byte block size.
 
 Reference:
-- `20_notes/Crypto/01_rc5_credential_field.md` contains verified RC5 constants,
+- `../Crypto/01_rc5_credential_field.md` contains verified RC5 constants,
   full subkey vector for the default seed, and deterministic ciphertext fixtures.
 
 ### Server Login Response (S→C)
@@ -648,7 +638,7 @@ Verified implication:
 
 Managed parity implication:
 - The server must not send the initial world-entry burst eagerly before the client has processed `1006`.
-- The verified safe gate is the client’s post-`1006` `DataAction.EnterMap` (`74`).
+- The verified safe gate is the client's post-`1006` `DataAction.EnterMap` (`74`).
 - The server must also not push login item-table `1008` packets directly from the post-`1006`
   connect/bootstrap handler. Those rows belong on the verified follow-up `DataAction.GetItemSet`
   (`0x4B / 75`) request leg.
@@ -674,7 +664,7 @@ Managed rewrite contract (`10_work`, own-UI branch):
 
 Remaining gap for perfect parity:
 - Exact retail `2078` timestamp/location/alert values and the actual `2079` state choice are server history/policy, unrecoverable from these client consumers. This is an evidence boundary, not a hidden client constant awaiting a guess. OpenConquerPublic currently sends `(0,0,empty text)` and state `0`; that working policy is retained. See [the detailed native audit](10_extended_packets.md#successful-existing-character-login-audit-2026-09-15).
-- Exact native server-side ordering after the client’s `74` still needs packet capture or stronger server trace evidence; current managed work should preserve the verified gate and use the established map/weather/enter-map bootstrap order conservatively.
+- Exact native server-side ordering after the client's `74` still needs packet capture or stronger server trace evidence; current managed work should preserve the verified gate and use the established map/weather/enter-map bootstrap order conservatively.
 
 ### Verified Alternate Post-`1052` Create-Role Gate (`1004 NEW_ROLE` -> callback mode `0x3EC` -> `WM_COMMAND 0x464 / 3`)
 
@@ -741,7 +731,7 @@ Parity implications:
 
 - Native create success is **not** a relogin-required path.
 - Server implementations should not disconnect after successful `1001`; they should leave the session alive for the
-  client’s follow-up `1052`.
+  client's follow-up `1052`.
 - Managed own-UI create-role flow should therefore:
   - send `1001` on the existing game-session channel;
   - wait for `1004 "ANSWER_OK"` or an error talk;
@@ -862,15 +852,13 @@ Parity note for the managed own-UI rewrite:
 - the verified non-Facebook/native startup path uses the post-DH `1052` builder, not `1203`;
 - `1203` remains the verified else-branch/Facebook variant and should not be used by the own-UI startup path unless that exact branch is intentionally reproduced.
 
----
-
 ## Phase 5: Encrypted Packet Communication
 
 After DH completes, GameServer mode 2 uses DH-derived CAST5-CFB64, including the
 first login proof before authentication is accepted. The session-derived legacy
 rekey is intentionally absent from the reconstruction's active transport. Only
 modes 1/3/4 call the changed outbound tables at 0x6E1BDC; receive uses different
-legacy state. [Full consumer and wire-path proof](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/20_notes/Network/14_session_derived_legacy_cipher_mask.md).
+legacy state. [Full consumer and wire-path proof](14_session_derived_legacy_cipher_mask.md).
 
 ### Send Path — CGameSocket__SendMsg (0x6E1A07)
 ```c
@@ -1071,8 +1059,6 @@ void CGameSocket__Disconnect(CGameSocket* this) {
 }
 ```
 
----
-
 ## CGameSocket Memory Layout
 
 Total size: **0x124D4 (74,964) bytes**
@@ -1099,8 +1085,6 @@ Total size: **0x124D4 (74,964) bytes**
 | 1 | Legacy | Legacy cipher via `CGameSocket__EncryptBuffer` at +74268 |
 | 2 | DH | DH-derived symmetric encryption via CClientSecurity |
 | 3-4 | Legacy (alt) | Alternative legacy cipher modes, same EncryptBuffer path |
-
----
 
 ## CClientSecurity Memory Layout
 
@@ -1176,8 +1160,6 @@ void CClientSecurity__Reset(CClientSecurity* this) {
 }
 ```
 
----
-
 ## DH Handshake Chunk List Format
 
 The handshake messages use a binary length-prefixed entry array:
@@ -1217,8 +1199,6 @@ and updates `total_len`. It requires `src_len > 0`.
 | HandshakeChunkList__GetEntryByIndex | 0x753D64 | Find entry by zero-based index in length-prefixed list |
 | HandshakeChunkList__AppendEntry | 0x753CE6 | Append entry to length-prefixed list |
 
----
-
 ## OpenSSL / Crypto Function Addresses
 
 | Function | Address | Usage |
@@ -1248,8 +1228,6 @@ Deobfuscated helper symbols used inside `CClientSecurity__ProcessServerDhChallen
 | SharedPtrControlBlock__InitCheckedArrayDeleterByte | 0x753E43 | Initializes temporary shared-array control block for DH shared-secret buffer |
 | SharedPtrControlBlock__InitFunctionDeleterBignum | 0x753EF7 | Initializes temporary shared control block with `BN_free_local` deleter |
 | SharedPtrControlBlock__Release | 0x404CE4 | Interlocked shared control-block release helper (destroy at strong=0, free at weak=0) |
-
----
 
 ## Function Address Reference
 
@@ -1286,12 +1264,10 @@ Deobfuscated helper symbols used inside `CClientSecurity__ProcessServerDhChallen
 | RotateLeft32 | 0x749B38 | 0x1D | 32-bit rotate helper used by RC5 helpers |
 | CConnectionFlow__SendGameSessionBootstrap | 0x6DF1D0 | — | Sends the selected game-session bootstrap packet (called after handshake and on create-role success) |
 
----
-
 ## Crypto Implementation Cross-Reference
 
 For full TQCipher64 specification (S-box data, round function, key schedule), see:
-`20_notes/Crypto/00_tqcipher64.md`
+`../Crypto/00_tqcipher64.md`
 
 Current C# transport wiring in `10_work`:
 - `src/Conquer.Core/Network/Security/DhHandshakeKeyAgreement.cs` — managed DH key agreement + client-public-key hex encoding with OpenSSL-style parity (`BN_bn2hex`-compatible no leading zero nibble).
@@ -1311,8 +1287,6 @@ Current C# transport wiring in `10_work`:
 `".\\crypto\\dh\\dh_lib.c"` (line 178 assertion), proving TQ Digital statically linked
 OpenSSL for DH operations. The C# reimplementation uses `System.Numerics.BigInteger.ModPow`
 in place of OpenSSL's BIGNUM + DH_compute_key.
-
----
 
 ## Important Notes for Implementation
 

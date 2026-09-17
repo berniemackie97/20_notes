@@ -1,6 +1,6 @@
 # `c3_core_dll.dll` — particle load formats (`PTCL` / `PTCX` / `PTC3`)
 
-This document captures verified particle payload decode behavior in:
+Verified particle payload decode behaviour in:
 
 - `C3ParticleType1_LoadFromStream` (`0x10010C30`) for `PTCL`
 - `C3ParticleType2_LoadFromStream` (`0x10010E10`) for `PTCX`

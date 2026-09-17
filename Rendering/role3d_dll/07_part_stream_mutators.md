@@ -1,6 +1,6 @@
 # `Role3D.dll` — Part stream mutators (gate/state/default streams)
 
-This document describes helper routines in `Role3D.dll` that write per-part streams in the `PartInfo` container.
+Helper routines in `Role3D.dll` that write per-part streams in the `PartInfo` container.
 
 These routines are important for parity even when the written streams are not immediately consumed by `PartInfo_RenderAllParts`.
 
@@ -39,5 +39,4 @@ The semantic meaning of the `extra` stream is not established by the render loop
   - `PartInfo_SetGateIdAndExtraForAllParts(partInfo, gateId, extra, ...)`
   - `PartInfo_SetPerPartStateForAllParts(partInfo, stateValue)`
 
-Selection can be “all parts” or by a specific part-name key, depending on whether a name string argument is provided.
-
+Selection can be "all parts" or by a specific part-name key, depending on whether a name string argument is provided.

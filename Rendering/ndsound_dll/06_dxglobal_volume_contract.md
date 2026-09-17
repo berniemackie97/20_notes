@@ -1,4 +1,4 @@
-# `_DXSet*Volume` / `_DXGet*Volume` Contracts (Verified)
+# `_DXSet*Volume` / `_DXGet*Volume` Contracts
 
 ## Export -> engine mappings
 
@@ -6,8 +6,6 @@
 - `_DXSetSoundVolume@4` (`0x10009406`) -> `NdSoundEngine_SetSoundVolumePercent`
 - `_DXGetMusicVolume@0` (`0x100094B9`) -> `NdSoundEngine_GetMusicVolumePercent`
 - `_DXGetSoundVolume@0` (`0x10009533`) -> `NdSoundEngine_GetSoundVolumePercent`
-
----
 
 ## `_DXSetMusicVolume@4`
 
@@ -25,8 +23,6 @@ Return semantics:
 
 - Legacy helper returns a loop-carried value (vector count / pointer-style fallback), not a strict success code.
 - Treat as side-effect API.
-
----
 
 ## `_DXSetSoundVolume@4`
 
@@ -46,8 +42,6 @@ Return semantics:
 - Legacy helper returns a loop-carried value (vector count / pointer-style fallback), not a strict success code.
 - Treat as side-effect API.
 
----
-
 ## `_DXGetMusicVolume@0`
 
 `_DXGetMusicVolume@0()`
@@ -57,8 +51,6 @@ Verified behavior:
 - Returns `NdSoundEngine_GetMusicVolumePercent(g_NdSoundEngineSingleton)`.
 - Getter is direct field load from engine offset `+0x10`.
 - Wrapper does not perform explicit initialization/null checks before call.
-
----
 
 ## `_DXGetSoundVolume@0`
 

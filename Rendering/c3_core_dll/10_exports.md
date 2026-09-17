@@ -2,7 +2,7 @@
 
 This list is taken from the `c3_core_dll.dll` export table as recovered in IDA.
 
-The “ordinal” value is the export ordinal; names are the exported (mangled) symbol names.
+The "ordinal" value is the export ordinal; names are the exported (mangled) symbol names.
 
 ## Export list (by ordinal)
 

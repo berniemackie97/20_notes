@@ -17,12 +17,12 @@ The original audit was non-mutating. This maintained record is now accompanied b
 
 Primary input:
 
-- /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517/Conquer.exe
+- 00_clean/clean/5517/Conquer.exe
 - Original audit input /Volumes/EnderChest/Development/Repos/DotNet/Conquer/5517/Conquer.exe is byte-identical.
 - 5,880,840 bytes; PE32 x86; preferred image base 0x00400000.
 - SHA-256: b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62.
 - The executable beside the active Conquer.exe.bndb and the clean GameDev retail copy have exactly the same hash.
-- Binary Ninja database: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb.
+- Binary Ninja database: 00_clean/clean/5517-bninja/Conquer.exe.bndb.
 
 Evidence methods:
 
@@ -55,11 +55,11 @@ All addresses below are preferred virtual addresses. For every .text/.rdata addr
 | Active CFB64 transform | 0x00778590 | 0x00378590 |
 | Active CAST block transform | 0x0077F310 | 0x0037F310 |
 
-Full extracts: [native-evidence.txt](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/10_work/docs/evidence/session-mask-5517/native-evidence.txt).
+Full extracts: [native-evidence.txt](../../10_work/docs/evidence/session-mask-5517/native-evidence.txt).
 
-Executable probe: [native_probe.py](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/10_work/docs/evidence/session-mask-5517/native_probe.py).
+Executable probe: [native_probe.py](../../10_work/docs/evidence/session-mask-5517/native_probe.py).
 
-Recorded passing results: [native-probe-results.txt](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/10_work/docs/evidence/session-mask-5517/native-probe-results.txt).
+Recorded passing results: [native-probe-results.txt](../../10_work/docs/evidence/session-mask-5517/native-probe-results.txt).
 
 ## 2. Packet 1055: origins and storage
 
@@ -396,18 +396,18 @@ Changing UID/key naturally changes their serialized proof bytes. The differentia
 
 ## 10. Comparison against OpenConquerPublic — secondary evidence only
 
-Compared the user-specified checkout at `/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/OpenConquerPublic`, clean commit `11fa7ee1db02dc147afb9581bd456bedad79ed71`. Its relevant source files match the earlier comparison checkout. No behavior above was inferred from either server copy.
+Compared the user-specified checkout at `50_server/OpenConquerPublic`, clean commit `11fa7ee1db02dc147afb9581bd456bedad79ed71`. Its relevant source files match the earlier comparison checkout. No behavior above was inferred from either server copy.
 
 ### It omits the derived legacy mask
 
-- [LoginTicketIssuer.cs:27-30](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/OpenConquerPublic/src/OpenConquer.Application/Auth/Tickets/LoginTicketIssuer.cs:27) creates independent UID/authentication-key values.
-- [LoginHandshakeWriter.cs:58-83](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/OpenConquerPublic/src/OpenConquer.Protocol/Login/Handshake/Writers/LoginHandshakeWriter.cs:58) emits them in packet 1055 without a cookie/mask.
-- [GameConnectionHandoffProcessor.cs:25-48](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/OpenConquerPublic/src/OpenConquer.GameServer/Network/Handshake/GameConnectionHandoffProcessor.cs:25) sends the DH challenge and completes DH before reading the identity proof.
-- [GameConnectionHandoffProcessor.cs:56-77](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/OpenConquerPublic/src/OpenConquer.GameServer/Network/Handshake/GameConnectionHandoffProcessor.cs:56) decrypts/parses 1052, then consumes the UID/key ticket.
-- [GameHandshakeBootstrapCipher.cs:5-23](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/OpenConquerPublic/src/OpenConquer.Protocol/Game/Crypto/GameHandshakeBootstrapCipher.cs:5) uses the same fixed literal and zero IV.
-- [GameHandshakeExchange.cs:86-106](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/OpenConquerPublic/src/OpenConquer.Protocol/Game/Handshake/GameHandshakeExchange.cs:86) derives session key material from DH only.
-- [TqCipher64Cfb64Stream.cs:18,38-42](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/OpenConquerPublic/src/OpenConquer.Protocol/Game/Crypto/TqCipher64Cfb64Stream.cs:18) uses CAST5 and caps the key at 16 bytes.
-- [GameSessionCipher.cs:21-24](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/OpenConquerPublic/src/OpenConquer.Protocol/Game/Transport/GameSessionCipher.cs:21) creates independent directional CAST streams; :113-116 appends/encrypts the server trailer.
+- [LoginTicketIssuer.cs:27-30](../../50_server/OpenConquerPublic/src/OpenConquer.Application/Auth/Tickets/LoginTicketIssuer.cs:27) creates independent UID/authentication-key values.
+- [LoginHandshakeWriter.cs:58-83](../../50_server/OpenConquerPublic/src/OpenConquer.Protocol/Login/Handshake/Writers/LoginHandshakeWriter.cs:58) emits them in packet 1055 without a cookie/mask.
+- [GameConnectionHandoffProcessor.cs:25-48](../../50_server/OpenConquerPublic/src/OpenConquer.GameServer/Network/Handshake/GameConnectionHandoffProcessor.cs:25) sends the DH challenge and completes DH before reading the identity proof.
+- [GameConnectionHandoffProcessor.cs:56-77](../../50_server/OpenConquerPublic/src/OpenConquer.GameServer/Network/Handshake/GameConnectionHandoffProcessor.cs:56) decrypts/parses 1052, then consumes the UID/key ticket.
+- [GameHandshakeBootstrapCipher.cs:5-23](../../50_server/OpenConquerPublic/src/OpenConquer.Protocol/Game/Crypto/GameHandshakeBootstrapCipher.cs:5) uses the same fixed literal and zero IV.
+- [GameHandshakeExchange.cs:86-106](../../50_server/OpenConquerPublic/src/OpenConquer.Protocol/Game/Handshake/GameHandshakeExchange.cs:86) derives session key material from DH only.
+- [TqCipher64Cfb64Stream.cs:18,38-42](../../50_server/OpenConquerPublic/src/OpenConquer.Protocol/Game/Crypto/TqCipher64Cfb64Stream.cs:18) uses CAST5 and caps the key at 16 bytes.
+- [GameSessionCipher.cs:21-24](../../50_server/OpenConquerPublic/src/OpenConquer.Protocol/Game/Transport/GameSessionCipher.cs:21) creates independent directional CAST streams; :113-116 appends/encrypts the server trailer.
 
 A source search found no 0x4321/cookie/session-mask mechanism in the active server implementation. Its login-cipher XorMask=0xAB is the unrelated per-byte legacy operation, not this session-derived mask.
 
@@ -419,7 +419,7 @@ A source search found no 0x4321/cookie/session-mask mechanism in the active serv
 
 - Treating sessionUid as a random ticket identifier distinct from accountId.
 - Defining ticketId == sessionUid.
-- Duplicating authenticationKey into packet-1055's additional +0x10 field ([LoginHandshakeProcessor.cs:225](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/OpenConquerPublic/src/OpenConquer.AccountServer/Login/Handshake/LoginHandshakeProcessor.cs:225)). Native code only proves that this extra field is retained and forwarded by 1203; equality with authenticationKey is not a native standard-path requirement.
+- Duplicating authenticationKey into packet-1055's additional +0x10 field ([LoginHandshakeProcessor.cs:225](../../50_server/OpenConquerPublic/src/OpenConquer.AccountServer/Login/Handshake/LoginHandshakeProcessor.cs:225)). Native code only proves that this extra field is retained and forwarded by 1203; equality with authenticationKey is not a native standard-path requirement.
 - Persisting tickets in a relational table.
 - Selecting a fixed DH group; the native client receives p/g from the challenge.
 - Supporting standard 1052 while rejecting unsupported alternate proof formats.
@@ -432,7 +432,7 @@ A source search found no 0x4321/cookie/session-mask mechanism in the active serv
 - Binding a valid ticket to the account identity.
 - Limits and validation on unauthenticated handshake/proof traffic.
 
-For example, [EfLoginTicketRepository.cs:12](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/OpenConquerPublic/src/OpenConquer.Infrastructure/Persistence/Auth/Tickets/EfLoginTicketRepository.cs:12) sets a five-minute lifetime; :52-61 checks UID/key/expiry and conditionally deletes the ticket, and :63-68 rejects competing consumes. This policy is not encoded by the native mask arithmetic and must not be described as a recovered native database requirement.
+For example, [EfLoginTicketRepository.cs:12](../../50_server/OpenConquerPublic/src/OpenConquer.Infrastructure/Persistence/Auth/Tickets/EfLoginTicketRepository.cs:12) sets a five-minute lifetime; :52-61 checks UID/key/expiry and conditionally deletes the ticket, and :63-68 rejects competing consumes. This policy is not encoded by the native mask arithmetic and must not be described as a recovered native database requirement.
 
 ## 11. Required server state and implementation boundary
 
@@ -473,8 +473,8 @@ These are separate questions; none is necessary to decide whether this exact sta
 Maintenance record: the 2026-09-03 annotation update renamed 17 Binary Ninja
 functions and added/appended 32 function comments plus 29 address comments.
 Every name/address/comment was read back; existing comments were retained.
-The database save completed. See the [before/after annotation manifest](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/10_work/docs/evidence/session-mask-5517/bninja-annotations.json)
-and [verification record](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/10_work/docs/evidence/session-mask-5517/verification.md). Retail executable bytes and
+The database save completed. See the [before/after annotation manifest](../../10_work/docs/evidence/session-mask-5517/bninja-annotations.json)
+and [verification record](../../10_work/docs/evidence/session-mask-5517/verification.md). Retail executable bytes and
 server source were not changed. Documentation aliases were corrected where
 they previously implied suit/achievement/map semantics or a proprietary CAST variant.
 

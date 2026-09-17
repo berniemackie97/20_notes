@@ -1,6 +1,6 @@
 # `GraphicData.dll` — `ini/c3.wdb` format and decode flow
 
-This document captures the fully verified `c3.wdb` decode path used by `GraphicData.dll`.
+The fully verified `c3.wdb` decode path used by `GraphicData.dll`.
 All details below were re-verified directly in the BNinja database (no speculative parsing).
 
 ## Runtime call chain
@@ -35,7 +35,7 @@ Real fixture (`10_work/tests/Conquer.Tests/TestAssets/5517/ini/c3.wdb`):
 
 ## Required-file table and optional DB behavior
 
-`GameDbPack_GetEntrySizeByName` looks up by hash in the in-memory c3.wdb index.  
+`GameDbPack_GetEntrySizeByName` looks up by hash in the in-memory c3.wdb index.
 If a name is not found, it checks a static `(file_name_ptr, required_flag)` table
 (`GameDbRequiredDbFiles`, data around `0x10030360`):
 

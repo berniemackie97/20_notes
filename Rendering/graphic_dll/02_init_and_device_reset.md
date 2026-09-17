@@ -1,6 +1,6 @@
 # `graphic.dll` — Initialization and Device Reset
 
-This document captures the behavior of the `CMyBitmap` device/frame lifecycle entry points implemented in `graphic.dll`.
+The `CMyBitmap` device and frame lifecycle entry points in `graphic.dll`.
 
 ## `CMyBitmap__Init3DEx` (0x100131E0)
 Signature (as decompiled):

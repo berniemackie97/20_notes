@@ -1,7 +1,6 @@
 # `10005` Walk Direction Index Order (5517)
-## Source: `Conquer.exe` BNinja database
 
----
+Source: `Conquer.exe` BNinja database.
 
 ## Verified native tables
 
@@ -30,8 +29,6 @@ Verified contents:
 | `6` | `+1` | `0` |
 | `7` | `+1` | `+1` |
 
----
-
 ## Why this matters
 
 Our server walk handler had been decoding `10005` direction indices with an east-first table:
@@ -56,8 +53,6 @@ position, which matches the observed symptom:
 
 Jump recovery makes sense because jump handling uses explicit target coordinates instead of
 reconstructing the next tile from a direction index.
-
----
 
 ## Server implication
 

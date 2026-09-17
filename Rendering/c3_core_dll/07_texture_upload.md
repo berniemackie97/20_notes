@@ -1,6 +1,6 @@
 # Texture upload engine (`TextureUpload_ExecuteJob`)
 
-This document describes the internal “texture upload job” execution routine used by the engine to copy/transform decoded pixel data into D3D textures.
+The internal "texture upload job" routine the engine uses to copy and transform decoded pixel data into D3D textures.
 
 ## Entry point
 
@@ -83,8 +83,8 @@ Current implementation uses these engine-tag to OpenGL upload mappings:
 - a job object (`this`) that contains:
   - a destination subresource handle (`this[1]`)
   - a source description / decoded-image handle (`this[0]`)
-  - a packed “mode” field (`this[2]`) used for selecting strategies and feature flags
-- a “job descriptor” structure (`a2`) built by the caller (contains format tags, dimensions, strides, and per-level pointers)
+  - a packed "mode" field (`this[2]`) used for selecting strategies and feature flags
+- a "job descriptor" structure (`a2`) built by the caller (contains format tags, dimensions, strides, and per-level pointers)
 - a conversion/palette table pointer (`a3`) which may be null
 - a small integer mode (`a4`) (validated as 1..5 with additional flag bits)
 
@@ -109,18 +109,18 @@ After basic validation and preparation, `TextureUpload_ExecuteJob` tries a fixed
 
 ### `CallCtorIterator_StrideBytes` (`0x1001ADA9`)
 
-This is a generic helper used throughout the upload code to “construct” (initialize) a sequence of fixed-size records:
+This is a generic helper used throughout the upload code to "construct" (initialize) a sequence of fixed-size records:
 
 - Calls a provided function pointer `count` times, each time advancing the base pointer by `strideBytes`.
 - In upload code paths this is typically used with `strideBytes = 16` to initialize arrays of 16-byte records.
 
 ### `NoopCtor_ReturnThis` (`0x1001A885`)
 
-A no-op “constructor” callback used with `CallCtorIterator_StrideBytes`. It simply returns `this` and performs no initialization.
+A no-op "constructor" callback used with `CallCtorIterator_StrideBytes`. It simply returns `this` and performs no initialization.
 
 ### `ResampleTable_CreateLinear2Tap_ClampOrWrap` (`0x1002132E`)
 
-Builds a fixed-size, **2-tap linear** resampling table used by the “type 3” resample strategies.
+Builds a fixed-size, **2-tap linear** resampling table used by the "type 3" resample strategies.
 
 Inputs (observed):
 
@@ -149,7 +149,7 @@ Mapping:
 Verified preconditions (the routine returns failure unless all hold):
 
 - `dst->formatTag == src->formatTag` (compares `dst[1]` vs `src[1]`)
-- `src->auxField4 == 0` (the source descriptor’s field at index `4` must be zero)
+- `src->auxField4 == 0` (the source descriptor's field at index `4` must be zero)
 - `dst->width == src->width` (compares `dst[1046]` vs `src[1046]`)
 - `dst->height == src->height` and `dst->depth == src->depth` (compares `dst[1047]`/`dst[1048]` vs source)
 - If the source has a 256-entry conversion/palette table (`dst[5] != 0`), then:
@@ -167,7 +167,7 @@ Copy behavior (when the above holds):
       - copies exactly `dst->rowCopyBytes` bytes from `srcRow` to `dstRow`
       - advances `dstRow += dst->rowStride` and `srcRow += src->rowStride`
 
-This is the pragmatic “happy path” for identical format + identical dimensions, used when no resampling, padding, or format conversion is needed.
+This is the pragmatic "happy path" for identical format + identical dimensions, used when no resampling, padding, or format conversion is needed.
 
 ### Mipmap generation (2D)
 
@@ -176,7 +176,7 @@ This is the pragmatic “happy path” for identical format + identical dimensio
 This path is used when:
 
 - source dimensions are exactly 2x the destination dimensions (with edge cases where width/height are `1`)
-- source and destination have exactly one “slice” in the depth dimension
+- source and destination have exactly one "slice" in the depth dimension
 
 ### Copy with zero-padding for mismatched dimensions
 
@@ -198,20 +198,20 @@ Verified overlap computation:
 Verified behavior:
 
 - Allocates two temporary buffers of 16-byte records:
-  - a `copyWidth`-sized buffer (zeroed) used as the per-row copy destination for the “overlap copy” step
-  - a second buffer sized to the destination “row record count” (also zeroed) used to zero-fill rows when the destination is wider than the copied overlap
+  - a `copyWidth`-sized buffer (zeroed) used as the per-row copy destination for the "overlap copy" step
+  - a second buffer sized to the destination "row record count" (also zeroed) used to zero-fill rows when the destination is wider than the copied overlap
 - For each slice `z` in `[0 .. copyDepth)`:
   - For each row `y` in `[0 .. copyHeight)`:
     - fetches row records from destination into the temp buffer (vtable call at `+4`)
     - fetches row records from source into the same temp buffer (vtable call at `+8`)
-  - For rows `y` in `[copyHeight .. dstDepthOrHeight)` it fetches rows from the source into the “zero row” buffer to ensure the trailing portion is zero-filled.
+  - For rows `y` in `[copyHeight .. dstDepthOrHeight)` it fetches rows from the source into the "zero row" buffer to ensure the trailing portion is zero-filled.
 - Frees both temp buffers and returns success.
 
-Note: this routine’s use of `max(dstWidth, srcWidth)` for the “width” dimension is preserved as implemented (even if it appears unintuitive). Downstream correctness relies on the exact same behavior.
+Note: this routine's use of `max(dstWidth, srcWidth)` for the "width" dimension is preserved as implemented (even if it appears unintuitive). Downstream correctness relies on the exact same behavior.
 
 ### Copy via row-fetch to temp 16-byte records
 
-`TextureUpload_TryFastPath_CopyViaRowFetch_ToTemp16ByteRecords` (`0x10020582`) copies data when source and destination have identical dimensions, but the upload path needs to operate via the “row fetch” vtable interface instead of raw pointer/stride copying.
+`TextureUpload_TryFastPath_CopyViaRowFetch_ToTemp16ByteRecords` (`0x10020582`) copies data when source and destination have identical dimensions, but the upload path needs to operate via the "row fetch" vtable interface instead of raw pointer/stride copying.
 
 Verified preconditions:
 
@@ -230,7 +230,7 @@ Verified behavior:
 
 3) Frees the temporary buffer and returns success.
 
-This routine is a pragmatic fallback between “raw memcpy” and the more complex resample/compose paths.
+This routine is a pragmatic fallback between "raw memcpy" and the more complex resample/compose paths.
 
 ### Resample (3D nearest-neighbor; fixed-point 16.16)
 
@@ -257,13 +257,13 @@ Behavior:
 - Iterates destination slices `dstZ` in `[0 .. dstDepth)`; maintains `srcZ_fp` in 16.16 and uses `HIWORD(srcZ_fp)` as the selected source slice index.
 - Iterates destination rows `dstY` in `[0 .. dstHeight)`; maintains `srcY_fp` in 16.16 and uses `HIWORD(srcY_fp)` as the selected source row index.
 - For each destination row:
-  - Fetches a source row via the source handle’s vtable (call at `+4`):
+  - Fetches a source row via the source handle's vtable (call at `+4`):
     - `src->FetchRow16(srcY = HIWORD(srcY_fp), srcZ = HIWORD(srcZ_fp), tmpSrcRow)`
     - The implementation caches the last `srcY_fp` used to avoid re-fetching when adjacent `dstY` map to the same `srcY`.
   - For each destination X:
     - Computes `srcX = HIWORD(srcX_fp)` where `srcX_fp` advances by `stepX` each pixel.
     - Copies the selected 16-byte record from `tmpSrcRow[srcX]` into `tmpDstRow[dstX]`.
-  - Writes the destination row via the destination handle’s vtable (call at `+8`):
+  - Writes the destination row via the destination handle's vtable (call at `+8`):
     - `dst->WriteRow16(dstY, dstZ, tmpDstRow)`
 
 Cleanup:
@@ -283,7 +283,7 @@ This path is used when:
 
 Two additional strategies implement resampling using precomputed **2-tap linear** tables (built by `ResampleTable_CreateLinear2Tap_ClampOrWrap`).
 
-Both strategies operate on 16-byte “pixel records” treated as **four floats** (RGBA-like float4). Each output record is computed as a weighted combination of source float4 records.
+Both strategies operate on 16-byte "pixel records" treated as **four floats** (RGBA-like float4). Each output record is computed as a weighted combination of source float4 records.
 
 #### `TextureUpload_TryPath_Type3_ComputeFromWeightTables_VariantA` (`0x1002142E`)
 
@@ -297,13 +297,13 @@ Weight table construction (observed flags):
   - one for the X axis (`dstWidth` from `srcWidth`)
   - one for the Y axis (`dstHeight` from `srcHeight`)
 - The `wrap` parameter is controlled by bits in `job->mode`:
-  - bit `0x10000` controls one axis’ wrap/clamp selection
-  - bit `0x20000` controls the other axis’ wrap/clamp selection
+  - bit `0x10000` controls one axis' wrap/clamp selection
+  - bit `0x20000` controls the other axis' wrap/clamp selection
 
 Row fetch caching:
 
 - Maintains two `srcWidth`-sized float4 row buffers and alternates between them (ping-pong) to avoid redundant fetches.
-- Fetches source rows via the source handle’s vtable `+4` into one of the row buffers, keyed by the `srcY` indices referenced by the Y table.
+- Fetches source rows via the source handle's vtable `+4` into one of the row buffers, keyed by the `srcY` indices referenced by the Y table.
 
 Per-output pixel math (exact structure):
 
@@ -328,18 +328,18 @@ Verified preconditions:
 
 High-level behavior:
 
-- Extends the “2D two-tap” approach of Variant A to an additional dimension, computing output float4 records by combining multiple intermediate weighted sums.
+- Extends the "2D two-tap" approach of Variant A to an additional dimension, computing output float4 records by combining multiple intermediate weighted sums.
 - Builds **three** `ResampleTable_CreateLinear2Tap_ClampOrWrap` tables; the third is controlled by an additional mode bit (`0x40000`).
 - Uses four `srcWidth`-sized float4 row buffers (organized as two-by-two groups) and a destination row buffer.
 - Iterates over destination slices and rows and writes via destination vtable `+8` with `(dstY, dstZ, outRowFloat4)`.
 
 Note:
 
-- The internal arithmetic is implemented directly as float4 multiply-add chains over the three 2-tap tables (the code is largely unrolled). Implementations should preserve the same multiply/add staging and indexing to match the engine’s exact floating-point behavior.
+- The internal arithmetic is implemented directly as float4 multiply-add chains over the three 2-tap tables (the code is largely unrolled). Implementations should preserve the same multiply/add staging and indexing to match the engine's exact floating-point behavior.
 
 ### Compose (general resample via sparse weight tables)
 
-Two “compose slices” strategies implement resampling by accumulating source contributions into destination buffers using sparse weight tables. These paths are distinct from the “type 3” two-tap paths above.
+Two "compose slices" strategies implement resampling by accumulating source contributions into destination buffers using sparse weight tables. These paths are distinct from the "type 3" two-tap paths above.
 
 #### `ResampleWeights_Build2PhaseTable` (`0x1001EB6A`) table format
 
@@ -348,8 +348,8 @@ Two “compose slices” strategies implement resampling by accumulating source 
 Verified layout:
 
 - Byte blob starts with a `u32 totalBytes`.
-- Then follows an array of `u32` offsets, one per destination sample, each offset points to the start of that destination’s weight list (relative to the beginning of the blob).
-- Each destination’s weight list is a sequence of `(int srcIndex, float weight)` pairs.
+- Then follows an array of `u32` offsets, one per destination sample, each offset points to the start of that destination's weight list (relative to the beginning of the blob).
+- Each destination's weight list is a sequence of `(int srcIndex, float weight)` pairs.
 - Iteration pattern used by callers:
   - For a given destination sample, the caller computes `end = (char*)entry + *(u32*)entry` and iterates `for (p = entry + 1; p < end; p += 2)`.
 
@@ -363,7 +363,7 @@ Weight emission characteristics (as implemented):
 
 Verified preconditions:
 
-- `srcDepth == 1` and `dstDepth == 1` (both objects’ depth fields at offset `4192` equal `1`)
+- `srcDepth == 1` and `dstDepth == 1` (both objects' depth fields at offset `4192` equal `1`)
 
 Behavior:
 
@@ -372,11 +372,11 @@ Behavior:
   - Y table maps `dstHeight` from `srcHeight`
 - Allocates:
   - A pool of per-destination-row accumulation buffers (each buffer holds `dstWidth` float4 records).
-  - A metadata array of 12-byte “buckets” (one per destination row) containing:
+  - A metadata array of 12-byte "buckets" (one per destination row) containing:
     - pointer to the row buffer (or null)
     - a free-list link pointer
     - a remaining-reference count
-- Initializes each destination row’s reference count by counting how many times that row index appears in the Y table.
+- Initializes each destination row's reference count by counting how many times that row index appears in the Y table.
 
 Accumulation:
 
@@ -387,7 +387,7 @@ Accumulation:
 
 Flush:
 
-- When a destination row’s reference count reaches zero (all contributing source rows have been processed), writes the row to the destination via destination vtable `+8` at `z = 0`, then returns the buffer to the free list.
+- When a destination row's reference count reaches zero (all contributing source rows have been processed), writes the row to the destination via destination vtable `+8` at `z = 0`, then returns the buffer to the free list.
 
 Cleanup:
 
@@ -401,17 +401,17 @@ Behavior:
   - X maps `dstWidth` from `srcWidth`
   - Y maps `dstHeight` from `srcHeight`
   - Z maps `dstDepth` from `srcDepth`
-- Allocates one 12-byte “bucket” per destination slice. Each bucket holds a pointer to a full `dstWidth * dstHeight` float4 accumulation buffer plus refcount metadata.
+- Allocates one 12-byte "bucket" per destination slice. Each bucket holds a pointer to a full `dstWidth * dstHeight` float4 accumulation buffer plus refcount metadata.
 - For each source slice and row, fetches source row float4 data and accumulates into all destination slices referenced by the Z table, using `wx * wy * wz` weights.
 
 Flush:
 
-- When a destination slice’s reference count reaches zero, writes that slice to the destination by iterating rows and calling destination vtable `+8` per row with pointer offsets:
+- When a destination slice's reference count reaches zero, writes that slice to the destination by iterating rows and calling destination vtable `+8` per row with pointer offsets:
   - `dst->WriteRow16(dstY, dstZ, sliceBuffer + dstY * dstWidth)`
 
 ### `Vector12_DestroyMaybeFree` (`0x1001EE27`)
 
-Upload compose strategies allocate arrays of 12-byte “bucket” records using C++ vector construction helpers. This routine is the corresponding destruction/free helper:
+Upload compose strategies allocate arrays of 12-byte "bucket" records using C++ vector construction helpers. This routine is the corresponding destruction/free helper:
 
 - When called with flag bit `2`, it runs a 12-byte-record destructor iterator over `count = *((int*)this - 1)` and optionally frees the whole allocation when flag bit `1` is set.
 - Callers in this module pass `a2 = 3` (destroy elements and free the backing allocation).

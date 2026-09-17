@@ -1,4 +1,4 @@
-# `play.exe` Startup And Handoff (Verified)
+# `play.exe` Startup And Handoff
 
 ## Scope
 

@@ -1,7 +1,6 @@
 # Network Packet System — Full Protocol Documentation
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
 ## Packet Format (All Messages)
 ```c
@@ -25,6 +24,11 @@ struct PacketHeader {
 
 It does **not** validate a specific message type ID; each message parse wrapper checks its own expected type afterward (for example `CMsgUserInfo__Parse` checks `type == 1006`).
 
+Per-packet documents write this as **Parse**: `CMsgX__Parse` - standard header
+validation, then `type == NNNN`. "Standard header validation" always means exactly
+the four checks above. A packet whose parse wrapper does something else says so in
+full.
+
 ## Encryption/Handshake (EncState == 2)
 > **See also**: [13_connection_lifecycle.md](13_connection_lifecycle.md) for the complete connection lifecycle including TCP connect, DH key exchange, authentication, CGameSocket memory layout, and CClientSecurity internals.
 
@@ -33,7 +37,7 @@ This build implements its DH handshake and packet crypto at the `CGameSocket` la
 **2026-09-03 native consumer audit:** the post-1055 session-derived mask rekeys
 outbound legacy tables, but mode 2 never consumes them. It is not a DH input,
 packet checksum, framing change, or extra GameServer encryption layer.
-See the [full binary-backed session-mask audit](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/20_notes/Network/14_session_derived_legacy_cipher_mask.md) for the exact
+See the [full binary-backed session-mask audit](14_session_derived_legacy_cipher_mask.md) for the exact
 send/receive branches, 1052/1057/1203 alternatives and original-x86 probes.
 
 ### Handshake Phase (`CGameSocket+0x12424` != 0)
@@ -68,9 +72,6 @@ send/receive branches, 1052/1057/1203 alternatives and original-x86 probes.
 - `DH_generate_key` (0x77A290)
 - `DH_compute_key` (0x77A2A0)
 - `DH_size` (0x778020)
-
----
-
 
 ## Packet Dispatch (CNetMsg__ProcessMsg @ 0x6DED63)
 `CNetMsg__ProcessMsg` calls `CNetMsg__ProcessMsg_Dispatch` at `0x6DF3B5` to allocate + parse the appropriate message object for an incoming packet (call site: 0x6DEC2C).
@@ -237,8 +238,6 @@ Note: This table is the 1002–1151 switch/jumptable view. `CNetMsg__ProcessMsg_
 
 Note: Types with `Default (no handler)` hit the dispatch default target at `0x6E137B` and do not allocate or process a message object in this client build.
 
----
-
 ## Extended Packet Types (2048+)
 
 The dispatch function `CNetMsg__ProcessMsg_Dispatch` handles additional packet types outside the 1002–1151 jump table via chained if/else logic. These "extended" types cover subsystems such as item status sync, guild notifications, pet/mount management, poker (ShowHand), arena/battle, and TeamPK.
@@ -349,5 +348,3 @@ These types are dispatched via subtraction/comparison chains in the else-branch 
 | 10005 | 0x2715 | CMsgEntityAction | 0x7403A1 | 0x7405E7 |
 | 10014 | 0x271E | CMsgPlayerSpawn | 0x755E83 | 0x755F64 |
 | 10017 | 0x2721 | CMsgUserAttribEx | 0x7572EB | 0x757374 |
-
----

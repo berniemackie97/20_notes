@@ -1,6 +1,6 @@
 # `Role3D.dll` — Linked-part motion chain resolution
 
-This document captures the verified path that `I3DRole` uses to resolve and apply linked-part motion transforms before rendering.
+The verified path `I3DRole` takes to resolve and apply linked-part motion transforms before rendering.
 
 ## Primary functions
 

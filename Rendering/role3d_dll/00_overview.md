@@ -1,6 +1,6 @@
 # `Role3D.dll` — Overview
 
-`Role3D.dll` provides the client’s 3D “role” and “simple 3D object” runtime objects.
+`Role3D.dll` provides the client's 3D "role" and "simple 3D object" runtime objects.
 
 Primary entry points:
 

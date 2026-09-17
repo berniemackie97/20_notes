@@ -1,4 +1,4 @@
-# `Conquer.exe` Startup Chain (Verified)
+# `Conquer.exe` Startup Chain
 
 ## Scope
 

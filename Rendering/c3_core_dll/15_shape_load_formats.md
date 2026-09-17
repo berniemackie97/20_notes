@@ -1,6 +1,6 @@
 # `c3_core_dll.dll` — `C3Shape_LoadFromStream` (`SHAP`) payload format
 
-This document captures verified `SHAP` payload decode behavior in:
+Verified `SHAP` payload decode behaviour in:
 
 - `C3Shape_LoadFromStream` (`0x10014E90`)
 - `C3Shape_ConfigureSegmentTrail` (`0x10015060`)

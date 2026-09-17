@@ -1,6 +1,6 @@
 # `graphic.dll` — Logging (`debug.log` / `./debug/YYYY_M_D.log`)
 
-This document describes the logging behavior implemented inside `graphic.dll`.
+Logging behaviour inside `graphic.dll`.
 
 ## Entry points
 - `Gfx_Logf` (0x10037250): `vsprintf` into a stack buffer then forwards to `Gfx_LogToDatedDebugFile`.
@@ -16,4 +16,3 @@ This document describes the logging behavior implemented inside `graphic.dll`.
 ## Notes
 - Logging is conditional only on `Format != NULL` (no level filtering observed in this function).
 - Formatting uses `vsprintf` (no bounds checks).
-

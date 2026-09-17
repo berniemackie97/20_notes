@@ -1,6 +1,6 @@
 # `c3_core_dll.dll` — `C3Motion_LoadFromStream` payload formats
 
-This document captures the verified on-disk `MOTI` payload decode performed by
+The verified on-disk `MOTI` payload decode performed by
 `C3Motion_LoadFromStream` (`0x100092F0`).
 
 Verified in BNinja (`C3_CORE_DLL.dll.bndb`) after deobfuscation and type cleanup.

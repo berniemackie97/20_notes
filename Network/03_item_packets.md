@@ -1,7 +1,6 @@
 # Item Packets — Items, Equipment, Gems, Packages
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
 ## MsgItem (Type 1008)
 **Direction**: S→C (action dispatch based on server-sent mode)
@@ -70,32 +69,26 @@ path.
 - `9`: Creates a new item, initializes from `+4/+8`, copies the fields above, then routes it into the verified subsystem behind singleton `0x410729` and posts `0xDC2`.
 - `10`: Creates a new item, initializes from `+4/+8`, copies the fields above, then routes it into the verified subsystem behind singleton `0x51D37B`.
 
----
-
-
 ## MsgFloorItem (Type 1037)
 **Direction**: S→C (log only in this build)
 **Purpose**: Logging‑only; no packet fields are processed beyond header logging.
 **Dispatch**: Create `CMsgFloorItem__Create` (0x743F64), parse `CMsgFloorItem__Parse` (0x743FCA), process `CNetMsg__LogProcessMsg` (0x6DF2F6; shared logging handler)
 
-**Verified parse behavior**:
-- `CMsgFloorItem__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1037`.
+**Parse**: `CMsgFloorItem__Parse` — standard header validation, then `type == 1037`.
 
 **Verified processing behavior**:
 - `CNetMsg__LogProcessMsg` only logs `"Process Msg:%d, Size:%d"` using the message header fields; no packet-specific fields are parsed.
-
 
 ## MsgMapItem (Type 1038)
 **Direction**: C→S (NoopProcess on receive; outgoing solidify builder)
 **Purpose**: Outgoing solidify/nonsuch‑solidify material list (target item UID + material item UIDs); incoming handler is a no‑op in this build.
 **Dispatch**: Create `CMsgMapItem__Create` (0x717AFA), parse `CMsgMapItem__Parse` (0x717B60), process `CNetMsg__NoopProcess` (0x5AD9B1)
 
-**Verified parse behavior**:
-- `CMsgMapItem__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1038`.
+**Parse**: `CMsgMapItem__Parse` — standard header validation, then `type == 1038`.
 
 **Verified processing behavior**:
 - `CNetMsg__NoopProcess` decompiles to an empty function (no reads, no writes, no calls).
-- In `CNetMsg__ProcessMsg` (0x6DEBA5), after `CNetMsg__ProcessMsg_Dispatch` returns a parsed message object, the engine calls `msg->vftable[4](msg, 0)` as the packet “Process” handler.
+- In `CNetMsg__ProcessMsg` (0x6DEBA5), after `CNetMsg__ProcessMsg_Dispatch` returns a parsed message object, the engine calls `msg->vftable[4](msg, 0)` as the packet "Process" handler.
 - In the `CMsgMapItem` vtable `CMsgMapItem__vtable (0x86C184)`, entry index `4` is `CNetMsg__NoopProcess` (0x5AD9B1), so incoming type `1038` packets are ignored in this build.
 - `CMsgMapItem__Create` (0x717AFA) is referenced only from `CNetMsg__ProcessMsg_Dispatch` and the two outgoing send paths (solidify dialogs), consistent with a client→server packet whose server→client handler is empty here.
 
@@ -103,7 +96,7 @@ path.
 - `CMsgMapItem__Build` (0x717B83) is called from:
   - `CDlgNonsuchSolidify__SendMapItem` (0x4D996C), which validates the target item via `CHero__GetItemByUID` and requires `CItem__GetTimeLimitFlag` before sending.
   - `CDlgSolidify__SendMapItem` (0x52833F), which sends the selected target item + material list for solidify.
-- The material list passed to `CMsgMapItem__Build` is the dialog’s item‑UID vector; `CDlgNonsuchSolidify__ClearMaterials` (0x4DA0FB) and `CDlgSolidify__ClearMaterials` (0x5283A6) iterate the same vector and release each UID via `PostMainWndMsg_0x464(0x4C7, uid)`.
+- The material list passed to `CMsgMapItem__Build` is the dialog's item‑UID vector; `CDlgNonsuchSolidify__ClearMaterials` (0x4DA0FB) and `CDlgSolidify__ClearMaterials` (0x5283A6) iterate the same vector and release each UID via `PostMainWndMsg_0x464(0x4C7, uid)`.
 - `CMsgMapItem__Build` sets:
   - `+4` (u16) = `a4` (mode selector),
   - `+6` (u16) = `0` (reserved; payload buffer is zeroed in `CMsgMapItem__Create` via `CNetMsg__InitPayloadBuffer`),
@@ -122,14 +115,12 @@ path.
 - `+12` (u32) material count.
 - `+16..` array of material item UIDs.
 
-
 ## MsgGemEmbed (Type 1027)
 **Direction**: C→S (NoopProcess on receive; outgoing gem embed/takeout builder)
 **Purpose**: Client request to embed/take out a gem from an equipment slot.
 **Dispatch**: Create `CMsgGemEmbed__Create` (0x7533AE), parse `CMsgGemEmbed__Parse` (0x75347E), process `CNetMsg__NoopProcess` (0x5AD9B1)
 
-**Verified parse behavior**:
-- `CMsgGemEmbed__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1027`.
+**Parse**: `CMsgGemEmbed__Parse` — standard header validation, then `type == 1027`.
 
 **Verified processing behavior**:
 - Process handler is `CNetMsg__NoopProcess` (no-op).
@@ -145,14 +136,12 @@ path.
   - `+16` (u16) = slot index (1 or 2),
   - `+18` (u16) = action (0 = embed, 1 = takeout).
 
-
 ## MsgPackage (Type 1039)
 **Direction**: S→C
 **Purpose**: Warehouse/package operations (verified by warehouse/inventory handlers in `CMsgPackage__Process`).
 **Dispatch**: Create `CMsgPackage__Create` (0x72B91E), parse `CMsgPackage__Parse` (0x72B9DA), process `CMsgPackage__Process` (0x72BA6C)
 
-**Verified parse behavior**:
-- `CMsgPackage__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1039`.
+**Parse**: `CMsgPackage__Parse` — standard header validation, then `type == 1039`.
 
 **Verified field usage in `CMsgPackage__Process`** (offsets relative to packet start):
 - `+4` (u32) is a mode selector:
@@ -165,29 +154,25 @@ path.
 - `+32` (u32) is passed to `PostMainWndMsg_0x464(0xD96, ...)` in mode `0`.
 - `+60` (u32) is stored into the struct in mode `9`.
 
-
 ## Account Authentication Response (Type 1055; former MsgSuitStatus alias)
 **Direction**: AccountServer → Client
 **Purpose**: Login success grant and GameServer redirect, or login failure. The old item/suit classification was incorrect; this section remains here for existing references.
 **Dispatch**: `CMsgAccountAuthResponse__Ctor` (0x7548A3), `CMsgAccountAuthResponse__Parse` (0x754909), `CMsgAccountAuthResponse__Process` (0x75492C)
 
-**Verified parse behavior**:
-- `CMsgAccountAuthResponse__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1055`.
+**Parse**: `CMsgAccountAuthResponse__Parse` — standard header validation, then `type == 1055`.
 
 **Verified field usage in `CMsgAccountAuthResponse__Process`** (offsets relative to packet start):
 - `+4` (u32) is the primary gate. If `== 0`, an error path builds UI text and returns via `MFC__SetDword_0x4(+8)`. If nonzero, it is written to singleton `+2716` and used in follow‑on calls.
 - `+8` (u32) is an error code when UID is zero; otherwise it is authenticationKey, stored by `CHero__SetLoginAuthKey` at CHero+0x2F5C. The wrapping sum with UID XOR 0x4321 is a stack-local cookie, not a checksum.
 - `+16` (u32) is an additional session field stored at CHero+0xAA0 and forwarded by alternate 1203.
-- The derived `key ^ cookie` rekeys outbound legacy tables after mode 2 is selected. Those tables are unused by standard GameServer send/receive. [Verified native consumer audit](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/20_notes/Network/14_session_derived_legacy_cipher_mask.md).
-
+- The derived `key ^ cookie` rekeys outbound legacy tables after mode 2 is selected. Those tables are unused by standard GameServer send/receive. [Verified native consumer audit](14_session_derived_legacy_cipher_mask.md).
 
 ## MsgDetainedItem (Type 1102)
 **Direction**: S→C
 **Purpose**: Detained‑item package sync (add/remove/update items; timeout notifications).
 **Dispatch**: Create `CMsgDetainedItem__Create` (0x74E08A), parse `CMsgDetainedItem__Parse` (0x74978C), process `CMsgDetainedItem__Process` (0x74E158)
 
-**Verified parse behavior**:
-- `CMsgDetainedItem__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1102`.
+**Parse**: `CMsgDetainedItem__Parse` — standard header validation, then `type == 1102`.
 
 **Verified handler prelude**:
 - The handler gets `CPackageMgr` via `CPackageMgr__GetSingletonPtr`.
@@ -245,7 +230,6 @@ path.
 - It clears `item+0x1A0` via `CItem__AndNotDword_0x1A0(-1)` before OR‑ing `entry+26`.
 - It sets `item+0x165` to `1` via `CItem__SetByte_0x165`.
 
-
 ## CMsgItemStatus (Type 2048)
 **Direction**: S→C
 **Wire type**: 2048 (0x0800)
@@ -284,7 +268,6 @@ For modes 0/1/3, the handler searches three sources in order:
 
 Mode 2 uses the same three-source lookup plus an additional warehouse check via `CWarehouse__GetCurrentItem` (0x685DCE).
 
----
 **Verified world-entry bootstrap implication**:
 - native `CMsgAction__Process` subtype `0x4A` immediately sends client `MsgAction 0x4B (GetItemSet)` after the enter-map side effects complete.
 - the verified local-hero equipment hydrate path on the receive side is `MsgItem (1008)` action `4`, which routes through `ItemPosition_NormalizeEquipmentPosition` and `CRole__SetEquipSlotItem`.

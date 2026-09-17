@@ -1,9 +1,8 @@
 # CHero Class — Local Player (Singleton)
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Hero.cpp (debug string at 0x93F114)
+
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Hero.cpp` (debug string at 0x93F114).
 ## Inherits: CPlayer -> CRole
 ## IDA Folder: /Entity_Hero/ (8 sub-folders, 160 functions total)
-
----
 
 ## Memory Layout (~12,300 bytes)
 ```c
@@ -83,8 +82,6 @@ struct CHero : CPlayer {
     uint32_t chat_bubble_end;        // offset 11812
 };
 ```
-
----
 
 ## Combat (25 functions, all verified through decompilation)
 
@@ -389,8 +386,6 @@ Same iteration pattern as GetMagicByEffectParam25_0 but for param25 == 2.
   to gate proficiency requirements; MsgFlushExp 1104 action 0 writes
   entry+0xC and entry+0x10
 ```
-
----
 
 ## Core (69 functions, all verified through decompilation)
 
@@ -858,8 +853,6 @@ return (char*)this + 11616;
 return (char*)this + 11672;
 ```
 
----
-
 ## Inventory (21 functions, all verified through decompilation)
 
 ### Container Page System (8)
@@ -1100,8 +1093,6 @@ Fields: hero entity ID, equipment UID, gem UID, action type
 6. Posts window message 0xC5F to refresh UI
 ```
 
----
-
 ## Movement (6 functions, all verified through decompilation)
 
 ### CHero__StartAutoRun (0x5B29E2, size=~10000+)
@@ -1176,8 +1167,6 @@ Per-frame logic:
 3. On stop: call sub_66279B, post message 0x478, show "AutoRunEnd" text
 ```
 
----
-
 ## Pets (3 functions, all documented)
 
 ### CHero__AddPet (0x662AE7, size=24)
@@ -1207,8 +1196,6 @@ this->offset_3044 = a3;  // byte 0x2F70 - eudemon attrib 2
 this->offset_3045 = a4;  // byte 0x2F74 - eudemon attrib 3
 ```
 **Offsets**: 3043-3046 (bytes 0x2F6C-0x2F78) = eudemon attributes (4 DWORDs)
-
----
 
 ## Rendering (3 functions, all documented)
 
@@ -1251,8 +1238,6 @@ Process:
 7. Render text with ShowStringCommon
 8. RTL/LTR handling via g_bRightToLeftLayout
 ```
-
----
 
 ## Social (17 functions, all documented)
 
@@ -1521,8 +1506,6 @@ vector_clear(this->offset_885, this->offset_886);
 ```
 **Offsets**: 885-886 (bytes 0xDD4-0xDD8) = qualifying entries vector (start/end ptrs)
 
----
-
 ## SubProfession (16 functions, all documented)
 
 ### CSubProfMrg Memory Layout
@@ -1727,8 +1710,6 @@ this->duration_start = timeGetTime() + duration_ms - 50000;
 this->is_active = 1;
 ```
 **Offsets**: +55 (byte 0xDC) = duration start timestamp, +56 (byte 0xE0) = active flag
-
----
 
 ## Idle State System
 
@@ -2008,8 +1989,6 @@ Auto-run is blocked by any of the following:
 | Direction | 22 | 0 |
 | PositionX | 24 | 0 |
 | PositionY | 26 | 0 |
-
----
 
 ## Helper Address Index
 

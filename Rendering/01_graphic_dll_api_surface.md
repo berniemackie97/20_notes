@@ -1,9 +1,7 @@
 # `graphic.dll` Import Surface (CMyBitmap API) — 5517 Client
-This document enumerates every imported symbol from `graphic.dll` (as used by the 5517 client) and groups them into functional categories.
+Every symbol the 5517 client imports from `graphic.dll`, grouped by function.
 
 Source: IDA import table (client calls into `graphic.dll` via these IAT entries).
-
----
 
 ## Device / Frame Lifecycle
 - `CMyBitmap::Init3DEx(HWND, width, height, ...)` — **HWND-based** graphics initialization
@@ -58,17 +56,15 @@ Source: IDA import table (client calls into `graphic.dll` via these IAT entries)
 - `PuzzelTriangleCreate(...)`
 - `PuzzelBlockCreate(...)`
 
----
-
 ## Observed Call Patterns (high-level)
 - Frame helpers exist in `conquer.exe` (at `0x5AD965` and `0x5AD981`) that wrap:
   - `Begin3D(); ClearBuffer(...);` then later `End3D(); Flip(...);`
-- A separate “outchat/exchat” render path draws into a top/bottom split and flips with source/dest RECTs.
+- A separate "outchat/exchat" render path draws into a top/bottom split and flips with source/dest RECTs.
 - Map/tile and puzzle systems sometimes call `IfDeviceLost()` before attempting offscreen rendering.
 
 ### Concrete call-sites (useful anchors)
 - `Exe_BeginFrame3DAndClear` (`0x5AD965`): `Begin3D()` + `ClearBuffer(1,1,0xFF000000)` (simple begin-frame helper).
 - `Exe_EndFrame3DAndPresent` (`0x5AD981`): `End3D()` + `Flip(NULL,NULL,NULL)` (simple present helper).
 - `CMyShellDlg__RunFrameTick` (`0x5DCFAA`): main per-frame driver; polls `IfDeviceLost()` and calls `ResetDevice()` on state `2`
-- `conquer.exe` function at `0x5DE04A`: “exchat top bar” render path; flips with explicit `RECT` + `HWND`. Not yet decompiled/renamed in IDA.
+- `conquer.exe` function at `0x5DE04A`: "exchat top bar" render path; flips with explicit `RECT` + `HWND`. Not yet decompiled/renamed in IDA.
 - `CGameMain__func_002` (0x66DB69): clears and draws centered string using `CalcuTextExtentCommon` + `ShowStringCommon`

@@ -34,7 +34,7 @@ Type 5 property setter (`RoleView_Type5_SetProperty`, vtable slot 1) uses:
 
 - key `21`: `RoleView_Type5_SetValue21_RecomputeVariantLook(value21)`
   - writes `value21` into the object
-  - recomputes a derived “percent” as `MulDiv(value22, 100, value21)` clamped to `<= 100`
+  - recomputes a derived "percent" as `MulDiv(value22, 100, value21)` clamped to `<= 100`
   - selects the first `Look{i}` whose corresponding `Var{i}` is `>= percent`
   - applies that look-id via `RoleView_Type5_ApplyLookId_RoleData_ToSimple3DObj`
 
@@ -51,4 +51,4 @@ If `value21 == 0`, recomputation treats the derived percent as `100`.
 - returns early if `lookId` equals the currently-applied look-id
 - looks up role data for `(lookId % 10, lookId / 10)` via `RoleDataQuery`
 - copies role data fields into the object (including a 0x24-byte name string)
-- ensures an internal `Simple3DObj` exists and sets its “model id” from role data
+- ensures an internal `Simple3DObj` exists and sets its "model id" from role data

@@ -2,8 +2,6 @@
 
 ## Status: VERIFIED TABLES + VERIFIED CFB PRIMITIVE + VERIFIED SCHEDULE EXPORT MAPPING
 
----
-
 ## Overview
 
 TQCipher64 is the project's historical name for the **CAST5 / CAST-128** primitive
@@ -14,7 +12,7 @@ AccountServer and separate modes 1/3/4 use the distinct legacy TQ byte transform
 The 2026-09-03 native audit independently matched the block/key/CFB control flow
 and all eight S-boxes to OpenSSL CAST. The session-derived mask modifies only
 unused outbound legacy tables in GameServer mode 2; it does not modify CAST.
-See the [complete native mask and transport audit](/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/20_notes/Network/14_session_derived_legacy_cipher_mask.md).
+See the [complete native mask and transport audit](../Network/14_session_derived_legacy_cipher_mask.md).
 
 Verified primitive properties:
 - all 8 S-boxes are verbatim RFC 2144 S1–S8
@@ -35,8 +33,6 @@ a round flag), but this is a representation detail, not a cryptographic divergen
 | Stream mode       | CFB-64 (Cipher Feedback, 8-byte register, byte-granular) |
 | S-box origin      | RFC 2144 (CAST-128) — all 8 S-boxes are verbatim CAST S1–S8 |
 
----
-
 ## Function Address Reference
 
 | Function | Analyst name (current BN for CAST rows) | Address | Description |
@@ -47,8 +43,6 @@ a round flag), but this is a representation detail, not a cryptographic divergen
 | Engine init | `TqCipher64_EnsureEngineInit` | `0x778040` | Lazy-init global cipher vtable |
 | DH context create | `DH_new_wrapper` | `0x777DC0` | Wraps embedded OpenSSL DH_new |
 | DH context free | `DH_free` | `0x777F30` | Embedded OpenSSL DH_free |
-
----
 
 ## S-Box Layout (8 Total)
 
@@ -91,8 +85,6 @@ KSBox1[0] = 0xF6FA8F9D  ← CAST-128 S6[0], RFC 2144 Appendix B ✓
 KSBox2[0] = 0x85E04019  ← CAST-128 S7[0], RFC 2144 Appendix B ✓
 KSBox3[0] = 0xE216300D  ← CAST-128 S8[0], RFC 2144 Appendix B ✓
 ```
-
----
 
 ## Block Cipher: `TqCipher64_EncryptBlock` (0x77F310)
 
@@ -142,8 +134,6 @@ F3 (rounds 2,5,8,11,14):
 ```
 All arithmetic is unsigned 32-bit wrapping (mod 2³²).
 
----
-
 ## Key Schedule: `TqCipher64_ExpandKeySchedule` (0x778790)
 
 ### Signature
@@ -179,8 +169,6 @@ Verification note:
   `((raw_ks_byte - 16) & 0x1F)` into the exported schedule.
 - The bootstrap key `BC234xs45nme7HU9` schedule and block vectors are captured in
   `10_work/tests/Conquer.Tests/Crypto/TqCipher64Tests.cs`.
-
----
 
 ## CFB-64 Stream Mode: `TqCipher64_Cfb64_Crypt` (0x778590)
 
@@ -229,8 +217,6 @@ for each byte i:
 - The IV bytes are interpreted as BIG-ENDIAN for the block cipher call,
   but stored/read as individual bytes indexed 0–7.
 
----
-
 ## Embedded OpenSSL (DH Operations)
 
 The client binary embeds OpenSSL for Diffie-Hellman key exchange. Confirmed by
@@ -255,8 +241,6 @@ the embedded source path string in `DH_free` (0x777F30):
 replaced by `System.Numerics.BigInteger` with `BigInteger.ModPow` for the
 DH exchange.
 
----
-
 ## Usage in Network Protocol
 
 TQCipher64 is used exclusively in **CFB-64 streaming mode**:
@@ -274,9 +258,7 @@ TQCipher64 is used exclusively in **CFB-64 streaming mode**:
    - Two independent CFB-64 instances: one for encrypt (with encrypt IV),
      one for decrypt (with decrypt IV)
 
-See `20_notes/Network/13_connection_lifecycle.md` for the full handshake protocol.
-
----
+See `../Network/13_connection_lifecycle.md` for the full handshake protocol.
 
 ## Implementation Notes for C#
 

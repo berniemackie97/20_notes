@@ -1,8 +1,8 @@
 # `Role3D.dll` — Effect instance list and render paths
 
-`Role3D.dll` owns and updates a per-`PartInfo` “effect instance” list. Each effect instance is updated on a frame-rate gate and then rendered using parameters sourced from the active render context.
+`Role3D.dll` owns and updates a per-`PartInfo` "effect instance" list. Each effect instance is updated on a frame-rate gate and then rendered using parameters sourced from the active render context.
 
-This document defines:
+Defines:
 - how effect instances are stored and iterated
 - the gating rules that decide whether an effect is rendered this frame
 - the two concrete render paths used by the engine
@@ -170,7 +170,7 @@ Extra verified control-flow details:
 - otherwise iterates effect slots via the shared helper `PartInfo_EffectSlotPointerAtIndex` (`0x1000DBC0`)
 - after iteration, calls `(*this->vtable)[1]` and returns that value (`0x10008C1E..0x10008C25`)
 
-## Render path B: “UI/overlay” render variants
+## Render path B: "UI/overlay" render variants
 
 Two additional iterators exist that render effect instances in alternative coordinate spaces:
 
@@ -406,7 +406,7 @@ The following methods are now fully named and verified in BNinja:
 | `Game3DEffect_SetRotationZDegreesForCategorySelection` | `0x10009D60` | Writes selected effect `+0x1B4 = degrees * 0.0174532924f` (category/all selector). |
 | `Game3DEffect_SetScaleForSelection` | `0x10009E00` | `selector == -1` writes header `+0x2C..+0x34`; otherwise writes selected effect `+0x1A0..+0x1A8` (index/category mode). |
 | `Game3DEffect_SetRenderParam1ForSelection` | `0x10009F10` | Writes selected effect `+0x1B8`; writes are gated by `templateEnabledFlagBool` (`effect+0x1C0 != 0`). Supports all/index/category selectors. |
-| `Game3DEffect_SetPerPartBlendModesForCategorySelection` | `0x10009FC0` | Writes selected effects’ per-part blend streams: `+0x74[i]` and `+0xB4[i]`; optional part-index filter. |
+| `Game3DEffect_SetPerPartBlendModesForCategorySelection` | `0x10009FC0` | Writes selected effects' per-part blend streams: `+0x74[i]` and `+0xB4[i]`; optional part-index filter. |
 | `Game3DEffect_SetTripletAForCategorySelection` | `0x1000C970` | Writes selected effect `+0x1C8/+0x1CC/+0x1D0` (category/all selector). |
 | `Game3DEffect_SetTripletBForCategorySelection` | `0x1000CA20` | Writes selected effect `+0x1D4/+0x1D8/+0x1DC` (category/all selector). |
 

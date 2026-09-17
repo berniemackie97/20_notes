@@ -1,4 +1,4 @@
-# `_DXPlaySound@24` Contract (Verified)
+# `_DXPlaySound@24` Contract
 
 ## Export + core implementation
 

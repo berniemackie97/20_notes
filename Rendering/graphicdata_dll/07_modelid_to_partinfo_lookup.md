@@ -1,6 +1,6 @@
 # `GraphicData.dll` — Model ID → 3D object part-info lookup (`vfn_64` / `vfn_68`)
 
-`Role3D.dll` obtains per-model “part-info” records by calling two `GameDataSetQuery()` vtable methods that take a `modelId` and return a pointer to a part-info structure.
+`Role3D.dll` obtains per-model "part-info" records by calling two `GameDataSetQuery()` vtable methods that take a `modelId` and return a pointer to a part-info structure.
 
 These methods are used by `Role3D.dll` when initializing `Simple3DObj` and `I3DRole` part containers.
 
@@ -40,7 +40,7 @@ Vtable offset: `+0x44` (index `17` within `g_IGameDataSet_BaseVtbl` at `0x100301
 Return value:
 
 - returns `0` if `modelId` is not found
-- otherwise returns `node + 16` (an “inline” part-info structure embedded inside the map node)
+- otherwise returns `node + 16` (an "inline" part-info structure embedded inside the map node)
 
 `Role3D.dll` treats `node + 16` as a `PartInfoSource*` with the same field usage as above:
 
@@ -53,7 +53,7 @@ In `Simple3DObj_SetModelId_LoadPartInfo` (`Role3D.dll`, `0x10007230`):
 
 1. Calls `GameDataSet_Find3DObjPartInfoInlineByModelId(modelId)` first.
 2. If that returns `0`, calls `GameDataSet_Find3DObjPartInfoPtrByModelId(modelId)`.
-3. Copies the resulting part records into Role3D’s own `PartInfo` container.
+3. Copies the resulting part records into Role3D's own `PartInfo` container.
 
 That means the standard `RoleView` type-4 NPC / task-NPC path ultimately resolves
 `Npc.ini::SimpleObjID` through the `3DSimpleObj.dbc` pointer-map (`GameDataSet + 0x0C`)

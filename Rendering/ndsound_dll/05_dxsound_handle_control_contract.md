@@ -1,4 +1,4 @@
-# `_DXClose*Sound` / `_DXSet*SoundPos` Contracts (Verified)
+# `_DXClose*Sound` / `_DXSet*SoundPos` Contracts
 
 ## Export -> engine mappings
 
@@ -6,8 +6,6 @@
 - `_DXClose3DSound@4` (`0x10008F9F`) -> `NdSoundEngine_Close3dSoundByHandle`
 - `_DXSet2DSoundPos@12` (`0x10009180`) -> `NdSoundEngine_Set2dSoundPositionByHandle`
 - `_DXSet3DSoundPos@16` (`0x1000908E`) -> `NdSoundEngine_Set3dSoundPositionByHandle`
-
----
 
 ## `_DXClose2DSound@4`
 
@@ -25,8 +23,6 @@ Verified behavior:
    - returns `1`.
 6. Returns `0` when no match is found.
 
----
-
 ## `_DXClose3DSound@4`
 
 `_DXClose3DSound@4(soundHandle)`
@@ -39,8 +35,6 @@ Verified behavior mirrors 2D close for the 3D active-instance vector:
 4. Uses exact handle pointer match.
 5. On first match, releases/erases instance and returns `1`.
 6. Returns `0` on miss.
-
----
 
 ## `_DXSet2DSoundPos@12`
 
@@ -62,8 +56,6 @@ Return semantics (legacy quirk):
 - Engine-not-initialized path: returns engine pointer (`this`).
 
 Treat as side-effect API; callers should not rely on return value for success/failure.
-
----
 
 ## `_DXSet3DSoundPos@16`
 

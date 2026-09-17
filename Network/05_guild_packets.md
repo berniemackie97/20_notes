@@ -1,15 +1,13 @@
 # Guild Packets — Syndicate, Peerage, Guild War
-## Source: F:\CQ2ClientRelease-42.0.1\3DRole\Network\
 
----
+Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
 ## MsgSynAttr (Type 1041)
 **Direction**: S→C
 **Purpose**: Synced attribute list update for the local player (verified by `SynAttrMgr__AddEntry` and `SynAttrEntry__SetName`).
 **Dispatch**: Create `CMsgSynAttr__Create` (0x6FE406), parse `CMsgSynAttr__Parse` (0x6FE46C), process `CMsgSynAttr__Process` (0x6FE4C0)
 
-**Verified parse behavior**:
-- `CMsgSynAttr__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1041`.
+**Parse**: `CMsgSynAttr__Parse` — standard header validation, then `type == 1041`.
 
 **Verified field usage in `CMsgSynAttr__Process`** (offsets relative to packet start):
 - `+4` (u32) is compared against the local player ID (singleton `+204`). If it does not match, the handler returns without processing.
@@ -22,7 +20,6 @@
   - `entry+24` (u32) is stored into the constructed object at offset `+68`.
   - `entry+28` is treated as a null-terminated string and passed to `strlen`/`ByteBuffer__AppendRange` via `SynAttrEntry__SetName`.
 - For each constructed entry object, `SynAttrMgr__AddEntry` is called, and after the list is processed `PostMainWndMsg_0x464(0x439, 0)` is triggered.
-
 
 ## MsgSynMemberInfo (Type 1058)
 **Direction**: S→C
@@ -48,7 +45,6 @@
 
 - After updates, `PostMainWndMsg_0x464(0xC5E, 0)` is triggered.
 
-
 ## MsgSynListInfo (Type 1066)
 **Direction**: S→C
 **Purpose**: Special‑meteor system messages (verified by `STR_SPECIAL_METE_*` string keys used in the handler).
@@ -64,14 +60,12 @@
   - `5`: Shows `STR_SPECIAL_METE_LEVEL`.
   - `6`: Shows `STR_SPECIAL_METE_NO_ITEM`.
 
-
 ## MsgSyn (Type 1107)
 **Direction**: Bidirectional
 **Purpose**: Syndicate/faction operations (join/apply/appoint/notify flows) driven by subtype codes and optional string‑list entries.
 **Dispatch**: Create `CMsgSyn__Create` (0x702520), parse `CMsgSyn__Parse` (0x7025DC), process `CMsgSyn__Process` (0x7031B9)
 
-**Verified parse behavior**:
-- `CMsgSyn__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1107`.
+**Parse**: `CMsgSyn__Parse` — standard header validation, then `type == 1107`.
 
 **Verified field usage in `CMsgSyn__Process`** (offsets relative to packet start):
 - `+4` (u16) `subtype`
@@ -101,14 +95,12 @@
 - `42–44`: posts `PostMainWndMsg_0x464(0xBE3, 0)`.
 - Other subtypes in this build do not read packet fields or trigger processing.
 
-
 ## MsgDutyMinContri (Type 1056)
 **Direction**: S→C
 **Purpose**: Trade state updates (verified by `CHero__Trade*` calls; name differs from observed behavior).
 **Dispatch**: Create `CMsgDutyMinContri__Create` (0x7622F4), parse `CMsgDutyMinContri__Parse` (0x762396), process `CMsgDutyMinContri__Process` (0x7623B9)
 
-**Verified parse behavior**:
-- `CMsgDutyMinContri__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1056`.
+**Parse**: `CMsgDutyMinContri__Parse` — standard header validation, then `type == 1056`.
 
 **Verified field usage in `CMsgDutyMinContri__Process`** (offsets relative to packet start):
 - `+8` (u16) is a mode selector; most branches end with `PostMainWndMsg_0x464(0x3EB, 0)`.
@@ -126,14 +118,12 @@
   - `14`: `CHero__TradeSetField_0x1100_AndPost3F1(+4)`.
   - `15`: `PostMainWndMsg_0x464(0x4A8, 0)` (then still returns `PostMainWndMsg_0x464(0x3EB, 0)`).
 
-
 ## MsgPeerage (Type 1101)
 **Direction**: Bidirectional
 **Purpose**: Peerage/nobility map‑item and effect updates (verified by map‑item manager calls, peerage effect toggles, and drop‑sound selection).
 **Dispatch**: Create `CMsgPeerage__Create` (0x73FDA7), parse `CMsgPeerage__Parse` (0x73FFB6), process `CMsgPeerage__Process` (0x740007), send `CMsgPeerage__Send` (0x73FFD9)
 
-**Verified parse behavior**:
-- `CMsgPeerage__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1101`.
+**Parse**: `CMsgPeerage__Parse` — standard header validation, then `type == 1101`.
 
 **Verified outbound build path**:
 - `CMsgPeerage__Build` (0x73FE0D) is called from `CHero__ProcessAction_Main` with `action = 3`, then sent via `CMsgPeerage__Send`.
@@ -177,7 +167,6 @@
   - `13`: treats `+4` as flags; bit `0` → `CGameMap__PeerageEffect_EnableType1`, bit `1` → `EnableType2`, bit `2` → `EnableType3`.
   - Other values (`0`, `5–9`, `14+`) do not read fields in this build.
 
-
 ## CMsgSynNotify (Type 2050)
 **Direction**: S→C
 
@@ -209,6 +198,3 @@ Delivers guild/syndicate notifications to the client. All modes display formatte
 ### Notes
 - The MsgStringList buffer is initialized at construction but the Process handler only reads fixed fields; the string list itself may be used by server-to-client string payloads in other code paths.
 - `CHero__SetNotifyMessage` (0x662DA9) writes formatted text to the hero object at byte offset 12056, capped at 256 characters.
-
----
-

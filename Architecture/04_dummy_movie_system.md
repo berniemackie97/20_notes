@@ -1,8 +1,8 @@
-# CDummyMovieMgr — Timed Sprite Animation System (Verified)
+# CDummyMovieMgr — Timed Sprite Animation System
 
 ## Scope
 
-This document covers the `CDummyMovieMgr` singleton system. Despite the name, this system is
+The `CDummyMovieMgr` singleton. Despite the name, it is
 **NOT used for startup** — it drives **in-game mount/ride PK arena cutscenes**.
 
 The startup intro animation was Flash-internal (inside `start.dat` SWF).

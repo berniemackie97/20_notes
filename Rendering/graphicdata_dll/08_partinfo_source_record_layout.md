@@ -1,6 +1,6 @@
 # `GraphicData.dll` — Part-info source record layout (`ret + 24` entries)
 
-`GraphicData.dll` exposes per-model “part-info source” structures through the model-id lookup vtable methods documented in:
+`GraphicData.dll` exposes per-model "part-info source" structures through the model-id lookup vtable methods documented in:
 
 - `analysis/conquer_docs/Rendering/graphicdata_dll/07_modelid_to_partinfo_lookup.md`
 
@@ -9,7 +9,7 @@ The returned structure has:
 - `*(ret + 4)` = `partCount`
 - an array of per-part source records starting at `ret + 24`
 
-This document defines the *field offsets that are observable from consumers* (currently `Role3D.dll`) by analyzing the exact copy loop used when `Role3D.dll` imports those records into its own `PartInfo` container.
+The *field offsets observable from consumers* - currently only `Role3D.dll` - derived from the exact copy loop that imports those records into its own `PartInfo` container.
 
 ## Source record stride
 
@@ -21,9 +21,9 @@ This establishes that the per-part source record is laid out as *multiple parall
 
 In `Simple3DObj_SetModelId_LoadPartInfo` (Role3D, `0x10007230`), when `GameDataSetQuery()->vfn_68(modelId)` returns non-null:
 
-The copy loop initializes Role3D’s destination part arrays and then, for each part index `i`:
+The copy loop initializes Role3D's destination part arrays and then, for each part index `i`:
 
-- Reads `srcBase = (ret + 24) + 4*i` and copies these *streams* into Role3D’s `PartInfo` storage:
+- Reads `srcBase = (ret + 24) + 4*i` and copies these *streams* into Role3D's `PartInfo` storage:
 
 | Source dword (relative to `srcBase`) | Destination stream | Role3D semantic name (from use sites) |
 |---:|---:|---|
@@ -38,7 +38,7 @@ The copy loop initializes Role3D’s destination part arrays and then, for each 
 Where:
 - `dstPartInfo` is the pointer returned by `PartInfo_GetPartRecordArray(partInfo)` (i.e. `partInfo + 0x100`).
 
-These seven source-field streams are exactly the streams that drive Role3D’s render/hit-test behavior documented in:
+These seven source-field streams are exactly the streams that drive Role3D's render/hit-test behavior documented in:
 
 - `analysis/conquer_docs/Rendering/role3d_dll/06_part_record_layout.md`
 
@@ -57,4 +57,4 @@ For each part index `i`:
 
 ## Notes
 
-This document describes the layout in terms of *streams* (parallel arrays) because that is how the consumer’s copy loop proves the data is arranged. For the streams that are exercised by `PartInfo_RenderAllParts`, the semantic names are taken directly from how those streams are used (mesh resolution, gate check, per-part state apply, default render parameters).
+This document describes the layout in terms of *streams* (parallel arrays) because that is how the consumer's copy loop proves the data is arranged. For the streams that are exercised by `PartInfo_RenderAllParts`, the semantic names are taken directly from how those streams are used (mesh resolution, gate check, per-part state apply, default render parameters).

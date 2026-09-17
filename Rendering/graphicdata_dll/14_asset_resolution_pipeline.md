@@ -1,6 +1,6 @@
 # `GraphicData.dll` — Core asset-resolution pipeline (`id -> path -> bytes`)
 
-This document pins the end-to-end flow we use in the rewrite for deterministic asset resolution.
+The end-to-end flow the rewrite uses for deterministic asset resolution.
 
 ## Verified runtime flow
 

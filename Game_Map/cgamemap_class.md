@@ -1,7 +1,6 @@
 # CGameMap / C3DGameMap — Game World Rendering
-## IDA Folder: /Game_Map/ (2 sub-folders, 23 functions total)
 
----
+IDA folder `/Game_Map/`: 2 sub-folders, 23 functions.
 
 ## Overview
 
@@ -52,8 +51,6 @@ chain runs in both the changed and repeated-ID cases. That flag is later consume
 scaled_width  = screen_width * zoom_factor / scale
 scaled_height = screen_height * zoom_factor / scale
 ```
-
----
 
 ## Verified Frame Integration Chain (Conquer.exe)
 
@@ -208,8 +205,6 @@ Verified renames applied in this world-frame slice:
 - `0x76A769` = `Exe_GetCachedCursorSample`
 - `0x76A7A3` = `Exe_ClearCachedCursorSampleFlag`
 
----
-
 ## C3DGameMap Memory Layout (partial)
 ```c
 struct C3DGameMap {
@@ -264,8 +259,6 @@ struct C3DGameMap {
     DWORD* float_text_end;       // byte +804
 };
 ```
-
----
 
 ## Verified Map Component Producer Chain (Conquer.exe)
 
@@ -408,8 +401,6 @@ Verified helper inputs around the active-render update path:
   - verified LLIL at `0x6454D1` immediately calls child `vtable+0x10` with only an output buffer.
   - for subtype `0x04`, `vtable+0x10` resolves to `CMapPositionedObj_GetProjectedScreenCoordinates` (`0x64B9A1`), which projects `this+0x0C/+0x10` tile coordinates through `Map_ProjectTileToScreenCoordinates`.
 
----
-
 ## Logic (6 functions, all documented)
 
 ### CGameMap__FindComponent_Type2 (0x61D649, size=90)
@@ -495,8 +486,6 @@ for (node in screen_effect_list at this+203) {
 }
 ```
 **Debug**: "ERROR: CGameMap::ShowScreenEffect() failed at %s, %d"
-
----
 
 ## Rendering (17 functions, all documented)
 
@@ -1722,8 +1711,6 @@ while (cleanup_list_start != cleanup_list_sentinel) {
 clear_list(this+340);
 ```
 
----
-
 ## C3DMapSimpleObj — Static Map Object
 
 ### Memory Layout
@@ -1823,8 +1810,6 @@ CPlayer__UpdateOverlayList(this+92, overlay_x, overlay_y - 100);
 ```
 **Frame Rate**: ~30fps (33ms per frame for body animations)
 **Dimmed Alpha**: 0.65 (for objects behind terrain/entities)
-
----
 
 ## Helper Address Index
 
