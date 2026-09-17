@@ -1,0 +1,193 @@
+# `c3_core_dll.dll` — exports
+
+This list is taken from the `c3_core_dll.dll` export table as recovered in IDA.
+
+The “ordinal” value is the export ordinal; names are the exported (mangled) symbol names.
+
+## Export list (by ordinal)
+
+- ordinal `1` `0x10008A80` `?Begin3D@@YAHXZ`
+- ordinal `2` `0x10001570` `?BuildRay@@YAXHHPAUD3DXVECTOR3@@0@Z`
+- ordinal `3` `0x10008D90` `?CalcRate@@YAKXZ`
+- ordinal `4` `0x10001130` `?Camera_BuildOrtho@@YAHPAUC3Camera@@MM@Z`
+- ordinal `5` `0x100010A0` `?Camera_BuildProject@@YAHPAUC3Camera@@@Z`
+- ordinal `6` `0x10001190` `?Camera_BuildProjectEx@@YAHPAUC3Camera@@@Z`
+- ordinal `7` `0x10001050` `?Camera_BuildView@@YAHPAUC3Camera@@@Z`
+- ordinal `8` `0x10001000` `?Camera_Clear@@YAXPAUC3Camera@@@Z`
+- ordinal `9` `0x100012E0` `?CapScreen@@YAXPAD@Z`
+- ordinal `10` `0x10008EE0` `?ChangeDisplayResolution@@YAHKK@Z`
+- ordinal `11` `0x10009160` `?ChangeViewportResolution@@YAHKK@Z`
+- ordinal `12` `0x10008D10` `?ClearBuffer@@YAHHHK@Z`
+- ordinal `13` `0x10001DD0` `?Common_CloseRes@@YAXPAX@Z`
+- ordinal `14` `0x10001DE0` `?Common_GetChunk@@YAXPAXPAUChunkHeader@@@Z`
+- ordinal `15` `0x10001E60` `?Common_GetSeek@@YAJPAX@Z`
+- ordinal `16` `0x10001E40` `?Common_IsEofRes@@YAHPAX@Z`
+- ordinal `17` `0x10001D90` `?Common_OpenRes@@YAPAXPBDAAKH@Z`
+- ordinal `18` `0x10001E00` `?Common_ReadRes@@YAKPAX0K@Z`
+- ordinal `19` `0x10001450` `?Common_Rotate@@YAXPAUD3DXMATRIX@@MMM@Z`
+- ordinal `20` `0x100014B0` `?Common_Scale@@YAXPAUD3DXMATRIX@@MMM@Z`
+- ordinal `21` `0x10001E20` `?Common_SeekRes@@YAXPAXHH@Z`
+- ordinal `22` `0x10001530` `?Common_Shadow@@YAXPAUD3DXMATRIX@@PAUD3DXVECTOR4@@PAUD3DXVECTOR3@@2@Z`
+- ordinal `23` `0x10001420` `?Common_Translate@@YAXPAUD3DXMATRIX@@MMM@Z`
+- ordinal `24` `0x10001D40` `?DataFileCheck@@YAHPBD@Z`
+- ordinal `25` `0x10001CF0` `?DataFile_Close@@YAXXZ`
+- ordinal `26` `0x10001D80` `?DataFile_Free@@YAXAAPAX@Z`
+- ordinal `27` `0x10001D60` `?DataFile_Load@@YAHPBDAAPAXAAK@Z`
+- ordinal `28` `0x10001CE0` `?DataFile_Open@@YAXPBD@Z`
+- ordinal `29` `0x10001D20` `?DataFile_Search@@YAHPBDAAPAU_iobuf@@AAK@Z`
+- ordinal `30` `0x10001D00` `?DataFile_UnpackSearch@@YAHPBD@Z`
+- ordinal `31` `0x10008AA0` `?End3D@@YAHXZ`
+- ordinal `32` `0x10008D60` `?Flip@@YAHPBUtagRECT@@0PAUHWND__@@@Z`
+- ordinal `33` `0x100028A0` `?Font_AddFontSizeLevel@@YAXH@Z`
+- ordinal `34` `0x100030C0` `?Font_CheckPixel@@YAHPAUC3Font@@PBDK@Z`
+- ordinal `35` `0x10002A70` `?Font_Clear@@YAXPAUC3Font@@@Z`
+- ordinal `36` `0x10004B00` `?Font_CloseSys@@YAXXZ`
+- ordinal `37` `0x10002AA0` `?Font_Create@@YAHPAPAUC3Font@@PBDH_N@Z`
+- ordinal `38` `0x10004570` `?Font_Draw@@YAHPAUC3Font@@MMKPBDW4RENDER_TEXT_STYLE@@KJJ@Z`
+- ordinal `39` `0x10004700` `?Font_DrawArabic@@YAHPAUC3Font@@MMKG_NHW4RENDER_TEXT_STYLE@@KJJ@Z`
+- ordinal `40` `0x100048D0` `?Font_DrawBegin@@YAXXZ`
+- ordinal `41` `0x100048F0` `?Font_DrawEnd@@YA_NXZ`
+- ordinal `42` `0x10004650` `?Font_DrawW@@YAHPAUC3Font@@MMKGW4RENDER_TEXT_STYLE@@KJJ@Z`
+- ordinal `43` `0x10003C80` `?Font_GetStrShowLen@@YAHPAUC3Font@@QBE@Z`
+- ordinal `44` `0x100047F0` `?Font_GetStrShowLenArabic@@YAHPAUC3Font@@G_NH@Z`
+- ordinal `45` `0x10003D10` `?Font_GetStrShowLenW@@YAHPAUC3Font@@G@Z`
+- ordinal `46` `0x10002F40` `?Font_Prepare@@YAXXZ`
+- ordinal `47` `0x10002E20` `?Font_Release@@YAXPAPAUC3Font@@@Z`
+- ordinal `48` `0x10004A30` `?Font_SaveFontTexture@@YA_NXZ`
+- ordinal `49` `0x100048A0` `?Font_SetTextCornerColor@@YAXKKKK@Z`
+- ordinal `50` `0x10008E40` `?HintGraphicDetail@@YAHK@Z`
+- ordinal `51` `0x10008AC0` `?IfDeviceLost@@YAHXZ`
+- ordinal `52` `0x10008580` `?Init3DEx@@YAHPAUHWND__@@KKHK@Z`
+- ordinal `53` `0x100016A0` `?IntersectPlane@@YAHABUD3DXVECTOR3@@000AAU1@@Z`
+- ordinal `54` `0x10001780` `?IntersectTriangle@@YAHABUD3DXVECTOR3@@0000AAU1@@Z`
+- ordinal `55` `0x10008110` `?Key_Clear@@YAXPAUC3Key@@@Z`
+- ordinal `56` `0x10008130` `?Key_ProcessAlpha@@YAHPAUC3Key@@KKPAM@Z`
+- ordinal `57` `0x10008290` `?Key_ProcessChangeTex@@YAHPAUC3Key@@KPAH@Z`
+- ordinal `58` `0x10008240` `?Key_ProcessDraw@@YAHPAUC3Key@@KPA_N@Z`
+- ordinal `59` `0x10008E10` `?LimitRate@@YAHK@Z`
+- ordinal `60` `0x100092D0` `?Motion_Clear@@YAXPAUC3Motion@@@Z`
+- ordinal `61` `0x10009A20` `?Motion_GetMatrix@@YAXPAUC3Motion@@KHPAUD3DXMATRIX@@@Z`
+- ordinal `62` `0x10009E70` `?Motion_GetMatrix_Blend@@YAXABUC3MotionTracker@@KPAUD3DXMATRIX@@@Z`
+- ordinal `63` `0x100092F0` `?Motion_Load@@YAHPAPAUC3Motion@@PAX@Z`
+- ordinal `64` `0x100099A0` `?Motion_Unload@@YAXPAPAUC3Motion@@@Z`
+- ordinal `65` `0x1000C7B0` `?Phy_Calculate@@YAHPAUC3Phy@@HHUD3DXVECTOR3@@@Z`
+- ordinal `66` `0x1000BAE0` `?Phy_Calculate_CPU@@YAHPAUC3Phy@@HHUD3DXVECTOR3@@_N@Z`
+- ordinal `67` `0x1000C630` `?Phy_Calculate_Lite@@YAHPAUC3Phy@@@Z`
+- ordinal `68` `0x1000E100` `?Phy_ChangeMixTexture@@YAXPAUC3Phy@@H@Z`
+- ordinal `69` `0x1000E0F0` `?Phy_ChangeTexture@@YAXPAUC3Phy@@H@Z`
+- ordinal `70` `0x1000A1C0` `?Phy_Clear@@YAXPAUC3Phy@@@Z`
+- ordinal `71` `0x1000DFC0` `?Phy_ClearMatrix@@YAXPAUC3Phy@@@Z`
+- ordinal `72` `0x1000DC00` `?Phy_DrawNormal@@YAHPAUC3Phy@@ABU_D3DMATERIAL8@@ABUC3_TEX_SHADER_DESC@@ABUC3_PIPE_RENDER_DESC@@PBUC3_SHADOW_RENDER_DESC@@@Z`
+- ordinal `73` `0x1000CC90` `?Phy_DrawNormal_CPU@@YAHPAUC3Phy@@ABU_D3DMATERIAL8@@ABUC3_TEX_SHADER_DESC@@ABUC3_PIPE_RENDER_DESC@@PBUC3_SHADOW_RENDER_DESC@@@Z`
+- ordinal `74` `0x1000DC30` `?Phy_DrawUp@@YAHPAUPhyOutVertex@@PAGKKPAUC3Texture@@PBU_D3DMATERIAL8@@ABUC3_PIPE_RENDER_DESC@@H@Z`
+- ordinal `75` `0x1000E7E0` `?Phy_DynamicCreate@@YAPAUC3Phy@@KPAUD3DXVECTOR3@@PAUD3DXVECTOR2@@@Z`
+- ordinal `76` `0x1000EC00` `?Phy_GetFaceProperty@@YAEPAUC3Phy@@H@Z`
+- ordinal `77` `0x1000C9D0` `?Phy_LightEnable@@YAXHH@Z`
+- ordinal `78` `0x1000A300` `?Phy_Load@@YAHPAPAUC3Phy@@PAXHHH@Z`
+- ordinal `79` `0x1000EBA0` `?Phy_LoadFaceProperty@@YA_NPAUC3Phy@@PAX@Z`
+- ordinal `80` `0x1000DF70` `?Phy_Muliply@@YAXPAUC3Phy@@PBUD3DXMATRIX@@@Z`
+- ordinal `81` `0x1000B9A0` `?Phy_Prepare@@YAXXZ`
+- ordinal `82` `0x1000E110` `?Phy_ProbeIntersection@@YA_NPAUC3Phy@@ABUD3DXVECTOR3@@1_NAAMPAH@Z`
+- ordinal `83` `0x1000DF20` `?Phy_SetBlendFrame@@YAXPAUC3Phy@@K@Z`
+- ordinal `84` `0x1000EC40` `?Phy_SetCartoonSilhouetteColor@@YAXK@Z`
+- ordinal `85` `0x1000EC30` `?Phy_SetCartoonSilhouetteWidth@@YAXM@Z`
+- ordinal `86` `0x1000DF90` `?Phy_SetColor@@YAXPAUC3Phy@@MMMM@Z`
+- ordinal `87` `0x1000CC70` `?Phy_SetFluidReflectSpeed@@YAXMM@Z`
+- ordinal `88` `0x1000DEF0` `?Phy_SetFrame@@YAXPAUC3Phy@@K@Z`
+- ordinal `89` `0x1000C7F0` `?Phy_SetLight@@YAXHMMMKKM@Z`
+- ordinal `90` `0x1000CAF0` `?Phy_SetLightAmbient@@YAXHK@Z`
+- ordinal `91` `0x1000CA20` `?Phy_SetLightDiffuse@@YAXHK@Z`
+- ordinal `92` `0x1000C9F0` `?Phy_SetLightDir@@YAXHMMM@Z`
+- ordinal `93` `0x1000CBC0` `?Phy_SetLightPosition@@YAXHMMM@Z`
+- ordinal `94` `0x1000CC50` `?Phy_SetLightType@@YAXHW4C3_RENDER_LIGHT_TYPE@@@Z`
+- ordinal `95` `0x1000CBF0` `?Phy_SetPointLightAttenuation@@YAXHMMM@Z`
+- ordinal `96` `0x1000CC20` `?Phy_SetSpotLightFalloff@@YAXHMMM@Z`
+- ordinal `97` `0x1000DF50` `?Phy_SetStepCount@@YAXPAUC3Phy@@K@Z`
+- ordinal `98` `0x1000B730` `?Phy_Unload@@YAXPAPAUC3Phy@@@Z`
+- ordinal `99` `0x10013240` `C3ParticleType3_CreateTransformCache` (raw: `?Ptcl3_CreateInfo@@YAPAV?$map@HUPTCL3_MATRIX@@U?$less@H@std@@V?$allocator@UPTCL3_MATRIX@@@3@@std@@H@Z`)
+- ordinal `100` `0x10013400` `C3ParticleType3_DestroyTransformCache` (raw: `?Ptcl3_DestroyInfo@@YAXPAV?$map@HUPTCL3_MATRIX@@U?$less@H@std@@V?$allocator@UPTCL3_MATRIX@@@3@@std@@@Z`)
+- ordinal `101` `0x10013430` `C3ParticleType3_SetGravityVector` (raw: `?Ptcl3_SetGravity@@YAXPAUC3Ptcl3@@UD3DXVECTOR3@@@Z`)
+- ordinal `102` `0x100130A0` `C3ParticleType12_SetTextureId` (raw: `?Ptcl_ChangeTexture@@YAXPAUC3Ptcl2@@H@Z`)
+- ordinal `103` `0x100130A0` `C3ParticleType12_SetTextureId` (raw: `?Ptcl_ChangeTexture@@YAXPAUC3Ptcl@@H@Z`)
+- ordinal `104` `0x10010BA0` `C3ParticleType2_Reset` (raw: `?Ptcl_Clear@@YAXPAUC3Ptcl2@@@Z`)
+- ordinal `105` `0x10010BD0` `C3ParticleType3_Reset` (raw: `?Ptcl_Clear@@YAXPAUC3Ptcl3@@@Z`)
+- ordinal `106` `0x10010B70` `C3ParticleType1_Reset` (raw: `?Ptcl_Clear@@YAXPAUC3Ptcl@@@Z`)
+- ordinal `107` `0x100130B0` `C3ParticleType12_CreateTransformCache` (raw: `?Ptcl_CreateInfo@@YAPAV?$map@HUPTCL_MATRIX@@U?$less@H@std@@V?$allocator@UPTCL_MATRIX@@@3@@std@@H@Z`)
+- ordinal `108` `0x100133D0` `C3ParticleType12_DestroyTransformCache` (raw: `?Ptcl_DestroyInfo@@YAXPAV?$map@HUPTCL_MATRIX@@U?$less@H@std@@V?$allocator@UPTCL_MATRIX@@@3@@std@@@Z`)
+- ordinal `109` `0x10011B90` `C3ParticleType2_Draw` (raw: `?Ptcl_Draw@@YAHPAUC3Ptcl2@@PBUD3DXMATRIX@@KK@Z`)
+- ordinal `110` `0x10012230` `C3ParticleType3_Draw` (raw: `?Ptcl_Draw@@YAHPAUC3Ptcl3@@PBUD3DXMATRIX@@KKPAUD3DXVECTOR3@@@Z`)
+- ordinal `111` `0x10011600` `C3ParticleType1_Draw` (raw: `?Ptcl_Draw@@YAHPAUC3Ptcl@@PBUD3DXMATRIX@@KK@Z`)
+- ordinal `112` `0x10010E10` `C3ParticleType2_LoadFromStream` (raw: `?Ptcl_Load@@YAHPAPAUC3Ptcl2@@PAX@Z`)
+- ordinal `113` `0x10011010` `C3ParticleType3_LoadFromStream` (raw: `?Ptcl_Load@@YAHPAPAUC3Ptcl3@@PAX@Z`)
+- ordinal `114` `0x10010C30` `C3ParticleType1_LoadFromStream` (raw: `?Ptcl_Load@@YAHPAPAUC3Ptcl@@PAX@Z`)
+- ordinal `115` `0x10013040` `C3ParticleType12_AdvanceFrame` (raw: `?Ptcl_NextFrame@@YAXPAUC3Ptcl@@H@Z`)
+- ordinal `116` `0x100114D0` `C3Particle_PrepareRenderState` (raw: `?Ptcl_Prepare@@YAXXZ`)
+- ordinal `117` `0x10013070` `C3ParticleType12_SetFrameIndex` (raw: `?Ptcl_SetFrame@@YAXPAUC3Ptcl2@@K@Z`)
+- ordinal `118` `0x10013070` `C3ParticleType12_SetFrameIndex` (raw: `?Ptcl_SetFrame@@YAXPAUC3Ptcl@@K@Z`)
+- ordinal `119` `0x10011400` `C3ParticleType2_Unload` (raw: `?Ptcl_Unload@@YAXPAPAUC3Ptcl2@@@Z`)
+- ordinal `120` `0x10011400` `C3ParticleType2_Unload` (raw: `?Ptcl_Unload@@YAXPAPAUC3Ptcl3@@@Z`)
+- ordinal `121` `0x10011340` `C3ParticleType1_Unload` (raw: `?Ptcl_Unload@@YAXPAPAUC3Ptcl@@@Z`)
+- ordinal `122` `0x10013450` `C3ParticleType3_SetExternalSpeedVector` (raw: `?Ptrl3_SetExternalSpeed@@YAXPAUC3Ptcl3@@UD3DXVECTOR3@@@Z`)
+- ordinal `123` `0x10008A40` `?Quit3D@@YAXXZ`
+- ordinal `124` `0x10008AF0` `?ResetDevice@@YAHXZ`
+- ordinal `125` `0x10014D90` `?SMotion_Clear@@YAXPAUC3SMotion@@@Z`
+- ordinal `126` `0x10014DA0` `?SMotion_Load@@YAHPAPAUC3SMotion@@PAX@Z`
+- ordinal `127` `0x10014E20` `?SMotion_Unload@@YAXPAPAUC3SMotion@@@Z`
+- ordinal `128` `0x100011E0` `?SetRenderState@@YAXW4_D3DRENDERSTATETYPE@@K@Z`
+- ordinal `129` `0x10001200` `?SetTextureStageState@@YAXKW4_D3DTEXTURESTAGESTATETYPE@@K@Z`
+- ordinal `130` `0x10015800` `C3Shape_SetTextureId` (raw: `?Shape_ChangeTexture@@YAXPAUC3Shape@@H@Z`)
+- ordinal `131` `0x10014E60` `C3Shape_Reset` (raw: `?Shape_Clear@@YAXPAUC3Shape@@@Z`)
+- ordinal `132` `0x100150B0` `C3Shape_Draw` (raw: `?Shape_Draw@@YAHPAUC3Shape@@PBUD3DXMATRIX@@KK@Z`)
+- ordinal `133` `0x10014E90` `C3Shape_LoadFromStream` (raw: `?Shape_Load@@YAHPAPAUC3Shape@@HPAX@Z`)
+- ordinal `134` `0x10015810` `C3Shape_AdvanceFrame` (raw: `?Shape_NextFrame@@YAXPAUC3Shape@@H@Z`)
+- ordinal `135` `0x100156D0` `C3Shape_PrepareRenderState` (raw: `?Shape_Prepare@@YAXXZ`)
+- ordinal `136` `0x10015830` `C3Shape_SetFrameIndex` (raw: `?Shape_SetFrame@@YAXPAUC3Shape@@K@Z`)
+- ordinal `137` `0x10015060` `C3Shape_ConfigureSegmentTrail` (raw: `?Shape_SetSegment@@YAXPAUC3Shape@@KK@Z`)
+- ordinal `138` `0x10014FE0` `C3Shape_Unload` (raw: `?Shape_Unload@@YAXPAPAUC3Shape@@@Z`)
+- ordinal `139` `0x10015840` `?Sprite_Clear@@YAXPAUC3Sprite@@@Z`
+- ordinal `140` `0x10015900` `?Sprite_Create@@YAHPAPAUC3Sprite@@KKKW4_D3DFORMAT@@W4_D3DPOOL@@@Z`
+- ordinal `141` `0x100162D0` `?Sprite_CreateEx@@YAPAUC3Sprite@@PAUC3Texture@@@Z`
+- ordinal `142` `0x10015EE0` `?Sprite_Draw@@YAHPAUC3Sprite@@K@Z`
+- ordinal `143` `0x10015E70` `?Sprite_DrawEx@@YAHPAUC3Sprite@@KK@Z`
+- ordinal `144` `0x10016090` `?Sprite_DrawListBatch@@YAHPAUC3Sprite@@PAUSpriteVertex@@K@Z`
+- ordinal `145` `0x10015890` `?Sprite_Load@@YAHPAPAUC3Sprite@@PBDW4_D3DPOOL@@HK@Z`
+- ordinal `146` `0x10016040` `?Sprite_Lock@@YAHPAUC3Sprite@@PAUtagRECT@@PAU_D3DLOCKED_RECT@@@Z`
+- ordinal `147` `0x10015990` `?Sprite_Mirror@@YAXPAUC3Sprite@@@Z`
+- ordinal `148` `0x10015D20` `?Sprite_Prepare@@YAXXZ`
+- ordinal `149` `0x10016100` `?Sprite_ReLoadNoFilter@@YAHPAPAUC3Sprite@@PADW4_D3DPOOL@@HK@Z`
+- ordinal `150` `0x100159D0` `?Sprite_Rotate@@YAXPAUC3Sprite@@H@Z`
+- ordinal `151` `0x10015CC0` `?Sprite_SetColor@@YAXPAUC3Sprite@@EEEE@Z`
+- ordinal `152` `0x10015D00` `?Sprite_SetColor@@YAXPAUC3Sprite@@K@Z`
+- ordinal `153` `0x10015AF0` `?Sprite_SetCoor@@YAXPAUC3Sprite@@PAUtagRECT@@HHKK@Z`
+- ordinal `154` `0x10015960` `?Sprite_Unload@@YAXPAPAUC3Sprite@@@Z`
+- ordinal `155` `0x10016070` `?Sprite_Unlock@@YAHPAUC3Sprite@@@Z`
+- ordinal `156` `0x10016340` `?Texture_Clear@@YAXPAUC3Texture@@@Z`
+- ordinal `157` `0x100169F0` `?Texture_Create@@YAHPAPAUC3Texture@@KKKW4_D3DFORMAT@@W4_D3DPOOL@@KH@Z`
+- ordinal `158` `0x10016360` `?Texture_Load@@YAHPAPAUC3Texture@@PBDKW4_D3DPOOL@@HKK@Z`
+- ordinal `159` `0x10016B90` `?Texture_LockRect@@YAHPAUC3Texture@@UtagRECT@@AAU_D3DLOCKED_RECT@@@Z`
+- ordinal `160` `0x10016700` `?Texture_Reload@@YA_NPAUC3Texture@@KW4_D3DPOOL@@KK@Z`
+- ordinal `161` `0x10016640` `?Texture_Unload@@YAXPAPAUC3Texture@@@Z`
+- ordinal `162` `0x10016BD0` `?Texture_Unlock@@YAXPAUC3Texture@@@Z`
+- ordinal `163` `0x100B0480` `?g_D3D@@3PAUIDirect3D8@@A`
+- ordinal `164` `0x100B01F8` `?g_D3DCaps@@3U_D3DCAPS8@@A`
+- ordinal `165` `0x100B0484` `?g_D3DDevice@@3PAUIDirect3DDevice8@@A`
+- ordinal `166` `0x100B0410` `?g_DisplayMode@@3U_D3DDISPLAYMODE@@A`
+- ordinal `167` `0x100B03D0` `?g_IDMatrix@@3UD3DXMATRIX@@A`
+- ordinal `168` `0x100B0390` `?g_InvViewMatrix@@3UD3DXMATRIX@@A`
+- ordinal `169` `0x100B02D0` `?g_Present@@3U_D3DPRESENT_PARAMETERS_@@A`
+- ordinal `170` `0x100B0440` `?g_ProjectMatrix@@3UD3DXMATRIX@@A`
+- ordinal `171` `0x100B0308` `?g_ViewMatrix@@3UD3DXMATRIX@@A`
+- ordinal `172` `0x100B0428` `?g_Viewport@@3U_D3DVIEWPORT8@@A`
+- ordinal `173` `0x100C6538` `?g_dwTexCount@@3KA`
+- ordinal `174` `0x100B0488` `?g_dwTriTotal@@3KA`
+- ordinal `175` `0x100AA214` `?g_fFarPlane@@3MA`
+- ordinal `176` `0x100AA210` `?g_fNearPlane@@3MA`
+- ordinal `177` `0x100B0348` `?g_hWnd@@3PAUHWND__@@A`
+- ordinal `178` `0x100B01D8` `?g_nLocaleCodePage@@3IA`
+- ordinal `179` `0x100BB8DC` `?g_nMotionCount@@3HA`
+- ordinal `180` `0x100BB8E0` `?g_nPhyCount@@3HA`
+- ordinal `181` `0x100BC4F4` `?g_nPtclCount@@3HA`
+- ordinal `182` `0x100BC518` `?g_nSMotionCount@@3HA`
+- ordinal `183` `0x100BC514` `?g_nShapeCount@@3HA`
+- ordinal `184` `0x100BC538` `?g_pTexDB@@3PAPAUC3Texture@@A`
+- ordinal `269001649` `0x1008A3B1` `DllEntryPoint`

@@ -1,0 +1,420 @@
+# Conquer.exe — original translation units
+
+Extracted from the assert strings in `00_clean/clean/5517-bninja/Conquer.exe`.
+Build tree root: `F:\CQ2ClientRelease-42.0.1\`. 398 unique paths.
+
+`fm` = same filename exists in `40_tools/fight-master/my_client`; `eo` = in `40_tools/eosource`.
+A tick means a source file to read for names and structure, not proof of identical content.
+
+## 3DGameMap (43)
+
+- `2DMapItem.cpp`  [fm/eo]
+- `2DMapPuzzleObj.cpp`  [fm/eo]
+- `2DMapRegion.cpp`  [fm/eo]
+- `2DMapTerrainObj.cpp`  [fm/eo]
+- `2DMapTerrainObjPart.cpp`  [fm/eo]
+- `3DGameMap.cpp`  [fm/eo]
+- `3DMagicMapItem.cpp`  [fm/eo]
+- `3DMapSimpleObj.cpp`  [fm/eo]
+- `3DTraceEffect.cpp`
+- `AirBubble.cpp`  [fm/eo]
+- `AoxPuzzle.cpp`
+- `EarthQuakeEffect.cpp`
+- `EarthQuakeEffectMgr.cpp`
+- `FireBug.cpp`  [fm/eo]
+- `IMagicEffect.cpp`
+- `MagicEffect.cpp`  [fm/eo]
+- `MagicEffectArrow.cpp`  [fm/eo]
+- `MagicEffectBase.cpp`
+- `MagicEffectBodyBody.cpp`
+- `MagicEffectBodyTerrain.cpp`
+- `MagicEffectBodyTerrainBody.cpp`
+- `MagicEffectBodyTraceBody.cpp`
+- `MagicEffectBumpArrow.cpp`
+- `MagicEffectLightChain.cpp`
+- `MagicEffectManager.cpp`  [fm/eo]
+- `MagicEffectMultiHit.cpp`
+- `MagicEffectNewArrow.cpp`
+- `MagicEffectQuickHand.cpp`
+- `MagicEffectTripleHit.cpp`
+- `MapInfo.cpp`  [fm/eo]
+- `MapItemManager.cpp`  [fm/eo]
+- `MapRelationInfoMgr.cpp`
+- `MapSeeker.cpp`
+- `PatternRose.cpp`  [fm/eo]
+- `PuzzleBmp.cpp`  [fm/eo]
+- `Radar.cpp`  [fm/eo]
+- `Rose.cpp`  [fm/eo]
+- `ScreenEffect.cpp`
+- `TerrainEffectManager.cpp`  [fm/eo]
+- `TerrainLayer.cpp`  [fm/eo]
+- `TerrainObjManager.cpp`  [fm/eo]
+- `Weather.cpp`  [fm/eo]
+- `multipuzzle.cpp`
+
+## 3DRole (96)
+
+- `AntiCheatMgr.cpp`
+- `AuraMgr.cpp`
+- `BossEffectMgr.cpp`
+- `Bulletin.cpp`  [fm/eo]
+- `Card.cpp`
+- `CardPlayMgr.cpp`
+- `ChatFilter.cpp`
+- `ChatLog.cpp`  [fm/eo]
+- `ChatTips.cpp`
+- `ConfigMgrImp.cpp`
+- `CrossFlagWarMgr.cpp`
+- `DailyActivityMgr.cpp`
+- `DataMigrationSubject.cpp`
+- `DiceManager.cpp`  [fm/eo]
+- `Dummy.cpp`  [fm/eo]
+- `DummyMovieMgr.cpp`
+- `EducationMgr.cpp`
+- `ElitePKGameMgr.cpp`
+- `EmoneyShop.cpp`
+- `EmoneyShopMgr.cpp`
+- `EncryptData.cpp`  [fm/eo]
+- `EquipDegradeMgr.cpp`
+- `EventTypeData.cpp`
+- `FDword.cpp`  [fm/eo]
+- `FactionChiefBaseMgr.cpp`
+- `FactionPKMgr.cpp`
+- `FamilyArenaMgr.cpp`
+- `FloatingStr.cpp`  [fm/eo]
+- `GameBase.cpp`
+- `GameMain.cpp`  [fm/eo]
+- `GameMsg.cpp`  [fm/eo]
+- `GamePlayerSet.cpp`  [fm/eo]
+- `Hero.cpp`  [fm/eo]
+- `HeroConfigMgr.cpp`
+- `HeroItem.cpp`  [fm/eo]
+- `HeroQualifying.cpp`
+- `HeroSyndicate.cpp`  [fm/eo]
+- `HeroWeaponSkill.cpp`  [fm/eo]
+- `HonorShopItemMgr.cpp`
+- `ImageStringEx.cpp`
+- `ImageStringHitNum.cpp`
+- `ImgNumCounter.cpp`  [fm/eo]
+- `Item.cpp`  [fm/eo]
+- `ItemData.cpp`  [fm/eo]
+- `ItemPrice.cpp`
+- `KillImgString.cpp`
+- `KillShareImgString.cpp`
+- `KoImgString.cpp`
+- `LastingActionMgr.cpp`
+- `Magic.cpp`  [fm/eo]
+- `MapDestination.cpp`
+- `MonsterSayMgr.cpp`
+- `MonsterStatusMgr.cpp`
+- `PKDetainItem.cpp`
+- `Package.cpp`  [fm/eo]
+- `PackageMgr.cpp`
+- `Pet.cpp`  [fm/eo]
+- `Player.cpp`  [fm/eo]
+- `PopPanelData.cpp`
+- `Professional.cpp`  [fm/eo]
+- `QuenchStatusMgr.cpp`
+- `Quiz.cpp`
+- `RaceTrackProp.cpp`
+- `RaceTrackPropEffectMgr.cpp`
+- `RaceTrackPropMgr.cpp`
+- `Role.cpp`  [fm/eo]
+- `RoleAction.cpp`  [fm/eo]
+- `RoleInfo.cpp`  [fm/eo]
+- `SayHello.cpp`  [fm/eo]
+- `ShopData.cpp`  [fm/eo]
+- `ShowHandDealer.cpp`
+- `ShowHandMgr.cpp`
+- `ShowHandPlayer.cpp`
+- `SilentInfo.cpp`
+- `SubProfMrg.cpp`
+- `SuperFlagMgr.cpp`
+- `SynCompeteMgr.cpp`
+- `SynMemberTitle.cpp`
+- `TargetBmpMgr.cpp`
+- `TaskDialog.cpp`  [fm/eo]
+- `Team.cpp`  [fm/eo]
+- `TeamArenaMgr.cpp`
+- `TeamPKGameMgr.cpp`
+- `TexasNpc.cpp`
+- `TotemMgr.cpp`
+- `Trade.cpp`  [fm/eo]
+- `TutorParamReader.cpp`
+- `TxtMsgSet.cpp`  [fm/eo]
+- `UserAttribMgr.cpp`
+- `WeaponSkill.cpp`  [fm/eo]
+- `WrapShopMgr.cpp`
+- `XpCounterDown.cpp`  [fm/eo]
+- `XpDivineIntervention.cpp`
+- `ZoomInImgString.cpp`
+- `ZoomNum.cpp`  [fm/eo]
+- `heroteam.cpp`  [fm/eo]
+
+## ? (1)
+
+- `weather.cpp`  [fm/eo]
+
+## BaseCode (7)
+
+- `BaseFunc.cpp`  [fm/eo]
+- `DebugMgr.cpp`
+- `FileReader.cpp`
+- `MyHeap.cpp`
+- `MyIni.cpp`
+- `MyString.cpp`
+- `StringFormat.cpp`
+
+## MyShell (211)
+
+- `ChatFaceManager.cpp`
+- `DialogOutChat.cpp`
+- `Dlg1stOfferOrderHistory.cpp`
+- `Dlg1stStudent.cpp`
+- `Dlg1stTutor.cpp`
+- `Dlg1stTutorShip.cpp`
+- `Dlg2ndOfferOrderHistory.cpp`
+- `Dlg2ndStudent.cpp`
+- `Dlg2ndTutorShip.cpp`
+- `DlgAccountLoginAlert.cpp`
+- `DlgAct.cpp`  [fm/eo]
+- `DlgAmphitheater.cpp`
+- `DlgAmphitheaterBtn.cpp`
+- `DlgAutoRun.cpp`
+- `DlgAutoRunBtn.cpp`
+- `DlgBag.cpp`
+- `DlgBattleLevDetail.cpp`
+- `DlgBattleLevelOther.cpp`
+- `DlgBattleObserve.cpp`
+- `DlgBindDetail.cpp`
+- `DlgBlack.cpp`  [fm/eo]
+- `DlgBuyMessage.cpp`
+- `DlgBuyMore.cpp`
+- `DlgCard.cpp`
+- `DlgChangeName.cpp`
+- `DlgChangeTitle.cpp`
+- `DlgChiefBaseChangeName.cpp`
+- `DlgCoachTip.cpp`
+- `DlgConfirmOnhook.cpp`
+- `DlgCrossFlagWarRank.cpp`
+- `DlgCrossFlagWarResult.cpp`
+- `DlgCrossFlagWarReward.cpp`
+- `DlgCrossFlagWarRewardInCombat.cpp`
+- `DlgDanceAct.cpp`
+- `DlgDepot.cpp`  [fm/eo]
+- `DlgDevideItem.cpp`
+- `DlgDrawOffer.cpp`
+- `DlgEMoneyShop.cpp`
+- `DlgEctypteInvite.cpp`
+- `DlgElitePKFinal.cpp`
+- `DlgElitePKLastEightGame.cpp`
+- `DlgElitePkGame.cpp`
+- `DlgEmoneyWithdraw.cpp`
+- `DlgEmptyGemCompose.cpp`
+- `DlgEnmState.cpp`  [fm/eo]
+- `DlgEquipAppend.cpp`
+- `DlgEquipDegrade.cpp`
+- `DlgEquipOpenHole.cpp`
+- `DlgExitGameConfirm.cpp`
+- `DlgFaction.cpp`
+- `DlgFactionChiefBase.cpp`
+- `DlgFactionContriRank.cpp`
+- `DlgFactionDiplomatism.cpp`
+- `DlgFactionMatchFinal.cpp`
+- `DlgFactionMatchNormal.cpp`
+- `DlgFactionMatchRound.cpp`
+- `DlgFactionMem.cpp`
+- `DlgFactionRecruit.cpp`
+- `DlgFactionSetDiplo.cpp`
+- `DlgFamConfirm.cpp`
+- `DlgFamilyArena.cpp`
+- `DlgFamilyArenaWinsRank.cpp`
+- `DlgFamilyConsort.cpp`
+- `DlgFamilyInfo.cpp`
+- `DlgFamilyMember.cpp`
+- `DlgFlowerRank.cpp`
+- `DlgForAssist.cpp`
+- `DlgFrdState.cpp`  [fm/eo]
+- `DlgFuse.cpp`
+- `DlgGameMsgPrefix.cpp`
+- `DlgGemCompose.cpp`
+- `DlgGodarmsRegist.cpp`
+- `DlgHelp.cpp`  [fm/eo]
+- `DlgHeroAttri.cpp`
+- `DlgHonorShop.cpp`
+- `DlgHotkey.cpp`
+- `DlgInsHelp.cpp`  [fm/eo]
+- `DlgIssueRecruit.cpp`
+- `DlgItemTip.cpp`
+- `DlgKongfu.cpp`  [fm/eo]
+- `DlgLinkItemTip.cpp`
+- `DlgListBox.cpp`  [fm/eo]
+- `DlgLog.cpp`  [fm/eo]
+- `DlgLoginFlash.cpp`
+- `DlgLostDepotConfirm.cpp`
+- `DlgMagic.cpp`  [fm/eo]
+- `DlgMain.cpp`  [fm/eo]
+- `DlgMeteSpecial.cpp`
+- `DlgMissionSystem.cpp`
+- `DlgMountAppend.cpp`
+- `DlgMountIcon.cpp`
+- `DlgMpcBooth.cpp`  [fm/eo]
+- `DlgMpcGoods.cpp`  [fm/eo]
+- `DlgMsgBox.cpp`
+- `DlgMsgBoxBoothAdd.cpp`
+- `DlgMsgBoxCounter.cpp`
+- `DlgMsgBoxCounterEffect.cpp`
+- `DlgMsgBoxInput.cpp`
+- `DlgMsgBoxWrapShop.cpp`
+- `DlgNonsuchSolidify.cpp`
+- `DlgNpcBuy.cpp`  [fm/eo]
+- `DlgNpcEquip.cpp`  [fm/eo]
+- `DlgOfferLeft.cpp`
+- `DlgOfferOnline.cpp`
+- `DlgOfferOrderOnline.cpp`
+- `DlgOpenHole.cpp`
+- `DlgOutchatFriendList.cpp`
+- `DlgPKDetain.cpp`
+- `DlgPKReward.cpp`
+- `DlgPhoneBuy.cpp`
+- `DlgPigeonQuery.cpp`
+- `DlgPlayerAttri.cpp`
+- `DlgPmAddNode.cpp`
+- `DlgQualifying.cpp`
+- `DlgQualifyingHonorRank.cpp`
+- `DlgQualifyingOpponent.cpp`
+- `DlgQualifyingWinsRank.cpp`
+- `DlgQuery_Mission.cpp`
+- `DlgQuery_Skill.cpp`
+- `DlgQuery_Weapon.cpp`
+- `DlgQuizInterval.cpp`
+- `DlgRacePointShop.cpp`
+- `DlgRaceTrackProp.cpp`
+- `DlgRecoverWindow.cpp`
+- `DlgRecruitLimitConfirm.cpp`
+- `DlgReduceDmg.cpp`
+- `DlgRename.cpp`
+- `DlgRevokeConfirm.cpp`
+- `DlgRoleFlash.cpp`
+- `DlgRoll.cpp`
+- `DlgSetup.cpp`  [fm/eo]
+- `DlgShowHandAdvise.cpp`
+- `DlgShowHandEntrance.cpp`
+- `DlgShowHandRoomControl.cpp`
+- `DlgShowHandRule.cpp`
+- `DlgShowPigeon.cpp`
+- `DlgSolidify.cpp`
+- `DlgSubProfession.cpp`
+- `DlgSubWeapon.cpp`
+- `DlgSuperFlag.cpp`
+- `DlgSynMemberAppoint.cpp`
+- `DlgSynMemberFire.cpp`
+- `DlgTalk.cpp`  [fm/eo]
+- `DlgTask.cpp`  [fm/eo]
+- `DlgTasktTrace.cpp`
+- `DlgTeamArena.cpp`
+- `DlgTeamArenaWinsRank.cpp`
+- `DlgTeamPK24Up.cpp`
+- `DlgTeamPK8To24.cpp`
+- `DlgTeamPKArenicScore.cpp`
+- `DlgTeamPKFinal.cpp`
+- `DlgTotemAdd.cpp`
+- `DlgTotemDetail.cpp`
+- `DlgTotemTotal.cpp`
+- `DlgTrade.cpp`  [fm/eo]
+- `DlgTradeBuddy.cpp`
+- `DlgTradeBuddyStatusRevoke.cpp`
+- `DlgTutorShipTipS.cpp`
+- `DlgUpgrade2Nonsuch.cpp`
+- `DlgVexillum.cpp`
+- `DlgVip.cpp`
+- `DlgVipDepot.cpp`
+- `DlgVipFace.cpp`
+- `DlgVipQuery.cpp`
+- `DlgVipRepairAll.cpp`
+- `DlgVipTransport.cpp`
+- `DlgWallowCountDown.cpp`
+- `DlgWarFlagLastEightNoFight.cpp`
+- `DlgWarFlagRank.cpp`
+- `DlgWarFlagRewardNoFight.cpp`
+- `DlgWarFlagTopInfo.cpp`
+- `DlgWarflagLastEightFight.cpp`
+- `DlgWrapShop.cpp`
+- `DlgXp.cpp`  [fm/eo]
+- `IMyAnimate.cpp`
+- `IMyAnimateLink.cpp`
+- `ItemTipBase.cpp`
+- `LotteryEffect.cpp`
+- `MenuGroup.cpp`  [fm/eo]
+- `MenuTalk.cpp`  [fm/eo]
+- `MessageBoxCmdProcess.cpp`
+- `MessageBoxMgr.cpp`
+- `MyAnimateParallelLink.cpp`
+- `MyAnimateSerialLink.cpp`
+- `MyAnimationSystem.cpp`
+- `MyButton.cpp`  [fm/eo]
+- `MyButtonSet.cpp`
+- `MyCheck.cpp`  [fm/eo]
+- `MyColorStatic.cpp`
+- `MyCombo.cpp`  [fm/eo]
+- `MyCommon.cpp`
+- `MyCursorMgr.cpp`
+- `MyDialog.cpp`
+- `MyDialogMgr.cpp`
+- `MyEditEx.cpp`
+- `MyGameInput.cpp`
+- `MyGrid.cpp`  [fm/eo]
+- `MyList.cpp`  [fm/eo]
+- `MyListCtrl.cpp`
+- `MyShell.cpp`  [fm/eo]
+- `MyShellDlg.cpp`  [fm/eo]
+- `MySlider.cpp`  [fm/eo]
+- `MyTextTwinkleAnimate.cpp`
+- `MyTree.cpp`
+- `OwnerDrawCtrl.cpp`
+- `OwnerImage.cpp`
+- `OwnerStatic.cpp`
+- `PMItemNodeManager.cpp`
+- `PickUpMgr.cpp`
+- `ServerStatus.cpp`  [fm/eo]
+- `TqStr.cpp`
+
+## Network (37)
+
+- `MsgAccount.cpp`  [fm/eo]
+- `MsgAction.cpp`  [fm/eo]
+- `MsgBattleEffectiveness.cpp`
+- `MsgConnect.cpp`  [fm/eo]
+- `MsgCrossSwitch.cpp`
+- `MsgFactionRankInfo.cpp`
+- `MsgFriend.cpp`  [fm/eo]
+- `MsgInteract.cpp`  [fm/eo]
+- `MsgItem.cpp`  [fm/eo]
+- `MsgLottery.cpp`
+- `MsgMonsterTransform.cpp`
+- `MsgName.cpp`  [fm/eo]
+- `MsgNpcInfo.cpp`  [fm/eo]
+- `MsgNpcInfoEX.cpp`  [fm/eo]
+- `MsgPackage.cpp`  [fm/eo]
+- `MsgPlayer.cpp`  [fm/eo]
+- `MsgRaceTrackProp.cpp`
+- `MsgShowHandActivePlayer.cpp`
+- `MsgShowHandCallAction.cpp`
+- `MsgShowHandDealtCard.cpp`
+- `MsgShowHandEnter.cpp`
+- `MsgShowHandGameResult.cpp`
+- `MsgShowHandLayCard.cpp`
+- `MsgShowHandLostInfo.cpp`
+- `MsgShowHandOnlineStatus.cpp`
+- `MsgShowHandTrusteeship.cpp`
+- `MsgStrCheckKey.cpp`
+- `MsgTaskDialog.cpp`  [fm/eo]
+- `MsgTeamArena.cpp`
+- `MsgTeamMember.cpp`  [fm/eo]
+- `MsgTexasNpcInfo.cpp`
+- `MsgUserAttrib.cpp`  [fm/eo]
+- `MsgUserInfo.cpp`  [fm/eo]
+- `MsgVerifyCheck.cpp`
+- `MsgWarFlag.cpp`
+- `NetMsg.cpp`  [fm/eo]
+- `Ping.cpp`
