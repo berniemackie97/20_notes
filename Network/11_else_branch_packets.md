@@ -715,6 +715,10 @@ note these are exactly the entries whose `Handler Details` already cited in-buil
 Full proofs and the accessor renames are in
 [01_core_packets.md](01_core_packets.md) under the `MsgUserInfo (Type 1006)` section.
 
+The [2026-09-21 focused reconciliation](MsgUserInfo1006-historical-field-reconciliation.md)
+corrects ID23 to historically identified Virtue, proves ID24 performs no update, and clarifies ID37
+as MeteLev/pre-rebirth level. Historical names and native-only proof remain distinguished.
+
 **First switch (IDs 0–27):**
 
 | ID | Name | Entity Field | Handler Details |
@@ -731,7 +735,7 @@ Full proofs and the accessor renames are in
 | 9 | TeamLeaderRank | CHero+0x114C | Hero only. `CHero__SetDword_0x114C_AndPost3F8(value)`. PostMainWndMsg `0x3F8` |
 | 10 | BloodThirst | entity[528] | Direct store. PostMainWndMsg `0xDED` (sub-profession UI refresh) |
 | 11 | Mesh/Look | composite | Live composite-appearance mutation on an existing entity: `meshTransformId = (value64 / 10000) % 1000` → `CRole__SetMeshTransformIdAndResolveEffectiveMeshTransform`; `transformFlag = (value64 / 1000) % 10` → `role+0x178`; body appearance source = `value64 % 1000` → `CRole__SetBodyAppearanceSourceId`; transform-look source family = `value64 / 10000000` → `CRole__SetTransformLook` with RoleDataQuery validation |
-| 12 | Level | entity[526] | Triggers qualification check: if hero is <70 and new level ≥70, shows "STR_CONFIRM_QUAL" prompt via `CMessageBoxMgr`. PostMainWndMsg `0x402` (char info) + `0x494` (peerage). Calls `sub_68F7B9` (peerage recalc) |
+| 12 | Level | entity[526] | Triggers qualification check: if hero is <70 and new level ≥70, shows "STR_CONFIRM_QUAL" prompt via `CMessageBoxMgr`. PostMainWndMsg `0x402` (char info) + `0x494` (peerage). Calls `0x68F7B9` (tutor-grade recomputation) |
 | 13 | InnerLevel | entity[323] | Direct store. PostMainWndMsg `0xDED` |
 | 14 | InnerProgress | entity[322] | Direct store. PostMainWndMsg `0xDED` |
 | 15 | SubProLevel | entity[319] | Direct store. PostMainWndMsg `0xDED` |
@@ -741,8 +745,9 @@ Full proofs and the accessor renames are in
 | 19 | SoulShield | CHero+0x878 | `CHero__SetDword_0x878(entity, value)`. PostMainWndMsg `0x40A`. **Not a status effect** — sets a dedicated hero field |
 | 20 | StatusEffect20 | — | `sub_6F0FB7(effect=20, mode=2, value, 1, 1)` — applies status effect via status manager |
 | 21 | ExtraBattle | singleton+3304 | Hero only. Sets `GetSingletonPtr_404460()+3304 = value` — extra battle power |
-| 22 | Reborn | — | `sub_673F05(value)` — rebirth/metempsychosis level. If hero: `CHero__RefreshEquipmentDerivedStats` + PostMainWndMsg `0x445`, `0x446`, `0x494`. Calls `sub_68F7B9` (peerage recalc) |
-| 23 | KOBonus | entity[558] | Direct store — KO bonus value |
+| 22 | Reborn | — | `sub_673F05(value)` — rebirth/metempsychosis level. If hero: `CHero__RefreshEquipmentDerivedStats` + PostMainWndMsg `0x445`, `0x446`, `0x494`. Calls `0x68F7B9` (tutor-grade recomputation) |
+| 23 | Virtue (historical name) | role+0x8B8 | Native `0x757BFF` stores low DWORD, same destination as1006 +44. Jump-table slot `0x758D75` -> `0x757BF9`. Historical identity corroborated by COPS5066; former KOBonus label unproven. |
+| 24 | No field update | — | Native table slot `0x758D79` -> common continuation `0x758B86`. |
 | 25 | StatusFlags | 16-byte | Copies 16 bytes from entry value into v206[]. For hero, checks/toggles 7 individual status flag pairs: bits 0x40→flag 0x66 (effect 91), 0x100→0x68 (92), 0x400→0x6A (93), 0x1000→0x6C (94), 0x4000→0x6E (95), 0x4→0x62 (96), 0x10→0x64 (97). Then calls `sub_676207` + `entity->vtable[52](v206)`. If hero has flag 0x1E or 0x1F, applies status effect 28 |
 | 26 | Arrowsmith | — | `sub_64DB3C(value64 % 1000, 1)` + `sub_64DC01(value64 / 1000, 1)` — arrowsmith visual effect decomposition |
 | 27 | HP% | entity[324] | Capped at 100. PostMainWndMsg `0x40F` — HP percentage display |
@@ -760,7 +765,7 @@ Full proofs and the accessor renames are in
 | 34 | FatigueTime | — | **Server name verified**. `sub_6630AA(value)`. Displays formatted time via string ID 11070. Shows system chat message. Calls `sub_6630BE(1)` |
 | 35 | FatigueReset | — | **Server name verified**. Resets: `sub_663082(0)`, `sub_6630AA(0)`, `sub_66311D(100)`. Removes effects 33/34/35. Restores fatigue level based on `sub_66312A` result (0→effect 33/timer 5, 50→effect 34/timer 6, 100→effect 35/timer 7). PostMainWndMsg `0x470` |
 | 36 | FamilyBattle | — | Complex 2+ entry handler. Entry[0] with value>0: sets bit flag 0x3E, `sub_673A88(value)`, formats "STR_FAMILY_BATTLE" string with family name from `sub_69A306`. Entry[0] with value≤0: clears bit 62, resets family. Entry[1]: formats prompt text. Uses effects 59 with timer |
-| 37 | PeerageLevel | entity[527] | `entity[527] = value / 100000` — stores peerage/nobility level (decomposed from donation amount). If hero: triggers peerage UI via `sub_68F7B9` + PostMainWndMsg `0x494` |
+| 37 | EncodedPreRebirthLevel (historical MeteLev) | role+0x83C | Native unsigned divide by100000 at `0x758392`, setter `0x673202` called at `0x758398`; same decode as1006 +48. `0x68F7B9` recomputes tutor grade. Not peerage/donation. |
 | 38 | Title | — | Value=0: clears bit 63, PostMainWndMsg `0x4B8`. Value=255: sets bit 0x3F, PostMainWndMsg `0x4B1(value)`. Other: clears bit 63 |
 | 39 | Coach | — | `sub_673266(value)` — coaching/mentor rank. If `GetGroupCount() > 0`: PostMainWndMsg `0x501(1)`. PostMainWndMsg `0x4DB` |
 | 40 | MentorPK | — | Hero only. Old value via `sub_674D34`. Status effect swap: removes old effect via `sub_71E05A(old)`, adds new via `sub_71E05A(new)`. Sets via `entity->vtable[54](value)` |

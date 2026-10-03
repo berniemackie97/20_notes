@@ -221,15 +221,13 @@ CRole uses three separate bitset regions for entity status:
 - Handles mount transforms (look > 5000)
 ```
 
-#### CRole__SetEquipSlotItem (0x66CECF, size=205)
-**Purpose**: Sets an equipment item in a visual slot (1-18).
-```
-- Validates slot index: must be 1-18, within valid ranges (1-6, 7-12, 15-18)
-- Checks entity_id match at offset 674 (ownership check)
-- Stores item data at DWORD offset (678 + 2*(slot-1))
-- Returns 1 on success, 0 on failure
-- Assert: nPosition >= 1 && nPosition <= 18
-```
+#### Corrected receiver: CDummy_SetInspectedEquipmentSlot (`0x66CECF`)
+
+This is a `CDummy` method, not a `CRole` local-equipment setter. The assert at `0x66CF6E`
+names `3DRole/Dummy.cpp`. It checks the inspected-role identity against `this+0xA88`
+(`0x66CEEC`) and stores shared references at `this+0xA98 + 8*(slot-1)` for slots1..12/15..18.
+MsgItem subtype4 calls it on hero+`0x1EA0` and passes packet+4 as the inspection identity.
+See [the corrected item contract](../Network/MsgItem1008-domain-contract-5517.md).
 
 ### Animation (3 functions)
 
@@ -709,7 +707,7 @@ placement.
 | CRole__SetAdditionalOffsetY | 0x6513B0 | 10 |
 | CRole__CalcSpeedModifier | 0x65127A | 182 |
 | CRole__InitProperties | 0x651616 | 390 |
-| CRole__SetEquipSlotItem | 0x66CECF | 205 |
+| CDummy_SetInspectedEquipmentSlot (receiver correction) | 0x66CECF | 205 |
 | CRole__GetOverlayYOffset_0x66F6D9 | 0x66F6D9 | 142 |
 | CRole__ApplyActionWithQueue_6720EE | 0x6720EE | 574 |
 | CRole__ProcessTimedActionQueue_0x440 | 0x6724C6 | 188 |

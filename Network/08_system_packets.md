@@ -469,6 +469,15 @@ then `while (i u< 0x10) *(i + &g_ScreenModeHeightPixels:3) = (rand() % 0x100).b`
 - Resolves singleton via `s__GetSingletonPtr_4197DD` and writes value to singleton dword field `+0x34` (`Singleton4197DD__SetDword_0x34`).
 - Posts `PostMainWndMsg_0x464(0x4DB, 0)`.
 
+**Singleton = `CHeroConfigMgr`** (RTTI 0x921BE0, global 0x956000). `+0x34` is a feature bitmask, whole
+dword replaced (`CHeroConfigMgr_SetFlagBits` 0x652FAC, sole caller this handler). Tested by
+`CHeroConfigMgr_TestFlagBit` (0x652F84):
+| Bit | Consumer |
+|---|---|
+| 10 | `CHeroFriendAndEnemyMgr_GetMaxFriendCount` 0x69E506: set -> friend cap by hero `+0x474` tier (50..100), clear -> 50 |
+| 8 | 0x43655A: set -> tier table 15/16/17/18/19/21/24, clear -> 15 |
+| 2 | `CUserAttribMgr_RenderStatusIconTooltips` 0x6F14C0 |
+
 ## MsgSubPro (Type 1113)
 **Direction**: Bidirectional
 **Purpose**: Synchronizes sub-profession state in `CSubProfMrg` (value arrays + triple-slot values), with subtype-driven add/subtract/reset flows and status chat notifications.

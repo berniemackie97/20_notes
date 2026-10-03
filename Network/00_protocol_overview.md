@@ -112,7 +112,7 @@ Note: This table is the 1002–1151 switch/jumptable view. `CNetMsg__ProcessMsg_
 | 1026 | CMsgTeamMember | 0x761a02 | 0x761ab1 |
 | 1027 | CMsgGemEmbed | 0x7533ae | 0x5ad9b1 |
 | 1028 | CMsgWeather | 0x7534a1 | 0x5ad9b1 |
-| 1029 | CMsgUserAttrib | 0x75e446 | 0x75e4cf |
+| 1029 | CMsgTeamAward (historical family name; native triple accumulator) | 0x75e446 | 0x75e4cf |
 | 1030 | Default (no handler) | - | - |
 | 1031 | Default (no handler) | - | - |
 | 1032 | CMsgNpcInfo | 0x75e304 | 0x75e38d |
@@ -124,7 +124,7 @@ Note: This table is the 1002–1151 switch/jumptable view. `CNetMsg__ProcessMsg_
 | 1038 | CMsgMapItem | 0x717afa | 0x5ad9b1 |
 | 1039 | CMsgPackage | 0x72b91e | 0x72ba6c |
 | 1040 | CMsgTradeDialog | 0x72ccef | 0x72cda9 |
-| 1041 | CMsgSynAttr | 0x6fe406 | 0x6fe4c0 |
+| 1041 | CMsgEnemyList (was CMsgSynAttr) | 0x6fe406 | 0x6fe4c0 |
 | 1042 | CMsgGuide | 0x761cd3 | 0x761d5c |
 | 1043 | CMsgBrocastMsg | 0x720357 | 0x720427 |
 | 1044 | Default (no handler) | - | - |
@@ -184,7 +184,7 @@ Note: This table is the 1002–1151 switch/jumptable view. `CNetMsg__ProcessMsg_
 | 1098 | Default (no handler) | - | - |
 | 1099 | Default (no handler) | - | - |
 | 1100 | Default (no handler) | - | - |
-| 1101 | CMsgPeerage | 0x73fda7 | 0x740007 |
+| 1101 | CMsgMapItem (former Peerage label withdrawn) | 0x73fda7 | 0x740007 |
 | 1102 | CMsgDetainedItem | 0x74e08a | 0x74e158 |
 | 1103 | CMsgMagicEffectSimple | 0x760abc | 0x760b45 |
 | 1104 | CMsgFlushExp | 0x76179a | 0x761823 |

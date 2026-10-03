@@ -13,52 +13,50 @@ Item ID: AABBCCCD
   CC     = Variant       (item_id / 10 % 100)
   D      = Quality tier  (item_id % 10)
 
-Quality tiers (last digit):
-  0-5 = Normal qualities
-  6   = Super quality tier 1 (+4 socket score)
-  7   = Super quality tier 2 (+3 socket score)
-  8   = Super quality tier 3 (+2 socket score)
-  9   = Super quality tier 4 (+1 socket score, also = socketable)
+Quality is encoded in the last decimal digit. Equipment-score calculation at
+0x67BA31..0x67BA4F assigns scores 1/2/3/4 to suffixes 6/7/8/9 respectively.
+Those scores are not four different "Super" quality tiers.
 ```
 
-### Item Main Types (from GetItemMainTypeFromId @ 0x67AF1A)
-```
-Return  Condition                                   Description
-------  -----------------------------------------   -----------
-0       major_cat == 10                             Generic/consumable
-1       major_cat == 1, sub in {11,14,17}           Helmet/headgear
-        OR sub == 123
-2       major_cat == 1, sub == 12                   Necklace
-3       major_cat == 1, sub == 13                   Ring/bracelet
-4       major_cat in {4,5}                          Weapon (one-handed)
-        OR sub == 601                               Shield
-5       major_cat == 5                              Weapon (two-handed)
-6       major_cat == 6                              Ranged weapon (bow)
-7       major_cat == 1, sub == 15                   Boots
-8       major_cat == 1, sub == 16                   Armor (body)
-9       major_cat == 7                              Fan/token
-10      major_cat in {20-29}                        Misc equipment
-11      major_cat == 1, sub in {18,19}              Wing/mantle
-12      sub in {201,202}                            Gem/jewel
-14      sub == 300 AND quality == 0                 Arrow/ammunition
-15      sub == 350                                  Fashion head
-16      sub == 360                                  Fashion garment
-17      sub == 370                                  Fashion armor
-18      sub == 380                                  Fashion accessory
-20      sub == 200                                  Steed/mount
-21      sub == 203                                  Special mount type
-```
+### Item categories relevant to equipment
+
+Native dispatcher `0x67AF1A` uses decimal item-type groups, not equipment slot numbers.
+The previously guessed descriptions in this table were incorrect. Verified family identities:
+
+| Category | Item-type family | Identity |
+|---|---|---|
+| 1 | 110/140/170 families and exact group123 | Headwear |
+| 2 | 120 family | Necklace |
+| 3 | 130 family | Armor |
+| 4 / 5 | weapon families selected by `0x67AF1A` | Weapon categories; follow native subtype/position guards |
+| 7 | 150 family | Ring |
+| 8 | 160 family | Boots |
+| 12 | group201/202 | Attack/defense talismans (Fan/Tower), not gems |
+| 14 | group300 with final decimal digit0 | Steed, not arrows |
+| 15 / 16 | group360 / 350 | One-hand / two-hand weapon accessories |
+| 17 / 18 | group370 / 380 | Bow / shield accessories |
+| 20 | group200 | Steed armor |
+| 21 | group203 | Riding crop |
+
+Here `group = (ItemTypeId % 1_000_000) / 1000`; broader family checks use the
+separate native decimal branches. This is not a replacement for all category dispatch logic.
+Arrows use category0 plus subtype50000 (`0x5681F9`). Full equipment placement and raw
+instruction evidence are in [the item contract](../Network/MsgItem1008-domain-contract-5517.md).
 
 ### Item Sub-Type (from GetItemSubTypeFromId @ 0x67B0B3)
-Used for gems (type 201/202) and weapons (major_cat 4-7):
+Used for talismans (type201/202) and weapon/item families:
 ```
-Gems (sub 201/202): returns (item_id % 10000) / 1000
+Talismans (sub 201/202): returns (item_id % 10000) / 1000
 Weapons (major 4-5): returns 1000 * ((item_id % 100000) / 1000)
 Weapons (major 7/10): returns 10000 * ((item_id % 100000) / 10000)
 ```
 
 ## CItemData Record Layout (192 bytes)
 From CItemData__CopyFrom @ 0x67983E and CItemData__ClearFields @ 0x6788DA:
+
+The older sketch below records storage offsets, not established meanings for every member.
+Use the parser-backed tables below and the linked MsgItem contract for semantic names;
+`field_*` labels and the string-object storage sketch are not a production struct definition.
 
 ```c
 struct CItemData {
@@ -125,70 +123,38 @@ struct CItemData {
 // Total: 192 bytes
 ```
 
-## CItem Object Layout (~500 bytes)
-From accessor analysis:
+## CItem instance fields verified for MsgItem
 
-```c
-struct CItem {
-    void*    vtable;            // +0: vtable pointer (CItemTipBase__vtable (0x86B054) for CItemTipBase)
-    // CString fields at offsets 1,4 (DWORD)
-    uint32_t uid;               // +12 (DWORD offset 3): Item UID (CItem__GetUID)
-    uint32_t item_id;           // +28 (DWORD offset 7): The item type ID
-    // ...
-    uint32_t base_price;        // +60 (DWORD offset 15): Base price
-    uint16_t max_durability;    // +84 (WORD offset 42): Max durability
-    uint8_t  gem_slot_1;        // +87 (byte): First gem socket
-    uint8_t  gem_slot_2;        // +88 (byte): Second gem socket
-    uint8_t  item_level;        // +97 (byte): via GetLevel_Byte
-    // ... (more fields)
-    uint16_t special_flag;      // +208 (WORD offset 104): Special item flag
-    uint32_t amount;            // +432 (DWORD offset 108): Stack amount
-    uint32_t timer_elapsed;     // +344: Timer elapsed value
-    uint32_t timer_total;       // +348: Timer total
-    uint8_t  timer_active;      // +356: Timer active flag
-    uint16_t durability;        // +400/404: Current durability
+Allocation size `0x1EC` (`0x762D7F`). The previous C-like full layout mixed byte and dword
+indices and incorrectly labelled lifetime/quantity fields. This is a partial offset map, not a
+compilable class declaration. The full wire-to-instance table and semantic limits live in
+[MsgItem1008-domain-contract-5517.md](../Network/MsgItem1008-domain-contract-5517.md).
 
-    // Combat stats (DWORD offsets, with quench bonuses):
-    uint32_t stat_attack;       // offset 33/58: Attack power (base/quenched)
-    uint32_t stat_magic_atk;    // offset 45+77: Magic attack + bonus
-    uint32_t stat_magic_def;    // offset 46+78: Magic defense + bonus
-    uint32_t stat_atk_range;    // offset 47+79: Attack range + bonus
-    uint32_t stat_dodge;        // offset 48+80: Dodge + bonus
-    uint32_t stat_accuracy;     // offset 49+81: Accuracy + bonus
-
-    // Extended fields:
-    uint32_t timer_duration;    // offset 86 (DWORD): Timer duration in seconds
-    uint8_t  item_bound;        // offset 108 (byte & 1): Bound flag
-    uint32_t quench_data;       // offset 113: Quench refinement data
-    uint32_t quench_exp;        // offset 115: Quench experience
-
-    // Loaded item data (from CItem__LoadItemDataFromDb):
-    void*    name_str;          // offset 220: Item name CString
-    void*    desc_str;          // offset 232: Description CString
-    uint32_t db_stat_a;         // +244: From database
-    uint32_t db_stat_b;         // +248
-    uint32_t db_stat_c;         // +252
-    uint32_t db_stat_d;         // +256
-    uint32_t db_stat_e;         // +260
-    uint32_t db_stat_f;         // +264
-    uint32_t db_stat_g;         // +268
-    uint32_t db_stat_h;         // +272
-    uint32_t db_stat_i;         // +276
-    uint32_t db_stat_j;         // +280
-    uint32_t db_stat_k;         // +284
-    uint32_t db_stat_l;         // +288
-    uint32_t db_stat_m;         // +292
-    uint32_t db_stat_n;         // +296
-    uint32_t db_stat_o;         // +300
-    uint32_t db_stat_p;         // +304
-    uint32_t db_stat_q;         // +308
-    uint32_t db_stat_r;         // +312
-    uint32_t db_stat_s;         // +316
-    uint32_t db_stat_t;         // +320
-    uint32_t db_stat_u;         // +324
-    uint8_t  has_db_data;       // +480
-};
-```
+| CItem offset | Width | Verified use |
+|---|---|---|
+| `+0x0C` | u32 | Identity; local item UID, but subtype4 supplies inspected-role identity |
+| `+0x1C` | u32 | ItemTypeId / embedded static-record beginning |
+| `+0x54` | u16 | Maximum durability; arrow capacity; jar counter key |
+| `+0x56` | u8 | Unresolved compatibility byte A |
+| `+0x57/+0x58` | u8 each | Socket codes |
+| `+0x5C` | u32 | Hidden attack effect |
+| `+0x60` | u8 | Unresolved compatibility byte B |
+| `+0x61` | u8 | Addition level (steed lineage level) |
+| `+0x14C` | u32 | Talisman socket progress / steed packed color / jar counter baseline |
+| `+0x158` | i32 use | Lifetime duration in seconds |
+| `+0x15C` | u32 | Client activation tick |
+| `+0x160` | u32 | Composition/steed lineage progress |
+| `+0x164` | u8 | Lifetime active flag |
+| `+0x168/+0x16C/+0x170` | u32 each | Damage reduction / life enchantment / monster restraint; steed R/G/B components |
+| `+0x17C` | u32 | Inscribed syndicate ID |
+| `+0x190` | u32 | Generic stack count, minimum1 |
+| `+0x194` | u16 | Current durability; arrow count; jar target |
+| `+0x19C` | u32 | RoleView texture variant; steed recomputes it |
+| `+0x1A0` | u32 | Equipment-lock mask, not gifted binding |
+| `+0x1A4/+0x1A8` | u32 each | Binding code / derived restriction mask |
+| `+0x1AC/+0x1AD` | u8 each | Broken or disabled / suspicious |
+| `+0x1B0` | u32 | Unlock date/query cache state |
+| `+0x1B4` | string object | Formatted unlock-date description |
 
 ## ItemTypeDataSingleton Startup Chain
 
@@ -394,7 +360,7 @@ Slot ID  →  Canonical  Description
 ### Quality Tiers (GetItemQualityTier @ 0x67B28C)
 ```
 Last digit of item_id:
-  6 → Tier 4 (highest quality)
+  6 → Helper code4 (not evidence of highest quality)
   7 → Tier 3
   8 → Tier 2
   9 → Tier 1
@@ -405,25 +371,20 @@ Special items:
   Weapon accessories (type 9, sub 0): Tier 5
 ```
 
-### Socket Score Calculation (CalcItemSocketScore @ 0x67B9C7)
-```
-Score = quality_tier
-      + (gem_slot_1 != 0)
-      + (gem_slot_2 != 0)
-      + (gem_slot_1 % 10 == 3) // Super gem bonus
-      + (gem_slot_2 % 10 == 3) // Super gem bonus
-      + additional_effect_score
+### Equipment score and unlocked-item threshold
 
-For type 14 items (bows with subtype 5):
-  Score is doubled if certain conditions met.
-```
+`0x67B9C7` combines a category-gated quality contribution, addition level, nonzero socket
+counts and gem-code `%10 == 3` contributions. Its quality contribution at `0x67BA31..0x67BA4F`
+is 1/2/3/4 for suffix6/7/8/9; it is **not** the inverted helper-code table at `0x67B28C`.
+The category14 steed branch returns addition level (`0x67BA22`). The conditional doubling
+at `0x67BAAB..0x67BACB` has separate weapon/item predicates; the old “type14 bows” label
+was incorrect. This score is not proof of socket-creation eligibility.
 
-### Can Add Socket (CanAddSocket @ 0x67CAFD)
-```
-Type 12 (gem): socket_score >= 5
-Equipment: socket_score >= 8
-Both require: not bound, not special locked
-```
+`CItem_PassesUnlockedEquipmentScoreThreshold` (`0x67CAFD`) requires a non-suspicious item
+with neither equipment-lock mask0x1 nor0x2, and score >=5 for category12 talismans or >=8
+for other equipment. It does not test the gifted/untradable binding field. The old
+`CanAddSocket` name was unsupported. See the lock UI consumers in the
+[MsgItem contract](../Network/MsgItem1008-domain-contract-5517.md).
 
 ## Functions (verified through decompilation)
 
@@ -435,10 +396,10 @@ Both require: not bound, not special locked
 | 0x67AF1A | GetItemMainTypeFromId | Static: extracts main type from item ID |
 | 0x67B0B3 | GetItemSubTypeFromId | Static: extracts sub-type from item ID |
 | 0x71FF0B | GetUID | Returns item UID (DWORD offset 3) |
-| 0x67CC54 | GetItemLevel | Returns this[97] (byte) |
-| 0x67D663 | GetLevel_Byte | Returns this[97] (byte, alias) |
-| 0x67D7EF | GetItemDurability | Returns durability (offset 400 or 404) |
-| 0x67D82F | GetMaxDurability | Returns max durability (WORD offset 202) |
+| 0x67CC54 | CItem_GetItemAddLevel | Returns addition/lineage byte at +0x61 as u32 |
+| 0x67D663 | CItem_GetAdditionLevelByte | Returns raw addition/lineage byte at +0x61 |
+| 0x67D7EF | CItem_GetStackCount | Generic count +0x190; arrows use current durability +0x194 |
+| 0x67D82F | CItem__GetCurrentDurability | Returns word at +0x194; not maximum durability |
 | 0x67DCE2 | GetEffectiveId | Returns field 55 or field 8 based on flag |
 | 0x67C885 | GetSpecialFlag | Returns WORD at offset 104 |
 | 0x67CC02 | GetItemColor | Returns item color value |
@@ -489,7 +450,7 @@ Both require: not bound, not special locked
 | 0x67BAD4 | GetGemSocketCompatibility | Returns gem-slot compatibility mapping |
 | 0x67BD61 | CanEquipGem | Checks if gem fits in socket |
 | 0x67B28C | GetItemQualityTier | Returns quality tier (1-6) |
-| 0x67CAFD | CanAddSocket | Checks if item can receive new socket |
+| 0x67CAFD | CItem_PassesUnlockedEquipmentScoreThreshold | Requires non-suspicious, unlocked equipment and score >=5 for talismans or >=8 otherwise |
 
 ### Composition/Crafting
 | Address | Name | Description |
@@ -514,15 +475,15 @@ Both require: not bound, not special locked
 |---------|------|-------------|
 | 0x67AD6B | InitFromUIDAndItemId | Loads CItemData by item_id; sets UID and base fields |
 | 0x67AC6B | UpdateAddStatsFromItemIdAndLevel | Recomputes 4-dword add-stat array at +384 using adjusted item_id and level |
-| 0x67C794 | SetDword_0x14C | Sets dword at offset +0x14C |
-| 0x58CDDF | SetDword_0x160 | Sets dword at offset +0x160 |
-| 0x67B0A6 | SetDword_0x17C | Sets dword at offset +0x17C |
-| 0x67D80C | SetDwordMin1_0x190 | Sets dword at +0x190, clamped to minimum 1 |
+| 0x67C794 | CItem_SetTalismanProgressSteedColorOrJarBaseline | Stores type-dependent value at +0x14C |
+| 0x58CDDF | CItem_SetCompositionProgress | Sets composition/lineage progress at +0x160 |
+| 0x67B0A6 | CItem_SetInscribedSyndicateId | Stores arsenal inscription syndicate ID; zero unregisters |
+| 0x67D80C | CItem_SetStackCountAtLeastOne | Sets dword at +0x190, clamped to minimum 1 |
 | 0x67D820 | SetWord_0x194 | Sets word at offset +0x194 |
 | 0x67C755 | CItem__SetRoleViewTextureVariantSelector | Sets the item-side texture-variant selector at +0x19C; for the special `sub_67AD9A(item) == 0x0E` branch, rewrites it as `sub_67D75D(item) * 100 + sub_67CC54(item)` |
-| 0x67BF5E | OrDword_0x1A0 | ORs bitmask into dword at +0x1A0 |
-| 0x67BF4F | AndNotDword_0x1A0 | Clears bitmask in dword at +0x1A0 |
-| 0x67CBAB | SetByte_0x1AD | Sets byte at offset +0x1AD |
+| 0x67BF5E | CItem_AddStatusMask | ORs bitmask into dword at +0x1A0 |
+| 0x67BF4F | CItem_ClearStatusMask | Clears bitmask in dword at +0x1A0 |
+| 0x67CBAB | CItem_SetSuspicious | Sets suspicious-item boolean at +0x1AD |
 | 0x67B76E | SetByte_0x165 | Sets byte at offset +0x165 |
 | 0x67C78D | CItem__GetRoleViewTextureVariantSelector | Returns the item-side texture-variant selector used by the `ItemTexture.ini` lookup path |
 | 0x67DDCC | CItem__HasRoleViewOverrideLookupId | Returns true when either override-lookup field is populated |
@@ -545,7 +506,7 @@ Both require: not bound, not special locked
 | 0x67DC3B | CItem_GetEffectiveMana | Returns signed-16 base plus eligible active-soul mana |
 | 0x67DC53 | CItem__GetNameFromItemDb | Gets item name string from database |
 | 0x67DF82 | CItem__ClearAllFields | Clears all CItem fields |
-| 0x67C05C | CItem__SetTimerDuration | Sets item timer (converts minutes to seconds) |
+| 0x67C05C | CItem_ApplyWireLifetimeSeconds | Nonzero seconds activates; zero uses positive static minutes*60. Negative inputs are not clamped. |
 | 0x67DE9C | CItem_ShouldSuppressTemporarySoulStats | Required-level gate for temporary soul stat substitution |
 | 0x67DDEA | CItem_GetActiveSoulRequiredLevel | Selects temporary/permanent soul id and returns Itemtype field-4 required level |
 | 0x67DED8 | CItem_GetRequiredLevel | Returns the base Itemtype field-4 required level |

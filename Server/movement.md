@@ -21,29 +21,29 @@ Wire layout verified against `CMsgEntityAction_CreateWithMoveTickAndMapState` (`
 
 Inbound handling (`0x7405E7`):
 
-- Selector dword compared to exactly `9` → 24-direction table; anything else → 8-direction.
-  Only the low byte of the packed direction is normalised.
+- Selector dword compared to exactly `9` → 24-direction table; anything else → 8-direction. Only the
+  low byte of the packed direction is normalised.
 - Delta tables: 8-dir at `0x86C7C4`/`0x86C7E4`, 24-dir at `0x86C804`/`0x86C864`.
 - Entity resolved by id at `+8`. **If it is the local hero**:
   `CHero_ProcessMovementAcknowledgementTimestamp(pkt+0x10)` then
   `Role_UpdateCoordinateGateAndMapFromTilePair(current + delta)`.
 - Unresolvable non-hero entity → client sends MsgAction subtype `0x66` querying the player.
 
-**The delta is relative to the client's current tile**, so the acknowledgement is the request
-echoed verbatim. Echoing a modified position would double-apply.
+**The delta is relative to the client's current tile**, so the acknowledgement is the request echoed
+verbatim. Echoing a modified position would double-apply.
 
 ## Jump — MsgAction (10010) subtype 0x89 / 137
 
-Branch `0x700352..0x7003DE`. Target is **absolute**, packed as two u16 in the dword at `+8`:
-low word X, high word Y. The local-hero branch updates the coordinate gate straight from that pair.
+Branch `0x700352..0x7003DE`. Target is **absolute**, packed as two u16 in the dword at `+8`: low
+word X, high word Y. The local-hero branch updates the coordinate gate straight from that pair.
 
 Native gates, in order (`Role_RequestJumpToTile`, `0x658965`):
 
-| Gate | Address | Rule |
-|---|---|---|
-| Distance | `0x658BDE`, `0x658BF0` | `> 0` and `<= 0x10` (16 tiles) |
-| Map flag | `0x658C6C` | `CGameMap_GetFlags64 & 0x2000000` forbids jumping |
-| Mount cap | `0x658D31` | with status flag `0x32`, also `<= Role_GetField2DA8StatusValue` (`MOUNT_JUMP_MOVEPOINT_LIMIT`) |
+| Gate      | Address                | Rule                                                                                           |
+| --------- | ---------------------- | ---------------------------------------------------------------------------------------------- |
+| Distance  | `0x658BDE`, `0x658BF0` | `> 0` and `<= 0x10` (16 tiles)                                                                 |
+| Map flag  | `0x658C6C`             | `CGameMap_GetFlags64 & 0x2000000` forbids jumping                                              |
+| Mount cap | `0x658D31`             | with status flag `0x32`, also `<= Role_GetField2DA8StatusValue` (`MOUNT_JUMP_MOVEPOINT_LIMIT`) |
 
 Over-range emits string `0x186C0`; map-forbidden emits `STR_RIDE_MATCH_MSG_FORBID_JUMP`.
 
@@ -61,20 +61,20 @@ return (high² - low²) <= 2 * (squared - low²) ? low + 1 : low
 which is **Euclidean rounded half-up** — `round(sqrt(dx² + dy²))`. Ported as
 `OpenConquer.Domain.World.MapDistance.RoundedTileDistance`.
 
-Not Chebyshev, and not a truncated square root. Either would disagree with the client exactly at
-the range boundary that matters.
+Not Chebyshev, and not a truncated square root. Either would disagree with the client exactly at the
+range boundary that matters.
 
 Mode 2 and mode 3 apply a direction-based source adjustment before measuring (tables at
 `0x869EAC`/`0x869ECC`); neither is used by the jump gate and neither is ported.
 
 ## Passability
 
-Base grid: **zero passable, nonzero blocked**. Verified at `0x657EB4`, where the native gate
-accepts a tile only when `MapTileEntry_GetTailLinkPassabilityFlag != 1`, and the getter returns `1`
-when the tile has no entry — so a missing tile is blocked.
+Base grid: **zero passable, nonzero blocked**. Verified at `0x657EB4`, where the native gate accepts
+a tile only when `MapTileEntry_GetTailLinkPassabilityFlag != 1`, and the getter returns `1` when the
+tile has no entry — so a missing tile is blocked.
 
 `MapTileEntry_GetTailLinkNode` (`0x61EAEE`) walks the link list and **returns the tile entry itself
-when there are no links**. So on any tile without an overlay, tail passability *is* base
+when there are no links**. So on any tile without an overlay, tail passability _is_ base
 passability, and a base-only check matches the client exactly there.
 
 ## Known gaps

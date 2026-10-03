@@ -54,6 +54,12 @@ actually established.
   full wire map for 1006 and the state of each field's semantics. The date-stamped
   filename is cited inside `Conquer.exe.bndb`; do not rename it.
 
+- [MsgUserInfo1006-historical-field-reconciliation.md](MsgUserInfo1006-historical-field-reconciliation.md) —
+  focused COPS5066 alignment, retained compatibility slots, attribute23/24 and native proof limits.
+
+- [MsgItem1008-domain-contract-5517.md](MsgItem1008-domain-contract-5517.md) — item field ownership,
+  subtype1 versus inspected subtype4, equipment snapshots, locking, lifetimes, stacks and explicit unknowns.
+
 ## Related
 
 Cipher primitives are in [../Crypto/](../Crypto/README.md). The server-side view

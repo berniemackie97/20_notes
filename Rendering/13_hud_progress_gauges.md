@@ -1,12 +1,27 @@
 # CMyProgress — the HUD gauge widget
 
 Anchor: `CMyProgress::Show` at `0x5A9033`. Companion methods `Init` `0x5A9784`,
-`SetValueRange` `0x5A9A34`, `GetValueRange` `0x5A9A4F`, `ResetValueRange` `0x5A99AB`,
+`SetValueRange` `0x5A9A34`, `GetValueRange` `0x5A9A48`, `ResetValueRange` `0x5A9999`,
 `SetFillGeometryPixels` `0x5A9A96`, and the `+0x84` setter at `0x5A9A60`.
 
-This is the widget behind the XP / MP / HP gauges whose `.rgn` hover regions are already
+This is the widget behind the Skill / MP / HP gauges whose `.rgn` hover regions are already
 implemented in [12_hud_status_hint_panel.md](12_hud_status_hint_panel.md). The hint hotspots raise
 gauge sub-kinds today with no gauge behind them; this closes that gap.
+
+The downstream HP/MP/stamina contract is now recorded in
+[15_main_hud_gauge_render_contract.md](15_main_hud_gauge_render_contract.md):
+frame reachability, subvariant-1 correction, unclipped overflow UVs, resource
+failures, and OS font-calibration placement. Use that evidence for GFX-UI-002.
+
+The Progress42 state machine, exact assets, fixed fill/whole-highlight geometry,
+timer overlap/wrap vectors and corrected Progress44 boundary are closed in
+[16_main_hud_skill_progress_render_contract.md](16_main_hud_skill_progress_render_contract.md)
+for GFX-UI-003. In particular, Progress44's missing ANI section does not prevent
+its procedural style-0xA drawing.
+
+Static Progress45 and Dialog4 have a separate
+[English native contract](14_static_main_hud_chrome.md): origin `(0,H-141)`,
+no template scaling, background before these gauges and panels after stamina.
 
 ## Verified field map
 
@@ -28,7 +43,7 @@ corroborated from at least two directions.
 | `+0x6C` | `float` | pixels per value unit |
 | `+0x70` | `float` | capped pixels per unit; `Show` uses the ratio `+0x70 / +0x6C` |
 | `+0x74` | `u8` | style selector |
-| `+0x78` | `int` | value span (`max - min`) for style `0xB`; style `0xA` compares the value against it |
+| `+0x78` | `int` | value span (`max - min`) for style `0xB`; that style compares the value against it |
 | `+0x7C` | `int` | range minimum |
 | `+0x80` | `int` | range maximum |
 | `+0x84` | `u8` | sub-variant selector, consulted only when the style is 0 |
@@ -46,14 +61,15 @@ SetFillGeometryPixels(this, width, height, altWidth) -> +0x60, +0x68, +0x64
 ResetValueRange(this, min, max)        -> SetValueRange, then recompute +0x6C per style
 ```
 
-`Show` **clamps both value arguments to `+0x80` before drawing anything**, so an over-range value
-saturates rather than overflowing the bar. Two values are taken because several styles draw a
+`Show` applies a **signed upper clamp** to both value arguments at `+0x80` before drawing;
+it does not clamp negative values to zero. Two values are taken because several styles draw a
 primary and a secondary fill (a current/target pair).
 
 `Init` also repositions the control through `CWnd::MoveWindow` when the UI-scale global
-`data_957E24` is set, using the scale factors at `data_957E2C` / `data_957E30`. Any managed port
-that hardcodes the dialog-resource position will drift from the native client at non-default UI
-scales.
+`g_uiDialogFontScaleEnabled` (`0x957E24`) is set, using the factors at
+`0x957E2C` / `0x957E30`. This is startup OS font-unit compensation, not an
+unidentified screen-mode option. Its writers and conditional final coordinates
+are proved in [the calibration contract](15_main_hud_gauge_render_contract.md#ui-calibration-and-final-origins).
 
 ## Styles
 
@@ -63,13 +79,14 @@ differently per style:
 - **0 — vertical fill.** Scale is height-based: `+0x6C = height / (max - min)`, and
   `+0x70 = span >= 100 ? height * 0.01 : height / span`. The `+0x84` sub-variant selects between
   draw paths within this style.
-- **1, 2 — solid colour bands.** Drawn with `CMyBitmap::ShowBlock` as three stacked quarter-height
+- **0xA — solid colour bands.** Drawn with `CMyBitmap::ShowBlock` as three stacked quarter-height
   bands in `0xFFF1D06E`, `0xFFE8A326`, `0xFFAB916C`. Mirrored horizontally when the GameDataSet
   string `0x28BA` equals `"Arabic"`.
-- **9, 0xA — horizontal fill.** `+0x6C = width (+0x60) / (max - min)`. Style 9 is Arabic-mirrored
-  too; style `0xA` compares the incoming value against `+0x78`.
-- **0xB — horizontal, ANI-sized.** Width and height come from ANI frame 0's dimensions instead of
-  the window rect.
+- **9 — horizontal ANI fill.** Like style 0xA, `+0x6C = width (+0x60) / (max - min)`.
+  Style 9 is Arabic-mirrored too. Styles 1/2 do not select these fill branches.
+- **0xB — horizontal, ANI-sized remainder.** Width and height come from ANI frame 0's
+  dimensions instead of the window rect. It compares the incoming value against
+  `+0x78`, and draws the remaining source interval when unequal.
 
 ## Sub-variant selector
 
@@ -89,8 +106,8 @@ both arguments, which is the degenerate single-fill case.
 
 ## The six main-HUD gauges
 
-Created in `CDlgMain_InitializeMainHudWidgets` (`0x4BB873`), drawn in
-`CDlgMain_RenderMainUiDialogAndStatusOverlay` (`0x4BC202`). Exactly six `CMyProgress_Init` calls
+Created in `CDlgMain_InitializeMainHudWidgets` (`0x4BB869`; body starts `0x4BB873`), drawn in
+`CDlgMain_RenderMainUiDialogAndStatusOverlay` (`0x4BC1F8`; body starts `0x4BC202`). Exactly six `CMyProgress_Init` calls
 live there, which is what fixes the set at six.
 
 Every one is initialised `min = 0, max = 0x64`. **That is a placeholder, not the operating range**
@@ -126,8 +143,8 @@ clamp branch.
 least 80, otherwise by 1, then clamps it to current mana. It therefore snaps down on mana loss and
 lags only while mana rises. Both protected containers are constructed with logical value zero.
 
-It is also the only gauge given a non-zero sub-variant at init:
-`CMyProgress_SetSubVariant(+0x13F6A0, 1)`.
+**Progress40 (HP)** is the gauge given a non-zero sub-variant at init:
+`CMyProgress_SetSubVariant(+0x13F6A0, 1)` at `0x4BB92E`.
 That is a direct confirmation of the `+0x84` semantics derived above — this widget is the one with
 `width 0x24` but `altWidth 0x56`, and the flag is exactly what makes `Show` use `+0x64` instead of
 `+0x60`.
@@ -145,19 +162,24 @@ The `0x464` window-message arm at `0x5C3CC0` reads the current local `CHero+0x51
 method clears `CDlgMain+0x19C` and sets `CDlgMain+0x198` to one; it does not change the widget
 immediately. The clamp to 100 is what makes this the one gauge native re-ranges to a
 literal `0x64` rather than to a live maximum, and the shipped `ani/Control.ani` labels the section
-`技能槽` — the skill gauge. So the field is the skill-gauge percentage; it is that gauge's sole
-input, and nothing else writes it. The status hint panel reads it too, at `0x5BA7C8`, alongside
+`技能槽` — the skill gauge. So the field is the skill-gauge percentage; it is the value passed to both inputs
+of this gauge's Show call. This identified packet writer is not an exhaustive writer census. The status hint panel reads it too, at `0x5BA7C8`, alongside
 `CMyProgress_GetValueRange` for the numeric readout.
 It is also the gauge with a one-shot highlight. Because the producer does not change the widget,
 the already-running HUD pass draws its prior variant first. At the render tail, when `dlg+0x198` is
 set and `dlg+0x19C` is zero, native selects sub-variant 2 and records `timeGetTime()` at
-`dlg+0x19C`. Later passes keep drawing frame 2 whole until the unsigned comparison reaches
-`start + 0x1F4`; that pass then restores sub-variant 0 and clears `dlg+0x198`. The timestamp remains
-stored until the next command resets it. This is a 500 ms one-shot highlight, not a 125 ms
-repeating blink.
+`dlg+0x19C`. With no intervening variant command, later passes draw frame 2 whole
+until unsigned now >= uint32(start+500); that pass draws before its tail forces
+variant 0 and clears `dlg+0x198`. There is no saved previous variant.
+Command 0x40D can set variant 1 during the timer without restarting it, and 0x40E
+can set variant 0 without cancelling it. The timestamp remains until rearmed.
+Equality expires; DWORD addition wrap and the zero timestamp sentinel have the
+specific behavior recorded in the GFX-UI-003 contract. This is a one-shot
+highlight, not a repeating blink.
 
 **`Progress44`** shows experience as a 64-bit value right-shifted by `dlg+0x10C`, a runtime-adjusted
-shift that keeps the value inside the gauge's 0..100 range.
+shift paired with the scaled next-level experience maximum. Its operating range
+is not the initial placeholder 0..100.
 
 ### Hover regions
 
@@ -171,7 +193,11 @@ Ini/ProgressHp.rgn -> dlg+0x17C
 
 This independently confirms the load order recorded in
 [12_hud_status_hint_panel.md](12_hud_status_hint_panel.md), and pairs the regions with the gauges:
-XP with `Progress44`, MP with `Progress41`, HP with `Progress40`.
+**Skill with `Progress42`**, MP with `Progress41`, HP with `Progress40`.
+The former pairing of `ProgressXp.rgn` with Progress44 was incorrect: region0 posts sub-kind6,
+whose native receiver is shell`+0x140528` = dlg`+0x13F590` = Progress42.
+The [independent proof](12_hud_status_hint_panel.md#sub-kind-6-semantic-proof) records the
+constructor, DDX binding, Init, range, live value and message chain.
 
 ## The vertical fill, exactly
 
@@ -226,14 +252,19 @@ the source rectangle uses the truncated pixel count while the blit height uses t
 the blit can be one pixel taller than the rectangle it samples. This is faithful behaviour and is
 reproduced rather than tidied away.
 
-This is the current-versus-target presentation — a falling value shows the old level in frame 1
-behind the new level in frame 0.
+For these HP/MP callers, frame 1 displays current value and frame 0 displays the
+biased delayed-rise follower. The followers snap down on loss and lag on rises;
+this is not an old-level trail during falling values.
 
 ### Width selection
 
-Both branches above are the sub-variant 0 path and push `+0x60`. The sub-variant 1 path
-(`0x5A9484`, `0x5A951A`) has the same shape but pushes `+0x64` throughout. The managed runtime
-unifies them through a single effective-width accessor, which is why only one code path is needed.
+Both branches above are sub-variant 0 and use `+0x60`. Sub-variant 1 uses
+`+0x64` **and frame 2** (pushes at `0x5A950A` and `0x5A95A5`). In its
+current>follower branch it submits only one follower-based frame-2 draw; the
+earlier current-based RECT is overwritten at `0x5A957E`. It does not submit
+frame 1 and does not apply the normal-path follower bias. The earlier claim
+that both variants can differ only by effective width was incorrect. See
+[the exact branch table](15_main_hud_gauge_render_contract.md#exact-style-0-submissions).
 
 ## Dialog placement
 
@@ -252,7 +283,9 @@ The gauges are bound to dialog controls by the DDX block at `0x4BB6C0`, immediat
 
 The extraction is self-checking: the same pass yields `Main3_OrganiseBtn` (`0x400`) at
 `350, 46, 25, 12`, which matches the constants the already-implemented organise button uses, and a
-template size of 400 x 70 matching the dialog template units the HUD root already scales against.
+template size of 400 x 70. Those are dialog units; agreement with managed constants is
+corroboration only. It does not establish a pixel scale for the static HUD artwork, whose
+separate [native placement contract](14_static_main_hud_chrome.md) uses explicit pixels.
 
 **The control rect is not the fill geometry.** Native `Init` derives width and height from
 `GetWindowRect`, and `SetFillGeometryPixels` then overwrites both with fixed pixel constants — so
@@ -280,26 +313,38 @@ Read the file as GB18030; the comments are CP936 and are mojibake under UTF-8.
 **This names `hero+0x510`.** `Progress42` is the gauge fed from that field and nothing else, and the
 shipped data labels it 技能槽, the skill gauge. Note the artwork is called `ProgressPower`, so the
 filename and the comment disagree; the section comment is the more specific of the two and is the
-developers' own label for the control. What is proven is the gauge's identity, not the exact unit
-`hero+0x510` holds, so the field itself stays unnamed.
+developers' own label for the control. The native fixed0..100 range and packet clamp establish the gauge scale.
+`SkillGaugeValue` is a defensible UI name; this does not establish the server's accrual formula
+or a broader gameplay name such as skill proficiency or character experience.
 
 The three-frame layout corroborates the `+0x84` analysis exactly:
 
 - frame 0 — the base fill
-- frame 1 — the `…A` variant, which is the second fill of the current/target pair
-- frame 2 — the `…H` (highlight) variant, drawn whole at the origin by the sub-variant 2 branch
+- frame 1 — the first/current draw of the normal dual-fill pair; Progress42
+  duplicates ProgressPower.dds here and cannot reach this frame with its equal inputs
+- frame 2 — the `…H` variant: cropped by sub-variant 1 and drawn whole at the
+  origin by sub-variant 2. HP and MP can request it through sub-variant 1.
 
 Sub-variant 2 draws `ProgressPowerH.dds` (frame 2) whole at the control origin and does not consult
 either gauge value. That whole-frame highlight is conclusive: `+0x84` selects artwork, not a blend
 mode.
 
-### `Progress44` has no ANI section at all
+### `Progress44` missing ANI does not imply no draw — corrected 2026-09-26
 
-The XP gauge is initialised and drawn like the others, but `ani/Control.ani` contains no
-`Progress44` section — the shipped list is exactly `Progress40`, `41`, `42`, `45`, `46`, `47`. Its
-`Show` therefore queries a section that does not resolve and draws nothing. That also explains why
-it is the one gauge with no `SetFillGeometryPixels` call. Treat the XP gauge as **vestigial in
-5517**: the code path is live, the art is not.
+The already-established absence of a `Progress44` section is unchanged, but the previous
+implementation consequence was wrong. Init at `0x4BBA2A` passes style `0xA` (push
+`0x4BBA14`) and overlay mode 0. Show dispatches that style at `0x5A90D3` to
+`0x5A915C`, a solid-colour path that never queries the ANI section. For positive
+values, the English branch submits three `CMyBitmap::ShowBlock` calls at
+`0x5A9287`, `0x5A92C6`, and `0x5A92FE`, using `0xFFF1D06E`, `0xFFE8A326`,
+and `0xFFAB916C`. Zero skips; negative values have a separate red-block path.
+The caller continues at `0x4BC7FC` into `CMyGrid_Show` at `0x4BC810`.
+
+Thus Progress44 needs no ANI/DDS dependency, but **its visible procedural experience
+bar cannot be omitted on the grounds of the missing section**. The original claim
+that its live Show performs a failed section lookup was not supported by its actual
+style branch. The GFX-UI-003 evidence bundle records the original-instruction replay
+and the corrected implementation boundary.
 
 ### Asset availability — CORRECTED
 
@@ -339,7 +384,7 @@ case-insensitive by construction. Only the loose-file path is exposed to the fil
 which is where the `ProgressForce2A.dds` reference against a shipped `ProgressForce2a.dds` matters —
 fine on Windows and on a default macOS volume, broken on a case-sensitive one.
 
-### Why `Progress44` still does not resolve
+### Why the `Progress44` ANI section still does not resolve
 
 This survived re-checking, and is now established three independent ways:
 
@@ -351,8 +396,9 @@ This survived re-checking, and is now established three independent ways:
 3. Neither `ani/Control.ani` nor its numbered siblings exist inside `data.wdf` or `c3.wdf`, so the
    loose file is the only copy and is authoritative.
 
-So the XP gauge's `Show` queries a section that genuinely does not resolve. The sibling files are
-shipped but dead in this build.
+The section genuinely does not resolve, but the live XP gauge's style-0xA
+`Show` does not query it. The sibling sections are not dependencies of this
+procedural draw path; see the corrected implementation boundary above.
 
 ## Correction: the gauges are NOT percentage gauges
 
@@ -388,7 +434,7 @@ signed mana from all 18 equipment slots, and clamps negative totals to zero. The
 `0x65D2AB` is important: changing the condition to `== 1` would be an attractive but false
 "cleanup."
 
-`CHero_GetSkillGaugeMaximum` (`0x65D256`) is the three-byte constant-return helper immediately
+`CHero_GetSkillGaugeMaximum` (`0x65D256`) is the four-byte constant-return helper immediately
 before the mana getter. Its only xref is this HUD range update, and it returns `100`; this closes
 the distinction between the skill gauge's fixed range and all four stat-driven ranges.
 
@@ -423,18 +469,19 @@ deliberately exercises the startup state.
 
 ## Draw order — the gauges are SPLIT around the Dialog4 panels
 
-`CDlgMain_RenderMainUiDialogAndStatusOverlay` (`0x4BC202`) in full, with addresses:
+`CDlgMain_RenderMainUiDialogAndStatusOverlay` (entry `0x4BC1F8`, body `0x4BC202`)
+in full, with addresses:
 
 | # | Step | Address |
 |---:|---|---|
 | 1 | `CDlgMain_UpdateGaugeRangesFromHero` | `0x4BC20A` |
 | 2 | Flash host dialog visibility | `0x4BC215`–`0x4BC39A` |
-| 3 | `Progress45` backdrop, gated on `dlg+0x110` | `0x4BC3C6` |
+| 3 | `Progress45` backdrop, gated on `dlg+0x110` | lookup `0x4BC3C6`; English draw `0x4BC420` |
 | 4 | **`Progress40`** HP | `0x4BC455` |
 | 5 | **`Progress41`** MP | `0x4BC48F` |
 | 6 | **`Progress46`** stamina | `0x4BC4C2` |
 | 7 | **`Progress47`** stamina overflow | `0x4BC517` |
-| 8 | Dialog4 static panels, four sub-rect draws | `0x4BC522`–`0x4BC75E` |
+| 8 | Dialog4 static panels, four English sub-rect draws | `0x4BC6B6`, `0x4BC6E9`, `0x4BC720`, `0x4BC75E` |
 | 9 | **`Progress42`** skill | `0x4BC78E` |
 | 10 | **`Progress44`** XP | `0x4BC7F7` |
 | 11 | `CMyGrid_Show` + ten slot items | `0x4BC810`– |
@@ -482,22 +529,28 @@ both, and the frame is `(elapsed / 0x1F4) & 1`.
 restarts when its stored timestamp is zero, which is the state its own timeout leaves behind. The
 timeout compares with `JBE` against `0x7530`, so the cycle survives exactly 30000 ms and ends past
 it; on expiry it forces frame 0, clears `dlg+0x108` and zeroes the timestamp.
+Phase and expiry use separate clock samples (`0x4BCABC` and `0x4BCAE9`). Both differences are
+unsigned DWORD subtraction modulo `2^32`. Expiry can therefore replace the phase frame with 0
+before Show in the same pass. The complete ordering and replay boundaries are in
+[17_main_hud_action_strip_native_contract.md](17_main_hud_action_strip_native_contract.md).
 
 **Organise button** (`0x4BCB2C`–`0x4BCB9C`), gated on `dlg+0x104`, alternates frames **1 and 2** and
 has **no timeout** — nothing in the blink path ever clears `dlg+0x104`.
 
-One call sits deliberately outside the blink gate: `sub_4E892A(dlg+0x90A80, dlg+0x104 == 1)` at
-`0x4BCB74` is the `jz` target, so it runs every frame regardless of whether the cycle is active.
+One call sits deliberately outside the blink gate: `sub_4E892A(dlg+0x90A80, dlg+0x104 == 1)`.
+`0x4BCB74` is the `jz` target; the actual call is at `0x4BCB85`, so it runs every frame regardless
+of whether the cycle is active. It copies that boolean byte to the child dialog's `+0xF8`.
 Not modelled.
 
 ### Who raises the two flags
 
 `CDlgMain` is embedded in `CMyShellDlg` at **`+0xF98`** — proven from the ctor call site at
-`0x5ADB10`, `lea ecx, [esi+0xF98]` immediately before `call CDlgMain_Constructor` (`0x4B5468`).
+`0x5ADB11`, `lea ecx, [esi+0xF98]`, then the constructor call at `0x5ADB1B`
+to `CDlgMain_Constructor` (`0x4B5468`). The earlier `0x5ADB10` citation was the parent-argument push.
 So the two flags are `CMyShellDlg+0x109C` (`dlg+0x104`) and `CMyShellDlg+0x10A0` (`dlg+0x108`),
-and every producer outside the `DlgMain` translation unit writes them at those displacements. A
-scan for `dlg+0x104`/`dlg+0x108` alone finds nothing but the constructor and the blink loop itself,
-which is why the producers stayed hidden.
+and the shell dispatcher accesses those flags at the corresponding shell displacements.
+Scanning only the main-relative displacements misses those shell accesses. The additional
+main-relative reset in `sub_4BDACD` is recorded below.
 
 `CDlgMain_Constructor` zeroes `+0x100`, `+0x104`, `+0x108` and then `+0x10C`, so both flags start
 clear.
@@ -505,8 +558,8 @@ clear.
 Both producers live in `CMyShellDlg_WindowProc_DispatchMainWindowMessages` (`0x5BB79D`). Command
 ids are `CMD_NORMAL + n` with `CMD_NORMAL = 1000` (eosource `3DBaseCode/BaseFunc.h:316`).
 
-**`dlg+0x108` — PK mode.** `case 0x400` = `CMD_CHANGEPKMODE` (1000+24), at `0x5C342A`. It sets the
-flag to 1 unconditionally (`0x5C348E`), then re-skins the same widget the blink drives —
+**`dlg+0x108` — PK mode.** Actual command `0x400` enters at `0x5C3424`. **Only its mode-0 branch**
+sets the flag to 1 (`0x5C348E`); modes 1/2/3 preserve it. It re-skins the same widget the blink drives —
 `dlg+0x13F9E4`, DDX control `0x3F5` = `IDC_MAIN_PK` — from `CHero+0xFBC`:
 
 | `CHero+0xFBC` | ANI section |
@@ -516,9 +569,11 @@ flag to 1 unconditionally (`0x5C348E`), then re-skins the same widget the blink 
 | 2 | `Button48` |
 | 3 | `Button412` |
 
-then calls `sub_6527A2(sub_4197DD(), CHero+0xFBC)`. So the button both changes graphic and blinks
-for 30 s whenever the PK mode changes. The blink loop clears this flag itself on timeout; nothing
-else does.
+then calls `sub_6527A2(sub_4197DD(), CHero+0xFBC)` to persist `PkModeRecord`. Neither the skin
+setter nor this command resets the current frame or timestamp. Mode 0 arms the blink; another
+mode can inherit an active blink, and repeated mode-0 commands do not restart it. The loop
+clears the flag after elapsed time exceeds 30000 ms. Invalid modes preserve skin and gate but
+still reach the persistence call. This corrects the earlier unconditional-gate claim.
 
 **`dlg+0x104` — guild bulletin.** `case 0x414` = `CMD_FLASH_SYNDICATE_WORD` (1000+44), at
 `0x5C3897`. It first refreshes the guild-word host at `CMyShellDlg+0x108E30` when that host is
@@ -533,10 +588,17 @@ checksums it as `sum(abs((signed char)c))` over `strlen` characters. The flag is
 
 It then sets the flag to 1 (`0x5C39B7`) and stores the new checksum (`0x5C39CD`). The checksum
 comparison is what stops an unchanged bulletin from re-blinking on every refresh.
+Empty text or `"NULL"` skips checksum accumulation but still reaches the comparison with a
+zero checksum; nonempty text is not an additional prerequisite for raising the flag.
 
-The flag is cleared from two other cases of the same dispatcher, `case 0x78` (`0x5C23EF`) and
-`case 0x79` (`0x5C255A`), each guarded on the host at `CMyShellDlg+0x10519C` not being visible.
-Those two ids are below `CMD_NORMAL`, so they are not `CMD_*` codes.
+The dispatcher reset blocks are actual commands **`0xCAE` and `0xCAF`**, entering at
+`0x5C23C8` and `0x5C2533`. The earlier `0x78/0x79` values were compressed switch indexes,
+not message command IDs. When the host at `CMyShellDlg+0x10519C` is hidden and the flag is
+nonzero, the blocks clear it at `0x5C23F7/0x5C2562` and select button frame 0 at
+`0x5C240C/0x5C2577`. An additional reset in `sub_4BDACD` clears at `0x4BDB22` and selects
+frame 0 at `0x4BDB24` while opening hidden `CDlgMain+0x104204` after the common modal guard.
+None resets the process-global Organise timestamp. Clicking `Main3_OrganiseBtn` itself
+only toggles its intermediate dialog; it does not perform these resets.
 
 Both host dialog offsets (`CMyShellDlg+0x108E30` and `+0x10519C`) are still unidentified, and the
 bulletin getter `sub_7012AA` is not yet named — the checksum path does not depend on either, so

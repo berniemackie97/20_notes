@@ -141,7 +141,7 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CShowHandPlayer__UpdateCardCount | 0x724a9f |
 | CFactionPKMgr__HandleMapStateBit0x10000000_Set | 0x69770a |
 | CFactionPKMgr__HandleMapStateBit0x10000000_Clear | 0x697719 |
-| CFriend__Create | 0x709da3 |
+| CFriend__CreateNew | 0x709da3 |
 | FlowerAssetKey__GetByGiveReceiveTypeCount_706FDC | 0x706fdc |
 | FlowerAnim__SelectBaseSpriteByTypeAndScreenWidth_70701B | 0x70701b |
 | FlowerAnim__SelectRainSpriteByTypeAndScreenWidth_707097 | 0x707097 |
@@ -507,18 +507,18 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CMsgPKEliteInfo__Parse | 0x75d7eb |
 | CMsgPKEliteInfo__Process | 0x75d80e |
 | CMsgPKEliteInfo__ScalarDtor | 0x75d7c4 |
-| CMsgPeerage__Build | 0x73fe0d |
-| CMsgPeerage__Create | 0x73fda7 |
-| CMsgPeerage__Dtor | 0x73fe02 |
-| CMsgPeerage__Parse | 0x73ffb6 |
-| CMsgPeerage__Process | 0x740007 |
-| CMsgPeerage__Send | 0x73ffd9 |
+| Packet1101 Build (old Peerage label withdrawn) | 0x73fe0d |
+| Packet1101 Create (old Peerage label withdrawn) | 0x73fda7 |
+| Packet1101 Dtor (old Peerage label withdrawn) | 0x73fe02 |
+| CMsgMapItem__Parse | `0x73ffb6` |
+| CMsgMapItem__Process | `0x740007` |
+| Packet1101 Send (old Peerage label withdrawn) | 0x73ffd9 |
 | CMsgPlayer__Parse | 0x7649fd |
 | CMsgPlayer__Process | 0x764a42 |
 | CMsgAccountAuthResponse__Parse | 0x754909 |
 | CMsgAccountAuthResponse__Process | 0x75492c |
-| CMsgSynAttr__Parse | 0x6fe46c |
-| CMsgSynAttr__Process | 0x6fe4c0 |
+| CMsgEnemyList__Parse (was CMsgSynAttr) | 0x6fe46c |
+| CMsgEnemyList__Process (was CMsgSynAttr) | 0x6fe4c0 |
 | CMsgTalk__Parse | 0x731328 |
 | CMsgTaskDialog__Parse | 0x75df9e |
 | CMsgTaskDialog__Process | 0x75dfc1 |
@@ -559,8 +559,9 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CMsgTick__ScalarDtor | 0x6eac2a |
 | CMsgTradeDialog__Parse | 0x72cd55 |
 | CMsgTradeDialog__Process | 0x72cda9 |
-| CMsgUserAttrib__Parse | 0x75e4ac |
-| CMsgUserAttrib__Process | 0x75e4cf |
+| CMsgTeamAward__Create | `0x75e446` |
+| CMsgTeamAward__Parse | `0x75e4ac` |
+| CMsgTeamAward__Process | `0x75e4cf` |
 | CMsgUserInfo__Parse | 0x764253 |
 | CMsgUserInfo__Process | 0x764276 |
 | CMsgVipTeamConfirm__BuildSize32_ModeAndId_72A5EA | 0x72a5ea |
@@ -702,8 +703,8 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CTitleMgr__ClearLists_6ACB3D | 0x6acb3d |
 | CTitleMgr__SetActiveTitleAndPostD2C_6ACB5C | 0x6acb5c |
 | SynMgr__LookupString_6C5DE4 | 0x6c5de4 |
-| SynAttrEntry__SetName | 0x6fe85f |
-| SynAttrMgr__AddEntry | 0x69dfb0 |
+| CEnemy__SetName (was SynAttrEntry__SetName) | 0x6fe85f |
+| CHeroFriendAndEnemyMgr__AddEnemy (was SynAttrMgr__AddEntry) | 0x69dfb0 |
 | TickHelper__663D69 | 0x663d69 |
 | TickHelper__70AC6F | 0x70ac6f |
 | TickHelper__70AD91 | 0x70ad91 |
@@ -879,3 +880,65 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CMsgPlayerSpawn__Process | 0x755f64 |
 | CMsgUserAttribEx__Create | 0x7572eb |
 | CMsgUserAttribEx__Process | 0x757374 |
+
+## MsgUserInfo historical reconciliation anchors
+
+See [the proof and naming boundaries](MsgUserInfo1006-historical-field-reconciliation.md).
+
+| Native name | Address |
+|---|---|
+| CMsgUserAttribEx__Parse | `0x757351` |
+| CMsgUserAttribEx__Process | `0x757374` |
+| CPeerageMgr_CreateSingleton | `0x407676` |
+| CPeerageMgr_GetSingletonPtr | `0x426D2F` |
+| CRole_GetPeerageRank | `0x675587` |
+
+## Friend / enemy / peerage — 2026-09-28
+
+Applied in Binja this slice (re-apply by address if the .bndb was not saved).
+
+| Native name | Address |
+|---|---|
+| CHeroFriendAndEnemyMgr_GetSingletonPtr | `0x45D510` |
+| j_CHeroFriendAndEnemyMgr_GetSingletonPtr | `0x6FE5AA` |
+| CHeroFriendAndEnemyMgr__ctor | `0x69DE7C` |
+| CHeroFriendAndEnemyMgr__AddFriend | `0x69E394` |
+| CHeroFriendAndEnemyMgr__AddEnemy | `0x69DFB0` |
+| CHeroFriendAndEnemyMgr__FindFriendById | `0x69E830` |
+| CHeroFriendAndEnemyMgr__FindEnemyById | `0x69E155` |
+| CHeroFriendAndEnemyMgr__FindFriendByName | `0x69E959` |
+| CHeroFriendAndEnemyMgr__FindEnemyByName | `0x69E27E` |
+| CHeroFriendAndEnemyMgr__GetFriendCount | `0x69E823` |
+| CHeroFriendAndEnemyMgr__GetFriendByIndex | `0x69E8EE` |
+| CHeroFriendAndEnemyMgr__GetEnemyCount | `0x69E148` |
+| CHeroFriendAndEnemyMgr__GetEnemyByIndex | `0x69E213` |
+| CHeroFriendAndEnemyMgr__RemoveFriend | `0x69E3F7` |
+| CHeroFriendAndEnemyMgr__RemoveEnemy | `0x69E005` |
+| CHeroFriendAndEnemyMgr__ClearEnemies | `0x69E276` |
+| CHeroFriendAndEnemyMgr__RequestAddFriend | `0x69E54C` |
+| CHeroFriendAndEnemyMgr__RequestRemoveFriend | `0x69E739` |
+| CHeroFriendAndEnemyMgr__RequestFriendInfo | `0x69EA07` |
+| CHeroFriendAndEnemyMgr__RequestEnemyInfo | `0x69E32C` |
+| CHeroFriendAndEnemyMgr_GetMaxFriendCount | `0x69E4FD` |
+| CFriend__ctor / __dtor / __ScalarDeletingDestructor | `0x709CA8` / `0x709D59` / `0x709D3D` |
+| CFriend__CreateNew / __SetName / __SetMate / __GetSyndicateName | `0x709DA3` / `0x709F3B` / `0x75D5B9` / `0x709EAC` |
+| CEnemy__ctor / __dtor / __ScalarDeletingDestructor | `0x6FE5AF` / `0x6FE65D` / `0x6FE641` |
+| CEnemy__CreateNew / __SetName / __SetMate | `0x6FE6A7` / `0x6FE85F` / `0x75D575` |
+| CPeerageMgr_GetPeerageName | `0x6AB500` |
+| CPeerageMgr_GetPeerageAssetName | `0x6AB534` |
+| CPeerageMgr_LoadPeerageIni | `0x6AAD95` |
+| CMsgFriendInfo__Parse / __Process (2033) | `0x75D33F` / `0x75D362` |
+| CMsgEnemyList__ctor / __ScalarDeletingDestructor / __dtor | `0x6FE406` / `0x6FE445` / `0x6FE461` |
+| CMsgEnemyList__Parse / __BuildQuery / __Process (1041) | `0x6FE46C` / `0x6FE48F` / `0x6FE4C0` |
+| CMsgTrusteeshipState__Process (1129; name re-applied) | `0x75DAEA` |
+| CHeroConfigMgr_GetSingletonPtr / _TestFlagBit / _SetFlagBits | `0x4197DD` / `0x652F84` / `0x652FAC` |
+| CDataMigrationSubject_GetSingletonPtr / _IsActive / _BlockOperationWithTip | `0x414BDA` / `0x68A72D` / `0x68A737` |
+| DlgFriendInfo_RefreshFromFriendEntry / DlgEnemyInfo_RefreshFromEnemyEntry | `0x491A17` / `0x45DC52` |
+| DlgFriendList_RefreshRows / DlgEnemyList_RefreshRows | `0x4925A2` / `0x45D33B` |
+| DlgFriendList_OnShow / DlgEnemyList_OnShow_SendEnemyListQuery | `0x492467` / `0x45D0FD` |
+| DlgFriendRemoveConfirm_Accept / DlgEnemyRemoveConfirm_Accept | `0x491E25` / `0x45DF63` |
+| CMyList_SetRowState / CMyList_DrawItemText / CMyList_DrawVisibleItems | `0x5A47B7` / `0x5A3C30` / `0x5A4054` |
+
+Comments rewritten: `CMsgAction__Process` (0x6FED1F, ladder entity-id correction), `CMsgFriend__Process`,
+`CMsgFriend__BuildSubtypeEntityIdFlagName16`; address comment `0x6FF173`.
+

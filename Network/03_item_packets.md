@@ -15,6 +15,9 @@ Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 - `MsgItem` action handling mutates those hero item tables first; visible equipment appearance is derived afterward.
 
 **Verified field layout (offsets from packet start)**:
+
+For semantic names, overloads, corrected routing and persistence limits, use the
+[complete item contract](MsgItem1008-domain-contract-5517.md).
 - `+0` (u16) size
 - `+2` (u16) type == `1008`
 - `+4` (u32) item UID (passed to `CItem__InitFromUIDAndItemId` and `CHero__GetItemByUID`)
@@ -31,15 +34,15 @@ Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 - `+32` (u8) → `item+96` (byte)
 - `+33` (u8) → `item+97` (`CItem+0x61`, ItemAdd secondary/addition level); immediately refreshes the `ItemAdd.ini` cache at `item+0x180`
 - `+34` (u8) → `item+360` (stored as dword index 90)
-- `+35` (u8) → `CItem__CanUpgrade`
+- `+35` (u8) → `CItem_SetBindingCode` (not an upgrade predicate)
 - `+36` (u8) → `item+364` (`CItem+0x16C`, zero-extended enchantment life bonus)
 - `+40` (u32) → `item+368` (dword index 92)
 - `+44` (u16) → `CItem__SetByte_0x1AD(entry+44 != 0)`
-- `+46` (u16) → `CItem__OrDword_0x1A0`
+- `+46` (u16) → replacement equipment-lock state: clear(-1), then `CItem_AddStatusMask`
 - `+48` (u16) → `CItem__SetRoleViewTextureVariantSelector`
-- `+52` (u32) → `CItem__SetDword_0x160`
-- `+56` (u32) → `CItem__SetDword_0x17C`
-- `+60` (u32) → `CItem__SetTimerDuration` (seconds)
+- `+52` (u32) → `CItem_SetCompositionProgress` / item+`0x160`
+- `+56` (u32) → `CItem_SetInscribedSyndicateId` / item+`0x17C`
+- `+60` (32-bit signed use) → `CItem_ApplyWireLifetimeSeconds` (zero static fallback, nonzero activation)
 - `+64` (u16) → `CItem__SetDwordMin1_0x190`
 - `+19`, `+26..+27`, `+37..+39`, `+50..+51`, `+66..` are not referenced in this handler.
 
@@ -58,11 +61,11 @@ sets `+0x1AC` for a non-positive equipment update, but does not clear that byte 
 path.
 
 **Action switch (`packet+0x10` as u8)**:
-- `1`: Creates a new item, initializes from `+4/+8`, copies the fields above, sets `CItem__SetByte_0x165(1)`, then routes by `+18`. If `+18 != 0`, it tracks the item through `CHeroItem__TrackItemAtPosition` and refreshes UI (`0x445/0x446`). If `+18 == 0`, it tries `CHeroItem__TryAddInventoryItem` and posts `0x3EB`. If status flag `0x3F` is clear and the item passes the native socket-add predicate, it posts `0x4B9`. If the item passes the native socket/status notification predicate, it posts `0x4B3` with the item UID.
+- `1`: Creates a new item, initializes from `+4/+8`, copies the fields above, sets `CItem__SetByte_0x165(1)`, then routes by `+18`. If `+18 != 0`, it tracks the item through `CHeroItem__TrackItemAtPosition` and refreshes UI (`0x445/0x446`). If `+18 == 0`, it tries `CHeroItem__TryAddInventoryItem` and posts `0x3EB`. If status flag `0x3F` is clear and the item passes the native unlocked-equipment score predicate, it posts `0x4B9`. If the item passes equipment lock bit2 test, it posts `0x4B3` with the item UID.
 - `2`: Creates a new item, initializes from `+4/+8`, copies the fields above, sets `CItem__SetByte_0x165(0)`, then routes it into the verified hero singleton side container path.
 - `3`: Finds an existing item by UID through `CHeroItem__FindItemByUid` (which falls back to `CHeroItem__FindTrackedItemByUid`), updates all fields above, then re-checks inventory-only membership via `CHeroItem__FindItemByUid(..., inventory_only=1)`. If the item is still in inventory, it posts `0x3EB`. Otherwise it reroutes through `CHeroItem__TrackItemAtPosition` using `+18` and posts `0x3FB/0x445/0x446/0x4F1`. This is an update-existing-item path, not a delete path. Native item removal uses `MsgTick (1009)` subtype `3`.
-- `4`: Requires `+18 != 0`. Creates new item, initializes from `+4/+8`, copies the fields above, then routes through `ItemPosition_NormalizeEquipmentPosition` / `CRole__SetEquipSlotItem` and posts `0x432` if successful.
-- `5`: Creates a new item, initializes from `+4/+8`, copies the fields above, sets `CItem__SetByte_0x165(1)`, then routes it through the verified special-add path. If the item passes the same socket/status notification predicate, it posts `0x4B3` with the item UID.
+- `4`: Requires `+18 != 0`. Creates an inspected item, copies the fields above, then calls `ItemPosition_NormalizeEquipmentPosition` / `CDummy_SetInspectedEquipmentSlot` on hero+`0x1EA0` (`0x762D51`). Packet+4 is checked as inspected-role identity against dummy+`0xA88`. Posts `0x432` after the call without testing its return value. This is not local hero equipment hydration.
+- `5`: Creates a new item, initializes from `+4/+8`, copies the fields above, sets `CItem__SetByte_0x165(1)`, then routes it through the verified special-add path. If the item passes the same equipment lock bit2 test, it posts `0x4B3` with the item UID.
 - `6`: default path (no handler observed).
 - `7`: If the verified hero-side gate succeeds, dispatches the UID-driven follow-up operation for `+4` and returns.
 - `8`: Creates a new item, initializes from `+4/+8`, copies the fields above, then routes it into the verified subsystem behind singleton `0x4B178A` and posts `0xC2C`.
@@ -237,66 +240,41 @@ path.
 **Process**: `CMsgItemStatus__Process` @ `0x6E70E7`
 **Packet object**: Standard layout — payload pointer at `this+257` (byte offset 1028), inline buffer at `this+4`.
 
-Synchronises item amount and status flags for inventory, warehouse, and equipment items.
+Synchronises equipment-lock state and the pending unlock date. The prior “amount” label was wrong:
+`0x67BF6B` formats StrRes11192 (`%s will be unlocked on ...`) from packed ``year*10000 + month*100 + day``.
 
-### Struct Layout (payload buffer)
+| Offset | Width | Meaning |
+|---|---|---|
+| `+0` / `+2` | u16 / u16 | size / type2048 |
+| `+4` | u32 | Item UID for lookup |
+| `+8` | u8 | mode0..4 |
+| `+9` | u8 | replacement equipment-lock state (modes0/1/3) |
+| `+0x0C` | u32 | packed unlock date, not stack quantity |
 
-| Offset | Size | Field | Description |
-|--------|------|-------|-------------|
-| +0 | 2 | size | Packet size |
-| +2 | 2 | type | 2048 |
-| +4 | 4 | itemUID | Item unique ID (used to look up item across hero inventory, package manager, and equipment) |
-| +8 | 1 | mode | Action mode (0–4) |
-| +9 | 1 | statusFlags | Item status bitmask — written to item field 0x1A0 via `CItem__OrDword_0x1A0` (modes 0/1/3 only) |
-| +12 | 4 | amount | New amount value — passed to `SetAndFormatAmount` (modes 0/1/2/3) |
+Modes0/1 find the item, update its date, clear all old lock bits and apply the byte snapshot
+(`0x6E749E`), then notify UI. Mode2 updates the date/description and secondary warehouse view;
+it is also the outgoing lazy date-query mode from `0x67B93F`. Mode3 clears the date, replaces
+lock state (`0x6E7203`) and formats StrRes11191 (`%s is unlocked!`); it does not remove the item.
+Mode4 posts `0x4B7`.
 
-### Mode Behaviour
+Lookup order is hero inventory/tracked items, package/storage (`0x6AA0DD`), then the additional
+hero item set (`0x667B5B`); mode2 also checks `0x685DCE`. See the
+[item contract](MsgItem1008-domain-contract-5517.md#equipment-lock-state-including-the-alternate-packet)
+for instruction addresses and the distinction from untradable binding/suspicion.
 
-| Mode | Description | UI Messages |
-|------|-------------|-------------|
-| 0 | Update hero inventory item: look up by UID, set amount, apply status flags, refresh UI. If the item passes the native socket/status notification predicate, post `0x4B3`; otherwise post `0x4B5` | 0x4BA (pre-update), 0x4AB (refresh), 0x4B3 or 0x4B5 |
-| 1 | Same as mode 0 (identical code path) | Same as mode 0 |
-| 2 | Update warehouse item: look up by UID, set amount. Also checks secondary warehouse slot (`CWarehouse__GetCurrentItem`) — if UID matches, updates that too. | 0xD08 (warehouse refresh), 0xDCA (secondary update) |
-| 3 | Remove/zero item: look up by UID, set amount to 0, apply status flags. Formats game data string 11191 with effective item ID and posts as notification. | 0x4AA (notification text), 0x4B5 (item update) |
-| 4 | Simple UI signal: posts 0x4B7 with no item lookup. | 0x4B7 |
+## Corrected GetItemSet implication
 
-### Item Lookup Order
-For modes 0/1/3, the handler searches three sources in order:
-1. `CHero__GetItemByUID` — hero inventory
-2. `CPackageMgr__FindItemByUID` (0x6AA0DD) — package/storage
-3. `CHero__FindEquippedItemByUID` (0x667B5B) — equipment slots
+Local inventory and tracked equipment both use subtype1. Position0 calls the inventory add path;
+nonzero calls `CHeroItem__TrackItemAtPosition`. Fresh ordinary active slots need the UID snapshot
+in MsgTick1009 subtype46 after the referenced items exist. The final action75 echo advances to76
+without requiring any items. This is the receive-side dependency, not proof of a retail server's
+complete packet-order policy.
 
-Mode 2 uses the same three-source lookup plus an additional warehouse check via `CWarehouse__GetCurrentItem` (0x685DCE).
+Subtype4 is the inspected dummy path (`0x762D15..0x762D68`), whose request is action117,
+not GetItemSet75. Its receiver is hero+`0x1EA0`, its setter is `CDummy_SetInspectedEquipmentSlot`
+(`0x66CECF`), and its packet+4 must match the dummy inspection identity. It does not invoke
+`CHeroItem__SetEquipSlot` or `CHero__RefreshEquipmentDerivedStats`.
 
-**Verified world-entry bootstrap implication**:
-- native `CMsgAction__Process` subtype `0x4A` immediately sends client `MsgAction 0x4B (GetItemSet)` after the enter-map side effects complete.
-- the verified local-hero equipment hydrate path on the receive side is `MsgItem (1008)` action `4`, which routes through `ItemPosition_NormalizeEquipmentPosition` and `CRole__SetEquipSlotItem`.
-- `MsgItem` action `1` is still the generic add/create path, but it mutates the same hero item tables through `CHeroItem__TryAddInventoryItem` / `CHeroItem__TrackItemAtPosition`; it is not the dedicated equip-slot hydrate branch used by the touched world-entry slice.
-- managed server timing correction for this seam:
-  - do not push login-time `MsgItem (1008)` rows directly from the post-`1006` connect bootstrap.
-  - wait for the verified client `MsgAction 0x4B (GetItemSet)` request first.
-  - evidence for the managed fix:
-    - BNinja verifies the client request ladder `0x4A -> 0x4B -> 0x4C -> 0x4D -> 0x4E -> 0x61`.
-    - managed packet trace captured `ServerToClient 1008` create rows before the client's `0x4B`, proving the old server ordering was wrong.
-  - managed correction applied in the server branch:
-    - preload the session item table during login if needed for state,
-    - but emit those same `1008` rows only on the `0x4B` handler leg.
-
-**Verified visual-source split for action `4`**:
-- `CMsgItem__Process` action `4` (`Conquer.exe:0x762D15..0x762D68`) stops after:
-  - `ItemPosition_NormalizeEquipmentPosition(packet+0x12)`
-  - `CRole__SetEquipSlotItem(j_CHero_GetSingletonPtr()+0x1EA0, normalizedSlot, item, itemRefHandle)`
-  - `PostMainWndMsg_464(0x432, 0)`
-- that branch does **not** call `CHeroItem__SetEquipSlot` and does **not** call
-  `CHero__RefreshEquipmentDerivedStats`.
-- the verified local-hero writers that actually push slot-derived visual inputs into the
-  role / RoleView state remain `CHeroItem__SetEquipSlot` (`0x6DA906`), especially:
-  - slot `1` -> `CRole__SetPrimaryHelmetVariantInputsAndRefreshRoleView`
-  - slot `3` -> `CRole__SetPrimaryBodyVariantInputsAndRefreshRoleView`
-  - slot `4` -> `CRole__SetRightWeaponVisualInputsAndRefreshRoleView`
-  - slot `5` -> `CRole__SetLeftWeaponVisualInputsAndRefreshRoleView`
-  - slot `9` -> `CRole__SetSharedBodyHelmetVariantLookupSourceAndRefreshRoleView`
-  - slots `12/17` -> `Role_UpdateMountActionScaleCacheFromSources`
-- managed parity consequence: local-hero item-table hydrate and local-hero appearance /
-  RoleView projection are two separate native seams. Do not treat action `4` as proof that
-  the visible role-state projection must already have refreshed in the same handler.
+The full corrected subtype, equipment-slot, field and ownership contract is in
+[MsgItem1008-domain-contract-5517.md](MsgItem1008-domain-contract-5517.md). The previous claim
+that subtype4 was the dedicated local world-entry equipment hydrate branch is withdrawn.

@@ -2,24 +2,31 @@
 
 Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
-## MsgSynAttr (Type 1041)
-**Direction**: S→C
-**Purpose**: Synced attribute list update for the local player (verified by `SynAttrMgr__AddEntry` and `SynAttrEntry__SetName`).
-**Dispatch**: Create `CMsgSynAttr__Create` (0x6FE406), parse `CMsgSynAttr__Parse` (0x6FE46C), process `CMsgSynAttr__Process` (0x6FE4C0)
+## MsgEnemyList (Type 1041) — formerly mislabelled MsgSynAttr (corrected 2026-09-28)
+**Direction**: Bidirectional. Not a syndicate packet: builds `CEnemy` entries.
+**Dispatch**: ctor `CMsgEnemyList__ctor` (0x6FE406), parse `CMsgEnemyList__Parse` (0x6FE46C, `type == 0x411`), process `CMsgEnemyList__Process` (0x6FE4C0), query builder `CMsgEnemyList__BuildQuery` (0x6FE48F). Long 6270 names 1041 `MsgEnemyList`.
 
-**Parse**: `CMsgSynAttr__Parse` — standard header validation, then `type == 1041`.
+**C->S query** (`CMsgEnemyList__BuildQuery`): size 44, `+4` = hero id (`CHero+0xCC`), rest 0.
+Sole sender `DlgEnemyList_OnShow_SendEnemyListQuery` (0x45D0FD) = enemy dialog vtbl `+0xEC`, called on SW_SHOW by
+`CMyDialog_ApplyShowHideStateAndLifecycleCallbacks` (0x597085). Friend dialog slot `+0xEC` (0x492467) only posts `0x3FA`.
 
-**Verified field usage in `CMsgSynAttr__Process`** (offsets relative to packet start):
-- `+4` (u32) is compared against the local player ID (singleton `+204`). If it does not match, the handler returns without processing.
-- `+8` (u32) is a count of entries.
-- Entries are processed with stride `0x20` (32 bytes) starting at `+12`:
-  - `entry+0`..`entry+11` are not referenced in this handler.
-  - `entry+12` (u8) is a flag; nonzero sets a field to `1` in the constructed object, zero sets it to `0`.
-  - `entry+16` (u32) is stored into the constructed object at offset `+4`.
-  - `entry+20` (u32) is stored into the constructed object at offset `+64`.
-  - `entry+24` (u32) is stored into the constructed object at offset `+68`.
-  - `entry+28` is treated as a null-terminated string and passed to `strlen`/`ByteBuffer__AppendRange` via `SynAttrEntry__SetName`.
-- For each constructed entry object, `SynAttrMgr__AddEntry` is called, and after the list is processed `PostMainWndMsg_0x464(0x439, 0)` is triggered.
+**S->C list**:
+| Off | Type | Field |
+|---|---|---|
+| +4 | u32 | must == hero id, else packet ignored |
+| +8 | u32 | row count |
+| +0x0C + i*0x20 | row | 32 bytes |
+
+| Row off | Type | Field | Dest |
+|---|---|---|---|
+| +0 | u8 | online (nonzero = online) | CEnemy +0x14 |
+| +4 | u32 | id | +0x04 |
+| +8 | u32 | peerage rank | +0x40 |
+| +0xC | u32 | peerage sex | +0x44 |
+| +0x10 | char[16] | name | `CEnemy__SetName` (0x6FE85F) |
+
+Flow: `CHeroFriendAndEnemyMgr__ClearEnemies` (0x69E276) — full replace — then per row `CEnemy__CreateNew` + `CHeroFriendAndEnemyMgr__AddEnemy`; post `0x439`.
+Rank/sex semantics identical to MsgFriend `+0x0C/+0x10` (`06_combat_packets.md`).
 
 ## MsgSynMemberInfo (Type 1058)
 **Direction**: S→C
@@ -118,16 +125,23 @@ Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
   - `14`: `CHero__TradeSetField_0x1100_AndPost3F1(+4)`.
   - `15`: `PostMainWndMsg_0x464(0x4A8, 0)` (then still returns `PostMainWndMsg_0x464(0x3EB, 0)`).
 
-## MsgPeerage (Type 1101)
-**Direction**: Bidirectional
-**Purpose**: Peerage/nobility map‑item and effect updates (verified by map‑item manager calls, peerage effect toggles, and drop‑sound selection).
-**Dispatch**: Create `CMsgPeerage__Create` (0x73FDA7), parse `CMsgPeerage__Parse` (0x73FFB6), process `CMsgPeerage__Process` (0x740007), send `CMsgPeerage__Send` (0x73FFD9)
+## MsgMapItem (Type 1101; former Peerage label withdrawn)
 
-**Parse**: `CMsgPeerage__Parse` — standard header validation, then `type == 1101`.
+**2026-09-21 correction:** parser `0x73FFB6` checks1101 at `0x73FFD2`;
+processor `0x740007` uses CGameMap and map-item/drop-sound paths. This is not evidence
+for Nobility or the CPeerageMgr feature. Remaining old helper labels containing Peerage
+below are analyst labels, not proven class ownership or peerage semantics.
+
+**Direction**: Bidirectional
+**Purpose**: Map-item and map-effect updates, with item-dependent drop sounds.
+**Dispatch**: constructor `0x73FDA7`, parser `CMsgMapItem__Parse` (`0x73FFB6`),
+processor `CMsgMapItem__Process` (`0x740007`), send wrapper `0x73FFD9`.
+
+**Parse**: `CMsgMapItem__Parse` — standard header validation, then `type == 1101`.
 
 **Verified outbound build path**:
-- `CMsgPeerage__Build` (0x73FE0D) is called from `CHero__ProcessAction_Main` with `action = 3`, then sent via `CMsgPeerage__Send`.
-- `CMsgPeerage__Build` sets:
+- The packet1101 builder (`0x73FE0D`) is called from `CHero__ProcessAction_Main` with `action = 3`, then sent via wrapper `0x73FFD9`.
+- The builder sets:
   - `+0` (u16) = size `24`,
   - `+2` (u16) = type `1101`,
   - `+4` (u32) = local hero ID (singleton `+204`),
@@ -145,9 +159,9 @@ Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
     - `v14 = v13 + 2 * attr[17]`
     - `v15 = attr[19] + v14`
     - `+8 = (attr[15] + v15) ^ 0x7914A09B`
-- `CMsgPeerage__Send` checks `action == 3`, calls `NoOp_0x768140(17, 5)`, then calls `CNetMsg__Send`.
+- The send wrapper checks `action == 3`, calls `NoOp_0x768140(17, 5)`, then calls `CNetMsg__Send`.
 
-**Verified field usage in `CMsgPeerage__Process`** (offsets relative to packet start):
+**Verified field usage in `CMsgMapItem__Process`** (offsets relative to packet start):
 - `+18` (u8) is the action selector:
   - `1`: calls `CPeerage__AddMapItem(+4, +8, +20, +16, x=+12, y=+14)`. If `CGameMap__IsTileInViewRadius(x, y, 2)` is true, selects a drop sound based on `+8` (item ID) and plays it at `CGameMap__CalcScreenPosFromTile(x, y)` via `DXPlaySound`.
     - `+8 == 1091020` → `"sound/DropMoney.wav"`.

@@ -970,44 +970,26 @@ Verified call and constants:
 | `0x5DE0CF` | `CExChatPanel_RefreshButtonResourcesAndNotifyMapProjection(arg1 + 0x168C58)` | refreshes ExChat panel buttons and map-projection notifications |
 | `0x5DE0D4` / `0x5DE0F5` | `CMyBitmap::End3D` then `CMyBitmap::Flip` | completes and presents top-strip pass |
 
-### `CDlgMain_RenderMainUiDialogAndStatusOverlay` Dialog4 main-UI panel contract (`0x4BC1F8`)
+### `CDlgMain` static HUD chrome contract (`0x4BC1F8`)
 
-Verified `Dialog4` resource lookup:
+The independently verified English contract is now maintained in
+[Static main HUD chrome (GFX-UI-001)](../Rendering/14_static_main_hud_chrome.md).
+The earlier table here reversed the layout branch and misidentified a frame-index
+push as the fourth call / a final show-way argument; those claims are withdrawn.
 
-| Site | Evidence | Meaning |
-|---:|---|---|
-| `0x4BC51C..0x4BC537` | `GameDataSetQuery()->vfunc+0x10("ani/Control.ani","Dialog4",1,0x7530)` | dialog panel resource lookup |
-| `0x4BC545` | `cmp g_uiLayoutModeFlag, 0` | branch between screen-width right-anchored default (`==0`) and alternate left-anchored layout path |
-
-Verified default branch (`g_uiLayoutModeFlag == 0`) `+0x0C` draw calls:
-
-| Site | Draw call shape | Verified placement |
-|---:|---|---|
-| `0x4BC59E` | `resource->vfunc+0x0C(0, x0, y0, &rect, 0x100, 0x90, 0, 0)` | primary panel at `x0 = GetScreenWidth() + shellOffsetX - 0x100`, `y0 = shellOffsetY - 3`, source rect `(0,0x70,0x100,0x100)` |
-| `0x4BC5E5` | `resource->vfunc+0x0C(0, x1, y1, &rect, 0x100, 0x36, 0, 0)` | lower strip start at `x1 = GetScreenWidth() + shellOffsetX - 0x200`, `y1 = shellOffsetY + 0x58`, source rect `(0,0,0x100,0x36)` |
-| `0x4BC62D` | `resource->vfunc+0x0C(1, x2, y1, &rect, 0x100, 0x36, 0, 1)` | lower strip segment at `x2 = GetScreenWidth() + shellOffsetX - 0x300` (frame 1), source rect `(0,0,0x100,0x36)` |
-| `0x4BC679` | `resource->vfunc+0x0C(1, x3, y1, &rect, 0x100, 0x36, 0, 1)` | lower strip segment at `x3 = GetScreenWidth() + shellOffsetX - 0x400` (frame 1), source rect `(0,0x40,0x100,0x76)` |
-
-Managed reconstruction boundary for this slice:
-
-- `ExChat_TopBG` remains owned by the pre-map front-overlay seam (`CMyShellDlg_DrawExChatTopBackgroundAndFlip`).
-- `Dialog4` belongs to the post-map HUD/status pass because it is emitted by
-  `CDlgMain_RenderMainUiDialogAndStatusOverlay`, which is reached from
-  `CMyShellDlg_RenderHudAndProcessSound`.
-- In the active `g_uiLayoutModeFlag == 0` path, the vertical placement is not top-anchored.
-  The live 5517 draw calls consume shell offsets from `this+0xF0/+0xF4`; for the current
-  fixed 1024x768 internal render mode, the managed port collapses that to the bottom-docked
-  shell-dialog layout (`shellOffsetX = 0`, `shellOffsetY = screenHeight - 0xA3`), which yields
-  `Dialog4` Y placements `602` and `693`. The surviving old-retail `DlgMain` source matches the
-  same bottom-docked dialog rect height and is used only as corroboration for that collapse.
-- The managed ANI draw contract now carries the native source-rect slice as first-class data.
-  That is required for `Dialog4`: stretching the whole frame produces the incorrect top-right
-  F-key strip and overwide bottom shell even when the destination coordinates are correct.
-- `Progress45` is the main HUD background, not a dynamic stat bar. `CDlgMain_InitializeMainHudWidgets`
-  sets the render gate at `shell+0x110` to `1` (`0x4BBF04`), and
-  `CDlgMain_RenderMainUiDialogAndStatusOverlay` draws frame `0` from `ani/Control.ani`
-  at `x = GetScreenWidth() + shellOffsetX - frameWidth`, `y = shellOffsetY`
-  in the active `g_uiLayoutModeFlag == 0` path (`0x4BC3AB..0x4BC420`).
+- The clean English layout global at `0x96AB30` is zero. Progress45 draws at
+  `(CDlgMain.F0, CDlgMain.F4)` via `0x4BC420`.
+- English Dialog4 calls are `0x4BC6B6`, `0x4BC6E9`, `0x4BC720`, `0x4BC75E`,
+  with frames 0/0/1/1 and trailing color/draw-mode arguments 0/0 throughout.
+- Successful-login placement `0x5B9242` sets the origin to `(0,H-141)`, giving
+  `(0,459)` at 800×600 and `(0,627)` at 1024×768. The old `H-163` reduction
+  was a managed/reference-source assumption and is not native 5517 behavior.
+- Gate ownership is `CDlgMain+0x110 = CMyShellDlg+0x10A8`.
+  Progress45-null skips only the background; Dialog4-null exits the remaining HUD.
+- Static art receives explicit pixel rectangles without dialog-template scaling.
+  Background and panel submissions must remain separately interleavable.
+- Clean loose `data/main/MainDialog2.dds` overrides a different archive payload.
+  Exact hashes and lookup precedence are recorded in the linked native contract.
 
 ### `CDlgMain` main HUD widget layout contract (`0x4BB6B8`, `0x4BB869`)
 
@@ -1019,10 +1001,10 @@ Verified 5517 sources for the current managed subset:
 - `CDlgMain_BindMainHudWidgetControls` (`0x4BB6B8`) binds the live controls to `CDlgMain`
   member offsets. `CDlgMain_InitializeMainHudWidgets` (`0x4BB869`) then initializes those controls
   with the verified `ani/Control.ani` resource names.
-- The managed path scales template X by `screenWidth / 400` and template Y by the verified
-  shell height `0xA3 / 70`, then adds `shellOffsetY = screenHeight - 0xA3`. This matches the
-  native bottom-shell scaling path used by `CMyButton_Init` / `CMyCheck_Init` and the `Dialog4`
-  shell height already verified above.
+- The previous managed `screenWidth / 400`, `0xA3 / 70`, `H-0xA3` formula is
+  not native proof and must not be applied to static Progress45/Dialog4 art.
+  The verified English origin is `(0,H-0x8D)`; child-control placement/scaling
+  remains a separate contract. The 400×70 template is in dialog units.
 
 Implemented button/check subset:
 
@@ -1047,7 +1029,7 @@ Implemented static progress background:
 
 | Gate / site | Resource | Native draw |
 |---:|---|---|
-| `shell+0x110`, `0x4BC3AB..0x4BC420` | `Progress45` | frame `0`, right-anchored by frame width at `shellOffsetY` |
+| `CDlgMain+0x110`, draw `0x4BC420` | `Progress45` | English frame `0` at `(0,H-141)`, native size 256×256 |
 
 ### `CMyButton` state, input, and activation contract
 
@@ -1240,7 +1222,7 @@ Implemented for parity scaffolding:
 - `10_work/src/Conquer/Client/Scene/Role3DClientSceneWorldFrameGateRuntime.cs` (`this+0x179AB9` world-frame enable gate state)
 - `10_work/src/Conquer/Client/Scene/Role3DClientSceneFrameRuntime.cs` (world-frame gate + network gate + map tick/render stage order)
 - `10_work/src/Conquer/Client/Scene/Role3DClientSceneFrontOverlayStageRuntime.cs` (pre-map top overlay stage with `ExChat_TopBG` only)
-- `10_work/src/Conquer/Client/Scene/Role3DClientSceneHudAndSoundStageRuntime.cs` (post-map HUD/status stage now owns the verified static `Dialog4` main-UI subset)
+- `10_work/src/Conquer/Client/Scene/Role3DClientSceneHudAndSoundStageRuntime.cs` (historical managed post-map `Dialog4` subset; this is not validation against the corrected English GFX-UI-001 contract above)
 - `10_work/src/Conquer/Client/Composition/SceneComposition.cs` now wires the non-noop front overlay stage into the live world-frame path using the verified ANI resource query + logical screen-dimensions dependencies
 
 Unit coverage:

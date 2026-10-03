@@ -631,6 +631,11 @@ Client-consumed flow in the working server order (not a retail packet capture):
    - incoming `0x4E` branch `0x6FF28A..0x6FF2EB` sends `0x61`
      (`actionGetSynAttr`)
 
+   - common gate `0x6FF173`: echo `+4` must resolve via `EntityRef_ResolveByIdOrLocalHero`
+     (local hero id); unresolved -> `0x700974`, no advance, for `0x4B..0x4E`/`0x61`. `0x4A` echo
+     `+4` is overwritten with the hero id at `0x6FEE14`.
+   - `0x4C` rung requires only the `0x4C` echo (`+4` = hero id). MsgFriend rows optional.
+
 Verified implication:
 - In 5517, the client's immediate post-enter-map item bootstrap request is `MsgAction 0x4B`.
 - Any server enum or handler table that assigns `GetItemSet` to `52` instead of `0x4B/75`

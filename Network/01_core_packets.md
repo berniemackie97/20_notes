@@ -142,7 +142,9 @@ struct MsgConnect {
 with the [complete wire table](../../10_work/docs/NATIVE_MSGUSERINFO_1006_5517.md).
 The earlier "apparently inert"/"no consumer" searches below are historical candidate searches,
 not dead-field proofs. The +97/+98 feature is now proven to be subprofession ID/promotion phases,
-distinct from training levels. The six numeric targets remain under receiver/dataflow audit.
+distinct from training levels. The [focused historical reconciliation](MsgUserInfo1006-historical-field-reconciliation.md)
+now records LegacyDeed, LegacyMedal, LegacyMedalSelect, Virtue, LegacyNobility and LegacyAutoAllot
+with attributed historical names and native proof boundaries. Broad receiver analysis is stopped.
 
 **Direction**: S→C
 **Purpose**: Full user information payload (stats, equipment, etc.)
@@ -678,48 +680,27 @@ subtype and the handled range is **1..10**. Subtype `6` has no case and is silen
 |---|---|
 | **1** | allocates a new `CItem` (`0x1EC` bytes) and populates it — **the add/inventory-row path, i.e. the login item set** |
 | 2, 4, 5, 8, 9, 10 | also allocate a new `CItem` |
-| 3 | `CHeroItem__FindItemByUid` then update/remove an existing item |
+| 3 | `CHeroItem__FindItemByUid` then update an existing item; removal is MsgTick subtype3 |
 | 7 | `sub_729CE6` / `sub_72A135` on `CHero`, no item allocation |
 
 Packet offsets read anywhere in the handler: `+4`, `+8`, `+0xC`, `+0xE`, `+0x10`, `+0x11`, `+0x12`,
 `+0x14`, `+0x18`, `+0x19`, `+0x1C`, `+0x20`, `+0x21`, `+0x22`, `+0x23`, `+0x24`, `+0x28`, `+0x2C`,
-`+0x2E`, `+0x30`, `+0x34`, `+0x38`, `+0x3C`, `+0x40`. The body therefore reaches at least `+0x40`
-(a 68-byte packet or larger).
+`+0x2E`, `+0x30`, `+0x34`, `+0x38`, `+0x3C`, `+0x40`. The last read is the word at `+0x40`; the established row envelope is 68 bytes.
+The handler alone does not prove an exact minimum validated packet length.
 
-### Subtype 1 — the add path, complete field map
+### Subtype 1 — local inventory and tracked equipment
 
-| Offset | Size | Target |
-|---|---|---|
-| `+4`, `+8` | u32 ×2 | `sub_67AD6B(item, +4, +8)` — identity / type pair |
-| `+0xC` | u16 | `CItem__SetCurrentDurability`; when the item is equipment **and** `+0xC <= 0`, `sub_67CBF5(item, 1)` runs first |
-| `+0xE` | u16 | `item[0x15]` |
-| `+0x11` | u8 | `item+0x56` |
-| **`+0x12`** | **u8** | **placement — see below** |
-| `+0x14` | u32 | `sub_67C794` |
-| `+0x18` | u8 | `item+0x57` |
-| `+0x19` | u8 | `item[0x16]` |
-| `+0x1C` | u32 | `item[0x17]` |
-| `+0x20` | u8 | `item[0x18]` |
-| `+0x21` | u8 | `CItem+0x61`; ItemAdd secondary/addition level, followed by `CItem_RefreshItemAddRecordCache` |
-| `+0x22` | u16 | `item[0x5A]` |
-| `+0x23` | u8 | `sub_67CB82` |
-| `+0x24` | u8 | zero-extended into `CItem+0x16C`; enchantment life bonus |
-| `+0x28` | u32 | `item[0x5C]` |
-| `+0x2C` | u32 | `sub_67CBAB(item, value != 0)` — consumed as a **bool** |
-| `+0x2E` | u16 | `sub_67BF5E` |
-| `+0x30` | u16 | `CItem__SetRoleViewTextureVariantSelector` |
-| `+0x34` | u32 | `sub_67BF4F` |
-| `+0x38` | u32 | `sub_67B0A6` |
-| `+0x3C` | u32 | `sub_67C05C`, also `sub_67B76E` |
-| `+0x40` | u16 | `sub_67D80C` |
+The corrected complete field map, native consumers and persistence boundary are maintained in
+[MsgItem1008-domain-contract-5517.md](MsgItem1008-domain-contract-5517.md).
+Raw recheck at `0x762C28` makes `+0x22` **u8**; `0x762F0A` makes `+0x2C` **u16**.
+`+0x34` is composition progress (`0x58CDDF`), not a clear mask. Status is replaced by
+clear(-1), then OR(u16 `+0x2E`). The suspicious boolean does not overlap status.
 
-**`+0x12` decides where the row lands.** The handler routes to either
-`CHeroItem__TrackItemAtPosition(hero, packet+0x12)` (equipment slot / position) or
-`CHeroItem__TryAddInventoryItem(hero)` (carried inventory). A login item set must therefore set this
-per row: equipment rows carry their slot, inventory rows do not. Getting it wrong silently misfiles
-every item.
-
-**Not yet decoded:** subtypes 2–10. The handler is ~51KB decompiled, so those need their own pass.
+`+0x12 == 0` routes to inventory (`0x763048`); nonzero routes to tracked placement
+(`0x762FF4`). Fresh main/alternate positions1..9/21..29 require the active equipment UID
+snapshot (MsgTick1009 subtype46) to populate the active slots. Subtype4 instead targets an
+inspected `CDummy`; it is not the local equipment login path. These distinctions supersede
+the previous field map and equip-hydration interpretation.
 
 ### What implementing this leg actually requires
 
@@ -932,8 +913,19 @@ Two consequences for a server: it must echo an action to advance the client, and
 a rung whose payload it has not actually sent — doing so walks the client past state that never
 arrived. Any enum mapping `GetItemSet` to `52` instead of `0x4B`/`75` is incompatible with this build.
 
+**Echo entity id is checked (corrected 2026-09-28).** `CMsgAction__Process` resolves packet `+4`
+at `0x6FF173` (`EntityRef_ResolveByIdOrLocalHero`, includeLocalHero=1) before the rung switch.
+Unresolved -> exit `0x700974`, no advance, for `0x4B/0x4C/0x4D/0x4E/0x61`. Echo `+4` must be the local
+hero id. `0x4A` is immune: `0x6FEE14` overwrites `+4` with the hero id first.
+
+**`0x4C` rung, complete client requirement:** one MsgAction echo, subtype `0x4C`, `+4` = hero id.
+Branch `0x6FF365..0x6FF3CB` reads nothing else and sends `0x4D`. MsgFriend rows are optional content:
+zero rows valid, any order, `CMsgFriend__Process` has no ladder gate. No other packet family is read
+on this rung. Enemy list is also re-queried by the client itself via MsgEnemyList 1041 when the enemy
+dialog opens (`0x45D0FD`), independent of the ladder.
+
 Rung payloads verified so far: `0x4B` is answered with `MsgItem` (1008) rows, `0x4C` with
-`MsgFriend` (1019) rows, `0x4D actionGetWeaponSkillSet` with one `MsgWeaponSkill` (1025)
+`MsgFriend` (1019) rows (optional, see above), `0x4D actionGetWeaponSkillSet` with one `MsgWeaponSkill` (1025)
 packet per proficiency row, and `0x4E actionGetMagicSet` with one `MsgMagicEffectSimple` (1103)
 per magic — established by xrefs on `CHero__AddOrUpdateMagic` (0x6F5546), the only function that
 installs a magic, whose sole callers are the 1103 handler and one MsgAction subtype. 1103 carries
@@ -965,7 +957,8 @@ is shown to be the one the code uses**. See the rejected `statuseffect.ini` atte
 
 **Historical list, superseded 2026-09-17:** +48, +81 and +87 are already semantically
 closed; see the [current complete table](../../10_work/docs/NATIVE_MSGUSERINFO_1006_5517.md).
-The six numeric targets +32/+36/+40/+44/+72/+74 remain open. The feature at+97/+98 is
+For +32/+36/+40/+44/+72/+74 the later [historical reconciliation](MsgUserInfo1006-historical-field-reconciliation.md)
+supplies names and compatibility/update classifications; native-only name proof is distinguished from lineage. The feature at+97/+98 is
 subprofession ID/promotion phases, and string[1]'s payload is proven dead on the normal
 receive path. The historical tutor-cluster hypothesis below is not evidence for other fields.
 
@@ -1055,15 +1048,25 @@ struct MsgCreatePlayer1001 {
 - the shipped label/description surface for vocation/body choices lives in `ini/selectCharacter.ini`
   (`affirmPanel`, `info`, `infoII`), while the packet field mapping above is the verified native C++ contract.
 
-## MsgUserAttrib (Type 1029)
-**Direction**: S→C
-**Purpose**: Attribute update (HP, MP, level, exp, etc.)
-**Dispatch**: Create `CMsgUserAttrib__Create` (0x75E446), parse `CMsgUserAttrib__Parse` (0x75E4AC), process `CMsgUserAttrib__Process` (0x75E4CF)
+## MsgTeamAward (Type 1029)
 
-**Parse**: `CMsgUserAttrib__Parse` — standard header validation, then `type == 1029`.
+**Direction**: S→C. **Purpose**: accumulation of three award counters.
+The family name is corroborated by COPS5066; the former `CMsgUserAttrib` label and
+HP/MP/level-update description were incorrect.
 
-**Verified field usage in `CMsgUserAttrib__Process`** (offsets relative to packet start):
-- `+4`, `+8`, `+12` are read as 32-bit values and added to singleton fields at offsets `+4252`, `+4256`, `+4260` respectively (via `s__GetSingletonPtr_404460`).
+**Dispatch**: Create `CMsgTeamAward__Create` (`0x75E446`), parse
+`CMsgTeamAward__Parse` (`0x75E4AC`), process `CMsgTeamAward__Process` (`0x75E4CF`).
+The parser compares type1029 at `0x75E4C8`.
+
+| Packet field | Native addition | Historical COPS5066 label |
+|---|---|---|
+| `+4`, u32 | hero`+0x109C` at `0x75E50F` | Experience |
+| `+8`, u32 | hero`+0x10A0` at `0x75E4EE` | Money |
+| `+12`, u32 | hero`+0x10A4` at `0x75E531` | Virtue |
+
+This packet has no attribute discriminator. The type23 update of role`+0x8B8`
+occurs in packet10017 at `0x757BFF`; it is separate from these award accumulators.
+See the [focused reconciliation](MsgUserInfo1006-historical-field-reconciliation.md).
 
 ## MsgPlayerSetInfo (Type 1106)
 **Direction**: S→C
@@ -1142,9 +1145,12 @@ struct MsgAction {
 | `0x6FF05F` | `CHero_CompleteMovementTimingChallenge` (movement timing / anti-speedhack) |
 | `0x6FF952`, `0x700373`, `0x7006E7` | other action branches |
 
-**The world-entry ladder branches read nothing at all from the inbound packet.** Verified at
-0x6FF36B (`0x4C` → sends `0x4D`) and 0x6FF300 (`0x4D` → sends `0x4E`); every rung has the same
-shape:
+**The rung branches read nothing from the inbound packet — but the common path before them
+resolves `+4` (corrected 2026-09-28).** `0x6FF15D..0x6FF18A`: `EntityRef_ResolveByIdOrLocalHero(
+&g_objPlayerSet, packet+4, includeLocalHero=1)`; unresolved -> only `0x4F/0x51/0x63/0x82/0x89`
+continue (`0x6FF1B0`, sends MsgAction `0x66` with `+4`), all other keys exit `0x700974`. Main switch
+`0x6FF231`: `0x4A`->`0x6FF44A`, `0x4B`->`0x6FF3CD` (also posts main msg `0x401`), `0x4C`->`0x6FF365`,
+`0x4D`->`0x6FF2FA`, `0x4E`->`0x6FF283`. Rung shape:
 
 ```
 CMsgAction_Ctor(&local)
@@ -1154,10 +1160,10 @@ CMsgAction__Create(heroId, 0, 0, 0, nextAction)
 CNetMsg__Send(&local)
 ```
 
-So the client takes the entity id from its own hero singleton and stamps the outgoing packet with
-its own `Conquer_GetTimeGetTime()`. **Only the subtype at `+0x14` has to match** — whatever a
-server writes into the echoed entity id and timestamp on `0x4A`/`0x4B`/`0x4C`/`0x4D`/`0x4E`/`0x61`
-is never observed. Rung ranges: `0x61` send `0x6FF28A..0x6FF2EB`, `0x4E` send
+The outgoing packet takes the entity id from the hero singleton and its own
+`Conquer_GetTimeGetTime()`. Echo requirements: subtype `+0x14` must match; `+4` must resolve (hero
+id) on `0x4B..0x4E`/`0x61`; timestamp `+0x10` never observed. (Earlier claim "echoed entity id never
+observed" was wrong.) Rung ranges: `0x61` send `0x6FF28A..0x6FF2EB`, `0x4E` send
 `0x6FF300..0x6FF356`, `0x4D` send `0x6FF36B..0x6FF3C1`, `0x4C` send `0x6FF3D3..0x6FF440`, `0x4B`
 send `0x6FF44A..0x6FF594`.
 
@@ -1298,9 +1304,9 @@ Runtime mapping in `10_work`:
   - updates the local-hero role snapshot position/direction when the entity already resolves as the local hero.
 - startup/bootstrap parity must also emit the verified client follow-up `MsgAction 0x4B (GetItemSet)` after the
   server `0x4A` side effects have been observed and the command/map ingress handlers have run.
-- the verified downstream receive path touched by this slice is `MsgItem (1008)` action `4`, which normalizes the
-  packet equipment position through `ItemPosition_NormalizeEquipmentPosition` and then applies the equipped item via
-  `CRole__SetEquipSlotItem`.
+- corrected item receive contract: local inventory and tracked equipment use `MsgItem (1008)` subtype1;
+  active equipment is selected through MsgTick1009 subtype46. Subtype4 targets inspected `CDummy`
+  equipment, not local hero equipment. See [the item contract](MsgItem1008-domain-contract-5517.md).
 
 Conservative managed scope note:
 - native `0x4A` also drives hero projected-screen updates and coordinate-gate/map sync immediately in the
@@ -1374,7 +1380,11 @@ This branch is explicitly classified as non-command-ingress for the `0x11C` stat
 
 This is the confirmed runtime bridge between action packet subtype `0x7C`, `GraphicData.dll` sound DB lookup, and `NDSound.dll` playback.
 
-## 2026-08-16 — the eight open `1006` fields now have targets
+## 2026-08-16 — historical target-discovery record
+
+The open-status labels and proposed broad searches in this historical section are superseded
+by the [current reconciliation](MsgUserInfo1006-historical-field-reconciliation.md).
+They remain here as provenance, not current investigation instructions.
 
 `CMsgUserInfo__Process` (`0x764276`) was read end to end. The packet body pointer is
 `*(arg1+0x404)`, so its offsets are packet-relative including the 4-byte header. Every previously
@@ -1429,7 +1439,7 @@ a server that populates them.
 
 ### `+87` is CLOSED — flower-status tier (`hero+0x474`)
 
-Proven from four independent directions:
+Proven from four independent directions (fifth consumer added 2026-09-28):
 
 1. `CMsgUserInfo__Process` at `0x7646BF` calls `CHero_SetFlowerStatusTier` (`0x673266`), a one-line
    setter storing to `hero+0x474`. Getter is `CHero_GetFlowerStatusTier` (`0x5D4B61`).
@@ -1443,6 +1453,9 @@ Proven from four independent directions:
 4. `CHero_SetCoachPointsAndShowPrompt` (`0x6ED511`) gates on it at level `>= 0x5A` (90):
    tier `< 1` selects `GET_COACH_CHANCE`, otherwise `GET_EXTRA_COACH_CHANCE`, formatting the tier
    both raw and as `tier * 0.01`.
+5. `CHeroFriendAndEnemyMgr_GetMaxFriendCount` (`0x69E4FD`), when `CHeroConfigMgr` bit 10 set:
+   tier 0..5 -> 50/55/60/70/80/90, other -> 100 (`0x69E506..0x69E54B`). Another tier-indexed ladder;
+   field name "FlowerStatusTier" covers only the flower consumer.
 
 `STR_SEND_FLOWER_TIP` is **not** present in the shipped `00_clean/clean/5517` tree — only
 `data/AutoPatch_pic/Res.ini` ships `STR_` keys — so the key name embedded in the binary is the
@@ -1706,8 +1719,9 @@ practical routes left, in order of expected yield:
    getter would receive the role as `this`
 3. per-site base verification of the raw displacement clusters, which is the slow fallback
 
-Until one of those produces a consumer with a string, a label, or a threshold, these six stay
-unnamed and stay out of the managed reader.
+At that checkpoint no reader established the gameplay names. The focused reconciliation now
+attributes the historical identities and preserves native-only proof boundaries; production
+implementation remains unchanged.
 
 ### Base-provenance filter: no consumer survives for any of the six
 
@@ -1746,7 +1760,8 @@ describes that search, not a whole-binary no-reader conclusion:
 
 **2026-09-17 correction:** the previous "inert" and "retired feature" characterizations were
 not established by this evidence and are withdrawn. A live writer plus an incomplete reader
-search does not prove retirement. The six numeric fields remain under semantic investigation.
+search does not prove retirement. The later historical reconciliation supplies compatibility names without strengthening
+this negative search into an exhaustive dead-field proof.
 
 Scope, stated honestly: this is a systematic negative, not a proof. The filter uses a fixed ±96-byte
 window, ignores function boundaries, and skips SIB-addressed accesses, so a consumer that loads the
@@ -1755,7 +1770,8 @@ function-bounded dataflow, not a byte scan.
 
 **Consequence for implementation:** this historical negative search does not authorize
 declaring the packet slice complete, naming these fields as inert, or assigning gameplay
-semantics. The current production evidence pass remains open for all six numeric targets.
+semantics. The current attributed historical identities and native-only limitations are recorded
+in the focused reconciliation, which supersedes the earlier anonymous-field status.
 
 ## 2026-08-16 — OpenConquerPublic's 1006 writer brought onto the verified layout
 

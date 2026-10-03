@@ -4,50 +4,90 @@ Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
 ## MsgFriend (Type 1019)
 **Direction**: Bidirectional
-**Dispatch**: Construct `CMsgFriend__ctor` (0x74D66D), parse `CMsgFriend__Parse` (0x74D766), process `CMsgFriend__Process` (0x74D789)
-**Size**: 36 bytes (verified send-side builder below)
+**Dispatch**: ctor `CMsgFriend__ctor` (0x74D66D), parse `CMsgFriend__Parse` (0x74D766), process `CMsgFriend__Process` (0x74D789)
+**Size**: 36. Proof pass 2026-09-28: `+0x0C`/`+0x10` semantics, send-site args, entry layouts.
 
-**Parse**: `CMsgFriend__Parse` — standard header validation, then `type == 1019`.
+| Off | Type | Field | Proof |
+|---|---|---|---|
+| +0 | u16 | size 36 | builder 0x74D75B |
+| +2 | u16 | type 1019 | builder 0x74D74F |
+| +4 | u32 | id | |
+| +8 | u8 | subtype 10..19 | switch `*(+8)-10`, table 0x74DDE7 |
+| +9 | u8 | online flag (nonzero = online) | `CFriend__CreateNew` 0x709E3B |
+| +0x0A | u16 | pad; client writes 0 | ctor memset 0x6DF290 |
+| +0x0C | u32 | **peerage (nobility) rank** | see below |
+| +0x10 | u32 | **peerage sex** (1 male, 2 female) | see below |
+| +0x14 | char[16] | name, NUL forced +0x23 | builder 0x74D734/0x74D743 |
 
-**Verified field layout (offsets relative to packet start)**:
-- `+0` (u16) size (`36` in the verified builder)
-- `+2` (u16) type == `1019`
-- `+4` (u32) id/UID (meaning depends on `sub_type`)
-- `+8` (u8) `sub_type` selector (switch values `0x0A..0x13` in `CMsgFriend__Process`)
-- `+9` (u8) `flag`/boolean (meaning depends on `sub_type`)
-- `+12` (u32) param_1 (used by subtypes `0x0B/0x0C/0x0D/0x10/0x11/0x13`)
-- `+16` (u32) param_2 (used by subtypes `0x0B/0x0C/0x0D/0x10/0x11/0x13`)
-- `+20` (char[16]) name (copied with `strncpy(..., 0x10)`; forced NUL at `+35`)
+### `+0x0C` / `+0x10` proof
+- Stored: `CFriend__CreateNew` (0x709DA3) -> CFriend `+0x44`/`+0x48`; `CEnemy__CreateNew` (0x6FE6A7) -> CEnemy `+0x40`/`+0x44`.
+- Overwritten by presence: 12/13 -> `+0x44`=pkt+0xC, `+0x48`=pkt+0x10 (0x74D985/0x74D996, 0x74DA2D/0x74DA3E); 16/17 -> CEnemy `+0x40`/`+0x44` (0x74DBDF/0x74DBF0, 0x74DC87/0x74DC98).
+- Only readers (all consumers of CFriend/CEnemy scanned): `DlgFriendInfo_RefreshFromFriendEntry` 0x491A17 and `DlgEnemyInfo_RefreshFromEnemyEntry` 0x45DC52.
+  - `CPeerageMgr_GetPeerageAssetName(out, rank=+0x44, sex=+0x48, 2)` (0x491C01) -> Icon32 image on ctrl `+0x140`, shown only if non-empty.
+  - `CPeerageMgr_GetPeerageName(rank, sex)` (0x491C74) -> dlg `+0xF8`.
+- `CPeerageMgr_GetPeerageName` (0x6AB500): key = `sex + rank*10` (0x6AB50D/0x6AB512); map loaded by `CPeerageMgr_LoadPeerageIni` (0x6AAD95) from `ini/peerage.ini`, section header `sscanf "[%d]"`. Miss -> "" (0x9560DC, bss).
+- Same key built for live roles: `(CRole_GetPeerageRank = role+0xA2C, role+0x178)` at 0x42644E/0x426446, 0x73A800/0x73A7E7, 0x6F1940/0x6F1931.
+  role+0x178 = `(lookface/1000)%10` (1006 +10 / spawn). Friend rows get no client derivation: server supplies `+0x10`.
 
-**Verified inbound subtypes (`sub_type` at `+8`)**:
-- `0x0A`: formats and shows a system message using `GameDataSetQuery` string id `100101` and the `name` at `+20`.
-- `0x0B`: creates/updates a friend-entry using fields `+4/+9/+12/+16/+20`, then shows a system message with string id `100102`.
-- `0x0C`: updates a friend-entry state to `1`, applies `param_1/param_2` (`+12/+16`) via `SetModifiedFlag`, posts `0x3FA` and `0x48F(12)`, then shows a system message with string id `100103`.
-- `0x0D`: updates a friend-entry state to `0`, applies `param_1/param_2` (`+12/+16`) via `SetModifiedFlag`, posts `0x3FA` and `0x48F(13)`, then shows a system message with string id `100104`.
-- `0x0E`: looks up an entity by `id` (`+4`) and triggers a friend-related manager action (no system message in this handler).
-- `0x0F`: creates/updates a friend-entry using fields `+4/+9/+12/+16/+20` and applies it to the friend manager/UI (no system message in this handler).
-- `0x10`: updates a friend-entry state to `1`, applies `param_1/param_2` (`+12/+16`), posts `0x439` and `0x490(16)`, then shows a system message with string id `100144`.
-- `0x11`: updates a friend-entry state to `0`, applies `param_1/param_2` (`+12/+16`), posts `0x439` and `0x490(17)`, then shows a system message with string id `100145`.
-- `0x12`: triggers a friend-related manager action using `id` (`+4`) (no system message in this handler).
-- `0x13`: ensures a friend-entry exists (creates one from `+4/+9/+12/+16/+20` if missing), then applies it to the friend manager/UI and posts `0x439`.
+### Value domains (shipped `ini/peerage.ini`)
+| key | rank | sex | Name |
+|---|---|---|---|
+| 1 / 2 | 0 | 1 / 2 | Commoner / Commoner |
+| 11 / 12 | 1 | 1 / 2 | Knight / Lady |
+| 31 / 32 | 3 | 1 / 2 | Baron / Baroness |
+| 51 / 52 | 5 | 1 / 2 | Earl / Countess |
+| 71 / 72 | 7 | 1 / 2 | Duke / Duchess |
+| 91 / 92 | 9 | 1 / 2 | Prince / Princess |
+| 121 / 122 | 12 | 1 / 2 | King / Queen |
 
-**Verified send-side builder**:
-- `CMsgFriend__BuildSubtypeEntityIdFlagName16` (0x74D6D3) sets `size=36`, `type=1019`, and writes:
-- `+4=id`, `+8=sub_type`, `+9=flag`, `+20=name` (copies 16 bytes, forces NUL at `+35`)
+- rank 0 = Commoner (icon `nob_White32` shown if sex 1/2).
+- sex 0 (or any rank/sex not in table) = key miss -> no peerage icon, empty title. Nothing else reads the fields.
+- CFriend/CEnemy ctor default 0xFFFFFFFF for both; always overwritten by the creating packet.
+- Sex source for a server: target lookface `(look/1000)%10` (same digit as role+0x178). Long 6270 `Gender`: male body -> 1, else 2, offline -> 0.
 
-```c
-struct MsgFriend {
-    uint16_t size;          // +0: 36 (verified in builder)
-    uint16_t type;          // +2: 1019
-    uint32_t id;            // +4: Meaning depends on sub_type
-    uint8_t  sub_type;      // +8: 0x0A..0x13 handled in CMsgFriend__Process
-    uint8_t  flag;          // +9: Meaning depends on sub_type
-    uint16_t reserved;      // +10: Unused in builder/process
-    uint32_t param_1;       // +12: Used by several subtypes
-    uint32_t param_2;       // +16: Used by several subtypes
-    char     name[16];      // +20: strncpy(..., 0x10), forced NUL at +35
-};
-```
+### Inbound subtypes
+| Sub | Case | Effect |
+|---|---|---|
+| 10 | 0 | chat GameDataSet 0x18705 (name) ch 0x7D5; stores nothing |
+| 11 | 1 | `CFriend__CreateNew` + `CHeroFriendAndEnemyMgr__AddFriend` + chat 0x18706(hero name, entry name) |
+| 12/13 | 2/3 | FindFriendById(+4); online=1/0; overwrite +0xC/+0x10 fields; post 0x3FA, 0x48F(12/13); chat 0x18707/0x18708 |
+| 14 | 4 | `CHeroFriendAndEnemyMgr__RemoveFriend(+4)` |
+| 15 | 5 | as 11 without chat. No duplicate-id check (AddFriend push_back) |
+| 16/17 | 6/7 | FindEnemyById; online=1/0; overwrite fields; post 0x439, 0x490(16/17); chat 0x18730/0x18731 |
+| 18 | 8 | `CHeroFriendAndEnemyMgr__RemoveEnemy(+4, notify=0)` |
+| 19 | 9 | FindEnemyById hit -> case skipped entirely (0x74DD33, no update); miss -> `CEnemy__CreateNew` + `AddEnemy` + post 0x439 |
+
+No ladder/state gate in the handler. Bulk enemy alternative: MsgEnemyList 1041 (`05_guild_packets.md`).
+
+### Client send sites (sole callers of `CMsgFriend__BuildSubtypeEntityIdFlagName16` 0x74D6D3)
+Builder `(u8 sub, u32 id, u8 flag, char* name)`; name NULL -> CHECK (MsgFriend.cpp line 0x22), return 0. Never writes +0xA/+0xC/+0x10 -> 0.
+
+| Site | Fn | Sub | id | flag (+9) | name |
+|---|---|---|---|---|---|
+| 0x69E6E7 | `RequestAddFriend` 0x69E54C | 10 | target role id (arg) | 0 (ebx, 0x69E577) | resolved `CRole+0x14C` |
+| 0x69E7E2 | `RequestRemoveFriend` 0x69E739 | 14 | friend id | 0 (ebx, 0x69E75F) | `CFriend+0x08` |
+| 0x69E0C5 | `RemoveEnemy` 0x69E005 (notify!=0) | 18 | enemy id | **1** (push 1, 0x69E0C0) | `CEnemy+0x08` |
+
+- 10 gates: `CDataMigrationSubject` op 0x18; target must resolve in `g_objPlayerSet` (else silent 0); count < `GetMaxFriendCount` (else 0x186C9); not already friend (else 0x186CA). Callers: `CMyShellDlg_OnLButtonDown` 0x5B0D0B (role `+0xCC`), `DispatchCommandCode` case 0x53 0x5B2B93 (mgr `+0x10`).
+- 14 gates: op 0x19; id!=0; friend exists (else 0x186CB). No local removal. Callers: `DlgFriendRemoveConfirm_Accept` 0x491E85, `OnLButtonDown` 0x5B0D25.
+- 18: caller `DlgEnemyRemoveConfirm_Accept` 0x45DFC6 (notify=1). Local removal 0x69E11E + post 0x439 after send.
+- Flag 1 on 18 is a literal; client never reads its own outbound flag.
+
+### Entry objects
+| | CFriend (0x4C, vtbl 0x86BC28) | CEnemy (0x48, vtbl 0x86BAC4) |
+|---|---|---|
+| ctor | 0x709CA8 | 0x6FE5AF |
+| id | +0x04 | +0x04 |
+| name (CharVector) | +0x08 | +0x08 |
+| online | +0x14 | +0x14 |
+| MsgFriendInfo 2033 fields | +0x1C..+0x34 | +0x18..+0x30 |
+| mate (CharVector) | +0x38 | +0x34 |
+| peerage rank (pkt +0xC) | +0x44 | +0x40 |
+| peerage sex (pkt +0x10) | +0x48 | +0x44 |
+
+Manager `CHeroFriendAndEnemyMgr` (singleton 0x956004, 0x78 B): friends `deque<shared_ptr<CFriend>>` +0x24, enemies +0x50. Info queries: `RequestFriendInfo` MsgAction 0x94, `RequestEnemyInfo` MsgAction 0x7B -> reply 2033.
+
+Unresolved: literal text of GameDataSet strings 0x18705..0x18708, 0x18730/0x18731, 0x186C9..0x186CB; writer of mgr `+0x10` (case 0x53 source).
 
 ## MsgMagicEffect (Type 1035)
 **Direction**: S→C

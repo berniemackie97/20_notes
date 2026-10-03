@@ -50,6 +50,9 @@ DLLs' full capability.
 
 ## HUD
 
+- [14_static_main_hud_chrome.md](14_static_main_hud_chrome.md) — GFX-UI-001,
+  English Progress45/Dialog4 calls, clean assets, placement and failure contract.
+
 - [12_hud_status_hint_panel.md](12_hud_status_hint_panel.md) —
   `CMyShellDlg__RenderStatusHintPanel` (`0x5B9C3F`), the hover-hint panel.
 - [13_hud_progress_gauges.md](13_hud_progress_gauges.md) — `CMyProgress`, the HUD
@@ -57,6 +60,11 @@ DLLs' full capability.
 - [14_hero_effective_max_life_mana.md](14_hero_effective_max_life_mana.md) —
   `CHero_GetEffectiveMaxLife` (`0x65D06D`) and `CHero_GetEffectiveMaxMana`
   (`0x65D25A`), which the gauges read.
+
+- [15_main_hud_gauge_render_contract.md](15_main_hud_gauge_render_contract.md) — GFX-UI-002: HP/MP/stamina frame closure, overflow UV wrapping, failure behavior and font-calibrated origins.
+- [16_main_hud_skill_progress_render_contract.md](16_main_hud_skill_progress_render_contract.md) — GFX-UI-003: Progress42 status/message state machine, exact timer ordering and wrap behavior, 92×92 fill versus 128×128 highlight, assets and replay vectors; Progress44's procedural draw corrects the earlier no-draw premise.
+- [17_main_hud_action_strip_native_contract.md](17_main_hud_action_strip_native_contract.md) — evidence-only audit of ten CMyButton handlers and state writers, Skill/Mission frame-2 limits, exact PK skin/blink behavior, and corrected native command routing.
+- [18_main_hud_check_controls_native_contract.md](18_main_hud_check_controls_native_contract.md) — GFX-UI-005 evidence: CMyCheck mouse-down state changes, bounded setter, MFC/Windows delegation, Check43/Check46/Button411 effects and exact native rectangles; target-OS release notifications remain explicitly unobserved.
 
 ## DLL deep-dives
 
