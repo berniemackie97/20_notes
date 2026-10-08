@@ -630,11 +630,21 @@ Client-consumed flow in the working server order (not a retail packet capture):
      (`actionGetMagicSet`)
    - incoming `0x4E` branch `0x6FF28A..0x6FF2EB` sends `0x61`
      (`actionGetSynAttr`)
+   - incoming `0x61` branch `0x6FF5D6..0x6FF625` sends `0xFB`: silent-info
+     checksum/version report, entity ID **zero**, checksum at `+8`, version at `+16`
+   - incoming `0xFB` branch `0x7008EA..0x700949` sends `0x84 actionGetStatistic`
 
    - common gate `0x6FF173`: echo `+4` must resolve via `EntityRef_ResolveByIdOrLocalHero`
-     (local hero id); unresolved -> `0x700974`, no advance, for `0x4B..0x4E`/`0x61`. `0x4A` echo
+     (local hero or a matching existing role); unresolved -> `0x700974`, no advance,
+     for `0x4B..0x4E`/`0x61`/`0xFB`. Use the local hero ID for bootstrap replies. `0x4A` echo
      `+4` is overwritten with the hero id at `0x6FEE14`.
    - `0x4C` rung requires only the `0x4C` echo (`+4` = hero id). MsgFriend rows optional.
+   - A blind zero-ID echo of the client `0xFB` request fails that gate. Its reply
+     needs a resolvable ID to advance to `0x84`; it does not finish login.
+
+See [action-61 native evidence](21_msgaction_0061_syndicate_bootstrap.md) for the
+38-byte request, ignored reply timestamp/data, independent 1106 updates, and
+limits on claims about retail server packet ordering.
 
 Verified implication:
 - In 5517, the client's immediate post-enter-map item bootstrap request is `MsgAction 0x4B`.

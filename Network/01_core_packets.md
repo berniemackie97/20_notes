@@ -897,7 +897,7 @@ bytes rather than exactly 38.
 This layout independently matches the legacy `OpenConquer5517v3` `DataPacket` (34-byte body measured
 from `+4`), which is a second source agreeing field for field.
 
-**The ladder is client-driven; the server only echoes.** `CMsgUserInfo__Process` ends by calling the
+**The ladder is client-driven; inbound action acknowledgements advance it.** `CMsgUserInfo__Process` ends by calling the
 builder with `actionEnterMap` (`0x4A`) and the local hero id. After that `CMsgAction__Process`
 advances one rung per **inbound** action:
 
@@ -907,16 +907,20 @@ client 0x4A EnterMap  -> server echoes 0x4A -> client sends 0x4B GetItemSet
        0x4C -> 0x4D GetWeaponSkillSet
        0x4D -> 0x4E GetMagicSet
        0x4E -> 0x61 GetSynAttr
+       0x61 -> 0xFB SilentInfo checksum/version report
+       0xFB -> 0x84 actionGetStatistic
 ```
 
-Two consequences for a server: it must echo an action to advance the client, and it must **not** echo
-a rung whose payload it has not actually sent — doing so walks the client past state that never
-arrived. Any enum mapping `GetItemSet` to `52` instead of `0x4B`/`75` is incompatible with this build.
+An action acknowledgement advances these edges. Send the intended snapshot before acknowledging
+its rung as server ordering policy; this is not proof of a native row-count gate or a retail
+server packet burst. Acknowledgement fields are action-specific: the zero-ID client `0xFB` report
+cannot be blindly echoed because its response must pass the entity-resolution gate. Any enum mapping `GetItemSet` to `52` instead of `0x4B`/`75` is incompatible with this build.
 
 **Echo entity id is checked (corrected 2026-09-28).** `CMsgAction__Process` resolves packet `+4`
 at `0x6FF173` (`EntityRef_ResolveByIdOrLocalHero`, includeLocalHero=1) before the rung switch.
-Unresolved -> exit `0x700974`, no advance, for `0x4B/0x4C/0x4D/0x4E/0x61`. Echo `+4` must be the local
-hero id. `0x4A` is immune: `0x6FEE14` overwrites `+4` with the hero id first.
+Unresolved -> exit `0x700974`, no advance, for `0x4B/0x4C/0x4D/0x4E/0x61/0xFB`.
+Correction 2026-10-05: the resolver accepts the local hero **or a matching existing role**, not
+only the local hero. Bootstrap responses should use the authenticated local hero ID. `0x4A` is immune: `0x6FEE14` overwrites `+4` with the hero id first.
 
 **`0x4C` rung, complete client requirement:** one MsgAction echo, subtype `0x4C`, `+4` = hero id.
 Branch `0x6FF365..0x6FF3CB` reads nothing else and sends `0x4D`. MsgFriend rows are optional content:
@@ -1068,14 +1072,16 @@ This packet has no attribute discriminator. The type23 update of role`+0x8B8`
 occurs in packet10017 at `0x757BFF`; it is separate from these award accumulators.
 See the [focused reconciliation](MsgUserInfo1006-historical-field-reconciliation.md).
 
-## MsgPlayerSetInfo (Type 1106)
-**Direction**: S→C
-**Purpose**: Updates hero "player set" fields and marks entries in the GamePlayerSet list; includes two strings and multiple numeric fields.
-**Dispatch**: Create `CMsgPlayerSetInfo__Create` (0x760886), parse `CMsgPlayerSetInfo__Parse` (0x7608EC), process `CMsgPlayerSetInfo__Process` (0x76090F)
+<a id="msgplayersetinfo-type-1106"></a>
 
-**Parse**: `CMsgPlayerSetInfo__Parse` — standard header validation, then `type == 1106`.
+## MsgSyndicateAttributeInfo (Type 1106; former MsgPlayerSetInfo label)
 
-**Verified field usage in `CMsgPlayerSetInfo__Process`** (offsets relative to packet start):
+**Direction**: S→C. Constructor `0x760886`, parser `0x7608EC`, process `0x76090F`.
+Updates the local hero's syndicate attributes and posts UI command `0x40A`.
+The packed field map and current names are in the
+[action-61 native contract](21_msgaction_0061_syndicate_bootstrap.md#server-completion-behavior).
+
+**Verified storage map** (packet offsets; historical setter labels retained for cross-reference):
 - `+4` (u32) `entry_id` (see flow below)
 - `+8` (u32) → `CHero__SetDword_0x878`
 - `+12` (u32) → `CHero__SetDwordPair_0x898_0x89C` (low)
@@ -1094,18 +1100,18 @@ See the [focused reconciliation](MsgUserInfo1006-historical-field-reconciliation
 - `+71` (u32) → `CHero__SetDword_0x1284`
 - `+75` (char*) → `CPlayer__SetStringProperty` (hero string at `+0x8C8`)
 
-**Verified processing flow**:
-- If `entry_id == 0`:
-  - `CGamePlayerSet__SetAllEntryState_3(&unk_96B018)` (sets each entry+36 to `3`).
-  - `CHero__ClearBlock_0x2E7C_0x28` (clears hero block at `+0x2E7C` and resets related containers).
-- Else:
-  - `CHero__SetDword_0x86C(entry_id)`.
-- After applying fields, if `entry_id != 0`, calls `CGamePlayerSet__SetEntryStateById(&unk_96B018, entry_id, 2)`.
-- Always posts `PostMainWndMsg_0x464(0x40A, 0)`.
+
+Correction 2026-10-05: zero ID first clears player-set syndicate statuses through
+`0x6E98FC` and extended hero state through `0x66563D` (including the `+0x2E74`
+block). **Both** zero/nonzero paths then apply all packet fields, including ID.
+Nonzero ID additionally marks status 2. This packet does not complete action 61.
+The parser does not require 92 bytes; name consumers at packet `+32/+75` use
+`strlen`, not fixed 16/17-byte reads. A 92-byte bounded-name encoding is a
+compatible reconstruction policy, not a recovered exact native parser length.
 
 ## MsgAction (Wire Type 10010; 1010 Not Dispatched In This Build)
 **Direction**: Bidirectional (C→S via Create/CreateWalk builders; S→C via Process handler)
-**Min Size**: 38 bytes (may be larger when a string list is present) | **Handler**: `CMsgAction__Process` (0x6FED1F, 0x1C76 bytes)
+**Canonical fixed emission**: 38 bytes (may be larger with a string list); parser `0x6FEB93` itself enforces no 38-byte minimum | **Handler**: `CMsgAction__Process` (0x6FED1F, 0x1C76 bytes)
 
 **Verified incoming dispatch**:
 - `CNetMsg__ProcessMsg_Dispatch` (0x6DF3B5) routes `type == 0x271A` (10010) to an allocation of `0x414` bytes and `CMsgAction__Ctor` (0x6FE8A3). Evidence: branch chain at 0x6E12AD (`sub eax, 0x2715` then `sub eax, 5` → 0x6E130B/0x6E1326).
@@ -1114,7 +1120,7 @@ See the [focused reconciliation](MsgUserInfo1006-historical-field-reconciliation
 
 ```c
 struct MsgAction {
-    uint16_t size;          // +0: Total packet size (>= 38)
+    uint16_t size;          // +0: Packet size; normal fixed emission 38, not a parser minimum
     uint16_t type;          // +2: 10010 (0x271A)
     uint32_t entity_id;     // +4: Entity performing the action
     uint16_t param_low;     // +8: Low word of parameter
@@ -1155,14 +1161,15 @@ continue (`0x6FF1B0`, sends MsgAction `0x66` with `+4`), all other keys exit `0x
 ```
 CMsgAction_Ctor(&local)
 eax = CHero_GetSingletonPtr()->+0xCC        ; local hero id, NOT packet+4
-push 0,0,0 ; push nextAction ; push 0 ; push eax
-CMsgAction__Create(heroId, 0, 0, 0, nextAction)
+push 0 ; push nextAction ; push 0,0,0 ; push eax
+CMsgAction__Create(heroId, 0, 0, 0, nextAction, 0)
 CNetMsg__Send(&local)
 ```
 
-The outgoing packet takes the entity id from the hero singleton and its own
-`Conquer_GetTimeGetTime()`. Echo requirements: subtype `+0x14` must match; `+4` must resolve (hero
-id) on `0x4B..0x4E`/`0x61`; timestamp `+0x10` never observed. (Earlier claim "echoed entity id never
+Normal Create-built follow-ups take the entity ID from the hero singleton and
+use their own `Conquer_GetTimeGetTime()`. The received-61 branch instead uses
+the separate FB builder: zero entity ID, checksum and version. Echo requirements: subtype `+0x14` must match; `+4` must resolve (use local hero
+id for bootstrap) on `0x4B..0x4E`/`0x61`/`0xFB`; timestamp `+0x10` is ignored on those routes. (Earlier claim "echoed entity id never
 observed" was wrong.) Rung ranges: `0x61` send `0x6FF28A..0x6FF2EB`, `0x4E` send
 `0x6FF300..0x6FF356`, `0x4D` send `0x6FF36B..0x6FF3C1`, `0x4C` send `0x6FF3D3..0x6FF440`, `0x4B`
 send `0x6FF44A..0x6FF594`.
@@ -1172,6 +1179,10 @@ send `0x6FF44A..0x6FF594`.
 - `CMsgAction__Process` uses `MsgStringList__GetCount` / `MsgStringList__GetEntry` in some action subtypes (e.g., branch at 0x7007B0).
 - String list format matches the `MsgStringList` description under `MsgTalk` (count byte followed by `[len][bytes]` entries).
 
+See [the action-61 contract](21_msgaction_0061_syndicate_bootstrap.md) for the
+recovered enum, exact request/reply consumption, 61→FB→84 transition, direct
+builder census, replay vectors, and retail-server evidence limits.
+
 ### Action Sub-Types
 | Value | Hex  | Name | Description |
 |-------|------|------|-------------|
@@ -1180,6 +1191,9 @@ send `0x6FF44A..0x6FF594`.
 | 85    | 0x55 | ChangeMap | **Verified 2026-08-28** at `0x65DD3B`, named by the build's own assert string `actionChgMap`. Client-originated: the hero tick finds an exit tile beside the hero and sends this naming that tile in the parameter pair. Not walking — walking is packet 10005. |
 | 93    | 0x5D | AutoMine | Automatic mining action |
 | 94    | 0x5E | Hotkeys | Hotkey configuration sync |
+| 97    | 0x61 | actionGetSynAttr | **Verified 2026-10-05**, recovered native assertion. Sent after 4E completion; resolvable-ID 61 reply sends FB silent-info report. |
+| 132   | 0x84 | actionGetStatistic | **Verified next request after resolvable-ID FB reply**, assertion `0x945E48`, send `0x700944`. |
+| 251   | 0xFB | SilentInfoReport (analyst label) | **Verified 2026-10-05**: client request entity=0, checksum at +8, version at +16. Response requires a resolvable ID to advance to 84. |
 | 101   | 0x65 | ConfirmGuild | Guild/faction confirmation |
 | 104   | 0x68 | Mine | Manual mining action |
 | 106   | 0x6A | EntitySpawn | Entity appeared in view |

@@ -54,7 +54,7 @@ DLLs' full capability.
   English Progress45/Dialog4 calls, clean assets, placement and failure contract.
 
 - [12_hud_status_hint_panel.md](12_hud_status_hint_panel.md) —
-  `CMyShellDlg__RenderStatusHintPanel` (`0x5B9C3F`), the hover-hint panel.
+  GFX-UI-008 category-8 closure: clean Dialog21/StrRes/region identities, all slot HWND owners and anchors, hidden chat slot2 font formula, CDlgMain-local region coordinates, MP guard and exact image/cooldown/panel ordering.
 - [13_hud_progress_gauges.md](13_hud_progress_gauges.md) — `CMyProgress`, the HUD
   gauge widget. Anchor `CMyProgress::Show` (`0x5A9033`).
 - [14_hero_effective_max_life_mana.md](14_hero_effective_max_life_mana.md) —
@@ -65,6 +65,10 @@ DLLs' full capability.
 - [16_main_hud_skill_progress_render_contract.md](16_main_hud_skill_progress_render_contract.md) — GFX-UI-003: Progress42 status/message state machine, exact timer ordering and wrap behavior, 92×92 fill versus 128×128 highlight, assets and replay vectors; Progress44's procedural draw corrects the earlier no-draw premise.
 - [17_main_hud_action_strip_native_contract.md](17_main_hud_action_strip_native_contract.md) — evidence-only audit of ten CMyButton handlers and state writers, Skill/Mission frame-2 limits, exact PK skin/blink behavior, and corrected native command routing.
 - [18_main_hud_check_controls_native_contract.md](18_main_hud_check_controls_native_contract.md) — GFX-UI-005 evidence: CMyCheck mouse-down state changes, bounded setter, MFC/Windows delegation, Check43/Check46/Button411 effects and exact native rectangles; target-OS release notifications remain explicitly unobserved.
+
+- [19_main_hud_quickbar_native_contract.md](19_main_hud_quickbar_native_contract.md) — GFX-UI-006: CMyGrid ABI/fields, exact ten-slot geometry and hit mapping, six content kinds, native input/drag dispatch, effective ANI winners, retail asset identities and original-x86 replay evidence.
+
+- [20_main_hud_selected_skill_native_contract.md](20_main_hud_selected_skill_native_contract.md) — GFX-UI-007 remaining CMyImage evidence: exact Init/Set/Clear/Show, Magic0 GUI geometry, selected-state writer census, direct click and hover.
 
 ## DLL deep-dives
 

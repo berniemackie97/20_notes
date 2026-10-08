@@ -5,7 +5,14 @@
 text-bearing UI surface reconstructed, and it exercises the whole text substrate — configuration,
 measurement, the `#NN` data-icon escape, and the mode-9 draw path.
 
-All addresses are from `00_clean/clean/5517-bninja/Conquer.exe.bndb`.
+All EXE addresses refer to the clean 5517 image analyzed in
+`00_clean/clean/5517-bninja/Conquer.exe.bndb`.
+
+**GFX-UI-008 closure, 2026-10-08:** category 8 only. The maintained native findings below
+supersede the old `0xA3` coordinate-space claim and the old unknown slot-owner claims.
+[Raw captures, retail identities, censuses and replay](../../10_work/docs/evidence/gfx-ui-008-main-hud-category8-status-hint-5517/README.md)
+are retained independently of analyst names. This slice changes annotations/documentation only;
+it makes no claim that a managed implementation has been updated or audited.
 
 ## Prerequisites
 
@@ -15,7 +22,10 @@ All addresses are from `00_clean/clean/5517-bninja/Conquer.exe.bndb`.
 `defaultCornerColorArgb` (`+0x214`) and `defaultCornerOffsetX` (`+0x218`), with the pixel height
 from `ClientFontSizeSettings_GetNormalHeightPixels`.
 
-A null `Dialog21` resource pointer skips the entire panel.
+For category 8, the `Dialog21` lookup is at `0x5BA866`, measurement at `0x5BA89B`,
+and the null-resource test at `0x5BA8A4` / `0x5BA8AD`. A null resource suppresses both
+backdrop and text **after measurement**. It is not the first operation and is not a proven
+global prerequisite for the other categories. The font lookup is earlier, at `0x5B9C54`.
 
 ## State fields on `CMyShellDlg`
 
@@ -52,7 +62,7 @@ bound, rendering nothing. Valid sub-kinds are exactly `1`–`8`:
 | 4 | `CMyCheck_GetStateFrameByte(this+0x140864)` non-zero → `0x275A`, else `0x2759` | `Shift Screen: On` / `Off` |
 | 5 | string `0x2882` | `View Equipment` |
 | 6 | **Skill gauge (`Progress42`)** | `"%d/%d"` |
-| 7 | MP gauge | `"%d/%d"` |
+| 7 | MP gauge, only when `DWORD[shell+0x1098] == 0` | `"%d/%d"` |
 | 8 | HP gauge | `"%d/%d"` |
 
 The gauge cases call `CMyProgress_GetValueRange` on the `CMyProgress` instances at
@@ -69,6 +79,14 @@ the actual object binding, value and clean ANI comment establish the gauge ident
 HP label was also wrong. Sub-kinds7/8 remain MP/HP.
 
 Text colour for these hints is `0xFFFFFFFF`.
+
+**MP guard, newly closed:** `0x5BA7D0` compares `DWORD[shell+0x1098]` with zero;
+`JNE 0x5BAB6C` at `0x5BA7D7` skips sub-kind 7 completely when nonzero. This is
+`CDlgMain+0x100`, initialized to 1 at `0x4BB933`. The per-frame gauge updater
+(`0x4BC20A -> 0x4BD53E`) tests signed `min(currentMana, effectiveMaxMana) > 0`
+at `0x4BD603..0x4BD60D`, changes the HP startup sub-variant, and clears the flag at
+`0x4BD632`. That update precedes the panel in the same frame. Sub-kinds 6 and 8 do
+not take this MP guard. This condition was missing from the earlier contract.
 
 ## Sub-kind 6 semantic proof
 
@@ -310,7 +328,7 @@ Established by scanning `.text` for the field displacements `0x1796EC`, `0x1796F
 
 - `CMyShellDlg_ConstructAndInitializeMembers` initialises the category field;
 - `CMyShellDlg__RenderStatusHintPanel` reads them;
-- **`CMyShellDlg_DispatchCommandCode` is the only writer.**
+- **`CMyShellDlg_DispatchCommandCode` is the subsequent command-driven writer of these selection fields.** This historical census does not describe the separate slot-coordinate arrays.
 
 The native C++ hover handlers drive the panel through **command codes carrying packed parameters**. Verified write sites, with `param` = `[ebp+0x0C]`:
 
@@ -322,7 +340,7 @@ The native C++ hover handlers drive the panel through **command codes carrying p
 | `0x5B2DE9` | `category = 8`, `visible = 1`, `subKind = (byte)param`; when `param == 0` it also falls through to `CGameMap_GetSingletonPtr` |
 | `0x5B2E31` | `category = 9`, then joins the shared `parameter = param` store |
 | `0x5B3BEC` | `visible = 1`, `parameter = param`, `category = 0x38` |
-| `0x5B2DCC` | clear: `+0x179694 = 0` and `+0x179698 = 0`, only when `+0x1797CC == 0` |
+| `0x5B2DCC` | clear: `+0x179694 = 0` at `0x5B2DD4` and `+0x179698 = 0` at `0x5B2DDA`, **before** the conditional branch at `0x5B2DE0`; `+0x1797CC` does not gate these stores |
 
 `+0x179694` is a **hint-visible flag** written by every category and cleared by the clear path.
 The render routine never reads it; the gate lives in the caller and is now verified at
@@ -379,22 +397,22 @@ category-setting case:
 | `0x38` | category 0x38 |
 | `0x6A` | category 0x6A |
 
-#### Confirmed producer: `CMyGrid` hover (`sub_5A1226`)
+#### Confirmed producer: `CMyGrid` hover (`0x5A1226`)
 
-A `CMyGrid` mouse-move handler — it calls `PtInRect`, `CMyGrid_GetZeroBasedSlotIndex` and
-`CMyGrid_GetSlotOccupiedFlag`, and ends in `CWnd::Default`. Over an occupied slot it packs the
-slot's screen position as `(y << 16) | x`, posts code `7` with it, then dispatches on the slot's
-content-kind byte at `this + slotIndex + 0xAB8`:
+GFX-UI-006 corrects the earlier unconditional-Default and immediate-hover-out
+summary. See [the exact grid contract](19_main_hud_quickbar_native_contract.md).
+Outside `PtInRect(this+0x5C)`, MouseMove returns without clearing the cache or
+calling Default. Show later calls `0x5A1558`, which polls the cursor against the
+HWND rectangle and clears outside hover. Moving to an empty slot also clears it.
 
-| Content kind | Posts |
-|---:|---|
-| 3 or 4 | code `9` with `*(this+0x74)` |
-| 5 | code `0x38` with `*(this+0x48)` |
-| 6 | code `0x6A` with `0x5E` |
-| 1 (and `*(this+0x48) != 0x37`) | code `5` with `*(this+0x48)` |
-
-When `PtInRect` fails it posts code `6` with `0`, clearing the hint. Hover-in raises the hint and
-hover-out clears it, all in native code.
+For a new occupied slot, kind3/4 posts code7 with the packed anchor then9 with
+content ID; kind5 posts7 then0x38 with grid context; kind6 posts7 then0x6A with
+0x5E. These paths return without Default. Kind2 updates the cached coordinate,
+preserves the other hover fields and returns without Default. Kind1 in context
+other than0x37 uses the item-tooltip object with the instance UID and then Default;
+it does not use the generic code5 pair. Generic remaining kinds/context0x37 post7
+then5 and Default. Same cached slot and empty-slot paths normally Default.
+The anchor uses cell dimensions without the one-pixel draw stride.
 
 #### Confirmed producer: `CDlgMain` hover (`CDlgMain_OnMouseMoveUpdateStatusHintHotspot`, `0x4BD438`)
 
@@ -431,11 +449,11 @@ Coordinates: `[ebp+0x0C]` is x, `[ebp+0x10]` is y. Both `PtInRect` sites push th
 the `PtInRegion` sites use the mirrored value.
 
 So **the hotspot index is the hint sub-kind**. Indices 6–8 are regions rather than rects, which
-lines up with the three gauge sub-kinds being the non-rectangular HP/MP orbs; sub-kinds 1–5 come
-from rects 1–5.
+maps to Skill / Progress42, MP / Progress41 and HP / Progress40 respectively. Sub-kinds
+1, 3, 4 and 5 come from rects 1, 3, 4 and 5; rect 2 is explicitly zero.
 
-Rect index 0 posts sub-kind 0, which renders nothing — see the dispatch bound below. That is
-deliberate, not an omission.
+Rect index 0 posts sub-kind 0, which renders nothing by the unsigned dispatch bound.
+No design intent is inferred from that observed behavior.
 
 #### Hotspot geometry: `CDlgMain_InitializeMainHudWidgets` (`0x4BB869`)
 
@@ -487,16 +505,47 @@ The payload is a Win32 `RGNDATA`: a 32-byte `RGNDATAHEADER` followed by `nCount`
 | `ProgressMp.rgn` | 724 | 720 | 43 | `(47,58)-(84,132)` |
 | `ProgressXp.rgn` | 1988 | 1984 | 122 | `(0,49)-(92,141)` |
 
-The leading count equals `filesize - 4` in every file, and `rcBound` exactly equals the union of
-the rectangles — a self-check that the layout is being read correctly. The coordinates live in the
-`0xA3`-tall HUD shell space, not the 400x70 dialog template space. The HP and MP regions are
-disjoint, verified by scanning every point in `(0..100, 40..150)`.
+The leading count equals `filesize - 4` in every file, and `rcBound` exactly equals the union
+of its rectangles. HP and MP are disjoint. `regions.json` retains every rectangle.
+
+**Correction: these are direct CDlgMain-client pixel coordinates. The former `0xA3`-tall
+HUD-shell-space assertion is withdrawn.** At `0x4BBE09`, `0x4BBE74`, `0x4BBEDF`,
+`ExtCreateRegion` receives a null XFORM and the file payload unchanged. No dialog-unit,
+font-scale or origin transformation is applied to the region. A null XFORM is the platform's
+identity transform ([Microsoft ExtCreateRegion contract](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-extcreateregion)).
+
+`MoveWindow` at `0x5B9242` places the embedded CDlgMain at `(0,H-141,W,141)`.
+The inherited `WM_MOVE` handler (`0x596473`) calls Default, then stores draw origin
+`+0xF0/+0xF4` at `0x59647F/0x596489`; the static-art renderer consumes that origin.
+Dialog130 is borderless (`style 0x40000040`, extended style 0). The shell's extended
+dialog102 resource is also borderless (`style 0x50000040`, extended style `0x40000`).
+Thus the full logical-frame pointer `(X,Y)` maps to the handler's `(x,y)` as:
+
+| Resolution | CDlgMain/static-art origin | Incoming client point | Region point, flag zero | Region point, flag nonzero |
+|---|---|---|---|---|
+| 800×600 | `(0,459)` | `(X,Y-459)` | `(X,Y-459)` | `(800-X,Y-459)` |
+| 1024×768 | `(0,627)` | `(X,Y-627)` | `(X,Y-627)` | `(1024-X,Y-627)` |
+
+The alternate flag is `DWORD[0x96AB30]` (`g_uiArabicLikeLayoutEnabled`, historically
+`g_uiLayoutModeFlag`); the subtraction is **W-x**, not W-1-x. Rectangles always use
+unmirrored `(x,y)`. A desktop pointer must first be expressed relative to the shell client
+origin; the table starts with a logical-frame pointer, not desktop coordinates.
+`WM_MOUSEMOVE` supplies client-relative coordinates ([Microsoft contract](https://learn.microsoft.com/en-us/windows/win32/inputdev/wm-mousemove)).
+`CMyCheck` forwards a move to its parent at `0x58B96F`, after adding its cached local
+`+0x50/+0x54` origin to the packed point at `0x58B932..0x58B95C`; this is a separate
+child-to-parent conversion, not an extra adjustment of the region payload.
+
+PtInRect calls are `0x4BD47A` / `0x4BD4F5`; PtInRegion calls are `0x4BD4B6` /
+`0x4BD515`. The zero/active/exit behavior described above uses those same coordinates
+at both resolutions. The replay includes region edges, mirroring, overlaps, invalid prior
+hotspot indices and the zero rectangle. Its region API is a rectangle-union mock, not a
+live GDI execution.
 
 **This ordering proves the region-to-sub-kind mapping, not the gauge semantics.**
 The first filename contains Xp, but its sub-kind6 reads Progress42/Skill. All three files ship
 in the clean client under `ini/`; the native object/section binding below settles the identity.
 
-#### Heuristic candidate list, and one confirmed false positive
+#### Historical heuristic candidates and confirmed false positives
 
 The producer sites were first located by scanning `.text` for calls to
 `Conquer_PostMainWindowMessage464` and taking the last `push imm8` before each call. That
@@ -504,15 +553,17 @@ heuristic misses codes passed in registers or as `push imm32`, and misattributes
 push is the payload rather than the code.
 
 `sub_46B620` (`0x46B627`) was such a false positive: it is actually
-`PostMainWindowMessage464(0xC5C, 8)`, where `8` is the payload. Treat any site below that has not
-been decompiled as a candidate only.
+`PostMainWindowMessage464(0xC5C, 8)`, where `8` is the payload. GFX-UI-008 also proves `0x4E964B` is
+`PostMainWindowMessage464(0xDAC, 8)`: raw pushes in `0x4E9641` put 8 in the payload,
+not in the command code. It is **not a category-8 producer**. Treat the remaining
+unexamined entries as historical candidates only; other categories are outside this slice.
 
 | Code | Candidate sites |
 |---:|---|
 | `5` | `0x46B5FA`, `0x4E95F7`, `0x55A8FD`, `0x5A140E`†, `0x5BCC07`, `0x5DD584` |
 | `6` | `0x436305`, `0x442F72`, `0x44302E`, `0x46B618`, `0x4BD529`†, `0x4E9667`, `0x574E53`, `0x5A1537`†, `0x5A1592`, `0x5A2E31`, `0x5A37E4` |
 | `7` | `0x442F48`, `0x46B609`, `0x4E969F`, `0x5A1345`†, `0x5A1404`†, `0x5A141E`†, `0x5A14B2`†, `0x5A3784`, `0x5A37A9` |
-| `8` | `0x46B627` (FALSE POSITIVE), `0x4BD498`†, `0x4E964B` |
+| `8` | `0x46B627` (FALSE POSITIVE), `0x4BD498`†, `0x4BD529`† (region branch), `0x4E964B` (FALSE POSITIVE) |
 | `9` | `0x46B636`, `0x597779`, `0x5A37B6` |
 | `0x38` | `0x442F52` |
 | `0x6A` | `0x5A14BB`† |
@@ -526,54 +577,141 @@ designing a replacement: control hover handlers post the verified codes onto an 
 bus, a dispatcher writes the hint state, the frame gate applies the skill-drag and visible-flag
 checks, and the existing planner turns that state into a draw plan.
 
-## Per-slot position arrays
+## Per-slot position arrays — GFX-UI-008 closure
 
-`CMyShellDlg__RenderStatusHintPanel` places category 8 from the per-slot arrays at `+0x1796A4`
-(X) and `+0x1796A8` (Y), stride 8, indexed by the raw sub-kind byte. Their writers were found by
-scanning `.text` for every displacement in `0x1796A4`..`0x1796E8`: exactly two functions write
-them, `CMyShellDlg_InitializeShellRegionAndHintSlots` (`0x5B91D8`) and `sub_5DB954`, and both
-perform the same nine stores.
+The category-8 renderer indexes `shell+0x1796A4` (X) / `+0x1796A8` (Y), stride 8,
+by the raw sub-kind. The direct-displacement census finds **36 scalar stores**: 18 in
+`CMyShellDlg_InitializeShellRegionAndHintSlots` (`0x5B91D8`) and 18 in `0x5DB954`, now
+analyst-named `CMyShellDlg_RebuildMainHudRegionAndHintSlots_Analyst`. This census covers
+explicit `.text` references to the 18 fields; it is not an assertion that absence of a
+displacement proves arbitrary aliasing impossible. The two concrete writer bodies close
+the observed initialization/relayout dataflow.
 
-Each slot is `GetWindowRect(child)` converted to dialog-relative by subtracting
-`GetWindowRect(*(this+0x20))`, with the **Y always reduced by a further `0x14`**:
+The origin being subtracted is the **shell window**, not CDlgMain:
 
-| Slot | Child HWND at | Slot X | Slot Y |
-|---:|---|---|---|
-| 0 | `+0x1404C0` | `+0x1796A4` | `+0x1796A8` |
-| 1 | `+0x1407F8` | `+0x1796AC` | `+0x1796B0` |
-| 2 | `+0x1406E0` | `+0x1796B4` | `+0x1796B8` |
-| 3 | `+0x14076C` | `+0x1796BC` | `+0x1796C0` |
-| 4 | `+0x140884` | `+0x1796C4` | `+0x1796C8` |
-| 5 | `+0x140910` | `+0x1796CC` | `+0x1796D0` |
-| 6 | `+0x140548` | `+0x1796D4` | `+0x1796D8` |
-| 7 | `+0x1405D0` | `+0x1796DC` | `+0x1796E0` |
-| 8 | `+0x140658` | `+0x1796E4` | `+0x1796E8` |
+```text
+shellRect = GetWindowRect(shell HWND at +0x20)
+childRect = GetWindowRect(the slot's child HWND)
+slotX = childRect.left - shellRect.left
+slotY = childRect.top  - shellRect.top - 20
+```
 
-Nine slots, matching sub-kinds `0`–`8`.
+Parent reads are `0x5B984C` and `0x5DBF3A`. These anchors are shell/frame-relative;
+the region hit-test coordinates above are CDlgMain-local. They must not be substituted.
 
-**Independent cross-check.** `CWnd::m_hWnd` is at `+0x20`, so slots 6, 7 and 8 are the windows of
-the `CMyProgress` instances at `this+0x140528`, `this+0x1405B0` and `this+0x140638` — exactly the
-three the render routine reads through `CMyProgress_GetValueRange` for the gauge sub-kinds. The
-slot ordering and the gauge ordering therefore agree without either being assumed from the other.
+| Slot | Bound control / ID | CDlgMain object | Shell object | Shell HWND field | X / Y slot fields |
+|---:|---|---|---|---|---|
+| 0 | Progress44 / `0x3FB` | `+0x13F508` | `+0x1404A0` | `+0x1404C0` | `+0x1796A4 / +0x1796A8` |
+| 1 | Check40 / `0x3F4` | `+0x13F840` | `+0x1407D8` | `+0x1407F8` | `+0x1796AC / +0x1796B0` |
+| 2 | hidden chat CMyCheck / `0x3F6` | `+0x13F728` | `+0x1406C0` | `+0x1406E0` | `+0x1796B4 / +0x1796B8` |
+| 3 | Check43 / `0x3F7` | `+0x13F7B4` | `+0x14074C` | `+0x14076C` | `+0x1796BC / +0x1796C0` |
+| 4 | Check46 / `0x3FF` | `+0x13F8CC` | `+0x140864` | `+0x140884` | `+0x1796C4 / +0x1796C8` |
+| 5 | Button411 (CMyCheck) / `0x3F8` | `+0x13F958` | `+0x1408F0` | `+0x140910` | `+0x1796CC / +0x1796D0` |
+| 6 | Progress42 / `0x3FA` | `+0x13F590` | `+0x140528` | `+0x140548` | `+0x1796D4 / +0x1796D8` |
+| 7 | Progress41 / `0x5DE` | `+0x13F618` | `+0x1405B0` | `+0x1405D0` | `+0x1796DC / +0x1796E0` |
+| 8 | Progress40 / `0x5DD` | `+0x13F6A0` | `+0x140638` | `+0x140658` | `+0x1796E4 / +0x1796E8` |
 
-**How far the `-0x20` rule is actually verified.** It is corroborated for four slots only:
+Every shell/main object pair differs by `0xF98`; every HWND is its owning object +`0x20`.
+The constructor `0x4B5468`, DDX binder `0x4BB6B8`, initializer `0x4BB869`, resource130
+and both slot writers are captured. The old claim that owners of slots 0, 2 and 3 were
+unknown is superseded by these positive bindings.
 
-| Slot | Implied control | Corroboration |
-|---:|---|---|
-| 4 | `+0x140864` | the `CMyCheck` the render routine reads for the Shift Screen sub-kind |
-| 6 | `+0x140528` | `CMyProgress`, read by the render routine |
-| 7 | `+0x1405B0` | `CMyProgress`, read by the render routine |
-| 8 | `+0x140638` | `CMyProgress`, read by the render routine |
+| Slot | Init GetWindowRect | Init X / Y stores | Refresh GetWindowRect | Refresh X / Y stores |
+|---:|---|---|---|---|
+| 0 | `0x5B9858` | `0x5B9869 / 0x5B9871` | `0x5DBF46` | `0x5DBF57 / 0x5DBF5F` |
+| 1 | `0x5B9881` | `0x5B9891 / 0x5B9897` | `0x5DBF6F` | `0x5DBF7F / 0x5DBF85` |
+| 2 | `0x5B98A7` | `0x5B98B7 / 0x5B98BD` | `0x5DBF95` | `0x5DBFA5 / 0x5DBFAB` |
+| 3 | `0x5B98CD` | `0x5B98DD / 0x5B98E3` | `0x5DBFBB` | `0x5DBFCB / 0x5DBFD1` |
+| 4 | `0x5B98F3` | `0x5B9903 / 0x5B9909` | `0x5DBFE1` | `0x5DBFF1 / 0x5DBFF7` |
+| 5 | `0x5B9919` | `0x5B9929 / 0x5B992F` | `0x5DC007` | `0x5DC017 / 0x5DC01D` |
+| 6 | `0x5B993F` | `0x5B994F / 0x5B9955` | `0x5DC02D` | `0x5DC03D / 0x5DC043` |
+| 7 | `0x5B9965` | `0x5B9975 / 0x5B997B` | `0x5DC053` | `0x5DC063 / 0x5DC069` |
+| 8 | `0x5B998B` | `0x5B99A2 / 0x5B99B0` | `0x5DC079` | `0x5DC089 / 0x5DC08F` |
 
-Scanning `.text` for the implied bases of the remaining slots returns **zero** references for
-`+0x1404A0` (slot 0), `+0x1406C0` (slot 2) and `+0x14074C` (slot 3). For those, only the HWND
-member offset is established; the owning control class is **not**. Do not assume the `-0x20`
-relationship for them without tracing each one.
+Initialization caller: `0x5DCC64` compares the status string with `ANSWER_OK` (literal
+`0x938818`, compare `0x5DCC93`, branch `0x5DCC99`) then calls the initializer at
+`0x5DCC9D`. `0x5B9204 -> 0x5B90C0` shows the main dialog (mode 5 at `0x5B9118`),
+then `0x5B9242` moves it. Refresh caller: resolution layout `0x5D9BDF` moves windows,
+then `0x5DA0B8 -> 0x5DA165 -> 0x5DA1F5 -> 0x5DB954`. Refresh recalculates the
+shell region and anchors; it does not itself move these children.
 
-The producer offsets are relative to embedded `CDlgMain`; the placement offsets are relative
-to `CMyShellDlg`. For gauge slots6–8 these resolve to the **same controls** after adding
-`+0xF98`. Hit-test region geometry and hint-placement coordinates still serve different purposes
-and must not be substituted for each other.
+### Exact baseline HWND rectangles and anchors
+
+Values below are `(x,y,width,height)` for the child HWND and `(x,y)` for the hint anchor.
+They use the **8×16 dialog-unit baseline**, with font calibration disabled or equal to 1.
+Both GUI files specify the same local child rectangles for slots 1, 3..8. The slot-2
+resource-font qualification is given immediately below.
+
+| Sub-kind | CDlgMain-local HWND | 800×600 HWND | 800×600 anchor | 1024×768 HWND | 1024×768 anchor |
+|---:|---|---|---|---|---|
+| 1 | `(0,23,22,22)` | `(0,482,22,22)` | `(0,462)` | `(0,650,22,22)` | `(0,630)` |
+| 2 | `(70,32,22,22)` | `(70,491,22,22)` | `(70,471)` | `(70,659,22,22)` | `(70,639)` |
+| 3 | `(72,23,22,22)` | `(72,482,22,22)` | `(72,462)` | `(72,650,22,22)` | `(72,630)` |
+| 4 | `(50,11,22,22)` | `(50,470,22,22)` | `(50,450)` | `(50,638,22,22)` | `(50,618)` |
+| 5 | `(22,11,22,22)` | `(22,470,22,22)` | `(22,450)` | `(22,638,22,22)` | `(22,618)` |
+| 6 | `(0,50,92,86)` | `(0,509,92,86)` | `(0,489)` | `(0,677,92,86)` | `(0,657)` |
+| 7 | `(52,54,40,86)` | `(52,513,40,86)` | `(52,493)` | `(52,681,40,86)` | `(52,661)` |
+| 8 | `(4,54,40,86)` | `(4,513,40,86)` | `(4,493)` | `(4,681,40,86)` | `(4,661)` |
+
+These are **HWND extents**, not image/fill extents. For example Progress42's HWND height
+86 does not replace its separately proven 92×92 fill contract. Slot0's local HWND is
+`(99,97,398,8)`, its anchor `(99,H-64)`; category8 sub-kind0 is rejected.
+
+The initial parent uses height141. Resolution relayout reads `[0-130]` from
+GUI800X600.ini `(0,459,800,150)` or GUI.ini `(0,627,1024,142)` and moves it at
+`0x5D9F2C`. Those different heights do not change the origins above. Do not generalize
+the initial height141 to all later HWND sizes.
+
+When `g_uiDialogFontScaleEnabled` is active at widget Init, the established calibration
+from `0x591C7B` is `sx=float32(8/mx)`, `sy=float32(16/my)`. For the seven initialized
+controls, a GUI rectangle `(x,y,w,h)` becomes
+`(R(x*sx),R(y*sy),R(w*sx),R(h*sy))`, where `R(z)=trunc(z+0.5)` with the native
+floating-point evaluation. The initial anchor is then
+`(R(x*sx), H-161+R(y*sy))`. `CMyCheck_Init` calls registration at `0x58B468`
+and moves at `0x58B529`; `CMyProgress_Init` registers at `0x5A979B`, scales at
+`0x5A97EF/0x5A9809` and calls MoveWindow at `0x5A9848`. Resolution relayout uses the
+raw GUI pixels rather than calling these Init calibration paths again. In every case the
+actual HWND read by the two slot writers, not a predicted font size, is authoritative.
+
+### Slot 2: hidden chat CMyCheck, with resource geometry
+
+`0x4B5E8A` selects `CDlgMain+0x13F728`; constructor call `0x4B5E94 -> 0x58B34F`
+installs CMyCheck vtable `0x867038`. DDX selects that same object at `0x4BB750`,
+pushes ID`0x3F6` at `0x4BB757`, and binds it at `0x4BB75D`. Resource130 item offset
+`0x214` has BUTTON class atom`0x80`, title `聊`, style`0x4801800B` (child, disabled,
+without WS_VISIBLE), extended style0 and **DLU `(35,16,11,11)`**. The dialog uses
+DS_SETFONT, 12-point `宋体`. It is not one of the four CMyChecks initialized by
+`0x4BB869`; no ANI name is inferred for it.
+
+The slot-2 census records constructor, destructor/unwind, DDX, both anchor reads and
+two state uses (`0x4BDB79/0x4BDB7F`, `0x4BDD14/0x4BDD1A`). Those state accesses do
+not move the HWND. There is no `[130-1014]` section in either GUI file. Base dialog
+initialization (`0x59642F`, registration `0x596441`) registers the parent, not every
+child. Child registration is explicit in `0x591DF4`, reached from widget Init. The
+resolution loop looks up the registered control ID at `0x5D9D3E -> 0x5932E8` and
+skips an unregistered HWND at `0x5D9D5A`. An all-zero missing layout rectangle is
+also skipped at `0x5D9D6F..0x5D9D83`. DDX alone does not provide that registration.
+
+For the **actual dialog130 font base units** `(bx,by)`, its resource-created rectangle is:
+
+```text
+localX = MulDiv(35,bx,4)       localY = MulDiv(16,by,8)
+width  = MulDiv(11,bx,4)       height = MulDiv(11,by,8)
+anchor = (localX, H-161+localY)
+```
+
+This uses the documented font-based DLU conversion
+([Microsoft MapDialogRect contract](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mapdialogrect)).
+There is no CMyCheck_Init `sx/sy` correction for this child. At `(bx,by)=(8,16)` the
+table follows exactly. **The actual Windows font realization was not measured in this
+run**, so the numeric baseline must not be presented as unconditional across machines.
+The initializer's calibration measurement in another dialog does not prove dialog130 has
+identical realized base units. The formula and actual GetWindowRect consumer are closed;
+an unconditional OS-independent slot-2 pixel constant is not supported by the EXE.
+
+Hotspot rect2 at `CDlgMain+0x134` is explicitly zeroed at `0x4BBCD2..0x4BBCE4`.
+That prevents this mouse-move producer from posting sub-kind2; it does not eliminate
+the independent HWND or its initialized anchor. Category8 dispatch itself still accepts2.
 
 ## Not yet enumerated
 
@@ -582,22 +720,125 @@ Categories 9 and 56 (weapon-swap tip via `CStringManager` keys `STR_SWAP_MAJOR_W
 carry their own placement arithmetic which has **not** been walked instruction by instruction.
 Do not assume they follow the category 8 rule.
 
-## Managed renderer
+## Managed boundary
 
-`CMyShellDlgStatusHintPanelRendererRuntime` turns a plan into draw calls, closing the path from
-hint state to pixels. Before it existed, `TryBuildPlan` was reachable only from tests.
+Earlier versions of this note described `CMyShellDlgStatusHintPanelRendererRuntime` as
+already reproducing all prerequisites. That claim is not established by this evidence slice.
+In particular, the old claim that native checks Dialog21 before anything else, including
+for category5, was wrong. For category8 the font prerequisite is first; resource lookup,
+measurement, then the null-resource guard follow at the addresses above. No managed
+production code or tests were changed here. Native evidence is the authority for later work.
 
-Two prerequisites make native abandon the **entire** panel rather than draw part of it, and both
-are reproduced:
+## GFX-UI-008 retail identity
 
-1. a null `Dialog21` resource — checked before anything else, so it suppresses the text too, even
-   for category 5 which draws no backdrop;
-2. a null `CFontSettingInfo` record.
+The local clean retail archive `00_clean/clean/5517.7z` is 444752639 bytes,
+SHA-256 `e44d7a30cfdf3ad3af79ea123599ebbcfe85786493ae24a5a3a3ac2a4014c080`.
+The ANI, StrRes, three regions and complete data.wdf were extracted from that archive
+and independently hash-compared with the clean tree; all agree. This establishes identity
+to that supplied retail archive, not an unrecorded external download source.
 
-Native treats both as ordinary frame-skip conditions, so the managed renderer reports them through
-its result rather than throwing.
+| Retail file / winning provenance | Bytes | SHA-256 |
+|---|---:|---|
+| `ani/Control.Ani`, loose (native spelling `ani/Control.ani`) | 317837 | `a1db47baaeb2f75eea3b5216378f97d713c2afeaefe05ec02e6f584794532d27` |
+| `ini/StrRes.ini`, loose | 59577 | `efe9f5f1d3e29bb79b9970c25dcb238179e3ab6e059e94d981b37236157cd072` |
+| `ini/ProgressXp.rgn`, loose | 1988 | `8bbc96e993105cb97ff01d6ea5201c406d88aa0b91a5055b95617b89f28c62bc` |
+| `ini/ProgressMp.rgn`, loose | 724 | `3aefd750231895a99d062276d460164d1004fbde7e3bbe3e922f1dea5bf743f4` |
+| `ini/ProgressHp.rgn`, loose | 724 | `b7e8ed940da85bbe09e2eb96f7a074ca29f5d29d9cd121fb326373cb5540cea1` |
+| `data.wdf`, package container | 392245257 | `fc628e4adeb7de48b0b7cde3c7793c7177a289a6defe9b90a33a1f683dcdb132` |
+| `data/main/MsgDlg.dds`, data.wdf member | 65664 | `c91b686fa8e9758dd8c8825e401503825434a0ebaca3be30e8e0263b52985719` |
 
-The backdrop is one `CAniX_DrawFrameSubRectAt` with the constant source region `{0, 0, 0x64, 0xC8}`
-stretched to the plan's measured extent. Text draws take their colour from the plan and every other
-parameter — face, pixel height, antialias, style, corner colour and corner offsets — from the shared
-font-setting record, which is the same `CFontSettingInfo` the floating-text path already reads.
+Exact section, with only one matching Dialog21 and no same-hash section collision:
+
+```ini
+[Dialog21]
+FrameAmount=1
+Frame0=data/main/MsgDlg.dds
+```
+
+No loose MsgDlg.dds override exists in this clean tree. Native WDF UID is `0x87576CFA`,
+computed by executing original `TqPackageWdf.dll` hash code at `0x100099D0`.
+The data.wdf record is index7817, offset**23254863** (`0x0162D74F`), size65664,
+reserved0; exact record bytes are `fa6c57874fd762018000010000000000`.
+The file is **DDS DXT3 / BC2, 256×256**. Its encoded header's raw RGBBitCount field
+is not a valid description of the compressed pixel format.
+
+Decoded pixels are canonical **RGBA8, straight alpha, top-to-bottom / left-to-right,
+tightly packed**, 262144 bytes, SHA-256
+`14c946e2af2f39339294b08c69357fdd59f87c1946065ee5ca84e60e489f4556`.
+Pillow's decoder and an independent BC2 block decoder agree byte for byte. This is a
+software-decoded identity, not a GPU readback. Native uses frame0 source RECT
+`(0,0,100,200)`, not the DDS's full 256×256 extent.
+
+Winning path proof reuses the established
+[data-file/WDF contract](c3_core_dll/11_datafile_and_wdf.md) and adds targeted captures:
+graphic `CAni` create `0x1000BBF0 -> 0x1000BC3A -> 0x1000BC80`, bitmap load
+`0x10011EB0`, C3 `Sprite_Load 0x10015890 -> Texture_Load 0x10016360` at
+`0x100158BC`. Texture_Load checks loose content through DataFile_UnpackSearch at
+`0x1001641F`; absent loose data takes DataFile_Load at `0x10016442`, wrapper
+`0x10001D60`, TqFDump at `0x10001D6F`. TqPackageWdf `0x10004220 -> 0x10001AC0`
+uses the loose-first mode0 fallback; prefix routing `0x10003C80 -> 0x10003C30` maps
+`data/` to `data.wdf`. This is not a search for the UID in arbitrary unrelated packages.
+`assets.json` records the package table inspections separately from the winning route.
+
+## Frame-loop ordering — GFX-UI-008
+
+This is execution order when each path is admitted; visibility/resource/drag guards can
+omit draws. No claim of adjacency is made: other frame overlays can occur in between.
+
+```text
+CMyShellDlg_RunFrameTick 0x5DCFAA
+  0x5DD300 -> CMyDialogMgr_TickAndSyncChildWindows 0x597D66
+    first list pass 0x597E00 -> 0x598458(callback 0x597931)
+      -> 0x5971CF: visible dialog -> virtual+0xF4 at 0x5971E8
+        CDlgMain vtable0x855DC0+0xF4 = [0x855EB4] = 0x4BC1F8
+        CDlgMain_RenderMainUiDialogAndStatusOverlay
+          main gauges/grid/buttons/checks
+          0x4BCC2C selected image virtual+0xC4 -> 0x5A26EE
+            selected icon, then cover tail 0x5A2A3E, then return
+          0x4BCC34 -> 0x4BE7FB selected-skill cooldown
+            text call 0x4BECB2
+    remaining manager pass; return
+  other frame overlays
+  0x5DD337..0x5DD36A drag/visible gate
+  0x5DD36A -> CMyShellDlg__RenderStatusHintPanel 0x5B9C3F
+    category8 backdrop -> category8 text
+```
+
+The image target is independently read from vtable `0x867C38+0xC4 = 0x867CFC`.
+The cooldown clear-cover call `0x4BE819` and conditional set-cover call `0x4BECC0`
+occur **after** the current selected image/cover draw; the latter follows the cooldown
+text. This slice uses the established GFX-UI-007 cooldown/image semantics only to pin
+order, without re-investigating the algorithm.
+
+Relevant guards: frame entry checks byte `shell+0x179AB9` at `0x5DCFB3`; the rendering
+phase is bypassed by the branch at `0x5DD115` after testing `[ebp-4]`. The manager
+checks the shell global `0x957EF4`, collects child windows and tests visibility, and
+`0x5971CF` tests visibility again before the virtual call. CDlgMain's branch at
+`0x4BC3A5` requires `+0x110 != 0`; a null Dialog4 at `0x4BC53F` skips the later
+HUD/image/cooldown phase. The outer hint gate first queries drag-active; if true it
+calls tracking at `0x5DD349` and skips the panel. A second active query at `0x5DD357`
+must also be false, and `shell+0x179694` must be nonzero at `0x5DD360`. The panel's
+font, category, sub-kind, MP and Dialog21 guards are additional.
+
+Category8 backdrop calls are `0x5BA93B` (alternate overflow), `0x5BA9C7` (alternate
+fits), `0x5BAA61` (ordinary layout); text converges at `0x5BAB63`. All backdrop calls
+use frame0, source `(0,0,100,200)`, destination measured width/height, colour0 and
+mode0. Placement uses the stored anchor without another Y subtraction. Alternate
+overflow uses a signed fit comparison, as documented above.
+
+## Verification and remaining platform boundary
+
+The evidence bundle retains original-byte disassembly, HLIL/MLIL (analyst annotations
+are not treated as proof), tables, resource records, complete direct slot stores, layout
+sections, exact assets, extraction/inspection scripts and a guarded annotation restore file.
+Original-x86 replay passes **982 cases** for both slot writers, hotspot selection,
+category8 bounds/gauge routing/signed clamping/MP suppression and the frame hint gate.
+The replay explicitly mocks HWND rectangles, region APIs, hero getters and frame
+services; it does not execute USER32 dialog creation or a GPU renderer.
+
+The requested client arithmetic, ownership, provenance and call ordering are closed.
+The remaining environmental input is actual Windows dialog-font realization for slot2
+and, when enabled at Init, the existing font calibration model for the other children.
+Formulas are given rather than invented universal pixel constants. Live Windows/GPU
+output was not observed. No other category or separate control-tooltip contract is
+claimed closed by this slice.

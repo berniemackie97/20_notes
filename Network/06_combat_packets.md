@@ -275,7 +275,7 @@ magic has accumulated experience, a following 1104.
 ## MsgFlushExp (Type 1104)
 **Direction**: S→C
 **Purpose**: Pushes a new experience value for one weapon skill or one magic skill without resending the whole row.
-**Dispatch**: Create `CMsgFlushExp1104__Create` (0x76179A), parse `CMsgFlushExp1104__Parse` (0x761800), process `CMsgFlushExp1104__Process` (0x761823)
+**Dispatch**: ctor `CMsgFlushExp1104__ctor` (0x76179A, sole xref dispatcher 0x6DF8E2), parse `CMsgFlushExp1104__Parse` (0x761800), process `CMsgFlushExp1104__Process` (0x761823). No builder in vtable 0x86D570 -> client never sends 1104.
 **Class name**: `CMsgFlushExp` in the ancestor source (`40_tools/eosource/soul-code/3drole/Network/MsgFlushExp.h`). The earlier note here called it `MsgMagicEffectUpdate` and read `+4`/`+8` as opaque `value_a`/`value_b`; that reading is superseded.
 
 **Parse**: standard header validation, then `type == 1104` (`0x450`).
@@ -290,6 +290,20 @@ magic has accumulated experience, a following 1104.
 | `+0x08` | u32 | `dwNextLevelExpRequired` — **added in 5517** |
 | `+0x0C` | u16 | `usType` |
 | `+0x0E` | u8 | `ucAction` |
+| `+0x0F` | u8 | never read — tail pad; any value accepted, send 0 |
+
+**Length (verified 2026-10-04):** client defines **no fixed length**.
+- Parse 0x761800 = `CNetMsg__ValidateHeaderAndCopy` + `type == 0x450`; dispatcher 0x6DF3B5 checks only
+  buf != NULL and size <= 0x400. Rule: size word == frame bytes, excluding the 8-byte `TQServer` seal.
+- Process reads only `+0xE` (0x76183B), `+0xC` (0x76188E/0x7618F7/0x761964/0x76199B), `+4`
+  (0x761897/0x761900/0x76196D/0x7619BC), `+8` (0x7619CB). Highest byte read `+0xE`.
+- Minimum span **15**. Shorter frame: missing fields read 0 (ResetPacketBuffer memset), so ucAction
+  falls to 0 = weapon path.
+- **Send 16** (wire 16 + 8 seal = 24): natural struct size, 15 data + 1 tail pad, matches ancestor
+  server `m_unMsgSize = sizeof(MSG_Info)` (fight-master `MsgFlushExp.cpp`, no `#pragma pack`).
+  Convention, not client-enforced; 15 behaves identically.
+- Fox / Albetros emit the ancestor 12-byte form (`+8` type, `+0xA` action): native 5517 reads
+  `usType`/`ucAction` past that frame as 0 -> incompatible.
 
 The ancestor's `MSG_Info` has `dwExp`/`usType`/`ucAction` at `+4`/`+8`/`+0xA`. 5517 inserted the
 u32 at `+8`, which is exactly why `usType` and `ucAction` sit at `+0xC` and `+0xE` here — the same

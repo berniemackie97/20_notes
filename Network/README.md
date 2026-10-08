@@ -43,6 +43,10 @@ actually established.
 
 ## Single-question audits
 
+- [21_msgaction_0061_syndicate_bootstrap.md](21_msgaction_0061_syndicate_bootstrap.md) —
+  recovered `actionGetSynAttr`, exact 61 request/completion, 61→FB→84 ladder,
+  entity-resolution guard, 1106 length correction and bounded sender census.
+
 - [12_address_index.md](12_address_index.md) — address-to-name lookup tables. The
   2026-09-03 session-mask audit index, then a general network helper index. Names
   are analyst labels, not recovered debug symbols.

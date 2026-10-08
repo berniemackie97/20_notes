@@ -265,6 +265,8 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CDlgQuery_Weapon__Render | 0x50adbe |
 | CDlgQuery_Weapon__RefreshVisibleSkillRows | 0x50b318 |
 | CDlgQuery_Weapon__SetSkillRow | 0x50b441 |
+| CMsgFlushExp1104__ctor | 0x76179a |
+| CMsgFlushExp1104__dtor | 0x7617f5 |
 | CMsgFlushExp1104__Parse | 0x761800 |
 | CMsgFlushExp1104__Process | 0x761823 |
 | CMsgTeamMember1026__Ctor | 0x761a02 |
