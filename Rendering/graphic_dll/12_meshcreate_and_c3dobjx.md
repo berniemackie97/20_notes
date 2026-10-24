@@ -498,9 +498,10 @@ Notes:
   material/lighting branch. Alpha testing is separate global device state:
   `Init3DEx` enables it and fixes `ALPHAREF=8`,
   `ALPHAFUNC=D3DCMP_GREATEREQUAL`.
-- `Phy_DrawNormal[_CPU]` consumes that selector only when `has2SidTag!=0`:
+- `Phy_DrawNormal[_CPU]` consumes that selector only when `has2SidTag==0`:
   selector zero requests `D3DCULL_CW(2)`, nonzero requests
-  `D3DCULL_CCW(3)`. An untagged PHY requests `D3DCULL_NONE(1)`.
+  `D3DCULL_CCW(3)`. A `2SID`-tagged PHY requests `D3DCULL_NONE(1)`
+  (core `0x1000CD0F..0x1000CD3D`; corrected 2026-10-11, previously inverted).
 - The render-path branch at `0x10004459..0x10004465` tests the low byte of
   `useLiteRenderPath`.
 - `I3DRole_RenderPartByName_WithMotions` passes `useLiteRenderPath=0` to

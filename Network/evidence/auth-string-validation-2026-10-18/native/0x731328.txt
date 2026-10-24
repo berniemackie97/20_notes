@@ -1,0 +1,50 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x731328
+00731328  53               push    ebx
+00731329  56               push    esi
+0073132a  57               push    edi
+0073132b  8b 7c 24 10      mov     edi, dword [esp+0x10]
+0073132f  85 ff            test    edi, edi
+00731331  8b d9            mov     ebx, ecx
+00731333  74 21            je      0x731356
+
+# Block 3 at 0x731335
+00731335  8b 74 24 14      mov     esi, dword [esp+0x14]
+00731339  56               push    esi
+0073133a  57               push    edi
+0073133b  e8 6d e0 fa ff   call    CNetMsg__GetSize
+00731340  59               pop     ecx
+00731341  66 3b f0         cmp     si, ax
+00731344  59               pop     ecx
+00731345  75 0f            jne     0x731356
+
+# Block 5 at 0x731347
+00731347  56               push    esi
+00731348  57               push    edi
+00731349  e8 56 e0 fa ff   call    CNetMsg__GetType
+0073134e  59               pop     ecx
+0073134f  66 3d ec 03      cmp     ax, 0x3ec
+00731353  59               pop     ecx
+00731354  74 04            je      0x73135a
+
+# Block 2 at 0x731356
+00731356  33 c0            xor     eax, eax
+00731358  eb 11            jmp     0x73136b
+
+# Block 6 at 0x73135a
+0073135a  56               push    esi
+0073135b  83 c3 04         add     ebx, 0x4
+0073135e  57               push    edi
+0073135f  53               push    ebx
+00731360  e8 55 63 04 00   call    memcpy
+00731365  83 c4 0c         add     esp, 0xc
+00731368  6a 01            push    0x1
+0073136a  58               pop     eax
+
+# Block 4 at 0x73136b
+0073136b  5f               pop     edi
+0073136c  5e               pop     esi
+0073136d  5b               pop     ebx
+0073136e  c2 08 00         retn    0x8
+

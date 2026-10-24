@@ -1,0 +1,43 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x730fbc
+00730fbc  55               push    ebp
+00730fbd  8b ec            mov     ebp, esp
+00730fbf  83 ec 10         sub     esp, 0x10
+00730fc2  53               push    ebx
+00730fc3  56               push    esi
+00730fc4  57               push    edi
+00730fc5  8b f9            mov     edi, ecx
+00730fc7  8b 5f 04         mov     ebx, dword [edi+0x4]
+00730fca  8d 77 0c         lea     esi, [edi+0xc]
+00730fcd  56               push    esi
+00730fce  8d 4e 10         lea     ecx, [esi+0x10]
+00730fd1  e8 c4 f2 ef ff   call    StdDequePtr_GetElementCount
+00730fd6  3b d8            cmp     ebx, eax
+00730fd8  72 04            jb      0x730fde
+
+# Block 3 at 0x730fda
+00730fda  33 c0            xor     eax, eax
+00730fdc  eb 1b            jmp     0x730ff9
+
+# Block 2 at 0x730fde
+00730fde  8d 43 01         lea     eax, [ebx+0x1]
+00730fe1  53               push    ebx
+00730fe2  89 47 04         mov     dword [edi+0x4], eax
+00730fe5  8d 7d f0         lea     edi, [ebp-0x10]
+00730fe8  a5               movsd   dword [edi], [esi]
+00730fe9  a5               movsd   dword [edi], [esi]
+00730fea  a5               movsd   dword [edi], [esi]
+00730feb  8d 4d f0         lea     ecx, [ebp-0x10]
+00730fee  a5               movsd   dword [edi], [esi]
+00730fef  e8 0b 6e f0 ff   call    StdDequePtr_AdvanceIteratorByOffset
+00730ff4  8b 45 f0         mov     eax, dword [ebp-0x10]
+00730ff7  8b 00            mov     eax, dword [eax]
+
+# Block 4 at 0x730ff9
+00730ff9  5f               pop     edi
+00730ffa  5e               pop     esi
+00730ffb  5b               pop     ebx
+00730ffc  c9               leave
+00730ffd  c3               retn
+

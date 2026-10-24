@@ -1,0 +1,34 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x731122
+00731122  b8 8a c4 83 00   mov     eax, 0x83c48a
+00731127  e8 24 65 04 00   call    __EH_prolog
+0073112c  51               push    ecx
+0073112d  56               push    esi
+0073112e  8b f1            mov     esi, ecx
+00731130  57               push    edi
+00731131  89 75 f0         mov     dword [ebp-0x10], esi
+00731134  e8 13 e1 fa ff   call    0x6df24c
+00731139  83 65 fc 00      and     dword [ebp-0x4], 0x0
+0073113d  8d be 08 04 00 00 lea     edi, [esi+0x408]
+00731143  8b cf            mov     ecx, edi
+00731145  e8 38 0d 04 00   call    0x771e82
+0073114a  8b ce            mov     ecx, esi
+0073114c  c6 45 fc 01      mov     byte [ebp-0x4], 0x1
+00731150  c7 06 b4 c4 86 00 mov     dword [esi], 0x86c4b4
+00731156  e8 26 e1 fa ff   call    CNetMsg__ResetPacketBuffer
+0073115b  8d 46 04         lea     eax, [esi+0x4]
+0073115e  68 e5 03 00 00   push    0x3e5
+00731163  89 86 04 04 00 00 mov     dword [esi+0x404], eax
+00731169  83 c0 18         add     eax, 0x18
+0073116c  50               push    eax
+0073116d  8b cf            mov     ecx, edi
+0073116f  e8 c6 0d 04 00   call    0x771f3a
+00731174  8b 4d f4         mov     ecx, dword [ebp-0xc]
+00731177  8b c6            mov     eax, esi
+00731179  5f               pop     edi
+0073117a  5e               pop     esi
+0073117b  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+00731182  c9               leave
+00731183  c3               retn
+

@@ -1,0 +1,34 @@
+{
+  "Conquer.exe": {
+    "size": 5880840,
+    "sha256": "b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62"
+  },
+  "graphic.dll": {
+    "size": 323584,
+    "sha256": "b099913f83c13b863ea2738f3f95f81ec2eb186b80c16e7ba7fdacf4feea9d46"
+  },
+  "C3_CORE_DLL.dll": {
+    "size": 757760,
+    "sha256": "f5bbe1d408320de33c17422b58576d3e883fa6f93830fe159ac27f3396551a7b"
+  },
+  "mfc42.dll": {
+    "size": 1028096,
+    "sha256": "721232b09c0431b57b2c5d5147114c6a139ea8d2ce98f5644013132de7c66bcf"
+  },
+  "ini/slient.dat": {
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "ini/silent.dat": {
+    "size": 9121,
+    "sha256": "4fc55a4899fff3db2c336db31698d1d68143d16aaee583b7b02848f569eb732d"
+  },
+  "ini/CodePage.ini": {
+    "present_case_insensitive": false
+  },
+  "archive": {
+    "path": "sources/20_notes.zip",
+    "size": 2988868,
+    "sha256": "fc208abcaf464dad577630959c41c0e7df4c8f52d4687fab9898a9427193ff43"
+  }
+}

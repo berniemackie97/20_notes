@@ -1,0 +1,107 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/C3_CORE_DLL.dll.bndb
+
+# Block 1 at 0x10004570
+10004570  8b 15 d8 01 0b 10 mov     edx, dword [0x100b01d8]  ; Single encoded-character draw. Uses the same one-/two-byte codepage key and lazy glyph cache as Font_GetStrShowLen. Space returns advance without vertices; other glyphs pass the cached C3FontGlyphRecord to Font_EmitGlyphVerticesByStyle. Returns 0xFFFF0000 on failure.
+10004576  53               push    ebx
+10004577  56               push    esi
+10004578  8b 74 24 1c      mov     esi, dword [esp+0x1c]
+1000457c  8a 06            mov     al, byte [esi]
+1000457e  88 44 24 1c      mov     byte [esp+0x1c], al
+10004582  8b 4c 24 1c      mov     ecx, dword [esp+0x1c]
+10004586  57               push    edi
+10004587  51               push    ecx
+10004588  52               push    edx
+10004589  ff 15 70 10 0a 10 call    dword [IsDBCSLeadByteEx]
+1000458f  8b d8            mov     ebx, eax
+10004591  85 db            test    ebx, ebx
+10004593  74 12            je      0x100045a7
+
+# Block 3 at 0x10004595
+10004595  33 c0            xor     eax, eax
+10004597  8a 06            mov     al, byte [esi]
+10004599  33 d2            xor     edx, edx
+1000459b  8a 56 01         mov     dl, byte [esi+0x1]
+1000459e  8b c8            mov     ecx, eax
+100045a0  c1 e1 08         shl     ecx, 0x8
+100045a3  03 ca            add     ecx, edx
+100045a5  eb 06            jmp     0x100045ad
+
+# Block 2 at 0x100045a7
+100045a7  33 c0            xor     eax, eax
+100045a9  8a 06            mov     al, byte [esi]
+100045ab  8b c8            mov     ecx, eax
+
+# Block 6 at 0x100045ad
+100045ad  8b 44 24 10      mov     eax, dword [esp+0x10]
+100045b1  66 83 bc 48 0c 01 00 00 00 cmp     word [eax+ecx*2+0x10c], 0x0
+100045ba  8d bc 48 0c 01 00 00 lea     edi, [eax+ecx*2+0x10c]
+100045c1  75 26            jne     0x100045e9
+
+# Block 5 at 0x100045c3
+100045c3  33 d2            xor     edx, edx
+100045c5  85 db            test    ebx, ebx
+100045c7  0f 95 c2         setne   dl
+100045ca  6a 00            push    0x0
+100045cc  42               inc     edx
+100045cd  52               push    edx
+100045ce  56               push    esi
+100045cf  50               push    eax
+100045d0  e8 bb ef ff ff   call    Font_RasterizeAndCacheGlyph
+100045d5  83 c4 10         add     esp, 0x10
+100045d8  66 85 c0         test    ax, ax
+100045db  66 89 07         mov     word [edi], ax
+100045de  75 09            jne     0x100045e9
+
+# Block 9 at 0x100045e0
+100045e0  5f               pop     edi
+100045e1  5e               pop     esi
+100045e2  b8 00 00 ff ff   mov     eax, 0xffff0000
+100045e7  5b               pop     ebx
+100045e8  c3               retn
+
+# Block 4 at 0x100045e9
+100045e9  85 db            test    ebx, ebx
+100045eb  75 1b            jne     0x10004608
+
+# Block 8 at 0x100045ed
+100045ed  80 3e 20         cmp     byte [esi], 0x20
+100045f0  75 16            jne     0x10004608
+
+# Block 10 at 0x100045f2
+100045f2  8b 0d ac fa 0a 10 mov     ecx, dword [0x100afaac]
+100045f8  33 c0            xor     eax, eax
+100045fa  66 8b 07         mov     ax, word [edi]
+100045fd  5f               pop     edi
+100045fe  5e               pop     esi
+100045ff  5b               pop     ebx
+10004600  8b 14 81         mov     edx, dword [ecx+eax*4]
+10004603  0f bf 42 14      movsx   eax, word [edx+0x14]
+10004607  c3               retn
+
+# Block 7 at 0x10004608
+10004608  8b 4c 24 30      mov     ecx, dword [esp+0x30]
+1000460c  8b 54 24 2c      mov     edx, dword [esp+0x2c]
+10004610  a1 ac fa 0a 10   mov     eax, dword [0x100afaac]
+10004615  51               push    ecx
+10004616  8b 4c 24 2c      mov     ecx, dword [esp+0x2c]
+1000461a  52               push    edx
+1000461b  8b 54 24 2c      mov     edx, dword [esp+0x2c]
+1000461f  51               push    ecx
+10004620  8b 4c 24 28      mov     ecx, dword [esp+0x28]
+10004624  52               push    edx
+10004625  8b 54 24 28      mov     edx, dword [esp+0x28]
+10004629  51               push    ecx
+1000462a  8b 4c 24 28      mov     ecx, dword [esp+0x28]
+1000462e  52               push    edx
+1000462f  33 d2            xor     edx, edx
+10004631  66 8b 17         mov     dx, word [edi]
+10004634  51               push    ecx
+10004635  8b 04 90         mov     eax, dword [eax+edx*4]
+10004638  50               push    eax
+10004639  e8 42 f7 ff ff   call    Font_EmitGlyphVerticesByStyle
+1000463e  83 c4 20         add     esp, 0x20
+10004641  5f               pop     edi
+10004642  5e               pop     esi
+10004643  5b               pop     ebx
+10004644  c3               retn
+

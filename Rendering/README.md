@@ -70,6 +70,11 @@ DLLs' full capability.
 
 - [20_main_hud_selected_skill_native_contract.md](20_main_hud_selected_skill_native_contract.md) — GFX-UI-007 remaining CMyImage evidence: exact Init/Set/Clear/Show, Magic0 GUI geometry, selected-state writer census, direct click and hover.
 
+- [21_main_hud_magic_status_hint_native_contract.md](21_main_hud_magic_status_hint_native_contract.md) — GFX-UI-009: category9 Magic/XP Magic input/state, embedded CMagic fields, exact localized text/wrapping/geometry, zero-ID CDlgXp fallbacks, retail data dependencies and managed integration boundary; original-x86 and independent reference verification.
+
+- [22_main_hud_dance_weapon_swap_status_hint_native_contract.md](22_main_hud_dance_weapon_swap_status_hint_native_contract.md) — HUD-010: literal dance payloads/static level-0 construction, warnings, exact weapon-swap predicate, deferred text/backdrop queue, failure and transition contracts, and bounded native verification. Documentation/deob only.
+- [23_first_static_mesh_native_fixture.md](23_first_static_mesh_native_fixture.md) — GFX-3D-001: SimpleObj 19 / 9990115 first static mesh; ID-driven texture chain, source precedence, constant bone, main+shadow draw vector, corrected 2SID cull table; original-x86 replay.
+
 ## DLL deep-dives
 
 - [c3_core_dll/](c3_core_dll/README.md) — the C3 engine core. Device lifecycle,

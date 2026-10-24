@@ -1,0 +1,257 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x75492c
+0075492c  b8 74 fd 83 00   mov     eax, 0x83fd74  ; Verified success path: when response field +0x04 is nonzero, stores session UID (+0x04), secondary session field (+0x10), and auth key (+0x08); sends account-socket packet 1100 with the session UID and adapter MAC report; reads an integer from res.dat (default 0); sends account-socket packet 1052 with session UID, that integer, and "res.dat"; disconnects the account socket; then starts the game-server connection path. The client does not await an account-server response to these two post-authentication reports.
+
+[5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+Successful opcode 1055: packet+4 UID -> CHero+0xA9C (0x754B72); +8 authenticationKey -> CHero+0x2F5C via setter 0x663795 (call 0x754BBE); +0x10 additional field -> CHero+0xAA0 (0x754B98). UID=0 uses +8 as failure code. Account 1100 and res.dat 1052 sent before disconnect. uint32 cookie=(UID+key wrapping mod2^32)^0x4321 at 0x754C19/0x754C1C. Accepted endpoint continuation selects mode 2 then rekeys dormant outbound legacy tables. UID/key themselves are forwarded in post-DH proof, independently of the mask.
+Evidence: 20_notes/Network/14_session_derived_legacy_cipher_mask.md and 10_work/docs/evidence/session-mask-5517/. Analyst names; VAs authoritative.
+00754931  e8 1a 2d 02 00   call    __EH_prolog
+00754936  81 ec 84 09 00 00 sub     esp, 0x984
+0075493c  53               push    ebx
+0075493d  56               push    esi
+0075493e  57               push    edi
+0075493f  89 8d 7c f6 ff ff mov     dword [ebp-0x984], ecx
+00754945  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+0075494b  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754951  83 78 04 00      cmp     dword [eax+0x4], 0x0
+00754955  0f 85 f7 01 00 00 jne     0x754b52
+
+# Block 3 at 0x75495b
+0075495b  e8 4c be d5 ff   call    CLoginFlashDlg_GetSingletonPtr
+00754960  8b c8            mov     ecx, eax
+00754962  e8 2e 40 e2 ff   call    CLoginFlashDlg_OnConnectionLost  ; 1055 failure branch (UID == 0): reads only payload +4 (failure code). Port (+8), extra field (+0xC) and IPv4 text (+0x10) are not read. Code 1 + Facebook variant -> STR_FACEBOOK_LOGIN_ERR; else CMsgAccountAuthResponse_FormatLoginFailureTraceText(code). Text enqueued on 0x96b330, code stored at 0x96b328+4.
+00754967  80 a5 d0 f6 ff ff 00 and     byte [ebp-0x930], 0x0
+0075496e  6a 3f            push    0x3f
+00754970  59               pop     ecx
+00754971  33 c0            xor     eax, eax
+00754973  8d bd d1 f6 ff ff lea     edi, [ebp-0x92f]
+00754979  f3 ab            rep stosd dword [edi]
+0075497b  66 ab            stosw   word [edi]
+0075497d  aa               stosb   byte [edi]
+0075497e  0f b6 05 34 ab 96 00 movzx   eax, byte [0x96ab34]
+00754985  85 c0            test    eax, eax
+00754987  0f 84 1a 01 00 00 je      0x754aa7
+
+# Block 7 at 0x75498d
+0075498d  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+00754993  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754999  83 78 08 01      cmp     dword [eax+0x8], 0x1
+0075499d  0f 85 04 01 00 00 jne     0x754aa7
+
+# Block 11 at 0x7549a3
+007549a3  8d 85 bc f6 ff ff lea     eax, [ebp-0x944]
+007549a9  89 85 78 f6 ff ff mov     dword [ebp-0x988], eax
+007549af  83 65 fc 00      and     dword [ebp-0x4], 0x0
+007549b3  ff b5 78 f6 ff ff push    dword [ebp-0x988]
+007549b9  68 7c 9a 94 00   push    0x949a7c
+007549be  8d 8d c0 f6 ff ff lea     ecx, [ebp-0x940]
+007549c4  e8 d4 f4 ca ff   call    NullTerminatedCharVector_ConstructFromCString
+007549c9  c6 45 fc 01      mov     byte [ebp-0x4], 0x1
+007549cd  8d 85 ac f6 ff ff lea     eax, [ebp-0x954]
+007549d3  89 85 74 f6 ff ff mov     dword [ebp-0x98c], eax
+007549d9  c6 45 fc 02      mov     byte [ebp-0x4], 0x2
+007549dd  ff b5 74 f6 ff ff push    dword [ebp-0x98c]
+007549e3  68 cc 99 94 00   push    0x9499cc
+007549e8  8d 8d b0 f6 ff ff lea     ecx, [ebp-0x950]
+007549ee  e8 aa f4 ca ff   call    NullTerminatedCharVector_ConstructFromCString
+007549f3  c6 45 fc 03      mov     byte [ebp-0x4], 0x3
+007549f7  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+007549fd  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754a03  ff 70 08         push    dword [eax+0x8]
+00754a06  8d 85 c0 f6 ff ff lea     eax, [ebp-0x940]
+00754a0c  50               push    eax
+00754a0d  6a 00            push    0x0
+00754a0f  e8 8a 6a 01 00   call    CStringManager_GetOrCreateSingleton
+00754a14  59               pop     ecx
+00754a15  8b c8            mov     ecx, eax
+00754a17  e8 f5 6c 01 00   call    CStringManager_GetStringByKey
+00754a1c  50               push    eax
+00754a1d  8d 85 b0 f6 ff ff lea     eax, [ebp-0x950]
+00754a23  50               push    eax
+00754a24  6a 00            push    0x0
+00754a26  e8 73 6a 01 00   call    CStringManager_GetOrCreateSingleton
+00754a2b  59               pop     ecx
+00754a2c  8b c8            mov     ecx, eax
+00754a2e  e8 de 6c 01 00   call    CStringManager_GetStringByKey
+00754a33  50               push    eax
+00754a34  68 ff 00 00 00   push    0xff
+00754a39  8d 85 d0 f6 ff ff lea     eax, [ebp-0x930]
+00754a3f  50               push    eax
+00754a40  ff 15 08 48 84 00 call    dword [_snprintf]
+00754a46  83 c4 14         add     esp, 0x14
+00754a49  c6 45 fc 02      mov     byte [ebp-0x4], 0x2
+00754a4d  c6 45 fc 04      mov     byte [ebp-0x4], 0x4
+00754a51  8b 85 b8 f6 ff ff mov     eax, dword [ebp-0x948]
+00754a57  2b 85 b0 f6 ff ff sub     eax, dword [ebp-0x950]
+00754a5d  50               push    eax
+00754a5e  ff b5 b0 f6 ff ff push    dword [ebp-0x950]
+00754a64  8d 8d b8 f6 ff ff lea     ecx, [ebp-0x948]
+00754a6a  e8 dc f3 ca ff   call    0x403e4b
+00754a6f  c6 45 fc 02      mov     byte [ebp-0x4], 0x2
+00754a73  c6 45 fc 01      mov     byte [ebp-0x4], 0x1
+00754a77  80 65 fc 00      and     byte [ebp-0x4], 0x0
+00754a7b  c6 45 fc 05      mov     byte [ebp-0x4], 0x5
+00754a7f  8b 85 c8 f6 ff ff mov     eax, dword [ebp-0x938]
+00754a85  2b 85 c0 f6 ff ff sub     eax, dword [ebp-0x940]
+00754a8b  50               push    eax
+00754a8c  ff b5 c0 f6 ff ff push    dword [ebp-0x940]
+00754a92  8d 8d c8 f6 ff ff lea     ecx, [ebp-0x938]
+00754a98  e8 ae f3 ca ff   call    0x403e4b
+00754a9d  80 65 fc 00      and     byte [ebp-0x4], 0x0
+00754aa1  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+00754aa5  eb 75            jmp     0x754b1c
+
+# Block 6 at 0x754aa7
+00754aa7  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+00754aad  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754ab3  ff 70 08         push    dword [eax+0x8]
+00754ab6  8d 85 a0 f6 ff ff lea     eax, [ebp-0x960]
+00754abc  50               push    eax
+00754abd  e8 4f f5 ff ff   call    CMsgAccountAuthResponse_FormatLoginFailureTraceText
+00754ac2  59               pop     ecx
+00754ac3  59               pop     ecx
+00754ac4  89 85 9c f6 ff ff mov     dword [ebp-0x964], eax
+00754aca  8b 85 9c f6 ff ff mov     eax, dword [ebp-0x964]
+00754ad0  8b 00            mov     eax, dword [eax]
+00754ad2  89 85 98 f6 ff ff mov     dword [ebp-0x968], eax
+00754ad8  68 00 01 00 00   push    0x100
+00754add  ff b5 98 f6 ff ff push    dword [ebp-0x968]
+00754ae3  8d 85 d0 f6 ff ff lea     eax, [ebp-0x930]
+00754ae9  50               push    eax
+00754aea  ff 15 f4 47 84 00 call    dword [strncpy]
+00754af0  83 c4 0c         add     esp, 0xc
+00754af3  c7 45 fc 06 00 00 00 mov     dword [ebp-0x4], 0x6
+00754afa  8b 85 a8 f6 ff ff mov     eax, dword [ebp-0x958]
+00754b00  2b 85 a0 f6 ff ff sub     eax, dword [ebp-0x960]
+00754b06  50               push    eax
+00754b07  ff b5 a0 f6 ff ff push    dword [ebp-0x960]
+00754b0d  8d 8d a8 f6 ff ff lea     ecx, [ebp-0x958]
+00754b13  e8 33 f3 ca ff   call    0x403e4b
+00754b18  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+
+# Block 14 at 0x754b1c
+00754b1c  80 a5 cf f7 ff ff 00 and     byte [ebp-0x831], 0x0
+00754b23  8d 85 d0 f6 ff ff lea     eax, [ebp-0x930]
+00754b29  50               push    eax
+00754b2a  b9 30 b3 96 00   mov     ecx, 0x96b330
+00754b2f  e8 38 c2 fd ff   call    DisconnectMsgQueue_EnqueueString
+00754b34  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+00754b3a  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754b40  ff 70 08         push    dword [eax+0x8]
+00754b43  b9 28 b3 96 00   mov     ecx, 0x96b328
+00754b48  e8 57 5b f5 ff   call    CompilerFolded_SetDwordAtOffset04
+00754b4d  e9 ea 03 00 00   jmp     0x754f3c
+
+# Block 2 at 0x754b52
+00754b52  e8 09 f9 ca ff   call    CHero_GetSingletonPtr
+00754b57  89 85 94 f6 ff ff mov     dword [ebp-0x96c], eax
+00754b5d  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+00754b63  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754b69  8b 8d 94 f6 ff ff mov     ecx, dword [ebp-0x96c]
+00754b6f  8b 40 04         mov     eax, dword [eax+0x4]
+00754b72  89 81 9c 0a 00 00 mov     dword [ecx+0xa9c], eax  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+packet+4 sessionUid -> CHero+0xA9C. Successful grant token, not a proven account/database ID.
+00754b78  e8 e3 f8 ca ff   call    CHero_GetSingletonPtr
+00754b7d  89 85 90 f6 ff ff mov     dword [ebp-0x970], eax
+00754b83  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+00754b89  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754b8f  8b 8d 90 f6 ff ff mov     ecx, dword [ebp-0x970]
+00754b95  8b 40 10         mov     eax, dword [eax+0x10]
+00754b98  89 81 a0 0a 00 00 mov     dword [ecx+0xaa0], eax  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+packet+0x10 additional session field -> CHero+0xAA0. Forwarded by alternate1203; not proven hash, mask, or required standard server secret.
+00754b9e  e8 bd f8 ca ff   call    CHero_GetSingletonPtr
+00754ba3  89 85 8c f6 ff ff mov     dword [ebp-0x974], eax
+00754ba9  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+00754baf  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754bb5  ff 70 08         push    dword [eax+0x8]
+00754bb8  8b 8d 8c f6 ff ff mov     ecx, dword [ebp-0x974]
+00754bbe  e8 d2 eb f0 ff   call    CHero__SetLoginAuthKey  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+Store packet+8 authenticationKey via CHero__SetLoginAuthKey at0x663795 -> CHero+0x2F5C.
+00754bc3  8d 8d d4 f7 ff ff lea     ecx, [ebp-0x82c]
+00754bc9  e8 6d 31 01 00   call    CMsgAccountMacAddress1100__Ctor
+00754bce  c7 45 fc 07 00 00 00 mov     dword [ebp-0x4], 0x7
+00754bd5  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+00754bdb  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754be1  ff 70 04         push    dword [eax+0x4]
+00754be4  8d 8d d4 f7 ff ff lea     ecx, [ebp-0x82c]
+00754bea  e8 b2 31 01 00   call    CMsgAccountMacAddress1100__Build
+00754bef  85 c0            test    eax, eax
+00754bf1  74 0b            je      0x754bfe
+
+# Block 5 at 0x754bf3
+00754bf3  8d 8d d4 f7 ff ff lea     ecx, [ebp-0x82c]
+00754bf9  e8 57 a7 f8 ff   call    CNetMsg__Send
+
+# Block 4 at 0x754bfe
+00754bfe  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+00754c04  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754c0a  8b 8d 7c f6 ff ff mov     ecx, dword [ebp-0x984]
+00754c10  8b 89 04 04 00 00 mov     ecx, dword [ecx+0x404]
+00754c16  8b 40 04         mov     eax, dword [eax+0x4]
+00754c19  03 41 08         add     eax, dword [ecx+0x8]  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+uint32 ADD: UID+authenticationKey wraps modulo2^32. Next XOR0x4321 gives cookie; stack local[ebp-0x830], not wire checksum.
+00754c1c  35 21 43 00 00   xor     eax, 0x4321
+00754c21  89 85 d0 f7 ff ff mov     dword [ebp-0x830], eax
+00754c27  8d 8d e0 fb ff ff lea     ecx, [ebp-0x420]
+00754c2d  e8 32 f7 ff ff   call    CMsgLoginBootstrap1052__Ctor
+00754c32  c6 45 fc 08      mov     byte [ebp-0x4], 0x8
+00754c36  a1 74 9a 94 00   mov     eax, dword [0x949a74]
+00754c3b  89 45 ec         mov     dword [ebp-0x14], eax
+00754c3e  a1 78 9a 94 00   mov     eax, dword [0x949a78]
+00754c43  89 45 f0         mov     dword [ebp-0x10], eax
+00754c46  68 8c dd 92 00   push    0x92dd8c
+00754c4b  8d 45 ec         lea     eax, [ebp-0x14]
+00754c4e  50               push    eax
+00754c4f  ff 15 70 47 84 00 call    dword [fopen]
+00754c55  59               pop     ecx
+00754c56  59               pop     ecx
+00754c57  89 85 dc fb ff ff mov     dword [ebp-0x424], eax
+00754c5d  83 65 e8 00      and     dword [ebp-0x18], 0x0
+00754c61  83 bd dc fb ff ff 00 cmp     dword [ebp-0x424], 0x0
+00754c68  74 25            je      0x754c8f
+
+# Block 9 at 0x754c6a
+00754c6a  8d 45 e8         lea     eax, [ebp-0x18]
+00754c6d  50               push    eax
+00754c6e  68 70 9a 94 00   push    0x949a70
+00754c73  ff b5 dc fb ff ff push    dword [ebp-0x424]
+00754c79  ff 15 68 47 84 00 call    dword [fscanf]
+00754c7f  83 c4 0c         add     esp, 0xc
+00754c82  ff b5 dc fb ff ff push    dword [ebp-0x424]
+00754c88  ff 15 74 47 84 00 call    dword [fclose]
+00754c8e  59               pop     ecx
+
+# Block 8 at 0x754c8f
+00754c8f  68 74 9a 94 00   push    0x949a74
+00754c94  ff 75 e8         push    dword [ebp-0x18]
+00754c97  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+00754c9d  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754ca3  ff 70 04         push    dword [eax+0x4]
+00754ca6  8d 8d e0 fb ff ff lea     ecx, [ebp-0x420]
+00754cac  e8 19 f7 ff ff   call    CMsgLoginBootstrap1052__BuildAccountResourceVersionReport
+00754cb1  85 c0            test    eax, eax
+00754cb3  74 0b            je      0x754cc0
+
+# Block 13 at 0x754cb5
+00754cb5  8d 8d e0 fb ff ff lea     ecx, [ebp-0x420]
+00754cbb  e8 95 a6 f8 ff   call    CNetMsg__Send
+
+# Block 12 at 0x754cc0
+00754cc0  b9 c8 af 96 00   mov     ecx, 0x96afc8
+00754cc5  e8 79 a3 f8 ff   call    CNetClient_DisconnectAndDisposeSocket
+00754cca  60               pushad
+00754ccb  e8 1a 00 00 00   call    0x754cea
+00754cd0  d1 e8            shr     eax, 0x1
+00754cd2  5d               pop     ebp
+00754cd3  c2 08 00         retn    0x8
+
+# Block 10 at 0x754f3c
+00754f3c  8b 4d f4         mov     ecx, dword [ebp-0xc]
+00754f3f  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+00754f46  5f               pop     edi
+00754f47  5e               pop     esi
+00754f48  5b               pop     ebx
+00754f49  c9               leave
+00754f4a  c2 04 00         retn    0x4
+

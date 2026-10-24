@@ -1,0 +1,539 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x4189d2
+004189d2  b8 ec e9 7c 00   mov     eax, 0x7ce9ec  ; Native diagnostic identifies MyShell/DlgAccountLoginAlert.cpp. Reads hero login-alert record via 0x418A0B. Timestamp zero or empty hero name skips rebuild (0x418A64/0x418A6D); nonzero timestamp passed by address to imported localtime at 0x418A9C. STR_ACCOUNT_LOGIN formats last-login time/location; STR_UNKNOW_CITY used when stored text length <=1. Any nonzero alert byte enables STR_ACCOUNT_ALERT branch when alternate BGP/auth presentation predicate is false (0x418E5A..0x418E6B). Server chooses actual timestamp/location/risk flag; client does not generate the retail login payload.
+
+Native early-return detail verified 2026-09-16: zero timestamp or empty hero name branches to 0x418FDE; failed localtime does likewise. These branches precede dialog+0x4F8/+0x4F4 resets at 0x418AAD/0x418AB4. Therefore zero timestamp skips rebuilding; it is NOT a proven clear-existing-dialog-content operation. The alert byte is already copied to dialog+0x4F1 at 0x418A20.
+004189d7  e8 74 ec 35 00   call    __EH_prolog
+004189dc  81 ec 80 05 00 00 sub     esp, 0x580
+004189e2  a0 dc 60 95 00   mov     al, byte [0x9560dc]
+004189e7  53               push    ebx
+004189e8  56               push    esi
+004189e9  8b d9            mov     ebx, ecx
+004189eb  57               push    edi
+004189ec  88 85 74 fa ff ff mov     byte [ebp-0x58c], al
+004189f2  b9 ff 00 00 00   mov     ecx, 0xff
+004189f7  33 c0            xor     eax, eax
+004189f9  8d bd 75 fa ff ff lea     edi, [ebp-0x58b]
+004189ff  f3 ab            rep stosd dword [edi]
+00418a01  66 ab            stosw   word [edi]
+00418a03  aa               stosb   byte [edi]
+00418a04  e8 57 ba fe ff   call    CHero_GetSingletonPtr
+00418a09  8b c8            mov     ecx, eax
+00418a0b  e8 a8 ed 23 00   call    CHero_GetAccountLoginAlertData
+00418a10  8b f0            mov     esi, eax
+00418a12  85 f6            test    esi, esi
+00418a14  89 75 dc         mov     dword [ebp-0x24], esi
+00418a17  0f 84 cd 05 00 00 je      0x418fea
+
+# Block 3 at 0x418a1d
+00418a1d  8a 46 04         mov     al, byte [esi+0x4]
+00418a20  88 83 f1 04 00 00 mov     byte [ebx+0x4f1], al
+00418a26  83 65 fc 00      and     dword [ebp-0x4], 0x0
+00418a2a  e8 31 ba fe ff   call    CHero_GetSingletonPtr
+00418a2f  8b b8 4c 01 00 00 mov     edi, dword [eax+0x14c]
+00418a35  8d 45 db         lea     eax, [ebp-0x25]
+00418a38  50               push    eax
+00418a39  8d 4d c0         lea     ecx, [ebp-0x40]
+00418a3c  e8 45 0e 27 00   call    NullTerminatedCharVector_InitializeEmpty
+00418a41  57               push    edi
+00418a42  c6 45 fc 01      mov     byte [ebp-0x4], 0x1
+00418a46  e8 25 ec 35 00   call    strlen
+00418a4b  59               pop     ecx
+00418a4c  03 c7            add     eax, edi
+00418a4e  50               push    eax
+00418a4f  57               push    edi
+00418a50  8d 4d c0         lea     ecx, [ebp-0x40]
+00418a53  e8 47 b9 fe ff   call    NullTerminatedCharVector_AssignRangeWithCookie
+00418a58  8b 45 c4         mov     eax, dword [ebp-0x3c]
+00418a5b  c6 45 fc 03      mov     byte [ebp-0x4], 0x3
+00418a5f  2b 45 c0         sub     eax, dword [ebp-0x40]
+00418a62  85 c0            test    eax, eax
+00418a64  0f 8e 74 05 00 00 jle     0x418fde
+
+# Block 5 at 0x418a6a
+00418a6a  83 3e 00         cmp     dword [esi], 0x0
+00418a6d  0f 84 6b 05 00 00 je      0x418fde
+
+# Block 6 at 0x418a73
+00418a73  8b 46 0c         mov     eax, dword [esi+0xc]
+00418a76  6a 3f            push    0x3f
+00418a78  2b 46 08         sub     eax, dword [esi+0x8]
+00418a7b  80 a5 74 fe ff ff 00 and     byte [ebp-0x18c], 0x0
+00418a82  59               pop     ecx
+00418a83  8d bd 75 fe ff ff lea     edi, [ebp-0x18b]
+00418a89  89 45 b8         mov     dword [ebp-0x48], eax
+00418a8c  33 c0            xor     eax, eax
+00418a8e  f3 ab            rep stosd dword [edi]
+00418a90  66 ab            stosw   word [edi]
+00418a92  aa               stosb   byte [edi]
+00418a93  8b 06            mov     eax, dword [esi]
+00418a95  89 45 bc         mov     dword [ebp-0x44], eax
+00418a98  8d 45 bc         lea     eax, [ebp-0x44]
+00418a9b  50               push    eax
+00418a9c  ff 15 4c 49 84 00 call    dword [localtime]
+00418aa2  8b f8            mov     edi, eax
+00418aa4  59               pop     ecx
+00418aa5  85 ff            test    edi, edi
+00418aa7  0f 84 31 05 00 00 je      0x418fde
+
+# Block 7 at 0x418aad
+00418aad  83 a3 f8 04 00 00 00 and     dword [ebx+0x4f8], 0x0
+00418ab4  83 a3 f4 04 00 00 00 and     dword [ebx+0x4f4], 0x0
+00418abb  80 65 f1 00      and     byte [ebp-0xf], 0x0
+00418abf  e8 9c b9 fe ff   call    CHero_GetSingletonPtr
+00418ac4  8b c8            mov     ecx, eax
+00418ac6  e8 34 ed 23 00   call    0x6577ff
+00418acb  84 c0            test    al, al
+00418acd  75 10            jne     0x418adf
+
+# Block 9 at 0x418acf
+00418acf  e8 09 0d 00 00   call    CHeroConfigMgr_GetSingletonPtr
+00418ad4  8b c8            mov     ecx, eax
+00418ad6  e8 dd a4 23 00   call    0x652fb8
+00418adb  85 c0            test    eax, eax
+00418add  74 04            je      0x418ae3
+
+# Block 8 at 0x418adf
+00418adf  c6 45 f1 01      mov     byte [ebp-0xf], 0x1
+
+# Block 12 at 0x418ae3
+00418ae3  ff 37            push    dword [edi]
+00418ae5  8b 47 10         mov     eax, dword [edi+0x10]
+00418ae8  40               inc     eax
+00418ae9  ff 77 04         push    dword [edi+0x4]
+00418aec  ff 77 08         push    dword [edi+0x8]
+00418aef  ff 77 0c         push    dword [edi+0xc]
+00418af2  50               push    eax
+00418af3  8b 47 14         mov     eax, dword [edi+0x14]
+00418af6  8b 3d 08 48 84 00 mov     edi, dword [0x844808]
+00418afc  05 6c 07 00 00   add     eax, 0x76c
+00418b01  50               push    eax
+00418b02  68 78 2c 92 00   push    0x922c78
+00418b07  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00418b0d  68 ff 00 00 00   push    0xff
+00418b12  50               push    eax
+00418b13  ff d7            call    edi
+00418b15  80 a5 73 ff ff ff 00 and     byte [ebp-0x8d], 0x0
+00418b1c  83 c4 24         add     esp, 0x24
+00418b1f  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00418b25  8d 8b 44 03 00 00 lea     ecx, [ebx+0x344]
+00418b2b  68 00 ff ff ff   push    0xffffff00
+00418b30  50               push    eax
+00418b31  e8 3a 31 17 00   call    0x58bc70
+00418b36  80 7d f1 00      cmp     byte [ebp-0xf], 0x0
+00418b3a  74 7a            je      0x418bb6
+
+# Block 11 at 0x418b3c
+00418b3c  8d 45 f2         lea     eax, [ebp-0xe]
+00418b3f  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418b42  50               push    eax
+00418b43  c6 45 fc 04      mov     byte [ebp-0x4], 0x4
+00418b47  e8 3a 0d 27 00   call    NullTerminatedCharVector_InitializeEmpty
+00418b4c  be 60 2c 92 00   mov     esi, 0x922c60
+00418b51  c6 45 fc 05      mov     byte [ebp-0x4], 0x5
+00418b55  56               push    esi
+00418b56  e8 15 eb 35 00   call    strlen
+00418b5b  59               pop     ecx
+00418b5c  03 c6            add     eax, esi
+00418b5e  8a 4d f2         mov     cl, byte [ebp-0xe]
+00418b61  88 4d f3         mov     byte [ebp-0xd], cl
+00418b64  8d 4d f3         lea     ecx, [ebp-0xd]
+00418b67  51               push    ecx
+00418b68  50               push    eax
+00418b69  56               push    esi
+00418b6a  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418b6d  e8 cc bb fe ff   call    NullTerminatedCharVector_AssignRange
+00418b72  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00418b78  c6 45 fc 06      mov     byte [ebp-0x4], 0x6
+00418b7c  50               push    eax
+00418b7d  8d 45 e4         lea     eax, [ebp-0x1c]
+00418b80  ff 75 c0         push    dword [ebp-0x40]
+00418b83  50               push    eax
+00418b84  6a 00            push    0x0
+00418b86  e8 13 29 35 00   call    CStringManager_GetOrCreateSingleton
+00418b8b  59               pop     ecx
+00418b8c  8b c8            mov     ecx, eax
+00418b8e  e8 7e 2b 35 00   call    CStringManager_GetStringByKey
+00418b93  50               push    eax
+00418b94  8d 85 74 fa ff ff lea     eax, [ebp-0x58c]
+00418b9a  68 ff 03 00 00   push    0x3ff
+00418b9f  50               push    eax
+00418ba0  ff d7            call    edi
+00418ba2  83 c4 14         add     esp, 0x14
+00418ba5  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418ba8  c6 45 fc 04      mov     byte [ebp-0x4], 0x4
+00418bac  e8 a7 b0 fe ff   call    0x403c58
+00418bb1  e9 ca 01 00 00   jmp     0x418d80
+
+# Block 10 at 0x418bb6
+00418bb6  83 7d b8 01      cmp     dword [ebp-0x48], 0x1
+00418bba  0f 8e 8f 00 00 00 jle     0x418c4f
+
+# Block 14 at 0x418bc0
+00418bc0  8b 76 08         mov     esi, dword [esi+0x8]
+00418bc3  68 00 ff ff ff   push    0xffffff00
+00418bc8  56               push    esi
+00418bc9  8d 8b 44 03 00 00 lea     ecx, [ebx+0x344]
+00418bcf  e8 9c 30 17 00   call    0x58bc70
+00418bd4  8d 45 f2         lea     eax, [ebp-0xe]
+00418bd7  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418bda  50               push    eax
+00418bdb  c6 45 fc 07      mov     byte [ebp-0x4], 0x7
+00418bdf  e8 a2 0c 27 00   call    NullTerminatedCharVector_InitializeEmpty
+00418be4  be 4c 2c 92 00   mov     esi, 0x922c4c
+00418be9  c6 45 fc 08      mov     byte [ebp-0x4], 0x8
+00418bed  56               push    esi
+00418bee  e8 7d ea 35 00   call    strlen
+00418bf3  59               pop     ecx
+00418bf4  03 c6            add     eax, esi
+00418bf6  8a 4d f2         mov     cl, byte [ebp-0xe]
+00418bf9  88 4d f3         mov     byte [ebp-0xd], cl
+00418bfc  8d 4d f3         lea     ecx, [ebp-0xd]
+00418bff  51               push    ecx
+00418c00  50               push    eax
+00418c01  56               push    esi
+00418c02  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418c05  e8 34 bb fe ff   call    NullTerminatedCharVector_AssignRange
+00418c0a  8b 45 dc         mov     eax, dword [ebp-0x24]
+00418c0d  c6 45 fc 09      mov     byte [ebp-0x4], 0x9
+00418c11  ff 70 08         push    dword [eax+0x8]
+00418c14  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00418c1a  50               push    eax
+00418c1b  8d 45 e4         lea     eax, [ebp-0x1c]
+00418c1e  ff 75 c0         push    dword [ebp-0x40]
+00418c21  50               push    eax
+00418c22  6a 00            push    0x0
+00418c24  e8 75 28 35 00   call    CStringManager_GetOrCreateSingleton
+00418c29  59               pop     ecx
+00418c2a  8b c8            mov     ecx, eax
+00418c2c  e8 e0 2a 35 00   call    CStringManager_GetStringByKey
+00418c31  50               push    eax
+00418c32  8d 85 74 fa ff ff lea     eax, [ebp-0x58c]
+00418c38  68 ff 03 00 00   push    0x3ff
+00418c3d  50               push    eax
+00418c3e  ff d7            call    edi
+00418c40  83 c4 18         add     esp, 0x18
+00418c43  c6 45 fc 0a      mov     byte [ebp-0x4], 0xa
+00418c47  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418c4a  e9 2c 01 00 00   jmp     0x418d7b
+
+# Block 13 at 0x418c4f
+00418c4f  8d 45 f2         lea     eax, [ebp-0xe]
+00418c52  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418c55  50               push    eax
+00418c56  c6 45 fc 0b      mov     byte [ebp-0x4], 0xb
+00418c5a  e8 27 0c 27 00   call    NullTerminatedCharVector_InitializeEmpty
+00418c5f  be 3c 2c 92 00   mov     esi, 0x922c3c
+00418c64  c6 45 fc 0c      mov     byte [ebp-0x4], 0xc
+00418c68  56               push    esi
+00418c69  e8 02 ea 35 00   call    strlen
+00418c6e  59               pop     ecx
+00418c6f  03 c6            add     eax, esi
+00418c71  8a 4d f2         mov     cl, byte [ebp-0xe]
+00418c74  88 4d f3         mov     byte [ebp-0xd], cl
+00418c77  8d 4d f3         lea     ecx, [ebp-0xd]
+00418c7a  51               push    ecx
+00418c7b  50               push    eax
+00418c7c  56               push    esi
+00418c7d  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418c80  e8 b9 ba fe ff   call    NullTerminatedCharVector_AssignRange
+00418c85  8d 45 e4         lea     eax, [ebp-0x1c]
+00418c88  68 00 ff ff ff   push    0xffffff00
+00418c8d  50               push    eax
+00418c8e  6a 00            push    0x0
+00418c90  c6 45 fc 0d      mov     byte [ebp-0x4], 0xd
+00418c94  e8 05 28 35 00   call    CStringManager_GetOrCreateSingleton
+00418c99  59               pop     ecx
+00418c9a  8b c8            mov     ecx, eax
+00418c9c  e8 70 2a 35 00   call    CStringManager_GetStringByKey
+00418ca1  50               push    eax
+00418ca2  8d 8b 44 03 00 00 lea     ecx, [ebx+0x344]
+00418ca8  e8 c3 2f 17 00   call    0x58bc70
+00418cad  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418cb0  c6 45 fc 0e      mov     byte [ebp-0x4], 0xe
+00418cb4  e8 55 b1 fe ff   call    NullTerminatedCharVector_DestroyStorage
+00418cb9  8d 45 f2         lea     eax, [ebp-0xe]
+00418cbc  8d 4d cc         lea     ecx, [ebp-0x34]
+00418cbf  50               push    eax
+00418cc0  c6 45 fc 0f      mov     byte [ebp-0x4], 0xf
+00418cc4  e8 bd 0b 27 00   call    NullTerminatedCharVector_InitializeEmpty
+00418cc9  56               push    esi
+00418cca  c6 45 fc 10      mov     byte [ebp-0x4], 0x10
+00418cce  e8 9d e9 35 00   call    strlen
+00418cd3  59               pop     ecx
+00418cd4  03 c6            add     eax, esi
+00418cd6  8a 4d f2         mov     cl, byte [ebp-0xe]
+00418cd9  88 4d f3         mov     byte [ebp-0xd], cl
+00418cdc  8d 4d f3         lea     ecx, [ebp-0xd]
+00418cdf  51               push    ecx
+00418ce0  50               push    eax
+00418ce1  56               push    esi
+00418ce2  8d 4d cc         lea     ecx, [ebp-0x34]
+00418ce5  e8 54 ba fe ff   call    NullTerminatedCharVector_AssignRange
+00418cea  8d 45 f0         lea     eax, [ebp-0x10]
+00418ced  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418cf0  50               push    eax
+00418cf1  c6 45 fc 12      mov     byte [ebp-0x4], 0x12
+00418cf5  e8 8c 0b 27 00   call    NullTerminatedCharVector_InitializeEmpty
+00418cfa  be 4c 2c 92 00   mov     esi, 0x922c4c
+00418cff  c6 45 fc 13      mov     byte [ebp-0x4], 0x13
+00418d03  56               push    esi
+00418d04  e8 67 e9 35 00   call    strlen
+00418d09  59               pop     ecx
+00418d0a  03 c6            add     eax, esi
+00418d0c  8a 4d f0         mov     cl, byte [ebp-0x10]
+00418d0f  88 4d f3         mov     byte [ebp-0xd], cl
+00418d12  8d 4d f3         lea     ecx, [ebp-0xd]
+00418d15  51               push    ecx
+00418d16  50               push    eax
+00418d17  56               push    esi
+00418d18  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418d1b  e8 1e ba fe ff   call    NullTerminatedCharVector_AssignRange
+00418d20  8b 75 c0         mov     esi, dword [ebp-0x40]
+00418d23  8d 45 cc         lea     eax, [ebp-0x34]
+00418d26  50               push    eax
+00418d27  6a 00            push    0x0
+00418d29  c6 45 fc 14      mov     byte [ebp-0x4], 0x14
+00418d2d  e8 6c 27 35 00   call    CStringManager_GetOrCreateSingleton
+00418d32  59               pop     ecx
+00418d33  8b c8            mov     ecx, eax
+00418d35  e8 d7 29 35 00   call    CStringManager_GetStringByKey
+00418d3a  50               push    eax
+00418d3b  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00418d41  50               push    eax
+00418d42  8d 45 e4         lea     eax, [ebp-0x1c]
+00418d45  56               push    esi
+00418d46  50               push    eax
+00418d47  6a 00            push    0x0
+00418d49  e8 50 27 35 00   call    CStringManager_GetOrCreateSingleton
+00418d4e  59               pop     ecx
+00418d4f  8b c8            mov     ecx, eax
+00418d51  e8 bb 29 35 00   call    CStringManager_GetStringByKey
+00418d56  50               push    eax
+00418d57  8d 85 74 fa ff ff lea     eax, [ebp-0x58c]
+00418d5d  68 ff 03 00 00   push    0x3ff
+00418d62  50               push    eax
+00418d63  ff d7            call    edi
+00418d65  83 c4 18         add     esp, 0x18
+00418d68  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418d6b  c6 45 fc 15      mov     byte [ebp-0x4], 0x15
+00418d6f  e8 9a b0 fe ff   call    NullTerminatedCharVector_DestroyStorage
+00418d74  c6 45 fc 16      mov     byte [ebp-0x4], 0x16
+00418d78  8d 4d cc         lea     ecx, [ebp-0x34]
+
+# Block 18 at 0x418d7b
+00418d7b  e8 8e b0 fe ff   call    NullTerminatedCharVector_DestroyStorage
+
+# Block 15 at 0x418d80
+00418d80  8b 83 44 03 00 00 mov     eax, dword [ebx+0x344]
+00418d86  80 a5 73 fe ff ff 00 and     byte [ebp-0x18d], 0x0
+00418d8d  8d b3 44 03 00 00 lea     esi, [ebx+0x344]
+00418d93  8d 8d 74 fa ff ff lea     ecx, [ebp-0x58c]
+00418d99  51               push    ecx
+00418d9a  8b ce            mov     ecx, esi
+00418d9c  c6 45 fc 03      mov     byte [ebp-0x4], 0x3
+00418da0  ff 50 50         call    dword [eax+0x50]
+00418da3  8d 45 f0         lea     eax, [ebp-0x10]
+00418da6  8d 4d 84         lea     ecx, [ebp-0x7c]
+00418da9  50               push    eax
+00418daa  c6 45 fc 17      mov     byte [ebp-0x4], 0x17
+00418dae  e8 d3 0a 27 00   call    NullTerminatedCharVector_InitializeEmpty
+00418db3  c6 45 fc 19      mov     byte [ebp-0x4], 0x19
+00418db7  e8 0b 0e 35 00   call    Load_FontSetting_Ini
+00418dbc  85 c0            test    eax, eax
+00418dbe  89 45 dc         mov     dword [ebp-0x24], eax
+00418dc1  75 39            jne     0x418dfc
+
+# Block 17 at 0x418dc3
+00418dc3  68 a5 00 00 00   push    0xa5
+00418dc8  68 00 2c 92 00   push    0x922c00
+00418dcd  68 18 25 92 00   push    0x922518
+00418dd2  68 10 25 92 00   push    0x922510
+00418dd7  68 6c 17 92 00   push    0x92176c
+00418ddc  e8 37 02 35 00   call    Debug_LogMessageToDailyFileWithDedup
+00418de1  83 c4 14         add     esp, 0x14
+00418de4  8d 4d 84         lea     ecx, [ebp-0x7c]
+00418de7  c6 45 fc 03      mov     byte [ebp-0x4], 0x3
+00418deb  e8 b1 71 ff ff   call    0x40ffa1
+00418df0  c7 45 fc 1a 00 00 00 mov     dword [ebp-0x4], 0x1a
+00418df7  e9 d8 01 00 00   jmp     0x418fd4
+
+# Block 16 at 0x418dfc
+00418dfc  8b 06            mov     eax, dword [esi]
+00418dfe  8d 4d a0         lea     ecx, [ebp-0x60]
+00418e01  51               push    ecx
+00418e02  8b ce            mov     ecx, esi
+00418e04  ff 50 04         call    dword [eax+0x4]
+00418e07  8b f0            mov     esi, eax
+00418e09  8d bd 74 ff ff ff lea     edi, [ebp-0x8c]
+00418e0f  a5               movsd   dword [edi], [esi]
+00418e10  a5               movsd   dword [edi], [esi]
+00418e11  8d 45 90         lea     eax, [ebp-0x70]
+00418e14  a5               movsd   dword [edi], [esi]
+00418e15  50               push    eax
+00418e16  ff b3 18 01 00 00 push    dword [ebx+0x118]
+00418e1c  a5               movsd   dword [edi], [esi]
+00418e1d  ff 15 c0 4a 84 00 call    dword [GetWindowRect]
+00418e23  8d 45 90         lea     eax, [ebp-0x70]
+00418e26  8b cb            mov     ecx, ebx
+00418e28  50               push    eax
+00418e29  e8 0e e3 35 00   call    ?ScreenToClient@CWnd@@QBEXPAUtagRECT@@@Z
+00418e2e  33 f6            xor     esi, esi
+00418e30  8d bb 44 03 00 00 lea     edi, [ebx+0x344]
+00418e36  56               push    esi
+00418e37  8b cf            mov     ecx, edi
+00418e39  e8 38 ca 1c 00   call    0x5e5876
+00418e3e  50               push    eax
+00418e3f  8d 85 74 fa ff ff lea     eax, [ebp-0x58c]
+00418e45  50               push    eax
+00418e46  8d 45 b0         lea     eax, [ebp-0x50]
+00418e49  50               push    eax
+00418e4a  8b cf            mov     ecx, edi
+00418e4c  e8 a5 36 17 00   call    0x58c4f6
+00418e51  8b 45 b4         mov     eax, dword [ebp-0x4c]
+00418e54  01 83 f8 04 00 00 add     dword [ebx+0x4f8], eax
+00418e5a  80 bb f1 04 00 00 00 cmp     byte [ebx+0x4f1], 0x0
+00418e61  0f 84 3b 01 00 00 je      0x418fa2
+
+# Block 20 at 0x418e67
+00418e67  80 7d f1 00      cmp     byte [ebp-0xf], 0x0
+00418e6b  0f 85 31 01 00 00 jne     0x418fa2
+
+# Block 22 at 0x418e71
+00418e71  8d 45 f2         lea     eax, [ebp-0xe]
+00418e74  56               push    esi
+00418e75  50               push    eax
+00418e76  8d 4d d4         lea     ecx, [ebp-0x2c]
+00418e79  c6 45 fc 1b      mov     byte [ebp-0x4], 0x1b
+00418e7d  89 75 cc         mov     dword [ebp-0x34], esi
+00418e80  89 75 d0         mov     dword [ebp-0x30], esi
+00418e83  e8 a3 0a 27 00   call    StdVectorDword_InitializeBeginPointer
+00418e88  8b 83 98 01 00 00 mov     eax, dword [ebx+0x198]
+00418e8e  8d 8b 98 01 00 00 lea     ecx, [ebx+0x198]
+00418e94  8d 55 e0         lea     edx, [ebp-0x20]
+00418e97  c6 45 fc 1d      mov     byte [ebp-0x4], 0x1d
+00418e9b  52               push    edx
+00418e9c  ff 50 04         call    dword [eax+0x4]
+00418e9f  8b f0            mov     esi, eax
+00418ea1  8d 7d a0         lea     edi, [ebp-0x60]
+00418ea4  a5               movsd   dword [edi], [esi]
+00418ea5  a5               movsd   dword [edi], [esi]
+00418ea6  a5               movsd   dword [edi], [esi]
+00418ea7  a5               movsd   dword [edi], [esi]
+00418ea8  8d 45 f3         lea     eax, [ebp-0xd]
+00418eab  be ec 2b 92 00   mov     esi, 0x922bec
+00418eb0  50               push    eax
+00418eb1  56               push    esi
+00418eb2  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418eb5  c6 45 fc 1e      mov     byte [ebp-0x4], 0x1e
+00418eb9  e8 df af fe ff   call    NullTerminatedCharVector_ConstructFromCString
+00418ebe  8b bb 98 01 00 00 mov     edi, dword [ebx+0x198]
+00418ec4  8d 45 e4         lea     eax, [ebp-0x1c]
+00418ec7  50               push    eax
+00418ec8  6a 00            push    0x0
+00418eca  c6 45 fc 1f      mov     byte [ebp-0x4], 0x1f
+00418ece  e8 cb 25 35 00   call    CStringManager_GetOrCreateSingleton
+00418ed3  59               pop     ecx
+00418ed4  8b c8            mov     ecx, eax
+00418ed6  e8 36 28 35 00   call    CStringManager_GetStringByKey
+00418edb  50               push    eax
+00418edc  8d 8b 98 01 00 00 lea     ecx, [ebx+0x198]
+00418ee2  ff 57 50         call    dword [edi+0x50]
+00418ee5  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418ee8  c6 45 fc 20      mov     byte [ebp-0x4], 0x20
+00418eec  e8 1d af fe ff   call    NullTerminatedCharVector_DestroyStorage
+00418ef1  8d 45 f3         lea     eax, [ebp-0xd]
+00418ef4  8d 4d e4         lea     ecx, [ebp-0x1c]
+00418ef7  50               push    eax
+00418ef8  56               push    esi
+00418ef9  c6 45 fc 21      mov     byte [ebp-0x4], 0x21
+00418efd  e8 9b af fe ff   call    NullTerminatedCharVector_ConstructFromCString
+00418f02  c6 45 fc 22      mov     byte [ebp-0x4], 0x22
+00418f06  ff 15 a8 40 84 00 call    dword [GameDataSetQuery]
+00418f0c  8b 75 a8         mov     esi, dword [ebp-0x58]
+00418f0f  8b 10            mov     edx, dword [eax]
+00418f11  2b 75 a0         sub     esi, dword [ebp-0x60]
+00418f14  6a 00            push    0x0
+00418f16  6a 01            push    0x1
+00418f18  6a 20            push    0x20
+00418f1a  8b c8            mov     ecx, eax
+00418f1c  ff 52 34         call    dword [edx+0x34]
+00418f1f  50               push    eax
+00418f20  8d 45 cc         lea     eax, [ebp-0x34]
+00418f23  50               push    eax
+00418f24  8b 45 dc         mov     eax, dword [ebp-0x24]
+00418f27  56               push    esi
+00418f28  05 0d 01 00 00   add     eax, 0x10d
+00418f2d  6a 0c            push    0xc
+00418f2f  50               push    eax
+00418f30  8d 45 e4         lea     eax, [ebp-0x1c]
+00418f33  50               push    eax
+00418f34  6a 00            push    0x0
+00418f36  e8 63 25 35 00   call    CStringManager_GetOrCreateSingleton
+00418f3b  59               pop     ecx
+00418f3c  8b c8            mov     ecx, eax
+00418f3e  e8 ce 27 35 00   call    CStringManager_GetStringByKey
+00418f43  50               push    eax
+00418f44  e8 45 04 35 00   call    Text_WrapEncodedLinesByPixelWidth_Analyst
+00418f49  83 c4 24         add     esp, 0x24
+00418f4c  8b 45 ec         mov     eax, dword [ebp-0x14]
+00418f4f  8d 4d ec         lea     ecx, [ebp-0x14]
+00418f52  2b 45 e4         sub     eax, dword [ebp-0x1c]
+00418f55  c6 45 fc 23      mov     byte [ebp-0x4], 0x23
+00418f59  50               push    eax
+00418f5a  ff 75 e4         push    dword [ebp-0x1c]
+00418f5d  e8 e9 ae fe ff   call    0x403e4b
+00418f62  8b 45 cc         mov     eax, dword [ebp-0x34]
+00418f65  c6 45 fc 1d      mov     byte [ebp-0x4], 0x1d
+
+# Block 25 at 0x418f69
+00418f69  3b 45 d0         cmp     eax, dword [ebp-0x30]
+00418f6c  74 0c            je      0x418f7a
+
+# Block 24 at 0x418f6e
+00418f6e  83 83 f8 04 00 00 0c add     dword [ebx+0x4f8], 0xc
+00418f75  83 c0 0c         add     eax, 0xc
+00418f78  eb ef            jmp     0x418f69
+
+# Block 23 at 0x418f7a
+00418f7a  83 83 f8 04 00 00 1e add     dword [ebx+0x4f8], 0x1e
+00418f81  8b 83 fc 04 00 00 mov     eax, dword [ebx+0x4fc]
+00418f87  ff 35 b0 2b 92 00 push    dword [0x922bb0]
+00418f8d  8d 8b fc 04 00 00 lea     ecx, [ebx+0x4fc]
+00418f93  ff 50 14         call    dword [eax+0x14]
+00418f96  8d 4d cc         lea     ecx, [ebp-0x34]
+00418f99  c6 45 fc 19      mov     byte [ebp-0x4], 0x19
+00418f9d  e8 ff 6f ff ff   call    0x40ffa1
+
+# Block 19 at 0x418fa2
+00418fa2  8b 85 7c ff ff ff mov     eax, dword [ebp-0x84]
+00418fa8  8d 4d 84         lea     ecx, [ebp-0x7c]
+00418fab  2b 45 90         sub     eax, dword [ebp-0x70]
+00418fae  c6 83 f0 04 00 00 01 mov     byte [ebx+0x4f0], 0x1
+00418fb5  c6 45 fc 03      mov     byte [ebp-0x4], 0x3
+00418fb9  2b 85 74 ff ff ff sub     eax, dword [ebp-0x8c]
+00418fbf  03 45 98         add     eax, dword [ebp-0x68]
+00418fc2  89 83 f4 04 00 00 mov     dword [ebx+0x4f4], eax
+00418fc8  e8 d4 6f ff ff   call    0x40ffa1
+00418fcd  c7 45 fc 24 00 00 00 mov     dword [ebp-0x4], 0x24
+
+# Block 21 at 0x418fd4
+00418fd4  8d 4d c0         lea     ecx, [ebp-0x40]
+00418fd7  e8 32 ae fe ff   call    NullTerminatedCharVector_DestroyStorage
+00418fdc  eb 0c            jmp     0x418fea
+
+# Block 4 at 0x418fde
+00418fde  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+00418fe2  8d 4d c0         lea     ecx, [ebp-0x40]
+00418fe5  e8 6e ac fe ff   call    0x403c58
+
+# Block 2 at 0x418fea
+00418fea  8b 4d f4         mov     ecx, dword [ebp-0xc]
+00418fed  5f               pop     edi
+00418fee  5e               pop     esi
+00418fef  5b               pop     ebx
+00418ff0  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+00418ff7  c9               leave
+00418ff8  c3               retn
+

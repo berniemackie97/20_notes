@@ -1,0 +1,268 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/graphic.dll.bndb
+
+# Block 1 at 0x10015710
+10015710  83 ec 28         sub     esp, 0x28  ; Active clean-client text draw implementation used by ShowStringCommon because the Arabic-layout flag remains zero. Null text returns {0,0}. Enters shared prepare mode 9, forces text/corner alpha opaque when antialiasEnabled==0, and batches glyphs. A missing glyph (0xFFFF0000) retries font-record index 0, the default record created by GameFontCreate; when that is the same record or also misses, advance is the primary C3Font.lineHeightPixels. Newline resets X and advances Y by nominalPixelHeight + nominalPixelHeight/4. Returns {maximumLineWidth, newlineAdvanceTotal + nominalPixelHeight}.
+10015713  53               push    ebx
+10015714  55               push    ebp
+10015715  56               push    esi
+10015716  57               push    edi
+10015717  8b 7c 24 48      mov     edi, dword [esp+0x48]
+1001571b  33 db            xor     ebx, ebx
+1001571d  33 f6            xor     esi, esi
+1001571f  89 5c 24 20      mov     dword [esp+0x20], ebx
+10015723  85 ff            test    edi, edi
+10015725  89 74 24 24      mov     dword [esp+0x24], esi
+10015729  75 0c            jne     0x10015737
+
+# Block 3 at 0x1001572b
+1001572b  8b d6            mov     edx, esi
+1001572d  5f               pop     edi
+1001572e  5e               pop     esi
+1001572f  8b c3            mov     eax, ebx
+10015731  5d               pop     ebp
+10015732  5b               pop     ebx
+10015733  83 c4 28         add     esp, 0x28
+10015736  c3               retn
+
+# Block 2 at 0x10015737
+10015737  a1 ec ac 04 10   mov     eax, dword [0x1004acec]
+1001573c  bd 09 00 00 00   mov     ebp, 0x9
+10015741  3b c5            cmp     eax, ebp
+10015743  74 0c            je      0x10015751
+
+# Block 5 at 0x10015745
+10015745  ff 15 24 90 03 10 call    dword [?Font_Prepare@@YAXXZ]
+1001574b  89 2d ec ac 04 10 mov     dword [0x1004acec], ebp
+
+# Block 4 at 0x10015751
+10015751  8b 44 24 54      mov     eax, dword [esp+0x54]
+10015755  85 c0            test    eax, eax
+10015757  75 19            jne     0x10015772
+
+# Block 7 at 0x10015759
+10015759  8b 6c 24 44      mov     ebp, dword [esp+0x44]
+1001575d  8b 54 24 5c      mov     edx, dword [esp+0x5c]
+10015761  b9 00 00 00 ff   mov     ecx, 0xff000000
+10015766  0b e9            or      ebp, ecx
+10015768  0b d1            or      edx, ecx
+1001576a  89 6c 24 44      mov     dword [esp+0x44], ebp
+1001576e  89 54 24 5c      mov     dword [esp+0x5c], edx
+
+# Block 6 at 0x10015772
+10015772  8b 4c 24 4c      mov     ecx, dword [esp+0x4c]
+10015776  50               push    eax
+10015777  8b 44 24 54      mov     eax, dword [esp+0x54]
+1001577b  50               push    eax
+1001577c  51               push    ecx
+1001577d  e8 7e ef ff ff   call    FontCache_GetOrCreateFontRecord
+10015782  8b e8            mov     ebp, eax
+10015784  83 c4 0c         add     esp, 0xc
+10015787  85 ed            test    ebp, ebp
+10015789  75 0c            jne     0x10015797
+
+# Block 9 at 0x1001578b
+1001578b  8b d6            mov     edx, esi
+1001578d  5f               pop     edi
+1001578e  5e               pop     esi
+1001578f  8b c3            mov     eax, ebx
+10015791  5d               pop     ebp
+10015792  5b               pop     ebx
+10015793  83 c4 28         add     esp, 0x28
+10015796  c3               retn
+
+# Block 8 at 0x10015797
+10015797  83 c9 ff         or      ecx, 0xffffffff
+1001579a  33 c0            xor     eax, eax
+1001579c  f2 ae            repne scasb byte [edi]
+1001579e  8b 5c 24 3c      mov     ebx, dword [esp+0x3c]
+100157a2  f7 d1            not     ecx
+100157a4  49               dec     ecx
+100157a5  89 5c 24 4c      mov     dword [esp+0x4c], ebx
+100157a9  8b f1            mov     esi, ecx
+100157ab  89 74 24 1c      mov     dword [esp+0x1c], esi
+100157af  ff 15 1c 90 03 10 call    dword [?Font_DrawBegin@@YAXXZ]
+100157b5  33 ff            xor     edi, edi
+100157b7  85 f6            test    esi, esi
+100157b9  89 7c 24 10      mov     dword [esp+0x10], edi
+100157bd  0f 8e 7e 01 00 00 jle     0x10015941
+
+# Block 11 at 0x100157c3
+100157c3  8b 74 24 60      mov     esi, dword [esp+0x60]
+
+# Block 27 at 0x100157c7
+100157c7  8b 4c 24 48      mov     ecx, dword [esp+0x48]
+100157cb  8a 04 0f         mov     al, byte [edi+ecx]
+100157ce  3c 0a            cmp     al, 0xa
+100157d0  75 3f            jne     0x10015811
+
+# Block 15 at 0x100157d2
+100157d2  8b 44 24 4c      mov     eax, dword [esp+0x4c]
+100157d6  8b 4c 24 20      mov     ecx, dword [esp+0x20]
+100157da  2b c3            sub     eax, ebx
+100157dc  3b c8            cmp     ecx, eax
+100157de  7d 04            jge     0x100157e4
+
+# Block 21 at 0x100157e0
+100157e0  89 44 24 20      mov     dword [esp+0x20], eax
+
+# Block 20 at 0x100157e4
+100157e4  8b 4d 00         mov     ecx, dword [ebp]
+100157e7  89 5c 24 4c      mov     dword [esp+0x4c], ebx
+100157eb  8b c1            mov     eax, ecx
+100157ed  99               cdq
+100157ee  83 e2 03         and     edx, 0x3
+100157f1  03 c2            add     eax, edx
+100157f3  8b 54 24 40      mov     edx, dword [esp+0x40]
+100157f7  c1 f8 02         sar     eax, 0x2
+100157fa  03 c1            add     eax, ecx
+100157fc  8b 4c 24 24      mov     ecx, dword [esp+0x24]
+10015800  03 d0            add     edx, eax
+10015802  03 c8            add     ecx, eax
+10015804  89 54 24 40      mov     dword [esp+0x40], edx
+10015808  89 4c 24 24      mov     dword [esp+0x24], ecx
+1001580c  e9 1f 01 00 00   jmp     0x10015930
+
+# Block 14 at 0x10015811
+10015811  db 44 24 40      fild    st0, dword [esp+0x40]
+10015815  8a 54 0f 01      mov     dl, byte [edi+ecx+0x1]
+10015819  8b 4e 04         mov     ecx, dword [esi+0x4]
+1001581c  88 54 24 61      mov     byte [esp+0x61], dl
+10015820  8b 16            mov     edx, dword [esi]
+10015822  d9 5c 24 14      fstp    dword [esp+0x14], st0
+10015826  db 44 24 4c      fild    st0, dword [esp+0x4c]
+1001582a  8b 7c 24 14      mov     edi, dword [esp+0x14]
+1001582e  51               push    ecx
+1001582f  8b 4c 24 60      mov     ecx, dword [esp+0x60]
+10015833  52               push    edx
+10015834  8b 54 24 60      mov     edx, dword [esp+0x60]
+10015838  51               push    ecx
+10015839  d9 5c 24 24      fstp    dword [esp+0x24], st0
+1001583d  8b 5c 24 24      mov     ebx, dword [esp+0x24]
+10015841  52               push    edx
+10015842  8b 54 24 54      mov     edx, dword [esp+0x54]
+10015846  8d 4c 24 70      lea     ecx, [esp+0x70]
+1001584a  51               push    ecx
+1001584b  88 44 24 74      mov     byte [esp+0x74], al
+1001584f  8b 85 08 01 00 00 mov     eax, dword [ebp+0x108]
+10015855  52               push    edx
+10015856  57               push    edi
+10015857  53               push    ebx
+10015858  50               push    eax
+10015859  ff 15 20 90 03 10 call    dword [?Font_Draw@@YAHPAUC3Font@@MMKPBDW4RENDER_TEXT_STYLE@@KJJ@Z]
+1001585f  83 c4 24         add     esp, 0x24
+10015862  3d 00 00 ff ff   cmp     eax, 0xffff0000
+10015867  0f 85 95 00 00 00 jne     0x10015902
+
+# Block 19 at 0x1001586d
+1001586d  a1 fc ac 04 10   mov     eax, dword [0x1004acfc]
+10015872  8b 0d 00 ad 04 10 mov     ecx, dword [0x1004ad00]
+10015878  8b 15 04 ad 04 10 mov     edx, dword [0x1004ad04]
+1001587e  89 44 24 28      mov     dword [esp+0x28], eax
+10015882  a1 08 ad 04 10   mov     eax, dword [0x1004ad08]
+10015887  89 4c 24 2c      mov     dword [esp+0x2c], ecx
+1001588b  6a 00            push    0x0
+1001588d  8d 4c 24 2c      lea     ecx, [esp+0x2c]
+10015891  89 54 24 34      mov     dword [esp+0x34], edx
+10015895  89 44 24 38      mov     dword [esp+0x38], eax
+10015899  e8 42 42 00 00   call    0x10019ae0
+1001589e  8b 4c 24 54      mov     ecx, dword [esp+0x54]
+100158a2  8b 44 24 30      mov     eax, dword [esp+0x30]
+100158a6  8b 54 24 50      mov     edx, dword [esp+0x50]
+100158aa  51               push    ecx
+100158ab  8b 08            mov     ecx, dword [eax]
+100158ad  52               push    edx
+100158ae  83 c1 04         add     ecx, 0x4
+100158b1  51               push    ecx
+100158b2  e8 49 ee ff ff   call    FontCache_GetOrCreateFontRecord
+100158b7  83 c4 0c         add     esp, 0xc
+100158ba  85 c0            test    eax, eax
+100158bc  74 38            je      0x100158f6
+
+# Block 25 at 0x100158be
+100158be  3b c5            cmp     eax, ebp
+100158c0  74 34            je      0x100158f6
+
+# Block 28 at 0x100158c2
+100158c2  8b 56 04         mov     edx, dword [esi+0x4]
+100158c5  8b 0e            mov     ecx, dword [esi]
+100158c7  8b 80 08 01 00 00 mov     eax, dword [eax+0x108]
+100158cd  52               push    edx
+100158ce  8b 54 24 60      mov     edx, dword [esp+0x60]
+100158d2  51               push    ecx
+100158d3  8b 4c 24 60      mov     ecx, dword [esp+0x60]
+100158d7  52               push    edx
+100158d8  51               push    ecx
+100158d9  8b 4c 24 54      mov     ecx, dword [esp+0x54]
+100158dd  8d 54 24 70      lea     edx, [esp+0x70]
+100158e1  52               push    edx
+100158e2  51               push    ecx
+100158e3  57               push    edi
+100158e4  53               push    ebx
+100158e5  50               push    eax
+100158e6  ff 15 20 90 03 10 call    dword [?Font_Draw@@YAHPAUC3Font@@MMKPBDW4RENDER_TEXT_STYLE@@KJJ@Z]
+100158ec  83 c4 24         add     esp, 0x24
+100158ef  3d 00 00 ff ff   cmp     eax, 0xffff0000
+100158f4  75 0c            jne     0x10015902
+
+# Block 24 at 0x100158f6
+100158f6  8b 95 08 01 00 00 mov     edx, dword [ebp+0x108]
+100158fc  8b 82 08 01 00 00 mov     eax, dword [edx+0x108]
+
+# Block 18 at 0x10015902
+10015902  8b 4c 24 4c      mov     ecx, dword [esp+0x4c]
+10015906  03 c8            add     ecx, eax
+10015908  8b 44 24 60      mov     eax, dword [esp+0x60]
+1001590c  89 4c 24 4c      mov     dword [esp+0x4c], ecx
+10015910  8b 0d 34 90 03 10 mov     ecx, dword [0x10039034]
+10015916  50               push    eax
+10015917  8b 11            mov     edx, dword [ecx]
+10015919  52               push    edx
+1001591a  ff 15 a0 92 03 10 call    dword [IsDBCSLeadByteEx]
+10015920  85 c0            test    eax, eax
+10015922  74 04            je      0x10015928
+
+# Block 23 at 0x10015924
+10015924  ff 44 24 10      inc     dword [esp+0x10]
+
+# Block 22 at 0x10015928
+10015928  8b 5c 24 3c      mov     ebx, dword [esp+0x3c]
+1001592c  8b 7c 24 10      mov     edi, dword [esp+0x10]
+
+# Block 26 at 0x10015930
+10015930  8b 44 24 1c      mov     eax, dword [esp+0x1c]
+10015934  47               inc     edi
+10015935  3b f8            cmp     edi, eax
+10015937  89 7c 24 10      mov     dword [esp+0x10], edi
+1001593b  0f 8c 86 fe ff ff jl      0x100157c7
+
+# Block 10 at 0x10015941
+10015941  8b 44 24 4c      mov     eax, dword [esp+0x4c]
+10015945  8b 4c 24 20      mov     ecx, dword [esp+0x20]
+10015949  2b c3            sub     eax, ebx
+1001594b  3b c8            cmp     ecx, eax
+1001594d  7d 04            jge     0x10015953
+
+# Block 13 at 0x1001594f
+1001594f  89 44 24 20      mov     dword [esp+0x20], eax
+
+# Block 12 at 0x10015953
+10015953  8b 74 24 24      mov     esi, dword [esp+0x24]
+10015957  8b 4d 00         mov     ecx, dword [ebp]
+1001595a  a0 28 ad 04 10   mov     al, byte [0x1004ad28]
+1001595f  03 f1            add     esi, ecx
+10015961  84 c0            test    al, al
+10015963  75 06            jne     0x1001596b
+
+# Block 17 at 0x10015965
+10015965  ff 15 28 90 03 10 call    dword [?Font_DrawEnd@@YA_NXZ]
+
+# Block 16 at 0x1001596b
+1001596b  8b 44 24 20      mov     eax, dword [esp+0x20]
+1001596f  8b d6            mov     edx, esi
+10015971  5f               pop     edi
+10015972  5e               pop     esi
+10015973  5d               pop     ebp
+10015974  5b               pop     ebx
+10015975  83 c4 28         add     esp, 0x28
+10015978  c3               retn
+

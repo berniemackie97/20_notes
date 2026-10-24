@@ -1,0 +1,312 @@
+{
+  "captures": [
+    {
+      "capture": "0x4189d2.txt",
+      "module": "Conquer.exe",
+      "instructions": 485,
+      "sha256": "a3b5631b66324b302ac7f76b9aff420b0e8c3c494e4c7b9b9dd35d1aad43b3e8"
+    },
+    {
+      "capture": "0x58bc70.txt",
+      "module": "Conquer.exe",
+      "instructions": 127,
+      "sha256": "a261968180f2d818f43f054ac7bb651e11a5c1e6339640e98e3f576e00d194bc"
+    },
+    {
+      "capture": "0x5dcc64.txt",
+      "module": "Conquer.exe",
+      "instructions": 87,
+      "sha256": "b08aba965d21356f90f7fb898b1486586f427e7402c4b2ae011ad7af4f725fa6"
+    },
+    {
+      "capture": "0x6577bf.txt",
+      "module": "Conquer.exe",
+      "instructions": 22,
+      "sha256": "df09e566051bb807bfc373186ff2e5b0765774c7036ca3c9b81135ddbe8298ee"
+    },
+    {
+      "capture": "0x6728dc.txt",
+      "module": "Conquer.exe",
+      "instructions": 22,
+      "sha256": "702760373e79e18321410020e7cd8b002bc53a1d6c7dcf5b0fd8fd41986b0129"
+    },
+    {
+      "capture": "0x6757c7.txt",
+      "module": "Conquer.exe",
+      "instructions": 60,
+      "sha256": "436b9cc9e54202e4c827cc05f76082c9518f0ef501aca9021636ed24c9928f6d"
+    },
+    {
+      "capture": "0x6bb180.txt",
+      "module": "Conquer.exe",
+      "instructions": 44,
+      "sha256": "ab3413e630c7cf22fac8e91d0fd6edeef34a28d15061cab26cc8efcef8f5d7b4"
+    },
+    {
+      "capture": "0x6bb382.txt",
+      "module": "Conquer.exe",
+      "instructions": 14,
+      "sha256": "317cc287a9ebb7332e0207faef4b4b9a7954659d39801b294c7a7d4cf3418c91"
+    },
+    {
+      "capture": "0x6bb3a8.txt",
+      "module": "Conquer.exe",
+      "instructions": 2,
+      "sha256": "72963bc8eed11db8d5417b86dce14290450bb69952eb1312e07316dc232195d8"
+    },
+    {
+      "capture": "0x6bb9ca.txt",
+      "module": "Conquer.exe",
+      "instructions": 152,
+      "sha256": "71819990cd466a3a5a7cf4d3e7f6c34c0d32e0f47028a1806df0635147079772"
+    },
+    {
+      "capture": "0x6defe5.txt",
+      "module": "Conquer.exe",
+      "instructions": 36,
+      "sha256": "ba477e2fcfbf6f8fc15bf82e07430dbe7a4e775097918bd0b304a064fae31020"
+    },
+    {
+      "capture": "0x6df0e0.txt",
+      "module": "Conquer.exe",
+      "instructions": 44,
+      "sha256": "a64e3d017d11393efdeeabb57bd7e8c4ad68d0b5d2c40f322f00f07ce5c1a5f5"
+    },
+    {
+      "capture": "0x6df281.txt",
+      "module": "Conquer.exe",
+      "instructions": 14,
+      "sha256": "5a8354708508c0ea70c179d42535153213c98b5158fe168ec105de3b2d2241bc"
+    },
+    {
+      "capture": "0x6df2ae.txt",
+      "module": "Conquer.exe",
+      "instructions": 36,
+      "sha256": "2fbb3c6ca26f21689386926d3ef26279940532e5ca74f0a90a2209a62bc48cac"
+    },
+    {
+      "capture": "0x6e2429.txt",
+      "module": "Conquer.exe",
+      "instructions": 21,
+      "sha256": "c989b43d66328ad37221173d9bb827e4d800cdd3147f66bc21b905f33940204d"
+    },
+    {
+      "capture": "0x730d6c.txt",
+      "module": "Conquer.exe",
+      "instructions": 118,
+      "sha256": "37812d49db4082cebaa8308062a838a6319be9189d0416f1761765a1d387ca56"
+    },
+    {
+      "capture": "0x730fbc.txt",
+      "module": "Conquer.exe",
+      "instructions": 33,
+      "sha256": "3fa2a47ff448ea1e04db4546e346fa1937b1c2da0fea8033c88fd076d8b8a175"
+    },
+    {
+      "capture": "0x731122.txt",
+      "module": "Conquer.exe",
+      "instructions": 30,
+      "sha256": "22481b9a4283b6077cff153db87148a5be355ae8b18328b847d3c81d2de0075c"
+    },
+    {
+      "capture": "0x731328.txt",
+      "module": "Conquer.exe",
+      "instructions": 36,
+      "sha256": "38165474a37da59d00300659ebdf2c5862fb28ce0286b6a523d89abdb472f2af"
+    },
+    {
+      "capture": "0x731371.txt",
+      "module": "Conquer.exe",
+      "instructions": 1038,
+      "sha256": "27252eb34d10f2ae9c53da2869505a2657d511d939bee5f2682c077cfaf765e3"
+    },
+    {
+      "capture": "0x75b006.txt",
+      "module": "Conquer.exe",
+      "instructions": 12,
+      "sha256": "c49f342e1469b87512e982c130586e0f70b8d05de8603369d58e6f5dd9c39927"
+    },
+    {
+      "capture": "0x75b029.txt",
+      "module": "Conquer.exe",
+      "instructions": 18,
+      "sha256": "2a833f418af3a07d0bb5feb9a0e4f2a0450e587e594e1fc031481a2dd9fbaa00"
+    },
+    {
+      "capture": "0x764197.txt",
+      "module": "Conquer.exe",
+      "instructions": 30,
+      "sha256": "f75ebe83aba3d09e3f8e452f7ea76d679ead15c21510002882d60baa79846400"
+    },
+    {
+      "capture": "0x764253.txt",
+      "module": "Conquer.exe",
+      "instructions": 12,
+      "sha256": "528998044a704dc292efe1341594a2a8b615f42260d2a12162a4ab11ddd3fdf9"
+    },
+    {
+      "capture": "0x764276.txt",
+      "module": "Conquer.exe",
+      "instructions": 512,
+      "sha256": "4475a33123ef1121ac03d2f4974aa961be195f2ae8bc880e81b5ea92b83257bf"
+    },
+    {
+      "capture": "0x76a2d0.txt",
+      "module": "Conquer.exe",
+      "instructions": 82,
+      "sha256": "837ee32220d08949f65c458c85d0a98d97fdc6d8da11c624dd228c56e2c3bf6d"
+    },
+    {
+      "capture": "0x76a714.txt",
+      "module": "Conquer.exe",
+      "instructions": 19,
+      "sha256": "fd734789470d93b4cdbcac4d153857286ab69861c7b51068146ae951ae7e3353"
+    },
+    {
+      "capture": "0x771f3a.txt",
+      "module": "Conquer.exe",
+      "instructions": 10,
+      "sha256": "e825a47e889fcb8fe39b833e796bda28f6a387df88724779e55646b040a53b69"
+    },
+    {
+      "capture": "0x771f57.txt",
+      "module": "Conquer.exe",
+      "instructions": 46,
+      "sha256": "519bdaed96c36813d63e6b59b480c196c5a9127841d64966a82996d7f19e3ded"
+    },
+    {
+      "capture": "0x771fc0.txt",
+      "module": "Conquer.exe",
+      "instructions": 3,
+      "sha256": "0699f6e71fd5fd90460f91b0699aea10f3bb25ceea15eec8f0fd23ed1aa2ee0a"
+    },
+    {
+      "capture": "CFlashControl_SetVariable.txt",
+      "module": "Conquer.exe",
+      "instructions": 11,
+      "sha256": "502c7c9e3a7e8d38c41f96b3aa722bd745bbc377d6881095b962041ab0b4de85"
+    },
+    {
+      "capture": "CGameSocket_CloseAndReset.txt",
+      "module": "Conquer.exe",
+      "instructions": 43,
+      "sha256": "bd648f25cedc4ff7826310240ae9d5e191abe500b888e9bad3952b8a527e017b"
+    },
+    {
+      "capture": "CGameSocket_ReceiveMsg.txt",
+      "module": "Conquer.exe",
+      "instructions": 305,
+      "sha256": "0879db92a801d1b9352e3ce00d62a7cb9681959e6e146b4a86333a3c3bf32531"
+    },
+    {
+      "capture": "CGameSocket_SendBufferedPacket.txt",
+      "module": "Conquer.exe",
+      "instructions": 162,
+      "sha256": "93c16915d7d8b49439d8b3209a5b029ffcbf973a6499c5667c9abffd954d32e0"
+    },
+    {
+      "capture": "CLoginFlashDlg_SetFlashVariableAndDispatch.txt",
+      "module": "Conquer.exe",
+      "instructions": 76,
+      "sha256": "9a2a6cee4d2801ed430f6eb0b80621566a76f20cbf16e27fda20726043f21bb7"
+    },
+    {
+      "capture": "CLoginFlashDlg_ShowLoginErrorText.txt",
+      "module": "Conquer.exe",
+      "instructions": 14,
+      "sha256": "e8b384ffc4bc1e07673052eb21e658446823f7fc5884b040e9a5ab3ff7fd51fc"
+    },
+    {
+      "capture": "CMsgAction_Ctor.txt",
+      "module": "Conquer.exe",
+      "instructions": 30,
+      "sha256": "a5c7dccea256db30d666c7b09890a04e44e94abe62e95a87b180488cac936d79"
+    },
+    {
+      "capture": "CMsgAction__Create.txt",
+      "module": "Conquer.exe",
+      "instructions": 42,
+      "sha256": "d6c1ff69d44560ee07b37af667ce1b36aa65d59e7eef7d68bd379999e4ee6e08"
+    },
+    {
+      "capture": "CNetMsg__GetSize.txt",
+      "module": "Conquer.exe",
+      "instructions": 3,
+      "sha256": "f546b2b81c9251ad5372714edd99c7c2773406d726f4bf382323f682cb63d7b3"
+    },
+    {
+      "capture": "CNetMsg__GetType.txt",
+      "module": "Conquer.exe",
+      "instructions": 3,
+      "sha256": "084a779692a6365daa66c0245eed30f6bc23b8d19002026084dad4c58b0ea96d"
+    },
+    {
+      "capture": "CNetMsg__ProcessMsg.txt",
+      "module": "Conquer.exe",
+      "instructions": 203,
+      "sha256": "741ebb79d8545ce5cb1d9e29ba354de5a79f7202265732ccbed6f1c040f3ddc3"
+    },
+    {
+      "capture": "CNetMsg__ProcessMsg_Dispatch.txt",
+      "module": "Conquer.exe",
+      "instructions": 2018,
+      "sha256": "9052f1f1c38d43d904f321e3e2343d635c9efe22a46bddc5bed11f0edfada1c7"
+    },
+    {
+      "capture": "CNetMsg__Send.txt",
+      "module": "Conquer.exe",
+      "instructions": 26,
+      "sha256": "a53126374cf3db7ba88b7a4acaefa2b650a83e4cc739f762fd2da74d56025349"
+    },
+    {
+      "capture": "CRole_SetName.txt",
+      "module": "Conquer.exe",
+      "instructions": 22,
+      "sha256": "19b49031eed5cd2b505ccffb00d709c1f59a7a750159733ef4e197e535aaaf84"
+    },
+    {
+      "capture": "CSilentInfo_ReloadDataFile.txt",
+      "module": "Conquer.exe",
+      "instructions": 128,
+      "sha256": "e9ff1e606183c9ab3559966ab40e600b98eb8c83f4346379cddf5ded0ae9b3dc"
+    },
+    {
+      "capture": "CSilentInfo__Ctor.txt",
+      "module": "Conquer.exe",
+      "instructions": 21,
+      "sha256": "08aab7c369b280de91100bdcd9db8596385b12629b30adb0f41c4c6eda9c8859"
+    },
+    {
+      "capture": "CharBuffer_AssignRange.txt",
+      "module": "Conquer.exe",
+      "instructions": 48,
+      "sha256": "9a0279a285c92b7feab78fb32fe17534edd97f5c91a3ea3df35b050f353d89d2"
+    },
+    {
+      "capture": "c3-0x10003590.txt",
+      "module": "C3_CORE_DLL.dll",
+      "instructions": 581,
+      "sha256": "db2c99ca190def4cf21d281c3638342b0979a6e833180a65c7ad561317528564"
+    },
+    {
+      "capture": "c3-0x10004570.txt",
+      "module": "C3_CORE_DLL.dll",
+      "instructions": 85,
+      "sha256": "2ba16fb6548430cfd3a7ca701706fd8406ac0f0bc11d60abc958c9f571b24214"
+    },
+    {
+      "capture": "graphic-0x10014c50.txt",
+      "module": "graphic.dll",
+      "instructions": 306,
+      "sha256": "e886470030e4c2b6827df01927c693b867ce74ec1e7ca5482b1c5a4ee675d890"
+    },
+    {
+      "capture": "graphic-0x10015710.txt",
+      "module": "graphic.dll",
+      "instructions": 210,
+      "sha256": "46557486c3f17c615b8c8f32c2aaf60acfd840e7c17494a6363a0c5036b19018"
+    }
+  ],
+  "instruction_count": 7502,
+  "differences": []
+}

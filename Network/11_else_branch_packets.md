@@ -139,12 +139,13 @@ Buddy/trade confirmation. Process handler handles trade confirmation between bud
 
 Buddy update with item/position data. Updates buddy entity position and associated item information.
 
-### CMsgMagicEffect (Type 2075)
-**Create**: `CMsgMagicEffect__Create` @ `0x75C570`
-**Process**: `CMsgMagicEffect_Process` @ `0x75C5F9`
+### CMsgStatusDetail2075 (Type 2075) — corrected 2026-10-15
+**Create**: `0x75C570`
+**Process**: `CMsgStatusDetail2075__Process` @ `0x75C5F9` (was "CMsgMagicEffect")
 **Alloc**: `operator new(0x408u)`
 
-Extended magic effect message. Process handler applies magic effect bitset operations on entities, setting/clearing effect flags.
+Per-status detail records (status index, op, flag, duration, values) driving status handlers and replacing the
+secondary status mask. Layout and handlers: [movement eligibility](../Server/movement-eligibility-5517.md#status-storage-and-sync-client-proven).
 
 ### CMsgContainerInfo (Type 2101)
 **Create**: `CMsgContainerInfo__Create` @ `0x7022AF`

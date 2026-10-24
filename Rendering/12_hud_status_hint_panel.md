@@ -20,7 +20,7 @@ it makes no claim that a managed implementation has been updated or audited.
 `pFontSetInfo` against `MyShellDlg.cpp:0x1842` and the panel is skipped. Text uses that record's
 `guiFontFaceName` (`+0x10D`), `antialiasEnabled` (`+0x08`), `defaultRenderTextStyle` (`+0x04`),
 `defaultCornerColorArgb` (`+0x214`) and `defaultCornerOffsetX` (`+0x218`), with the pixel height
-from `ClientFontSizeSettings_GetNormalHeightPixels`.
+from `ClientFontSizeSettings_GetNormalHeightPixels` for category 8. Category 9's learned-magic helper instead receives fixed height12 at `0x5BA6A9..0x5BA6EE`.
 
 For category 8, the `Dialog21` lookup is at `0x5BA866`, measurement at `0x5BA89B`,
 and the null-resource test at `0x5BA8A4` / `0x5BA8AD`. A null resource suppresses both
@@ -355,8 +355,7 @@ The active-flag query appears twice in that stretch — once to route the drag t
 immediately before the gate — so a reader who only sees the second occurrence would miss the
 suppression behaviour.
 
-Category `0x6A` (106) is set by the dispatcher but no handler for it was observed in the render
-routine. Unresolved.
+**GFX-UI-009 correction:** the native subtract/compare dispatch at `0x5B9C87..0x5B9CB8` does handle `0x6A` (106), the weapon-swap string branch. Category `0x38` (56) instead constructs a dance magic for the shared helper. The earlier absence/weapon-swap labels were wrong; unrelated-category details remain outside this slice.
 
 ### Separate mechanism: per-control tooltips
 
@@ -715,10 +714,7 @@ the independent HWND or its initialized anchor. Category8 dispatch itself still 
 
 ## Not yet enumerated
 
-Categories 9 and 56 (weapon-swap tip via `CStringManager` keys `STR_SWAP_MAJOR_WEAPONTIP` /
-`STR_SWAP_SUB_WEAPONTIP`, selected by `sub_6da8b2(CHero)`) and the `STR_WRAPSHOP_TRY_TIP` branch
-carry their own placement arithmetic which has **not** been walked instruction by instruction.
-Do not assume they follow the category 8 rule.
+Category 9 and its zero-ID `STR_WRAPSHOP_TRY_TIP` branch are now closed in [GFX-UI-009](21_main_hud_magic_status_hint_native_contract.md). They do not use the category-8 placement rule. Weapon-swap belongs to category106 (`0x6A`), not56 (`0x38`); its separate full contract is outside this category-9 slice.
 
 ## Managed boundary
 
@@ -842,3 +838,11 @@ and, when enabled at Init, the existing font calibration model for the other chi
 Formulas are given rather than invented universal pixel constants. Live Windows/GPU
 output was not observed. No other category or separate control-tooltip contract is
 claimed closed by this slice.
+
+## GFX-UI-009 category-9 closure
+
+See [21_main_hud_magic_status_hint_native_contract.md](21_main_hud_magic_status_hint_native_contract.md) for full-DWORD learned-type lookup, exact helper ABI and embedded CMagic row, six text groups, original wrapping/layout arithmetic, optional Dialog21 plus border, zero-ID CDlgXp flags, retail identities and read-only managed integration audit. The learned-magic path continues text when Dialog21 is missing; it must not inherit category8's resource-null suppression. Raw captures/replays are in [the evidence bundle](../../10_work/docs/evidence/gfx-ui-009-main-hud-magic-status-hint-5517/README.md). Documentation and annotations only; no production implementation.
+
+## HUD-010 additional category closure (2026-10-10)
+
+[Rendering/22](22_main_hud_dance_weapon_swap_status_hint_native_contract.md) closes the remaining category `0x38` dance and `0x6A` weapon-swap branches. Dance synthesizes static Magic(type=parameter, level=0, experience=0); the main quickbar parameter3 has no retail record and draws nothing. Weapon swap tests hero DWORD+0xF1C exactly1, then enqueues one whole localized string for deferred rendering. Its default Dialog21 crop is100×100, with padding and no outline; missing art still permits text. Do not apply category8's resource suppression or sizing to that branch. Category8 findings above are unchanged.

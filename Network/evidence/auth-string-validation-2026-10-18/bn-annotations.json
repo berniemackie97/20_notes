@@ -1,0 +1,281 @@
+{
+  "annotations": [
+    {
+      "address": "0x771f7f",
+      "old": "",
+      "comment": "2026-10-18 auth malformed-list closure: count is only an index gate, not exact-count validation. Length walk 0x771F8D/97 never reads the region capacity at list+8 or packet size. Missing index returns0 with zeroed destination; zero length returns1. Previous over-capacity entries are still skipped by their full u8 length. 1006 indices0..2 remain within zeroed packet storage (latest successful copy end packet+639); 1004 index3 can copy through packet+1048 (25 bytes beyond 1024 storage). Do not call all truncated lists safe or globally rejected.",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x771f7f\", \"comment\": \"2026-10-18 auth malformed-list closure: count is only an index gate, not exact-count validation. Length walk 0x771F8D/97 never reads the region capacity at list+8 or packet size. Missing index returns0 with zeroed destination; zero length returns1. Previous over-capacity entries are still skipped by their full u8 length. 1006 indices0..2 remain within zeroed packet storage (latest successful copy end packet+639); 1004 index3 can copy through packet+1048 (25 bytes beyond 1024 storage). Do not call all truncated lists safe or globally rejected.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x771f7f\", \"comment\": \"2026-10-18 auth malformed-list closure: count is only an index gate, not exact-count validation. Length walk 0x771F8D/97 never reads the region capacity at list+8 or packet size. Missing index returns0 with zeroed destination; zero length returns1. Previous over-capacity entries are still skipped by their full u8 length. 1006 indices0..2 remain within zeroed packet storage (latest successful copy end packet+639); 1004 index3 can copy through packet+1048 (25 bytes beyond 1024 storage). Do not call all truncated lists safe or globally rejected.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x7313cf",
+      "old": "",
+      "comment": "2026-10-18: all four TryGetEntry return values are ignored. No exact count/trailing-data check. Sender/recipient undergo byte substring replacements; recipient and message then call 0x6BB382 (conditional ACP filter). Suffix payload is unused for login-channel control. At channel0x835 only resulting NUL-terminated message is enqueued0x731945; missing/empty message reaches ordinary refusal handling, not a parser-error branch. Entry lengths, including ignored strings, still determine message position.",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x7313cf\", \"comment\": \"2026-10-18: all four TryGetEntry return values are ignored. No exact count/trailing-data check. Sender/recipient undergo byte substring replacements; recipient and message then call 0x6BB382 (conditional ACP filter). Suffix payload is unused for login-channel control. At channel0x835 only resulting NUL-terminated message is enqueued0x731945; missing/empty message reaches ordinary refusal handling, not a parser-error branch. Entry lengths, including ignored strings, still determine message position.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x7313cf\", \"comment\": \"2026-10-18: all four TryGetEntry return values are ignored. No exact count/trailing-data check. Sender/recipient undergo byte substring replacements; recipient and message then call 0x6BB382 (conditional ACP filter). Suffix payload is unused for login-channel control. At channel0x835 only resulting NUL-terminated message is enqueued0x731945; missing/empty message reaches ordinary refusal handling, not a parser-error branch. Entry lengths, including ignored strings, still determine message position.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x6bba2f",
+      "old": "",
+      "comment": "2026-10-18: MultiByteToWideChar via IAT0x84411C with CodePage=0 (system ACP), flags=0, cbMultiByte=-1. Second conversion0x6BBA8A; reverse WideCharToMultiByte through0x844118 at0x6BBB0B/1C also CP0 flags0, null default/used-default pointers. No MB_ERR_INVALID_CHARS and no fixed1252. Receiver0x6BB382 conditionally bypasses for hero predicate0x6757C7. MsgTalk calls on recipient and message before login channel dispatch; boolean ignored.",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x6bba2f\", \"comment\": \"2026-10-18: MultiByteToWideChar via IAT0x84411C with CodePage=0 (system ACP), flags=0, cbMultiByte=-1. Second conversion0x6BBA8A; reverse WideCharToMultiByte through0x844118 at0x6BBB0B/1C also CP0 flags0, null default/used-default pointers. No MB_ERR_INVALID_CHARS and no fixed1252. Receiver0x6BB382 conditionally bypasses for hero predicate0x6757C7. MsgTalk calls on recipient and message before login channel dispatch; boolean ignored.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x6bba2f\", \"comment\": \"2026-10-18: MultiByteToWideChar via IAT0x84411C with CodePage=0 (system ACP), flags=0, cbMultiByte=-1. Second conversion0x6BBA8A; reverse WideCharToMultiByte through0x844118 at0x6BBB0B/1C also CP0 flags0, null default/used-default pointers. No MB_ERR_INVALID_CHARS and no fixed1252. Receiver0x6BB382 conditionally bypasses for hero predicate0x6757C7. MsgTalk calls on recipient and message before login channel dispatch; boolean ignored.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x7642f4",
+      "old": "",
+      "comment": "2026-10-18 exceptional-path closure: name/spouse retrieval statuses are ignored; all extraction precedes hero mutation. CRole_SetName uses strlen<36 and accepts empty/control/high-byte text; this caller supplies a non-null zero-terminated16-byte local, so missing/overlong index0 clears the name. No character whitelist or code-page decode here. Spouse setter0x6728DC likewise accepts empty. ID is written unconditionally at0x764324. No rollback or prevalidation of EntityId/name/list.",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x7642f4\", \"comment\": \"2026-10-18 exceptional-path closure: name/spouse retrieval statuses are ignored; all extraction precedes hero mutation. CRole_SetName uses strlen<36 and accepts empty/control/high-byte text; this caller supplies a non-null zero-terminated16-byte local, so missing/overlong index0 clears the name. No character whitelist or code-page decode here. Spouse setter0x6728DC likewise accepts empty. ID is written unconditionally at0x764324. No rollback or prevalidation of EntityId/name/list.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x7642f4\", \"comment\": \"2026-10-18 exceptional-path closure: name/spouse retrieval statuses are ignored; all extraction precedes hero mutation. CRole_SetName uses strlen<36 and accepts empty/control/high-byte text; this caller supplies a non-null zero-terminated16-byte local, so missing/overlong index0 clears the name. No character whitelist or code-page decode here. Spouse setter0x6728DC likewise accepts empty. ID is written unconditionally at0x764324. No rollback or prevalidation of EntityId/name/list.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x764878",
+      "old": "",
+      "comment": "2026-10-18 zero EntityId: Create0x6FE95F returns0 at0x6FE96D before populating ctor-zeroed action packet. Here failure only logs0x764895 then falls through to Send0x7648A3. Hero fields have already changed. Send may be callback-suppressed; otherwise connected socket receives length0 and rejects at0x6E1A3C ->0x6E1C32 ->0x6E2429 ->CloseAndReset0x6E2435. No valid action74 frame is emitted. Handler continues after Send; no hero rollback.",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x764878\", \"comment\": \"2026-10-18 zero EntityId: Create0x6FE95F returns0 at0x6FE96D before populating ctor-zeroed action packet. Here failure only logs0x764895 then falls through to Send0x7648A3. Hero fields have already changed. Send may be callback-suppressed; otherwise connected socket receives length0 and rejects at0x6E1A3C ->0x6E1C32 ->0x6E2429 ->CloseAndReset0x6E2435. No valid action74 frame is emitted. Handler continues after Send; no hero rollback.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x764878\", \"comment\": \"2026-10-18 zero EntityId: Create0x6FE95F returns0 at0x6FE96D before populating ctor-zeroed action packet. Here failure only logs0x764895 then falls through to Send0x7648A3. Hero fields have already changed. Send may be callback-suppressed; otherwise connected socket receives length0 and rejects at0x6E1A3C ->0x6E1C32 ->0x6E2429 ->CloseAndReset0x6E2435. No valid action74 frame is emitted. Handler continues after Send; no hero rollback.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x6e52a8",
+      "old": "",
+      "comment": "2026-10-18: unsigned strlen>=36 only; empty length0 is accepted, not rejected. For1006 all helper outputs have C-string length<=15, so setter accepts even missing/overlong/embedded-NUL-derived empty names. Raw bytes copied via0x403BF1, no decode or lexical validation.",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x6e52a8\", \"comment\": \"2026-10-18: unsigned strlen>=36 only; empty length0 is accepted, not rejected. For1006 all helper outputs have C-string length<=15, so setter accepts even missing/overlong/embedded-NUL-derived empty names. Raw bytes copied via0x403BF1, no decode or lexical validation.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x6e52a8\", \"comment\": \"2026-10-18: unsigned strlen>=36 only; empty length0 is accepted, not rejected. For1006 all helper outputs have C-string length<=15, so setter accepts even missing/overlong/embedded-NUL-derived empty names. Raw bytes copied via0x403BF1, no decode or lexical validation.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x6577e5",
+      "old": "",
+      "comment": "2026-10-18 encoding closure: 2078 location remains char bytes through strlen and CharBuffer_AssignRange. No CP1252 validity check or network decode. NUL ends logical text; following bytes unused by setter. Unterminated short packet finds constructor zero-fill; a full1024-byte packet with no NUL from+9 can read outside packet storage. Timestamp/flag writes precede string assignment, so this path is not transactional either.",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x6577e5\", \"comment\": \"2026-10-18 encoding closure: 2078 location remains char bytes through strlen and CharBuffer_AssignRange. No CP1252 validity check or network decode. NUL ends logical text; following bytes unused by setter. Unterminated short packet finds constructor zero-fill; a full1024-byte packet with no NUL from+9 can read outside packet storage. Timestamp/flag writes precede string assignment, so this path is not transactional either.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x6577e5\", \"comment\": \"2026-10-18 encoding closure: 2078 location remains char bytes through strlen and CharBuffer_AssignRange. No CP1252 validity check or network decode. NUL ends logical text; following bytes unused by setter. Unterminated short packet finds constructor zero-fill; a full1024-byte packet with no NUL from+9 can read outside packet storage. Timestamp/flag writes precede string assignment, so this path is not transactional either.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x5dcc93",
+      "old": "",
+      "comment": "2026-10-18 compatibility: CRT _stricmp (IAT0x8448E8), not case-sensitive byte equality. Comparison uses C-string prefix after MsgTalk ACP filtering; ANSWER_OK followed by embedded NUL/suffix can match. Missing/empty message is queued as a valid empty string and goes to ordinary other-text branch0x5DCD40; no strict malformed-list refusal classification.",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x5dcc93\", \"comment\": \"2026-10-18 compatibility: CRT _stricmp (IAT0x8448E8), not case-sensitive byte equality. Comparison uses C-string prefix after MsgTalk ACP filtering; ANSWER_OK followed by embedded NUL/suffix can match. Missing/empty message is queued as a valid empty string and goes to ordinary other-text branch0x5DCD40; no strict malformed-list refusal classification.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x5dcc93\", \"comment\": \"2026-10-18 compatibility: CRT _stricmp (IAT0x8448E8), not case-sensitive byte equality. Comparison uses C-string prefix after MsgTalk ACP filtering; ANSWER_OK followed by embedded NUL/suffix can match. Missing/empty message is queued as a valid empty string and goes to ordinary other-text branch0x5DCD40; no strict malformed-list refusal classification.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x6bbb24",
+      "old": "",
+      "comment": "2026-10-18: EDI retains WideCharToMultiByte required byte count from0x6BBB0B with cchWideChar=-1 (includes NUL). After reverse conversion, this writes another NUL at input[EDI], without receiving destination capacity. For a255-byte ASCII message, required count256 yields a write one byte beyond its256-byte local (similarly15-byte recipient/16-byte local). Conversion expansion is also unbounded by input capacity. No clean malformed-text rejection may be inferred from this filter."
+    }
+  ],
+  "renames": [
+    [
+      "sub_731328",
+      "CMsgTalk_ValidateHeaderAndCopy"
+    ],
+    [
+      "sub_764253",
+      "CMsgUserInfo_ValidateHeaderAndCopy"
+    ],
+    [
+      "sub_6728dc",
+      "CRole_SetSpouseName"
+    ],
+    [
+      "sub_6bb382",
+      "CSilentInfo_FilterTextUnlessHeroExempt"
+    ],
+    [
+      "sub_6bb9ca",
+      "CSilentInfo_FilterTextInPlaceUsingSystemACP"
+    ],
+    [
+      "sub_6e2429",
+      "CGameSocket_CloseAndLogProtocolError"
+    ]
+  ],
+  "verification": [
+    {
+      "address": "0x771f7f",
+      "verified": true
+    },
+    {
+      "address": "0x7313cf",
+      "verified": true
+    },
+    {
+      "address": "0x6bba2f",
+      "verified": true
+    },
+    {
+      "address": "0x7642f4",
+      "verified": true
+    },
+    {
+      "address": "0x764878",
+      "verified": true
+    },
+    {
+      "address": "0x6e52a8",
+      "verified": true
+    },
+    {
+      "address": "0x6577e5",
+      "verified": true
+    },
+    {
+      "address": "0x5dcc93",
+      "verified": true
+    },
+    {
+      "address": "0x6bbb24",
+      "verified": true
+    },
+    {
+      "new_name": "CMsgTalk_ValidateHeaderAndCopy",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"matches\": [{\"name\": \"CMsgTalk_ValidateHeaderAndCopy\", \"address\": \"0x731328\", \"raw_name\": \"CMsgTalk_ValidateHeaderAndCopy\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CMsgTalk_ValidateHeaderAndCopy\"}}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "new_name": "CMsgUserInfo_ValidateHeaderAndCopy",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"matches\": [{\"name\": \"CMsgUserInfo_ValidateHeaderAndCopy\", \"address\": \"0x764253\", \"raw_name\": \"CMsgUserInfo_ValidateHeaderAndCopy\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CMsgUserInfo_ValidateHeaderAndCopy\"}}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "new_name": "CRole_SetSpouseName",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"matches\": [{\"name\": \"CRole_SetSpouseName\", \"address\": \"0x6728dc\", \"raw_name\": \"CRole_SetSpouseName\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CRole_SetSpouseName\"}}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "new_name": "CSilentInfo_FilterTextUnlessHeroExempt",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"matches\": [{\"name\": \"CSilentInfo_FilterTextUnlessHeroExempt\", \"address\": \"0x6bb382\", \"raw_name\": \"CSilentInfo_FilterTextUnlessHeroExempt\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CSilentInfo_FilterTextUnlessHeroExempt\"}}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "new_name": "CSilentInfo_FilterTextInPlaceUsingSystemACP",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"matches\": [{\"name\": \"CSilentInfo_FilterTextInPlaceUsingSystemACP\", \"address\": \"0x6bb9ca\", \"raw_name\": \"CSilentInfo_FilterTextInPlaceUsingSystemACP\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CSilentInfo_FilterTextInPlaceUsingSystemACP\"}}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "new_name": "CGameSocket_CloseAndLogProtocolError",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"matches\": [{\"name\": \"CGameSocket_CloseAndLogProtocolError\", \"address\": \"0x6e2429\", \"raw_name\": \"CGameSocket_CloseAndLogProtocolError\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CGameSocket_CloseAndLogProtocolError\"}}]}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ]
+}

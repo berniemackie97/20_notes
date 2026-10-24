@@ -26,7 +26,7 @@ Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
   - `+8` -> `tm_year`, `+12` -> `tm_mon`, `+16` -> `tm_yday`, `+20` -> `tm_mday`,
     `+24` -> `tm_hour`, `+28` -> `tm_min`, `+32` -> `tm_sec`.
   - The handler computes time deltas using `timeGetTime()` and `mktime()` and calls `CHero__SetTimeOfDaySync`, `CHero__SetServerEpochSec`, `CHero__SetTimeSyncClientTick`.
-- If `+4 == 2`: passes `+8` (u32) to `CHero__SetDword_0x2DA8` after `s__GetSingletonPtr_404460`.
+- If `+4 == 2`: passes `+8` (u32) to `CHero_SetMountVigor` (hero `+0x2DA8`, current steed vigor; the only writer) — see [movement eligibility](../Server/movement-eligibility-5517.md#mount-and-vigor-client-proven).
 - If `+4 == 3`: passes `+8` (u32) to `CMsgNpcInfoEX__SendType3` after `s__GetSingletonPtr_5DF90A`.
 - If `+4 == 4`: passes `+8` and `+12` (u32/u32) to `CMsgNpcInfoEX__HandleType4` after `s__GetSingletonPtr_5DF90A`.
 

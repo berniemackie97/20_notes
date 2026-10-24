@@ -1,0 +1,60 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6bb180
+006bb180  55               push    ebp
+006bb181  8b ec            mov     ebp, esp
+006bb183  53               push    ebx
+006bb184  33 db            xor     ebx, ebx
+006bb186  39 5d 08         cmp     dword [ebp+0x8], ebx
+006bb189  74 52            je      0x6bb1dd
+
+# Block 3 at 0x6bb18b
+006bb18b  39 5d 14         cmp     dword [ebp+0x14], ebx
+006bb18e  74 4d            je      0x6bb1dd
+
+# Block 4 at 0x6bb190
+006bb190  56               push    esi
+006bb191  8b 75 0c         mov     esi, dword [ebp+0xc]
+006bb194  57               push    edi
+006bb195  8d 04 b6         lea     eax, [esi+esi*4]
+006bb198  50               push    eax
+006bb199  6a 01            push    0x1
+006bb19b  89 45 0c         mov     dword [ebp+0xc], eax
+006bb19e  ff 15 48 48 84 00 call    dword [calloc]
+006bb1a4  56               push    esi
+006bb1a5  8b f8            mov     edi, eax
+006bb1a7  ff 75 08         push    dword [ebp+0x8]
+006bb1aa  8d 45 0c         lea     eax, [ebp+0xc]
+006bb1ad  50               push    eax
+006bb1ae  57               push    edi
+006bb1af  e8 dc bc 0f 00   call    0x7b6e90
+006bb1b4  83 c4 18         add     esp, 0x18
+006bb1b7  85 c0            test    eax, eax
+006bb1b9  75 14            jne     0x6bb1cf
+
+# Block 6 at 0x6bb1bb
+006bb1bb  ff 75 14         push    dword [ebp+0x14]
+006bb1be  ff 75 10         push    dword [ebp+0x10]
+006bb1c1  ff 75 0c         push    dword [ebp+0xc]
+006bb1c4  57               push    edi
+006bb1c5  e8 a7 fe ff ff   call    0x6bb071
+006bb1ca  83 c4 10         add     esp, 0x10
+006bb1cd  8a d8            mov     bl, al
+
+# Block 5 at 0x6bb1cf
+006bb1cf  57               push    edi
+006bb1d0  ff 15 38 47 84 00 call    dword [free]
+006bb1d6  59               pop     ecx
+006bb1d7  5f               pop     edi
+006bb1d8  8a c3            mov     al, bl
+006bb1da  5e               pop     esi
+006bb1db  eb 02            jmp     0x6bb1df
+
+# Block 2 at 0x6bb1dd
+006bb1dd  32 c0            xor     al, al
+
+# Block 7 at 0x6bb1df
+006bb1df  5b               pop     ebx
+006bb1e0  5d               pop     ebp
+006bb1e1  c3               retn
+

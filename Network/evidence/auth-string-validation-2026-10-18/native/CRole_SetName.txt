@@ -1,0 +1,32 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6e5292
+006e5292  56               push    esi  ; Copies a non-null name shorter than 36 bytes into the role string at +0x14C. Used by user-info, player-spawn, NPC-info and pet-spawn handlers; CMsgPetSpawn passes its trailing payload at packet +0x14 as the pet role name.
+006e5293  8b 74 24 08      mov     esi, dword [esp+0x8]
+006e5297  57               push    edi
+006e5298  8b f9            mov     edi, ecx
+006e529a  85 f6            test    esi, esi
+006e529c  74 22            je      0x6e52c0
+
+# Block 3 at 0x6e529e
+006e529e  56               push    esi
+006e529f  e8 cc 23 09 00   call    strlen
+006e52a4  83 f8 24         cmp     eax, 0x24
+006e52a7  59               pop     ecx
+006e52a8  73 16            jae     0x6e52c0
+
+# Block 4 at 0x6e52aa
+006e52aa  56               push    esi
+006e52ab  e8 c0 23 09 00   call    strlen
+006e52b0  59               pop     ecx
+006e52b1  03 c6            add     eax, esi
+006e52b3  50               push    eax
+006e52b4  56               push    esi
+006e52b5  8d 8f 4c 01 00 00 lea     ecx, [edi+0x14c]
+006e52bb  e8 31 e9 d1 ff   call    CharBuffer_AssignRange
+
+# Block 2 at 0x6e52c0
+006e52c0  5f               pop     edi
+006e52c1  5e               pop     esi
+006e52c2  c2 04 00         retn    0x4
+

@@ -103,8 +103,8 @@ Order below is from the cleaned `Phy_Load` decompile/disassembly (not speculativ
     - texture-change keys: count at `+0x6C`, ptr at `+0x70`, element size `0x10`
 15. Optional trailing tags:
     - `"STEP"` + two `uint32` (`C3Phy+0x13C`, `C3Phy+0x140`)
-    - optional `"2SID"` sets `has2SidTag` (`C3Phy+0x05`); the draw path does
-      not interpret absence of this tag as ordinary backface culling
+    - optional `"2SID"` sets `has2SidTag` (`C3Phy+0x05`, write `0x1000B1F7`); tagged = double-sided
+      (`D3DCULL_NONE`); untagged = CW/CCW by descriptor selector (see draw step 4)
     - optional `"BILB"|"BIL2"|"BIL3"|"BIL4"` maps to `C3Phy+0x144` values `1..4`
 
 ## Verified `Phy_LoadFromStream` post-parse processing
@@ -499,7 +499,7 @@ struct C3_PIPE_RENDER_DESC {
     uint32_t sourceBlendMode;                // +0x00 -> D3DRS_SRCBLEND
     uint32_t destinationBlendMode;           // +0x04 -> D3DRS_DESTBLEND
     uint8_t  depthWriteAndLightingEnabled;   // +0x08 -> D3DRS_ZWRITEENABLE and lighting gate
-    uint8_t  useCounterClockwiseCullMode;    // +0x09 -> tagged-PHY cull selector
+    uint8_t  useCounterClockwiseCullMode;    // +0x09 -> cull selector, consumed only when has2SidTag==0
     uint8_t  reserved[2];                    // +0x0A
 };
 ```
@@ -551,9 +551,11 @@ if (!(phy->alphaOpacity > 0.0f)) return; // also rejects unordered/NaN
 2. `SetRenderState(D3DRS_SRCBLEND, pipeRender->sourceBlendMode)` — from desc dword +0x00
 3. `SetRenderState(D3DRS_DESTBLEND, pipeRender->destinationBlendMode)` — from desc dword +0x04
 4. `SetRenderState(D3DRS_CULLMODE, ...)`:
-   - `has2SidTag==0`: **D3DCULL_NONE (1)**
-   - `has2SidTag!=0 && useCounterClockwiseCullMode==0`: **D3DCULL_CW (2)**
-   - `has2SidTag!=0 && useCounterClockwiseCullMode!=0`: **D3DCULL_CCW (3)**
+   - `has2SidTag!=0`: **D3DCULL_NONE (1)** (`0x1000CD1D`)
+   - `has2SidTag==0 && useCounterClockwiseCullMode==0`: **D3DCULL_CW (2)**
+   - `has2SidTag==0 && useCounterClockwiseCullMode!=0`: **D3DCULL_CCW (3)** (`(desc+9!=0)+2`, `0x1000CD2A..CD3D`)
+   - Corrected 2026-10-11 (GFX-3D-001): earlier table had tagged/untagged inverted. All four cases replayed
+     on original x86: [23_first_static_mesh_native_fixture.md](../23_first_static_mesh_native_fixture.md).
 
 #### Material and lighting modifiers
 - This branch runs only when light slot 0 is enabled and
@@ -788,7 +790,7 @@ OpenGL 4.1 equivalents for the native D3D8 render state pipeline:
 | D3DRS_SRCBLEND=SRCALPHA(5) | `glBlendFunc(GL_SRC_ALPHA, ...)` | Per-submesh via desc |
 | D3DRS_DESTBLEND=INVSRCALPHA(6) | `glBlendFunc(..., GL_ONE_MINUS_SRC_ALPHA)` | Per-submesh via desc |
 | D3DRS_ALPHATESTENABLE + ref | Fragment shader `discard` | Core profile has no fixed alpha test |
-| D3DRS_CULLMODE=NONE (`has2SidTag==0`) | `glDisable(GL_CULL_FACE)` | Selected from `C3Phy+0x05`, not the PHY discriminator |
+| D3DRS_CULLMODE=NONE (`has2SidTag!=0`) | `glDisable(GL_CULL_FACE)` | Untagged: CW/CCW from desc `+0x09`; selected from `C3Phy+0x05`, not the PHY discriminator |
 | D3DRS_LIGHTING | Shader-based only when native light slot 0 and descriptor `+0x08` are enabled | Clean 5517 config disables this path |
 | D3DRS_SPECULARENABLE | Conditional in shader | `if (power > 0) apply specular` |
 
@@ -796,7 +798,7 @@ Key invariants for managed baseline renderer:
 - Alpha blending: always enabled with SRC_ALPHA / ONE_MINUS_SRC_ALPHA
 - Alpha test: fragment shader discards fragments with normalized alpha `< 8/255`
 - Depth writes: enabled for normal Role3D draws because `C3DObjX_Render` writes descriptor `+0x08 = 1`
-- Backface culling: disabled when `has2SidTag==0` (D3DCULL_NONE)
+- Backface culling: disabled only when `has2SidTag!=0` (D3DCULL_NONE); untagged PHY culls CW (selector 0) / CCW (selector 1)
 - Depth sorting: submeshes should be drawn back-to-front for correct transparency (future enhancement)
 - Per-submesh key state: alpha interpolates, draw changes only on exact keyed frames,
   and both persist when their processors return false

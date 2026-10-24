@@ -543,3 +543,11 @@ not claim exhaustive symbolic reachability through every possible pointer alias,
 OS delivery semantics, arbitrary server content-ID reachability, or pixel parity
 of an implementation that has not yet been written. Those are separate proof
 claims; their absence must not be reported as 100% end-to-end verification.
+
+## GFX-UI-009 category-9 consumer closure
+
+The Magic/XP Magic hover consumer is closed in [21_main_hud_magic_status_hint_native_contract.md](21_main_hud_magic_status_hint_native_contract.md). Both kinds3/4 post the same full type ID and share learned-magic rendering; command7 uses 40-pixel cell anchors even though slot drawing uses41-pixel stride. Same-slot caching, action-slot stale-hint behavior and Show-time outside polling remain native behavior. The new contract supplies text, live inputs, optional Dialog21 art, zero-ID conditional paths and managed integration requirements; this note remains the producer/grid authority.
+
+## HUD-010 hover-consumer closure (2026-10-10)
+
+[Rendering/22](22_main_hud_dance_weapon_swap_status_hint_native_contract.md) establishes the consequences of the already-proven kind5/kind6 posts. Kind5 sends full grid context3 as category0x38's literal Magic type, not the cached content ID; the missing retail type3 record produces no visible hint. Kind6 selects category0x6A; its stored parameter0x5E is not consumed by the renderer, which rereads hero DWORD+0xF1C each eligible frame. Original-instruction transition checks preserve same-cell stale selection, empty/outside clearing and drag suppression. Activation dispatch remains separate; no gameplay or network conclusion follows from these hints.

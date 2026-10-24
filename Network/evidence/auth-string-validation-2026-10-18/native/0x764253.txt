@@ -1,0 +1,20 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x764253
+00764253  56               push    esi
+00764254  8b f1            mov     esi, ecx
+00764256  ff 74 24 0c      push    dword [esp+0xc]
+0076425a  ff 74 24 0c      push    dword [esp+0xc]
+0076425e  e8 4b b0 f7 ff   call    CNetMsg__ValidateHeaderAndCopy
+00764263  85 c0            test    eax, eax
+00764265  74 0b            je      0x764272
+
+# Block 3 at 0x764267
+00764267  33 c0            xor     eax, eax
+00764269  66 81 7e 06 ee 03 cmp     word [esi+0x6], 0x3ee
+0076426f  0f 94 c0         sete    al
+
+# Block 2 at 0x764272
+00764272  5e               pop     esi
+00764273  c2 08 00         retn    0x8
+

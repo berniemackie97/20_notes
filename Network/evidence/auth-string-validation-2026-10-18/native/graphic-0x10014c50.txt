@@ -1,0 +1,360 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/graphic.dll.bndb
+
+# Block 1 at 0x10014c50
+10014c50  81 ec 44 02 00 00 sub     esp, 0x244  ; Reads ini/font.ini (<=0x100 bytes, last ASCII space splits face from nominal height; invalid height becomes 12; a "$*.tt?" face drops the '$' and is expanded under GetWindowsDirectoryA()\Fonts\), then creates the default antialias-off font record via FontCache_GetOrCreateFontRecord and stores the requested face bytes.
+
+Then opens ini/CodePage.ini. Line 1 is written through the imported C3_CORE data symbol as *g_nLocaleCodePage = atoi(line) at 0x10014F3B; later non-zero lines become Font_AddFontSizeLevel entries. If CodePage.ini is ABSENT the fopen-failure path jumps directly to the default levels Font_AddFontSizeLevel(0x10/0x20/0x40/0x80) and returns 1 WITHOUT writing g_nLocaleCodePage, so the global keeps its image value 0.
+
+g_nLocaleCodePage is C3_CORE_DLL data (0x100b01d8 in that image) imported here through the slot at 0x10039034; C3_CORE contains only reads of it (Font_CheckPixel, Font_RasterizeAndCacheGlyph, Font_GetStrShowLen, Font_Draw), and this is its only writer in either module.
+
+Clean v5517 asset consequence: no ini/CodePage.ini ships, so g_nLocaleCodePage stays 0 = CP_ACP for the whole process, and every IsDBCSLeadByteEx / MultiByteToWideChar call in the text path resolves against the host ANSI code page rather than a client-configured one.
+10014c56  8b 0d 14 46 04 10 mov     ecx, dword [0x10044614]
+10014c5c  a1 10 46 04 10   mov     eax, dword [0x10044610]
+10014c61  8b 15 18 46 04 10 mov     edx, dword [0x10044618]
+10014c67  53               push    ebx
+10014c68  55               push    ebp
+10014c69  56               push    esi
+10014c6a  89 4c 24 30      mov     dword [esp+0x30], ecx
+10014c6e  57               push    edi
+10014c6f  89 44 24 30      mov     dword [esp+0x30], eax
+10014c73  a0 1c 46 04 10   mov     al, byte [0x1004461c]
+10014c78  8d 4c 24 30      lea     ecx, [esp+0x30]
+10014c7c  68 94 3e 04 10   push    0x10043e94
+10014c81  51               push    ecx
+10014c82  89 54 24 40      mov     dword [esp+0x40], edx
+10014c86  88 44 24 44      mov     byte [esp+0x44], al
+10014c8a  ff 15 50 93 03 10 call    dword [fopen]
+10014c90  8b f0            mov     esi, eax
+10014c92  83 c4 08         add     esp, 0x8
+10014c95  85 f6            test    esi, esi
+10014c97  75 1f            jne     0x10014cb8
+
+# Block 3 at 0x10014c99
+10014c99  8d 54 24 30      lea     edx, [esp+0x30]
+10014c9d  52               push    edx
+10014c9e  68 00 46 04 10   push    0x10044600
+10014ca3  e8 a8 25 02 00   call    0x10037250
+10014ca8  83 c4 08         add     esp, 0x8
+10014cab  33 c0            xor     eax, eax
+10014cad  5f               pop     edi
+10014cae  5e               pop     esi
+10014caf  5d               pop     ebp
+10014cb0  5b               pop     ebx
+10014cb1  81 c4 44 02 00 00 add     esp, 0x244
+10014cb7  c3               retn
+
+# Block 2 at 0x10014cb8
+10014cb8  a0 b4 90 04 10   mov     al, byte [0x100490b4]
+10014cbd  b9 3f 00 00 00   mov     ecx, 0x3f
+10014cc2  88 44 24 54      mov     byte [esp+0x54], al
+10014cc6  33 c0            xor     eax, eax
+10014cc8  8d 7c 24 55      lea     edi, [esp+0x55]
+10014ccc  56               push    esi
+10014ccd  f3 ab            rep stosd dword [edi]
+10014ccf  66 ab            stosw   word [edi]
+10014cd1  68 00 01 00 00   push    0x100
+10014cd6  8d 4c 24 5c      lea     ecx, [esp+0x5c]
+10014cda  6a 01            push    0x1
+10014cdc  51               push    ecx
+10014cdd  aa               stosb   byte [edi]
+10014cde  ff 15 68 93 03 10 call    dword [fread]
+10014ce4  56               push    esi
+10014ce5  c6 44 04 68 00   mov     byte [esp+eax+0x68], 0x0
+10014cea  ff 15 40 93 03 10 call    dword [fclose]
+10014cf0  8d 54 24 68      lea     edx, [esp+0x68]
+10014cf4  6a 20            push    0x20
+10014cf6  52               push    edx
+10014cf7  ff 15 2c 93 03 10 call    dword [strrchr]
+10014cfd  83 c4 1c         add     esp, 0x1c
+10014d00  85 c0            test    eax, eax
+10014d02  75 36            jne     0x10014d3a
+
+# Block 5 at 0x10014d04
+10014d04  68 cc 00 00 00   push    0xcc
+10014d09  68 68 45 04 10   push    0x10044568
+10014d0e  68 f8 45 04 10   push    0x100445f8
+10014d13  68 6c 36 04 10   push    0x1004366c
+10014d18  e8 b3 23 02 00   call    C3_DebugLog
+10014d1d  83 c4 10         add     esp, 0x10
+10014d20  68 dc 45 04 10   push    0x100445dc
+10014d25  e8 a6 23 02 00   call    C3_DebugLog
+10014d2a  83 c4 04         add     esp, 0x4
+10014d2d  33 c0            xor     eax, eax
+10014d2f  5f               pop     edi
+10014d30  5e               pop     esi
+10014d31  5d               pop     ebp
+10014d32  5b               pop     ebx
+10014d33  81 c4 44 02 00 00 add     esp, 0x244
+10014d39  c3               retn
+
+# Block 4 at 0x10014d3a
+10014d3a  c6 00 00         mov     byte [eax], 0x0
+10014d3d  40               inc     eax
+10014d3e  50               push    eax
+10014d3f  ff 15 64 93 03 10 call    dword [atoi]
+10014d45  8b e8            mov     ebp, eax
+10014d47  83 c4 04         add     esp, 0x4
+10014d4a  85 ed            test    ebp, ebp
+10014d4c  75 12            jne     0x10014d60
+
+# Block 7 at 0x10014d4e
+10014d4e  68 dc 45 04 10   push    0x100445dc
+10014d53  bd 0c 00 00 00   mov     ebp, 0xc
+10014d58  e8 73 23 02 00   call    C3_DebugLog
+10014d5d  83 c4 04         add     esp, 0x4
+
+# Block 6 at 0x10014d60
+10014d60  a0 b4 90 04 10   mov     al, byte [0x100490b4]
+10014d65  b9 3f 00 00 00   mov     ecx, 0x3f
+10014d6a  88 84 24 54 01 00 00 mov     byte [esp+0x154], al
+10014d71  33 c0            xor     eax, eax
+10014d73  8d bc 24 55 01 00 00 lea     edi, [esp+0x155]
+10014d7a  32 db            xor     bl, bl
+10014d7c  f3 ab            rep stosd dword [edi]
+10014d7e  66 ab            stosw   word [edi]
+10014d80  aa               stosb   byte [edi]
+10014d81  8d 7c 24 54      lea     edi, [esp+0x54]
+10014d85  83 c9 ff         or      ecx, 0xffffffff
+10014d88  33 c0            xor     eax, eax
+10014d8a  f2 ae            repne scasb byte [edi]
+10014d8c  f7 d1            not     ecx
+10014d8e  49               dec     ecx
+10014d8f  83 f9 04         cmp     ecx, 0x4
+10014d92  0f 8e be 00 00 00 jle     0x10014e56
+
+# Block 9 at 0x10014d98
+10014d98  6a 03            push    0x3
+10014d9a  8d 4c 0c 54      lea     ecx, [esp+ecx+0x54]
+10014d9e  68 d8 45 04 10   push    0x100445d8
+10014da3  51               push    ecx
+10014da4  ff 15 60 93 03 10 call    dword [_strnicmp]
+10014daa  83 c4 0c         add     esp, 0xc
+10014dad  85 c0            test    eax, eax
+10014daf  0f 85 a1 00 00 00 jne     0x10014e56
+
+# Block 12 at 0x10014db5
+10014db5  80 7c 24 54 24   cmp     byte [esp+0x54], 0x24
+10014dba  0f 85 96 00 00 00 jne     0x10014e56
+
+# Block 15 at 0x10014dc0
+10014dc0  8d 7c 24 55      lea     edi, [esp+0x55]
+10014dc4  83 c9 ff         or      ecx, 0xffffffff
+10014dc7  33 c0            xor     eax, eax
+10014dc9  8d 94 24 54 01 00 00 lea     edx, [esp+0x154]
+10014dd0  f2 ae            repne scasb byte [edi]
+10014dd2  f7 d1            not     ecx
+10014dd4  2b f9            sub     edi, ecx
+10014dd6  68 04 01 00 00   push    0x104
+10014ddb  8b c1            mov     eax, ecx
+10014ddd  8b f7            mov     esi, edi
+10014ddf  8b fa            mov     edi, edx
+10014de1  b3 01            mov     bl, 0x1
+10014de3  c1 e9 02         shr     ecx, 0x2
+10014de6  f3 a5            rep movsd dword [edi], [esi]
+10014de8  8b c8            mov     ecx, eax
+10014dea  83 e1 03         and     ecx, 0x3
+10014ded  f3 a4            rep movsb byte [edi], [esi]
+10014def  8d 4c 24 58      lea     ecx, [esp+0x58]
+10014df3  51               push    ecx
+10014df4  ff 15 a4 92 03 10 call    dword [GetWindowsDirectoryA]
+10014dfa  bf d0 45 04 10   mov     edi, 0x100445d0
+10014dff  83 c9 ff         or      ecx, 0xffffffff
+10014e02  33 c0            xor     eax, eax
+10014e04  8d 54 24 54      lea     edx, [esp+0x54]
+10014e08  f2 ae            repne scasb byte [edi]
+10014e0a  f7 d1            not     ecx
+10014e0c  2b f9            sub     edi, ecx
+10014e0e  8b f7            mov     esi, edi
+10014e10  8b fa            mov     edi, edx
+10014e12  8b d1            mov     edx, ecx
+10014e14  83 c9 ff         or      ecx, 0xffffffff
+10014e17  f2 ae            repne scasb byte [edi]
+10014e19  8b ca            mov     ecx, edx
+10014e1b  4f               dec     edi
+10014e1c  c1 e9 02         shr     ecx, 0x2
+10014e1f  f3 a5            rep movsd dword [edi], [esi]
+10014e21  8b ca            mov     ecx, edx
+10014e23  8d 54 24 54      lea     edx, [esp+0x54]
+10014e27  83 e1 03         and     ecx, 0x3
+10014e2a  f3 a4            rep movsb byte [edi], [esi]
+10014e2c  8d bc 24 54 01 00 00 lea     edi, [esp+0x154]
+10014e33  83 c9 ff         or      ecx, 0xffffffff
+10014e36  f2 ae            repne scasb byte [edi]
+10014e38  f7 d1            not     ecx
+10014e3a  2b f9            sub     edi, ecx
+10014e3c  8b f7            mov     esi, edi
+10014e3e  8b fa            mov     edi, edx
+10014e40  8b d1            mov     edx, ecx
+10014e42  83 c9 ff         or      ecx, 0xffffffff
+10014e45  f2 ae            repne scasb byte [edi]
+10014e47  8b ca            mov     ecx, edx
+10014e49  4f               dec     edi
+10014e4a  c1 e9 02         shr     ecx, 0x2
+10014e4d  f3 a5            rep movsd dword [edi], [esi]
+10014e4f  8b ca            mov     ecx, edx
+10014e51  83 e1 03         and     ecx, 0x3
+10014e54  f3 a4            rep movsb byte [edi], [esi]
+
+# Block 8 at 0x10014e56
+10014e56  6a 00            push    0x0
+10014e58  8d 44 24 58      lea     eax, [esp+0x58]
+10014e5c  55               push    ebp
+10014e5d  50               push    eax
+10014e5e  e8 9d f8 ff ff   call    FontCache_GetOrCreateFontRecord
+10014e63  83 c4 0c         add     esp, 0xc
+10014e66  85 c0            test    eax, eax
+10014e68  75 0b            jne     0x10014e75
+
+# Block 11 at 0x10014e6a
+10014e6a  5f               pop     edi
+10014e6b  5e               pop     esi
+10014e6c  5d               pop     ebp
+10014e6d  5b               pop     ebx
+10014e6e  81 c4 44 02 00 00 add     esp, 0x244
+10014e74  c3               retn
+
+# Block 10 at 0x10014e75
+10014e75  84 db            test    bl, bl
+10014e77  74 27            je      0x10014ea0
+
+# Block 14 at 0x10014e79
+10014e79  8d 50 04         lea     edx, [eax+0x4]
+10014e7c  8d bc 24 54 01 00 00 lea     edi, [esp+0x154]
+10014e83  83 c9 ff         or      ecx, 0xffffffff
+10014e86  33 c0            xor     eax, eax
+10014e88  f2 ae            repne scasb byte [edi]
+10014e8a  f7 d1            not     ecx
+10014e8c  2b f9            sub     edi, ecx
+10014e8e  8b c1            mov     eax, ecx
+10014e90  8b f7            mov     esi, edi
+10014e92  8b fa            mov     edi, edx
+10014e94  c1 e9 02         shr     ecx, 0x2
+10014e97  f3 a5            rep movsd dword [edi], [esi]
+10014e99  8b c8            mov     ecx, eax
+10014e9b  83 e1 03         and     ecx, 0x3
+10014e9e  f3 a4            rep movsb byte [edi], [esi]
+
+# Block 13 at 0x10014ea0
+10014ea0  a1 c4 45 04 10   mov     eax, dword [0x100445c4]
+10014ea5  8b 0d bc 45 04 10 mov     ecx, dword [0x100445bc]
+10014eab  8b 15 c0 45 04 10 mov     edx, dword [0x100445c0]
+10014eb1  89 44 24 48      mov     dword [esp+0x48], eax
+10014eb5  89 4c 24 40      mov     dword [esp+0x40], ecx
+10014eb9  8b 0d c8 45 04 10 mov     ecx, dword [0x100445c8]
+10014ebf  89 54 24 44      mov     dword [esp+0x44], edx
+10014ec3  8a 15 cc 45 04 10 mov     dl, byte [0x100445cc]
+10014ec9  8d 44 24 40      lea     eax, [esp+0x40]
+10014ecd  68 94 3e 04 10   push    0x10043e94
+10014ed2  50               push    eax
+10014ed3  89 4c 24 54      mov     dword [esp+0x54], ecx
+10014ed7  88 54 24 58      mov     byte [esp+0x58], dl
+10014edb  ff 15 50 93 03 10 call    dword [fopen]
+10014ee1  8b f0            mov     esi, eax
+10014ee3  83 c4 08         add     esp, 0x8
+10014ee6  85 f6            test    esi, esi
+10014ee8  0f 84 d4 00 00 00 je      0x10014fc2
+
+# Block 17 at 0x10014eee
+10014eee  8a 0d b4 90 04 10 mov     cl, byte [0x100490b4]
+10014ef4  33 d2            xor     edx, edx
+10014ef6  8b 3d 4c 93 03 10 mov     edi, dword [0x1003934c]
+10014efc  89 54 24 21      mov     dword [esp+0x21], edx
+10014f00  89 54 24 25      mov     dword [esp+0x25], edx
+10014f04  56               push    esi
+10014f05  89 54 24 2d      mov     dword [esp+0x2d], edx
+10014f09  8d 44 24 24      lea     eax, [esp+0x24]
+10014f0d  66 89 54 24 31   mov     word [esp+0x31], dx
+10014f12  6a 10            push    0x10
+10014f14  50               push    eax
+10014f15  88 4c 24 2c      mov     byte [esp+0x2c], cl
+10014f19  88 54 24 3b      mov     byte [esp+0x3b], dl
+10014f1d  ff d7            call    edi
+10014f1f  8d 4c 24 2c      lea     ecx, [esp+0x2c]
+10014f23  51               push    ecx
+10014f24  ff 15 64 93 03 10 call    dword [atoi]
+10014f2a  8b 15 34 90 03 10 mov     edx, dword [0x10039034]
+10014f30  8b 2d 38 90 03 10 mov     ebp, dword [0x10039038]
+10014f36  83 c4 10         add     esp, 0x10
+10014f39  32 db            xor     bl, bl
+10014f3b  89 02            mov     dword [edx], eax
+10014f3d  8a 46 0c         mov     al, byte [esi+0xc]
+10014f40  a8 10            test    al, 0x10
+10014f42  75 4e            jne     0x10014f92
+
+# Block 19 at 0x10014f44
+10014f44  a0 b4 90 04 10   mov     al, byte [0x100490b4]
+10014f49  33 c9            xor     ecx, ecx
+10014f4b  89 4c 24 11      mov     dword [esp+0x11], ecx
+10014f4f  56               push    esi
+10014f50  89 4c 24 19      mov     dword [esp+0x19], ecx
+10014f54  8d 54 24 14      lea     edx, [esp+0x14]
+10014f58  89 4c 24 1d      mov     dword [esp+0x1d], ecx
+10014f5c  6a 10            push    0x10
+10014f5e  66 89 4c 24 25   mov     word [esp+0x25], cx
+10014f63  52               push    edx
+10014f64  88 44 24 1c      mov     byte [esp+0x1c], al
+10014f68  88 4c 24 2b      mov     byte [esp+0x2b], cl
+10014f6c  ff d7            call    edi
+10014f6e  8d 44 24 1c      lea     eax, [esp+0x1c]
+10014f72  50               push    eax
+10014f73  ff 15 64 93 03 10 call    dword [atoi]
+10014f79  83 c4 10         add     esp, 0x10
+10014f7c  85 c0            test    eax, eax
+10014f7e  74 08            je      0x10014f88
+
+# Block 21 at 0x10014f80
+10014f80  50               push    eax
+10014f81  b3 01            mov     bl, 0x1
+10014f83  ff d5            call    ebp
+10014f85  83 c4 04         add     esp, 0x4
+
+# Block 20 at 0x10014f88
+10014f88  f6 46 0c 10      test    byte [esi+0xc], 0x10
+10014f8c  74 b6            je      0x10014f44
+
+# Block 22 at 0x10014f8e
+10014f8e  84 db            test    bl, bl
+10014f90  75 16            jne     0x10014fa8
+
+# Block 18 at 0x10014f92
+10014f92  6a 10            push    0x10
+10014f94  ff d5            call    ebp
+10014f96  6a 20            push    0x20
+10014f98  ff d5            call    ebp
+10014f9a  6a 40            push    0x40
+10014f9c  ff d5            call    ebp
+10014f9e  68 80 00 00 00   push    0x80
+10014fa3  ff d5            call    ebp
+10014fa5  83 c4 10         add     esp, 0x10
+
+# Block 23 at 0x10014fa8
+10014fa8  56               push    esi
+10014fa9  ff 15 40 93 03 10 call    dword [fclose]
+10014faf  83 c4 04         add     esp, 0x4
+10014fb2  b8 01 00 00 00   mov     eax, 0x1
+10014fb7  5f               pop     edi
+10014fb8  5e               pop     esi
+10014fb9  5d               pop     ebp
+10014fba  5b               pop     ebx
+10014fbb  81 c4 44 02 00 00 add     esp, 0x244
+10014fc1  c3               retn
+
+# Block 16 at 0x10014fc2
+10014fc2  8b 35 38 90 03 10 mov     esi, dword [0x10039038]
+10014fc8  6a 10            push    0x10
+10014fca  ff d6            call    esi
+10014fcc  6a 20            push    0x20
+10014fce  ff d6            call    esi
+10014fd0  6a 40            push    0x40
+10014fd2  ff d6            call    esi
+10014fd4  68 80 00 00 00   push    0x80
+10014fd9  ff d6            call    esi
+10014fdb  83 c4 10         add     esp, 0x10
+10014fde  b8 01 00 00 00   mov     eax, 0x1
+10014fe3  5f               pop     edi
+10014fe4  5e               pop     esi
+10014fe5  5d               pop     ebp
+10014fe6  5b               pop     ebx
+10014fe7  81 c4 44 02 00 00 add     esp, 0x244
+10014fed  c3               retn
+

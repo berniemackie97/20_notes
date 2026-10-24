@@ -154,7 +154,9 @@ Verified sequence:
 6. If load fails: log "game map %s load failed" → return 0
 7. On success:
    - Reset projection/viewport state (`CGameMap_ResetProjectionViewportState`)
-   - Reconcile type-2 child component entity links (`CGameMap_ReconcileType2ChildComponentEntityLinks`)
+   - Drop every non-pet role: `CGamePlayerSet_DelAllPlayer(&g_objPlayerSet, 1)` (`0x6E7F89`, call `0x61DB0C`; eosource
+     `CGamePlayerSet::DelAllPlayer(bExcludeMyPet)`; formerly misnamed `CGameMap_ReconcileType2ChildComponentEntityLinks`)
+   - `CBoothManager_Close` on the hero booth manager
    - Hero position setup via `CHero_GetSingletonPtr()`
    - Type-2 child component iteration
    - Store map data ID: `this[0x39] = mapDataId`
@@ -163,11 +165,14 @@ Verified sequence:
 
 ### Message 0x424 Handler
 
-WndProc dispatch: `msg=0x464, wParam=0x424` → jump table case 7 at `0x5C3E71`:
+**Correction 2026-10-24:** `0x424` has **no case** in `CMyShellDlg_WindowProc_DispatchMainWindowMessages`.
+Byte table `0x5CDA5B` index `0x15` holds 30, which selects the default `0x5CD96E` (`CWnd::WindowProc`). `0x5C3E71` is the
+**`0x426`** case (index `0x17` → byte 7). The earlier text attributed it to `0x424`. The `0x426` case does the following:
 - Checks if `CFlashHostDialog_IsWindowVisibleOrPendingActivation(this+0xA7E54, 1)` is true
 - If visible: calls `CFlashHostDialog_ActivateVisibleDialogLifecycle(this+0xA7E54, 0)`
-- **This is purely a UI overlay lifecycle/activation path** — likely related to a "Creating Maps..." loading overlay
-- Does NOT trigger any rendering, state transitions, or gameplay logic
+
+Map loading is not ended by `0x424`. On the login path the Flash `CMD_CLOSE` sets frame mode `0x3F2`. On a portal
+transition the end of inbound 86 sets it. See [portal transition](../Server/portal-transition-5517.md).
 
 ### Key Insight: Map Loading Is Self-Contained
 
@@ -177,7 +182,7 @@ The map file loading in `CGameMap_LoadMapFileFromRelativePath` populates all the
 - Type-3 subcomponents — ANI sprites, puzzle bitmaps (section 3)
 - Type-4 records — 3D objects overlaid on the map (section 4)
 
-The 0x424 message just dismisses a loading UI. The actual rendering begins on the NEXT frame after the map data is loaded, when the component tick/render dispatchers iterate the now-populated subcomponents.
+The 0x424 message has no main-window case (see correction above). The actual rendering begins on the NEXT frame after the map data is loaded, when the component tick/render dispatchers iterate the now-populated subcomponents.
 
 ## Map Data ID Table
 

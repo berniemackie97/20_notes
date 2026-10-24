@@ -1,0 +1,94 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6fe95f
+006fe95f  55               push    ebp  ; MsgAction / MsgData (10010) builder. VERIFIED 2026-08-16.
+
+Emits a fixed 38-byte packet (size 0x26, type 0x271A) after CNetMsg__ResetPacketBuffer, so every
+field not written below stays zero. Packet-relative offsets:
+
+  +0  u16 size            = 0x26 (38)
+  +2  u16 type            = 0x271A (10010)
+  +4  u32 entity id       <- arg2
+  +8  u32 parameter pair  <- arg7
+  +12 u32 action parameter (never written here; left zero by the buffer reset)
+  +16 u32 timestamp       = Conquer_GetTimeGetTime()
+  +20 u16 action          <- arg6
+  +22 u16 direction       <- arg5
+  +24 u16 x               <- arg3
+  +26 u16 y               <- arg4
+  +28 u32 data1           (zero)
+  +32 u32 data2           (zero)
+  +36 u8  flag / +37 u8 string count (zero)
+
+Action and direction share one dword at +20: action is the low word, direction the high word.
+A trailing MsgStringList may follow the fixed body on some subtypes.
+
+Returns 0 without writing anything when arg2 (entity id) is zero.
+
+WORLD-ENTRY LADDER -- the sequence is client-driven; inbound actions acknowledge rungs.
+CMsgUserInfo__Process (1006) ends by calling this with actionEnterMap (0x4A) and the local hero id;
+its embedded assert string is "msg.Create(g_objHero.GetID(), 0, 0, 0, actionEnterMap)". From then on
+CMsgAction__Process advances one rung per *inbound* action:
+
+  client sends 0x4A -> server echoes 0x4A -> client sends 0x4B (actionGetItemSet)
+  0x4B -> 0x4C (actionGetGoodFriend)
+  0x4C -> 0x4D (actionGetWeaponSkillSet)
+  0x4D -> 0x4E (actionGetMagicSet)
+  0x4E -> 0x61 (actionGetSynAttr)
+
+For bootstrap, send each intended data snapshot before acknowledging its rung. This is server
+ordering policy; it does not establish a native row-count gate or a retail server packet capture. Any server enum mapping GetItemSet to 52 rather than 0x4B/75 is incompatible
+with this build.
+
+For the enter-map acknowledgement the map id rides in the parameter pair at +8, with the spawn tile
+in x/y at +24/+26.
+
+2026-10-05 closure: 0x61 -> 0xFB (silent info) -> 0x84 (actionGetStatistic). These replies require a resolvable packet+4; the 0xFB outbound builder uses entity ID zero, so its reply cannot be a blind zero-ID echo.
+006fe960  8b ec            mov     ebp, esp
+006fe962  56               push    esi
+006fe963  57               push    edi
+006fe964  8b 7d 08         mov     edi, dword [ebp+0x8]
+006fe967  8b f1            mov     esi, ecx
+006fe969  85 ff            test    edi, edi
+006fe96b  75 04            jne     0x6fe971
+
+# Block 3 at 0x6fe96d
+006fe96d  33 c0            xor     eax, eax
+006fe96f  eb 7c            jmp     0x6fe9ed
+
+# Block 2 at 0x6fe971
+006fe971  8b ce            mov     ecx, esi
+006fe973  e8 09 09 fe ff   call    CNetMsg__ResetPacketBuffer
+006fe978  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+006fe97e  66 c7 00 26 00   mov     word [eax], 0x26
+006fe983  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+006fe989  66 c7 40 02 1a 27 mov     word [eax+0x2], 0x271a
+006fe98f  e8 57 a6 06 00   call    Conquer_GetTimeGetTime
+006fe994  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+006fe99a  6a 01            push    0x1
+006fe99c  89 41 10         mov     dword [ecx+0x10], eax
+006fe99f  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+006fe9a5  66 8b 4d 0c      mov     cx, word [ebp+0xc]
+006fe9a9  89 78 04         mov     dword [eax+0x4], edi
+006fe9ac  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+006fe9b2  66 89 48 18      mov     word [eax+0x18], cx
+006fe9b6  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+006fe9bc  66 8b 4d 10      mov     cx, word [ebp+0x10]
+006fe9c0  66 89 48 1a      mov     word [eax+0x1a], cx
+006fe9c4  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+006fe9ca  66 8b 4d 14      mov     cx, word [ebp+0x14]
+006fe9ce  66 89 48 16      mov     word [eax+0x16], cx
+006fe9d2  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+006fe9d8  8b 4d 1c         mov     ecx, dword [ebp+0x1c]
+006fe9db  89 48 08         mov     dword [eax+0x8], ecx
+006fe9de  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+006fe9e4  66 8b 4d 18      mov     cx, word [ebp+0x18]
+006fe9e8  66 89 48 14      mov     word [eax+0x14], cx
+006fe9ec  58               pop     eax
+
+# Block 4 at 0x6fe9ed
+006fe9ed  5f               pop     edi
+006fe9ee  5e               pop     esi
+006fe9ef  5d               pop     ebp
+006fe9f0  c2 18 00         retn    0x18
+

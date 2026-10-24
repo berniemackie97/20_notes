@@ -1,0 +1,188 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6bb9ca
+006bb9ca  55               push    ebp
+006bb9cb  8b ec            mov     ebp, esp
+006bb9cd  81 ec 10 04 00 00 sub     esp, 0x410
+006bb9d3  53               push    ebx
+006bb9d4  56               push    esi
+006bb9d5  8b 75 08         mov     esi, dword [ebp+0x8]
+006bb9d8  33 db            xor     ebx, ebx
+006bb9da  3b f3            cmp     esi, ebx
+006bb9dc  89 4d f8         mov     dword [ebp-0x8], ecx
+006bb9df  0f 84 64 01 00 00 je      0x6bbb49
+
+# Block 3 at 0x6bb9e5
+006bb9e5  56               push    esi
+006bb9e6  e8 85 bc 0b 00   call    strlen
+006bb9eb  85 c0            test    eax, eax
+006bb9ed  59               pop     ecx
+006bb9ee  0f 86 55 01 00 00 jbe     0x6bbb49
+
+# Block 4 at 0x6bb9f4
+006bb9f4  57               push    edi
+006bb9f5  b9 ff 00 00 00   mov     ecx, 0xff
+006bb9fa  33 c0            xor     eax, eax
+006bb9fc  8d bd f1 fb ff ff lea     edi, [ebp-0x40f]
+006bba02  88 9d f0 fb ff ff mov     byte [ebp-0x410], bl
+006bba08  68 00 04 00 00   push    0x400
+006bba0d  f3 ab            rep stosd dword [edi]
+006bba0f  66 ab            stosw   word [edi]
+006bba11  aa               stosb   byte [edi]
+006bba12  8d 85 f0 fb ff ff lea     eax, [ebp-0x410]
+006bba18  56               push    esi
+006bba19  50               push    eax
+006bba1a  e8 f5 ec 0a 00   call    0x76a714
+006bba1f  83 c4 0c         add     esp, 0xc
+006bba22  53               push    ebx
+006bba23  53               push    ebx
+006bba24  6a ff            push    0xffffffff
+006bba26  56               push    esi
+006bba27  8b 35 1c 41 84 00 mov     esi, dword [0x84411c]
+006bba2d  53               push    ebx
+006bba2e  53               push    ebx
+006bba2f  ff d6            call    esi
+006bba31  8d 78 01         lea     edi, [eax+0x1]
+006bba34  89 45 f0         mov     dword [ebp-0x10], eax
+006bba37  8d 04 3f         lea     eax, [edi+edi]
+006bba3a  50               push    eax
+006bba3b  e8 34 b8 0b 00   call    ??2@YAPAXI@Z
+006bba40  3b c3            cmp     eax, ebx
+006bba42  59               pop     ecx
+006bba43  89 45 fc         mov     dword [ebp-0x4], eax
+006bba46  75 21            jne     0x6bba69
+
+# Block 6 at 0x6bba48
+006bba48  68 e8 01 00 00   push    0x1e8
+006bba4d  68 f4 36 94 00   push    0x9436f4
+006bba52  68 a4 37 94 00   push    0x9437a4
+006bba57  68 84 17 92 00   push    0x921784
+006bba5c  68 6c 17 92 00   push    0x92176c
+006bba61  e8 b2 d5 0a 00   call    Debug_LogMessageToDailyFileWithDedup
+006bba66  83 c4 14         add     esp, 0x14
+
+# Block 5 at 0x6bba69
+006bba69  3b fb            cmp     edi, ebx
+006bba6b  76 10            jbe     0x6bba7d
+
+# Block 8 at 0x6bba6d
+006bba6d  8b cf            mov     ecx, edi
+006bba6f  8b 7d fc         mov     edi, dword [ebp-0x4]
+006bba72  33 c0            xor     eax, eax
+006bba74  d1 e9            shr     ecx, 0x1
+006bba76  f3 ab            rep stosd dword [edi]
+006bba78  13 c9            adc     ecx, ecx
+006bba7a  66 f3 ab         rep stosw word [edi]
+
+# Block 7 at 0x6bba7d
+006bba7d  ff 75 f0         push    dword [ebp-0x10]
+006bba80  ff 75 fc         push    dword [ebp-0x4]
+006bba83  6a ff            push    0xffffffff
+006bba85  ff 75 08         push    dword [ebp+0x8]
+006bba88  53               push    ebx
+006bba89  53               push    ebx
+006bba8a  ff d6            call    esi
+006bba8c  8b 4d f8         mov     ecx, dword [ebp-0x8]
+006bba8f  e8 14 f9 ff ff   call    0x6bb3a8
+006bba94  8b f8            mov     edi, eax
+006bba96  89 5d f8         mov     dword [ebp-0x8], ebx
+006bba99  8b 07            mov     eax, dword [edi]
+006bba9b  8b 4f 04         mov     ecx, dword [edi+0x4]
+006bba9e  2b c8            sub     ecx, eax
+006bbaa0  f7 c1 f0 ff ff ff test    ecx, 0xfffffff0
+006bbaa6  7e 52            jle     0x6bbafa
+
+# Block 10 at 0x6bbaa8
+006bbaa8  89 5d f4         mov     dword [ebp-0xc], ebx
+
+# Block 16 at 0x6bbaab
+006bbaab  8b 4d f4         mov     ecx, dword [ebp-0xc]
+006bbaae  03 c1            add     eax, ecx
+006bbab0  8b 08            mov     ecx, dword [eax]
+006bbab2  3b cb            cmp     ecx, ebx
+006bbab4  74 2e            je      0x6bbae4
+
+# Block 14 at 0x6bbab6
+006bbab6  8b 40 04         mov     eax, dword [eax+0x4]
+006bbab9  53               push    ebx
+006bbaba  53               push    ebx
+006bbabb  6a ff            push    0xffffffff
+006bbabd  6a ff            push    0xffffffff
+006bbabf  50               push    eax
+006bbac0  ff 75 fc         push    dword [ebp-0x4]
+006bbac3  e8 fe 05 00 00   call    0x6bc0c6
+006bbac8  8b f0            mov     esi, eax
+006bbaca  3b f3            cmp     esi, ebx
+006bbacc  74 16            je      0x6bbae4
+
+# Block 17 at 0x6bbace
+006bbace  ff 75 f0         push    dword [ebp-0x10]
+006bbad1  56               push    esi
+006bbad2  ff 75 fc         push    dword [ebp-0x4]
+006bbad5  ff 15 60 47 84 00 call    dword [wcsncpy]
+006bbadb  56               push    esi
+006bbadc  e8 4f b6 0b 00   call    ??3@YAXPAX@Z
+006bbae1  83 c4 10         add     esp, 0x10
+
+# Block 13 at 0x6bbae4
+006bbae4  8b 07            mov     eax, dword [edi]
+006bbae6  8b 4f 04         mov     ecx, dword [edi+0x4]
+006bbae9  ff 45 f8         inc     dword [ebp-0x8]
+006bbaec  83 45 f4 10      add     dword [ebp-0xc], 0x10
+006bbaf0  2b c8            sub     ecx, eax
+006bbaf2  c1 f9 04         sar     ecx, 0x4
+006bbaf5  39 4d f8         cmp     dword [ebp-0x8], ecx
+006bbaf8  7c b1            jl      0x6bbaab
+
+# Block 9 at 0x6bbafa
+006bbafa  53               push    ebx
+006bbafb  53               push    ebx
+006bbafc  53               push    ebx
+006bbafd  8b 35 18 41 84 00 mov     esi, dword [0x844118]
+006bbb03  53               push    ebx
+006bbb04  6a ff            push    0xffffffff
+006bbb06  ff 75 fc         push    dword [ebp-0x4]
+006bbb09  53               push    ebx
+006bbb0a  53               push    ebx
+006bbb0b  ff d6            call    esi
+006bbb0d  8b f8            mov     edi, eax
+006bbb0f  53               push    ebx
+006bbb10  53               push    ebx
+006bbb11  57               push    edi
+006bbb12  ff 75 08         push    dword [ebp+0x8]
+006bbb15  6a ff            push    0xffffffff
+006bbb17  ff 75 fc         push    dword [ebp-0x4]
+006bbb1a  53               push    ebx
+006bbb1b  53               push    ebx
+006bbb1c  ff d6            call    esi
+006bbb1e  8b 75 08         mov     esi, dword [ebp+0x8]
+006bbb21  39 5d fc         cmp     dword [ebp-0x4], ebx
+006bbb24  88 1c 37         mov     byte [edi+esi], bl
+006bbb27  5f               pop     edi
+006bbb28  74 09            je      0x6bbb33
+
+# Block 12 at 0x6bbb2a
+006bbb2a  ff 75 fc         push    dword [ebp-0x4]
+006bbb2d  e8 fe b5 0b 00   call    ??3@YAXPAX@Z
+006bbb32  59               pop     ecx
+
+# Block 11 at 0x6bbb33
+006bbb33  8d 85 f0 fb ff ff lea     eax, [ebp-0x410]
+006bbb39  56               push    esi
+006bbb3a  50               push    eax
+006bbb3b  e8 fa ba 0b 00   call    strcmp
+006bbb40  59               pop     ecx
+006bbb41  85 c0            test    eax, eax
+006bbb43  59               pop     ecx
+006bbb44  0f 95 c0         setne   al
+006bbb47  eb 02            jmp     0x6bbb4b
+
+# Block 2 at 0x6bbb49
+006bbb49  32 c0            xor     al, al
+
+# Block 15 at 0x6bbb4b
+006bbb4b  5e               pop     esi
+006bbb4c  5b               pop     ebx
+006bbb4d  c9               leave
+006bbb4e  c2 04 00         retn    0x4
+

@@ -4,8 +4,10 @@ Server side: `50_server/OpenConquerPublic` — `MovementHandler`, `JumpActionHan
 
 ## Both are server-authoritative
 
-The client does **not** move on send. It applies the change only when the server sends the packet
-back. Withholding the reply is the only way to refuse — there is no reject code for either.
+The client's authoritative **gate** tile changes only when the server sends the packet back; there is no reject
+code. Corrected 2026-10-15: the step/jump is still **animated locally** on send and the CRole tile used for the next
+request and for report 100 takes the animation's end point, so an unanswered refusal leaves the client visually at
+the target until subtype 108 — see [movement eligibility](movement-eligibility-5517.md#local-animation-vs-authoritative-tile--correction-to-movementmd).
 
 ## Movement — MsgEntityAction (10005)
 
@@ -43,7 +45,7 @@ Native gates, in order (`Role_RequestJumpToTile`, `0x658965`):
 | --------- | ---------------------- | ---------------------------------------------------------------------------------------------- |
 | Distance  | `0x658BDE`, `0x658BF0` | `> 0` and `<= 0x10` (16 tiles)                                                                 |
 | Map flag  | `0x658C6C`             | `CGameMap_GetFlags64 & 0x2000000` forbids jumping                                              |
-| Mount cap | `0x658D31`             | with status flag `0x32`, also `<= Role_GetField2DA8StatusValue` (`MOUNT_JUMP_MOVEPOINT_LIMIT`) |
+| Mount cap | `0x658D31`             | with status flag `0x32`, also `<= Role_GetField2DA8StatusValue` = current vigor (`MOUNT_JUMP_MOVEPOINT_LIMIT`) |
 
 Over-range emits string `0x186C0`; map-forbidden emits `STR_RIDE_MATCH_MSG_FORBID_JUMP`.
 
@@ -85,6 +87,20 @@ passability, and a base-only check matches the client exactly there.
   the external `.scene` / `.pul` / `.Part` assets, not the DMap. A tile blocked only by an overlay
   is currently accepted and the client will disagree.
 - **Jump map flag and mount cap are not enforced** — the server loads neither map flags nor mount
-  state.
+  state. Full gate list, statuses, vigor and peak elevation: [movement-eligibility-5517.md](movement-eligibility-5517.md).
 - ~~No broadcast of movement to other players~~ — implemented 2026-08-28; see
   [entity-visibility.md](entity-visibility.md).
+
+## Movement timing challenge (anti-speedhack, server-initiated)
+
+Verified 2026-10-14, Binja. Inert unless the server starts it.
+
+| Step | Fact |
+|---|---|
+| S→C MsgAction `0xCD` | `CMsgAction__Process` `0x6FF06E`: replies `0xCD` with `timeGetTime`, then `CHero_SendMovementTimingChallenge` (`0x661BDA`): sends `0xCE`, pending (`hero+0x2CFD`) |
+| S→C MsgAction `0xCE` | `0x6FF05F` → `CHero_CompleteMovementTimingChallenge` (`0x661C73`): baseline local/peer tick from packet `+0x10`, armed (`hero+0x2CFC=1`) |
+| Each walk/jump echo | `CHero_ProcessMovementAcknowledgementTimestamp` (`0x661CC5`): unarmed or pending ⇒ accept. Armed: `now < baseline` ⇒ 1st time resend `0xCE`, later report reason 13 + **reject echo**; else accept iff `now − tick ≥ offset − 8000` |
+
+Walk tick (`10005 +0x10`) = client `timeGetTime()` (`0x65C6AE`). Step period is RoleData-driven per action and scaled
+by statuses (×2/3, ×½, speed %): [action translation](../Rendering/roleview_dll/12_action_id_translation_state_machine.md).
+TQ 15.10 server walk/jump rules: [runtime semantics](tq-server-15.10-runtime-semantics.md#movement-visibility-kickback).

@@ -464,9 +464,9 @@ Audio paths resolve relative to game root (all in `sound/` directory).
 |---|---|
 | `data/main/start.dat` | CWS v6 — main startup Flash (login + server select + intro) |
 | `data/main/start-facebook.dat` | CWS v6 — Facebook variant |
-| `data/main/loginFlash.swf` | Login Flash container |
-| `data/main/logo.swf` | Logo animation |
-| `data/main/characterInAndOut.swf` | Character creation transition |
+| `data/main/flash/loginFlash.swf` | Login Flash container |
+| `data/main/flash/logo.swf` | Logo animation |
+| `data/main/flash/characterInAndOut.swf` | Character creation transition |
 
 ## Startup Logo Dialog Resource Contract (Verified)
 
@@ -720,9 +720,11 @@ Verified `WM_COMMAND 0x464` startup branch handlers (`CMyShellDlg_WindowProc_Dis
 The DummyMovie system (`CDummyMovieMgr`) is **not invoked during startup**. It is used
 exclusively for the in-game mount/ride PK arena cutscene (triggered from `DlgMountAppend`).
 
-The startup animation was entirely Flash-internal (SWF timeline animation of logo,
-dragons, etc.). For the native rewrite, this must be recreated from scratch using the
-available image/sprite assets and the positions from `flashLogin.ini`.
+The startup animation is Flash-internal. The original encoded video, bitmap-fill
+compositions and timeline placements are recoverable; see the source-verified
+[login UI asset audit](11_login_ui_assets_and_interactions.md). INI section names
+alone do not prove a loaded dragon or poetry animation. The earlier suggestion
+to recreate these graphics from scratch is superseded by that extraction.
 
 ## Native Replacement Status (Verified-only)
 
@@ -865,3 +867,11 @@ Verified managed replacement implication:
 - This mapping is now verified from startup SWF bytecode; no inferred loop policy remains in this path.
 
 This preserves native host contract while replacing Flash-internal playback with managed runtime behavior.
+
+## 2026-10-14: original login asset provenance correction
+
+The research-only [original login UI asset audit](11_login_ui_assets_and_interactions.md) supplies the source hashes, complete symbol/placement/state metadata, authentic extracted frames and exact gaps. The referenced movies reside under `data/main/flash/`. All 14 loose Group movies and 102 server-icon movies were also decoded and packaged; their presence is not proof that every file is selected by the current native payload.
+
+The INI has topDragon/bottomDragon/poetry positions, but the inspected `loadIni` applies only loginFlash/logo/rsDragon positions. Empty named holders are not graphics. Original top/bottom opening motion is recoverable from the opening video and the last three bitmap-layer frames; the final border is shape 400. Do not recreate these graphics from scratch or invent a separate top-dragon loop. Available `rsDragon.swf` is extracted with activation explicitly unresolved.
+
+The companion forensic ZIP distinguishes original bitmap/vector composition, encoded video, held video timeline frames, device-font reference renders and diagnostic hit-test regions. Original H.263 black pixels remain opaque; JPEXS video placeholders are excluded. Runtime text, loadMovie/attachMovie/masks, ActiveX focus arbitration and the 13-frame region asset versus frame-16 request are documented limitations. Existing modern-runtime behavior elsewhere in this note remains a separate implementation record and is not native retail evidence.

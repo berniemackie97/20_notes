@@ -20,6 +20,8 @@ actually established.
 - [14_session_derived_legacy_cipher_mask.md](14_session_derived_legacy_cipher_mask.md) —
   audit proving the post-1055 session-derived mask rekeys the outbound legacy
   tables but is never consumed in mode 2.
+- [5517-server-selection-and-realm-handoff.md](5517-server-selection-and-realm-handoff.md) — realm selection:
+  row id, per-row account endpoint, ServerName as packet identity and on-disk namespace, status URL, 1055 redirect.
 
 ## Packets by domain
 

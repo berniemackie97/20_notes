@@ -6,8 +6,9 @@ Verified against `Conquer.exe` 5517 on 2026-08-28.
 
 `CHero_TickPortalDetectionAndMapChangeRequest` (`0x65D9B2`) runs on the hero tick. It offsets the
 hero's tile by each of the nine entries in the −1..1 table at `0x65DC6A` and asks
-`sub_61D9FF` whether that tile is an exit; that resolves through
-`CGameMap_FindFirstComponentWithTypeCode1` to `sub_637700`, a walk of the deque at
+`CGameMap_GetExitIndexAtTile` (`0x61D9FF`) whether that tile is an exit; that resolves through
+`CGameMap_FindFirstComponentWithTypeCode1` to `CMapGroundEntityLayer_FindExitPasswayIndexAtTile`
+(`0x637700`), a walk of the deque at
 `component+0x420C` holding `{x, y, passwayIndex}` triples, returning `-1` when the tile is not one.
 
 On a hit it sends **MsgAction subtype `0x55` (85)**. The build names the packet itself, in the
@@ -22,8 +23,10 @@ So the candidate tile travels in the parameter pair — low word x, high word y 
 own X/Y carry the hero's tile and the direction its facing. **It sends no index.** The server has to
 resolve the tile itself.
 
-Immediately after sending, the client puts itself into UI mode `0x3F0` (`0x65DE0E`) — the loading
-screen. The map burst is what ends it.
+Immediately after sending, the client puts itself into frame mode `0x3F0` (`0x65DE0E`), eosource
+`_STATUS_WAITING`. In that mode the screen shows "Connecting to the server... Please wait...", packets
+are still dispatched, and nothing else runs. In session, only the end of a successful inbound 86 sets `0x3F2`
+(`0x6FF88B`), so 86 is what ends it. See [portal transition](portal-transition-5517.md).
 
 Gates before any of this: `Role_HasStatusFlag5`, `Role_HasStatusFlag10`, state code `0x1EC == 6`,
 and a current action id in `{0x64, 0x65, 0x66, 0x67, 0x69, 0x1F5, 0x1F6}` or `0x12C`.
@@ -77,8 +80,11 @@ does not require rewriting the passways that lead to it.
   map and tile, send the map burst, enter the new map's index. If the destination cannot be
   described the character is put back and re-enters the map it came from, so it reappears to the
   players who were just told it left.
-- Sends nothing when a request is refused. The client has no proven "no" for this, and the loading
-  mode it entered ends on its own.
+- Sends nothing when a request is refused. The client has no proven "no" for this.
+  **Correction 2026-10-24:** the mode it entered does *not* end on its own. `0x3F0` has no timer.
+  Only an 86, a 74 (which breaks the session, see the portal doc §5) or a disconnect leaves it. A
+  silent refusal therefore strands the client on the waiting screen. See
+  [portal transition §5](portal-transition-5517.md#5-refusal-interruption-repetition-malformed-input).
 
 ## Not done
 

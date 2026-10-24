@@ -1205,3 +1205,11 @@ Near-identical to `CMsgTeamPKRanking` (type 2233) but for the ranked/pop TeamPK 
 | +12 | DWORD | Phase (used by action 2) |
 | +16 | DWORD | Entry count |
 | +20 | variable | Ranking entries array (stride 44 bytes per entry) |
+
+
+## Auth string-validation evidence delta — 2026-10-18
+
+See the [native auth string-validation closure](Native-auth-string-validation-2026-10-18.md) for2078 raw byte storage versus display code-page selection,
+the five Windows1252 control-slot mappings, and the distinction between an
+on-wire NUL requirement and the native short-packet zero-fill behavior.
+The AUTH-001O comparison treats stricter validation as managed policy.

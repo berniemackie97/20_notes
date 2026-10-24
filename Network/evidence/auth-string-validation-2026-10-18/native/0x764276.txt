@@ -1,0 +1,580 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x764276
+00764276  b8 ea 0c 84 00   mov     eax, 0x840cea  ; CMsgUserInfo::Process -- packet 1006, the local hero seed. Body pointer is *(arg1+0x404),
+so all offsets below are packet-relative INCLUDING the 4-byte header.
+
+CLOSED 2026-08-16:
+  +81 (u16, movzx word [ecx+0x51] @0x764705) -> virtual slot 57 (vtable 0x86AD08+0xE4)
+       = CHero_SetCoachExpShareCountAndShowPrompt (0x6ED5FD) -> hero+0x9A8
+  +87 (u32, push dword [ecx+0x57] @0x7646BA -- NOT a byte)
+       -> CHero_SetFlowerStatusTier (0x673266) -> hero+0x474
+
+SEMANTIC AUDIT, reconciled 2026-09-21. The following copies are native-proven. COPS5066's exact shifted layout supplies corroborated historical names (Deed, Medal, MedalSelect, Virtue, Nobility, AutoAllot); those words are not recovered native field symbols. Prior displacement/proximity scans do NOT establish exhaustive dead-field status.
+  +32 u32 -> hero+0x85C @0x7643EC
+  +36 u32 -> hero+0x844 @0x764400
+  +40 u32 -> hero+0x848 @0x764414; spawn 0x756525 writes the player (ID>999999) branch.
+  +44 u32 -> hero+0x8B8 @0x764847; MsgUserAttribEx type0x17 also writes @0x757BFF.
+  +72 u8 zero-extended -> hero+0xF34 DWORD @0x7645C5.
+  +74 u8 zero-extended -> hero+0xCE4 DWORD @0x764552.
+Same-offset dialog accesses and sub-object accesses are not CHero accesses.
+Native MOVSX @0x764682 interprets packet+66 as signed16 PK points.
++97 ActiveSubProfessionId -> role+0x450; +98 qword PackedSubProfessionPhases -> role+0x468/46C; active digit -> role+0x454. RTTI0x921F30 .?AVCSubProfMrg@@; native ini/SubProfessionInfo.ini; packet2320 distinguishes phase/UpStepEffect from separate training level/UpLevEffect.
+String entry1 payload: copied @0x7642D5 into EBP-0x40 (16 bytes), with no subsequent read or pointer escape. CMsgStringList::TryGetEntry 0x771F57 does not publish destination. Packet receive 0x6DEBA5 calls Process at0x6DEC6B then deleting destructor at0x6DED5A; destructor chain0x7641F9->0x764215->0x771EAF/0x6DF27A does not consume payload. Thus PROVEN DEAD PAYLOAD on normal 5517 receive path; entry1 length remains structural for reaching spouse entry2. Empty placeholder is compatible; historical meaning/retail contents unrecovered. See the historical reconciliation note for the numeric fields' named compatibility mapping and its native-proof boundaries.
+Evidence and complete wire map: 20_notes/Network/MsgUserInfo1006-semantic-closure-2026-09-17.md and 10_work/docs/NATIVE_MSGUSERINFO_1006_5517.md.
+
+Stamina: hero+0x830 is explicitly ZEROED here at 0x7646A9 and does not ride in this packet.
+
+Post-auth audit 2026-09-15: actual equipped title comes from packet+0x5B through CHero_SetTitleId call 0x7646D6, distinct from 2078 account-login-alert record hero+0xDE0. Pushes action 0x4A at 0x764867, calls CMsgAction__Create at 0x764873, calls CNetMsg__Send at 0x7648A3. No check of 2078/2079 receipt or payload values gates this build/send. CHero_RefreshProtocol2000StatusUi is called later at 0x764900. Ordinary send/transport callback conditions still apply; this is not proof of an arbitrary omitted-packet login succeeding.
+
+Native SSA use audit 2026-09-21: the six targeted input values each have only a packet load and destination store in this Process handler: +32 0x7643E9->0x7643EC; +36 0x7643FD->0x764400; +40 0x764411->0x764414; +44 0x764844->0x764847; +72 MOVZX 0x7645C1->0x7645C5; +74 MOVZX 0x76454E->0x764552. There is no second direct use of those loaded SSA values here. The +74 store is one DWORD machine instruction despite byte-split typed MLIL. This is handler-local evidence, not proof that destination fields have no consumers elsewhere. See six-field-packet-value-uses.json.
+
+Focused historical reconciliation 2026-09-21: packet+32 LegacyDeed, +36 LegacyMedal, +40 LegacyMedalSelect, +72 LegacyNobility, +74 LegacyAutoAllot are retained stores matching historically deprecated COPS5066 fields. No behavioral consumer was established in the reviewed paths; no universal deadness or retail defaults inferred. +44 Virtue shares role+0x8B8 with native packet10017 discriminator23 at0x757BFF; discriminator24 jumps directly to continuation0x758B86. +48 historical MeteLev: unsigned /100000 at0x764584 -> role+0x83C; tutor-grade selection0x73237F uses max(current level, retained pre-rebirth level) when rebirth>0. Active peerage rank uses role+0xA2C through virtual+0x140 /0x675587, not retained +72's role+0xF34. +74 is stored 0..255 unchanged, not normalized to bool; value1 is not a native requirement. See 20_notes/Network/MsgUserInfo1006-historical-field-reconciliation.md. Broad receiver-model expansion stopped per user scope.
+0076427b  e8 d0 33 01 00   call    __EH_prolog
+00764280  81 ec 50 08 00 00 sub     esp, 0x850
+00764286  53               push    ebx
+00764287  56               push    esi
+00764288  57               push    edi
+00764289  33 db            xor     ebx, ebx
+0076428b  33 c0            xor     eax, eax
+0076428d  8d 7d d1         lea     edi, [ebp-0x2f]
+00764290  88 5d d0         mov     byte [ebp-0x30], bl
+00764293  88 5d c0         mov     byte [ebp-0x40], bl
+00764296  ab               stosd   dword [edi]
+00764297  ab               stosd   dword [edi]
+00764298  ab               stosd   dword [edi]
+00764299  66 ab            stosw   word [edi]
+0076429b  aa               stosb   byte [edi]
+0076429c  33 c0            xor     eax, eax
+0076429e  8d 7d c1         lea     edi, [ebp-0x3f]
+007642a1  ab               stosd   dword [edi]
+007642a2  ab               stosd   dword [edi]
+007642a3  ab               stosd   dword [edi]
+007642a4  66 ab            stosw   word [edi]
+007642a6  aa               stosb   byte [edi]
+007642a7  33 c0            xor     eax, eax
+007642a9  8d 7d e1         lea     edi, [ebp-0x1f]
+007642ac  88 5d e0         mov     byte [ebp-0x20], bl
+007642af  8b f1            mov     esi, ecx
+007642b1  ab               stosd   dword [edi]
+007642b2  ab               stosd   dword [edi]
+007642b3  ab               stosd   dword [edi]
+007642b4  66 ab            stosw   word [edi]
+007642b6  aa               stosb   byte [edi]
+007642b7  8d 45 d0         lea     eax, [ebp-0x30]
+007642ba  8d be 08 04 00 00 lea     edi, [esi+0x408]
+007642c0  6a 10            push    0x10
+007642c2  50               push    eax
+007642c3  53               push    ebx
+007642c4  8b cf            mov     ecx, edi
+007642c6  e8 8c dc 00 00   call    MsgStringList_TryGetEntry
+007642cb  8d 45 c0         lea     eax, [ebp-0x40]
+007642ce  6a 10            push    0x10
+007642d0  50               push    eax
+007642d1  6a 01            push    0x1
+007642d3  8b cf            mov     ecx, edi
+007642d5  e8 7d dc 00 00   call    MsgStringList_TryGetEntry
+007642da  8d 45 e0         lea     eax, [ebp-0x20]
+007642dd  6a 10            push    0x10
+007642df  50               push    eax
+007642e0  6a 02            push    0x2
+007642e2  8b cf            mov     ecx, edi
+007642e4  e8 6e dc 00 00   call    MsgStringList_TryGetEntry
+007642e9  8d 45 d0         lea     eax, [ebp-0x30]
+007642ec  50               push    eax
+007642ed  e8 6e 01 ca ff   call    CHero_GetSingletonPtr
+007642f2  8b c8            mov     ecx, eax
+007642f4  e8 99 0f f8 ff   call    CRole_SetName
+007642f9  8d 45 e0         lea     eax, [ebp-0x20]
+007642fc  50               push    eax
+007642fd  e8 5e 01 ca ff   call    CHero_GetSingletonPtr
+00764302  8b c8            mov     ecx, eax
+00764304  e8 d3 e5 f0 ff   call    0x6728dc
+00764309  53               push    ebx
+0076430a  68 39 0d 00 00   push    0xd39
+0076430f  e8 01 8d ee ff   call    Conquer_PostMainWindowMessage464
+00764314  59               pop     ecx
+00764315  59               pop     ecx
+00764316  e8 45 01 ca ff   call    CHero_GetSingletonPtr
+0076431b  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764321  8b 49 04         mov     ecx, dword [ecx+0x4]
+00764324  89 88 cc 00 00 00 mov     dword [eax+0xcc], ecx
+0076432a  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+00764330  b9 c8 af 96 00   mov     ecx, 0x96afc8
+00764335  ff 70 04         push    dword [eax+0x4]
+00764338  e8 a8 ac f7 ff   call    0x6defe5
+0076433d  e8 1e 01 ca ff   call    CHero_GetSingletonPtr
+00764342  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764348  0f b7 49 3e      movzx   ecx, word [ecx+0x3e]
+0076434c  51               push    ecx
+0076434d  6a 01            push    0x1
+0076434f  8b c8            mov     ecx, eax
+00764351  e8 56 fb f0 ff   call    CRole_SetPlayerDataByIndex
+00764356  e8 05 01 ca ff   call    CHero_GetSingletonPtr
+0076435b  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764361  0f b7 49 40      movzx   ecx, word [ecx+0x40]
+00764365  51               push    ecx
+00764366  8b c8            mov     ecx, eax
+00764368  e8 ad ee f0 ff   call    CHero_SetCurrentMana
+0076436d  e8 ee 00 ca ff   call    CHero_GetSingletonPtr
+00764372  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764378  0f b7 49 34      movzx   ecx, word [ecx+0x34]
+0076437c  89 88 fc 04 00 00 mov     dword [eax+0x4fc], ecx
+00764382  e8 d9 00 ca ff   call    CHero_GetSingletonPtr
+00764387  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+0076438d  0f b7 49 36      movzx   ecx, word [ecx+0x36]
+00764391  89 88 04 05 00 00 mov     dword [eax+0x504], ecx
+00764397  e8 c4 00 ca ff   call    CHero_GetSingletonPtr
+0076439c  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007643a2  0f b7 49 38      movzx   ecx, word [ecx+0x38]
+007643a6  89 88 08 05 00 00 mov     dword [eax+0x508], ecx
+007643ac  e8 af 00 ca ff   call    CHero_GetSingletonPtr
+007643b1  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007643b7  0f b7 49 3a      movzx   ecx, word [ecx+0x3a]
+007643bb  89 88 0c 05 00 00 mov     dword [eax+0x50c], ecx
+007643c1  e8 9a 00 ca ff   call    CHero_GetSingletonPtr
+007643c6  8b 96 04 04 00 00 mov     edx, dword [esi+0x404]
+007643cc  8b 4a 18         mov     ecx, dword [edx+0x18]
+007643cf  8b 52 1c         mov     edx, dword [edx+0x1c]
+007643d2  89 88 60 08 00 00 mov     dword [eax+0x860], ecx
+007643d8  89 90 64 08 00 00 mov     dword [eax+0x864], edx
+007643de  e8 7d 00 ca ff   call    CHero_GetSingletonPtr
+007643e3  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007643e9  8b 49 20         mov     ecx, dword [ecx+0x20]
+007643ec  89 88 5c 08 00 00 mov     dword [eax+0x85c], ecx  ; packet+32 -> hero+0x85C, raw DWORD. Historical COPS5066 +30 Deed (deprecated, signed32) aligns after +2 shift. Native copy does not establish arithmetic signedness, required default, or exhaustive deadness. Reconciliation: MsgUserInfo1006-historical-field-reconciliation.md.
+007643f2  e8 69 00 ca ff   call    CHero_GetSingletonPtr
+007643f7  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007643fd  8b 49 24         mov     ecx, dword [ecx+0x24]
+00764400  89 88 44 08 00 00 mov     dword [eax+0x844], ecx  ; packet+36 -> hero+0x844, raw DWORD. Historical COPS5066 +34 deprecated Medal aligns after +2 shift; retained compatibility slot. Historical name, native store; no required default or exhaustive deadness inferred.
+00764406  e8 55 00 ca ff   call    CHero_GetSingletonPtr
+0076440b  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764411  8b 49 28         mov     ecx, dword [ecx+0x28]
+00764414  89 88 48 08 00 00 mov     dword [eax+0x848], ecx  ; packet+40 -> hero+0x848, raw DWORD. Historical COPS5066 +38 deprecated MedalSelect aligns after +2 shift. Native player spawn (ID>999999) also writes spawn+0x50 DWORD here at0x756525. Not the actual max-life getter's +0x514.
+0076441a  e8 41 00 ca ff   call    CHero_GetSingletonPtr
+0076441f  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764425  ff 71 10         push    dword [ecx+0x10]
+00764428  8b c8            mov     ecx, eax
+0076442a  e8 a3 00 f2 ff   call    Folded_SetDword_0x0C
+0076442f  e8 2c 00 ca ff   call    CHero_GetSingletonPtr
+00764434  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+0076443a  ff 71 14         push    dword [ecx+0x14]
+0076443d  8b c8            mov     ecx, eax
+0076443f  e8 f2 3e f3 ff   call    Folded_SetDword_0x10
+00764444  e8 17 00 ca ff   call    CHero_GetSingletonPtr
+00764449  8b c8            mov     ecx, eax
+0076444b  e8 bf ba fb ff   call    Folded_GetDword_0x10
+00764450  3d d0 07 00 00   cmp     eax, 0x7d0
+00764455  7d 03            jge     0x76445a
+
+# Block 3 at 0x764457
+00764457  53               push    ebx
+00764458  eb 02            jmp     0x76445c
+
+# Block 2 at 0x76445a
+0076445a  6a 01            push    0x1
+
+# Block 6 at 0x76445c
+0076445c  68 01 05 00 00   push    0x501
+00764461  e8 af 8b ee ff   call    Conquer_PostMainWindowMessage464
+00764466  59               pop     ecx
+00764467  59               pop     ecx
+00764468  e8 f3 ff c9 ff   call    CHero_GetSingletonPtr
+0076446d  89 45 f0         mov     dword [ebp-0x10], eax
+00764470  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+00764476  bf e8 03 00 00   mov     edi, 0x3e8
+0076447b  33 d2            xor     edx, edx
+0076447d  8b 40 0a         mov     eax, dword [eax+0xa]
+00764480  8b cf            mov     ecx, edi
+00764482  f7 f1            div     ecx
+00764484  8b 4d f0         mov     ecx, dword [ebp-0x10]
+00764487  6a 01            push    0x1
+00764489  52               push    edx
+0076448a  e8 90 90 ee ff   call    CRole__CreateRoleView
+0076448f  e8 cc ff c9 ff   call    CHero_GetSingletonPtr
+00764494  89 45 f0         mov     dword [ebp-0x10], eax
+00764497  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+0076449d  33 d2            xor     edx, edx
+0076449f  b9 10 27 00 00   mov     ecx, 0x2710
+007644a4  8b 40 0a         mov     eax, dword [eax+0xa]
+007644a7  53               push    ebx
+007644a8  f7 f1            div     ecx
+007644aa  33 d2            xor     edx, edx
+007644ac  8b cf            mov     ecx, edi
+007644ae  f7 f1            div     ecx
+007644b0  8b 4d f0         mov     ecx, dword [ebp-0x10]
+007644b3  52               push    edx
+007644b4  e8 e7 1f f8 ff   call    CRole__SetMeshTransformIdAndResolveEffectiveMeshTransform
+007644b9  e8 a2 ff c9 ff   call    CHero_GetSingletonPtr
+007644be  89 45 f0         mov     dword [ebp-0x10], eax
+007644c1  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+007644c7  33 d2            xor     edx, edx
+007644c9  8b cf            mov     ecx, edi
+007644cb  8b 40 0a         mov     eax, dword [eax+0xa]
+007644ce  6a 0a            push    0xa
+007644d0  f7 f1            div     ecx
+007644d2  33 d2            xor     edx, edx
+007644d4  59               pop     ecx
+007644d5  f7 f1            div     ecx
+007644d7  8b 45 f0         mov     eax, dword [ebp-0x10]
+007644da  89 90 78 01 00 00 mov     dword [eax+0x178], edx
+007644e0  e8 7b ff c9 ff   call    CHero_GetSingletonPtr
+007644e5  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007644eb  6a 01            push    0x1
+007644ed  0f b7 49 08      movzx   ecx, word [ecx+0x8]
+007644f1  51               push    ecx
+007644f2  8b c8            mov     ecx, eax
+007644f4  e8 26 c6 ee ff   call    CRole__SetTransformLookSourceId
+007644f9  e8 62 ff c9 ff   call    CHero_GetSingletonPtr
+007644fe  89 45 f0         mov     dword [ebp-0x10], eax
+00764501  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+00764507  8b cf            mov     ecx, edi
+00764509  6a 01            push    0x1
+0076450b  0f b7 40 0e      movzx   eax, word [eax+0xe]
+0076450f  99               cdq
+00764510  f7 f9            idiv    ecx
+00764512  8b 4d f0         mov     ecx, dword [ebp-0x10]
+00764515  52               push    edx
+00764516  e8 21 96 ee ff   call    CRole__SetLinkedSourceLookupId
+0076451b  e8 40 ff c9 ff   call    CHero_GetSingletonPtr
+00764520  8b c8            mov     ecx, eax
+00764522  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+00764528  6a 01            push    0x1
+0076452a  0f b7 40 0e      movzx   eax, word [eax+0xe]
+0076452e  99               cdq
+0076452f  f7 ff            idiv    edi
+00764531  50               push    eax
+00764532  e8 ca 96 ee ff   call    CRole__SetHeadAttachmentSource
+00764537  e8 24 ff c9 ff   call    CHero_GetSingletonPtr
+0076453c  8b c8            mov     ecx, eax
+0076453e  e8 fd a7 ef ff   call    0x65ed40
+00764543  e8 18 ff c9 ff   call    CHero_GetSingletonPtr
+00764548  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+0076454e  0f b6 49 4a      movzx   ecx, byte [ecx+0x4a]
+00764552  89 88 e4 0c 00 00 mov     dword [eax+0xce4], ecx  ; packet+74 byte zero-extended -> hero+0xCE4 DWORD. Historical COPS5066 +70 deprecated AutoAllot bool aligns after +2 plus two profession-history bytes. Native stores 0..255 without boolean normalization; value1 is not required by this handler. Reviewed allot-button UI0x5077E5 uses unspent points+0x840, not this slot.
+00764558  e8 03 ff c9 ff   call    CHero_GetSingletonPtr
+0076455d  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764563  0f b6 49 44      movzx   ecx, byte [ecx+0x44]
+00764567  89 88 38 08 00 00 mov     dword [eax+0x838], ecx
+0076456d  e8 ee fe c9 ff   call    CHero_GetSingletonPtr
+00764572  8b c8            mov     ecx, eax
+00764574  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+0076457a  33 d2            xor     edx, edx
+0076457c  bf a0 86 01 00   mov     edi, 0x186a0
+00764581  8b 40 30         mov     eax, dword [eax+0x30]
+00764584  f7 f7            div     edi  ; packet+48 historical MeteLev: unsigned integer division by100000, quotient stored through0x673202 to role+0x83C. Rebirth-level retention in tutor-grade selection0x73237F. Remainder is not consumed here; do not invent a retail low-digit encoding.
+00764586  50               push    eax
+00764587  e8 76 ec f0 ff   call    CRole_SetTutorLevelEquivalent
+0076458c  e8 cf fe c9 ff   call    CHero_GetSingletonPtr
+00764591  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764597  0f b6 49 45      movzx   ecx, byte [ecx+0x45]
+0076459b  89 88 2c 08 00 00 mov     dword [eax+0x82c], ecx
+007645a1  e8 ba fe c9 ff   call    CHero_GetSingletonPtr
+007645a6  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007645ac  0f b7 49 3c      movzx   ecx, word [ecx+0x3c]
+007645b0  89 88 40 08 00 00 mov     dword [eax+0x840], ecx
+007645b6  e8 a5 fe c9 ff   call    CHero_GetSingletonPtr
+007645bb  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007645c1  0f b6 49 48      movzx   ecx, byte [ecx+0x48]
+007645c5  89 88 34 0f 00 00 mov     dword [eax+0xf34], ecx  ; packet+72 byte zero-extended -> hero+0xF34 DWORD. Historical COPS5066 +68 deprecated Nobility aligns after +2 plus two profession-history bytes. Distinct from active peerage rank role+0xA2C (getter0x675587, peerage UI0x42644E). Retained compatibility slot, not proof of universal deadness.
+007645cb  e8 90 fe c9 ff   call    CHero_GetSingletonPtr
+007645d0  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007645d6  0f b6 49 49      movzx   ecx, byte [ecx+0x49]
+007645da  51               push    ecx
+007645db  8b c8            mov     ecx, eax
+007645dd  e8 23 f9 f0 ff   call    0x673f05
+007645e2  e8 79 fe c9 ff   call    CHero_GetSingletonPtr
+007645e7  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007645ed  0f b6 49 46      movzx   ecx, byte [ecx+0x46]
+007645f1  51               push    ecx
+007645f2  8b c8            mov     ecx, eax
+007645f4  e8 fe 1c f1 ff   call    CHero_SetFirstProfession
+007645f9  e8 62 fe c9 ff   call    CHero_GetSingletonPtr
+007645fe  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764604  0f b6 49 47      movzx   ecx, byte [ecx+0x47]
+00764608  51               push    ecx
+00764609  8b c8            mov     ecx, eax
+0076460b  e8 fb 1c f1 ff   call    CHero_SetPreviousProfession
+00764610  e8 4b fe c9 ff   call    CHero_GetSingletonPtr
+00764615  8b c8            mov     ecx, eax
+00764617  e8 18 07 f1 ff   call    CRole_GetAuraTierScore
+0076461c  3b c3            cmp     eax, ebx
+0076461e  7e 14            jle     0x764634
+
+# Block 5 at 0x764620
+00764620  50               push    eax
+00764621  e8 34 9a fb ff   call    AuraTierScore_ToEffectId
+00764626  59               pop     ecx
+00764627  50               push    eax
+00764628  e8 14 f2 f8 ff   call    CMapViewportState_GetOrInit
+0076462d  8b c8            mov     ecx, eax
+0076462f  e8 ee cb f8 ff   call    0x6f1222
+
+# Block 4 at 0x764634
+00764634  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+0076463a  8b 40 4b         mov     eax, dword [eax+0x4b]
+0076463d  3b c3            cmp     eax, ebx
+0076463f  76 18            jbe     0x764659
+
+# Block 8 at 0x764641
+00764641  53               push    ebx
+00764642  53               push    ebx
+00764643  53               push    ebx
+00764644  53               push    ebx
+00764645  50               push    eax
+00764646  e8 0f 9a fb ff   call    AuraTierScore_ToEffectId
+0076464b  59               pop     ecx
+0076464c  50               push    eax
+0076464d  e8 ef f1 f8 ff   call    CMapViewportState_GetOrInit
+00764652  8b c8            mov     ecx, eax
+00764654  e8 5e c9 f8 ff   call    0x6f0fb7
+
+# Block 7 at 0x764659
+00764659  e8 02 fe c9 ff   call    CHero_GetSingletonPtr
+0076465e  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764664  8b 10            mov     edx, dword [eax]
+00764666  ff 71 4b         push    dword [ecx+0x4b]
+00764669  8b c8            mov     ecx, eax
+0076466b  ff 92 d8 00 00 00 call    dword [edx+0xd8]
+00764671  e8 ea fd c9 ff   call    CHero_GetSingletonPtr
+00764676  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+0076467c  53               push    ebx
+0076467d  68 03 04 00 00   push    0x403
+00764682  0f bf 49 42      movsx   ecx, word [ecx+0x42]
+00764686  89 88 68 08 00 00 mov     dword [eax+0x868], ecx
+0076468c  e8 84 89 ee ff   call    Conquer_PostMainWindowMessage464
+00764691  59               pop     ecx
+00764692  59               pop     ecx
+00764693  53               push    ebx
+00764694  e8 c7 fd c9 ff   call    CHero_GetSingletonPtr
+00764699  8b 88 64 0a 00 00 mov     ecx, dword [eax+0xa64]
+0076469f  e8 74 9e fd ff   call    0x73e518
+007646a4  e8 b7 fd c9 ff   call    CHero_GetSingletonPtr
+007646a9  89 98 30 08 00 00 mov     dword [eax+0x830], ebx
+007646af  e8 ac fd c9 ff   call    CHero_GetSingletonPtr
+007646b4  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007646ba  ff 71 57         push    dword [ecx+0x57]
+007646bd  8b c8            mov     ecx, eax
+007646bf  e8 a2 eb f0 ff   call    CHero_SetFlowerStatusTier
+007646c4  e8 97 fd c9 ff   call    CHero_GetSingletonPtr
+007646c9  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007646cf  0f b7 49 5b      movzx   ecx, word [ecx+0x5b]
+007646d3  51               push    ecx
+007646d4  8b c8            mov     ecx, eax
+007646d6  e8 7b 04 f1 ff   call    CHero_SetTitleId
+007646db  e8 80 fd c9 ff   call    CHero_GetSingletonPtr
+007646e0  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007646e6  6a 01            push    0x1
+007646e8  0f b7 49 4f      movzx   ecx, word [ecx+0x4f]
+007646ec  51               push    ecx
+007646ed  8b c8            mov     ecx, eax
+007646ef  e8 59 8c f8 ff   call    CHero_SetCoachPointsAndShowPrompt
+007646f4  e8 67 fd c9 ff   call    CHero_GetSingletonPtr
+007646f9  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007646ff  8b 10            mov     edx, dword [eax]
+00764701  0f b7 49 51      movzx   ecx, word [ecx+0x51]
+00764705  51               push    ecx
+00764706  8b c8            mov     ecx, eax
+00764708  ff 92 e4 00 00 00 call    dword [edx+0xe4]
+0076470e  e8 4d fd c9 ff   call    CHero_GetSingletonPtr
+00764713  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764719  0f b7 49 55      movzx   ecx, word [ecx+0x55]
+0076471d  51               push    ecx
+0076471e  8b c8            mov     ecx, eax
+00764720  e8 7f f4 f0 ff   call    CRole_SetCoachSessionState
+00764725  e8 36 fd c9 ff   call    CHero_GetSingletonPtr
+0076472a  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764730  ff 71 5d         push    dword [ecx+0x5d]
+00764733  8b c8            mov     ecx, eax
+00764735  e8 5e b9 ed ff   call    Folded_SetDword_0x14
+0076473a  e8 21 fd c9 ff   call    CHero_GetSingletonPtr
+0076473f  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764745  ff 71 6a         push    dword [ecx+0x6a]
+00764748  8b c8            mov     ecx, eax
+0076474a  e8 8c 0e f0 ff   call    CHero_SetRacePoints
+0076474f  e8 44 ec ca ff   call    0x413398
+00764754  8b c8            mov     ecx, eax
+00764756  e8 5e b0 f2 ff   call    CHero_RecomputeTutorGradeFromLevelKey
+0076475b  e8 00 fd c9 ff   call    CHero_GetSingletonPtr
+00764760  8b c8            mov     ecx, eax
+00764762  e8 68 dc ef ff   call    CHero__RefreshEquipmentDerivedStats
+00764767  53               push    ebx
+00764768  68 51 04 00 00   push    0x451
+0076476d  e8 a3 88 ee ff   call    Conquer_PostMainWindowMessage464
+00764772  59               pop     ecx
+00764773  59               pop     ecx
+00764774  e8 e7 fc c9 ff   call    CHero_GetSingletonPtr
+00764779  8b c8            mov     ecx, eax
+0076477b  e8 9c 13 f1 ff   call    CRole_RemoveActiveSubProfessionStatusEffect
+00764780  e8 db fc c9 ff   call    CHero_GetSingletonPtr
+00764785  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+0076478b  ff 71 66         push    dword [ecx+0x66]
+0076478e  ff 71 62         push    dword [ecx+0x62]
+00764791  8b c8            mov     ecx, eax
+00764793  e8 49 13 f1 ff   call    CRole_SetPackedSubProfessionPhases
+00764798  e8 c3 fc c9 ff   call    CHero_GetSingletonPtr
+0076479d  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007647a3  0f b6 49 61      movzx   ecx, byte [ecx+0x61]
+007647a7  51               push    ecx
+007647a8  8b c8            mov     ecx, eax
+007647aa  e8 0b 13 f1 ff   call    CRole_SetActiveSubProfession
+007647af  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+007647b5  8a 40 61         mov     al, byte [eax+0x61]
+007647b8  3a c3            cmp     al, bl
+007647ba  76 52            jbe     0x76480e
+
+# Block 10 at 0x7647bc
+007647bc  0f b6 c0         movzx   eax, al
+007647bf  48               dec     eax
+007647c0  51               push    ecx
+007647c1  89 45 f0         mov     dword [ebp-0x10], eax
+007647c4  51               push    ecx
+007647c5  db 45 f0         fild    st0, dword [ebp-0x10]
+007647c8  dd 1c 24         fstp    qword [esp], st0
+007647cb  dd 05 90 b5 84 00 fld     st0, qword [0x84b590]
+007647d1  51               push    ecx
+007647d2  51               push    ecx
+007647d3  dd 1c 24         fstp    qword [esp], st0
+007647d6  e8 3f 31 01 00   call    pow
+007647db  83 c4 10         add     esp, 0x10
+007647de  e8 81 30 01 00   call    _ftol
+007647e3  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007647e9  99               cdq
+007647ea  52               push    edx
+007647eb  50               push    eax
+007647ec  ff 71 66         push    dword [ecx+0x66]
+007647ef  ff 71 62         push    dword [ecx+0x62]
+007647f2  e8 79 30 01 00   call    __alldiv
+007647f7  53               push    ebx
+007647f8  6a 0a            push    0xa
+007647fa  52               push    edx
+007647fb  50               push    eax
+007647fc  e8 9f 31 01 00   call    __allrem
+00764801  50               push    eax
+00764802  e8 59 fc c9 ff   call    CHero_GetSingletonPtr
+00764807  8b c8            mov     ecx, eax
+00764809  e8 b9 12 f1 ff   call    CRole_SetActiveSubProfessionPhase
+
+# Block 9 at 0x76480e
+0076480e  53               push    ebx
+0076480f  68 74 0c 00 00   push    0xc74
+00764814  e8 fc 87 ee ff   call    Conquer_PostMainWindowMessage464
+00764819  59               pop     ecx
+0076481a  59               pop     ecx
+0076481b  e8 40 fc c9 ff   call    CHero_GetSingletonPtr
+00764820  8b c8            mov     ecx, eax
+00764822  e8 6d 13 f1 ff   call    CRole_RefreshSubProfessionStatusEffect
+00764827  e8 90 fb c9 ff   call    CGameMsg_GetSingletonPtr
+0076482c  8b c8            mov     ecx, eax
+0076482e  81 c1 b8 04 00 00 add     ecx, 0x4b8
+00764834  e8 49 cd fa ff   call    0x711582
+00764839  e8 22 fc c9 ff   call    CHero_GetSingletonPtr
+0076483e  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+00764844  8b 49 2c         mov     ecx, dword [ecx+0x2c]
+00764847  89 88 b8 08 00 00 mov     dword [eax+0x8b8], ecx  ; packet+44 -> hero+0x8B8, raw DWORD. Historical COPS5066 +42 Virtue aligns after +2 shift. Native packet10017 discriminator23 stores same field at0x757BFF. Shared update identity is proven; Virtue name is historical corroboration.
+0076484d  8d 8d a4 f7 ff ff lea     ecx, [ebp-0x85c]
+00764853  e8 4b a0 f9 ff   call    CMsgAction_Ctor
+00764858  89 5d fc         mov     dword [ebp-0x4], ebx
+0076485b  e8 00 fc c9 ff   call    CHero_GetSingletonPtr
+00764860  8b 80 cc 00 00 00 mov     eax, dword [eax+0xcc]
+00764866  53               push    ebx
+00764867  6a 4a            push    0x4a
+00764869  53               push    ebx
+0076486a  53               push    ebx
+0076486b  53               push    ebx
+0076486c  50               push    eax
+0076486d  8d 8d a4 f7 ff ff lea     ecx, [ebp-0x85c]
+00764873  e8 e7 a0 f9 ff   call    CMsgAction__Create
+00764878  85 c0            test    eax, eax
+0076487a  75 21            jne     0x76489d
+
+# Block 12 at 0x76487c
+0076487c  68 b0 00 00 00   push    0xb0
+00764881  68 5c a4 94 00   push    0x94a45c
+00764886  68 24 a4 94 00   push    0x94a424
+0076488b  68 84 17 92 00   push    0x921784
+00764890  68 6c 17 92 00   push    0x92176c
+00764895  e8 7e 47 00 00   call    Debug_LogMessageToDailyFileWithDedup
+0076489a  83 c4 14         add     esp, 0x14
+
+# Block 11 at 0x76489d
+0076489d  8d 8d a4 f7 ff ff lea     ecx, [ebp-0x85c]
+007648a3  e8 ad aa f7 ff   call    CNetMsg__Send
+007648a8  e8 b3 fb c9 ff   call    CHero_GetSingletonPtr
+007648ad  83 b8 78 01 00 00 02 cmp     dword [eax+0x178], 0x2
+007648b4  75 43            jne     0x7648f9
+
+# Block 14 at 0x7648b6
+007648b6  8d 8d b8 fb ff ff lea     ecx, [ebp-0x448]
+007648bc  e8 46 24 fa ff   call    0x706d07
+007648c1  c6 45 fc 01      mov     byte [ebp-0x4], 0x1
+007648c5  e8 96 fb c9 ff   call    CHero_GetSingletonPtr
+007648ca  8b c8            mov     ecx, eax
+007648cc  e8 be 2e ef ff   call    0x65778f
+007648d1  53               push    ebx
+007648d2  53               push    ebx
+007648d3  6a 02            push    0x2
+007648d5  8d 8d b8 fb ff ff lea     ecx, [ebp-0x448]
+007648db  e8 9d 24 fa ff   call    0x706d7d
+007648e0  8d 8d b8 fb ff ff lea     ecx, [ebp-0x448]
+007648e6  e8 6a aa f7 ff   call    CNetMsg__Send
+007648eb  8d 8d b8 fb ff ff lea     ecx, [ebp-0x448]
+007648f1  88 5d fc         mov     byte [ebp-0x4], bl
+007648f4  e8 69 24 fa ff   call    0x706d62
+
+# Block 13 at 0x7648f9
+007648f9  e8 62 fb c9 ff   call    CHero_GetSingletonPtr
+007648fe  8b c8            mov     ecx, eax
+00764900  e8 0d e5 ef ff   call    CHero_RefreshProtocol2000StatusUi
+00764905  e8 d3 4e cb ff   call    CHeroConfigMgr_GetSingletonPtr
+0076490a  8b c8            mov     ecx, eax
+0076490c  e8 24 d6 ee ff   call    CharacterSetupRecord_InitServerScopedSetupIniPath
+00764911  e8 c7 4e cb ff   call    CHeroConfigMgr_GetSingletonPtr
+00764916  8b c8            mov     ecx, eax
+00764918  e8 5c e5 ee ff   call    0x652e79
+0076491d  e8 bb 4e cb ff   call    CHeroConfigMgr_GetSingletonPtr
+00764922  8b c8            mov     ecx, eax
+00764924  e8 3c e8 ee ff   call    0x653165
+00764929  5f               pop     edi
+0076492a  5e               pop     esi
+0076492b  85 c0            test    eax, eax
+0076492d  5b               pop     ebx
+0076492e  74 0e            je      0x76493e
+
+# Block 16 at 0x764930
+00764930  e8 a8 4e cb ff   call    CHeroConfigMgr_GetSingletonPtr
+00764935  8b c8            mov     ecx, eax
+00764937  e8 41 e7 ee ff   call    0x65307d
+0076493c  eb 05            jmp     0x764943
+
+# Block 15 at 0x76493e
+0076493e  b8 ff ff ff 7f   mov     eax, 0x7fffffff
+
+# Block 19 at 0x764943
+00764943  50               push    eax
+00764944  e8 17 fb c9 ff   call    CHero_GetSingletonPtr
+00764949  8b c8            mov     ecx, eax
+0076494b  e8 99 84 ef ff   call    0x65cde9
+00764950  e8 0b fb c9 ff   call    CHero_GetSingletonPtr
+00764955  8b c8            mov     ecx, eax
+00764957  e8 6b 0e f1 ff   call    0x6757c7
+0076495c  84 c0            test    al, al
+0076495e  74 0e            je      0x76496e
+
+# Block 18 at 0x764960
+00764960  6a 01            push    0x1
+00764962  e8 9d 59 dd ff   call    GetFrameTickPerfTimerSingleton
+00764967  8b c8            mov     ecx, eax
+00764969  e8 36 5d f4 ff   call    CompilerFolded_SetDwordAtOffset04
+
+# Block 17 at 0x76496e
+0076496e  e8 91 59 dd ff   call    GetFrameTickPerfTimerSingleton
+00764973  8b c8            mov     ecx, eax
+00764975  e8 df 94 00 00   call    0x76de59
+0076497a  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+0076497e  8d 8d a4 f7 ff ff lea     ecx, [ebp-0x85c]
+00764984  e8 98 9f f9 ff   call    CMsgAction_Dtor
+00764989  8b 4d f4         mov     ecx, dword [ebp-0xc]
+0076498c  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+00764993  c9               leave
+00764994  c2 04 00         retn    0x4
+

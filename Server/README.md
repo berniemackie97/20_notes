@@ -26,8 +26,15 @@ and three documents carry no date at all.
 - [movement.md](movement.md) — movement and jump. Both server-authoritative: the
   client applies nothing until the server echoes it back, and withholding the
   reply is the only way to refuse.
+- [movement-eligibility-5517.md](movement-eligibility-5517.md) — statuses, request gates, jump/charge
+  elevation, mount and vigor, local animation vs gate, TQ 15.10 enforcement.
 - [position-sync.md](position-sync.md) — position synchronisation.
+- [death-ghost-revive-5517.md](death-ghost-revive-5517.md) — death, ghost transition (145), revive (94),
+  Revive Here gates, revival sync and destinations; client vs TQ 15.10 vs community.
 - [map-transitions.md](map-transitions.md) — map transitions.
+- [portal-transition-5517.md](portal-transition-5517.md) — connected travel: frame modes 0x3F0/0x3F2/0x3F5,
+  inbound 86 step list, ordering 86 → 1110 → spawns, no client ack, refusal strands the client, 74 forbidden
+  mid-session; TQ 15.10 ChangeMap/FlyMap/EnterMap order, Fox. 2026-10-24.
 - [entity-visibility.md](entity-visibility.md) — who each client is told about.
 - [npcs.md](npcs.md) — NPC spawn and removal.
 
@@ -41,12 +48,38 @@ and three documents carry no date at all.
   attributes, auto-allot, and the profession family, anchored on
   `CHero::GetEffectiveMaxLife` (`0x65D0C9`–`0x65D0EF`).
 
+## Reference server binaries
+
+- [tq-server-binaries-2008.md](tq-server-binaries-2008.md) — TQ CQServer 15.10 (2008-10-21) MsgServer/NpcServer
+  + plugin DLLs: copy census, canonical picks, IDA DB fixups, era deltas (Blowfish vs CAST5). IDBs in
+  `50_server/binaries/_re/`. 2026-10-12.
+- [tq-server-15.10-runtime-semantics.md](tq-server-15.10-runtime-semantics.md) — proven 15.10 behaviour: shop load/buy,
+  action/task engine, spawn generators, map cell/collision composition. Addresses + IDB names. 2026-10-12.
+- [historical-reconciliation-5095.md](historical-reconciliation-5095.md) — OpenConquerServer vs ZFSERVER (5095) vs 5517:
+  39 classified findings (items, shops, additions, maps, actions, DB), proposed catalogs, import procedure, task list.
+
+## Realms
+
+- [multi-realm-architecture-5517.md](multi-realm-architecture-5517.md) — decision record: one AccountServer, one
+  GameServer + Game DB per realm, realm registry keyed by protocol server name, realm-bound tickets. 2026-10-12.
+- [historical-multi-server-topology.md](historical-multi-server-topology.md) — TQ 15.10 world/AccountServer link,
+  identity, capacity, per-world DB. 2026-10-12.
+
 ## Data provenance
+
+- [map-catalog-5517.md](map-catalog-5517.md) — **current server map list.** 289 world IDs anchored on
+  the client's GameMapEx.ini (proven world-MapId table) + client data refs; bindings/flags from TQ data
+  (2007 MYD, Long/Canyon TQ-English lineage); passways checked against native DMap exits. 2026-10-10.
+- [zf-map-reconciliation-5517.md](zf-map-reconciliation-5517.md) —306-row zf provenance, complete426-ID
+  reconciliation against both273-row dumps and the276 reconstruction, related references, native
+  compatibility, historical portal-deletion findings and unresolved retail authority. Verified2026-10-10.
 
 - [database-provenance.md](database-provenance.md) — what the workspace database
   actually is, table by table, measured against the client's own shipped data.
-- [map-catalogue-corrections.md](map-catalogue-corrections.md) — what the map
-  catalogue got wrong and how it was disproved, using only coordinates the
-  database already places on a map.
+- [map-identity-flags-native-5517.md](map-identity-flags-native-5517.md) — native field widths,
+  exact flag masks, terrain-index census, eight geometry rechecks, all 38 non-identical legacy pairs,
+  map 1501 ambiguity, and the limits of the276-row reconstruction. Verified 2026-10-09.
+- [map-catalogue-corrections.md](map-catalogue-corrections.md) — historical migration and coordinate
+  tests; retail-identity overclaims corrected by the audit above.
 - [map-assets.md](map-assets.md) — native map asset formats and the server
   contract over them.

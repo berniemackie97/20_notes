@@ -1,0 +1,85 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x771f57
+00771f57  55               push    ebp  ; MsgStringList_TryGetEntry(list, index, dest, destSize) -> 1 on hit, 0 on miss.
+VERIFIED 2026-08-16. This is the reader for the trailing string list shared by MsgTalk (1004),
+MsgUserInfo (1006) and others.
+
+Wire format, at *(list + 4):
+  [count:u8] then repeated [length:u8][bytes...]
+The routine skips the count byte (`*(list+4) + 1`), gets the entry count from sub_771FC0, and
+walks entries advancing by `length + 1`.
+
+BOUNDS CONTRACT (important for server writers):
+  memset(dest, 0, destSize) happens FIRST, then
+  if (destSize <= length) -> break and return 0
+So an entry is copied only when `length < destSize`. With the 0x10 buffers used by 1006 and by
+MsgTalk indices 0..2, the maximum usable entry length is 15 bytes. A 16+ byte entry is NOT
+truncated -- it is skipped entirely and the destination stays zeroed, so an over-long name
+silently renders blank instead of failing. Servers must reject over-long entries themselves.
+
+Known buffer sizes by call site:
+  CMsgTalk__Process   (1004): idx0 sender 0x10, idx1 recipient 0x10, idx2 0x10, idx3 message 0x100
+  CMsgUserInfo__Process (1006): idx0 name 0x10, idx1 read-but-unused 0x10, idx2 0x10 -> sub_6728DC
+00771f58  8b ec            mov     ebp, esp
+00771f5a  56               push    esi
+00771f5b  57               push    edi
+00771f5c  8b f9            mov     edi, ecx
+00771f5e  83 7f 04 00      cmp     dword [edi+0x4], 0x0
+00771f62  74 39            je      0x771f9d
+
+# Block 3 at 0x771f64
+00771f64  ff 75 10         push    dword [ebp+0x10]
+00771f67  6a 00            push    0x0
+00771f69  ff 75 0c         push    dword [ebp+0xc]
+00771f6c  e8 c3 56 00 00   call    memset
+00771f71  8b 77 04         mov     esi, dword [edi+0x4]
+00771f74  83 c4 0c         add     esp, 0xc
+00771f77  8b cf            mov     ecx, edi
+00771f79  46               inc     esi
+00771f7a  e8 41 00 00 00   call    MsgStringList_GetEntryCount
+00771f7f  39 45 08         cmp     dword [ebp+0x8], eax
+00771f82  73 19            jae     0x771f9d
+
+# Block 4 at 0x771f84
+00771f84  33 d2            xor     edx, edx
+00771f86  85 c0            test    eax, eax
+00771f88  76 13            jbe     0x771f9d
+
+# Block 5 at 0x771f8a
+00771f8a  39 55 08         cmp     dword [ebp+0x8], edx
+00771f8d  8a 0e            mov     cl, byte [esi]
+00771f8f  74 14            je      0x771fa5
+
+# Block 7 at 0x771f91
+00771f91  0f b6 c9         movzx   ecx, cl
+00771f94  42               inc     edx
+00771f95  3b d0            cmp     edx, eax
+00771f97  8d 74 0e 01      lea     esi, [esi+ecx+0x1]
+00771f9b  72 ed            jb      0x771f8a
+
+# Block 2 at 0x771f9d
+00771f9d  33 c0            xor     eax, eax
+
+# Block 9 at 0x771f9f
+00771f9f  5f               pop     edi
+00771fa0  5e               pop     esi
+00771fa1  5d               pop     ebp
+00771fa2  c2 0c 00         retn    0xc
+
+# Block 6 at 0x771fa5
+00771fa5  0f b6 c1         movzx   eax, cl
+00771fa8  39 45 10         cmp     dword [ebp+0x10], eax
+00771fab  76 f0            jbe     0x771f9d
+
+# Block 8 at 0x771fad
+00771fad  46               inc     esi
+00771fae  50               push    eax
+00771faf  56               push    esi
+00771fb0  ff 75 0c         push    dword [ebp+0xc]
+00771fb3  e8 02 57 00 00   call    memcpy
+00771fb8  83 c4 0c         add     esp, 0xc
+00771fbb  6a 01            push    0x1
+00771fbd  58               pop     eax
+00771fbe  eb df            jmp     0x771f9f
+

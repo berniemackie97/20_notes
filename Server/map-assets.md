@@ -4,7 +4,7 @@ Server side: `50_server/OpenConquerPublic/src/OpenConquer.MapAssets`.
 
 ## `ini/GameMap.dat` index
 
-Verified in `RoleDataSingleton_LoadGameMapDatTable` (GameData.dll `0x10007680`).
+Verified in `RoleDataSingleton_LoadGameMapDatTable` (GameData.dll `0x10007678`).
 
 ```
 u32 recordCount
@@ -19,10 +19,13 @@ recordCount x {
 Native loader detail:
 
 - Each record is copied into a **0x44-byte** slot: path at `+0`, `componentLinkId` at `+0x40`.
-  Hence the 0x40 path cap. Confirmed from the consumer side too — `CGameMap_CreateFromDataId`
-  (Conquer.exe `0x61DA2F`) does `strncpy(dest, record, 0xff)` from `+0` and reads `*(record + 0x40)`.
+  This is64 bytes of path storage, not an enforced cap. An in-region NUL needs length≤63.
+  Confirmed from the consumer side too — `CGameMap_CreateFromDataId`
+  (Conquer.exe `0x61DA1F`) does `strncpy(dest, record, 0xff)` from `+0` and reads `*(record + 0x40)`.
 - `memset(buf, 0, 0x44)` per record, then `buf[pathLength] = 0`.
 - **No bounds check on `pathLength`** — a long path overflows the native stack buffer.
+- `componentLinkId` (4th field): 5517 client meaning not traced here. TQ server 15.10 passes it as the puzzle tile size
+  (256/128) to its puzzle-border blocking (`0x4D1777`, [runtime semantics](tq-server-15.10-runtime-semantics.md)) — 5095 only.
 - Insert is `UInt32ToGameMapInfoTable_FindOrInsertValueByKey` followed by `memcpy 0x44`, i.e.
   **find-or-insert then overwrite → last record wins** on a duplicate map-data ID.
 
@@ -33,9 +36,21 @@ Native loader detail:
 | Declared records | 262 |
 | Bytes consumed / file size | 8131 / 8131 (**no trailing bytes**) |
 | Zero map-data IDs | 0 |
-| Path length min/max | 13 / 28 (cap 0x40) |
+| Path length min/max | 13 / 28 (native does not enforce a cap) |
 | Duplicate map-data IDs | `1067` |
 | Referenced extensions | `.7z` × 262 (**nothing else**) |
+
+The [2026-10-09 audit](map-identity-flags-native-5517.md) pins the8131-byte retail file hash,
+all 262 record offsets,261 winning keys,179 effective paths and both1067 records. The later1067 record
+changes both path (`qiling-z.7z`→`09Christmas02.7z`) and companion (256→128). Nine indexedkunlun
+archives are absent from the supplied retail distribution. This index does not contain worldMapId
+bindings or per-map flags. `0x100104EE` requires exact key equality, not nearest-key fallback.
+
+Native auto classification `0x7715A8` searches the lowercased **whole path for substrings** `.7z`
+then `.gz`; it is not strict suffix matching. Backend selection is `0x771679`,7z file open is
+`0x77135E`, and signature validation is `0x771426`. All192supplied7z maps are single-file archives;
+all decoded base-grid row checksums passed the new audit. Successful terrain resolution alone does
+not authenticate the server's choice of terrain key.
 
 ## `.DMap` base terrain
 
@@ -79,7 +94,7 @@ that gets enabled during an incident and never disabled again.
 
 | Rule | Native | Server | Why |
 |---|---|---|---|
-| `pathLength > 0x40` | overflows its buffer | reject | native bug; the slot is 0x40 |
+| `pathLength > 0x40` | unchecked; overlaps companion storage, with larger values overflowing the stack | reject |64-byte path region; length 64 also lacks an in-region NUL |
 | `mapDataId == 0` | accepted | reject | zero is the server's "no map data" sentinel |
 | Bytes after last record | ignored | reject | file is not the file we think it is |
 | Duplicate map-data ID | last wins | **last wins** | matched deliberately; 1067 depends on it |

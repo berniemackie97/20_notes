@@ -1,0 +1,18 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6df281
+006df281  56               push    esi  ; Clears the reusable 0x400-byte packet storage at message+4 and resets its length/type header fields. Called by packet constructors/builders before writing a new frame.
+006df282  8b f1            mov     esi, ecx
+006df284  57               push    edi
+006df285  68 00 04 00 00   push    0x400
+006df28a  8d 7e 04         lea     edi, [esi+0x4]
+006df28d  6a 00            push    0x0
+006df28f  57               push    edi
+006df290  e8 9f 83 09 00   call    memset
+006df295  66 83 27 00      and     word [edi], 0x0
+006df299  66 83 66 06 00   and     word [esi+0x6], 0x0
+006df29e  83 c4 0c         add     esp, 0xc
+006df2a1  5f               pop     edi
+006df2a2  5e               pop     esi
+006df2a3  c3               retn
+

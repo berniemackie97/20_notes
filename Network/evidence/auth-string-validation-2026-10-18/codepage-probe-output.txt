@@ -1,0 +1,21 @@
+API-only probe; not retail client execution. ACP=1252
+cp=0 case=undefined1252 in=818D8F909D count=5 error=0 utf16=0081 008D 008F 0090 009D  roundtrip=818D8F909D default=0
+cp=0 case=dbcs in=8140 count=2 error=0 utf16=0081 0040  roundtrip=8140 default=0
+cp=0 case=chinese in=D6D0 count=2 error=0 utf16=00D6 00D0  roundtrip=D6D0 default=0
+cp=0 case=utf8_e_acute in=C3A9 count=2 error=0 utf16=00C3 00A9  roundtrip=C3A9 default=0
+cp=0 case=lone81 in=81 count=1 error=0 utf16=0081  roundtrip=81 default=0
+cp=1252 case=undefined1252 in=818D8F909D count=5 error=0 utf16=0081 008D 008F 0090 009D  roundtrip=818D8F909D default=0
+cp=1252 case=dbcs in=8140 count=2 error=0 utf16=0081 0040  roundtrip=8140 default=0
+cp=1252 case=chinese in=D6D0 count=2 error=0 utf16=00D6 00D0  roundtrip=D6D0 default=0
+cp=1252 case=utf8_e_acute in=C3A9 count=2 error=0 utf16=00C3 00A9  roundtrip=C3A9 default=0
+cp=1252 case=lone81 in=81 count=1 error=0 utf16=0081  roundtrip=81 default=0
+cp=936 case=undefined1252 in=818D8F909D count=3 error=0 utf16=4EB6 5F41 003F  roundtrip=818D8F903F default=0
+cp=936 case=dbcs in=8140 count=1 error=0 utf16=4E02  roundtrip=8140 default=0
+cp=936 case=chinese in=D6D0 count=1 error=0 utf16=4E2D  roundtrip=D6D0 default=0
+cp=936 case=utf8_e_acute in=C3A9 count=1 error=0 utf16=8305  roundtrip=C3A9 default=0
+cp=936 case=lone81 in=81 count=1 error=0 utf16=003F  roundtrip=3F default=0
+cp=65001 case=undefined1252 in=818D8F909D count=5 error=0 utf16=FFFD FFFD FFFD FFFD FFFD  roundtrip=EFBFBDEFBFBDEFBFBDEFBFBDEFBFBD default=0
+cp=65001 case=dbcs in=8140 count=2 error=0 utf16=FFFD 0040  roundtrip=EFBFBD40 default=0
+cp=65001 case=chinese in=D6D0 count=2 error=0 utf16=FFFD FFFD  roundtrip=EFBFBDEFBFBD default=0
+cp=65001 case=utf8_e_acute in=C3A9 count=1 error=0 utf16=00E9  roundtrip=C3A9 default=0
+cp=65001 case=lone81 in=81 count=1 error=0 utf16=FFFD  roundtrip=EFBFBD default=0

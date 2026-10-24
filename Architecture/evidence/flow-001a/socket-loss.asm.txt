@@ -1,0 +1,261 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6deba5
+006deba5  b8 1c 24 83 00   mov     eax, 0x83241c
+006debaa  e8 a1 8a 09 00   call    __EH_prolog
+006debaf  51               push    ecx
+006debb0  b8 38 16 00 00   mov     eax, 0x1638
+006debb5  e8 a6 8e 09 00   call    __chkstk
+006debba  83 65 fc 00      and     dword [ebp-0x4], 0x0
+006debbe  53               push    ebx
+006debbf  56               push    esi
+006debc0  8b f1            mov     esi, ecx
+006debc2  57               push    edi
+006debc3  89 75 d8         mov     dword [ebp-0x28], esi
+006debc6  8b 4e 14         mov     ecx, dword [esi+0x14]
+006debc9  89 65 f0         mov     dword [ebp-0x10], esp
+006debcc  85 c9            test    ecx, ecx
+006debce  0f 84 e8 01 00 00 je      0x6dedbc
+
+# Block 3 at 0x6debd4
+006debd4  e8 30 36 00 00   call    CGameSocket_IsConnectionAlive
+006debd9  85 c0            test    eax, eax
+006debdb  0f 84 db 01 00 00 je      0x6dedbc
+
+# Block 6 at 0x6debe1
+006debe1  8d 85 b8 f9 ff ff lea     eax, [ebp-0x648]
+006debe7  8b 4e 14         mov     ecx, dword [esi+0x14]
+006debea  89 45 e8         mov     dword [ebp-0x18], eax
+006debed  8d 45 ec         lea     eax, [ebp-0x14]
+006debf0  50               push    eax
+006debf1  8d 85 b8 f9 ff ff lea     eax, [ebp-0x648]
+006debf7  50               push    eax
+006debf8  c7 45 ec 00 04 00 00 mov     dword [ebp-0x14], 0x400
+006debff  e8 7f 30 00 00   call    CGameSocket_ReceiveMsg
+006dec04  85 c0            test    eax, eax
+006dec06  0f 84 99 01 00 00 je      0x6deda5
+
+# Block 12 at 0x6dec0c
+006dec0c  ff 75 ec         push    dword [ebp-0x14]
+006dec0f  ff 75 e8         push    dword [ebp-0x18]
+006dec12  e8 96 07 00 00   call    CNetMsg__GetSize
+006dec17  0f b7 d8         movzx   ebx, ax
+006dec1a  3b 5d ec         cmp     ebx, dword [ebp-0x14]
+006dec1d  59               pop     ecx
+006dec1e  59               pop     ecx
+006dec1f  89 5d d4         mov     dword [ebp-0x2c], ebx
+006dec22  7f bd            jg      0x6debe1
+
+# Block 17 at 0x6dec24
+006dec24  85 db            test    ebx, ebx
+006dec26  76 b9            jbe     0x6debe1
+
+# Block 21 at 0x6dec28
+006dec28  53               push    ebx
+006dec29  ff 75 e8         push    dword [ebp-0x18]
+006dec2c  e8 84 07 00 00   call    CNetMsg__ProcessMsg_Dispatch
+006dec31  8b f0            mov     esi, eax
+006dec33  59               pop     ecx
+006dec34  85 f6            test    esi, esi
+006dec36  59               pop     ecx
+006dec37  89 75 e0         mov     dword [ebp-0x20], esi
+006dec3a  0f 84 4d 01 00 00 je      0x6ded8d
+
+# Block 23 at 0x6dec40
+006dec40  0f b7 7e 06      movzx   edi, word [esi+0x6]
+006dec44  89 7d c4         mov     dword [ebp-0x3c], edi
+006dec47  e8 b8 b6 e5 ff   call    GetFrameTickPerfTimerSingleton
+006dec4c  57               push    edi
+006dec4d  8b c8            mov     ecx, eax
+006dec4f  e8 22 f0 08 00   call    FrameTickPerfTimer_RecordPacketDispatchTimestamp
+006dec54  e8 b1 0c f0 ff   call    CNetMsgContext_GetSingletonPtr
+006dec59  57               push    edi
+006dec5a  8b c8            mov     ecx, eax
+006dec5c  e8 5c f5 f9 ff   call    CNetMsgContext_IncrementReceivedCount
+006dec61  8b 06            mov     eax, dword [esi]
+006dec63  6a 00            push    0x0
+006dec65  8b ce            mov     ecx, esi
+006dec67  c6 45 fc 07      mov     byte [ebp-0x4], 0x7
+006dec6b  ff 50 10         call    dword [eax+0x10]
+006dec6e  e9 d5 00 00 00   jmp     0x6ded48
+
+# Block 25 at 0x6ded48
+006ded48  83 65 fc 00      and     dword [ebp-0x4], 0x0
+006ded4c  85 f6            test    esi, esi
+006ded4e  74 37            je      0x6ded87
+
+# Block 27 at 0x6ded50
+006ded50  8b 06            mov     eax, dword [esi]
+006ded52  6a 01            push    0x1
+006ded54  8b ce            mov     ecx, esi
+006ded56  c6 45 fc 09      mov     byte [ebp-0x4], 0x9
+006ded5a  ff 10            call    dword [eax]
+006ded5c  eb 25            jmp     0x6ded83
+
+# Block 28 at 0x6ded83
+006ded83  83 65 fc 00      and     dword [ebp-0x4], 0x0
+
+# Block 26 at 0x6ded87
+006ded87  8b 45 d8         mov     eax, dword [ebp-0x28]
+006ded8a  01 58 08         add     dword [eax+0x8], ebx
+
+# Block 22 at 0x6ded8d
+006ded8d  01 5d e8         add     dword [ebp-0x18], ebx
+006ded90  29 5d ec         sub     dword [ebp-0x14], ebx
+006ded93  83 7d ec 00      cmp     dword [ebp-0x14], 0x0
+006ded97  8b 75 d8         mov     esi, dword [ebp-0x28]
+006ded9a  0f 8f 6c fe ff ff jg      0x6dec0c
+
+# Block 24 at 0x6deda0
+006deda0  e9 3c fe ff ff   jmp     0x6debe1
+
+# Block 11 at 0x6deda5
+006deda5  8b 4e 14         mov     ecx, dword [esi+0x14]
+006deda8  e8 af 33 00 00   call    CGameSocket_FlushSendBuffer
+
+# Block 13 at 0x6dedad
+006dedad  8b 4d f4         mov     ecx, dword [ebp-0xc]
+006dedb0  5f               pop     edi
+006dedb1  5e               pop     esi
+006dedb2  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+006dedb9  5b               pop     ebx
+006dedba  c9               leave
+006dedbb  c3               retn
+
+# Block 2 at 0x6dedbc
+006dedbc  e8 eb 19 dd ff   call    CLoginFlashDlg_GetSingletonPtr
+006dedc1  8b c8            mov     ecx, eax
+006dedc3  e8 cd 9b e9 ff   call    CLoginFlashDlg_OnConnectionLost
+006dedc8  bb 30 b3 96 00   mov     ebx, 0x96b330
+006dedcd  8b cb            mov     ecx, ebx
+006dedcf  e8 f2 20 05 00   call    DisconnectMsgQueue_ClearAndFree  ; Socket lost: clear login-status queue 0x96B330, then enqueue generic text by socket kind (+0x1C): 1 -> StrRes 100116 "Failed to connect to the server", 2 -> StrRes 10249 "Disconnected with game server. Please login the game again!", 3 STR_DISCONNECT_PICKEYSERVER, 4 STR_DISCONNECT_BINDSERVER.
+006dedd4  80 a5 b8 fe ff ff 00 and     byte [ebp-0x148], 0x0
+006deddb  6a 3f            push    0x3f
+006deddd  59               pop     ecx
+006dedde  33 c0            xor     eax, eax
+006dede0  8d bd b9 fe ff ff lea     edi, [ebp-0x147]
+006dede6  f3 ab            rep stosd dword [edi]
+006dede8  66 ab            stosw   word [edi]
+006dedea  aa               stosb   byte [edi]
+006dedeb  8b 46 1c         mov     eax, dword [esi+0x1c]
+006dedee  48               dec     eax
+006dedef  0f 84 d6 00 00 00 je      0x6deecb
+
+# Block 5 at 0x6dedf5
+006dedf5  48               dec     eax
+006dedf6  0f 84 c0 00 00 00 je      0x6deebc
+
+# Block 10 at 0x6dedfc
+006dedfc  48               dec     eax
+006dedfd  74 68            je      0x6dee67
+
+# Block 16 at 0x6dedff
+006dedff  48               dec     eax
+006dee00  0f 85 ed 00 00 00 jne     0x6deef3
+
+# Block 20 at 0x6dee06
+006dee06  8d 45 df         lea     eax, [ebp-0x21]
+006dee09  8d 4d c8         lea     ecx, [ebp-0x38]
+006dee0c  50               push    eax
+006dee0d  68 0c 4b 94 00   push    0x944b0c
+006dee12  c6 45 fc 04      mov     byte [ebp-0x4], 0x4
+006dee16  e8 82 50 d2 ff   call    NullTerminatedCharVector_ConstructFromCString
+006dee1b  6a 00            push    0x0
+006dee1d  c6 45 fc 05      mov     byte [ebp-0x4], 0x5
+006dee21  e8 78 c6 08 00   call    CStringManager_GetOrCreateSingleton
+006dee26  59               pop     ecx
+006dee27  8d 4d c8         lea     ecx, [ebp-0x38]
+006dee2a  51               push    ecx
+006dee2b  8b c8            mov     ecx, eax
+006dee2d  e8 df c8 08 00   call    CStringManager_GetStringByKey
+006dee32  50               push    eax
+006dee33  8d 85 b8 fe ff ff lea     eax, [ebp-0x148]
+006dee39  68 ff 00 00 00   push    0xff
+006dee3e  50               push    eax
+006dee3f  ff 15 08 48 84 00 call    dword [_snprintf]
+006dee45  83 c4 0c         add     esp, 0xc
+006dee48  8b 45 d0         mov     eax, dword [ebp-0x30]
+006dee4b  c6 45 fc 06      mov     byte [ebp-0x4], 0x6
+006dee4f  2b 45 c8         sub     eax, dword [ebp-0x38]
+006dee52  8d 4d d0         lea     ecx, [ebp-0x30]
+006dee55  50               push    eax
+006dee56  ff 75 c8         push    dword [ebp-0x38]
+
+# Block 18 at 0x6dee59
+006dee59  e8 ed 4f d2 ff   call    0x403e4b
+006dee5e  80 65 fc 00      and     byte [ebp-0x4], 0x0
+006dee62  e9 8c 00 00 00   jmp     0x6deef3
+
+# Block 15 at 0x6dee67
+006dee67  8d 45 e7         lea     eax, [ebp-0x19]
+006dee6a  8d 4d b8         lea     ecx, [ebp-0x48]
+006dee6d  50               push    eax
+006dee6e  68 f0 4a 94 00   push    0x944af0
+006dee73  c6 45 fc 01      mov     byte [ebp-0x4], 0x1
+006dee77  e8 21 50 d2 ff   call    NullTerminatedCharVector_ConstructFromCString
+006dee7c  6a 00            push    0x0
+006dee7e  c6 45 fc 02      mov     byte [ebp-0x4], 0x2
+006dee82  e8 17 c6 08 00   call    CStringManager_GetOrCreateSingleton
+006dee87  59               pop     ecx
+006dee88  8d 4d b8         lea     ecx, [ebp-0x48]
+006dee8b  51               push    ecx
+006dee8c  8b c8            mov     ecx, eax
+006dee8e  e8 7e c8 08 00   call    CStringManager_GetStringByKey
+006dee93  50               push    eax
+006dee94  8d 85 b8 fe ff ff lea     eax, [ebp-0x148]
+006dee9a  68 ff 00 00 00   push    0xff
+006dee9f  50               push    eax
+006deea0  ff 15 08 48 84 00 call    dword [_snprintf]
+006deea6  83 c4 0c         add     esp, 0xc
+006deea9  8b 45 c0         mov     eax, dword [ebp-0x40]
+006deeac  c6 45 fc 03      mov     byte [ebp-0x4], 0x3
+006deeb0  2b 45 b8         sub     eax, dword [ebp-0x48]
+006deeb3  8d 4d c0         lea     ecx, [ebp-0x40]
+006deeb6  50               push    eax
+006deeb7  ff 75 b8         push    dword [ebp-0x48]
+006deeba  eb 9d            jmp     0x6dee59
+
+# Block 9 at 0x6deebc
+006deebc  ff 15 a8 40 84 00 call    dword [GameDataSetQuery]
+006deec2  8b 10            mov     edx, dword [eax]
+006deec4  68 09 28 00 00   push    0x2809
+006deec9  eb 0d            jmp     0x6deed8
+
+# Block 4 at 0x6deecb
+006deecb  ff 15 a8 40 84 00 call    dword [GameDataSetQuery]
+006deed1  8b 10            mov     edx, dword [eax]
+006deed3  68 14 87 01 00   push    0x18714
+
+# Block 14 at 0x6deed8
+006deed8  8b c8            mov     ecx, eax
+006deeda  ff 52 3c         call    dword [edx+0x3c]
+006deedd  50               push    eax
+006deede  8d 85 b8 fe ff ff lea     eax, [ebp-0x148]
+006deee4  68 ff 00 00 00   push    0xff
+006deee9  50               push    eax
+006deeea  ff 15 08 48 84 00 call    dword [_snprintf]
+006deef0  83 c4 0c         add     esp, 0xc
+
+# Block 19 at 0x6deef3
+006deef3  80 65 b7 00      and     byte [ebp-0x49], 0x0
+006deef7  8d 85 b8 fe ff ff lea     eax, [ebp-0x148]
+006deefd  50               push    eax
+006deefe  e8 6d 87 09 00   call    strlen
+006def03  85 c0            test    eax, eax
+006def05  59               pop     ecx
+006def06  76 0e            jbe     0x6def16
+
+# Block 8 at 0x6def08
+006def08  8d 85 b8 fe ff ff lea     eax, [ebp-0x148]
+006def0e  8b cb            mov     ecx, ebx
+006def10  50               push    eax
+006def11  e8 56 1e 05 00   call    DisconnectMsgQueue_EnqueueString
+
+# Block 7 at 0x6def16
+006def16  8b ce            mov     ecx, esi
+006def18  e8 26 01 00 00   call    CNetClient_DisconnectAndDisposeSocket
+006def1d  6a 00            push    0x0
+006def1f  b9 c8 af 96 00   mov     ecx, 0x96afc8
+006def24  e8 87 02 00 00   call    CNetClient_SetSocketEncryptionMode
+006def29  e9 7f fe ff ff   jmp     0x6dedad
+

@@ -33,7 +33,7 @@ Source: IDA import table (client calls into `graphic.dll` via these IAT entries)
 - `PrepareSprite()`
 - `PrepareLine()`
 - `ShowBlock(...)` (overload: by `CMyPos` + sizes; and raw coords)
-- `ShowRect(int x, int y, int w, int h, uint32 color)`
+- `ShowRect(int left, int top, int right, int bottom, uint32 color)` — endpoint coordinates, not width/height; native `graphic.dll!0x10013A10` emits four line-list edges through `0x10013960`. See [GFX-UI-009](21_main_hud_magic_status_hint_native_contract.md).
 - `ShowLine(int x1, int y1, int x2, int y2, uint32 color)`
 
 ## Text / Font / String Metrics

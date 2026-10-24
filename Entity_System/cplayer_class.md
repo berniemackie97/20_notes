@@ -134,7 +134,7 @@ struct OverlayEntry {            // size 0x44
   int     x_offset;              // +12
   uint16  flags16;               // +16 (if (flags16 & 0x3F0)==0, enables scale/color updates)
   uint16  pad;
-  uint32  anim_flags;            // +20 (bit0/bit1/bit2 phase selection)
+  uint32  anim_flags;            // +20 (bit 0/bit1/bit2 phase selection)
   uint32  color_argb;            // +24 (RGB used; alpha overwritten)
   uint32  delay_ms;              // +28
   uint32  phase3_ms;             // +32 (used in phase3/fade logic)
@@ -468,7 +468,7 @@ Per-frame effect queue rendering:
 
 | Function | Address |
 |---|---|
-| CGameCamera__IsZoomedIn | 0x6206c8 |
+| CGameMap_HasFlags64HighBit6_Analyst (old camera/zoom label withdrawn; qword bit 38) | 0x6206c8 |
 | CGameMap__AddScreenOffset | 0x61d8c6 |
 | CLanguage__GetLanguageName | 0x76938e |
 | CImgNum__Render | 0x715506 |

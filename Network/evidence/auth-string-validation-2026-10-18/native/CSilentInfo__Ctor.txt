@@ -1,0 +1,25 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6bb2e4
+006bb2e4  b8 67 e0 82 00   mov     eax, 0x82e067
+006bb2e9  e8 62 c3 0b 00   call    __EH_prolog
+006bb2ee  51               push    ecx
+006bb2ef  56               push    esi
+006bb2f0  8b f1            mov     esi, ecx
+006bb2f2  89 75 f0         mov     dword [ebp-0x10], esi
+006bb2f5  33 c0            xor     eax, eax
+006bb2f7  89 46 04         mov     dword [esi+0x4], eax
+006bb2fa  89 46 08         mov     dword [esi+0x8], eax
+006bb2fd  89 46 0c         mov     dword [esi+0xc], eax
+006bb300  89 45 fc         mov     dword [ebp-0x4], eax
+006bb303  89 46 10         mov     dword [esi+0x10], eax
+006bb306  c6 45 fc 01      mov     byte [ebp-0x4], 0x1
+006bb30a  c7 06 f4 b3 86 00 mov     dword [esi], 0x86b3f4
+006bb310  e8 fe 00 00 00   call    CSilentInfo_ReloadDataFile
+006bb315  8b 4d f4         mov     ecx, dword [ebp-0xc]
+006bb318  8b c6            mov     eax, esi
+006bb31a  5e               pop     esi
+006bb31b  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+006bb322  c9               leave
+006bb323  c3               retn
+

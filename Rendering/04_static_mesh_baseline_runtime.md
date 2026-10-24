@@ -1,5 +1,14 @@
 # Static Mesh Baseline Runtime
 
+> **Superseded 2026-10-11 by [23_first_static_mesh_native_fixture.md](23_first_static_mesh_native_fixture.md).**
+> Historical managed-runtime record. Corrections:
+> - `c3/mesh/001132000.c3` has 4 PHYs; the 24-vertex cube is PHY 0 `v_armet`, a RolePart virtual attachment
+>   that native marks hidden (GraphicData `0x10005E7E` loop → mesh `+0x70`; graphic `0x10004385` skip). Not a display fixture.
+>   Owner: body model 1130100 (`armor.dbc`), not "model 1132000".
+> - `v_armet` is a PHY name/attachment id, not a texture token.
+> - Normals: position-match smoothing within 0.01 per [05_phy.md](c3_core_dll/05_phy.md); "SmoothGroupSet" gap below is stale.
+> - Cull: untagged PHY → CW/CCW by selector; `2SID` → NONE.
+
 ## Scope
 Deterministic mesh selection for the OpenGL baseline runtime in `10_work/src/Conquer`.
 

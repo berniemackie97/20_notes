@@ -602,3 +602,13 @@ The eight signature corrections therefore resolve this specific missing-construc
 problem. The broader model was rerun; its coverage and remaining gaps are recorded above.
 This positive control does not prove any numeric field dead or semantically identify it.
 Six numeric semantic targets remain open.
+
+
+## Auth string-validation evidence delta — 2026-10-18
+
+The previously excluded malformed-list boundary is now covered by the [native auth string-validation closure](Native-auth-string-validation-2026-10-18.md).
+It distinguishes ignored index1 payload from its unchecked structural length,
+proves missing/overlong name and spouse clearing, and traces EntityId0 through
+hero mutation to the zero-length-send socket error without a hero rollback.
+AUTH-001P comparison is pinned to PR#134 head, including its acceptance of
+present empty strings and EntityId0 in an immutable snapshot.

@@ -1,0 +1,90 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x4ac6c4
+004ac6c4  b8 88 b4 7e 00   mov     eax, 0x7eb488
+004ac6c9  e8 82 af 2c 00   call    __EH_prolog
+004ac6ce  83 ec 0c         sub     esp, 0xc
+004ac6d1  53               push    ebx
+004ac6d2  56               push    esi
+004ac6d3  8b 75 08         mov     esi, dword [ebp+0x8]
+004ac6d6  57               push    edi
+004ac6d7  85 f6            test    esi, esi
+004ac6d9  8b f9            mov     edi, ecx
+004ac6db  0f 84 b1 00 00 00 je      0x4ac792
+
+# Block 3 at 0x4ac6e1
+004ac6e1  8b 5d 0c         mov     ebx, dword [ebp+0xc]
+004ac6e4  85 db            test    ebx, ebx
+004ac6e6  0f 84 a6 00 00 00 je      0x4ac792
+
+# Block 4 at 0x4ac6ec
+004ac6ec  68 20 b3 92 00   push    0x92b320
+004ac6f1  56               push    esi
+004ac6f2  ff 15 e8 48 84 00 call    dword [_stricmp]
+004ac6f8  59               pop     ecx
+004ac6f9  85 c0            test    eax, eax
+004ac6fb  59               pop     ecx
+004ac6fc  75 07            jne     0x4ac705
+
+# Block 6 at 0x4ac6fe
+004ac6fe  8b cf            mov     ecx, edi
+004ac700  e8 62 33 00 00   call    CLoginFlashDlg_UpdateLoginFieldVisibilityAndShortPwdTip
+
+# Block 5 at 0x4ac705
+004ac705  83 65 fc 00      and     dword [ebp-0x4], 0x0
+004ac709  8d 45 0f         lea     eax, [ebp+0xf]
+004ac70c  50               push    eax
+004ac70d  68 dc 60 95 00   push    0x9560dc
+004ac712  8d 4d e8         lea     ecx, [ebp-0x18]
+004ac715  e8 83 77 f5 ff   call    NullTerminatedCharVector_ConstructFromCString
+004ac71a  56               push    esi
+004ac71b  c6 45 fc 02      mov     byte [ebp-0x4], 0x2
+004ac71f  e8 4c af 2c 00   call    strlen
+004ac724  59               pop     ecx
+004ac725  03 c6            add     eax, esi
+004ac727  50               push    eax
+004ac728  56               push    esi
+004ac729  8d 4d e8         lea     ecx, [ebp-0x18]
+004ac72c  e8 c0 74 f5 ff   call    CharBuffer_AssignRange
+004ac731  be 1c 61 92 00   mov     esi, 0x92611c
+004ac736  56               push    esi
+004ac737  e8 34 af 2c 00   call    strlen
+004ac73c  59               pop     ecx
+004ac73d  03 c6            add     eax, esi
+004ac73f  8a 4d 0b         mov     cl, byte [ebp+0xb]
+004ac742  88 4d 0b         mov     byte [ebp+0xb], cl
+004ac745  8d 4d 0b         lea     ecx, [ebp+0xb]
+004ac748  51               push    ecx
+004ac749  50               push    eax
+004ac74a  56               push    esi
+004ac74b  8d 4d e8         lea     ecx, [ebp-0x18]
+004ac74e  e8 7c 81 f5 ff   call    0x4048cf
+004ac753  53               push    ebx
+004ac754  e8 17 af 2c 00   call    strlen
+004ac759  59               pop     ecx
+004ac75a  03 c3            add     eax, ebx
+004ac75c  8a 4d 0b         mov     cl, byte [ebp+0xb]
+004ac75f  88 4d 0b         mov     byte [ebp+0xb], cl
+004ac762  8d 4d 0b         lea     ecx, [ebp+0xb]
+004ac765  51               push    ecx
+004ac766  50               push    eax
+004ac767  53               push    ebx
+004ac768  8d 4d e8         lea     ecx, [ebp-0x18]
+004ac76b  e8 5f 81 f5 ff   call    0x4048cf
+004ac770  ff 75 e8         push    dword [ebp-0x18]
+004ac773  8d 8f f8 00 00 00 lea     ecx, [edi+0xf8]
+004ac779  68 e8 b5 92 00   push    0x92b5e8
+004ac77e  e8 68 e1 13 00   call    CFlashControl_SetVariable
+004ac783  8d 4d e8         lea     ecx, [ebp-0x18]
+004ac786  c7 45 fc 03 00 00 00 mov     dword [ebp-0x4], 0x3
+004ac78d  e8 7c 76 f5 ff   call    NullTerminatedCharVector_DestroyStorage
+
+# Block 2 at 0x4ac792
+004ac792  8b 4d f4         mov     ecx, dword [ebp-0xc]
+004ac795  5f               pop     edi
+004ac796  5e               pop     esi
+004ac797  5b               pop     ebx
+004ac798  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+004ac79f  c9               leave
+004ac7a0  c2 08 00         retn    0x8
+

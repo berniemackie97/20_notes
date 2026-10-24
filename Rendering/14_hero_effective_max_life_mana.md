@@ -15,35 +15,34 @@ execute together. Max life: `0x65D0C9`–`0x65D132`. Max mana: `0x65D285`–`0x6
 
 | Function | Behaviour |
 |---|---|
-| `CGameMap_HasFlags64Bit0x40` (`0x6206C8`) | `(CGameMap_GetFlags64() & 0x40) != 0` |
+| `CGameMap_HasFlags64HighBit6_Analyst` (`0x6206C8`) | `(CGameMap_GetFlags64() & 0x0000004000000000) != 0` |
 | `CRole_HasTransformLook` (`0x650B4C`) | `role+0xEC != 0` |
 
-`CGameMap_HasFlags64Bit0x40` is still named for what it provably tests: it has 20 call sites
-including `CMsgMapInfo1110__Process` and `CHero__RefreshEquipmentDerivedStats`, so it is a general
-map-mode flag rather than a stat-override-specific one, and the name should not be narrowed until
-those callers are read.
+**Correction 2026-10-09:** `0x6206CD` clears EAX, and `0x6206CF` masks EDX (the high half) by 0x40.
+The old low-0x40 predicate/name was wrong. The replacement is an analyst numeric name; its retail
+feature name remains unproven. See the [map audit](../Server/map-identity-flags-native-5517.md).
 
 ### Where the map flags come from
 
-`CGameMap_GetFlags64` (`0x61F2E6`) returns the pair `CGameMap+0xE8` (low) and `CGameMap+0xEC`
-(high). The only writer is `CGameMap_SetFlags64` (`0x61F2C3`), and its only caller is
+`CGameMap_GetFlags64` (`0x61F2DA`) returns the pair `CGameMap+0xE8` (low) and `CGameMap+0xEC`
+(high). The packet setter is `CGameMap_SetFlags64` (`0x61F2C3`), and its only caller is
 `CMsgMapInfo1110__Process`, which stores packet `+0xC` into `+0xE8` and packet `+0x10` into `+0xEC`.
 So the whole word is server-sent, in packet **1110**, whose managed reader
 (`MsgMapInfo1110PacketReader`) carries exactly those four fields — map id at `+4`
 (`CGameMap_ApplyMapIdAndRefreshWorldState`), map document id at `+8`
 (`CGameMap_SetMapDocumentId`), flags low at `+0xC`, flags high at `+0x10`.
 
-Two predicates read that word, both from the **low** dword only:
+Two predicates relevant here read different parts of that word (other native predicates also exist):
 
 | Predicate | Mask |
 |---|---|
-| `CGameMap_HasFlags64Bit0x40` (`0x6206C8`) | `0x40` |
-| `CGameMap_HasOverlayRenderModeFlag` (`0x61E000`) | `0x400000` |
+| `CGameMap_HasFlags64HighBit6_Analyst` (`0x6206C8`) | qword `0x0000004000000000` / high `0x40` |
+| `CGameMap_HasOverlayRenderModeFlag` (`0x61DFF5`) | `0x400000` |
 
 HLIL renders the second mask as `&__dos_header` because `0x400000` is also the image base; the raw
-instruction is a plain `test` against the constant.
+instruction is `and eax,0x400000` at `0x61DFFD`.
 
-`CMsgMapInfo1110__Process` samples `CGameMap_HasFlags64Bit0x40` both before (`0x732B4F`) and after
+`CMsgMapInfo1110__Process` samples `CGameMap_HasFlags64HighBit6_Analyst` both before (`0x732B4F`) and after
 (`0x732D00`) the store and calls `CHero__RefreshEquipmentDerivedStats` when it changed — that is the
 path by which the bit reaches these formulas. It branches on the overlay mask at `0x732CAC`, posting
 main-window message `0xBF9` when set and `0xDDC` when clear.
@@ -86,7 +85,7 @@ The transform table is `ini/Transform.ini`, already parsed managed-side by
 ## Max life
 
 ```
-A = (hero+0x514 > 0) && CGameMap_HasFlags64Bit0x40()
+A = (hero+0x514 > 0) && CGameMap_HasFlags64HighBit6_Analyst()
 B = CRole_HasTransformLook(hero)
 if (A || B) return hero+0x514;          // the normal formula runs only when !A && !B
 ```
@@ -132,7 +131,7 @@ symmetry produces wrong values:
 3. the profession result **replaces** the multiplier rather than adding a percentage.
 
 ```
-if (hero+0x518 > 0 && CGameMap_HasFlags64Bit0x40()) return hero+0x518;
+if (hero+0x518 > 0 && CGameMap_HasFlags64HighBit6_Analyst()) return hero+0x518;
 
 spirit = hero+0x50C
 result = spirit * 5                     // default
@@ -409,11 +408,11 @@ formulas are reachable from the running client rather than from tests only. Its 
 all already existed on `RuntimeServices`: `RoleStateStore`, `LocalHeroItemStatResolver`,
 `LocalHeroItemStore`, plus the environment.
 
-**All three flags are now modelled.** Both map flags first: `CGameMapState` already stored the packet-1110 flags word;
-`HasFlags64Bit0x40` and `HasOverlayRenderModeFlag` expose the two verified masks over its low dword,
-and `SceneComposition` builds the environment from the live map state instead of a constant. Tests
-pin both masks, their independence, that the high dword affects neither, and that a later 1110
-replaces rather than merges.
+**Historical managed parity claim withdrawn for the bit 38 gate (2026-10-09).** `CGameMapState`
+stores the 1110 flags pair, but the existing managed `HasFlags64Bit0x40` property tests the low word.
+The native `0x6206C8` predicate tests **high**0x40. The accompanying test that high bits affect neither
+predicate is stale and is not native evidence. The overlay mask remains low 0x400000. Production
+and test source were intentionally left untouched in this documentation-only audit.
 
 **`RoleFlagAt0xEC` is now modelled too.** `ClientWorldRoleTransformLookState` holds `role+0xEC` per
 role and reproduces the sticky rule: a requested look of zero clears it, a non-zero look is stored

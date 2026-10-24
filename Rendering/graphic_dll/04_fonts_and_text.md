@@ -155,3 +155,12 @@ string identifies the exact retail FreeType revision. The surrounding cache,
 measurement, atlas, style, and draw-state algorithms are verified. A managed
 backend must keep rasterizer/version output as an explicit conformance seam and
 must not claim pixel identity from a self-generated golden.
+
+
+## Auth string-validation evidence delta — 2026-10-18
+
+The [auth string evidence](../../Network/Native-auth-string-validation-2026-10-18.md)
+connects1006/2078 byte storage to this existing font contract and records the
+flags0 one-/two-byte conversion anchors. MsgTalk1004 additionally has a
+conditional system-ACP filter independent of the font code-page override;
+a font override is not a universal network decoding selector.

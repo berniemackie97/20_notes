@@ -267,7 +267,7 @@ mesh-level draw overrides and cull selector consumed downstream are separate
 |---:|---:|---|
 | `+0x28` | `UINT32_MAX` | source blend override; sentinel selects the part's MESH byte `+0x0D` |
 | `+0x2C` | `UINT32_MAX` | destination blend override; sentinel selects the part's MESH byte `+0x0E` |
-| `+0x34` | `0` | tagged-PHY cull selector; zero requests `D3DCULL_CW`, nonzero requests `D3DCULL_CCW` |
+| `+0x34` | `0` | cull selector for untagged (no `2SID`) PHYs; zero → `D3DCULL_CW`, nonzero → `D3DCULL_CCW`; `2SID` PHYs → `D3DCULL_NONE` |
 
 ### Verified consumer chain (now fully grounded to `C3DObjX_Render`)
 

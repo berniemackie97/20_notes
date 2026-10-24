@@ -428,7 +428,7 @@ table. `hero+0x514` short-circuits it as an override when positive under a map f
 vitality-times-eight term is what makes the identification unambiguous.
 
 `CHero_GetEffectiveMaxMana` (`0x65D25A`) is now closed too. It honors the `hero+0x518` override
-only when map flags64 bit `0x40` is set, otherwise starts at `spirit * 5`, applies the raw
+only when map flags64 bit 38 (`0x0000004000000000`, high-dword `0x40`) is set, otherwise starts at `spirit * 5`, applies the raw
 profession-family branch exactly as assembled (`(profession % 1000) / 10 > 10`, unsigned), adds
 signed mana from all 18 equipment slots, and clamps negative totals to zero. The `JBE` at
 `0x65D2AB` is important: changing the condition to `== 1` would be an attractive but false

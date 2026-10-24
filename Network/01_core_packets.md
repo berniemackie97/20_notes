@@ -625,7 +625,9 @@ Exact retail-server payloads and order require server evidence or a retail captu
 message text into one of two queues and returns without reading colour, style or identity:
 
 - channel `0x835` (2101) -> `data_96B330`, drained by `CMyShellDlg_HandleLoginStatusSystemTalk`,
-  which handles `ANSWER_OK` and `NEW_ROLE` -> **the login / game-entrance channel**
+  which handles `ANSWER_OK` and `NEW_ROLE` -> **the login / game-entrance channel**. Any other text is shown on
+  the login screen as an error (`CLoginFlashDlg_ShowLoginErrorText`, `0x5DCD58`); TQ 15.10 refuses game logins this
+  way (`STR_ERROR_SERVER_FULL`, `STR_ERROR_SERVER_BUSY`, version, locked — [TQ topology](../Server/historical-multi-server-topology.md))
 - channel `0x834` (2100) -> `data_96B36C`, drained by `CMyShellDlg_HandleCreateRoleStatusSystemTalk`,
   whose `ANSWER_OK` branch calls `CConnectionFlow__SendGameSessionBootstrap` -> **the create-role
   channel**
@@ -854,23 +856,25 @@ also says this field "mirrors native CGameMap+0xE0, usually current map id".
 
 **`+8` (`CGameMap+0xE4`) is a bare store.** `CGameMap_SetMapDocumentId` (`0x61F2B6`) is the packet
 writer and `CGameMap_CreateFromDataId` also stores the selected map-data record id at this field.
-No dedicated `CGameMap_*` accessor has been identified; the proven getter at `0x61F172` is
-`CGameMap_GetMapId` for `+0xE0`, while `CGameMap_GetFlags64` covers `+0xE8/+0xEC`. Do not infer from
-the missing accessor that zero is interchangeable with the server-sent document/data id.
+The dedicated data-ID getter is `0x6E5E2C` (`mov eax,[ecx+0xE4]; ret`). The world-ID getter is
+`0x4F6569` (`+0xE0`); `0x61F172` was an incorrect entry address. `0x61F2DA` returns flags low/high
+in EAX/EDX. These independent fields do not establish a server MapId→MapDataId catalog.
 
-**The flags are a 64-bit map-property bitfield**, and `0` genuinely means "none of these", so it is a
-correct value rather than a placeholder. Bits verified so far, all read from the low dword
+**The flags are a 64-bit map-property bitfield.** Received0 is valid and clears all bits; choosing0
+without retail evidence is still an unresolved per-map placeholder. Bits verified so far, all read from the low dword
 (`CGameMap+0xE8`) unless noted:
 
 | Bit | Predicate | Read by |
 |---|---|---|
-| `0x40` | `sub_6206C8` | snapshotted across `1110`; a change triggers `CHero__RefreshEquipmentDerivedStats` and UI posts `0x445`/`0x446` |
+| **qword `0x0000004000000000` (high `0x40`)** | `CGameMap_HasFlags64HighBit6_Analyst` (`0x6206C8`) | transition triggers hero stat refresh, posts `0x445`/`0x446`/`0xDA4`, and builds/sends action `0x198` if builder succeeds |
 | `0x2000000` | `sub_61F2E7` | snapshotted across `1110`, gates `sub_6AF6D1`/`sub_6AF6F7` |
 | `0x10000000` | `sub_61F305` | snapshotted across `1110`, gates `sub_69770A`/`sub_697719` |
 | `0x10` of the **high** dword (`CGameMap+0xEC`) | inline | selects UI post `0xDE1` vs `0xDE2` |
 
-Further predicates reading the same field and not yet decoded: `sub_620693`, `sub_6206AC`,
-`sub_62071E`, `sub_620785`, `sub_6207A8`, `sub_6207CB`, `sub_62080F`, `sub_62087E`.
+The [map identity/flags audit](../Server/map-identity-flags-native-5517.md) now supplies exact masks
+for these and the other sampled consumers, all 33 direct flag-getter callsites, original-x86 one-hot
+validation, and the remaining semantic/per-map-data limits. Low `0x40` is tested separately by
+`0x6207EE`; it is not the `0x6206C8` stat-refresh gate.
 
 ## MsgAction / MsgData (Type 10010) — builder layout verified 2026-08-16
 
@@ -1188,14 +1192,15 @@ builder census, replay vectors, and retail-server evidence limits.
 |-------|------|------|-------------|
 | 74    | 0x4A | SetLocation | Set entity world position |
 | 75    | 0x4B | GetItemSet | Client follow-up request emitted immediately after processing server `0x4A` during world-entry bootstrap |
-| 85    | 0x55 | ChangeMap | **Verified 2026-08-28** at `0x65DD3B`, named by the build's own assert string `actionChgMap`. Client-originated: the hero tick finds an exit tile beside the hero and sends this naming that tile in the parameter pair. Not walking — walking is packet 10005. |
+| 85    | 0x55 | ChangeMap | **Verified 2026-08-28** at `0x65DD3B`, named by the build's own assert string `actionChgMap`. Client-originated: the hero tick finds an exit tile beside the hero and sends this naming that tile in the parameter pair. Not walking — walking is packet 10005. Inbound 85 has no case (inert). |
+| 86    | 0x56 | actionFlyMap | **Verified 2026-10-24** at `0x6FF652`. Server→client map transition. `+4` must equal the hero id (CHECK). Map create from `+8`, tile `+0x18/+0x1A`, dir `+0x16`, pets follow, camera, 0x11C type 5, then mode `0x3F2` ends the `0x3F0` wait. Sends nothing. See [portal transition](../Server/portal-transition-5517.md) |
 | 93    | 0x5D | AutoMine | Automatic mining action |
-| 94    | 0x5E | Hotkeys | Hotkey configuration sync |
+| 94    | 0x5E | actionReborn | **Verified 2026-10-16.** Client→server revive request, `+8` = 0 Revive / 1 Revive Here (`CHero_RequestReborn` `0x65D819`). Inbound 94: prologue `0x6FEE02` posts 0xD74 (hide CDlgXp, clear `m_bDie`). Former "Hotkeys" label wrong. See [death/ghost/revive](../Server/death-ghost-revive-5517.md) |
 | 97    | 0x61 | actionGetSynAttr | **Verified 2026-10-05**, recovered native assertion. Sent after 4E completion; resolvable-ID 61 reply sends FB silent-info report. |
 | 132   | 0x84 | actionGetStatistic | **Verified next request after resolvable-ID FB reply**, assertion `0x945E48`, send `0x700944`. |
 | 251   | 0xFB | SilentInfoReport (analyst label) | **Verified 2026-10-05**: client request entity=0, checksum at +8, version at +16. Response requires a resolvable ID to advance to 84. |
 | 101   | 0x65 | ConfirmGuild | Guild/faction confirmation |
-| 104   | 0x68 | Mine | Manual mining action |
+| 104   | 0x68 | actionMapARGB (inbound) | **Verified 2026-10-24 (inbound only).** Prologue `0x6FED87`, before the entity gate: `+8`==0 ⇒ 0xFFFFFFFF; `CGameMap_SetMapARGB(+8 \| 0xFF000000)` (`0x61ED50`, map `+0x368/+0x13C`). eosource `actionMapARGB`; TQ `SendLight`. The former "Mine" label is unverified |
 | 106   | 0x6A | EntitySpawn | Entity appeared in view |
 | 111   | 0x6F | CreateBooth | **Verified 2026-08-29.** The inbound local-hero branch passes the dword at `+8` to `CBoothManager_Open`. A nonzero value becomes the booth NPC ID and sets the embedded manager active. Zero selects the separate client setup/validation path. |
 | 114   | 0x72 | CloseBooth | **Verified outbound from `CBoothManager_Close`.** Sent after the manager clears prices, listed items, NPC ID, active state, and cry-out text. |
@@ -1214,8 +1219,9 @@ builder census, replay vectors, and retail-server evidence limits.
 | 156   | 0x9C | Teleport | **Verified 2026-08-28** at `0x7003E9`. Builds a `0x11C` command-state block with command type `0x28`, moves the entity to the tile pair at `+0x18`/`+0x1A`, and plays `"KOTeleport"`. It removes nothing; the previous "RemoveEntity" label here was wrong. |
 | 157   | 0x9D | SetPkMode | Set PK mode (calls CGameMap) |
 | 158   | 0x9E | LoginComplete | Login sequence complete |
-| 159   | 0x9F | SetGhost | Ghost mode toggle |
-| 162   | 0xA2 | Reborn | Reborn/respawn player |
+| 145   | 0x91 | actionGhost | **Verified 2026-10-16.** Client→server once, 3 s after status 5 (`CHero_ProcessReborn` `0x65DF0B`); all fields 0 except entity/time/action. Inbound 145 ignored |
+| 159   | 0x9F | OverheadCountdown (analyst label) | **Verified 2026-10-16.** Inbound `+8` seconds → `CHero_StartOverheadCountdown` `0x66699D` (`hero+0x2ED0..D8`), drawn red under 10 s. Former "SetGhost" label wrong |
+| 162   | 0xA2 | AutoPathFinding (analyst label) | **Verified 2026-10-16.** Prologue `0x6FEF2D`: target map `+0x10`, tile `+0x18/+0x1A` → `CHero_StartAutoRunFromMsgActionPathFinding` `0x666E07`; refused dead (StrRes 11127) / vending (11124). Former "Reborn" label wrong |
 | 235   | 0xEB | TexasHoldem | Texas Hold'em poker action |
 
 ### Verified subtype `0x6F` booth-open response
@@ -1292,7 +1298,7 @@ block via role vtable slot `+0x80`:
     - embedded evidence string in the branch:
       - `"msg.Create(g_objHero.GetID(), 0, 0, 0, actionGetItemSet)"`
 
-### Verified subtype `0x56` map-create side effect (no `0x11C` command-ingress block build)
+### Verified subtype `0x56` map-create side effect
 
 `CMsgAction__Process` branch `action_type == 0x56` performs map create/load through the same
 `CGameMap_CreateFromDataId(CGameMap_GetSingletonPtr(), msg+0x08)` path:
@@ -1300,7 +1306,10 @@ block via role vtable slot `+0x80`:
 - callsite: `0x6FF6FB`
 - argument source: dword at `msg+0x08` (`ParamLow`/`ParamHigh` pair on the wire)
 
-No `0x11C` command-state block write/dispatch is used for this subtype in this verified slice.
+**Correction 2026-10-24:** the branch *does* build a `0x11C` block. `RoleActionCommandState_ResetBlock0x11C`
+runs at `0x6FF860`, with `+0x00 = 5` and `+0x04 = 0`, then hero vf+0x80 is called at `0x6FF885`, the same as `0x4A`.
+The earlier "no `0x11C`" statement was wrong. Full step list:
+[portal transition §2](../Server/portal-transition-5517.md#2-inbound-86-actionflymap-c).
 
 ### Managed mapping for verified map-create side effects
 
@@ -1615,7 +1624,7 @@ The PE was scanned exhaustively for that shape on all six remaining offsets — 
 never enough; the base register decides**.
 
 Those historical scans did not expose a consumer. They did not exhaust virtual or computed
-paths: the 2026-09-17 audit recovered a previously undefined hero vtable function at0x661F09
+paths: the 2026-09-17 audit recovered a previously undefined hero vtable function at 0x661F09
 and resolved a separate misaligned trampoline chain. See the current audit for exact scope.
 
 ### Lead on `+40` / `hero+0x848` — plain vs. protected health storage
@@ -1623,7 +1632,7 @@ and resolved a separate misaligned trampoline chain. See the current audit for e
 `CMsgPlayerSpawn__Process` writes `0x848` at `0x756525`, and the surrounding branch is informative.
 The role id lives at `role+0xCC` (proven: `MsgUserInfo` stores its `EntityId` there at `0x764324`),
 and the handler splits on `id > 0xF423F` (999999). **2026-09-17 correction:** the older
-branch labels were reversed. Native IsPlayer CHECK at0x67350E rejects IDs<=999999.
+branch labels were reversed. Native IsPlayer CHECK at 0x67350E rejects IDs<=999999.
 
 ```
 id  > 999999 (player branch):     *(role + 0x848) = u32(spawn + 0x50)
@@ -1852,3 +1861,11 @@ The client's own equip guard — the category-to-position jump table at `0x6DB89
 conflicts, the dual-wield profession gate at `hero+0x82C`, the learned-magic-10311 requirement for a
 shield beside a category 5 weapon, the paired-hand unequip rule, and the 40-slot pack limit at
 `0x6DCDD9` — is written up in full in `../Server/equipment.md`.
+
+
+## Auth string-validation evidence delta — 2026-10-18
+
+See the [native auth string-validation closure](Native-auth-string-validation-2026-10-18.md) for malformed1004/1006 lists, encoding and1006 exceptional paths.
+The existing15-byte usable-name rule is a destination-copy rule, not whole-packet
+rejection. Zero-fill is bounded: extreme1004 message copies can exceed packet
+storage. EntityId0 mutates hero state before the failed EnterMap build/send path.

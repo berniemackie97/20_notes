@@ -125,6 +125,10 @@ Rank/sex semantics identical to MsgFriend `+0x0C/+0x10` (`06_combat_packets.md`)
   - `14`: `CHero__TradeSetField_0x1100_AndPost3F1(+4)`.
   - `15`: `PostMainWndMsg_0x464(0x4A8, 0)` (then still returns `PostMainWndMsg_0x464(0x3EB, 0)`).
 
+**Outbound (verified 2026-10-16):** `CHero_QuitTrade` `0x72A36C` sends 12 bytes `{+4 hero id, +8 u16 2}` when
+status 5 (dead) is added; `CHero_CloseTrade(0)` `0x729BF3` returns trade items/money locally. 1056 is trade;
+the class label is wrong. See [death/ghost/revive](../Server/death-ghost-revive-5517.md).
+
 ## MsgMapItem (Type 1101; former Peerage label withdrawn)
 
 **2026-09-21 correction:** parser `0x73FFB6` checks1101 at `0x73FFD2`;

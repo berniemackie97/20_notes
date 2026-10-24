@@ -1,0 +1,64 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6df0e0
+006df0e0  b8 48 24 83 00   mov     eax, 0x832448
+006df0e5  e8 66 85 09 00   call    __EH_prolog
+006df0ea  51               push    ecx
+006df0eb  51               push    ecx
+006df0ec  53               push    ebx
+006df0ed  56               push    esi
+006df0ee  8b f1            mov     esi, ecx
+006df0f0  57               push    edi
+006df0f1  89 65 f0         mov     dword [ebp-0x10], esp
+006df0f4  89 75 ec         mov     dword [ebp-0x14], esi
+006df0f7  83 7e 18 00      cmp     dword [esi+0x18], 0x0
+006df0fb  75 04            jne     0x6df101
+
+# Block 3 at 0x6df0fd
+006df0fd  33 c0            xor     eax, eax
+006df0ff  eb 5d            jmp     0x6df15e
+
+# Block 2 at 0x6df101
+006df101  8b 7d 08         mov     edi, dword [ebp+0x8]
+006df104  66 81 7f 02 f1 03 cmp     word [edi+0x2], 0x3f1
+006df10a  75 0f            jne     0x6df11b
+
+# Block 5 at 0x6df10c
+006df10c  66 83 7f 0c 1b   cmp     word [edi+0xc], 0x1b
+006df111  75 08            jne     0x6df11b
+
+# Block 9 at 0x6df113
+006df113  e8 d3 9e 08 00   call    Conquer_GetTimeGetTime
+006df118  89 47 10         mov     dword [edi+0x10], eax
+
+# Block 4 at 0x6df11b
+006df11b  8b 4e 14         mov     ecx, dword [esi+0x14]
+006df11e  83 65 fc 00      and     dword [ebp-0x4], 0x0
+006df122  85 c9            test    ecx, ecx
+006df124  74 22            je      0x6df148
+
+# Block 8 at 0x6df126
+006df126  ff 75 0c         push    dword [ebp+0xc]
+006df129  57               push    edi
+006df12a  e8 d8 28 00 00   call    CGameSocket_SendBufferedPacket
+006df12f  89 45 08         mov     dword [ebp+0x8], eax
+006df132  eb 14            jmp     0x6df148
+
+# Block 7 at 0x6df148
+006df148  8b 45 0c         mov     eax, dword [ebp+0xc]
+006df14b  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+006df14f  01 46 0c         add     dword [esi+0xc], eax
+006df152  6a 01            push    0x1
+006df154  8b ce            mov     ecx, esi
+006df156  e8 31 00 00 00   call    0x6df18c
+006df15b  8b 45 08         mov     eax, dword [ebp+0x8]
+
+# Block 6 at 0x6df15e
+006df15e  8b 4d f4         mov     ecx, dword [ebp-0xc]
+006df161  5f               pop     edi
+006df162  5e               pop     esi
+006df163  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+006df16a  5b               pop     ebx
+006df16b  c9               leave
+006df16c  c2 08 00         retn    0x8
+

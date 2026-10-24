@@ -1,0 +1,50 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6defe5
+006defe5  53               push    ebx
+006defe6  56               push    esi
+006defe7  8b f1            mov     esi, ecx
+006defe9  57               push    edi
+006defea  33 ff            xor     edi, edi
+006defec  8b 46 10         mov     eax, dword [esi+0x10]
+006defef  3b c7            cmp     eax, edi
+006deff1  74 0a            je      0x6deffd
+
+# Block 3 at 0x6deff3
+006deff3  50               push    eax
+006deff4  e8 37 81 09 00   call    ??3@YAXPAX@Z
+006deff9  59               pop     ecx
+006deffa  89 7e 10         mov     dword [esi+0x10], edi
+
+# Block 2 at 0x6deffd
+006deffd  bb 00 04 00 00   mov     ebx, 0x400
+006df002  53               push    ebx
+006df003  e8 6c 82 09 00   call    ??2@YAPAXI@Z
+006df008  3b c7            cmp     eax, edi
+006df00a  59               pop     ecx
+006df00b  89 46 10         mov     dword [esi+0x10], eax
+006df00e  74 2d            je      0x6df03d
+
+# Block 5 at 0x6df010
+006df010  e8 4b 54 d2 ff   call    CHero_GetSingletonPtr
+006df015  ff b0 cc 00 00 00 push    dword [eax+0xcc]
+006df01b  ff 15 a0 47 84 00 call    dword [srand]
+006df021  59               pop     ecx
+
+# Block 6 at 0x6df022
+006df022  ff 15 38 49 84 00 call    dword [rand]
+006df028  99               cdq
+006df029  b9 ff ff 00 00   mov     ecx, 0xffff
+006df02e  f7 f9            idiv    ecx
+006df030  8b 46 10         mov     eax, dword [esi+0x10]
+006df033  89 14 07         mov     dword [edi+eax], edx
+006df036  83 c7 04         add     edi, 0x4
+006df039  3b fb            cmp     edi, ebx
+006df03b  7c e5            jl      0x6df022
+
+# Block 4 at 0x6df03d
+006df03d  5f               pop     edi
+006df03e  5e               pop     esi
+006df03f  5b               pop     ebx
+006df040  c2 04 00         retn    0x4
+

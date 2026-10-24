@@ -29,8 +29,11 @@ BNinja verification anchors in `CLoginFlashDlg_HandleFlashCommandString` (`0x4AA
 - `CMD_NAME` branch (`0x4AA72D..0x4AA79B`) updates the login-name buffer (`this+0x198`).
 - `CMD_PASSWORD` branch (`0x4AA7B3..0x4AA852`) encodes each byte through
   `CGameInput_EncodePasswordCharForLoginBuffer` (`0x59EECA`) and writes the encoded buffer at `this+0x414`.
-- `CMD_ENTERGAME` / `CMD_GAMESTART` branch (`0x4AA228..0x4AA253`) posts
-  `Conquer_PostMainWindowMessage464(0x480, 0)`.
+- `CMD_GAMESTART` branch (compare `0x4AA23C`) posts `Conquer_PostMainWindowMessage464(0x480, 0)` via
+  shared site `0x4AA24D`. `CMD_ENTERGAME` (compare `0x4AA21F`, call `0x4AA22C`) runs validator `0x4ABFBD`
+  (Server.dat row → 10 s rate limit → password length → bind handshake / account-server connect); see
+  [11](11_login_ui_assets_and_interactions.md#cmd_entergame-native-validator-0x4abfbd). Corrected 2026-10-15:
+  the earlier text merged the two branches.
 - `CMD_CLOSE` branch (`0x4AA69F..0x4AA6A3`) calls
   `CLoginFlashDlg_HandleCloseCommandAndPostWorldEntryMessages` (`0x4AC62B`), which posts:
   - `Conquer_PostMainWindowMessage464(0x483, 0)` (`0x4AC69C`)
@@ -515,8 +518,33 @@ Verified string-key payload values from clean `ini/Cn_Res.ini` (local asset sour
 | Key | Text |
 |---|---|
 | `STR_CONNECT_ERROR_MSG_TYPE_001` | `Invalid Account ID or Password` |
+| `STR_CONNECT_ERROR_MSG_TYPE_010` | `The Server is down.` |
+| `STR_CONNECT_ERROR_MSG_TYPE_011` | `Please try again later.` |
 | `STR_CONNECT_ERROR_MSG_TYPE_012` | `This account has been banned.` |
+| `STR_CONNECT_ERROR_MSG_TYPE_020` | `Server is busy.` |
+| `STR_CONNECT_ERROR_MSG_TYPE_021` | `Server is busy. Please try again, later.` |
+| `STR_CONNECT_ERROR_MSG_TYPE_024` | `This account has been banned.` (also 025–028) |
+| `STR_CONNECT_ERROR_MSG_TYPE_053` | `The same server` |
 | `STR_CONNECT_ERROR_MSG_TYPE_057` | `Invalid Account ID` |
+| `STR_CONNECT_ERROR_MSG_TYPE_059` | `Servers are not configured correctly.` |
+| `STR_CONNECT_ERROR_MSG_TYPE_070` | `Server Locked` |
+| `STR_LOGIN_FAIL` | `Failed to login: %s(%d)` |
+
+`Cn_Res.ini` sha256 `23c23e12…6026`; full key list 000–073, 501–508, 999, UNKNOWN. Server use of 10/70 for
+realm states: [multi-realm decision](../Server/multi-realm-architecture-5517.md).
+
+Failure branch reads and consumer (verified 2026-10-13, Binja; REA/Ghidra 12.1.4 `FUN_0075492c` agrees):
+
+| Address | Fact |
+|---|---|
+| `0x754962` | UID == 0 branch reads payload `+4` (code) only. Port `+8`, extra `+0xC`, IPv4 text `+0x10` unread. Text → queue `0x96B330`; code → `0x96B328+4` |
+| `0x5DC8EE` | `CMyShellDlg_ResetRuntimeAndDisableWorldFrameGate` drains queue. Login Flash visible: code 24 → Flash command `KICKOUT_BANACCOUNT`; else `CLoginFlashDlg_ShowLoginErrorText`. Flash hidden: `MessageBoxA` |
+| `0x4AC453` | `CLoginFlashDlg_ShowLoginErrorText(text, critical)`: Flash var `CRITICAL` if `0x96AB34` ∧ critical, else `ERROR`; NULL text no-op |
+| `0x4AC4BE` | `CLoginFlashDlg_HasFocusableTextEntry` → true ⇒ `CLoginFlashDlg_ClearPasswordAndMobileProtectFields` |
+| `0x5DCA51` | dlg `+0x179AA8` 1 → `KICKOUT_OTHERIPLOGIN(dlg+0x179ABC text)`, 2 → `KICKOUT_PASSWORDCHANGED`; set by packet 1115 ([kick notice](../Network/13_connection_lifecycle.md#kick-notice-1115-cmsgkickoutnotice)). Clean `start.dat` (`db4b4550…da20`) handles `ERROR`, `BANNED`, `PROGRESS`… but no `KICKOUT_*` and no `CRITICAL` |
+| `0x5DCD58` | `1004` channel 2101 text other than `ANSWER_OK`/`NEW_ROLE` → `CLoginFlashDlg_ShowLoginErrorText(text, 1)` (GameServer-stage refusal display) |
+
+No code-specific retry or reconnect. Writers of `0x96B328+4`: 1055 `0x754B43`, 1057 `0x75508B`, legacy 1052 `0x7546C0`.
 
 Parity implication for managed login/auth flow:
 
@@ -896,7 +924,8 @@ groupIndex#childCount#name1%icon1%hint1%status1$name2%icon2%hint2%status2$...
   - `FlashIcon` = icon identifier
   - `FlashHint` = server description/hint
   - status = integer from `ServerListEntry_ResolveFlashStatusCode` (`0x5EA5A2`, server load/status check)
-  - `ServerName` attribute used for connection target lookup
+  - `ServerName` = identity sent in account packets and status key; connection target is
+    `ServerIP`/`ServerPort` (role 2, `0x4AFE37`) — see `../Network/5517-server-selection-and-realm-handoff.md`
 - Server indices start at `0x65` (101) per group, incrementing by `0x64` (100) per group
 - `$` = server separator, `%` = field separator
 - Emission cadence/order:
@@ -940,12 +969,12 @@ All commands dispatched via `CLoginFlashDlg_HandleFlashCommandString` (`0x4AA0AE
 
 | Command | Parameter | Side Effects | Address |
 |---|---|---|---:|
-| `CMD_ENTERGAME` | (trigger) | Posts `Conquer_PostMainWindowMessage464(0x480, 0)`, then `CLoginFlashDlg_RecordAccountAndPushAccountListToFlash` | `0x4AA228` |
-| `CMD_GAMESTART` | mode (1/2/3) | Reads `VAR_STARTTOVC`/`VAR_ENDTOVC` from Flash, stores to mode-specific fields, calls login handler, posts `0x480` | `0x4AA23C` |
+| `CMD_ENTERGAME` | (trigger) | `CLoginFlashDlg_HandleEnterGameCommand_ValidateAndBeginBindHandshake` (`0x4ABFBD`): row lookup (fail ⇒ ERROR StrRes 10012), 10 s rate limit (49995), password length (10014, 11400), then bind handshake / `0x4AF12D` connect. **No** 0x480 post, **no** account record | `0x4AA21F` |
+| `CMD_GAMESTART` | (ignored) | Posts `Conquer_PostMainWindowMessage464(0x480, 0)` (shared site `0x4AA24D`) | `0x4AA23C` |
 | `CMD_CLOSE` | (trigger) | `KillTimer(1)`, clears Flash movie, posts `0x483` (world enable), `0xC6B`, `0x3F2` | `0x4AA69F` → `0x4AC621` |
-| `CMD_PREV` | (trigger) | Navigation previous | `0x4AA1D8` |
-| `CMD_NEXT` | (trigger) | Navigation next | `0x4AA1ED` |
-| `CMD_RETURN` | (trigger) | Return/back navigation, calls `CLoginFlashDlg_HandleReturnNavigation` or `CRoleCreateFlashDlg_PostMainWindowMessage55` | `0x4AA20B` |
+| `CMD_PREV` | (trigger) | No-op in login dialog (equal ⇒ jump to exit `0x4AAA38`) | `0x4AA1D8` |
+| `CMD_NEXT` | (trigger) | No-op in login dialog (equal ⇒ jump to exit `0x4AAA38`) | `0x4AA1ED` |
+| `CMD_RETURN` | (trigger) | `CRoleCreateFlashDlg_PostMainWindowMessage55` ⇒ `Conquer_PostMainWindowMessage464(0x55, 0)`. Sent by start.dat quit-dialog OK (`cmd_assureExit`) | `0x4AA202` |
 | `CMD_TEXTSELECT` | mode (1/2/3) | Reads `VAR_STARTTOVC`/`VAR_ENDTOVC`, stores selection range to mode-specific fields | `0x4AA285` |
 | `CMD_TIMEOUT` | (trigger) | Posts `Conquer_PostMainWindowMessage464(0x55, 0)` | `0x4AA582` |
 
@@ -1054,7 +1083,8 @@ This is the exact producer path ordering used before steady startup timer ticks.
 | `0x4AEC64` | `CLoginFlashDlg_ResizeDialogAndFlashControlToMainShellViewport` |
 | `0x4AEB9E` | `CLoginFlashDlg_ClearSavedGroupServerAndAccountRecords` |
 | `0x4AE304` | `CLoginFlashDlg_DeleteSavedAccountAndRefreshAccountList` |
-| `0x4ABFBD` | `CLoginFlashDlg_HandleReturnNavigation` |
+| `0x4ABFBD` | `CLoginFlashDlg_HandleEnterGameCommand_ValidateAndBeginBindHandshake` (was `HandleReturnNavigation`) |
+| `0x4AF12D` | `CLoginFlashDlg_PersistSelectionAndConnectAccountServer` |
 | `0x51C09D` | `CRoleCreateFlashDlg_PostMainWindowMessage55` |
 | `0x4AF616` | `CLoginFlashDlg_ShowSoftKeyboardAndSyncFlags` |
 | `0x4AECC5` | `CLoginFlashDlg_HandlePasswordProtectCommand` |
@@ -1107,7 +1137,7 @@ Only verified fields/commands from `CLoginFlashDlg_HandleFlashCommandString` are
 | `CMD_SELECTSERVER` | writes `this+0x194 = atoi(value)` and updates hero selection pair |
 | `CMD_NAME` | writes account string into `this+0x198` |
 | `CMD_PASSWORD` | transforms each char with `CGameInput_EncodePasswordCharForLoginBuffer`, writes result to `this+0x414` |
-| `CMD_ENTERGAME` | posts `Conquer_PostMainWindowMessage464(0x480, 0)` |
+| `CMD_ENTERGAME` | validator `0x4ABFBD` → bind handshake / account-server connect (no 0x480; corrected 2026-10-15). `CMD_GAMESTART` posts 0x480 |
 | `CMD_SELECTBGMUSIC` | writes `[FlashMusic] Enable=<value>` to `ini/GameSetup.Ini` |
 | `CMD_CLOSE` | posts `0x483`, then `0xC6B`, then `0x3F2` |
 
@@ -1272,7 +1302,7 @@ Raw table evidence used for managed parity extraction:
 5. User selects server → `CMD_SELECTSERVER` → C++ stores server index
 6. User enters account name → `CMD_NAME` → C++ stores to `this+0x198`
 7. User enters password → `CMD_PASSWORD` → C++ encrypts and stores to `this+0x414`
-8. User clicks login → `CMD_ENTERGAME` → C++ posts `0x480` (login request), records account
+8. User clicks login → inGameMC frame 17 `CMD_ENTERGAME` → validator `0x4ABFBD` + account-server connect; frame 36 `CMD_GAMESTART` → C++ posts `0x480` → Submit `0x4AEE6A` (corrected 2026-10-15; no automatic account record)
 9. After successful login: `CMD_CLOSE` → C++ kills timer, posts `0x483` (world-frame enable), `0xC6B`, `0x3F2`
 10. World gate byte (`this+0x179AB9`) set to 1 → world rendering begins
 
@@ -1285,3 +1315,13 @@ The native startup presentation must:
 3. **Handle the same persistence** — `ini/GameSetup.Ini` sections for saved state
 4. **Not depend on Flash** — use native OpenGL rendering or immediate-mode UI (e.g., ImGui)
 5. **Music playback** — use OpenAL (Silk.NET.OpenAL) since the SWF's embedded audio is unavailable
+
+## 2026-10-14: actual retail Flash controls and credential interactions
+
+See [11_login_ui_assets_and_interactions.md](11_login_ui_assets_and_interactions.md) for the source-hashed Flash-side complement to the native contracts above. There are real small history/save/clear icons (`start.dat` buttons 335/342/349), not invented text buttons. Save and clear have original confirmation timelines. Explicit save emits `CMD_RECORDACCOUNT`; the existing `CMD_ENTERGAME` native record call also establishes automatic recording on that path, not necessarily after successful authentication. No visible BGM toggle or settings panel was resolved in this `start.dat`; native command support alone does not establish artwork.
+
+Credential fields 363/364 are editable/selectable independently of region/server selection in the ordinary displayed login path. Native account edit dispatches LOGINUSER then clears password/mobile-protect at `0x4ADC6F`. Account Tab sends focus 2; password Tab sends focus 3, but the shipped SWF handles only focus 1/2. Initial/default player traversal remains unresolved. Enter in either field synthesizes a mouse click at the stored host-relative point (`0x4AE2AE..0x4AE2EC`); it is not a direct submit call. Exact initialized click coordinates were not established.
+
+The native input-policy byte is not an unconditional read-only switch: helper `0x59E5B2..0x59E5CC` permits processing of nonempty pending input even when that policy byte is true. Keep `+0x155/+0x158` writer provenance unresolved. Full twelve-question answers, raw assembly, original action offsets and runtime limitations are recorded in note 11.
+
+Flash `inGameMC` stops at 17 (CMD_ENTERGAME), 36 (CMD_GAMESTART **100**) and 99 (CMD_CLOSE **1**); PROGRESS strings 1/80 resume it. `ERROROK` reaches an empty `getEnterDown` function in this SWF. Do not infer visible keyboard-dismissal or a numeric percentage-to-frame mapping solely from host command names.

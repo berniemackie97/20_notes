@@ -198,7 +198,7 @@ Note: This table is the 1002–1151 switch/jumptable view. `CNetMsg__ProcessMsg_
 | 1112 | CMsgMonsterTransform | 0x75ebfc | 0x75ec85 |
 | 1113 | CMsgSubPro | 0x75e53b | 0x75e627 |
 | 1114 | CMsgHero | 0x7624e8 | 0x762571 |
-| 1115 | CMsgPKEliteInfo | 0x75d785 | 0x75d80e |
+| 1115 | CMsgKickoutNotice | 0x75d785 | 0x75d80e |
 | 1116 | Default (no handler) | - | - |
 | 1117 | Default (no handler) | - | - |
 | 1118 | Default (no handler) | - | - |
@@ -311,7 +311,7 @@ These types are dispatched via subtraction/comparison chains in the else-branch 
 | 2045 | 0x07FD | CMsgFamilyBattleEffect | 0x70A355 | 0x70A3BB |
 | 2046 | 0x07FE | CMsgBuddyConfirm | 0x72B454 | 0x72B517 |
 | 2047 | 0x07FF | CMsgBuddyUpdate | 0x75CCA3 | 0x75CD2C |
-| 2075 | 0x081B | CMsgMagicEffect (else) | 0x75C570 | 0x75C5F9 |
+| 2075 | 0x081B | CMsgStatusDetail2075 (was CMsgMagicEffect) | 0x75C570 | 0x75C5F9 |
 | 2101 | 0x0835 | CMsgContainerInfo | 0x7022AF | 0x702372 |
 | 2102 | 0x0836 | CMsgSynMemberTitle | 0x75A834 | 0x75A8F9 |
 | 2103 | 0x0837 | CMsgChiefNameChange | 0x6ECB23 | 0x6ECC0F |

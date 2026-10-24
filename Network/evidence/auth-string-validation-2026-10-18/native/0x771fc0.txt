@@ -1,0 +1,7 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x771fc0
+00771fc0  8b 41 04         mov     eax, dword [ecx+0x4]
+00771fc3  0f b6 00         movzx   eax, byte [eax]
+00771fc6  c3               retn
+

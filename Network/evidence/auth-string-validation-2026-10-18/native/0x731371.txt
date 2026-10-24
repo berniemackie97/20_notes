@@ -1,0 +1,1268 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x731371
+00731371  b8 19 c5 83 00   mov     eax, 0x83c519  ; Login-control audit 2026-09-15: channel 0x835 routes message text to queue 0x96B330 at 0x731945; CMyShellDlg_HandleLoginStatusSystemTalk drains it and compares ANSWER_OK/NEW_ROLE. This path does not choose a 2078 timestamp/location/alert payload or a 2079 wire state.
+00731376  e8 d5 62 04 00   call    __EH_prolog
+0073137b  81 ec dc 06 00 00 sub     esp, 0x6dc
+00731381  53               push    ebx
+00731382  56               push    esi
+00731383  57               push    edi
+00731384  6a 10            push    0x10
+00731386  5b               pop     ebx
+00731387  8d 45 d8         lea     eax, [ebp-0x28]
+0073138a  8d b1 08 04 00 00 lea     esi, [ecx+0x408]
+00731390  53               push    ebx
+00731391  89 4d f0         mov     dword [ebp-0x10], ecx
+00731394  50               push    eax
+00731395  6a 00            push    0x0
+00731397  8b ce            mov     ecx, esi
+00731399  e8 b9 0b 04 00   call    MsgStringList_TryGetEntry
+0073139e  8d 45 b8         lea     eax, [ebp-0x48]
+007313a1  53               push    ebx
+007313a2  50               push    eax
+007313a3  6a 01            push    0x1
+007313a5  8b ce            mov     ecx, esi
+007313a7  e8 ab 0b 04 00   call    MsgStringList_TryGetEntry
+007313ac  8d 45 8c         lea     eax, [ebp-0x74]
+007313af  53               push    ebx
+007313b0  50               push    eax
+007313b1  6a 02            push    0x2
+007313b3  8b ce            mov     ecx, esi
+007313b5  e8 9d 0b 04 00   call    MsgStringList_TryGetEntry
+007313ba  80 65 9b 00      and     byte [ebp-0x65], 0x0
+007313be  bf 00 01 00 00   mov     edi, 0x100
+007313c3  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+007313c9  57               push    edi
+007313ca  50               push    eax
+007313cb  6a 03            push    0x3
+007313cd  8b ce            mov     ecx, esi
+007313cf  e8 83 0b 04 00   call    MsgStringList_TryGetEntry
+007313d4  be dc 60 95 00   mov     esi, 0x9560dc
+007313d9  8d 45 d8         lea     eax, [ebp-0x28]
+007313dc  56               push    esi
+007313dd  68 f8 26 92 00   push    0x9226f8
+007313e2  53               push    ebx
+007313e3  50               push    eax
+007313e4  e8 e7 8e 03 00   call    0x76a2d0
+007313e9  bb f4 26 92 00   mov     ebx, 0x9226f4
+007313ee  56               push    esi
+007313ef  53               push    ebx
+007313f0  8d 45 d8         lea     eax, [ebp-0x28]
+007313f3  6a 10            push    0x10
+007313f5  50               push    eax
+007313f6  e8 d5 8e 03 00   call    0x76a2d0
+007313fb  56               push    esi
+007313fc  68 f8 26 92 00   push    0x9226f8
+00731401  8d 45 b8         lea     eax, [ebp-0x48]
+00731404  6a 10            push    0x10
+00731406  50               push    eax
+00731407  e8 c4 8e 03 00   call    0x76a2d0
+0073140c  56               push    esi
+0073140d  53               push    ebx
+0073140e  8d 45 b8         lea     eax, [ebp-0x48]
+00731411  6a 10            push    0x10
+00731413  50               push    eax
+00731414  e8 b7 8e 03 00   call    0x76a2d0
+00731419  83 c4 40         add     esp, 0x40
+0073141c  8d 45 b8         lea     eax, [ebp-0x48]
+0073141f  50               push    eax
+00731420  e8 bf f1 cd ff   call    CSilentInfo_GetSingletonPtr
+00731425  8b c8            mov     ecx, eax
+00731427  e8 56 9f f8 ff   call    0x6bb382
+0073142c  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731432  50               push    eax
+00731433  e8 ac f1 cd ff   call    CSilentInfo_GetSingletonPtr
+00731438  8b c8            mov     ecx, eax
+0073143a  e8 43 9f f8 ff   call    0x6bb382
+0073143f  8b 45 f0         mov     eax, dword [ebp-0x10]
+00731442  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00731448  66 81 78 08 d0 07 cmp     word [eax+0x8], 0x7d0
+0073144e  75 06            jne     0x731456
+
+# Block 3 at 0x731450
+00731450  66 c7 40 08 d7 07 mov     word [eax+0x8], 0x7d7  ; MsgTalk channel rewrite on receive: a packet arriving on channel 0x7D0 (2000) has its channel field overwritten in place with 0x7D7 (2007) before any dispatch, so 2000 and 2007 are the same channel from here on. 0x7D7 is one of the channels with a per-channel display toggle in sub_5d3f85 (returns chatMgr+0x414 for it); channels with no case there always display. Immediately below, 0x7D5 takes its own branch that requires sender == "SYSTEM" and recipient == the hero's own name before rendering, so 0x7D5 is a directed system message rather than chat.
+
+# Block 2 at 0x731456
+00731456  8b 45 f0         mov     eax, dword [ebp-0x10]
+00731459  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+0073145f  66 81 78 08 d5 07 cmp     word [eax+0x8], 0x7d5
+00731465  75 4b            jne     0x7314b2
+
+# Block 5 at 0x731467
+00731467  8d 45 d8         lea     eax, [ebp-0x28]
+0073146a  68 ac c4 86 00   push    0x86c4ac
+0073146f  50               push    eax
+00731470  e8 c5 61 04 00   call    strcmp
+00731475  59               pop     ecx
+00731476  85 c0            test    eax, eax
+00731478  59               pop     ecx
+00731479  75 37            jne     0x7314b2
+
+# Block 8 at 0x73147b
+0073147b  e8 e0 2f cd ff   call    CHero_GetSingletonPtr
+00731480  ff b0 4c 01 00 00 push    dword [eax+0x14c]
+00731486  8d 45 b8         lea     eax, [ebp-0x48]
+00731489  50               push    eax
+0073148a  e8 ab 61 04 00   call    strcmp
+0073148f  59               pop     ecx
+00731490  85 c0            test    eax, eax
+00731492  59               pop     ecx
+00731493  75 1d            jne     0x7314b2
+
+# Block 13 at 0x731495
+00731495  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+0073149b  68 00 00 ff ff   push    0xffff0000
+007314a0  50               push    eax
+007314a1  e8 16 2f cd ff   call    CGameMsg_GetSingletonPtr
+007314a6  8b c8            mov     ecx, eax
+007314a8  e8 fd 19 ea ff   call    0x5d2eaa
+007314ad  e9 cb 0b 00 00   jmp     0x73207d
+
+# Block 4 at 0x7314b2
+007314b2  8b 45 f0         mov     eax, dword [ebp-0x10]
+007314b5  b9 39 08 00 00   mov     ecx, 0x839
+007314ba  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+007314c0  0f b7 40 08      movzx   eax, word [eax+0x8]
+007314c4  3b c1            cmp     eax, ecx
+007314c6  0f 8f b9 04 00 00 jg      0x731985
+
+# Block 7 at 0x7314cc
+007314cc  0f 84 7d 04 00 00 je      0x73194f
+
+# Block 12 at 0x7314d2
+007314d2  83 c1 fb         add     ecx, 0xfffffffb
+007314d5  3b c1            cmp     eax, ecx
+007314d7  0f 8f 4a 03 00 00 jg      0x731827
+
+# Block 20 at 0x7314dd
+007314dd  0f 84 33 03 00 00 je      0x731816
+
+# Block 30 at 0x7314e3
+007314e3  2d d6 07 00 00   sub     eax, 0x7d6
+007314e8  0f 84 6a 02 00 00 je      0x731758
+
+# Block 42 at 0x7314ee
+007314ee  83 e8 07         sub     eax, 0x7
+007314f1  0f 84 08 01 00 00 je      0x7315ff
+
+# Block 53 at 0x7314f7
+007314f7  83 e8 08         sub     eax, 0x8
+007314fa  74 2d            je      0x731529
+
+# Block 66 at 0x7314fc
+007314fc  48               dec     eax
+007314fd  0f 85 a6 06 00 00 jne     0x731ba9
+
+# Block 76 at 0x731503
+00731503  6a 00            push    0x0
+00731505  6a 00            push    0x0
+00731507  68 00 00 ff ff   push    0xffff0000
+0073150c  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731512  68 e6 07 00 00   push    0x7e6
+00731517  50               push    eax
+00731518  e8 9f 2e cd ff   call    CGameMsg_GetSingletonPtr
+0073151d  8b c8            mov     ecx, eax
+0073151f  e8 fb 0d ea ff   call    GameMsg_DispatchByCode
+00731524  e9 54 0b 00 00   jmp     0x73207d
+
+# Block 65 at 0x731529
+00731529  8d 45 d8         lea     eax, [ebp-0x28]
+0073152c  50               push    eax
+0073152d  e8 8a 2e cd ff   call    CGameMsg_GetSingletonPtr
+00731532  8b c8            mov     ecx, eax
+00731534  e8 ca 27 ea ff   call    0x5d3d03
+00731539  84 c0            test    al, al
+0073153b  0f 85 3c 0b 00 00 jne     0x73207d
+
+# Block 75 at 0x731541
+00731541  56               push    esi
+00731542  68 f8 26 92 00   push    0x9226f8
+00731547  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+0073154d  57               push    edi
+0073154e  50               push    eax
+0073154f  e8 7c 8d 03 00   call    0x76a2d0
+00731554  56               push    esi
+00731555  53               push    ebx
+00731556  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+0073155c  57               push    edi
+0073155d  50               push    eax
+0073155e  e8 6d 8d 03 00   call    0x76a2d0
+00731563  83 c4 20         add     esp, 0x20
+00731566  e8 51 2e cd ff   call    CGameMsg_GetSingletonPtr
+0073156b  8b 4d f0         mov     ecx, dword [ebp-0x10]
+0073156e  8b 89 04 04 00 00 mov     ecx, dword [ecx+0x404]
+00731574  66 8b 49 08      mov     cx, word [ecx+0x8]
+00731578  51               push    ecx
+00731579  8b c8            mov     ecx, eax
+0073157b  e8 05 2a ea ff   call    0x5d3f85
+00731580  85 c0            test    eax, eax
+00731582  0f 84 f5 0a 00 00 je      0x73207d
+
+# Block 83 at 0x731588
+00731588  e8 2f 2e cd ff   call    CGameMsg_GetSingletonPtr
+0073158d  8b 4d f0         mov     ecx, dword [ebp-0x10]
+00731590  8b 91 04 04 00 00 mov     edx, dword [ecx+0x404]
+00731596  ff 72 0c         push    dword [edx+0xc]
+00731599  66 8b 4a 08      mov     cx, word [edx+0x8]
+0073159d  51               push    ecx
+0073159e  66 8b 4a 0a      mov     cx, word [edx+0xa]
+007315a2  51               push    ecx
+007315a3  8b 4a 04         mov     ecx, dword [edx+0x4]
+007315a6  81 c9 00 00 00 ff or      ecx, 0xff000000
+007315ac  51               push    ecx
+007315ad  8d 8d 74 fe ff ff lea     ecx, [ebp-0x18c]
+007315b3  51               push    ecx
+007315b4  8d 4d 8c         lea     ecx, [ebp-0x74]
+007315b7  51               push    ecx
+007315b8  8d 4d b8         lea     ecx, [ebp-0x48]
+007315bb  51               push    ecx
+007315bc  8d 4d d8         lea     ecx, [ebp-0x28]
+007315bf  51               push    ecx
+007315c0  8b c8            mov     ecx, eax
+007315c2  e8 d3 ff e9 ff   call    0x5d159a
+007315c7  8d 45 d8         lea     eax, [ebp-0x28]
+007315ca  b9 18 b0 96 00   mov     ecx, 0x96b018
+007315cf  50               push    eax
+007315d0  8d 45 e8         lea     eax, [ebp-0x18]
+007315d3  50               push    eax
+007315d4  e8 5c 6d fb ff   call    EntityManager_TryFindRoleByName
+007315d9  8b 4d e8         mov     ecx, dword [ebp-0x18]
+007315dc  c7 45 fc 05 00 00 00 mov     dword [ebp-0x4], 0x5
+007315e3  85 c9            test    ecx, ecx
+007315e5  74 0c            je      0x7315f3
+
+# Block 91 at 0x7315e7
+007315e7  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+007315ed  50               push    eax
+007315ee  e8 2a 37 fb ff   call    0x6e4d1d
+
+# Block 90 at 0x7315f3
+007315f3  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+007315f7  8b 4d ec         mov     ecx, dword [ebp-0x14]
+007315fa  e9 94 06 00 00   jmp     0x731c93
+
+# Block 52 at 0x7315ff
+007315ff  6a 0a            push    0xa
+00731601  e8 5a 2e cd ff   call    CHero_GetSingletonPtr
+00731606  8b c8            mov     ecx, eax
+00731608  e8 c7 3a fb ff   call    Role_HasStatusFlag
+0073160d  84 c0            test    al, al
+0073160f  75 51            jne     0x731662
+
+# Block 64 at 0x731611
+00731611  e8 4a 2e cd ff   call    CHero_GetSingletonPtr
+00731616  8b 80 2c 08 00 00 mov     eax, dword [eax+0x82c]
+0073161c  6a 0a            push    0xa
+0073161e  33 d2            xor     edx, edx
+00731620  59               pop     ecx
+00731621  f7 f1            div     ecx
+00731623  83 f8 0d         cmp     eax, 0xd
+00731626  74 3a            je      0x731662
+
+# Block 74 at 0x731628
+00731628  e8 33 2e cd ff   call    CHero_GetSingletonPtr
+0073162d  8b 80 2c 08 00 00 mov     eax, dword [eax+0x82c]
+00731633  33 d2            xor     edx, edx
+00731635  b9 e8 03 00 00   mov     ecx, 0x3e8
+0073163a  6a 0a            push    0xa
+0073163c  f7 f1            div     ecx
+0073163e  59               pop     ecx
+0073163f  8b c2            mov     eax, edx
+00731641  33 d2            xor     edx, edx
+00731643  f7 f1            div     ecx
+00731645  83 f8 06         cmp     eax, 0x6
+00731648  74 18            je      0x731662
+
+# Block 82 at 0x73164a
+0073164a  8d 45 d8         lea     eax, [ebp-0x28]
+0073164d  50               push    eax
+0073164e  e8 0d 2e cd ff   call    CHero_GetSingletonPtr
+00731653  8b c8            mov     ecx, eax
+00731655  e8 cf 4b fd ff   call    0x706229
+0073165a  85 c0            test    eax, eax
+0073165c  0f 84 1b 0a 00 00 je      0x73207d
+
+# Block 63 at 0x731662
+00731662  56               push    esi
+00731663  68 f8 26 92 00   push    0x9226f8
+00731668  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+0073166e  57               push    edi
+0073166f  50               push    eax
+00731670  e8 5b 8c 03 00   call    0x76a2d0
+00731675  56               push    esi
+00731676  53               push    ebx
+00731677  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+0073167d  57               push    edi
+0073167e  50               push    eax
+0073167f  e8 4c 8c 03 00   call    0x76a2d0
+00731684  83 c4 20         add     esp, 0x20
+00731687  8d 45 d8         lea     eax, [ebp-0x28]
+0073168a  50               push    eax
+0073168b  e8 2c 2d cd ff   call    CGameMsg_GetSingletonPtr
+00731690  8b c8            mov     ecx, eax
+00731692  e8 6c 26 ea ff   call    0x5d3d03
+00731697  84 c0            test    al, al
+00731699  0f 85 de 09 00 00 jne     0x73207d
+
+# Block 73 at 0x73169f
+0073169f  e8 18 2d cd ff   call    CGameMsg_GetSingletonPtr
+007316a4  8b 75 f0         mov     esi, dword [ebp-0x10]
+007316a7  8b 8e 04 04 00 00 mov     ecx, dword [esi+0x404]
+007316ad  66 8b 49 08      mov     cx, word [ecx+0x8]
+007316b1  51               push    ecx
+007316b2  8b c8            mov     ecx, eax
+007316b4  e8 cc 28 ea ff   call    0x5d3f85
+007316b9  85 c0            test    eax, eax
+007316bb  0f 84 bc 09 00 00 je      0x73207d
+
+# Block 81 at 0x7316c1
+007316c1  8b 86 04 04 00 00 mov     eax, dword [esi+0x404]
+007316c7  66 81 78 08 d1 07 cmp     word [eax+0x8], 0x7d1
+007316cd  75 18            jne     0x7316e7
+
+# Block 89 at 0x7316cf
+007316cf  8d 45 d8         lea     eax, [ebp-0x28]
+007316d2  50               push    eax
+007316d3  e8 e4 2c cd ff   call    CGameMsg_GetSingletonPtr
+007316d8  8b c8            mov     ecx, eax
+007316da  e8 5b 29 ea ff   call    0x5d403a
+007316df  85 c0            test    eax, eax
+007316e1  0f 84 96 09 00 00 je      0x73207d
+
+# Block 88 at 0x7316e7
+007316e7  e8 d0 2c cd ff   call    CGameMsg_GetSingletonPtr
+007316ec  8b 96 04 04 00 00 mov     edx, dword [esi+0x404]
+007316f2  ff 72 0c         push    dword [edx+0xc]
+007316f5  66 8b 4a 08      mov     cx, word [edx+0x8]
+007316f9  51               push    ecx
+007316fa  66 8b 4a 0a      mov     cx, word [edx+0xa]
+007316fe  51               push    ecx
+007316ff  8b 4a 04         mov     ecx, dword [edx+0x4]
+00731702  81 c9 00 00 00 ff or      ecx, 0xff000000
+00731708  51               push    ecx
+00731709  8d 8d 74 fe ff ff lea     ecx, [ebp-0x18c]
+0073170f  51               push    ecx
+00731710  8d 4d 8c         lea     ecx, [ebp-0x74]
+00731713  51               push    ecx
+00731714  8d 4d b8         lea     ecx, [ebp-0x48]
+00731717  51               push    ecx
+00731718  8d 4d d8         lea     ecx, [ebp-0x28]
+0073171b  51               push    ecx
+0073171c  8b c8            mov     ecx, eax
+0073171e  e8 77 fe e9 ff   call    0x5d159a
+00731723  8d 45 d8         lea     eax, [ebp-0x28]
+00731726  b9 18 b0 96 00   mov     ecx, 0x96b018
+0073172b  50               push    eax
+0073172c  8d 45 e8         lea     eax, [ebp-0x18]
+0073172f  50               push    eax
+00731730  e8 00 6c fb ff   call    EntityManager_TryFindRoleByName
+00731735  8b 4d e8         mov     ecx, dword [ebp-0x18]
+00731738  83 65 fc 00      and     dword [ebp-0x4], 0x0
+0073173c  85 c9            test    ecx, ecx
+0073173e  74 0c            je      0x73174c
+
+# Block 97 at 0x731740
+00731740  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731746  50               push    eax
+00731747  e8 d1 35 fb ff   call    0x6e4d1d
+
+# Block 96 at 0x73174c
+0073174c  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+00731750  8b 4d ec         mov     ecx, dword [ebp-0x14]
+00731753  e9 3b 05 00 00   jmp     0x731c93
+
+# Block 41 at 0x731758
+00731758  56               push    esi
+00731759  68 f8 26 92 00   push    0x9226f8
+0073175e  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731764  57               push    edi
+00731765  50               push    eax
+00731766  e8 65 8b 03 00   call    0x76a2d0
+0073176b  56               push    esi
+0073176c  53               push    ebx
+0073176d  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731773  57               push    edi
+00731774  50               push    eax
+00731775  e8 56 8b 03 00   call    0x76a2d0
+0073177a  83 c4 20         add     esp, 0x20
+0073177d  e8 3a 2c cd ff   call    CGameMsg_GetSingletonPtr
+00731782  8b 4d f0         mov     ecx, dword [ebp-0x10]
+00731785  8b 89 04 04 00 00 mov     ecx, dword [ecx+0x404]
+0073178b  66 8b 49 08      mov     cx, word [ecx+0x8]
+0073178f  51               push    ecx
+00731790  8b c8            mov     ecx, eax
+00731792  e8 ee 27 ea ff   call    0x5d3f85
+00731797  85 c0            test    eax, eax
+00731799  0f 84 de 08 00 00 je      0x73207d
+
+# Block 51 at 0x73179f
+0073179f  e8 18 2c cd ff   call    CGameMsg_GetSingletonPtr
+007317a4  8b 4d f0         mov     ecx, dword [ebp-0x10]
+007317a7  8b 91 04 04 00 00 mov     edx, dword [ecx+0x404]
+007317ad  ff 72 0c         push    dword [edx+0xc]
+007317b0  66 8b 4a 08      mov     cx, word [edx+0x8]
+007317b4  51               push    ecx
+007317b5  66 8b 4a 0a      mov     cx, word [edx+0xa]
+007317b9  51               push    ecx
+007317ba  8b 4a 04         mov     ecx, dword [edx+0x4]
+007317bd  81 c9 00 00 00 ff or      ecx, 0xff000000
+007317c3  51               push    ecx
+007317c4  8d 8d 74 fe ff ff lea     ecx, [ebp-0x18c]
+007317ca  51               push    ecx
+007317cb  8d 4d 8c         lea     ecx, [ebp-0x74]
+007317ce  51               push    ecx
+007317cf  8d 4d b8         lea     ecx, [ebp-0x48]
+007317d2  51               push    ecx
+007317d3  8d 4d d8         lea     ecx, [ebp-0x28]
+007317d6  51               push    ecx
+007317d7  8b c8            mov     ecx, eax
+007317d9  e8 bc fd e9 ff   call    0x5d159a
+007317de  8d 45 d8         lea     eax, [ebp-0x28]
+007317e1  b9 18 b0 96 00   mov     ecx, 0x96b018
+007317e6  50               push    eax
+007317e7  8d 45 e8         lea     eax, [ebp-0x18]
+007317ea  50               push    eax
+007317eb  e8 45 6b fb ff   call    EntityManager_TryFindRoleByName
+007317f0  8b 4d e8         mov     ecx, dword [ebp-0x18]
+007317f3  c7 45 fc 06 00 00 00 mov     dword [ebp-0x4], 0x6
+007317fa  85 c9            test    ecx, ecx
+007317fc  74 0c            je      0x73180a
+
+# Block 62 at 0x7317fe
+007317fe  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731804  50               push    eax
+00731805  e8 13 35 fb ff   call    0x6e4d1d
+
+# Block 61 at 0x73180a
+0073180a  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+0073180e  8b 4d ec         mov     ecx, dword [ebp-0x14]
+00731811  e9 7d 04 00 00   jmp     0x731c93
+
+# Block 29 at 0x731816
+00731816  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+0073181c  b9 6c b3 96 00   mov     ecx, 0x96b36c
+00731821  50               push    eax
+00731822  e9 1e 01 00 00   jmp     0x731945
+
+# Block 19 at 0x731827
+00731827  2d 35 08 00 00   sub     eax, 0x835
+0073182c  0f 84 07 01 00 00 je      0x731939
+
+# Block 28 at 0x731832
+00731832  48               dec     eax
+00731833  0f 84 44 08 00 00 je      0x73207d
+
+# Block 39 at 0x731839
+00731839  48               dec     eax
+0073183a  48               dec     eax
+0073183b  0f 85 68 03 00 00 jne     0x731ba9
+
+# Block 50 at 0x731841
+00731841  8d 45 d8         lea     eax, [ebp-0x28]
+00731844  b9 18 b0 96 00   mov     ecx, 0x96b018
+00731849  50               push    eax
+0073184a  8d 45 e8         lea     eax, [ebp-0x18]
+0073184d  50               push    eax
+0073184e  e8 e2 6a fb ff   call    EntityManager_TryFindRoleByName  ; MsgTalk role-word branch, channels 0x836 and 0x838 (the test at 0x731832 accepts exactly those two). Resolves the SENDER by name with EntityManager_TryFindRoleByName; if no role matches and the sender name equals the local hero's (strcmp at 0x731873), it uses the hero instead - which is how a server echo of a player's own role word updates that player's client. It then writes the message text to role+0x8BC[0x50] (0x731928) and returns without appending anything to the chat log. The client's own sender is Conquer_SendRoleWordAndApplyLocally (0x70AF20): channel 0x838, recipient from GameDataSet string 0x186BA, and it writes the same text into its hero copy at 0x70AFD7 without waiting for the server, so a server that refuses an over-long word leaves the author seeing one nobody else has. The author-side length guard is strlen <= 0x40 at 0x70AF4C, and it gates only the local UI copy - the packet is sent regardless.
+00731853  83 7d e8 00      cmp     dword [ebp-0x18], 0x0
+00731857  6a 01            push    0x1
+00731859  5f               pop     edi
+0073185a  89 7d fc         mov     dword [ebp-0x4], edi
+0073185d  0f 85 96 00 00 00 jne     0x7318f9
+
+# Block 60 at 0x731863
+00731863  e8 f8 2b cd ff   call    CHero_GetSingletonPtr
+00731868  8b 80 4c 01 00 00 mov     eax, dword [eax+0x14c]
+0073186e  8d 4d d8         lea     ecx, [ebp-0x28]
+00731871  51               push    ecx
+00731872  50               push    eax
+00731873  e8 c2 5d 04 00   call    strcmp
+00731878  59               pop     ecx
+00731879  85 c0            test    eax, eax
+0073187b  59               pop     ecx
+0073187c  75 75            jne     0x7318f3
+
+# Block 71 at 0x73187e
+0073187e  e8 dd 2b cd ff   call    CHero_GetSingletonPtr
+00731883  ff 75 ec         push    dword [ebp-0x14]
+00731886  8b f0            mov     esi, eax
+00731888  8d 4d a4         lea     ecx, [ebp-0x5c]
+0073188b  89 75 a0         mov     dword [ebp-0x60], esi
+0073188e  56               push    esi
+0073188f  e8 19 e5 ea ff   call    SharedPtr_CreateNonOwningHeroControlBlock
+00731894  56               push    esi
+00731895  8d 45 a4         lea     eax, [ebp-0x5c]
+00731898  56               push    esi
+00731899  50               push    eax
+0073189a  c6 45 fc 02      mov     byte [ebp-0x4], 0x2
+0073189e  e8 c0 d9 f7 ff   call    NoOpFunction_Return
+007318a3  83 c4 0c         add     esp, 0xc
+007318a6  8b 45 a0         mov     eax, dword [ebp-0x60]
+007318a9  89 45 ac         mov     dword [ebp-0x54], eax
+007318ac  8b 45 a4         mov     eax, dword [ebp-0x5c]
+007318af  85 c0            test    eax, eax
+007318b1  89 45 b0         mov     dword [ebp-0x50], eax
+007318b4  74 07            je      0x7318bd
+
+# Block 80 at 0x7318b6
+007318b6  83 c0 04         add     eax, 0x4
+007318b9  f0 0f c1 38      lock xadd dword [eax], edi
+
+# Block 79 at 0x7318bd
+007318bd  8b 45 ac         mov     eax, dword [ebp-0x54]
+007318c0  8d 4d ec         lea     ecx, [ebp-0x14]
+007318c3  89 45 e8         mov     dword [ebp-0x18], eax
+007318c6  8d 45 b0         lea     eax, [ebp-0x50]
+007318c9  50               push    eax
+007318ca  c6 45 fc 04      mov     byte [ebp-0x4], 0x4
+007318ce  e8 52 f6 cd ff   call    0x410f25
+007318d3  8b 4d b0         mov     ecx, dword [ebp-0x50]
+007318d6  c6 45 fc 03      mov     byte [ebp-0x4], 0x3
+007318da  85 c9            test    ecx, ecx
+007318dc  74 05            je      0x7318e3
+
+# Block 87 at 0x7318de
+007318de  e8 01 34 cd ff   call    SharedPtrControlBlock_DecrementStrongReference
+
+# Block 86 at 0x7318e3
+007318e3  8b 4d a4         mov     ecx, dword [ebp-0x5c]
+007318e6  c6 45 fc 01      mov     byte [ebp-0x4], 0x1
+007318ea  85 c9            test    ecx, ecx
+007318ec  74 05            je      0x7318f3
+
+# Block 95 at 0x7318ee
+007318ee  e8 f1 33 cd ff   call    SharedPtrControlBlock_DecrementStrongReference
+
+# Block 70 at 0x7318f3
+007318f3  83 7d e8 00      cmp     dword [ebp-0x18], 0x0
+007318f7  74 34            je      0x73192d
+
+# Block 59 at 0x7318f9
+007318f9  8b 75 e8         mov     esi, dword [ebp-0x18]
+007318fc  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731902  85 c0            test    eax, eax
+00731904  74 27            je      0x73192d
+
+# Block 69 at 0x731906
+00731906  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+0073190c  50               push    eax
+0073190d  e8 5e 5d 04 00   call    strlen
+00731912  59               pop     ecx
+00731913  8d 84 05 74 fe ff ff lea     eax, [ebp+eax-0x18c]
+0073191a  50               push    eax
+0073191b  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731921  50               push    eax
+00731922  8d 8e 0c 09 00 00 lea     ecx, [esi+0x90c]
+00731928  e8 c4 22 cd ff   call    CharBuffer_AssignRange
+
+# Block 68 at 0x73192d
+0073192d  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+00731931  8b 4d ec         mov     ecx, dword [ebp-0x14]
+00731934  e9 5a 03 00 00   jmp     0x731c93
+
+# Block 27 at 0x731939
+00731939  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+0073193f  b9 30 b3 96 00   mov     ecx, 0x96b330
+00731944  50               push    eax
+
+# Block 40 at 0x731945
+00731945  e8 22 f4 ff ff   call    DisconnectMsgQueue_EnqueueString
+0073194a  e9 2e 07 00 00   jmp     0x73207d
+
+# Block 11 at 0x73194f
+0073194f  be 00 04 00 00   mov     esi, 0x400
+00731954  56               push    esi
+00731955  e8 1a 59 04 00   call    ??2@YAPAXI@Z
+0073195a  8b f8            mov     edi, eax
+0073195c  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731962  56               push    esi
+00731963  50               push    eax
+00731964  57               push    edi
+00731965  ff 15 f4 47 84 00 call    dword [strncpy]
+0073196b  80 a7 ff 03 00 00 00 and     byte [edi+0x3ff], 0x0
+00731972  57               push    edi
+00731973  68 3f 04 00 00   push    0x43f
+00731978  e8 98 b6 f1 ff   call    Conquer_PostMainWindowMessage464
+0073197d  83 c4 18         add     esp, 0x18
+00731980  e9 f8 06 00 00   jmp     0x73207d
+
+# Block 6 at 0x731985
+00731985  b9 43 08 00 00   mov     ecx, 0x843
+0073198a  3b c1            cmp     eax, ecx
+0073198c  0f 8f f3 00 00 00 jg      0x731a85
+
+# Block 10 at 0x731992
+00731992  0f 84 d3 00 00 00 je      0x731a6b
+
+# Block 17 at 0x731998
+00731998  2d 3c 08 00 00   sub     eax, 0x83c
+0073199d  0f 84 95 00 00 00 je      0x731a38
+
+# Block 26 at 0x7319a3
+007319a3  48               dec     eax
+007319a4  74 47            je      0x7319ed
+
+# Block 38 at 0x7319a6
+007319a6  48               dec     eax
+007319a7  48               dec     eax
+007319a8  0f 85 fb 01 00 00 jne     0x731ba9
+
+# Block 49 at 0x7319ae
+007319ae  56               push    esi
+007319af  68 f8 26 92 00   push    0x9226f8
+007319b4  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+007319ba  57               push    edi
+007319bb  50               push    eax
+007319bc  e8 0f 89 03 00   call    0x76a2d0
+007319c1  56               push    esi
+007319c2  53               push    ebx
+007319c3  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+007319c9  57               push    edi
+007319ca  50               push    eax
+007319cb  e8 00 89 03 00   call    0x76a2d0
+007319d0  83 c4 20         add     esp, 0x20
+007319d3  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+007319d9  6a 00            push    0x0
+007319db  50               push    eax
+007319dc  e8 7f 2a cd ff   call    CHero_GetSingletonPtr
+007319e1  8b c8            mov     ecx, eax
+007319e3  e8 a8 f7 fc ff   call    0x701190
+007319e8  e9 90 06 00 00   jmp     0x73207d
+
+# Block 37 at 0x7319ed
+007319ed  56               push    esi
+007319ee  68 f8 26 92 00   push    0x9226f8
+007319f3  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+007319f9  57               push    edi
+007319fa  50               push    eax
+007319fb  e8 d0 88 03 00   call    0x76a2d0
+00731a00  56               push    esi
+00731a01  53               push    ebx
+00731a02  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731a08  57               push    edi
+00731a09  50               push    eax
+00731a0a  e8 c1 88 03 00   call    0x76a2d0
+00731a0f  83 c4 20         add     esp, 0x20
+
+# Block 36 at 0x731a12
+00731a12  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731a18  50               push    eax
+00731a19  e8 42 2a cd ff   call    CHero_GetSingletonPtr
+00731a1e  8b c8            mov     ecx, eax
+00731a20  e8 9b f9 fc ff   call    0x7013c0
+00731a25  6a 00            push    0x0
+00731a27  68 23 04 00 00   push    0x423
+
+# Block 58 at 0x731a2c
+00731a2c  e8 e4 b5 f1 ff   call    Conquer_PostMainWindowMessage464
+00731a31  59               pop     ecx
+00731a32  59               pop     ecx
+00731a33  e9 45 06 00 00   jmp     0x73207d
+
+# Block 25 at 0x731a38
+00731a38  56               push    esi
+00731a39  68 f8 26 92 00   push    0x9226f8
+00731a3e  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731a44  57               push    edi
+00731a45  50               push    eax
+00731a46  e8 85 88 03 00   call    0x76a2d0
+00731a4b  56               push    esi
+00731a4c  53               push    ebx
+00731a4d  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731a53  57               push    edi
+00731a54  50               push    eax
+00731a55  e8 76 88 03 00   call    0x76a2d0
+00731a5a  83 c4 20         add     esp, 0x20
+00731a5d  e8 fe 29 cd ff   call    CHero_GetSingletonPtr
+00731a62  8b c8            mov     ecx, eax
+00731a64  e8 fb f8 fc ff   call    0x701364
+00731a69  eb a7            jmp     0x731a12
+
+# Block 16 at 0x731a6b
+00731a6b  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731a71  6a 01            push    0x1
+00731a73  50               push    eax
+00731a74  e8 43 29 cd ff   call    CGameMsg_GetSingletonPtr
+00731a79  8b c8            mov     ecx, eax
+00731a7b  e8 34 19 ea ff   call    0x5d33b4
+00731a80  e9 f8 05 00 00   jmp     0x73207d
+
+# Block 9 at 0x731a85
+00731a85  3d 99 08 00 00   cmp     eax, 0x899
+00731a8a  0f 8c 19 01 00 00 jl      0x731ba9
+
+# Block 15 at 0x731a90
+00731a90  3d 9d 08 00 00   cmp     eax, 0x89d
+00731a95  0f 8e cb 00 00 00 jle     0x731b66
+
+# Block 24 at 0x731a9b
+00731a9b  3d fc 08 00 00   cmp     eax, 0x8fc
+00731aa0  0f 84 99 00 00 00 je      0x731b3f
+
+# Block 35 at 0x731aa6
+00731aa6  3d c4 09 00 00   cmp     eax, 0x9c4
+00731aab  0f 85 f8 00 00 00 jne     0x731ba9
+
+# Block 48 at 0x731ab1
+00731ab1  56               push    esi
+00731ab2  68 f8 26 92 00   push    0x9226f8
+00731ab7  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731abd  57               push    edi
+00731abe  50               push    eax
+00731abf  e8 0c 88 03 00   call    0x76a2d0
+00731ac4  56               push    esi
+00731ac5  53               push    ebx
+00731ac6  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731acc  57               push    edi
+00731acd  50               push    eax
+00731ace  e8 fd 87 03 00   call    0x76a2d0
+00731ad3  83 c4 20         add     esp, 0x20
+00731ad6  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731adc  50               push    eax
+00731add  8d 45 d8         lea     eax, [ebp-0x28]
+00731ae0  50               push    eax
+00731ae1  e8 7a 29 cd ff   call    CHero_GetSingletonPtr
+00731ae6  8b c8            mov     ecx, eax
+00731ae8  e8 25 11 f3 ff   call    0x662c12
+00731aed  6a 00            push    0x0
+00731aef  68 6a 04 00 00   push    0x46a
+00731af4  e8 1c b5 f1 ff   call    Conquer_PostMainWindowMessage464
+00731af9  59               pop     ecx
+00731afa  59               pop     ecx
+00731afb  e8 bc 28 cd ff   call    CGameMsg_GetSingletonPtr
+00731b00  8b 4d f0         mov     ecx, dword [ebp-0x10]
+00731b03  8b 91 04 04 00 00 mov     edx, dword [ecx+0x404]
+00731b09  ff 72 0c         push    dword [edx+0xc]
+00731b0c  66 8b 4a 08      mov     cx, word [edx+0x8]
+00731b10  51               push    ecx
+00731b11  66 8b 4a 0a      mov     cx, word [edx+0xa]
+00731b15  51               push    ecx
+00731b16  8b 4a 04         mov     ecx, dword [edx+0x4]
+00731b19  81 c9 00 00 00 ff or      ecx, 0xff000000
+00731b1f  51               push    ecx
+00731b20  8d 8d 74 fe ff ff lea     ecx, [ebp-0x18c]
+00731b26  51               push    ecx
+00731b27  8d 4d 8c         lea     ecx, [ebp-0x74]
+00731b2a  51               push    ecx
+00731b2b  8d 4d b8         lea     ecx, [ebp-0x48]
+00731b2e  51               push    ecx
+00731b2f  8d 4d d8         lea     ecx, [ebp-0x28]
+00731b32  51               push    ecx
+00731b33  8b c8            mov     ecx, eax
+00731b35  e8 60 fa e9 ff   call    0x5d159a
+00731b3a  e9 3e 05 00 00   jmp     0x73207d
+
+# Block 34 at 0x731b3f
+00731b3f  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731b45  68 8c 83 94 00   push    0x94838c
+00731b4a  50               push    eax
+00731b4b  ff 15 e8 48 84 00 call    dword [_stricmp]
+00731b51  59               pop     ecx
+00731b52  85 c0            test    eax, eax
+00731b54  59               pop     ecx
+00731b55  0f 85 22 05 00 00 jne     0x73207d
+
+# Block 47 at 0x731b5b
+00731b5b  50               push    eax
+00731b5c  68 12 05 00 00   push    0x512
+00731b61  e9 c6 fe ff ff   jmp     0x731a2c
+
+# Block 23 at 0x731b66
+00731b66  56               push    esi
+00731b67  68 f8 26 92 00   push    0x9226f8
+00731b6c  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731b72  57               push    edi
+00731b73  50               push    eax
+00731b74  e8 57 87 03 00   call    0x76a2d0
+00731b79  56               push    esi
+00731b7a  53               push    ebx
+00731b7b  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731b81  57               push    edi
+00731b82  50               push    eax
+00731b83  e8 48 87 03 00   call    0x76a2d0
+00731b88  83 c4 20         add     esp, 0x20
+00731b8b  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731b91  50               push    eax
+00731b92  e8 c9 28 cd ff   call    CHero_GetSingletonPtr
+00731b97  8b c8            mov     ecx, eax
+00731b99  81 c1 94 2a 00 00 add     ecx, 0x2a94
+00731b9f  e8 e8 e7 fd ff   call    0x71038c
+00731ba4  e9 d4 04 00 00   jmp     0x73207d
+
+# Block 14 at 0x731ba9
+00731ba9  68 80 83 94 00   push    0x948380
+00731bae  e8 bd 5a 04 00   call    strlen
+00731bb3  50               push    eax
+00731bb4  8d 45 d8         lea     eax, [ebp-0x28]
+00731bb7  68 80 83 94 00   push    0x948380
+00731bbc  50               push    eax
+00731bbd  ff 15 ec 48 84 00 call    dword [strncmp]
+00731bc3  83 c4 10         add     esp, 0x10
+00731bc6  85 c0            test    eax, eax
+00731bc8  0f 85 d7 00 00 00 jne     0x731ca5
+
+# Block 22 at 0x731bce
+00731bce  68 80 83 94 00   push    0x948380
+00731bd3  e8 98 5a 04 00   call    strlen
+00731bd8  8d 44 05 d8      lea     eax, [ebp+eax-0x28]
+00731bdc  50               push    eax
+00731bdd  ff 15 00 47 84 00 call    dword [atol]
+00731be3  59               pop     ecx
+00731be4  59               pop     ecx
+00731be5  6a 00            push    0x0
+00731be7  50               push    eax
+00731be8  8d 45 cc         lea     eax, [ebp-0x34]
+00731beb  b9 18 b0 96 00   mov     ecx, 0x96b018
+00731bf0  50               push    eax
+00731bf1  e8 87 68 fb ff   call    EntityRef_ResolveByIdOrLocalHero
+00731bf6  8b 45 cc         mov     eax, dword [ebp-0x34]
+00731bf9  c7 45 fc 07 00 00 00 mov     dword [ebp-0x4], 0x7
+00731c00  85 c0            test    eax, eax
+00731c02  0f 84 84 00 00 00 je      0x731c8c
+
+# Block 33 at 0x731c08
+00731c08  8b 80 cc 00 00 00 mov     eax, dword [eax+0xcc]
+00731c0e  3d 81 1a 06 00   cmp     eax, 0x61a81
+00731c13  72 07            jb      0x731c1c
+
+# Block 46 at 0x731c15
+00731c15  3d 1f a1 07 00   cmp     eax, 0x7a11f
+00731c1a  76 0e            jbe     0x731c2a
+
+# Block 45 at 0x731c1c
+00731c1c  3d 21 a1 07 00   cmp     eax, 0x7a121
+00731c21  72 69            jb      0x731c8c
+
+# Block 56 at 0x731c23
+00731c23  3d bf 27 09 00   cmp     eax, 0x927bf
+00731c28  77 62            ja      0x731c8c
+
+# Block 57 at 0x731c2a
+00731c2a  e8 7e d3 f0 ff   call    0x63efad
+00731c2f  8b c8            mov     ecx, eax
+00731c31  e8 82 cf f5 ff   call    0x68ebb8
+00731c36  50               push    eax
+00731c37  6a 00            push    0x0
+00731c39  51               push    ecx
+00731c3a  51               push    ecx
+00731c3b  8d 45 cc         lea     eax, [ebp-0x34]
+00731c3e  8b cc            mov     ecx, esp
+00731c40  89 65 ec         mov     dword [ebp-0x14], esp
+00731c43  50               push    eax
+00731c44  e8 61 2f f3 ff   call    0x664baa
+00731c49  c6 45 fc 07      mov     byte [ebp-0x4], 0x7
+00731c4d  e8 56 d3 f0 ff   call    j_sub_63efad
+00731c52  8b c8            mov     ecx, eax
+00731c54  e8 23 5d f7 ff   call    0x6a797c
+00731c59  50               push    eax
+00731c5a  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731c60  50               push    eax
+00731c61  8d 4d cc         lea     ecx, [ebp-0x34]
+00731c64  e8 4d d2 ea ff   call    SharedPtr_GetStoredObject
+00731c69  8b c8            mov     ecx, eax
+00731c6b  e8 70 c8 e9 ff   call    0x5ce4e0
+00731c70  50               push    eax
+00731c71  e8 63 7b d7 ff   call    j_CGameMsg_GetSingletonPtr
+00731c76  8b c8            mov     ecx, eax
+00731c78  e8 92 0d ea ff   call    0x5d2a0f
+00731c7d  8b 4d cc         mov     ecx, dword [ebp-0x34]
+00731c80  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731c86  50               push    eax
+00731c87  e8 91 30 fb ff   call    0x6e4d1d
+
+# Block 32 at 0x731c8c
+00731c8c  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+00731c90  8b 4d d0         mov     ecx, dword [ebp-0x30]
+
+# Block 72 at 0x731c93
+00731c93  85 c9            test    ecx, ecx
+00731c95  0f 84 e2 03 00 00 je      0x73207d
+
+# Block 44 at 0x731c9b
+00731c9b  e8 44 30 cd ff   call    SharedPtrControlBlock_DecrementStrongReference
+00731ca0  e9 d8 03 00 00   jmp     0x73207d
+
+# Block 21 at 0x731ca5
+00731ca5  8d 45 d8         lea     eax, [ebp-0x28]
+00731ca8  50               push    eax
+00731ca9  e8 0e 27 cd ff   call    CGameMsg_GetSingletonPtr
+00731cae  8b c8            mov     ecx, eax
+00731cb0  e8 4e 20 ea ff   call    0x5d3d03
+00731cb5  84 c0            test    al, al
+00731cb7  0f 85 c0 03 00 00 jne     0x73207d
+
+# Block 31 at 0x731cbd
+00731cbd  e8 fa 26 cd ff   call    CGameMsg_GetSingletonPtr
+00731cc2  8b 4d f0         mov     ecx, dword [ebp-0x10]
+00731cc5  8b 89 04 04 00 00 mov     ecx, dword [ecx+0x404]
+00731ccb  66 8b 49 08      mov     cx, word [ecx+0x8]
+00731ccf  51               push    ecx
+00731cd0  8b c8            mov     ecx, eax
+00731cd2  e8 ae 22 ea ff   call    0x5d3f85
+00731cd7  85 c0            test    eax, eax
+00731cd9  0f 84 9e 03 00 00 je      0x73207d
+
+# Block 43 at 0x731cdf
+00731cdf  8b 45 f0         mov     eax, dword [ebp-0x10]
+00731ce2  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00731ce8  66 8b 40 08      mov     ax, word [eax+0x8]
+00731cec  66 3d d1 07      cmp     ax, 0x7d1
+00731cf0  74 06            je      0x731cf8
+
+# Block 55 at 0x731cf2
+00731cf2  66 3d 3e 08      cmp     ax, 0x83e
+00731cf6  75 18            jne     0x731d10
+
+# Block 54 at 0x731cf8
+00731cf8  8d 45 d8         lea     eax, [ebp-0x28]
+00731cfb  50               push    eax
+00731cfc  e8 bb 26 cd ff   call    CGameMsg_GetSingletonPtr
+00731d01  8b c8            mov     ecx, eax
+00731d03  e8 32 23 ea ff   call    0x5d403a
+00731d08  85 c0            test    eax, eax
+00731d0a  0f 84 6d 03 00 00 je      0x73207d
+
+# Block 67 at 0x731d10
+00731d10  56               push    esi
+00731d11  68 f8 26 92 00   push    0x9226f8
+00731d16  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731d1c  57               push    edi
+00731d1d  50               push    eax
+00731d1e  e8 ad 85 03 00   call    0x76a2d0
+00731d23  56               push    esi
+00731d24  53               push    ebx
+00731d25  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731d2b  57               push    edi
+00731d2c  50               push    eax
+00731d2d  e8 9e 85 03 00   call    0x76a2d0
+00731d32  83 c4 20         add     esp, 0x20
+00731d35  8d 8d 18 fe ff ff lea     ecx, [ebp-0x1e8]
+00731d3b  e8 ee 8d eb ff   call    0x5eab2e
+00731d40  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00731d46  8d 8d 18 fe ff ff lea     ecx, [ebp-0x1e8]
+00731d4c  50               push    eax
+00731d4d  8d 85 74 ff ff ff lea     eax, [ebp-0x8c]
+00731d53  50               push    eax
+00731d54  c7 45 fc 09 00 00 00 mov     dword [ebp-0x4], 0x9
+00731d5b  e8 87 8f eb ff   call    0x5eace7
+00731d60  80 a5 18 fd ff ff 00 and     byte [ebp-0x2e8], 0x0
+00731d67  6a 3f            push    0x3f
+00731d69  59               pop     ecx
+00731d6a  33 c0            xor     eax, eax
+00731d6c  8d bd 19 fd ff ff lea     edi, [ebp-0x2e7]
+00731d72  8b 35 f4 47 84 00 mov     esi, dword [0x8447f4]
+00731d78  f3 ab            rep stosd dword [edi]
+00731d7a  66 ab            stosw   word [edi]
+00731d7c  68 ff 00 00 00   push    0xff
+00731d81  c6 45 fc 0a      mov     byte [ebp-0x4], 0xa
+00731d85  ff b5 74 ff ff ff push    dword [ebp-0x8c]
+00731d8b  aa               stosb   byte [edi]
+00731d8c  8d 85 18 fd ff ff lea     eax, [ebp-0x2e8]
+00731d92  50               push    eax
+00731d93  ff d6            call    esi
+00731d95  8b 45 f0         mov     eax, dword [ebp-0x10]
+00731d98  8b 3d e8 48 84 00 mov     edi, dword [0x8448e8]
+00731d9e  83 c4 0c         add     esp, 0xc
+00731da1  bb 78 83 94 00   mov     ebx, 0x948378
+00731da6  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00731dac  66 8b 40 08      mov     ax, word [eax+0x8]
+00731db0  66 3d d1 07      cmp     ax, 0x7d1
+00731db4  74 06            je      0x731dbc
+
+# Block 78 at 0x731db6
+00731db6  66 3d 3e 08      cmp     ax, 0x83e
+00731dba  75 1a            jne     0x731dd6
+
+# Block 77 at 0x731dbc
+00731dbc  e8 9f 26 cd ff   call    CHero_GetSingletonPtr
+00731dc1  ff b0 4c 01 00 00 push    dword [eax+0x14c]
+00731dc7  8d 45 b8         lea     eax, [ebp-0x48]
+00731dca  50               push    eax
+00731dcb  e8 6a 58 04 00   call    strcmp
+00731dd0  59               pop     ecx
+00731dd1  85 c0            test    eax, eax
+00731dd3  59               pop     ecx
+00731dd4  74 26            je      0x731dfc
+
+# Block 85 at 0x731dd6
+00731dd6  8b 45 f0         mov     eax, dword [ebp-0x10]
+00731dd9  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00731ddf  66 81 78 08 d3 07 cmp     word [eax+0x8], 0x7d3
+00731de5  0f 85 d7 01 00 00 jne     0x731fc2
+
+# Block 94 at 0x731deb
+00731deb  8d 45 d8         lea     eax, [ebp-0x28]
+00731dee  53               push    ebx
+00731def  50               push    eax
+00731df0  ff d7            call    edi
+00731df2  59               pop     ecx
+00731df3  85 c0            test    eax, eax
+00731df5  59               pop     ecx
+00731df6  0f 84 c6 01 00 00 je      0x731fc2
+
+# Block 84 at 0x731dfc
+00731dfc  e8 5f 26 cd ff   call    CHero_GetSingletonPtr
+00731e01  ff b0 4c 01 00 00 push    dword [eax+0x14c]
+00731e07  8d 45 d8         lea     eax, [ebp-0x28]
+00731e0a  50               push    eax
+00731e0b  e8 2a 58 04 00   call    strcmp
+00731e10  59               pop     ecx
+00731e11  85 c0            test    eax, eax
+00731e13  59               pop     ecx
+00731e14  0f 84 a8 01 00 00 je      0x731fc2
+
+# Block 93 at 0x731e1a
+00731e1a  8d 45 d8         lea     eax, [ebp-0x28]
+00731e1d  53               push    ebx
+00731e1e  50               push    eax
+00731e1f  ff d7            call    edi
+00731e21  59               pop     ecx
+00731e22  85 c0            test    eax, eax
+00731e24  59               pop     ecx
+00731e25  75 22            jne     0x731e49
+
+# Block 101 at 0x731e27
+00731e27  ff 15 a8 40 84 00 call    dword [GameDataSetQuery]
+00731e2d  8b 10            mov     edx, dword [eax]
+00731e2f  6a 0f            push    0xf
+00731e31  68 b4 86 01 00   push    0x186b4
+00731e36  8b c8            mov     ecx, eax
+00731e38  ff 52 3c         call    dword [edx+0x3c]
+00731e3b  50               push    eax
+00731e3c  8d 45 d8         lea     eax, [ebp-0x28]
+00731e3f  50               push    eax
+00731e40  ff d6            call    esi
+00731e42  83 c4 0c         add     esp, 0xc
+00731e45  80 65 e7 00      and     byte [ebp-0x19], 0x0
+
+# Block 100 at 0x731e49
+00731e49  e8 38 2d f2 ff   call    0x654b86
+00731e4e  89 45 c8         mov     dword [ebp-0x38], eax
+00731e51  8b 45 f0         mov     eax, dword [ebp-0x10]
+00731e54  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00731e5a  66 8b 48 08      mov     cx, word [eax+0x8]
+00731e5e  66 81 f9 3e 08   cmp     cx, 0x83e
+00731e63  74 12            je      0x731e77
+
+# Block 105 at 0x731e65
+00731e65  66 81 f9 d1 07   cmp     cx, 0x7d1
+00731e6a  74 0b            je      0x731e77
+
+# Block 111 at 0x731e6c
+00731e6c  c7 45 d4 01 00 00 00 mov     dword [ebp-0x2c], 0x1
+00731e73  33 f6            xor     esi, esi
+00731e75  eb 05            jmp     0x731e7c
+
+# Block 104 at 0x731e77
+00731e77  33 f6            xor     esi, esi
+00731e79  89 75 d4         mov     dword [ebp-0x2c], esi
+
+# Block 114 at 0x731e7c
+00731e7c  8b 40 14         mov     eax, dword [eax+0x14]
+00731e7f  33 d2            xor     edx, edx
+00731e81  bf 10 27 00 00   mov     edi, 0x2710
+00731e86  f7 f7            div     edi
+00731e88  33 d2            xor     edx, edx
+00731e8a  bf e8 03 00 00   mov     edi, 0x3e8
+00731e8f  f7 f7            div     edi
+00731e91  66 81 f9 3e 08   cmp     cx, 0x83e
+00731e96  89 55 b4         mov     dword [ebp-0x4c], edx
+00731e99  0f 85 e4 00 00 00 jne     0x731f83
+
+# Block 110 at 0x731e9f
+00731e9f  8d 45 8c         lea     eax, [ebp-0x74]
+00731ea2  50               push    eax
+00731ea3  ff 15 bc 47 84 00 call    dword [_atoi64]
+00731ea9  59               pop     ecx
+00731eaa  8b da            mov     ebx, edx
+00731eac  6a 02            push    0x2
+00731eae  8b f8            mov     edi, eax
+00731eb0  68 00 e4 0b 54   push    0x540be400
+00731eb5  53               push    ebx
+00731eb6  57               push    edi
+00731eb7  e8 b4 59 04 00   call    __alldiv
+00731ebc  56               push    esi
+00731ebd  68 00 e1 f5 05   push    0x5f5e100
+00731ec2  53               push    ebx
+00731ec3  57               push    edi
+00731ec4  89 45 ec         mov     dword [ebp-0x14], eax
+00731ec7  e8 a4 59 04 00   call    __alldiv
+00731ecc  56               push    esi
+00731ecd  6a 64            push    0x64
+00731ecf  52               push    edx
+00731ed0  50               push    eax
+00731ed1  e8 ca 5a 04 00   call    __allrem
+00731ed6  56               push    esi
+00731ed7  68 40 42 0f 00   push    0xf4240
+00731edc  53               push    ebx
+00731edd  57               push    edi
+00731ede  89 45 d0         mov     dword [ebp-0x30], eax
+00731ee1  e8 8a 59 04 00   call    __alldiv
+00731ee6  56               push    esi
+00731ee7  6a 64            push    0x64
+00731ee9  52               push    edx
+00731eea  50               push    eax
+00731eeb  e8 b0 5a 04 00   call    __allrem
+00731ef0  56               push    esi
+00731ef1  68 10 27 00 00   push    0x2710
+00731ef6  53               push    ebx
+00731ef7  57               push    edi
+00731ef8  89 45 88         mov     dword [ebp-0x78], eax
+00731efb  e8 70 59 04 00   call    __alldiv
+00731f00  56               push    esi
+00731f01  6a 64            push    0x64
+00731f03  52               push    edx
+00731f04  50               push    eax
+00731f05  e8 96 5a 04 00   call    __allrem
+00731f0a  56               push    esi
+00731f0b  6a 64            push    0x64
+00731f0d  53               push    ebx
+00731f0e  57               push    edi
+00731f0f  89 45 9c         mov     dword [ebp-0x64], eax
+00731f12  e8 59 59 04 00   call    __alldiv
+00731f17  56               push    esi
+00731f18  6a 64            push    0x64
+00731f1a  52               push    edx
+00731f1b  50               push    eax
+00731f1c  e8 7f 5a 04 00   call    __allrem
+00731f21  50               push    eax
+00731f22  8d 85 18 fd ff ff lea     eax, [ebp-0x2e8]
+00731f28  ff 75 9c         push    dword [ebp-0x64]
+00731f2b  ff 75 88         push    dword [ebp-0x78]
+00731f2e  ff 75 d0         push    dword [ebp-0x30]
+00731f31  ff 75 ec         push    dword [ebp-0x14]
+00731f34  50               push    eax
+00731f35  68 64 83 94 00   push    0x948364
+00731f3a  8d 85 18 f9 ff ff lea     eax, [ebp-0x6e8]
+00731f40  68 ff 03 00 00   push    0x3ff
+00731f45  50               push    eax
+00731f46  ff 15 08 48 84 00 call    dword [_snprintf]
+00731f4c  83 c4 24         add     esp, 0x24
+00731f4f  8d 85 18 f9 ff ff lea     eax, [ebp-0x6e8]
+00731f55  8b 4d c8         mov     ecx, dword [ebp-0x38]
+00731f58  80 a5 17 fd ff ff 00 and     byte [ebp-0x2e9], 0x0
+00731f5f  ff 75 d4         push    dword [ebp-0x2c]
+00731f62  ff 75 b4         push    dword [ebp-0x4c]
+00731f65  50               push    eax
+00731f66  8d 45 b8         lea     eax, [ebp-0x48]
+00731f69  50               push    eax
+00731f6a  8d 45 d8         lea     eax, [ebp-0x28]
+00731f6d  50               push    eax
+00731f6e  e8 7d 2c f2 ff   call    0x654bf0
+00731f73  6a 01            push    0x1
+00731f75  8d 45 d8         lea     eax, [ebp-0x28]
+00731f78  8b 4d c8         mov     ecx, dword [ebp-0x38]
+00731f7b  50               push    eax
+00731f7c  e8 54 2e f2 ff   call    0x654dd5
+00731f81  eb 2b            jmp     0x731fae
+
+# Block 109 at 0x731f83
+00731f83  ff 75 d4         push    dword [ebp-0x2c]
+00731f86  8d 85 18 fd ff ff lea     eax, [ebp-0x2e8]
+00731f8c  8b 4d c8         mov     ecx, dword [ebp-0x38]
+00731f8f  52               push    edx
+00731f90  50               push    eax
+00731f91  8d 45 b8         lea     eax, [ebp-0x48]
+00731f94  50               push    eax
+00731f95  8d 45 d8         lea     eax, [ebp-0x28]
+00731f98  50               push    eax
+00731f99  e8 52 2c f2 ff   call    0x654bf0
+00731f9e  8d 45 d8         lea     eax, [ebp-0x28]
+00731fa1  50               push    eax
+00731fa2  e8 b9 24 cd ff   call    CHero_GetSingletonPtr
+00731fa7  8b c8            mov     ecx, eax
+00731fa9  e8 c7 ab f2 ff   call    0x65cb75
+
+# Block 113 at 0x731fae
+00731fae  ff 75 d4         push    dword [ebp-0x2c]
+00731fb1  8d 45 d8         lea     eax, [ebp-0x28]
+00731fb4  ff 75 b4         push    dword [ebp-0x4c]
+00731fb7  50               push    eax
+00731fb8  e8 0f 02 cd ff   call    0x4021cc
+00731fbd  83 c4 0c         add     esp, 0xc
+00731fc0  eb 02            jmp     0x731fc4
+
+# Block 92 at 0x731fc2
+00731fc2  33 f6            xor     esi, esi
+
+# Block 112 at 0x731fc4
+00731fc4  e8 f3 23 cd ff   call    CGameMsg_GetSingletonPtr
+00731fc9  8b 7d f0         mov     edi, dword [ebp-0x10]
+00731fcc  8b 97 04 04 00 00 mov     edx, dword [edi+0x404]
+00731fd2  ff 72 0c         push    dword [edx+0xc]
+00731fd5  66 8b 4a 08      mov     cx, word [edx+0x8]
+00731fd9  51               push    ecx
+00731fda  66 8b 4a 0a      mov     cx, word [edx+0xa]
+00731fde  51               push    ecx
+00731fdf  8b 4a 04         mov     ecx, dword [edx+0x4]
+00731fe2  81 c9 00 00 00 ff or      ecx, 0xff000000
+00731fe8  51               push    ecx
+00731fe9  8d 8d 74 fe ff ff lea     ecx, [ebp-0x18c]
+00731fef  51               push    ecx
+00731ff0  8d 4d 8c         lea     ecx, [ebp-0x74]
+00731ff3  51               push    ecx
+00731ff4  8d 4d b8         lea     ecx, [ebp-0x48]
+00731ff7  51               push    ecx
+00731ff8  8d 4d d8         lea     ecx, [ebp-0x28]
+00731ffb  51               push    ecx
+00731ffc  8b c8            mov     ecx, eax
+00731ffe  e8 97 f5 e9 ff   call    0x5d159a
+00732003  8d 45 d8         lea     eax, [ebp-0x28]
+00732006  b9 18 b0 96 00   mov     ecx, 0x96b018
+0073200b  50               push    eax
+0073200c  8d 45 80         lea     eax, [ebp-0x80]
+0073200f  50               push    eax
+00732010  e8 20 63 fb ff   call    EntityManager_TryFindRoleByName  ; Generic MsgTalk display tail. After appending the message to the chat log via sub_5d159a(sender, recipient, entry2, text, colour|0xFF000000, style, identity), the client resolves the SENDER BY NAME with EntityManager_TryFindRoleByName(&g_objPlayerSet, &role, senderName) and, when it resolves, passes the text to sub_6e4d1d -> sub_6d856f, which stores it on that role at role+0x3B8 and stamps role+0x3B8[3] with timeGetTime(). The lookup is by name only - the packet's identity field is not used for it - and it only succeeds for a role already in the entity set, i.e. one the receiver has been spawned. Server consequence: relaying a player's chat verbatim to the players who can see them is what attaches the line to the speaker; the identity field is not what binds them.
+00732015  8b 4d 80         mov     ecx, dword [ebp-0x80]
+00732018  c6 45 fc 0b      mov     byte [ebp-0x4], 0xb
+0073201c  3b ce            cmp     ecx, esi
+0073201e  74 0c            je      0x73202c
+
+# Block 99 at 0x732020
+00732020  8d 85 74 fe ff ff lea     eax, [ebp-0x18c]
+00732026  50               push    eax
+00732027  e8 f1 2c fb ff   call    0x6e4d1d
+
+# Block 98 at 0x73202c
+0073202c  8b 87 04 04 00 00 mov     eax, dword [edi+0x404]
+00732032  66 8b 40 08      mov     ax, word [eax+0x8]
+00732036  66 3d d1 07      cmp     ax, 0x7d1
+0073203a  74 06            je      0x732042
+
+# Block 103 at 0x73203c
+0073203c  66 3d d9 07      cmp     ax, 0x7d9
+00732040  75 0d            jne     0x73204f
+
+# Block 102 at 0x732042
+00732042  56               push    esi
+00732043  68 1c 05 00 00   push    0x51c
+00732048  e8 c8 af f1 ff   call    Conquer_PostMainWindowMessage464
+0073204d  59               pop     ecx
+0073204e  59               pop     ecx
+
+# Block 108 at 0x73204f
+0073204f  8b 4d 84         mov     ecx, dword [ebp-0x7c]
+00732052  c6 45 fc 0a      mov     byte [ebp-0x4], 0xa
+00732056  3b ce            cmp     ecx, esi
+00732058  74 05            je      0x73205f
+
+# Block 107 at 0x73205a
+0073205a  e8 85 2c cd ff   call    SharedPtrControlBlock_DecrementStrongReference
+
+# Block 106 at 0x73205f
+0073205f  8d 8d 74 ff ff ff lea     ecx, [ebp-0x8c]
+00732065  c6 45 fc 0c      mov     byte [ebp-0x4], 0xc
+00732069  e8 a0 1d cd ff   call    NullTerminatedCharVector_DestroyStorage
+0073206e  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+00732072  8d 8d 18 fe ff ff lea     ecx, [ebp-0x1e8]
+00732078  e8 6b 8b eb ff   call    0x5eabe8
+
+# Block 18 at 0x73207d
+0073207d  8b 4d f4         mov     ecx, dword [ebp-0xc]
+00732080  5f               pop     edi
+00732081  5e               pop     esi
+00732082  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+00732089  5b               pop     ebx
+0073208a  c9               leave
+0073208b  c2 04 00         retn    0x4
+

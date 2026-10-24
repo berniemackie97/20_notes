@@ -1,0 +1,425 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x5dc783
+005dc783  55               push    ebp
+005dc784  8b ec            mov     ebp, esp
+005dc786  83 ec 1c         sub     esp, 0x1c
+005dc789  53               push    ebx
+005dc78a  56               push    esi
+005dc78b  57               push    edi
+005dc78c  8b f1            mov     esi, ecx
+005dc78e  6a 01            push    0x1
+005dc790  e8 94 3f e3 ff   call    0x410729
+005dc795  8b c8            mov     ecx, eax
+005dc797  e8 be 95 0a 00   call    0x685d5a
+005dc79c  33 db            xor     ebx, ebx
+005dc79e  6a 01            push    0x1
+005dc7a0  53               push    ebx
+005dc7a1  e8 83 3f e3 ff   call    0x410729
+005dc7a6  8b c8            mov     ecx, eax
+005dc7a8  e8 58 94 0a 00   call    0x685c05
+005dc7ad  53               push    ebx
+005dc7ae  e8 76 3f e3 ff   call    0x410729
+005dc7b3  8b c8            mov     ecx, eax
+005dc7b5  e8 a0 95 0a 00   call    0x685d5a
+005dc7ba  53               push    ebx
+005dc7bb  53               push    ebx
+005dc7bc  e8 68 3f e3 ff   call    0x410729
+005dc7c1  8b c8            mov     ecx, eax
+005dc7c3  e8 3d 94 0a 00   call    0x685c05
+005dc7c8  6a 01            push    0x1
+005dc7ca  e8 72 70 11 00   call    CMapViewportState_GetOrInit
+005dc7cf  8b c8            mov     ecx, eax
+005dc7d1  e8 08 4a 11 00   call    0x6f11de
+005dc7d6  e8 62 45 e4 ff   call    0x420d3d
+005dc7db  8b c8            mov     ecx, eax
+005dc7dd  e8 b5 50 0f 00   call    0x6d1897
+005dc7e2  e8 94 0b f4 ff   call    0x51d37b
+005dc7e7  8b c8            mov     ecx, eax
+005dc7e9  e8 21 02 0f 00   call    0x6cca0f
+005dc7ee  ff 15 80 49 84 00 call    dword [_DXCloseAllMedia@0]
+005dc7f4  ff 15 5c 49 84 00 call    dword [_DXCloseAllSound@0]
+005dc7fa  8d 8e 98 0f 00 00 lea     ecx, [esi+0xf98]
+005dc800  88 1d 51 86 95 00 mov     byte [0x958651], bl
+005dc806  88 1d 52 86 95 00 mov     byte [0x958652], bl
+005dc80c  89 4d f4         mov     dword [ebp-0xc], ecx
+005dc80f  e8 2b 13 ee ff   call    0x4bdb3f
+005dc814  8d 8e b4 a0 16 00 lea     ecx, [esi+0x16a0b4]
+005dc81a  e8 9c ca f0 ff   call    0x4e92bb
+005dc81f  8d 8e 10 b2 0a 00 lea     ecx, [esi+0xab210]
+005dc825  e8 54 00 e5 ff   call    0x42c87e
+005dc82a  e8 ae cf e3 ff   call    CHeroConfigMgr_GetSingletonPtr
+005dc82f  8d 8e 74 99 17 00 lea     ecx, [esi+0x179974]
+005dc835  8b f8            mov     edi, eax
+005dc837  e8 3a 3d 00 00   call    0x5e0576
+005dc83c  50               push    eax
+005dc83d  8b cf            mov     ecx, edi
+005dc83f  e8 00 6c 07 00   call    0x653444
+005dc844  8b ce            mov     ecx, esi
+005dc846  88 9e e0 97 17 00 mov     byte [esi+0x1797e0], bl
+005dc84c  c6 86 e1 97 17 00 01 mov     byte [esi+0x1797e1], 0x1
+005dc853  e8 64 e3 fd ff   call    CMyShellDlg_ClearSelectedMagicImageAndIds_Analyst
+005dc858  89 9e a8 97 17 00 mov     dword [esi+0x1797a8], ebx
+005dc85e  e8 22 3e e3 ff   call    CGameMap_GetSingletonPtr
+005dc863  8b c8            mov     ecx, eax
+005dc865  e8 74 18 04 00   call    CGameMap_ClearProjectionOffset_Analyst
+005dc86a  e8 6e cf e3 ff   call    CHeroConfigMgr_GetSingletonPtr
+005dc86f  ff b6 e4 97 17 00 push    dword [esi+0x1797e4]
+005dc875  8d be e4 97 17 00 lea     edi, [esi+0x1797e4]
+005dc87b  8b c8            mov     ecx, eax
+005dc87d  e8 87 79 07 00   call    0x654209
+005dc882  8b 3f            mov     edi, dword [edi]
+005dc884  3b fb            cmp     edi, ebx
+005dc886  7e 30            jle     0x5dc8b8
+
+# Block 3 at 0x5dc888
+005dc888  83 ff 02         cmp     edi, 0x2
+005dc88b  7e 19            jle     0x5dc8a6
+
+# Block 7 at 0x5dc88d
+005dc88d  83 ff 03         cmp     edi, 0x3
+005dc890  75 26            jne     0x5dc8b8
+
+# Block 10 at 0x5dc892
+005dc892  e8 46 cf e3 ff   call    CHeroConfigMgr_GetSingletonPtr
+005dc897  ff 35 8c 70 93 00 push    dword [0x93708c]
+005dc89d  8b c8            mov     ecx, eax
+005dc89f  e8 bb 7b 07 00   call    0x65445f
+005dc8a4  eb 12            jmp     0x5dc8b8
+
+# Block 6 at 0x5dc8a6
+005dc8a6  e8 32 cf e3 ff   call    CHeroConfigMgr_GetSingletonPtr
+005dc8ab  ff 35 88 70 93 00 push    dword [0x937088]
+005dc8b1  8b c8            mov     ecx, eax
+005dc8b3  e8 7c 7a 07 00   call    0x654334
+
+# Block 2 at 0x5dc8b8
+005dc8b8  89 5d f8         mov     dword [ebp-0x8], ebx
+005dc8bb  bf d0 84 95 00   mov     edi, 0x9584d0
+
+# Block 8 at 0x5dc8c0
+005dc8c0  89 5d fc         mov     dword [ebp-0x4], ebx
+
+# Block 4 at 0x5dc8c3
+005dc8c3  e8 15 cf e3 ff   call    CHeroConfigMgr_GetSingletonPtr
+005dc8c8  ff 37            push    dword [edi]
+005dc8ca  8b c8            mov     ecx, eax
+005dc8cc  ff 75 fc         push    dword [ebp-0x4]
+005dc8cf  ff 75 f8         push    dword [ebp-0x8]
+005dc8d2  e8 58 72 07 00   call    0x653b2f
+005dc8d7  ff 45 fc         inc     dword [ebp-0x4]
+005dc8da  83 c7 04         add     edi, 0x4
+005dc8dd  83 7d fc 0a      cmp     dword [ebp-0x4], 0xa
+005dc8e1  7c e0            jl      0x5dc8c3
+
+# Block 5 at 0x5dc8e3
+005dc8e3  ff 45 f8         inc     dword [ebp-0x8]
+005dc8e6  81 ff 38 86 95 00 cmp     edi, 0x958638
+005dc8ec  7c d2            jl      0x5dc8c0
+
+# Block 9 at 0x5dc8ee
+005dc8ee  b9 30 b3 96 00   mov     ecx, 0x96b330
+005dc8f3  e8 c4 46 15 00   call    DisconnectMsgQueue_ReadNextString
+005dc8f8  3b c3            cmp     eax, ebx
+005dc8fa  89 45 f8         mov     dword [ebp-0x8], eax
+005dc8fd  0f 84 00 03 00 00 je      0x5dcc03
+
+# Block 12 at 0x5dc903
+005dc903  8d be 20 08 00 00 lea     edi, [esi+0x820]
+005dc909  6a 01            push    0x1
+005dc90b  8b cf            mov     ecx, edi
+005dc90d  e8 af 9b fb ff   call    CFlashHostDialog_IsWindowVisibleOrPendingActivation
+005dc912  84 c0            test    al, al
+005dc914  74 4a            je      0x5dc960
+
+# Block 16 at 0x5dc916
+005dc916  b9 28 b3 96 00   mov     ecx, 0x96b328  ; Queued account-login failure (1055 / 1057 / legacy 1052): code at 0x96b328+4. Code 24 -> Flash command "KICKOUT_BANACCOUNT" (0x9387f8); else CLoginFlashDlg_ShowLoginErrorText(text,1) ("ERROR"/"CRITICAL"); then clear password if a text entry is focusable. Login Flash hidden -> MessageBoxA(text). No code-specific retry. 1055 text = STR_LOGIN_FAIL("%s(%d)") over STR_CONNECT_ERROR_MSG_TYPE_%03u (ini/Cn_Res.ini). dlg+0x179aa8 1/2 -> KICKOUT_OTHERIPLOGIN / KICKOUT_PASSWORDCHANGED (setter not traced).
+005dc91b  e8 e8 77 0e 00   call    CompilerFolded_GetDwordAtOffset04
+005dc920  83 f8 18         cmp     eax, 0x18
+005dc923  75 13            jne     0x5dc938
+
+# Block 22 at 0x5dc925
+005dc925  68 dc 60 95 00   push    0x9560dc
+005dc92a  68 f8 87 93 00   push    0x9387f8
+005dc92f  8b cf            mov     ecx, edi
+005dc931  e8 8e fd ec ff   call    CLoginFlashDlg_SetFlashVariableAndDispatch
+005dc936  eb 0c            jmp     0x5dc944
+
+# Block 21 at 0x5dc938
+005dc938  6a 01            push    0x1
+005dc93a  8b cf            mov     ecx, edi
+005dc93c  ff 75 f8         push    dword [ebp-0x8]
+005dc93f  e8 0f fb ec ff   call    CLoginFlashDlg_ShowLoginErrorText
+
+# Block 27 at 0x5dc944
+005dc944  8b cf            mov     ecx, edi
+005dc946  e8 73 fb ec ff   call    CLoginFlashDlg_HasFocusableTextEntry
+005dc94b  84 c0            test    al, al
+005dc94d  0f 84 2e 01 00 00 je      0x5dca81
+
+# Block 26 at 0x5dc953
+005dc953  53               push    ebx
+005dc954  8b cf            mov     ecx, edi
+005dc956  e8 9f fa ec ff   call    CLoginFlashDlg_ClearPasswordAndMobileProtectFields
+005dc95b  e9 21 01 00 00   jmp     0x5dca81
+
+# Block 15 at 0x5dc960
+005dc960  88 1d 34 ab 96 00 mov     byte [0x96ab34], bl
+005dc966  e8 00 3f e3 ff   call    CTextRenderContext_GetSingletonPtr
+005dc96b  8b c8            mov     ecx, eax
+005dc96d  e8 f2 b0 fb ff   call    0x597a64
+005dc972  38 9e bb 9a 17 00 cmp     byte [esi+0x179abb], bl
+005dc978  74 2f            je      0x5dc9a9
+
+# Block 20 at 0x5dc97a
+005dc97a  ff 15 a8 40 84 00 call    dword [GameDataSetQuery]
+005dc980  ff 35 30 ab 96 00 push    dword [0x96ab30]
+005dc986  8b f8            mov     edi, eax
+005dc988  6a 10            push    0x10
+005dc98a  e8 54 dd 18 00   call    0x76a6e3
+005dc98f  59               pop     ecx
+005dc990  59               pop     ecx
+005dc991  50               push    eax
+005dc992  8b 07            mov     eax, dword [edi]
+005dc994  68 42 27 00 00   push    0x2742
+005dc999  8b cf            mov     ecx, edi
+005dc99b  ff 50 3c         call    dword [eax+0x3c]
+005dc99e  50               push    eax
+005dc99f  ff 75 f8         push    dword [ebp-0x8]
+005dc9a2  53               push    ebx
+005dc9a3  ff 15 20 4a 84 00 call    dword [MessageBoxA]
+
+# Block 19 at 0x5dc9a9
+005dc9a9  39 9e 0c 97 17 00 cmp     dword [esi+0x17970c], ebx
+005dc9af  c6 86 bb 9a 17 00 01 mov     byte [esi+0x179abb], 0x1
+005dc9b6  0f 85 86 00 00 00 jne     0x5dca42
+
+# Block 24 at 0x5dc9bc
+005dc9bc  8d be b4 9a 17 00 lea     edi, [esi+0x179ab4]
+005dc9c2  6a 01            push    0x1
+005dc9c4  8b 0d 7c 80 95 00 mov     ecx, dword [0x95807c]
+005dc9ca  ff 37            push    dword [edi]
+005dc9cc  ff b6 b0 9a 17 00 push    dword [esi+0x179ab0]
+005dc9d2  53               push    ebx
+005dc9d3  53               push    ebx
+005dc9d4  e8 5d a7 19 00   call    ?MoveWindow@CWnd@@QAEXHHHHH@Z
+005dc9d9  6a 01            push    0x1
+005dc9db  8b ce            mov     ecx, esi
+005dc9dd  ff 37            push    dword [edi]
+005dc9df  ff b6 b0 9a 17 00 push    dword [esi+0x179ab0]
+005dc9e5  53               push    ebx
+005dc9e6  53               push    ebx
+005dc9e7  e8 4a a7 19 00   call    ?MoveWindow@CWnd@@QAEXHHHHH@Z
+005dc9ec  ff 76 20         push    dword [esi+0x20]
+005dc9ef  ff 15 64 4a 84 00 call    dword [GetParent]
+005dc9f5  50               push    eax
+005dc9f6  e8 73 a8 19 00   call    ?FromHandle@CWnd@@SGPAV1@PAUHWND__@@@Z
+005dc9fb  3b c3            cmp     eax, ebx
+005dc9fd  74 08            je      0x5dca07
+
+# Block 31 at 0x5dc9ff
+005dc9ff  53               push    ebx
+005dca00  8b c8            mov     ecx, eax
+005dca02  e8 ed a9 19 00   call    ?CenterWindow@CWnd@@QAEXPAV1@@Z
+
+# Block 30 at 0x5dca07
+005dca07  8d 45 e4         lea     eax, [ebp-0x1c]
+005dca0a  88 9e b9 9a 17 00 mov     byte [esi+0x179ab9], bl
+005dca10  50               push    eax
+005dca11  ff 76 20         push    dword [esi+0x20]
+005dca14  ff 15 c0 4a 84 00 call    dword [GetWindowRect]
+005dca1a  8b 45 e8         mov     eax, dword [ebp-0x18]
+005dca1d  6a 01            push    0x1
+005dca1f  6a 14            push    0x14
+005dca21  83 c0 ec         add     eax, 0xffffffec
+005dca24  ff b6 b0 9a 17 00 push    dword [esi+0x179ab0]
+005dca2a  8d be b0 69 16 00 lea     edi, [esi+0x1669b0]
+005dca30  8b cf            mov     ecx, edi
+005dca32  50               push    eax
+005dca33  ff 75 e4         push    dword [ebp-0x1c]
+005dca36  e8 fb a6 19 00   call    ?MoveWindow@CWnd@@QAEXHHHHH@Z
+005dca3b  8b cf            mov     ecx, edi
+005dca3d  e8 8e 58 f7 ff   call    0x5522d0
+
+# Block 23 at 0x5dca42
+005dca42  8d be 20 08 00 00 lea     edi, [esi+0x820]
+005dca48  6a 05            push    0x5
+005dca4a  8b cf            mov     ecx, edi
+005dca4c  e8 28 a5 fb ff   call    CMyDialog_ApplyShowHideStateAndLifecycleCallbacks
+005dca51  8b 86 a8 9a 17 00 mov     eax, dword [esi+0x179aa8]
+005dca57  48               dec     eax
+005dca58  74 0f            je      0x5dca69
+
+# Block 29 at 0x5dca5a
+005dca5a  48               dec     eax
+005dca5b  75 1e            jne     0x5dca7b
+
+# Block 35 at 0x5dca5d
+005dca5d  68 dc 60 95 00   push    0x9560dc
+005dca62  68 e0 87 93 00   push    0x9387e0
+005dca67  eb 0b            jmp     0x5dca74
+
+# Block 28 at 0x5dca69
+005dca69  ff b6 bc 9a 17 00 push    dword [esi+0x179abc]
+005dca6f  68 c8 87 93 00   push    0x9387c8
+
+# Block 38 at 0x5dca74
+005dca74  8b cf            mov     ecx, edi
+005dca76  e8 49 fc ec ff   call    CLoginFlashDlg_SetFlashVariableAndDispatch
+
+# Block 34 at 0x5dca7b
+005dca7b  89 9e a8 9a 17 00 mov     dword [esi+0x179aa8], ebx
+
+# Block 25 at 0x5dca81
+005dca81  e8 26 3d ed ff   call    CLoginFlashDlg_GetSingletonPtr
+005dca86  8b c8            mov     ecx, eax
+005dca88  e8 2f bf f9 ff   call    CLoginFlashCallbackState_InvokeProviderMethod8IfPresent
+005dca8d  83 0d 84 70 93 00 ff or      dword [0x937084], 0xffffffff
+005dca94  89 1d 54 86 95 00 mov     dword [0x958654], ebx
+005dca9a  89 1d 58 86 95 00 mov     dword [0x958658], ebx
+005dcaa0  8b ce            mov     ecx, esi
+005dcaa2  88 9e 18 98 17 00 mov     byte [esi+0x179818], bl
+005dcaa8  88 9e b8 9a 17 00 mov     byte [esi+0x179ab8], bl
+005dcaae  89 9e ac 9a 17 00 mov     dword [esi+0x179aac], ebx
+005dcab4  e8 1b 5c fd ff   call    CMyShellDlg_ClearInteractionModeWithCleanup_Analyst
+005dcab9  53               push    ebx
+005dcaba  8d 8e 58 8c 16 00 lea     ecx, [esi+0x168c58]
+005dcac0  e8 97 a7 19 00   call    ?ShowWindow@CWnd@@QAEHH@Z
+005dcac5  e8 bc 80 07 00   call    0x654b86
+005dcaca  8b c8            mov     ecx, eax
+005dcacc  e8 f4 82 07 00   call    0x654dc5
+005dcad1  8b 8e 28 98 17 00 mov     ecx, dword [esi+0x179828]
+005dcad7  8b 01            mov     eax, dword [ecx]
+005dcad9  ff 50 08         call    dword [eax+0x8]
+005dcadc  e8 7f 79 e2 ff   call    CHero_GetSingletonPtr
+005dcae1  8b c8            mov     ecx, eax
+005dcae3  e8 7d 73 08 00   call    0x663e65
+005dcae8  e8 c3 64 e5 ff   call    0x432fb0
+005dcaed  8b c8            mov     ecx, eax
+005dcaef  e8 3b 00 0d 00   call    0x6acb2f
+005dcaf4  39 9e 84 96 17 00 cmp     dword [esi+0x179684], ebx
+005dcafa  74 0b            je      0x5dcb07
+
+# Block 33 at 0x5dcafc
+005dcafc  8d 8e dc 75 15 00 lea     ecx, [esi+0x1575dc]
+005dcb02  e8 a5 f5 f7 ff   call    0x55c0ac
+
+# Block 32 at 0x5dcb07
+005dcb07  ff b6 1c 84 16 00 push    dword [esi+0x16841c]
+005dcb0d  ff 15 68 4a 84 00 call    dword [IsWindowVisible]
+005dcb13  85 c0            test    eax, eax
+005dcb15  74 0b            je      0x5dcb22
+
+# Block 37 at 0x5dcb17
+005dcb17  8d 8e fc 83 16 00 lea     ecx, [esi+0x1683fc]
+005dcb1d  e8 de dd f0 ff   call    0x4ea900
+
+# Block 36 at 0x5dcb22
+005dcb22  8d be 9c a8 0f 00 lea     edi, [esi+0xfa89c]
+005dcb28  6a 01            push    0x1
+005dcb2a  8b cf            mov     ecx, edi
+005dcb2c  e8 90 99 fb ff   call    CFlashHostDialog_IsWindowVisibleOrPendingActivation
+005dcb31  84 c0            test    al, al
+005dcb33  74 07            je      0x5dcb3c
+
+# Block 40 at 0x5dcb35
+005dcb35  8b cf            mov     ecx, edi
+005dcb37  e8 38 0c f6 ff   call    0x53d774
+
+# Block 39 at 0x5dcb3c
+005dcb3c  e8 dc 3d f4 ff   call    CRole3DSceneMgr_GetSingletonPtr
+005dcb41  8b c8            mov     ecx, eax
+005dcb43  e8 4f cf 0d 00   call    0x6b9a97
+005dcb48  e8 5e 2e 00 00   call    CEntityGroupTracker_GetSingletonPtr
+005dcb4d  8b c8            mov     ecx, eax
+005dcb4f  e8 89 27 0a 00   call    0x67f2dd
+005dcb54  e8 54 3f e4 ff   call    0x420aad
+005dcb59  8b c8            mov     ecx, eax
+005dcb5b  e8 c6 51 0b 00   call    0x691d26
+005dcb60  e8 ec 3f e4 ff   call    0x420b51
+005dcb65  8b c8            mov     ecx, eax
+005dcb67  e8 93 de 0e 00   call    0x6ca9ff
+005dcb6c  e8 82 6e f3 ff   call    0x5139f3
+005dcb71  8b c8            mov     ecx, eax
+005dcb73  e8 3f 30 0d 00   call    j_sub_6af3b1
+005dcb78  e8 1f f2 f3 ff   call    CScheduledWindowMsg0CBC_GetOrCreateSingleton
+005dcb7d  8b c8            mov     ecx, eax
+005dcb7f  e8 f3 38 0d 00   call    j_sub_6b00e6
+005dcb84  e8 6c 40 e4 ff   call    0x420bf5
+005dcb89  8b c8            mov     ecx, eax
+005dcb8b  e8 42 ae 0b 00   call    0x6979d2
+005dcb90  e8 7b 09 e8 ff   call    CHeroFriendAndEnemyMgr_GetSingletonPtr
+005dcb95  8b c8            mov     ecx, eax
+005dcb97  e8 64 13 0c 00   call    0x69df00
+005dcb9c  e8 a2 9d e8 ff   call    0x466943
+005dcba1  8b c8            mov     ecx, eax
+005dcba3  e8 58 bb fa ff   call    0x588700
+005dcba8  e8 7f 7c e4 ff   call    0x42482c
+005dcbad  8b c8            mov     ecx, eax
+005dcbaf  e8 03 d6 0c 00   call    0x6aa1b7
+005dcbb4  e8 53 3d e3 ff   call    CSkillDragVisual_GetOrCreateSingleton
+005dcbb9  8b c8            mov     ecx, eax
+005dcbbb  e8 e0 b1 00 00   call    CSkillDragVisual__ResetActiveState
+005dcbc0  e8 15 80 e3 ff   call    CDataMigrationSubject_GetSingletonPtr
+005dcbc5  8b c8            mov     ecx, eax
+005dcbc7  e8 37 d8 0a 00   call    0x68a403
+005dcbcc  e8 8f 78 e2 ff   call    CHero_GetSingletonPtr
+005dcbd1  8b c8            mov     ecx, eax
+005dcbd3  e8 d9 7b 08 00   call    CHero_HasInteractionActionStatus
+005dcbd8  84 c0            test    al, al
+005dcbda  74 0e            je      0x5dcbea
+
+# Block 42 at 0x5dcbdc
+005dcbdc  6a 01            push    0x1
+005dcbde  e8 7d 78 e2 ff   call    CHero_GetSingletonPtr
+005dcbe3  8b c8            mov     ecx, eax
+005dcbe5  e8 3d 75 08 00   call    0x664127
+
+# Block 41 at 0x5dcbea
+005dcbea  b9 18 b0 96 00   mov     ecx, 0x96b018
+005dcbef  e8 c6 ab 10 00   call    0x6e77ba
+005dcbf4  8b ce            mov     ecx, esi
+005dcbf6  e8 86 f6 ff ff   call    0x5dc281
+005dcbfb  8b 4d f4         mov     ecx, dword [ebp-0xc]
+005dcbfe  e8 e8 1a ee ff   call    0x4be6eb
+
+# Block 11 at 0x5dcc03
+005dcc03  ff 15 34 40 84 00 call    dword [?QueryMonitorManager@@YAPAVIMonitorManager@@XZ]
+005dcc09  3b c3            cmp     eax, ebx
+005dcc0b  74 07            je      0x5dcc14
+
+# Block 14 at 0x5dcc0d
+005dcc0d  8b 10            mov     edx, dword [eax]
+005dcc0f  8b c8            mov     ecx, eax
+005dcc11  ff 52 08         call    dword [edx+0x8]
+
+# Block 13 at 0x5dcc14
+005dcc14  e8 c4 cb e3 ff   call    CHeroConfigMgr_GetSingletonPtr
+005dcc19  8b c8            mov     ecx, eax
+005dcc1b  e8 15 53 07 00   call    CharacterSetupRecord_InitServerScopedSetupIniPath
+005dcc20  e8 b8 cb e3 ff   call    CHeroConfigMgr_GetSingletonPtr
+005dcc25  8b c8            mov     ecx, eax
+005dcc27  e8 5b 57 07 00   call    0x652387
+005dcc2c  e8 3a 30 00 00   call    CSynCompeteMgr_GetSingletonPtr
+005dcc31  8b c8            mov     ecx, eax
+005dcc33  e8 fa 7d 0e 00   call    0x6c4a32
+005dcc38  e8 86 26 ee ff   call    0x4bf2c3
+005dcc3d  8b c8            mov     ecx, eax
+005dcc3f  e8 7d 6e 0f 00   call    0x6d3ac1
+005dcc44  84 c0            test    al, al
+005dcc46  74 0c            je      0x5dcc54
+
+# Block 18 at 0x5dcc48
+005dcc48  e8 76 26 ee ff   call    0x4bf2c3
+005dcc4d  8b c8            mov     ecx, eax
+005dcc4f  e8 09 6c 0f 00   call    0x6d385d
+
+# Block 17 at 0x5dcc54
+005dcc54  e8 27 2e 01 00   call    0x5efa80
+005dcc59  5f               pop     edi
+005dcc5a  88 1d 20 b3 96 00 mov     byte [0x96b320], bl
+005dcc60  5e               pop     esi
+005dcc61  5b               pop     ebx
+005dcc62  c9               leave
+005dcc63  c3               retn
+

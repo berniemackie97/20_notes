@@ -1,15 +1,26 @@
-# Map catalogue: what was wrong and how it was proven
+# Map catalogue: historical reconstruction and evidence limits
 
-## Method
+Current server map list: [map-catalog-5517.md](map-catalog-5517.md) (2026-10-10).
 
-Every conclusion here comes from testing coordinates **this database already places on a map** —
-traps, NPCs, portals and type-1003 teleport actions — against the client's own DMap terrain, read
-through `OpenConquer.MapAssets`. A coordinate that is impassable (`PassabilityFlag != 0`) or out of
-bounds proves that either the map identity or the coordinate is wrong. That is a decidable test, not
-a preference.
+## Authority correction — 2026-10-09
 
-A later 6270-era reference database was used only to *propose* candidates. It was never trusted:
-the terrain test rejected most of what it offered.
+The [native identity/flags audit](map-identity-flags-native-5517.md) supersedes this document's earlier
+claims of retail map-identity proof. All eight base-terrain coordinate comparisons were reproduced,
+but **fitting legacy server coordinates to native terrain does not establish a retail server binding**.
+The client receives world MapId, terrain MapDataId and 64-bit flags independently. GameMap.dat indexes
+terrain keys; it is not the retail server's world-map catalog.
+
+The historical276-row reconstruction is reproducible from the checked-in273-row SQL baseline plus
+three migration additions. All selected terrain keys resolve. Its retail completeness, assignments
+and per-map flags remain unverified. The migration and implementation are unchanged by this audit.
+
+## Method and its limits
+
+The historical work tested database trap/NPC/portal/type1003 action coordinates against DMap base
+terrain. This can show a candidate is geometrically compatible or expose an inconsistency; it cannot
+prove that the coordinates or candidate assignment came from the retail 5517 server. Native placement
+need not always use a walkable base cell, and runtime overlays also exist. Later6270 data supplied
+candidates only; it does not close the authority gap.
 
 ## Map flags were truncated to 32 bits
 
@@ -24,16 +35,17 @@ Bits above the low dword have verified consumers in this build:
 |---|---|
 | high `0x10` | selects UI post `0xDE1` vs `0xDE2` |
 | qword `0x0000004000000000` | `CHero__RefreshEquipmentDerivedStats`, posts `0x445`/`0x446`/`0xDA4`, client replies MsgAction 408 |
-| `flags_high & 0x81` | delayed transition-gate predicate |
+| qword mask `0x00000081A0000000` | delayed transition predicate `0x732A44`: low bits 31/29 OR high bits 0/7 |
 
 Widened to `BIGINT UNSIGNED` / `ulong` by migration
 `20260818_03_widen_map_flags_to_64_bit`. Values were preserved exactly (checksum compared across the
 `ALTER`), and readiness now pins the width.
 
-## Eight mapdoc values were wrong
+## Eight historical mapdoc corrections — candidate retail bindings
 
-In each case our own placed content is impassable under the mapdoc we recorded and fully walkable
-under the corrected one. Counts are walkable/total:
+Each candidate improves compatibility with the legacy placed coordinates. The original 5517 terrain
+recheck reproduced the following counts; it did not authenticate those world-ID assignments. Counts
+are walkable base cells/total:
 
 | map | was | now | evidence |
 |---:|---:|---:|---|
@@ -46,30 +58,30 @@ under the corrected one. Counts are walkable/total:
 | 2024 | 2024 `Dsigil` | 1500 `mine-a` | traps 0/16 → 16/16 |
 | 2080 | 2080 `Nhouse03` | 700 `arena-none` | teleports 2/8 → 8/8 |
 
-In every wrong row `mapdoc` equalled `id`, which is what the fallback looks like.
+Before these changes all eight rows had `mapdoc == id`. Equality alone is not proof that a fallback
+created them or that an identical pair is wrong.
 
-**A filename reading was overturned by this test.** Maps 2021–2024 pointed at `Dgate`, `Dsquare`,
-`Dcloister` and `Dsigil` — a coherent-looking family, which is why they initially read as correct.
-The terrain says otherwise: the 16 traps on each map are *entirely* impassable under those docs and
-entirely walkable under the mine docs, and a trap layout spanning x 12–168 fits a 184×184 map rather
-than occupying the corner of a 550×550 one. Plausible naming lost to measured geometry.
+The old text incorrectly said all traps on2021–2024 were blocked under the old terrain. Map2022
+already had12/16 walkable points. The revised mine candidates fit16/16 on all four maps. This supports
+a candidate; it does not uniquely identify the retail binding or prove the old coordinates authoritative.
 
-### Four apparent conflicts are not conflicts
+### Four same-path aliases do not prove equal world identities
 
 Maps 1080, 1081, 1511 and 5000 disagree on the mapdoc *number* but both values resolve through
 `GameMap.dat` to the **identical map file** (`p-arena.7z`, `p-arena.7z`, `forum.7z`, `mine-one.7z`).
-Ours is already correct; nothing was changed.
+This is a terrain-path equivalence observation, not proof of the server-sent numeric key or world
+identity. Nothing was changed; the native index and companion values must still be kept distinct.
 
 ### Map 1501 is unresolved, deliberately
 
-Only two coordinates exist for it — one NPC and one teleport — and both are walkable under either
-candidate (1501 `mine-b` 184×184, or 1730 `fairylandPK-02` 96×96). Its name is the column default,
-and no other table references it. Its two siblings 1500 and 1502 are proven to be fairylandPK maps,
-which makes 1730 *likely*, but likely is not proven and it was left alone.
+The historical audit identified an NPC at (84,60) and a type1003 action destination at (78,59).
+Both were rechecked and are walkable under either candidate (1501 `mine-b` 184×184, or
+1730 `fairylandPK-02` 96×96). The legacy map-row name is the column default. The sibling candidates and retail `GameMapEx.ini` names `ClassPKArena1/2/3` are thematic support
+only. Neither 1501 nor 1730 is a proven retail assignment for world 1501; the migration left it alone.
 
-## Revive points
+## Historical revive-point changes (not re-audited in the identity slice)
 
-`cq_map.portal0_x/y` is the revive coordinate. Of the 73 maps that defined one, **only 41 were
+`cq_map.portal0_x/y` is the revive coordinate **of maps used as a `reborn_map` target** (TQ 15.10 `CGameMap__GetRebornMap`; other rows' portal0 is unused for revive — see [death/ghost/revive](death-ghost-revive-5517.md#5-revival-destinations)). Of the 73 maps that defined one, **only 41 were
 walkable** — 13 blocked and 19 out of bounds, mostly one coordinate copy-pasted across maps of
 different sizes (`566,565` onto maps 550, 424 and 302 wide). Those 32 were cleared: a revive point
 inside geometry is worse than none.
@@ -80,20 +92,21 @@ coverage went 41 → 65 of 276 maps. 147 maps still have no candidate from any s
 
 `reborn_portal` is `0` on every row and is not used as a `cq_portal` index anywhere.
 
-## Portals
+## Historical portal changes and withdrawn authority claims
 
-Four portal coordinates differ from the reference database. **Ours are right**: three of its four
-land on impassable tiles (map 1002 idx 4 and 5, map 1212 idx 32), and the fourth is a tie. Nothing
-was changed. Importing them unvalidated would have broken three working portals.
+The earlier report rejected three of four later-source portal candidates using base-cell passability
+(map1002 indices4/5 and1212 index32), with a tie for the fourth. This records the historical selection
+method; it does not prove the retained coordinates were retail 5517 values. They were not changed.
 
-Six map ids had portal rows but no `cq_map` row, and they split cleanly:
+Six world IDs had portal rows but no `cq_map` row. The historical migration treated them as follows:
 
 - **1782, 1783, 1794** carry our own NPCs and traps and were simply missing from `cq_map`. Their
-  identity is proven by that content fitting the native terrain (5/6, 15/15 and 1/1 walkable under
+  candidate terrain assignments were supported by that content fitting the native terrain (5/6, 15/15 and 1/1 walkable under
   docs 1004, 1004 and 1028). Rows were restored with `type = 0`, because no evidence establishes
-  their flags — only the identity was recovered.
-- **1778, 2204, 7007** exist nowhere: no `cq_map` row, no `GameMap.dat` entry, absent from the
-  reference database. Their 7 portal rows were deleted.
+  their flags. The 0 values are placeholders, and retail identity remains unproven.
+- **1778, 2204, 7007** were absent from the checked catalog/index/reference and their 7 portal
+  rows were deleted. The earlier “exist nowhere” claim is withdrawn: a world ID need not have an
+  equal GameMap.dat key, and absence from these datasets does not prove absence from retail.
 
 `cq_portal` now has no row referencing an undefined map, and readiness enforces that.
 
@@ -105,3 +118,21 @@ Six map ids had portal rows but no `cq_map` row, and they split cleanly:
 - `cq_map.name` is the column default on nearly every row — the names carry no information. Only
   map 5000 (`NPCJail`) has a real one.
 - 147 maps have no revive point and no candidate anywhere.
+
+## Additional source reconciliation — 2026-10-10
+
+The [full zf audit](zf-map-reconciliation-5517.md) supplies new legacy evidence, not retail authentication:
+
+- zf agrees with1051 and2021–2024 candidates;1500,1501,1502 and2080 are absent.
+- Its1782/1783/1794 rows agree on terrain keys and contain flags14/14/70, whereas the reconstruction
+  uses zero placeholders. Their retail flags remain unproven.
+- It defines1778→1013,2204→1734,7007→1762. The earlier absolute absence claim was false.
+- Deleting the seven historical portal rows leaves passways160/161 with missing map1778 destinations
+  at portal indices1/2. The remaining-portal catalog check does not cover this relationship.
+- Legacy actions3000124/type302/data1501 and3000298/type303/data1501 also reference1501. They add
+  PK-war usage context but no coordinate that distinguishes mine-b from fairylandPK-02.
+
+The migration remains unchanged. Statements above about absent candidates or current readiness are
+historical observations of the earlier dataset, not assertions about every available source or a live
+database. In particular,32-bit SQL capacity does not itself prove that any given stored low-word value
+was truncated from a nonzero retail high word.

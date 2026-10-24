@@ -591,8 +591,30 @@ Resolved behavior from current IDA pass:
 - Type `1002` dispatches to a message class whose process entry is `CNetMsg__NoopProcess` (no-op in this build).
 - Type `1006` (`CMsgUserInfo__Process`, 0x764276) executes full world-entry bootstrap (hero field population, role-view creation, UI posts, and initial action sends). Critically, it also builds and sends client `MsgData` `actionEnterMap` (`74`), making it the confirmed gate into the next world-entry phase.
 
-Remaining gap:
-- Explicit login-failure signaling before world-entry is still not fully mapped. The success path is now verified as the map-info transition (`1052`) followed by user bootstrap (`1006`).
+Login failure display (both mapped in [`Architecture/03`](../Architecture/03_login_flash_startup_command_contract.md)
+"`1055` failure-code text contract"):
+- Account stage: `1055` UID 0 — code-only read, `STR_CONNECT_ERROR_MSG_TYPE_%03u` text.
+- GameServer stage, before world entry: `1004` channel 2101, text ≠ `ANSWER_OK`/`NEW_ROLE` → login error text
+  (`0x5DCD58`). TQ 15.10 refusals use this channel ([topology](../Server/historical-multi-server-topology.md)).
+- Success: map-info transition (`1052`), then user bootstrap (`1006`).
+
+### Kick notice (1115, CMsgKickoutNotice)
+
+Verified 2026-10-13, Binja. Formerly indexed as `CMsgPKEliteInfo` (reference-import name, wrong).
+
+| Address | Fact |
+|---|---|
+| `0x75D7EB` | `CMsgKickoutNotice__Parse`: type `0x45B` (1115) |
+| `0x75D80E` | `CMsgKickoutNotice__Process`: payload `+0` u32 mode. 0 ⇒ text at payload `+0xC` (NUL-terminated, ≤ 255 B copied) ⇒ command `0xD8C(text)`; 1 ⇒ command `0xCC6`; other ⇒ ignored. `+4`, `+8` unread |
+| `0x5B565E` | `CMyShellDlg_DispatchCommandCode` `0xD8C` (case `0x5E`, table `0x5B850C`, code − `0xBC5`): kick state 1 + text `dlg+0x179ABC` |
+| `0x5B568F` | `0xCC6` (case `0x40`): kick state 2. Other poster: `0x453068` (untraced) |
+| `0x5DCA51` | at the next queued disconnect message: state 1 ⇒ Flash `KICKOUT_OTHERIPLOGIN(text)`, 2 ⇒ `KICKOUT_PASSWORDCHANGED` |
+| `0x6DEDCF` | socket loss clears queue `0x96B330`, enqueues StrRes 10249 "Error: Disconnected with game server. Please login the game again!" (game socket) |
+
+Server meaning: TQ kick on login elsewhere (mode 0) / password change (mode 1). Text semantics unproven; clean
+`start.dat` has no `KICKOUT_*` handler, so the native 5517 player sees only the socket-loss text. TQ 15.10 MsgServer
+kicks with a channel-2100 talk instead (`CUserList__KickOutAccount` `0x4AA260`), which this client routes to the
+create-role queue, so 1115 is the 5517-correct kick. OCS use: [multi-realm decision](../Server/multi-realm-architecture-5517.md#openconquerserver-status-2026-10-14).
 
 ### Post-`1052` packet consumers and EnterMap trigger (corrected 2026-09-15)
 

@@ -1,0 +1,79 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x66d3ff
+0066d3ff  55               push    ebp  ; (pszServer, port, bgpServer, bgpPort). CHECKF 'pszServer && strlen(pszServer) > 0' (GameMain.cpp:0x37) -> no connect. CNetClient_ConnectWithEndpointAndTimeout(g 0x96AFC8, server, port, 10); on fail retries BGP endpoint; both fail -> CLoginFlashDlg_OnConnectionLost, DisconnectMsgQueue StrRes 10397 'Server maintenance or network congested. Try again later.', Sleep(5000), return -1. Success -> socket encryption mode 1, login callback mode 0x3E9, return 0. Caller: CLoginFlashDlg_PersistSelectionAndConnectAccountServer (CMD_ENTERGAME path).
+0066d400  8b ec            mov     ebp, esp
+0066d402  83 7d 08 00      cmp     dword [ebp+0x8], 0x0
+0066d406  56               push    esi
+0066d407  0f 84 91 00 00 00 je      0x66d49e
+
+# Block 3 at 0x66d40d
+0066d40d  ff 75 08         push    dword [ebp+0x8]
+0066d410  e8 5b a2 10 00   call    strlen
+0066d415  85 c0            test    eax, eax
+0066d417  59               pop     ecx
+0066d418  0f 86 80 00 00 00 jbe     0x66d49e
+
+# Block 4 at 0x66d41e
+0066d41e  6a 0a            push    0xa
+0066d420  be c8 af 96 00   mov     esi, 0x96afc8
+0066d425  ff 75 0c         push    dword [ebp+0xc]
+0066d428  8b ce            mov     ecx, esi
+0066d42a  ff 75 08         push    dword [ebp+0x8]
+0066d42d  e8 2d 1b 07 00   call    CNetClient_ConnectWithEndpointAndTimeout
+0066d432  85 c0            test    eax, eax
+0066d434  75 4c            jne     0x66d482
+
+# Block 6 at 0x66d436
+0066d436  6a 0a            push    0xa
+0066d438  8b ce            mov     ecx, esi
+0066d43a  ff 75 14         push    dword [ebp+0x14]
+0066d43d  ff 75 10         push    dword [ebp+0x10]
+0066d440  e8 1a 1b 07 00   call    CNetClient_ConnectWithEndpointAndTimeout
+0066d445  85 c0            test    eax, eax
+0066d447  75 39            jne     0x66d482
+
+# Block 8 at 0x66d449
+0066d449  e8 5e 33 e4 ff   call    CLoginFlashDlg_GetSingletonPtr
+0066d44e  8b c8            mov     ecx, eax
+0066d450  e8 40 b5 f0 ff   call    CLoginFlashDlg_OnConnectionLost
+0066d455  ff 15 a8 40 84 00 call    dword [GameDataSetQuery]
+0066d45b  8b 10            mov     edx, dword [eax]
+0066d45d  68 9d 28 00 00   push    0x289d
+0066d462  8b c8            mov     ecx, eax
+0066d464  ff 52 3c         call    dword [edx+0x3c]
+0066d467  50               push    eax
+0066d468  b9 30 b3 96 00   mov     ecx, 0x96b330
+0066d46d  e8 fa 38 0c 00   call    DisconnectMsgQueue_EnqueueString
+0066d472  68 88 13 00 00   push    0x1388
+0066d477  ff 15 e4 40 84 00 call    dword [Sleep]
+0066d47d  83 c8 ff         or      eax, 0xffffffff
+0066d480  eb 3c            jmp     0x66d4be
+
+# Block 5 at 0x66d482
+0066d482  6a 01            push    0x1
+0066d484  8b ce            mov     ecx, esi
+0066d486  e8 25 1d 07 00   call    CNetClient_SetSocketEncryptionMode
+0066d48b  68 e9 03 00 00   push    0x3e9
+0066d490  e8 17 33 e4 ff   call    CLoginFlashDlg_GetSingletonPtr
+0066d495  8b c8            mov     ecx, eax
+0066d497  e8 0a ae f0 ff   call    CLoginFlashCallbackState_SetModeHandlerByCode
+0066d49c  eb 1e            jmp     0x66d4bc
+
+# Block 2 at 0x66d49e
+0066d49e  6a 37            push    0x37
+0066d4a0  68 b8 fd 93 00   push    0x93fdb8
+0066d4a5  68 94 fd 93 00   push    0x93fd94
+0066d4aa  68 00 24 92 00   push    0x922400
+0066d4af  68 6c 17 92 00   push    0x92176c
+0066d4b4  e8 5f bb 0f 00   call    Debug_LogMessageToDailyFileWithDedup
+0066d4b9  83 c4 14         add     esp, 0x14
+
+# Block 7 at 0x66d4bc
+0066d4bc  33 c0            xor     eax, eax
+
+# Block 9 at 0x66d4be
+0066d4be  5e               pop     esi
+0066d4bf  5d               pop     ebp
+0066d4c0  c3               retn
+

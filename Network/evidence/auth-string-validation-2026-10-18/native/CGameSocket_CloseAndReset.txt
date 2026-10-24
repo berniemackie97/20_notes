@@ -1,0 +1,51 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6e229a
+006e229a  b8 d8 2b 83 00   mov     eax, 0x832bd8
+006e229f  e8 ac 53 09 00   call    __EH_prolog
+006e22a4  51               push    ecx
+006e22a5  53               push    ebx
+006e22a6  56               push    esi
+006e22a7  8b f1            mov     esi, ecx
+006e22a9  33 db            xor     ebx, ebx
+006e22ab  57               push    edi
+006e22ac  89 5d fc         mov     dword [ebp-0x4], ebx
+006e22af  39 9e 08 20 00 00 cmp     dword [esi+0x2008], ebx
+006e22b5  89 65 f0         mov     dword [ebp-0x10], esp
+006e22b8  74 73            je      0x6e232d
+
+# Block 3 at 0x6e22ba
+006e22ba  ff b6 04 20 00 00 push    dword [esi+0x2004]
+006e22c0  8d be 04 20 00 00 lea     edi, [esi+0x2004]
+006e22c6  ff 15 9c 4b 84 00 call    dword [closesocket]
+006e22cc  83 0f ff         or      dword [edi], 0xffffffff
+006e22cf  ff 15 c0 4b 84 00 call    dword [WSACleanup]
+006e22d5  8d 8e 30 24 01 00 lea     ecx, [esi+0x12430]
+006e22db  89 9e 0c 20 01 00 mov     dword [esi+0x1200c], ebx
+006e22e1  89 9e 10 20 01 00 mov     dword [esi+0x12010], ebx
+006e22e7  89 9e 00 20 00 00 mov     dword [esi+0x2000], ebx
+006e22ed  89 9e 08 20 00 00 mov     dword [esi+0x2008], ebx
+006e22f3  c6 86 24 24 01 00 01 mov     byte [esi+0x12424], 0x1
+006e22fa  89 9e 28 24 01 00 mov     dword [esi+0x12428], ebx
+006e2300  e8 21 13 07 00   call    CClientSecurity__ResetAndFreeDhContext
+006e2305  83 8e 2c 24 01 00 ff or      dword [esi+0x1242c], 0xffffffff
+006e230c  68 00 20 00 00   push    0x2000
+006e2311  53               push    ebx
+006e2312  56               push    esi
+006e2313  e8 1c 53 09 00   call    memset
+006e2318  68 00 00 01 00   push    0x10000
+006e231d  81 c6 0c 20 00 00 add     esi, 0x200c
+006e2323  53               push    ebx
+006e2324  56               push    esi
+006e2325  e8 0a 53 09 00   call    memset
+006e232a  83 c4 18         add     esp, 0x18
+
+# Block 2 at 0x6e232d
+006e232d  8b 4d f4         mov     ecx, dword [ebp-0xc]
+006e2330  5f               pop     edi
+006e2331  5e               pop     esi
+006e2332  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+006e2339  5b               pop     ebx
+006e233a  c9               leave
+006e233b  c3               retn
+

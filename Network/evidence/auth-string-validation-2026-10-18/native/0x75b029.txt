@@ -1,0 +1,24 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x75b029
+0075b029  56               push    esi  ; CORRECTION 2026-09-15: formerly CMsgTitleLabel__Process. Packet +4 u32 is consumed as last-login timestamp by CDlgAccountLoginAlert, +8 u8 is a nonzero location-alert flag, +9 is NUL-terminated ANSI location text. Calls CHero_SetAccountLoginAlertData at 0x75B044 and posts UI refresh 0xD39 at 0x75B050. Client does not choose exact retail-server values. The older claim that this packet is required before EnterMap, or that zeros encode an equipped-title state, was unsupported. 1006 sends EnterMap at 0x7648A3 without a check of these fields.
+
+2026-09-16 reference cross-check: byte +9 is the first location character, NOT an independent DifferentAddress boolean. A reference writer placing false there happens to encode an empty NUL-terminated location; true places byte 0x01 in the string. The alert decision is based on byte +8 (zero vs nonzero), not that byte at +9.
+0075b02a  8b f1            mov     esi, ecx
+0075b02c  e8 2f 94 ca ff   call    CHero_GetSingletonPtr
+0075b031  8b 96 04 04 00 00 mov     edx, dword [esi+0x404]
+0075b037  8d 4a 09         lea     ecx, [edx+0x9]
+0075b03a  51               push    ecx
+0075b03b  8a 4a 08         mov     cl, byte [edx+0x8]
+0075b03e  51               push    ecx
+0075b03f  8b c8            mov     ecx, eax
+0075b041  ff 72 04         push    dword [edx+0x4]
+0075b044  e8 76 c7 ef ff   call    CHero_SetAccountLoginAlertData
+0075b049  6a 00            push    0x0
+0075b04b  68 39 0d 00 00   push    0xd39
+0075b050  e8 c0 1f ef ff   call    Conquer_PostMainWindowMessage464
+0075b055  59               pop     ecx
+0075b056  59               pop     ecx
+0075b057  5e               pop     esi
+0075b058  c2 04 00         retn    0x4
+

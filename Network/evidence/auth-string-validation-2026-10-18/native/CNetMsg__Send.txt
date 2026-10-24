@@ -1,0 +1,34 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6df355
+006df355  56               push    esi
+006df356  8b f1            mov     esi, ecx
+006df358  68 4c 04 00 00   push    0x44c
+006df35d  e8 4a 14 dd ff   call    CLoginFlashDlg_GetSingletonPtr
+006df362  8b c8            mov     ecx, eax
+006df364  e8 17 8f e9 ff   call    CLoginFlashDlg_CheckCallbackActiveMessageCode
+006df369  84 c0            test    al, al
+006df36b  75 35            jne     0x6df3a2
+
+# Block 3 at 0x6df36d
+006df36d  e8 92 af e5 ff   call    GetFrameTickPerfTimerSingleton
+006df372  0f b7 4e 06      movzx   ecx, word [esi+0x6]
+006df376  51               push    ecx
+006df377  8b c8            mov     ecx, eax
+006df379  e8 a5 e8 08 00   call    0x76dc23
+006df37e  e8 87 05 f0 ff   call    CNetMsgContext_GetSingletonPtr
+006df383  0f b7 4e 06      movzx   ecx, word [esi+0x6]
+006df387  51               push    ecx
+006df388  8b c8            mov     ecx, eax
+006df38a  e8 fd ed f9 ff   call    0x67e18c
+006df38f  0f b7 4e 04      movzx   ecx, word [esi+0x4]
+006df393  8d 46 04         lea     eax, [esi+0x4]
+006df396  51               push    ecx
+006df397  50               push    eax
+006df398  b9 c8 af 96 00   mov     ecx, 0x96afc8
+006df39d  e8 3e fd ff ff   call    0x6df0e0
+
+# Block 2 at 0x6df3a2
+006df3a2  5e               pop     esi
+006df3a3  c3               retn
+

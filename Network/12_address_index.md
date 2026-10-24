@@ -203,7 +203,7 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CHero__RemoveMagicEffectEntry_List0 | 0x6dcb78 |
 | CHero__RemoveMagicEffectEntry_List1 | 0x6dcbcb |
 | CHero_CancelRunningOrReadyInteractionAction | 0x66402f |
-| CHero__SetDword_0x2DA8 | 0x7178c8 |
+| CHero_SetMountVigor (was CHero__SetDword_0x2DA8) | 0x7178c8 |
 | CHero__SetDword_0x2E08 | 0x6655db |
 | CHero__SetByte_0x2F58 | 0x6668c0 |
 | CHero__SetLoginAuthKey | 0x663795 |
@@ -504,11 +504,11 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CMsgNpcInfo__Parse | 0x75e36a |
 | CMsgPackage__Parse | 0x72b9da |
 | CMsgPackage__Process | 0x72ba6c |
-| CMsgPKEliteInfo__Create | 0x75d785 |
-| CMsgPKEliteInfo__Dtor | 0x75d7e0 |
-| CMsgPKEliteInfo__Parse | 0x75d7eb |
-| CMsgPKEliteInfo__Process | 0x75d80e |
-| CMsgPKEliteInfo__ScalarDtor | 0x75d7c4 |
+| CMsgKickoutNotice__Create | 0x75d785 |
+| CMsgKickoutNotice__Dtor | 0x75d7e0 |
+| CMsgKickoutNotice__Parse | 0x75d7eb |
+| CMsgKickoutNotice__Process | 0x75d80e |
+| CMsgKickoutNotice__ScalarDtor | 0x75d7c4 |
 | Packet1101 Build (old Peerage label withdrawn) | 0x73fe0d |
 | Packet1101 Create (old Peerage label withdrawn) | 0x73fda7 |
 | Packet1101 Dtor (old Peerage label withdrawn) | 0x73fe02 |
@@ -808,7 +808,7 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CMsgBuddyUpdate__Create | 0x75cca3 |
 | CMsgBuddyUpdate__Process | 0x75cd2c |
 | CMsgMagicEffect__Create (else-2075) | 0x75c570 |
-| CMsgMagicEffect_Process (else-2075) | 0x75c5f9 |
+| CMsgStatusDetail2075__Process (2075; was CMsgMagicEffect_Process) | 0x75c5f9 |
 | CMsgContainerInfo__Create | 0x7022af |
 | CMsgContainerInfo__Process | 0x702372 |
 | CMsgSynMemberTitle__Create | 0x75a834 |
@@ -851,7 +851,8 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CMsgFactionPKMatch__Process | 0x759b32 |
 | CMsgApprenticeList__Create | 0x71c4f8 |
 | CMsgApprenticeList__Process | 0x71c5bc |
-| CMsgMapInfo__Create (else-2400) | 0x740837 |
+| CMsgMapInfo2400__Ctor (was CMsgMapInfo__Create, else-2400) | 0x740837 |
+| CMsgMapInfo2400__CreateAction2 (outbound `{+4=2,+8=region+0x14}`) | 0x7408c0 |
 | CMsgMapInfo_Process (else-2400) | 0x7408f9 |
 | CMsgEctypeInvite__Create | 0x6f8f5f |
 | CMsgEctypeInvite__Process | 0x6f9094 |
@@ -935,6 +936,13 @@ Applied in Binja this slice (re-apply by address if the .bndb was not saved).
 | CMsgTrusteeshipState__Process (1129; name re-applied) | `0x75DAEA` |
 | CHeroConfigMgr_GetSingletonPtr / _TestFlagBit / _SetFlagBits | `0x4197DD` / `0x652F84` / `0x652FAC` |
 | CDataMigrationSubject_GetSingletonPtr / _IsActive / _BlockOperationWithTip | `0x414BDA` / `0x68A72D` / `0x68A737` |
+| CDataMigrationSubject_SetCrossServerMode | `0x68A3D8` |
+| CHero_ProcessReborn / _RequestReborn / _ProcessStatusMaskChange | `0x65DF0B` / `0x65D819` / `0x65F01A` |
+| CHero_HasBlessStatus21 / _QuitTrade / _CloseTrade | `0x66F766` / `0x72A36C` / `0x729BF3` |
+| CHero_StartOverheadCountdown / _RenderOverheadCountdown | `0x66699D` / `0x666C57` |
+| CDlgXp_OnXpImg1 / _OnXpImg2 / _SetReborn | `0x575905` / `0x575A60` / `0x576B29` |
+| CDlgMain_OnGhostBegin / _OnGhostEnd (main msg 0x41D / 0x41B,0x41E) | `0x4BE227` / `0x4BE264` |
+| CHero_ResetStateForLogin / Role_IssueActionCommand08 | `0x65700E` / `0x737C25` |
 | DlgFriendInfo_RefreshFromFriendEntry / DlgEnemyInfo_RefreshFromEnemyEntry | `0x491A17` / `0x45DC52` |
 | DlgFriendList_RefreshRows / DlgEnemyList_RefreshRows | `0x4925A2` / `0x45D33B` |
 | DlgFriendList_OnShow / DlgEnemyList_OnShow_SendEnemyListQuery | `0x492467` / `0x45D0FD` |
@@ -944,3 +952,18 @@ Applied in Binja this slice (re-apply by address if the .bndb was not saved).
 Comments rewritten: `CMsgAction__Process` (0x6FED1F, ladder entity-id correction), `CMsgFriend__Process`,
 `CMsgFriend__BuildSubtypeEntityIdFlagName16`; address comment `0x6FF173`.
 
+
+
+## Auth string-validation evidence delta — 2026-10-18
+
+Analyst names applied/read back in the existing Conquer.exe database. Evidence:
+[native auth string-validation closure](Native-auth-string-validation-2026-10-18.md).
+
+| Function | Address |
+|---|---|
+| CMsgTalk_ValidateHeaderAndCopy | 0x731328 |
+| CMsgUserInfo_ValidateHeaderAndCopy | 0x764253 |
+| CRole_SetSpouseName | 0x6728DC |
+| CSilentInfo_FilterTextUnlessHeroExempt | 0x6BB382 |
+| CSilentInfo_FilterTextInPlaceUsingSystemACP | 0x6BB9CA |
+| CGameSocket_CloseAndLogProtocolError | 0x6E2429 |

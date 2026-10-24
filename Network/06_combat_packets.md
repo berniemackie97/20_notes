@@ -382,29 +382,10 @@ value other than 0 and 1 falls straight through with no work):
 - `+4` (u32) is compared against the local hero entity ID (singleton offset `+204`).
 - If equal, it reads string‑list entry index `0` (via `MsgStringList__GetEntry`) and shows message `CHEATING_PROGRAM_TIP`.
 
-## MsgPKEliteInfo (Type 1115)
-**Direction**: S→C
-**Purpose**: PK-elite UI event packet; either posts a simple event (`0xCC6`) or forwards a copied text payload (`0xD8C`).
-**Dispatch**: Create `CMsgPKEliteInfo__Create` (0x75D785), parse `CMsgPKEliteInfo__Parse` (0x75D7EB), process `CMsgPKEliteInfo__Process` (0x75D80E)
+## Type 1115 — moved
 
-**Parse**: `CMsgPKEliteInfo__Parse` — standard header validation, then `type == 1115`.
-
-**Verified field usage in `CMsgPKEliteInfo__Process`** (offsets relative to packet start):
-- `+4` (u32) `mode`:
-  - `0`: text-forward path.
-  - `1`: event-only path.
-  - other values: no handler path in this function.
-- `+16` (char[]) text source for mode `0` (copied with `strncpy(..., 0xFF)` to a new `0x100`-byte heap buffer and explicitly NUL-terminated).
-- `+8` / `+12` are not read in this handler.
-
-**Verified processing flow**:
-- `mode == 1`: posts `PostMainWndMsg_0x464(0xCC6, 0)`.
-- `mode == 0`:
-  - allocates `0x100` bytes via `operator new`,
-  - copies packet text from `+16`,
-  - posts `PostMainWndMsg_0x464(0xD8C, heap_ptr)`.
-- `mode >= 2`: returns with no post/side effect in this handler.
-- The `mode == 0` heap buffer is not freed in this function (ownership is transferred to the receiver of message `0xD8C`).
+Not a PK-elite packet. It is the account kick notice `CMsgKickoutNotice`: see
+[13_connection_lifecycle](13_connection_lifecycle.md#kick-notice-1115-cmsgkickoutnotice).
 
 ## MsgBattleEffectiveness (Type 1111)
 **Direction**: S→C

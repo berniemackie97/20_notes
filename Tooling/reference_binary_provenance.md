@@ -66,3 +66,9 @@ function belongs to, and for those 108 there is a source file to read alongside 
 the Binja MCP server can still be disassembled offline — `rizin -q -N -A -c 'pdf' <file>`,
 `izj` for strings, `axt @ addr` for xrefs. Used it to read the studio DLLs.
 `scratchpad/pe_exports.py` dumps a PE export table with RVAs and image base.
+
+## TQ server binaries (CQServer 15.10, 2008-10-21)
+
+Census, canonical picks and IDA fixups: `Server/tq-server-binaries-2008.md`. IDBs in
+`50_server/binaries/_re/*.i64`, driven headless via idalib 9.3 (`~/.venvs/ida-mcp` python,
+`import idapro`). Lead source only; 5517 client binary wins on conflict.

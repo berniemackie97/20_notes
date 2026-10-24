@@ -620,10 +620,13 @@ When device-reset: chat backgrounds are flipped instead of normal scene.
 
 ## Anti-Addiction System
 
-**Grade values** (`CHero_GetAntiAddictionGrade`):
-- 0x00 (0) = online < 3 hours — no throttle
-- 0x32 (50) = 3–5 hours — cooldown warning; posts WM_0x2b34 if elapsed >= 0x1b7740 (30 min)
-- 0x64 (100) = > 5 hours — hard throttle; posts WM_0x2b35 if elapsed >= 0xdbba0 (15 min);
-  posts WM_0x471 / WM_0x472 once via one-shot flags `data_958651` / `data_958652`
+**Grade values** (`CHero_GetAntiAddictionGrade`, `hero+0x2E34`; init −1 at `0x662FC0`; written only by
+`CMsgUserAttribEx__Process` via `0x66311D`). **Corrected 2026-10-24.** The earlier table had the ends swapped.
+- 0x00 (0) = strictest: StrRes 11061 ("unhealthy time", income 0) every 0xDBBA0 ms (15 min); exit-tile map change refused
+  (`STR_WALLOW_OPT_LIMIT_WARNING_NONE`)
+- 0x32 (50) = StrRes 11060 ("fatigue time") every 0x1B7740 ms (30 min); map change refused (`…_HALF`)
+- 0x64 (100) = normal: online-hours notices 0x471 (1 h) / 0x472 (2 h), once each via `data_958651` / `data_958652`
+- −1 (default) = no message, map change allowed ([portal transition](../Server/portal-transition-5517.md) §4)
 
-Active only for `locale == "SCH"` (Simplified Chinese / mainland China clients).
+Active only for `locale == "SCH"` (Simplified Chinese / mainland China clients). That locale test covers the frame
+messages only. The portal gate (`0x65DCD9`) reads the grade with no locale test.

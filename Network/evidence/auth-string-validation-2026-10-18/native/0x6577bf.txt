@@ -1,0 +1,30 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6577bf
+006577bf  8b 44 24 04      mov     eax, dword [esp+0x4]  ; 2078 account-login-alert data, not an equipped character title. Stores received u32 timestamp at hero+0xDE0, byte alert flag at +0xDE4, and copies the NUL-terminated ANSI location into owned char storage +0xDE8. No numeric validation or literal login value selection. Sole recovered caller: 2078 Process 0x75B044. Getter 0x6577B8 -> account-login-alert dialog 0x4189D2; that consumer calls localtime and uses STR_ACCOUNT_LOGIN/STR_ACCOUNT_ALERT.
+006577c3  56               push    esi
+006577c4  8b f1            mov     esi, ecx
+006577c6  57               push    edi
+006577c7  8b 7c 24 14      mov     edi, dword [esp+0x14]
+006577cb  89 86 e0 0d 00 00 mov     dword [esi+0xde0], eax
+006577d1  8a 44 24 10      mov     al, byte [esp+0x10]
+006577d5  85 ff            test    edi, edi
+006577d7  88 86 e4 0d 00 00 mov     byte [esi+0xde4], al
+006577dd  75 05            jne     0x6577e4
+
+# Block 3 at 0x6577df
+006577df  bf dc 60 95 00   mov     edi, 0x9560dc
+
+# Block 2 at 0x6577e4
+006577e4  57               push    edi
+006577e5  e8 86 fe 11 00   call    strlen
+006577ea  59               pop     ecx
+006577eb  03 c7            add     eax, edi
+006577ed  50               push    eax
+006577ee  57               push    edi
+006577ef  8d 8e e8 0d 00 00 lea     ecx, [esi+0xde8]
+006577f5  e8 f7 c3 da ff   call    CharBuffer_AssignRange
+006577fa  5f               pop     edi
+006577fb  5e               pop     esi
+006577fc  c2 0c 00         retn    0xc
+

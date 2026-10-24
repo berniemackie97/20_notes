@@ -1,0 +1,112 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x76a2d0
+0076a2d0  b8 a8 13 84 00   mov     eax, 0x8413a8
+0076a2d5  e8 76 d3 00 00   call    __EH_prolog
+0076a2da  83 ec 10         sub     esp, 0x10
+0076a2dd  56               push    esi
+0076a2de  57               push    edi
+0076a2df  8b 7d 08         mov     edi, dword [ebp+0x8]
+0076a2e2  33 f6            xor     esi, esi
+0076a2e4  3b fe            cmp     edi, esi
+0076a2e6  0f 84 c8 00 00 00 je      0x76a3b4
+
+# Block 3 at 0x76a2ec
+0076a2ec  39 75 0c         cmp     dword [ebp+0xc], esi
+0076a2ef  0f 8e bf 00 00 00 jle     0x76a3b4
+
+# Block 4 at 0x76a2f5
+0076a2f5  39 75 10         cmp     dword [ebp+0x10], esi
+0076a2f8  0f 84 b6 00 00 00 je      0x76a3b4
+
+# Block 5 at 0x76a2fe
+0076a2fe  39 75 14         cmp     dword [ebp+0x14], esi
+0076a301  0f 84 ad 00 00 00 je      0x76a3b4
+
+# Block 6 at 0x76a307
+0076a307  ff 75 10         push    dword [ebp+0x10]
+0076a30a  e8 61 d3 00 00   call    strlen
+0076a30f  85 c0            test    eax, eax
+0076a311  59               pop     ecx
+0076a312  0f 86 9c 00 00 00 jbe     0x76a3b4
+
+# Block 7 at 0x76a318
+0076a318  53               push    ebx
+0076a319  ff 75 10         push    dword [ebp+0x10]
+0076a31c  e8 4f d3 00 00   call    strlen
+0076a321  ff 75 14         push    dword [ebp+0x14]
+0076a324  8b d8            mov     ebx, eax
+0076a326  e8 45 d3 00 00   call    strlen
+0076a32b  59               pop     ecx
+0076a32c  89 45 f0         mov     dword [ebp-0x10], eax
+0076a32f  59               pop     ecx
+0076a330  21 75 fc         and     dword [ebp-0x4], esi
+0076a333  8d 45 0b         lea     eax, [ebp+0xb]
+0076a336  50               push    eax
+0076a337  57               push    edi
+0076a338  8d 4d e4         lea     ecx, [ebp-0x1c]
+0076a33b  e8 5d 9b c9 ff   call    NullTerminatedCharVector_ConstructFromCString
+0076a340  c6 45 fc 02      mov     byte [ebp-0x4], 0x2
+
+# Block 12 at 0x76a344
+0076a344  ff 75 10         push    dword [ebp+0x10]
+0076a347  e8 24 d3 00 00   call    strlen
+0076a34c  59               pop     ecx
+0076a34d  50               push    eax
+0076a34e  56               push    esi
+0076a34f  ff 75 10         push    dword [ebp+0x10]
+0076a352  8d 4d e4         lea     ecx, [ebp-0x1c]
+0076a355  e8 e1 79 cd ff   call    0x441d3b
+0076a35a  8b f0            mov     esi, eax
+0076a35c  83 fe ff         cmp     esi, 0xffffffff
+0076a35f  74 12            je      0x76a373
+
+# Block 9 at 0x76a361
+0076a361  ff 75 14         push    dword [ebp+0x14]
+0076a364  8d 4d e4         lea     ecx, [ebp-0x1c]
+0076a367  53               push    ebx
+0076a368  56               push    esi
+0076a369  e8 5e 77 cd ff   call    0x441acc
+0076a36e  03 75 f0         add     esi, dword [ebp-0x10]
+0076a371  eb d1            jmp     0x76a344
+
+# Block 8 at 0x76a373
+0076a373  8b 45 e8         mov     eax, dword [ebp-0x18]
+0076a376  8b 75 0c         mov     esi, dword [ebp+0xc]
+0076a379  2b 45 e4         sub     eax, dword [ebp-0x1c]
+0076a37c  3b f0            cmp     esi, eax
+0076a37e  7f 0b            jg      0x76a38b
+
+# Block 11 at 0x76a380
+0076a380  c7 45 fc 03 00 00 00 mov     dword [ebp-0x4], 0x3
+0076a387  32 db            xor     bl, bl
+0076a389  eb 1c            jmp     0x76a3a7
+
+# Block 10 at 0x76a38b
+0076a38b  56               push    esi
+0076a38c  ff 75 e4         push    dword [ebp-0x1c]
+0076a38f  57               push    edi
+0076a390  ff 15 f4 47 84 00 call    dword [strncpy]
+0076a396  83 c4 0c         add     esp, 0xc
+0076a399  80 64 37 ff 00   and     byte [edi+esi-0x1], 0x0
+0076a39e  c7 45 fc 04 00 00 00 mov     dword [ebp-0x4], 0x4
+0076a3a5  b3 01            mov     bl, 0x1
+
+# Block 14 at 0x76a3a7
+0076a3a7  8d 4d e4         lea     ecx, [ebp-0x1c]
+0076a3aa  e8 5f 9a c9 ff   call    NullTerminatedCharVector_DestroyStorage
+0076a3af  8a c3            mov     al, bl
+0076a3b1  5b               pop     ebx
+0076a3b2  eb 02            jmp     0x76a3b6
+
+# Block 2 at 0x76a3b4
+0076a3b4  32 c0            xor     al, al
+
+# Block 13 at 0x76a3b6
+0076a3b6  8b 4d f4         mov     ecx, dword [ebp-0xc]
+0076a3b9  5f               pop     edi
+0076a3ba  5e               pop     esi
+0076a3bb  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+0076a3c2  c9               leave
+0076a3c3  c3               retn
+

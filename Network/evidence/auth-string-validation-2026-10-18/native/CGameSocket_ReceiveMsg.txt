@@ -1,0 +1,449 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6e1c83
+006e1c83  b8 b4 2b 83 00   mov     eax, 0x832bb4  ; CGameSocket::ReceiveMsg(char* out, int* outSize) - ..\3DRole/Network/socket.h.
+Returns exactly ONE complete packet per call, or 0 when more socket data is needed.
+
+Owns a 64 KiB ring buffer:
+  this+0x200C   ring storage (0x10000 bytes)
+  this+0x1200C  bytes currently available
+  this+0x12010  read offset
+  this+0x12428  framing mode
+  this+0x12424  handshake-pending flag
+
+Per call:
+  - reads the length word out of the ring by hand, little-endian, with wraparound:
+    (ring[(off+1) % 0x10000] << 8) | ring[off]
+  - REJECTS length <= 0 or length > 0x400, logging
+    "ERROR: Receive package len[%d] > _MAX_MSGSIZE at %s, %d" and then ZEROING both +0x1200C and
+    +0x12010 - the client discards its entire receive buffer, so an oversized packet
+    desynchronises the session rather than merely being dropped.
+  - in framing mode 2 does _Size_1 += 8 to wait for the trailing signature, and later _Size -= 8
+    so the caller receives only the packet. So the header's size word EXCLUDES the 8-byte
+    signature; the framed unit on the wire is [packet][8-byte "TQServer"].
+  - if the ring does not hold the whole frame yet, calls CGameSocket_ReceiveAndDecryptSocketBytes
+    and re-checks; still short -> returns 0 and waits. Partial frames are buffered, never dropped.
+  - memcmp's the trailing 8 bytes against "TQServer"; mismatch logs
+    "memcmp PROTOCOL_PACKAGE_FLAG failed" and closes the socket.
+  - memcpy's one frame out (handling ring wraparound with two copies), sets *outSize, then
+    advances +0x12010 modulo 0x10000 and decrements +0x1200C.
+
+SERVER-FACING CONSEQUENCE: because reassembly is this ring's job, a server may coalesce any number
+of frames into a single socket write. Write boundaries are irrelevant to the client. The only hard
+rule is that no individual packet may exceed 0x400 bytes.
+
+[5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+DH orchestration: challenge0x753801 at0x6E1E70, response0x753669 at0x6E1ECF, queue0x6E1EF6 and flush0x6E1EFD BEFORE pending clear0x6E1F1E. Then post-DH proof dispatcher0x6DF1D0 at0x6E1F27. Established framing uses packet length+8 and TQServer at0x6E1FF6. No legacy mask/table dependency.
+Evidence: 20_notes/Network/14_session_derived_legacy_cipher_mask.md and 10_work/docs/evidence/session-mask-5517/. Analyst names; VAs authoritative.
+006e1c88  e8 c3 59 09 00   call    __EH_prolog
+006e1c8d  51               push    ecx
+006e1c8e  b8 48 20 00 00   mov     eax, 0x2048
+006e1c93  e8 c8 5d 09 00   call    __chkstk
+006e1c98  53               push    ebx
+006e1c99  56               push    esi
+006e1c9a  57               push    edi
+006e1c9b  33 ff            xor     edi, edi
+006e1c9d  39 7d 08         cmp     dword [ebp+0x8], edi
+006e1ca0  8b f1            mov     esi, ecx
+006e1ca2  89 65 f0         mov     dword [ebp-0x10], esp
+006e1ca5  89 75 e8         mov     dword [ebp-0x18], esi
+006e1ca8  89 7d fc         mov     dword [ebp-0x4], edi
+006e1cab  75 1d            jne     0x6e1cca
+
+# Block 3 at 0x6e1cad
+006e1cad  68 b7 01 00 00   push    0x1b7
+006e1cb2  68 a8 4c 94 00   push    0x944ca8
+006e1cb7  68 70 4f 94 00   push    0x944f70
+006e1cbc  56               push    esi
+006e1cbd  e8 67 07 00 00   call    0x6e2429
+006e1cc2  83 c4 10         add     esp, 0x10
+006e1cc5  e9 5f 04 00 00   jmp     0x6e2129
+
+# Block 2 at 0x6e1cca
+006e1cca  8b 8e 0c 20 01 00 mov     ecx, dword [esi+0x1200c]
+006e1cd0  89 7d fc         mov     dword [ebp-0x4], edi
+006e1cd3  83 f9 02         cmp     ecx, 0x2
+006e1cd6  7d 1e            jge     0x6e1cf6
+
+# Block 5 at 0x6e1cd8
+006e1cd8  8b ce            mov     ecx, esi
+006e1cda  e8 8d 07 00 00   call    CGameSocket_ReceiveAndDecryptSocketBytes
+006e1cdf  3b c7            cmp     eax, edi
+006e1ce1  0f 84 2f 03 00 00 je      0x6e2016
+
+# Block 10 at 0x6e1ce7
+006e1ce7  8b 8e 0c 20 01 00 mov     ecx, dword [esi+0x1200c]
+006e1ced  83 f9 02         cmp     ecx, 0x2
+006e1cf0  0f 8c 20 03 00 00 jl      0x6e2016
+
+# Block 4 at 0x6e1cf6
+006e1cf6  8b 86 28 24 01 00 mov     eax, dword [esi+0x12428]
+006e1cfc  33 db            xor     ebx, ebx
+006e1cfe  83 f8 01         cmp     eax, 0x1
+006e1d01  89 5d ec         mov     dword [ebp-0x14], ebx
+006e1d04  0f 84 d3 00 00 00 je      0x6e1ddd
+
+# Block 8 at 0x6e1d0a
+006e1d0a  83 f8 02         cmp     eax, 0x2
+006e1d0d  74 14            je      0x6e1d23
+
+# Block 14 at 0x6e1d0f
+006e1d0f  0f 8e 28 01 00 00 jle     0x6e1e3d
+
+# Block 20 at 0x6e1d15
+006e1d15  83 f8 04         cmp     eax, 0x4
+006e1d18  0f 8e bf 00 00 00 jle     0x6e1ddd
+
+# Block 26 at 0x6e1d1e
+006e1d1e  e9 1a 01 00 00   jmp     0x6e1e3d
+
+# Block 13 at 0x6e1d23
+006e1d23  83 be 2c 24 01 00 ff cmp     dword [esi+0x1242c], 0xffffffff
+006e1d2a  8d 86 2c 24 01 00 lea     eax, [esi+0x1242c]
+006e1d30  75 08            jne     0x6e1d3a
+
+# Block 18 at 0x6e1d32
+006e1d32  8b 96 10 20 01 00 mov     edx, dword [esi+0x12010]
+006e1d38  89 10            mov     dword [eax], edx
+
+# Block 17 at 0x6e1d3a
+006e1d3a  80 be 24 24 01 00 00 cmp     byte [esi+0x12424], 0x0
+006e1d41  0f 85 f6 00 00 00 jne     0x6e1e3d
+
+# Block 23 at 0x6e1d47
+006e1d47  8b 8e 10 20 01 00 mov     ecx, dword [esi+0x12010]
+006e1d4d  bb 00 00 01 00   mov     ebx, 0x10000
+006e1d52  8d 41 01         lea     eax, [ecx+0x1]
+006e1d55  99               cdq
+006e1d56  f7 fb            idiv    ebx
+006e1d58  0f b6 84 31 0c 20 00 00 movzx   eax, byte [ecx+esi+0x200c]
+006e1d60  0f b6 9c 32 0c 20 00 00 movzx   ebx, byte [edx+esi+0x200c]
+006e1d68  c1 e3 08         shl     ebx, 0x8
+006e1d6b  03 d8            add     ebx, eax
+006e1d6d  3b df            cmp     ebx, edi
+006e1d6f  7e 42            jle     0x6e1db3
+
+# Block 29 at 0x6e1d71
+006e1d71  81 fb 00 04 00 00 cmp     ebx, 0x400
+006e1d77  7f 3a            jg      0x6e1db3
+
+# Block 34 at 0x6e1d79
+006e1d79  e8 ae a6 d5 ff   call    0x43c42c
+006e1d7e  8b 8e 0c 20 01 00 mov     ecx, dword [esi+0x1200c]
+006e1d84  03 d8            add     ebx, eax
+006e1d86  3b d9            cmp     ebx, ecx
+006e1d88  89 5d ec         mov     dword [ebp-0x14], ebx
+006e1d8b  0f 8e ac 00 00 00 jle     0x6e1e3d
+
+# Block 42 at 0x6e1d91
+006e1d91  8b ce            mov     ecx, esi
+006e1d93  e8 d4 06 00 00   call    CGameSocket_ReceiveAndDecryptSocketBytes
+006e1d98  3b c7            cmp     eax, edi
+006e1d9a  0f 84 76 02 00 00 je      0x6e2016
+
+# Block 47 at 0x6e1da0
+006e1da0  8b 8e 0c 20 01 00 mov     ecx, dword [esi+0x1200c]
+006e1da6  3b d9            cmp     ebx, ecx
+006e1da8  0f 8e 8f 00 00 00 jle     0x6e1e3d
+
+# Block 52 at 0x6e1dae
+006e1dae  e9 63 02 00 00   jmp     0x6e2016
+
+# Block 28 at 0x6e1db3
+006e1db3  89 be 0c 20 01 00 mov     dword [esi+0x1200c], edi
+006e1db9  89 be 10 20 01 00 mov     dword [esi+0x12010], edi
+006e1dbf  68 f8 01 00 00   push    0x1f8
+
+# Block 15 at 0x6e1dc4
+006e1dc4  68 a8 4c 94 00   push    0x944ca8
+006e1dc9  53               push    ebx
+006e1dca  68 38 4f 94 00   push    0x944f38
+006e1dcf  56               push    esi
+006e1dd0  e8 54 06 00 00   call    0x6e2429
+006e1dd5  83 c4 14         add     esp, 0x14
+006e1dd8  e9 4c 03 00 00   jmp     0x6e2129
+
+# Block 7 at 0x6e1ddd
+006e1ddd  8b be 10 20 01 00 mov     edi, dword [esi+0x12010]
+006e1de3  bb 00 00 01 00   mov     ebx, 0x10000
+006e1de8  8d 47 01         lea     eax, [edi+0x1]
+006e1deb  99               cdq
+006e1dec  f7 fb            idiv    ebx
+006e1dee  0f b6 84 37 0c 20 00 00 movzx   eax, byte [edi+esi+0x200c]
+006e1df6  0f b6 9c 32 0c 20 00 00 movzx   ebx, byte [edx+esi+0x200c]
+006e1dfe  c1 e3 08         shl     ebx, 0x8
+006e1e01  03 d8            add     ebx, eax
+006e1e03  85 db            test    ebx, ebx
+006e1e05  89 5d ec         mov     dword [ebp-0x14], ebx
+006e1e08  0f 8e dd 02 00 00 jle     0x6e20eb
+
+# Block 12 at 0x6e1e0e
+006e1e0e  81 fb 00 04 00 00 cmp     ebx, 0x400
+006e1e14  0f 8f d1 02 00 00 jg      0x6e20eb
+
+# Block 16 at 0x6e1e1a
+006e1e1a  3b d9            cmp     ebx, ecx
+006e1e1c  7e 1d            jle     0x6e1e3b
+
+# Block 22 at 0x6e1e1e
+006e1e1e  8b ce            mov     ecx, esi
+006e1e20  e8 47 06 00 00   call    CGameSocket_ReceiveAndDecryptSocketBytes
+006e1e25  85 c0            test    eax, eax
+006e1e27  0f 84 e9 01 00 00 je      0x6e2016
+
+# Block 27 at 0x6e1e2d
+006e1e2d  8b 8e 0c 20 01 00 mov     ecx, dword [esi+0x1200c]
+006e1e33  3b d9            cmp     ebx, ecx
+006e1e35  0f 8f db 01 00 00 jg      0x6e2016
+
+# Block 21 at 0x6e1e3b
+006e1e3b  33 ff            xor     edi, edi
+
+# Block 19 at 0x6e1e3d
+006e1e3d  83 be 28 24 01 00 02 cmp     dword [esi+0x12428], 0x2
+006e1e44  0f 85 d3 01 00 00 jne     0x6e201d
+
+# Block 25 at 0x6e1e4a
+006e1e4a  80 be 24 24 01 00 00 cmp     byte [esi+0x12424], 0x0
+006e1e51  0f 84 da 00 00 00 je      0x6e1f31
+
+# Block 33 at 0x6e1e57
+006e1e57  8b 86 2c 24 01 00 mov     eax, dword [esi+0x1242c]
+006e1e5d  8d 96 30 24 01 00 lea     edx, [esi+0x12430]
+006e1e63  2b c8            sub     ecx, eax
+006e1e65  8d 84 30 0c 20 00 00 lea     eax, [eax+esi+0x200c]
+006e1e6c  51               push    ecx
+006e1e6d  50               push    eax
+006e1e6e  8b ca            mov     ecx, edx
+006e1e70  e8 8c 19 07 00   call    CClientSecurity__ProcessServerDhChallenge
+006e1e75  8b d8            mov     ebx, eax
+006e1e77  3b df            cmp     ebx, edi
+006e1e79  7d 23            jge     0x6e1e9e
+
+# Block 41 at 0x6e1e7b
+006e1e7b  8b ce            mov     ecx, esi
+006e1e7d  e8 18 04 00 00   call    CGameSocket_CloseAndReset
+006e1e82  68 0e 02 00 00   push    0x20e
+006e1e87  68 a8 4c 94 00   push    0x944ca8
+006e1e8c  68 f8 4e 94 00   push    0x944ef8
+006e1e91  e8 82 71 08 00   call    Debug_LogMessageToDailyFileWithDedup
+006e1e96  83 c4 0c         add     esp, 0xc
+006e1e99  e9 78 01 00 00   jmp     0x6e2016
+
+# Block 40 at 0x6e1e9e
+006e1e9e  0f 84 72 01 00 00 je      0x6e2016
+
+# Block 46 at 0x6e1ea4
+006e1ea4  80 a5 a8 df ff ff 00 and     byte [ebp-0x2058], 0x0
+006e1eab  b9 ff 07 00 00   mov     ecx, 0x7ff
+006e1eb0  33 c0            xor     eax, eax
+006e1eb2  8d bd a9 df ff ff lea     edi, [ebp-0x2057]
+006e1eb8  f3 ab            rep stosd dword [edi]
+006e1eba  66 ab            stosw   word [edi]
+006e1ebc  aa               stosb   byte [edi]
+006e1ebd  8d 85 a8 df ff ff lea     eax, [ebp-0x2058]
+006e1ec3  68 00 20 00 00   push    0x2000
+006e1ec8  50               push    eax
+006e1ec9  8d 8e 30 24 01 00 lea     ecx, [esi+0x12430]
+006e1ecf  e8 95 17 07 00   call    CClientSecurity__GenerateClientDhResponse
+006e1ed4  85 c0            test    eax, eax
+006e1ed6  7f 14            jg      0x6e1eec
+
+# Block 51 at 0x6e1ed8
+006e1ed8  68 20 02 00 00   push    0x220
+006e1edd  68 a8 4c 94 00   push    0x944ca8
+006e1ee2  68 b0 4e 94 00   push    0x944eb0
+006e1ee7  e9 1b 01 00 00   jmp     0x6e2007
+
+# Block 50 at 0x6e1eec
+006e1eec  50               push    eax
+006e1eed  8d 85 a8 df ff ff lea     eax, [ebp-0x2058]
+006e1ef3  50               push    eax
+006e1ef4  8b ce            mov     ecx, esi
+006e1ef6  e8 0c fb ff ff   call    CGameSocket_SendBufferedPacket
+006e1efb  8b ce            mov     ecx, esi
+006e1efd  e8 5a 02 00 00   call    CGameSocket_FlushSendBuffer  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+Flush fixed-key wrapped DH response while pending remains true. No outer legacy or DH-derived session encryption.
+006e1f02  8b 86 10 20 01 00 mov     eax, dword [esi+0x12010]
+006e1f08  8d 8e 10 20 01 00 lea     ecx, [esi+0x12010]
+006e1f0e  03 c3            add     eax, ebx
+006e1f10  bf 00 00 01 00   mov     edi, 0x10000
+006e1f15  99               cdq
+006e1f16  f7 ff            idiv    edi
+006e1f18  29 9e 0c 20 01 00 sub     dword [esi+0x1200c], ebx
+006e1f1e  80 a6 24 24 01 00 00 and     byte [esi+0x12424], 0x0  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+Clear dhPending only after response flush; next call0x6E1F27 sends post-DH proof via dispatcher0x6DF1D0.
+006e1f25  89 11            mov     dword [ecx], edx
+006e1f27  e8 a4 d2 ff ff   call    CConnectionFlow__SendGameSessionBootstrap
+006e1f2c  e9 e5 00 00 00   jmp     0x6e2016
+
+# Block 32 at 0x6e1f31
+006e1f31  80 65 a8 00      and     byte [ebp-0x58], 0x0
+006e1f35  6a 0f            push    0xf
+006e1f37  59               pop     ecx
+006e1f38  33 c0            xor     eax, eax
+006e1f3a  8d 7d a9         lea     edi, [ebp-0x57]
+006e1f3d  f3 ab            rep stosd dword [edi]
+006e1f3f  66 ab            stosw   word [edi]
+006e1f41  aa               stosb   byte [edi]
+006e1f42  e8 e5 a4 d5 ff   call    0x43c42c
+006e1f47  8b 8e 10 20 01 00 mov     ecx, dword [esi+0x12010]
+006e1f4d  8b f9            mov     edi, ecx
+006e1f4f  03 cb            add     ecx, ebx
+006e1f51  2b f8            sub     edi, eax
+006e1f53  03 fb            add     edi, ebx
+006e1f55  81 f9 00 00 01 00 cmp     ecx, 0x10000
+006e1f5b  7e 63            jle     0x6e1fc0
+
+# Block 39 at 0x6e1f5d
+006e1f5d  e8 ca a4 d5 ff   call    0x43c42c
+006e1f62  8b 8e 10 20 01 00 mov     ecx, dword [esi+0x12010]
+006e1f68  2b c8            sub     ecx, eax
+006e1f6a  b8 00 00 01 00   mov     eax, 0x10000
+006e1f6f  03 cb            add     ecx, ebx
+006e1f71  3b c8            cmp     ecx, eax
+006e1f73  7d 3c            jge     0x6e1fb1
+
+# Block 45 at 0x6e1f75
+006e1f75  2b c7            sub     eax, edi
+006e1f77  50               push    eax
+006e1f78  8d 84 37 0c 20 00 00 lea     eax, [edi+esi+0x200c]
+006e1f7f  50               push    eax
+006e1f80  8d 45 a8         lea     eax, [ebp-0x58]
+006e1f83  50               push    eax
+006e1f84  e8 31 57 09 00   call    memcpy
+006e1f89  8b 86 10 20 01 00 mov     eax, dword [esi+0x12010]
+006e1f8f  8d 84 18 00 00 ff ff lea     eax, [eax+ebx-0x10000]
+006e1f96  50               push    eax
+006e1f97  8d 86 0c 20 00 00 lea     eax, [esi+0x200c]
+006e1f9d  50               push    eax
+006e1f9e  8d 85 a8 ff 00 00 lea     eax, [ebp+0xffa8]
+006e1fa4  2b c7            sub     eax, edi
+006e1fa6  50               push    eax
+006e1fa7  e8 0e 57 09 00   call    memcpy
+006e1fac  83 c4 18         add     esp, 0x18
+006e1faf  eb 29            jmp     0x6e1fda
+
+# Block 44 at 0x6e1fb1
+006e1fb1  e8 76 a4 d5 ff   call    0x43c42c
+006e1fb6  50               push    eax
+006e1fb7  8d 84 37 0c 20 ff ff lea     eax, [edi+esi-0xdff4]
+006e1fbe  eb 0d            jmp     0x6e1fcd
+
+# Block 38 at 0x6e1fc0
+006e1fc0  e8 67 a4 d5 ff   call    0x43c42c
+006e1fc5  50               push    eax
+006e1fc6  8d 84 37 0c 20 00 00 lea     eax, [edi+esi+0x200c]
+
+# Block 48 at 0x6e1fcd
+006e1fcd  50               push    eax
+006e1fce  8d 45 a8         lea     eax, [ebp-0x58]
+006e1fd1  50               push    eax
+006e1fd2  e8 e3 56 09 00   call    memcpy
+006e1fd7  83 c4 0c         add     esp, 0xc
+
+# Block 49 at 0x6e1fda
+006e1fda  e8 4d a4 d5 ff   call    0x43c42c
+006e1fdf  8b f8            mov     edi, eax
+006e1fe1  e8 eb 1d 07 00   call    0x753dd1
+006e1fe6  57               push    edi
+006e1fe7  50               push    eax
+006e1fe8  8d 45 a8         lea     eax, [ebp-0x58]
+006e1feb  50               push    eax
+006e1fec  e8 d5 56 09 00   call    memcmp
+006e1ff1  83 c4 0c         add     esp, 0xc
+006e1ff4  85 c0            test    eax, eax
+006e1ff6  74 25            je      0x6e201d  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+Post-DH TQServer trailer verification; frame availability includes8 extra bytes. No legacy-mask input.
+
+# Block 43 at 0x6e1ff8
+006e1ff8  68 50 02 00 00   push    0x250
+006e1ffd  68 a8 4c 94 00   push    0x944ca8
+006e2002  68 60 4e 94 00   push    0x944e60
+
+# Block 53 at 0x6e2007
+006e2007  e8 0c 70 08 00   call    Debug_LogMessageToDailyFileWithDedup
+006e200c  83 c4 0c         add     esp, 0xc
+006e200f  8b ce            mov     ecx, esi
+006e2011  e8 84 02 00 00   call    CGameSocket_CloseAndReset
+
+# Block 9 at 0x6e2016
+006e2016  33 c0            xor     eax, eax
+006e2018  e9 0c 01 00 00   jmp     0x6e2129
+
+# Block 24 at 0x6e201d
+006e201d  8b 86 10 20 01 00 mov     eax, dword [esi+0x12010]
+006e2023  bf 00 00 01 00   mov     edi, 0x10000
+006e2028  8d 0c 18         lea     ecx, [eax+ebx]
+006e202b  3b cf            cmp     ecx, edi
+006e202d  7e 34            jle     0x6e2063
+
+# Block 31 at 0x6e202f
+006e202f  2b f8            sub     edi, eax
+006e2031  8d 84 30 0c 20 00 00 lea     eax, [eax+esi+0x200c]
+006e2038  57               push    edi
+006e2039  50               push    eax
+006e203a  ff 75 08         push    dword [ebp+0x8]
+006e203d  e8 78 56 09 00   call    memcpy
+006e2042  8b c3            mov     eax, ebx
+006e2044  2b c7            sub     eax, edi
+006e2046  50               push    eax
+006e2047  8d 86 0c 20 00 00 lea     eax, [esi+0x200c]
+006e204d  50               push    eax
+006e204e  8b 45 08         mov     eax, dword [ebp+0x8]
+006e2051  03 f8            add     edi, eax
+006e2053  57               push    edi
+006e2054  e8 61 56 09 00   call    memcpy
+006e2059  8b 45 0c         mov     eax, dword [ebp+0xc]
+006e205c  83 c4 18         add     esp, 0x18
+006e205f  89 18            mov     dword [eax], ebx
+006e2061  eb 35            jmp     0x6e2098
+
+# Block 30 at 0x6e2063
+006e2063  83 be 28 24 01 00 02 cmp     dword [esi+0x12428], 0x2
+006e206a  8b fb            mov     edi, ebx
+006e206c  c6 45 fc 07      mov     byte [ebp-0x4], 0x7
+006e2070  75 07            jne     0x6e2079
+
+# Block 36 at 0x6e2072
+006e2072  e8 b5 a3 d5 ff   call    0x43c42c
+006e2077  2b f8            sub     edi, eax
+
+# Block 35 at 0x6e2079
+006e2079  8b 86 10 20 01 00 mov     eax, dword [esi+0x12010]
+006e207f  57               push    edi
+006e2080  8d 84 30 0c 20 00 00 lea     eax, [eax+esi+0x200c]
+006e2087  50               push    eax
+006e2088  ff 75 08         push    dword [ebp+0x8]
+006e208b  e8 2a 56 09 00   call    memcpy
+006e2090  8b 45 0c         mov     eax, dword [ebp+0xc]
+006e2093  83 c4 0c         add     esp, 0xc
+006e2096  89 38            mov     dword [eax], edi
+
+# Block 37 at 0x6e2098
+006e2098  8b 86 10 20 01 00 mov     eax, dword [esi+0x12010]
+006e209e  b9 00 00 01 00   mov     ecx, 0x10000
+006e20a3  03 c3            add     eax, ebx
+006e20a5  6a 01            push    0x1
+006e20a7  99               cdq
+006e20a8  f7 f9            idiv    ecx
+006e20aa  29 9e 0c 20 01 00 sub     dword [esi+0x1200c], ebx
+006e20b0  58               pop     eax
+006e20b1  89 96 10 20 01 00 mov     dword [esi+0x12010], edx
+006e20b7  eb 70            jmp     0x6e2129
+
+# Block 11 at 0x6e20eb
+006e20eb  83 a6 0c 20 01 00 00 and     dword [esi+0x1200c], 0x0
+006e20f2  83 a6 10 20 01 00 00 and     dword [esi+0x12010], 0x0
+006e20f9  68 e1 01 00 00   push    0x1e1
+006e20fe  e9 c1 fc ff ff   jmp     0x6e1dc4
+
+# Block 6 at 0x6e2129
+006e2129  8b 4d f4         mov     ecx, dword [ebp-0xc]
+006e212c  5f               pop     edi
+006e212d  5e               pop     esi
+006e212e  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+006e2135  5b               pop     ebx
+006e2136  c9               leave
+006e2137  c2 08 00         retn    0x8
+

@@ -1,0 +1,30 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x4ac453
+004ac453  33 c0            xor     eax, eax  ; Login error display. arg1 = text (NULL -> no-op). Flash variable "CRITICAL" when byte 0x96ab34 != 0 and arg2 != 0, else "ERROR"; dispatched via CLoginFlashDlg_SetFlashVariableAndDispatch. Caller: queued 1055/1057/1052 failure text in CMyShellDlg_ResetRuntimeAndDisableWorldFrameGate (0x5dc93f, arg2=1).
+004ac455  39 44 24 04      cmp     dword [esp+0x4], eax
+004ac459  74 27            je      0x4ac482
+
+# Block 3 at 0x4ac45b
+004ac45b  38 05 34 ab 96 00 cmp     byte [0x96ab34], al
+004ac461  74 11            je      0x4ac474
+
+# Block 5 at 0x4ac463
+004ac463  38 44 24 08      cmp     byte [esp+0x8], al
+004ac467  74 0b            je      0x4ac474
+
+# Block 6 at 0x4ac469
+004ac469  ff 74 24 04      push    dword [esp+0x4]
+004ac46d  68 c8 b5 92 00   push    0x92b5c8
+004ac472  eb 09            jmp     0x4ac47d
+
+# Block 4 at 0x4ac474
+004ac474  ff 74 24 04      push    dword [esp+0x4]
+004ac478  68 c0 b5 92 00   push    0x92b5c0
+
+# Block 7 at 0x4ac47d
+004ac47d  e8 42 02 00 00   call    CLoginFlashDlg_SetFlashVariableAndDispatch
+
+# Block 2 at 0x4ac482
+004ac482  c2 08 00         retn    0x8
+

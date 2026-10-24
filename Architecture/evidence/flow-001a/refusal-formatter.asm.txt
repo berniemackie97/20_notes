@@ -1,0 +1,172 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x754011
+00754011  b8 6f fc 83 00   mov     eax, 0x83fc6f  ; Verified non-Facebook 1055 failure text path: resolve STR_CONNECT_ERROR_MSG_TYPE_%03u, fall back to STR_CONNECT_ERROR_MSG_TYPE_UNKNOWN, then wrap with STR_LOGIN_FAIL. Code 1 only uses STR_FACEBOOK_LOGIN_ERR when g_startupMovieFacebookVariantEnabled != 0.
+00754016  e8 35 36 02 00   call    __EH_prolog
+0075401b  83 ec 40         sub     esp, 0x40
+0075401e  83 65 e4 00      and     dword [ebp-0x1c], 0x0
+00754022  53               push    ebx
+00754023  56               push    esi
+00754024  57               push    edi
+00754025  bf 20 9a 94 00   mov     edi, 0x949a20
+0075402a  6a 70            push    0x70
+0075402c  57               push    edi
+0075402d  68 00 9a 94 00   push    0x949a00
+00754032  8d 4d ec         lea     ecx, [ebp-0x14]
+00754035  e8 10 90 01 00   call    0x76d04a
+0075403a  6a 01            push    0x1
+0075403c  8b c8            mov     ecx, eax
+0075403e  5b               pop     ebx
+0075403f  ff 75 0c         push    dword [ebp+0xc]
+00754042  89 5d fc         mov     dword [ebp-0x4], ebx
+00754045  e8 2c 90 01 00   call    0x76d076
+0075404a  8b c8            mov     ecx, eax
+0075404c  e8 9a 90 01 00   call    j_sub_76cf16
+00754051  50               push    eax
+00754052  8d 4d b4         lea     ecx, [ebp-0x4c]
+00754055  e8 94 fe ca ff   call    0x403eee
+0075405a  8d 4d ec         lea     ecx, [ebp-0x14]
+0075405d  c6 45 fc 03      mov     byte [ebp-0x4], 0x3
+00754061  e8 de 8d 01 00   call    0x76ce44
+00754066  8d 45 b4         lea     eax, [ebp-0x4c]
+00754069  c6 45 fc 04      mov     byte [ebp-0x4], 0x4
+0075406d  50               push    eax
+0075406e  6a 00            push    0x0
+00754070  e8 29 74 01 00   call    CStringManager_GetOrCreateSingleton
+00754075  59               pop     ecx
+00754076  8b c8            mov     ecx, eax
+00754078  e8 94 76 01 00   call    CStringManager_GetStringByKey
+0075407d  8b f0            mov     esi, eax
+0075407f  8d 45 f2         lea     eax, [ebp-0xe]
+00754082  50               push    eax
+00754083  8d 4d d8         lea     ecx, [ebp-0x28]
+00754086  e8 fb 57 f3 ff   call    NullTerminatedCharVector_InitializeEmpty
+0075408b  56               push    esi
+0075408c  c6 45 fc 05      mov     byte [ebp-0x4], 0x5
+00754090  e8 db 35 02 00   call    strlen
+00754095  59               pop     ecx
+00754096  03 c6            add     eax, esi
+00754098  50               push    eax
+00754099  56               push    esi
+0075409a  8d 4d d8         lea     ecx, [ebp-0x28]
+0075409d  e8 fd 02 cb ff   call    NullTerminatedCharVector_AssignRangeWithCookie
+007540a2  8b 45 d8         mov     eax, dword [ebp-0x28]
+007540a5  3b 45 dc         cmp     eax, dword [ebp-0x24]
+007540a8  75 6e            jne     0x754118
+
+# Block 3 at 0x7540aa
+007540aa  8d 45 f1         lea     eax, [ebp-0xf]
+007540ad  8d 4d cc         lea     ecx, [ebp-0x34]
+007540b0  50               push    eax
+007540b1  c6 45 fc 08      mov     byte [ebp-0x4], 0x8
+007540b5  e8 cc 57 f3 ff   call    NullTerminatedCharVector_InitializeEmpty
+007540ba  be dc 99 94 00   mov     esi, 0x9499dc
+007540bf  c6 45 fc 09      mov     byte [ebp-0x4], 0x9
+007540c3  56               push    esi
+007540c4  e8 a7 35 02 00   call    strlen
+007540c9  59               pop     ecx
+007540ca  03 c6            add     eax, esi
+007540cc  8a 4d 0f         mov     cl, byte [ebp+0xf]
+007540cf  88 4d f3         mov     byte [ebp-0xd], cl
+007540d2  8d 4d f3         lea     ecx, [ebp-0xd]
+007540d5  51               push    ecx
+007540d6  50               push    eax
+007540d7  56               push    esi
+007540d8  8d 4d cc         lea     ecx, [ebp-0x34]
+007540db  e8 5e 06 cb ff   call    NullTerminatedCharVector_AssignRange
+007540e0  8d 45 cc         lea     eax, [ebp-0x34]
+007540e3  c6 45 fc 0a      mov     byte [ebp-0x4], 0xa
+007540e7  50               push    eax
+007540e8  6a 00            push    0x0
+007540ea  e8 af 73 01 00   call    CStringManager_GetOrCreateSingleton
+007540ef  59               pop     ecx
+007540f0  8b c8            mov     ecx, eax
+007540f2  e8 1a 76 01 00   call    CStringManager_GetStringByKey
+007540f7  8b f0            mov     esi, eax
+007540f9  56               push    esi
+007540fa  e8 71 35 02 00   call    strlen
+007540ff  59               pop     ecx
+00754100  03 c6            add     eax, esi
+00754102  50               push    eax
+00754103  56               push    esi
+00754104  8d 4d d8         lea     ecx, [ebp-0x28]
+00754107  e8 e5 fa ca ff   call    CharBuffer_AssignRange
+0075410c  8d 4d cc         lea     ecx, [ebp-0x34]
+0075410f  c6 45 fc 08      mov     byte [ebp-0x4], 0x8
+00754113  e8 40 fb ca ff   call    0x403c58
+
+# Block 2 at 0x754118
+00754118  8d 45 f1         lea     eax, [ebp-0xf]
+0075411b  8d 4d cc         lea     ecx, [ebp-0x34]
+0075411e  50               push    eax
+0075411f  c6 45 fc 0b      mov     byte [ebp-0x4], 0xb
+00754123  e8 5e 57 f3 ff   call    NullTerminatedCharVector_InitializeEmpty
+00754128  be cc 99 94 00   mov     esi, 0x9499cc
+0075412d  c6 45 fc 0c      mov     byte [ebp-0x4], 0xc
+00754131  56               push    esi
+00754132  e8 39 35 02 00   call    strlen
+00754137  59               pop     ecx
+00754138  03 c6            add     eax, esi
+0075413a  8a 4d 0f         mov     cl, byte [ebp+0xf]
+0075413d  88 4d f3         mov     byte [ebp-0xd], cl
+00754140  8d 4d f3         lea     ecx, [ebp-0xd]
+00754143  51               push    ecx
+00754144  50               push    eax
+00754145  56               push    esi
+00754146  8d 4d cc         lea     ecx, [ebp-0x34]
+00754149  e8 f0 05 cb ff   call    NullTerminatedCharVector_AssignRange
+0075414e  6a 7c            push    0x7c
+00754150  8d 45 cc         lea     eax, [ebp-0x34]
+00754153  57               push    edi
+00754154  50               push    eax
+00754155  6a 00            push    0x0
+00754157  c6 45 fc 0d      mov     byte [ebp-0x4], 0xd
+0075415b  e8 3e 73 01 00   call    CStringManager_GetOrCreateSingleton
+00754160  59               pop     ecx
+00754161  8b c8            mov     ecx, eax
+00754163  e8 a9 75 01 00   call    CStringManager_GetStringByKey
+00754168  50               push    eax
+00754169  8d 4d e8         lea     ecx, [ebp-0x18]
+0075416c  e8 d9 8e 01 00   call    0x76d04a
+00754171  ff 75 0c         push    dword [ebp+0xc]
+00754174  8b c8            mov     ecx, eax
+00754176  c6 45 fc 0e      mov     byte [ebp-0x4], 0xe
+0075417a  ff 75 d8         push    dword [ebp-0x28]
+0075417d  e8 57 8f 01 00   call    0x76d0d9
+00754182  8b c8            mov     ecx, eax
+00754184  e8 ed 8e 01 00   call    0x76d076
+00754189  8b c8            mov     ecx, eax
+0075418b  e8 5b 8f 01 00   call    j_sub_76cf16
+00754190  50               push    eax
+00754191  8d 4d c0         lea     ecx, [ebp-0x40]
+00754194  e8 55 fd ca ff   call    0x403eee
+00754199  8d 4d e8         lea     ecx, [ebp-0x18]
+0075419c  c6 45 fc 12      mov     byte [ebp-0x4], 0x12
+007541a0  e8 9f 8c 01 00   call    0x76ce44
+007541a5  8d 4d cc         lea     ecx, [ebp-0x34]
+007541a8  c6 45 fc 13      mov     byte [ebp-0x4], 0x13
+007541ac  e8 5d fc ca ff   call    NullTerminatedCharVector_DestroyStorage
+007541b1  8b 4d 08         mov     ecx, dword [ebp+0x8]
+007541b4  8d 45 c0         lea     eax, [ebp-0x40]
+007541b7  50               push    eax
+007541b8  c6 45 fc 10      mov     byte [ebp-0x4], 0x10
+007541bc  e8 2d fd ca ff   call    0x403eee
+007541c1  89 5d e4         mov     dword [ebp-0x1c], ebx
+007541c4  8d 4d c0         lea     ecx, [ebp-0x40]
+007541c7  c6 45 fc 07      mov     byte [ebp-0x4], 0x7
+007541cb  e8 88 fa ca ff   call    0x403c58
+007541d0  8d 4d d8         lea     ecx, [ebp-0x28]
+007541d3  c6 45 fc 03      mov     byte [ebp-0x4], 0x3
+007541d7  e8 7c fa ca ff   call    0x403c58
+007541dc  80 65 fc 00      and     byte [ebp-0x4], 0x0
+007541e0  8d 4d b4         lea     ecx, [ebp-0x4c]
+007541e3  e8 70 fa ca ff   call    0x403c58
+007541e8  8b 4d f4         mov     ecx, dword [ebp-0xc]
+007541eb  8b 45 08         mov     eax, dword [ebp+0x8]
+007541ee  5f               pop     edi
+007541ef  5e               pop     esi
+007541f0  5b               pop     ebx
+007541f1  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+007541f8  c9               leave
+007541f9  c3               retn
+

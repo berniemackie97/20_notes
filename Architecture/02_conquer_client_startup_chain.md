@@ -229,7 +229,7 @@ This is the verified world-frame enable transition used by startup/login command
 Current managed startup UI preserves native main-window message sequencing for login handoff:
 
 1. user submit queues native-equivalent credential commands (`CMD_NAME`, `CMD_PASSWORD`) in managed form;
-2. submit stage posts `WM_COMMAND 0x464` with `wParam=0x480` (native `CMD_ENTERGAME` branch);
+2. submit stage posts `WM_COMMAND 0x464` with `wParam=0x480` (native `CMD_GAMESTART` branch; `CMD_ENTERGAME` is the earlier validator/connect step `0x4ABFBD`, see note 11);
 3. startup status callbacks (`LOADING_TRACE` `0x2BE7`/`0x2BE8`, `PROGRESS`) are treated as visual status only;
 4. world-load stage posts `wParam=0x483` (plus `0xC6B`, `0x3F2`) only on explicit world-ready transition
    matching `CLoginFlashDlg_HandleCloseCommandAndPostWorldEntryMessages` (`0x4AC62B`) semantics.
@@ -249,8 +249,9 @@ Practical endpoint consequence from verified handlers:
 - `0x482` clear handler (`0x5C6EC5`) clears startup connect/overlay flags:
   `this+0x179AAC = 0`, `this+0x179AB8 = 0`.
 - `0x483` (`0x5CAA2D`) is the world-frame enable point;
-- native submit path (`CMD_ENTERGAME`/`CMD_GAMESTART`) posts `0x480` directly from
-  `CLoginFlashDlg_HandleFlashCommandString` (`0x4AA24D`) with no separate C++ pre-connect socket probe;
+- `CMD_GAMESTART` posts `0x480` from `CLoginFlashDlg_HandleFlashCommandString` (`0x4AA24D`). Corrected 2026-10-15:
+  the earlier `CMD_ENTERGAME` (`0x4ABFBD`) already connected to the account server
+  (`0x4AF12D` → `0x66D3FF`); there is no pre-connect-free submit;
 - own-UI startup defaults must target login/account service on submit, not game/world service as the
   initial endpoint.
 
@@ -1402,3 +1403,11 @@ Returns `1` when login/startup transition has completed (message `0x3F2` has bee
 | `0x958668` | `g_frameTickReentrantGuard` (data) |
 | `0x96AEC0` | `g_globalTickCounter` (data) |
 | `0x9564D4` | `g_frameTickPerfTimerSingleton` (data) |
+
+## 2026-10-14: retail login visuals and focus evidence
+
+The research-only [login UI asset and interaction audit](11_login_ui_assets_and_interactions.md) now pins the actual `start.dat` and submovie bytes, original control geometry, animation timelines and credential-editing behavior. It supersedes assumptions that named dragon holders imply loaded animation or that realm selection is required to edit credentials. The ordinary Flash/native input paths have no direct realm gate; modal/intro/input-policy states are separate.
+
+The top/bottom startup transition is embedded video followed by three original bitmap-layer movement frames. Final `topDragonMC`/`bottomDragonMC` holders are empty. `rsDragon.swf` exists and has been extracted, but a loader from this `start.dat` has not been established. The logo has 18 encoded pictures across 25 timeline frames; asynchronous stop/loop behavior is explicitly unresolved. These are source findings, not a live ActiveX replay.
+
+Targeted BN assembly comments were added at `0x4ADC6F`, `0x4ADD6F`, `0x4ADFC8`, `0x4AE2AE`, and `0x59E5B2`; no BNDB was saved. The packaged original frames, placement/alpha/depth metadata, raw AVM1 offsets and remaining unknowns are indexed in the focused audit. No OpenConquerClient implementation was changed.

@@ -1,0 +1,787 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/C3_CORE_DLL.dll.bndb
+
+# Block 1 at 0x10003590
+10003590  83 ec 58         sub     esp, 0x58  ; Converts one 1- or 2-byte client-codepage character to UTF-16, sizes the embedded face to C3Font.nominalPixelHeight, loads and renders its glyph (normal when antialiasEnabled, mono otherwise), packs it into a 512x512 atlas with two-pixel spacing, and appends a 0x18-byte C3FontGlyphRecord. Returns its uint16 one-based record index; zero is failure/sentinel.
+10003593  53               push    ebx
+10003594  55               push    ebp
+10003595  8b 6c 24 64      mov     ebp, dword [esp+0x64]
+10003599  56               push    esi
+1000359a  8b 75 00         mov     esi, dword [ebp]
+1000359d  57               push    edi
+1000359e  8b 7c 24 74      mov     edi, dword [esp+0x74]
+100035a2  85 ff            test    edi, edi
+100035a4  c7 44 24 10 00 00 00 00 mov     dword [esp+0x10], 0x0
+100035ac  74 22            je      0x100035d0
+
+# Block 3 at 0x100035ae
+100035ae  8b 4c 24 70      mov     ecx, dword [esp+0x70]
+100035b2  8b 15 d8 01 0b 10 mov     edx, dword [0x100b01d8]
+100035b8  6a 01            push    0x1
+100035ba  8d 44 24 14      lea     eax, [esp+0x14]
+100035be  50               push    eax
+100035bf  57               push    edi
+100035c0  51               push    ecx
+100035c1  6a 00            push    0x0
+100035c3  52               push    edx
+100035c4  ff 15 7c 10 0a 10 call    dword [MultiByteToWideChar]
+100035ca  8b 4c 24 10      mov     ecx, dword [esp+0x10]
+100035ce  eb 0b            jmp     0x100035db
+
+# Block 2 at 0x100035d0
+100035d0  8b 44 24 70      mov     eax, dword [esp+0x70]
+100035d4  66 8b 08         mov     cx, word [eax]
+100035d7  89 4c 24 10      mov     dword [esp+0x10], ecx
+
+# Block 6 at 0x100035db
+100035db  8b 85 04 01 00 00 mov     eax, dword [ebp+0x104]
+100035e1  3b 46 7c         cmp     eax, dword [esi+0x7c]
+100035e4  74 20            je      0x10003606
+
+# Block 5 at 0x100035e6
+100035e6  6a 00            push    0x0
+100035e8  6a 00            push    0x0
+100035ea  c1 e0 06         shl     eax, 0x6
+100035ed  50               push    eax
+100035ee  6a 00            push    0x0
+100035f0  56               push    esi
+100035f1  e8 7a 95 08 00   call    0x1008cb70
+100035f6  8b 8d 04 01 00 00 mov     ecx, dword [ebp+0x104]
+100035fc  89 4e 7c         mov     dword [esi+0x7c], ecx
+100035ff  8b 4c 24 24      mov     ecx, dword [esp+0x24]
+10003603  83 c4 14         add     esp, 0x14
+
+# Block 4 at 0x10003606
+10003606  81 e1 ff ff 00 00 and     ecx, 0xffff
+1000360c  51               push    ecx
+1000360d  56               push    esi
+1000360e  e8 1d 98 08 00   call    0x1008ce30
+10003613  83 c4 08         add     esp, 0x8
+10003616  85 c0            test    eax, eax
+10003618  0f 84 50 06 00 00 je      0x10003c6e
+
+# Block 8 at 0x1000361e
+1000361e  8a 95 0c 01 02 00 mov     dl, byte [ebp+0x2010c]
+10003624  8b 4c 24 78      mov     ecx, dword [esp+0x78]
+10003628  f6 da            neg     dl
+1000362a  1b d2            sbb     edx, edx
+1000362c  83 e2 08         and     edx, 0x8
+1000362f  52               push    edx
+10003630  03 c1            add     eax, ecx
+10003632  50               push    eax
+10003633  56               push    esi
+10003634  e8 17 8c 08 00   call    0x1008c250
+10003639  83 c4 0c         add     esp, 0xc
+1000363c  85 c0            test    eax, eax
+1000363e  0f 85 2a 06 00 00 jne     0x10003c6e
+
+# Block 9 at 0x10003644
+10003644  8a 95 0c 01 02 00 mov     dl, byte [ebp+0x2010c]
+1000364a  8b 5e 54         mov     ebx, dword [esi+0x54]
+1000364d  f6 da            neg     dl
+1000364f  1b d2            sbb     edx, edx
+10003651  83 e2 fe         and     edx, 0xfffffffe
+10003654  83 c2 02         add     edx, 0x2
+10003657  52               push    edx
+10003658  53               push    ebx
+10003659  e8 e2 99 08 00   call    0x1008d040
+1000365e  83 c4 08         add     esp, 0x8
+10003661  85 c0            test    eax, eax
+10003663  75 1d            jne     0x10003682
+
+# Block 11 at 0x10003665
+10003665  81 7b 48 73 74 69 62 cmp     dword [ebx+0x48], 0x62697473
+1000366c  75 14            jne     0x10003682
+
+# Block 13 at 0x1000366e
+1000366e  8d 73 4c         lea     esi, [ebx+0x4c]
+10003671  b9 06 00 00 00   mov     ecx, 0x6
+10003676  8d 7c 24 30      lea     edi, [esp+0x30]
+1000367a  f3 a5            rep movsd dword [edi], [esi]
+1000367c  8b 7c 24 74      mov     edi, dword [esp+0x74]
+10003680  eb 16            jmp     0x10003698
+
+# Block 10 at 0x10003682
+10003682  66 83 7c 24 10 20 cmp     word [esp+0x10], 0x20
+10003688  0f 85 e0 05 00 00 jne     0x10003c6e
+
+# Block 12 at 0x1000368e
+1000368e  33 c0            xor     eax, eax
+10003690  89 44 24 34      mov     dword [esp+0x34], eax
+10003694  89 44 24 30      mov     dword [esp+0x30], eax
+
+# Block 16 at 0x10003698
+10003698  6a 18            push    0x18
+1000369a  e8 b5 6a 08 00   call    ??2@YAPAXI@Z
+1000369f  66 8b 8d 04 01 00 00 mov     cx, word [ebp+0x104]
+100036a6  89 44 24 74      mov     dword [esp+0x74], eax
+100036aa  66 2b 4b 68      sub     cx, word [ebx+0x68]
+100036ae  83 c4 04         add     esp, 0x4
+100036b1  66 89 48 12      mov     word [eax+0x12], cx
+100036b5  66 8b 53 64      mov     dx, word [ebx+0x64]
+100036b9  8b 44 24 70      mov     eax, dword [esp+0x70]
+100036bd  66 89 50 10      mov     word [eax+0x10], dx
+100036c1  8b 43 40         mov     eax, dword [ebx+0x40]
+100036c4  8b 4c 24 70      mov     ecx, dword [esp+0x70]
+100036c8  99               cdq
+100036c9  83 e2 3f         and     edx, 0x3f
+100036cc  03 c2            add     eax, edx
+100036ce  c1 f8 06         sar     eax, 0x6
+100036d1  66 89 41 14      mov     word [ecx+0x14], ax
+100036d5  8a 85 0d 01 02 00 mov     al, byte [ebp+0x2010d]
+100036db  84 c0            test    al, al
+100036dd  74 16            je      0x100036f5
+
+# Block 15 at 0x100036df
+100036df  83 ff 01         cmp     edi, 0x1
+100036e2  75 11            jne     0x100036f5
+
+# Block 19 at 0x100036e4
+100036e4  8b 4c 24 70      mov     ecx, dword [esp+0x70]
+100036e8  0f bf 41 14      movsx   eax, word [ecx+0x14]
+100036ec  99               cdq
+100036ed  2b c2            sub     eax, edx
+100036ef  d1 f8            sar     eax, 0x1
+100036f1  66 89 41 14      mov     word [ecx+0x14], ax
+
+# Block 14 at 0x100036f5
+100036f5  8b 85 04 01 00 00 mov     eax, dword [ebp+0x104]
+100036fb  33 d2            xor     edx, edx
+100036fd  8a 95 0c 01 02 00 mov     dl, byte [ebp+0x2010c]
+10003703  6a 00            push    0x0
+10003705  8d 75 04         lea     esi, [ebp+0x4]
+10003708  52               push    edx
+10003709  50               push    eax
+1000370a  56               push    esi
+1000370b  e8 80 fc ff ff   call    0x10003390
+10003710  8b 5c 24 44      mov     ebx, dword [esp+0x44]
+10003714  8b f8            mov     edi, eax
+10003716  8b 4f 04         mov     ecx, dword [edi+0x4]
+10003719  03 cb            add     ecx, ebx
+1000371b  83 c4 10         add     esp, 0x10
+1000371e  81 f9 00 02 00 00 cmp     ecx, 0x200
+10003724  89 7c 24 78      mov     dword [esp+0x78], edi
+10003728  7c 3f            jl      0x10003769
+
+# Block 18 at 0x1000372a
+1000372a  8b 07            mov     eax, dword [edi]
+1000372c  8b 4f 08         mov     ecx, dword [edi+0x8]
+1000372f  8d 50 02         lea     edx, [eax+0x2]
+10003732  03 ca            add     ecx, edx
+10003734  89 4f 08         mov     dword [edi+0x8], ecx
+10003737  03 c8            add     ecx, eax
+10003739  81 f9 00 02 00 00 cmp     ecx, 0x200
+1000373f  c7 47 04 00 00 00 00 mov     dword [edi+0x4], 0x0
+10003746  7c 21            jl      0x10003769
+
+# Block 22 at 0x10003748
+10003748  8b 8d 04 01 00 00 mov     ecx, dword [ebp+0x104]
+1000374e  33 c0            xor     eax, eax
+10003750  8a 85 0c 01 02 00 mov     al, byte [ebp+0x2010c]
+10003756  6a 01            push    0x1
+10003758  50               push    eax
+10003759  51               push    ecx
+1000375a  56               push    esi
+1000375b  e8 30 fc ff ff   call    0x10003390
+10003760  8b f8            mov     edi, eax
+10003762  83 c4 10         add     esp, 0x10
+10003765  89 7c 24 78      mov     dword [esp+0x78], edi
+
+# Block 17 at 0x10003769
+10003769  8b 77 0c         mov     esi, dword [edi+0xc]
+1000376c  8b 16            mov     edx, dword [esi]
+1000376e  8d 44 24 48      lea     eax, [esp+0x48]
+10003772  50               push    eax
+10003773  6a 00            push    0x0
+10003775  56               push    esi
+10003776  89 74 24 78      mov     dword [esp+0x78], esi
+1000377a  ff 52 38         call    dword [edx+0x38]
+1000377d  8b 4f 04         mov     ecx, dword [edi+0x4]
+10003780  89 4c 24 20      mov     dword [esp+0x20], ecx
+10003784  8b 57 08         mov     edx, dword [edi+0x8]
+10003787  89 54 24 24      mov     dword [esp+0x24], edx
+1000378b  8b 47 04         mov     eax, dword [edi+0x4]
+1000378e  03 c3            add     eax, ebx
+10003790  89 44 24 28      mov     dword [esp+0x28], eax
+10003794  8b 4f 08         mov     ecx, dword [edi+0x8]
+10003797  8b 44 24 30      mov     eax, dword [esp+0x30]
+1000379b  03 c8            add     ecx, eax
+1000379d  85 db            test    ebx, ebx
+1000379f  89 4c 24 2c      mov     dword [esp+0x2c], ecx
+100037a3  0f 84 46 02 00 00 je      0x100039ef
+
+# Block 21 at 0x100037a9
+100037a9  85 c0            test    eax, eax
+100037ab  0f 84 3e 02 00 00 je      0x100039ef
+
+# Block 25 at 0x100037b1
+100037b1  8b 16            mov     edx, dword [esi]
+100037b3  6a 00            push    0x0
+100037b5  8d 44 24 24      lea     eax, [esp+0x24]
+100037b9  50               push    eax
+100037ba  8d 4c 24 20      lea     ecx, [esp+0x20]
+100037be  51               push    ecx
+100037bf  6a 00            push    0x0
+100037c1  56               push    esi
+100037c2  ff 52 40         call    dword [edx+0x40]
+100037c5  85 c0            test    eax, eax
+100037c7  0f 8c 22 02 00 00 jl      0x100039ef
+
+# Block 30 at 0x100037cd
+100037cd  80 7c 24 42 01   cmp     byte [esp+0x42], 0x1
+100037d2  8b 54 24 1c      mov     edx, dword [esp+0x1c]
+100037d6  8b 6c 24 3c      mov     ebp, dword [esp+0x3c]
+100037da  89 54 24 74      mov     dword [esp+0x74], edx
+100037de  0f 85 58 01 00 00 jne     0x1000393c
+
+# Block 39 at 0x100037e4
+100037e4  8b 44 24 48      mov     eax, dword [esp+0x48]
+100037e8  83 f8 15         cmp     eax, 0x15
+100037eb  0f 84 b0 00 00 00 je      0x100038a1
+
+# Block 52 at 0x100037f1
+100037f1  83 f8 16         cmp     eax, 0x16
+100037f4  0f 84 a7 00 00 00 je      0x100038a1
+
+# Block 62 at 0x100037fa
+100037fa  83 f8 1a         cmp     eax, 0x1a
+100037fd  74 18            je      0x10003817
+
+# Block 72 at 0x100037ff
+100037ff  83 f8 1e         cmp     eax, 0x1e
+10003802  74 13            je      0x10003817
+
+# Block 83 at 0x10003804
+10003804  83 f8 19         cmp     eax, 0x19
+10003807  74 0e            je      0x10003817
+
+# Block 92 at 0x10003809
+10003809  83 f8 18         cmp     eax, 0x18
+1000380c  74 09            je      0x10003817
+
+# Block 98 at 0x1000380e
+1000380e  83 f8 1d         cmp     eax, 0x1d
+10003811  0f 85 d0 01 00 00 jne     0x100039e7
+
+# Block 71 at 0x10003817
+10003817  8b 44 24 30      mov     eax, dword [esp+0x30]
+1000381b  85 c0            test    eax, eax
+1000381d  0f 8e c4 01 00 00 jle     0x100039e7
+
+# Block 82 at 0x10003823
+10003823  89 44 24 14      mov     dword [esp+0x14], eax
+
+# Block 94 at 0x10003827
+10003827  8b 44 24 34      mov     eax, dword [esp+0x34]
+1000382b  33 f6            xor     esi, esi
+1000382d  85 c0            test    eax, eax
+1000382f  7e 44            jle     0x10003875
+
+# Block 91 at 0x10003831
+10003831  8b 7c 24 74      mov     edi, dword [esp+0x74]
+10003835  8b d8            mov     ebx, eax
+
+# Block 100 at 0x10003837
+10003837  8b c6            mov     eax, esi
+10003839  99               cdq
+1000383a  83 e2 07         and     edx, 0x7
+1000383d  03 c2            add     eax, edx
+1000383f  c1 f8 03         sar     eax, 0x3
+10003842  8d 0c c5 00 00 00 00 lea     ecx, [eax*8]
+10003849  8a 04 28         mov     al, byte [eax+ebp]
+1000384c  8b d1            mov     edx, ecx
+1000384e  8b ce            mov     ecx, esi
+10003850  2b ca            sub     ecx, edx
+10003852  ba 80 00 00 00   mov     edx, 0x80
+10003857  d3 fa            sar     edx, cl
+10003859  84 d0            test    al, dl
+1000385b  74 09            je      0x10003866
+
+# Block 97 at 0x1000385d
+1000385d  c6 47 01 ff      mov     byte [edi+0x1], 0xff
+10003861  c6 07 ff         mov     byte [edi], 0xff
+10003864  eb 07            jmp     0x1000386d
+
+# Block 96 at 0x10003866
+10003866  c6 47 01 00      mov     byte [edi+0x1], 0x0
+1000386a  c6 07 00         mov     byte [edi], 0x0
+
+# Block 101 at 0x1000386d
+1000386d  46               inc     esi
+1000386e  83 c7 02         add     edi, 0x2
+10003871  3b f3            cmp     esi, ebx
+10003873  7c c2            jl      0x10003837
+
+# Block 90 at 0x10003875
+10003875  8b 54 24 74      mov     edx, dword [esp+0x74]
+10003879  8b 74 24 38      mov     esi, dword [esp+0x38]
+1000387d  8b 4c 24 18      mov     ecx, dword [esp+0x18]
+10003881  8b 44 24 14      mov     eax, dword [esp+0x14]
+10003885  03 d1            add     edx, ecx
+10003887  03 ee            add     ebp, esi
+10003889  48               dec     eax
+1000388a  89 54 24 74      mov     dword [esp+0x74], edx
+1000388e  89 44 24 14      mov     dword [esp+0x14], eax
+10003892  75 93            jne     0x10003827
+
+# Block 95 at 0x10003894
+10003894  8b 7c 24 78      mov     edi, dword [esp+0x78]
+10003898  8b 5c 24 34      mov     ebx, dword [esp+0x34]
+1000389c  e9 42 01 00 00   jmp     0x100039e3
+
+# Block 51 at 0x100038a1
+100038a1  8b 44 24 30      mov     eax, dword [esp+0x30]
+100038a5  85 c0            test    eax, eax
+100038a7  0f 8e 3a 01 00 00 jle     0x100039e7
+
+# Block 61 at 0x100038ad
+100038ad  8b 5c 24 34      mov     ebx, dword [esp+0x34]
+100038b1  89 44 24 14      mov     dword [esp+0x14], eax
+
+# Block 78 at 0x100038b5
+100038b5  33 ff            xor     edi, edi
+100038b7  85 db            test    ebx, ebx
+100038b9  7e 55            jle     0x10003910
+
+# Block 70 at 0x100038bb
+100038bb  8b 54 24 74      mov     edx, dword [esp+0x74]
+100038bf  8d 72 02         lea     esi, [edx+0x2]
+
+# Block 88 at 0x100038c2
+100038c2  8b c7            mov     eax, edi
+100038c4  99               cdq
+100038c5  83 e2 07         and     edx, 0x7
+100038c8  03 c2            add     eax, edx
+100038ca  c1 f8 03         sar     eax, 0x3
+100038cd  8d 0c c5 00 00 00 00 lea     ecx, [eax*8]
+100038d4  8a 04 28         mov     al, byte [eax+ebp]
+100038d7  8b d1            mov     edx, ecx
+100038d9  8b cf            mov     ecx, edi
+100038db  2b ca            sub     ecx, edx
+100038dd  ba 80 00 00 00   mov     edx, 0x80
+100038e2  d3 fa            sar     edx, cl
+100038e4  84 d0            test    al, dl
+100038e6  74 11            je      0x100038f9
+
+# Block 81 at 0x100038e8
+100038e8  c6 46 01 ff      mov     byte [esi+0x1], 0xff
+100038ec  c6 06 ff         mov     byte [esi], 0xff
+100038ef  c6 46 ff ff      mov     byte [esi-0x1], 0xff
+100038f3  c6 46 fe ff      mov     byte [esi-0x2], 0xff
+100038f7  eb 0f            jmp     0x10003908
+
+# Block 80 at 0x100038f9
+100038f9  c6 46 01 00      mov     byte [esi+0x1], 0x0
+100038fd  c6 06 00         mov     byte [esi], 0x0
+10003900  c6 46 ff 00      mov     byte [esi-0x1], 0x0
+10003904  c6 46 fe 00      mov     byte [esi-0x2], 0x0
+
+# Block 89 at 0x10003908
+10003908  47               inc     edi
+10003909  83 c6 04         add     esi, 0x4
+1000390c  3b fb            cmp     edi, ebx
+1000390e  7c b2            jl      0x100038c2
+
+# Block 69 at 0x10003910
+10003910  8b 54 24 74      mov     edx, dword [esp+0x74]
+10003914  8b 74 24 38      mov     esi, dword [esp+0x38]
+10003918  8b 4c 24 18      mov     ecx, dword [esp+0x18]
+1000391c  8b 44 24 14      mov     eax, dword [esp+0x14]
+10003920  03 d1            add     edx, ecx
+10003922  03 ee            add     ebp, esi
+10003924  48               dec     eax
+10003925  89 54 24 74      mov     dword [esp+0x74], edx
+10003929  89 44 24 14      mov     dword [esp+0x14], eax
+1000392d  75 86            jne     0x100038b5
+
+# Block 79 at 0x1000392f
+1000392f  8b 7c 24 78      mov     edi, dword [esp+0x78]
+10003933  8b 5c 24 34      mov     ebx, dword [esp+0x34]
+10003937  e9 a7 00 00 00   jmp     0x100039e3
+
+# Block 38 at 0x1000393c
+1000393c  8b 44 24 30      mov     eax, dword [esp+0x30]
+10003940  85 c0            test    eax, eax
+10003942  0f 8e 9f 00 00 00 jle     0x100039e7
+
+# Block 50 at 0x10003948
+10003948  89 44 24 78      mov     dword [esp+0x78], eax
+1000394c  8b 44 24 48      mov     eax, dword [esp+0x48]
+
+# Block 65 at 0x10003950
+10003950  33 d2            xor     edx, edx
+10003952  85 db            test    ebx, ebx
+10003954  7e 6a            jle     0x100039c0
+
+# Block 60 at 0x10003956
+10003956  8b 4c 24 74      mov     ecx, dword [esp+0x74]
+1000395a  8d 71 01         lea     esi, [ecx+0x1]
+
+# Block 87 at 0x1000395d
+1000395d  83 f8 15         cmp     eax, 0x15
+10003960  75 13            jne     0x10003975
+
+# Block 68 at 0x10003962
+10003962  c6 46 01 ff      mov     byte [esi+0x1], 0xff
+10003966  c6 06 ff         mov     byte [esi], 0xff
+10003969  c6 46 ff ff      mov     byte [esi-0x1], 0xff
+1000396d  8a 04 2a         mov     al, byte [edx+ebp]
+10003970  88 46 02         mov     byte [esi+0x2], al
+10003973  eb 38            jmp     0x100039ad
+
+# Block 67 at 0x10003975
+10003975  83 f8 1a         cmp     eax, 0x1a
+10003978  75 0d            jne     0x10003987
+
+# Block 76 at 0x1000397a
+1000397a  c6 01 ff         mov     byte [ecx], 0xff
+1000397d  8a 04 2a         mov     al, byte [edx+ebp]
+10003980  0c 0f            or      al, 0xf
+10003982  88 41 01         mov     byte [ecx+0x1], al
+10003985  eb 26            jmp     0x100039ad
+
+# Block 75 at 0x10003987
+10003987  83 f8 19         cmp     eax, 0x19
+1000398a  74 0f            je      0x1000399b
+
+# Block 86 at 0x1000398c
+1000398c  83 f8 1d         cmp     eax, 0x1d
+1000398f  74 0a            je      0x1000399b
+
+# Block 93 at 0x10003991
+10003991  83 f8 18         cmp     eax, 0x18
+10003994  74 05            je      0x1000399b
+
+# Block 99 at 0x10003996
+10003996  83 f8 1e         cmp     eax, 0x1e
+10003999  75 16            jne     0x100039b1
+
+# Block 85 at 0x1000399b
+1000399b  80 3c 2a 00      cmp     byte [edx+ebp], 0x0
+1000399f  0f 94 c0         sete    al
+100039a2  48               dec     eax
+100039a3  25 ff 00 00 00   and     eax, 0xff
+100039a8  88 41 01         mov     byte [ecx+0x1], al
+100039ab  88 01            mov     byte [ecx], al
+
+# Block 77 at 0x100039ad
+100039ad  8b 44 24 48      mov     eax, dword [esp+0x48]
+
+# Block 102 at 0x100039b1
+100039b1  8b 5c 24 34      mov     ebx, dword [esp+0x34]
+100039b5  42               inc     edx
+100039b6  83 c6 04         add     esi, 0x4
+100039b9  83 c1 02         add     ecx, 0x2
+100039bc  3b d3            cmp     edx, ebx
+100039be  7c 9d            jl      0x1000395d
+
+# Block 59 at 0x100039c0
+100039c0  8b 4c 24 18      mov     ecx, dword [esp+0x18]
+100039c4  8b 54 24 74      mov     edx, dword [esp+0x74]
+100039c8  8b 74 24 38      mov     esi, dword [esp+0x38]
+100039cc  03 d1            add     edx, ecx
+100039ce  8b 4c 24 78      mov     ecx, dword [esp+0x78]
+100039d2  03 ee            add     ebp, esi
+100039d4  49               dec     ecx
+100039d5  89 54 24 74      mov     dword [esp+0x74], edx
+100039d9  89 4c 24 78      mov     dword [esp+0x78], ecx
+100039dd  0f 85 6d ff ff ff jne     0x10003950
+
+# Block 66 at 0x100039e3
+100039e3  8b 74 24 6c      mov     esi, dword [esp+0x6c]
+
+# Block 49 at 0x100039e7
+100039e7  8b 16            mov     edx, dword [esi]
+100039e9  6a 00            push    0x0
+100039eb  56               push    esi
+100039ec  ff 52 44         call    dword [edx+0x44]
+
+# Block 20 at 0x100039ef
+100039ef  8b 44 24 6c      mov     eax, dword [esp+0x6c]
+100039f3  50               push    eax
+100039f4  e8 97 f8 ff ff   call    0x10003290
+100039f9  8b 4c 24 74      mov     ecx, dword [esp+0x74]
+100039fd  66 89 41 16      mov     word [ecx+0x16], ax
+10003a01  db 47 04         fild    st0, dword [edi+0x4]
+10003a04  8b 54 24 74      mov     edx, dword [esp+0x74]
+10003a08  83 c4 04         add     esp, 0x4
+10003a0b  d9 5c 24 74      fstp    dword [esp+0x74], st0
+10003a0f  d9 44 24 74      fld     st0, dword [esp+0x74]
+10003a13  d8 35 18 12 0a 10 fdiv    st0, dword [0x100a1218]
+10003a19  d9 1a            fstp    dword [edx], st0
+10003a1b  db 47 08         fild    st0, dword [edi+0x8]
+10003a1e  8b 44 24 70      mov     eax, dword [esp+0x70]
+10003a22  d9 5c 24 74      fstp    dword [esp+0x74], st0
+10003a26  d9 44 24 74      fld     st0, dword [esp+0x74]
+10003a2a  d8 35 18 12 0a 10 fdiv    st0, dword [0x100a1218]
+10003a30  d9 58 04         fstp    dword [eax+0x4], st0
+10003a33  8b 4f 04         mov     ecx, dword [edi+0x4]
+10003a36  03 cb            add     ecx, ebx
+10003a38  89 4c 24 74      mov     dword [esp+0x74], ecx
+10003a3c  db 44 24 74      fild    st0, dword [esp+0x74]
+10003a40  8b 54 24 70      mov     edx, dword [esp+0x70]
+10003a44  8b 4c 24 30      mov     ecx, dword [esp+0x30]
+10003a48  83 c3 02         add     ebx, 0x2
+10003a4b  d9 5c 24 74      fstp    dword [esp+0x74], st0
+10003a4f  d9 44 24 74      fld     st0, dword [esp+0x74]
+10003a53  d8 35 18 12 0a 10 fdiv    st0, dword [0x100a1218]
+10003a59  d9 5a 08         fstp    dword [edx+0x8], st0
+10003a5c  8b 47 08         mov     eax, dword [edi+0x8]
+10003a5f  03 c1            add     eax, ecx
+10003a61  89 44 24 74      mov     dword [esp+0x74], eax
+10003a65  db 44 24 74      fild    st0, dword [esp+0x74]
+10003a69  8b 4c 24 70      mov     ecx, dword [esp+0x70]
+10003a6d  d9 5c 24 74      fstp    dword [esp+0x74], st0
+10003a71  d9 44 24 74      fld     st0, dword [esp+0x74]
+10003a75  d8 35 18 12 0a 10 fdiv    st0, dword [0x100a1218]
+10003a7b  d9 59 0c         fstp    dword [ecx+0xc], st0
+10003a7e  01 5f 04         add     dword [edi+0x4], ebx
+10003a81  a1 b0 fa 0a 10   mov     eax, dword [0x100afab0]
+10003a86  8b 15 b4 fa 0a 10 mov     edx, dword [0x100afab4]
+10003a8c  2b d0            sub     edx, eax
+10003a8e  c1 fa 02         sar     edx, 0x2
+10003a91  83 fa 01         cmp     edx, 0x1
+10003a94  8b f0            mov     esi, eax
+10003a96  0f 83 fb 00 00 00 jae     0x10003b97
+
+# Block 24 at 0x10003a9c
+10003a9c  8b 15 ac fa 0a 10 mov     edx, dword [0x100afaac]
+10003aa2  85 d2            test    edx, edx
+10003aa4  74 15            je      0x10003abb
+
+# Block 29 at 0x10003aa6
+10003aa6  8b c8            mov     ecx, eax
+10003aa8  2b ca            sub     ecx, edx
+10003aaa  c1 f9 02         sar     ecx, 0x2
+10003aad  83 f9 01         cmp     ecx, 0x1
+10003ab0  76 09            jbe     0x10003abb
+
+# Block 37 at 0x10003ab2
+10003ab2  8b c8            mov     ecx, eax
+10003ab4  2b ca            sub     ecx, edx
+10003ab6  c1 f9 02         sar     ecx, 0x2
+10003ab9  eb 05            jmp     0x10003ac0
+
+# Block 28 at 0x10003abb
+10003abb  b9 01 00 00 00   mov     ecx, 0x1
+
+# Block 48 at 0x10003ac0
+10003ac0  85 d2            test    edx, edx
+10003ac2  75 04            jne     0x10003ac8
+
+# Block 36 at 0x10003ac4
+10003ac4  33 c0            xor     eax, eax
+10003ac6  eb 05            jmp     0x10003acd
+
+# Block 35 at 0x10003ac8
+10003ac8  2b c2            sub     eax, edx
+10003aca  c1 f8 02         sar     eax, 0x2
+
+# Block 47 at 0x10003acd
+10003acd  03 c1            add     eax, ecx
+10003acf  85 c0            test    eax, eax
+10003ad1  89 44 24 74      mov     dword [esp+0x74], eax
+10003ad5  7d 02            jge     0x10003ad9
+
+# Block 46 at 0x10003ad7
+10003ad7  33 c0            xor     eax, eax
+
+# Block 45 at 0x10003ad9
+10003ad9  8d 14 85 00 00 00 00 lea     edx, [eax*4]
+10003ae0  52               push    edx
+10003ae1  e8 6e 66 08 00   call    ??2@YAPAXI@Z
+10003ae6  8b 3d ac fa 0a 10 mov     edi, dword [0x100afaac]
+10003aec  83 c4 04         add     esp, 0x4
+10003aef  3b fe            cmp     edi, esi
+10003af1  8b d8            mov     ebx, eax
+10003af3  8b eb            mov     ebp, ebx
+10003af5  74 14            je      0x10003b0b
+
+# Block 58 at 0x10003af7
+10003af7  57               push    edi
+10003af8  55               push    ebp
+10003af9  e8 92 40 00 00   call    UInt32CopyAssign
+10003afe  83 c7 04         add     edi, 0x4
+10003b01  83 c4 08         add     esp, 0x8
+10003b04  83 c5 04         add     ebp, 0x4
+10003b07  3b fe            cmp     edi, esi
+10003b09  75 ec            jne     0x10003af7
+
+# Block 57 at 0x10003b0b
+10003b0b  8d 44 24 70      lea     eax, [esp+0x70]
+10003b0f  50               push    eax
+10003b10  55               push    ebp
+10003b11  e8 7a 40 00 00   call    UInt32CopyAssign
+10003b16  8d 7d 04         lea     edi, [ebp+0x4]
+10003b19  8b 2d b0 fa 0a 10 mov     ebp, dword [0x100afab0]
+10003b1f  83 c4 08         add     esp, 0x8
+10003b22  3b f5            cmp     esi, ebp
+10003b24  74 14            je      0x10003b3a
+
+# Block 64 at 0x10003b26
+10003b26  56               push    esi
+10003b27  57               push    edi
+10003b28  e8 63 40 00 00   call    UInt32CopyAssign
+10003b2d  83 c6 04         add     esi, 0x4
+10003b30  83 c4 08         add     esp, 0x8
+10003b33  83 c7 04         add     edi, 0x4
+10003b36  3b f5            cmp     esi, ebp
+10003b38  75 ec            jne     0x10003b26
+
+# Block 63 at 0x10003b3a
+10003b3a  a1 ac fa 0a 10   mov     eax, dword [0x100afaac]
+10003b3f  50               push    eax
+10003b40  89 44 24 70      mov     dword [esp+0x70], eax
+10003b44  e8 05 66 08 00   call    ??3@YAXPAX@Z
+10003b49  8b 4c 24 78      mov     ecx, dword [esp+0x78]
+10003b4d  8d 14 8b         lea     edx, [ebx+ecx*4]
+10003b50  8b 0d ac fa 0a 10 mov     ecx, dword [0x100afaac]
+10003b56  83 c4 04         add     esp, 0x4
+10003b59  85 c9            test    ecx, ecx
+10003b5b  89 15 b4 fa 0a 10 mov     dword [0x100afab4], edx
+10003b61  75 16            jne     0x10003b79
+
+# Block 74 at 0x10003b63
+10003b63  33 c0            xor     eax, eax
+10003b65  8d 44 83 04      lea     eax, [ebx+eax*4+0x4]
+10003b69  a3 b0 fa 0a 10   mov     dword [0x100afab0], eax
+10003b6e  89 1d ac fa 0a 10 mov     dword [0x100afaac], ebx
+10003b74  e9 d2 00 00 00   jmp     0x10003c4b
+
+# Block 73 at 0x10003b79
+10003b79  a1 b0 fa 0a 10   mov     eax, dword [0x100afab0]
+10003b7e  2b c1            sub     eax, ecx
+10003b80  c1 f8 02         sar     eax, 0x2
+10003b83  8d 44 83 04      lea     eax, [ebx+eax*4+0x4]
+10003b87  a3 b0 fa 0a 10   mov     dword [0x100afab0], eax
+10003b8c  89 1d ac fa 0a 10 mov     dword [0x100afaac], ebx
+10003b92  e9 b4 00 00 00   jmp     0x10003c4b
+
+# Block 23 at 0x10003b97
+10003b97  8b c8            mov     ecx, eax
+10003b99  2b ce            sub     ecx, esi
+10003b9b  c1 f9 02         sar     ecx, 0x2
+10003b9e  83 f9 01         cmp     ecx, 0x1
+10003ba1  73 57            jae     0x10003bfa
+
+# Block 27 at 0x10003ba3
+10003ba3  8b d8            mov     ebx, eax
+10003ba5  3b f3            cmp     esi, ebx
+10003ba7  8b ce            mov     ecx, esi
+10003ba9  74 18            je      0x10003bc3
+
+# Block 34 at 0x10003bab
+10003bab  8d 79 04         lea     edi, [ecx+0x4]
+10003bae  51               push    ecx
+10003baf  57               push    edi
+10003bb0  e8 db 3f 00 00   call    UInt32CopyAssign
+10003bb5  8b cf            mov     ecx, edi
+10003bb7  83 c4 08         add     esp, 0x8
+10003bba  3b cb            cmp     ecx, ebx
+10003bbc  75 ed            jne     0x10003bab
+
+# Block 44 at 0x10003bbe
+10003bbe  a1 b0 fa 0a 10   mov     eax, dword [0x100afab0]
+
+# Block 33 at 0x10003bc3
+10003bc3  8b c8            mov     ecx, eax
+10003bc5  8d 54 24 70      lea     edx, [esp+0x70]
+10003bc9  52               push    edx
+10003bca  2b ce            sub     ecx, esi
+10003bcc  c1 f9 02         sar     ecx, 0x2
+10003bcf  ba 01 00 00 00   mov     edx, 0x1
+10003bd4  2b d1            sub     edx, ecx
+10003bd6  52               push    edx
+10003bd7  50               push    eax
+10003bd8  b9 a8 fa 0a 10   mov     ecx, 0x100afaa8
+10003bdd  e8 0e 35 00 00   call    0x100070f0
+10003be2  a1 b0 fa 0a 10   mov     eax, dword [0x100afab0]
+10003be7  3b f0            cmp     esi, eax
+10003be9  74 58            je      0x10003c43
+
+# Block 43 at 0x10003beb
+10003beb  8b 4c 24 70      mov     ecx, dword [esp+0x70]
+10003bef  89 0e            mov     dword [esi], ecx
+10003bf1  83 c6 04         add     esi, 0x4
+10003bf4  3b f0            cmp     esi, eax
+10003bf6  75 f3            jne     0x10003beb
+
+# Block 56 at 0x10003bf8
+10003bf8  eb 44            jmp     0x10003c3e
+
+# Block 26 at 0x10003bfa
+10003bfa  50               push    eax
+10003bfb  50               push    eax
+10003bfc  83 c0 fc         add     eax, 0xfffffffc
+10003bff  50               push    eax
+10003c00  b9 a8 fa 0a 10   mov     ecx, 0x100afaa8
+10003c05  e8 16 35 00 00   call    0x10007120
+10003c0a  a1 b0 fa 0a 10   mov     eax, dword [0x100afab0]
+10003c0f  8d 48 fc         lea     ecx, [eax-0x4]
+10003c12  3b f1            cmp     esi, ecx
+10003c14  74 14            je      0x10003c2a
+
+# Block 32 at 0x10003c16
+10003c16  8b 51 fc         mov     edx, dword [ecx-0x4]
+10003c19  83 e9 04         sub     ecx, 0x4
+10003c1c  83 e8 04         sub     eax, 0x4
+10003c1f  3b ce            cmp     ecx, esi
+10003c21  89 10            mov     dword [eax], edx
+10003c23  75 f1            jne     0x10003c16
+
+# Block 42 at 0x10003c25
+10003c25  a1 b0 fa 0a 10   mov     eax, dword [0x100afab0]
+
+# Block 31 at 0x10003c2a
+10003c2a  8d 4e 04         lea     ecx, [esi+0x4]
+10003c2d  3b f1            cmp     esi, ecx
+10003c2f  74 12            je      0x10003c43
+
+# Block 41 at 0x10003c31
+10003c31  8b 44 24 70      mov     eax, dword [esp+0x70]
+10003c35  89 06            mov     dword [esi], eax
+10003c37  83 c6 04         add     esi, 0x4
+10003c3a  3b f1            cmp     esi, ecx
+10003c3c  75 f3            jne     0x10003c31
+
+# Block 55 at 0x10003c3e
+10003c3e  a1 b0 fa 0a 10   mov     eax, dword [0x100afab0]
+
+# Block 40 at 0x10003c43
+10003c43  83 c0 04         add     eax, 0x4
+10003c46  a3 b0 fa 0a 10   mov     dword [0x100afab0], eax
+
+# Block 84 at 0x10003c4b
+10003c4b  8b 0d ac fa 0a 10 mov     ecx, dword [0x100afaac]
+10003c51  85 c9            test    ecx, ecx
+10003c53  75 0b            jne     0x10003c60
+
+# Block 54 at 0x10003c55
+10003c55  5f               pop     edi
+10003c56  5e               pop     esi
+10003c57  33 c0            xor     eax, eax
+10003c59  5d               pop     ebp
+10003c5a  48               dec     eax
+10003c5b  5b               pop     ebx
+10003c5c  83 c4 58         add     esp, 0x58
+10003c5f  c3               retn
+
+# Block 53 at 0x10003c60
+10003c60  5f               pop     edi
+10003c61  2b c1            sub     eax, ecx
+10003c63  5e               pop     esi
+10003c64  c1 f8 02         sar     eax, 0x2
+10003c67  5d               pop     ebp
+10003c68  48               dec     eax
+10003c69  5b               pop     ebx
+10003c6a  83 c4 58         add     esp, 0x58
+10003c6d  c3               retn
+
+# Block 7 at 0x10003c6e
+10003c6e  5f               pop     edi
+10003c6f  5e               pop     esi
+10003c70  5d               pop     ebp
+10003c71  66 33 c0         xor     ax, ax
+10003c74  5b               pop     ebx
+10003c75  83 c4 58         add     esp, 0x58
+10003c78  c3               retn
+

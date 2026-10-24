@@ -27,6 +27,14 @@ screen_y = camera_offset_y + ((tile_x + tile_y) * 32) / 2
 - `CTerrainEffectManager` — Terrain visual effects
 - `C2DMapRegion` — 2D map region/minimap overlay
 
+## Map catalog authority correction — 2026-10-09
+
+The [map identity/flags contract](../Server/map-identity-flags-native-5517.md) separates server world
+MapId from terrain MapDataId, pins the261-key retail terrain index and duplicate 1067 behavior,
+and classifies the276-row reconstruction as legacy data. It also corrects the flag at 0x6206C8 to
+**qword bit 38**, and identifies the +0xE4 getter at 0x6E5E2C and +0xE0 getter at 0x4F6569.
+No complete retail server binding/flag table is established by the client assets.
+
 ## Verified packet-1110 map identity lifecycle
 
 `CMsgMapInfo1110__Process` (`0x732B10`) owns the sole post-construction write of the current map id:
@@ -533,8 +541,11 @@ clear_list(this+1);
 - `0x61DAA3`: `strncpy(localPath, mapInfo+0x00, 0xFF)`.
 - `0x61DAA9`: read companion dword at `mapInfo+0x40` and forward into the ground/entity-layer component path.
 - `0x61DAD3`: call `CGameMap_LoadMapFileFromRelativePath`.
+- `0x61DB0C`: `CGamePlayerSet_DelAllPlayer(&g_objPlayerSet, 1)` (`0x6E7F89`) drops every role except hero-owned pets.
+  `0x61DB1E` closes the hero booth. The hero and the surviving roles are then re-added. No same-id short-circuit exists,
+  so an 86 to the current map is a full reload ([portal transition](../Server/portal-transition-5517.md)).
 - `0x61DBE4`: write `map+0xE4 = mapDataId`.
-- `0x61DC22`: post main-window message `0x424` with `wParam=0`.
+- `0x61DC22`: post main-window message `0x424` with `wParam=0`. There is no `0x424` case in the 0x464 switch.
 
 **RoleData map-info record layout (returned pointer from vtable+0x7C):**
 

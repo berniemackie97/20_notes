@@ -459,3 +459,10 @@ Evidence: `FlowerAnim__SelectBaseSpriteByTypeAndScreenWidth_70701B` / `FlowerAni
 - Clears existing list via `CMsgSchool__ClearEntries`.
 - `+6` (u16) is entry count.
 - Entries start at `+8` with stride 8 bytes: dword at `+8+8*i` and dword at `+12+8*i`. If the second dword is `>= 0`, the pair is passed to `CMsgSchool__AddEntry`.
+
+
+## Auth string-validation evidence delta — 2026-10-18
+
+The [native auth string-validation closure](Native-auth-string-validation-2026-10-18.md) establishes the1004 missing/extra-entry, ignored-string, NUL and
+trailing-byte outcomes, plus the conditional system-ACP round trip before login
+control comparison. It compares AUTH-001N against the native acceptance behavior.

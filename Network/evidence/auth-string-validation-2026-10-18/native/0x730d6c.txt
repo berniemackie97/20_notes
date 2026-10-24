@@ -1,0 +1,150 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x730d6c
+00730d6c  b8 50 c4 83 00   mov     eax, 0x83c450
+00730d71  e8 da 68 04 00   call    __EH_prolog
+00730d76  83 ec 2c         sub     esp, 0x2c
+00730d79  83 7d 08 00      cmp     dword [ebp+0x8], 0x0
+00730d7d  53               push    ebx
+00730d7e  56               push    esi
+00730d7f  57               push    edi
+00730d80  8b f9            mov     edi, ecx
+00730d82  89 65 f0         mov     dword [ebp-0x10], esp
+00730d85  89 7d ec         mov     dword [ebp-0x14], edi
+00730d88  0f 84 25 01 00 00 je      0x730eb3
+
+# Block 3 at 0x730d8e
+00730d8e  ff 75 08         push    dword [ebp+0x8]
+00730d91  e8 da 68 04 00   call    strlen
+00730d96  be 00 02 00 00   mov     esi, 0x200
+00730d9b  59               pop     ecx
+00730d9c  3b c6            cmp     eax, esi
+00730d9e  0f 83 0f 01 00 00 jae     0x730eb3
+
+# Block 4 at 0x730da4
+00730da4  56               push    esi
+00730da5  e8 ca 64 04 00   call    ??2@YAPAXI@Z
+00730daa  85 c0            test    eax, eax
+00730dac  59               pop     ecx
+00730dad  89 45 e8         mov     dword [ebp-0x18], eax
+00730db0  0f 84 fd 00 00 00 je      0x730eb3
+
+# Block 5 at 0x730db6
+00730db6  56               push    esi
+00730db7  ff 75 08         push    dword [ebp+0x8]
+00730dba  50               push    eax
+00730dbb  ff 15 f4 47 84 00 call    dword [strncpy]
+00730dc1  8b 45 e8         mov     eax, dword [ebp-0x18]
+00730dc4  8d 5f 0c         lea     ebx, [edi+0xc]
+00730dc7  83 c4 0c         add     esp, 0xc
+00730dca  8b cb            mov     ecx, ebx
+00730dcc  80 a0 ff 01 00 00 00 and     byte [eax+0x1ff], 0x0
+00730dd3  e8 6e ba 00 00   call    0x73c846
+00730dd8  39 47 08         cmp     dword [edi+0x8], eax
+00730ddb  0f 87 c2 00 00 00 ja      0x730ea3
+
+# Block 7 at 0x730de1
+00730de1  8b f3            mov     esi, ebx
+00730de3  8d 7d d8         lea     edi, [ebp-0x28]
+00730de6  a5               movsd   dword [edi], [esi]
+00730de7  a5               movsd   dword [edi], [esi]
+00730de8  a5               movsd   dword [edi], [esi]
+00730de9  6a 00            push    0x0
+00730deb  8d 4d d8         lea     ecx, [ebp-0x28]
+00730dee  a5               movsd   dword [edi], [esi]
+00730def  e8 0b 70 f0 ff   call    StdDequePtr_AdvanceIteratorByOffset
+00730df4  8b 45 d8         mov     eax, dword [ebp-0x28]
+00730df7  83 38 00         cmp     dword [eax], 0x0
+00730dfa  74 60            je      0x730e5c
+
+# Block 10 at 0x730dfc
+00730dfc  8b f3            mov     esi, ebx
+00730dfe  8d 7d d8         lea     edi, [ebp-0x28]
+00730e01  a5               movsd   dword [edi], [esi]
+00730e02  a5               movsd   dword [edi], [esi]
+00730e03  a5               movsd   dword [edi], [esi]
+00730e04  6a 00            push    0x0
+00730e06  8d 4d d8         lea     ecx, [ebp-0x28]
+00730e09  a5               movsd   dword [edi], [esi]
+00730e0a  e8 f0 6f f0 ff   call    StdDequePtr_AdvanceIteratorByOffset
+00730e0f  8b 45 d8         mov     eax, dword [ebp-0x28]
+00730e12  83 38 00         cmp     dword [eax], 0x0
+00730e15  74 45            je      0x730e5c
+
+# Block 13 at 0x730e17
+00730e17  8b f3            mov     esi, ebx
+00730e19  8d 7d d8         lea     edi, [ebp-0x28]
+00730e1c  a5               movsd   dword [edi], [esi]
+00730e1d  a5               movsd   dword [edi], [esi]
+00730e1e  83 65 fc 00      and     dword [ebp-0x4], 0x0
+00730e22  6a 00            push    0x0
+00730e24  a5               movsd   dword [edi], [esi]
+00730e25  8d 4d d8         lea     ecx, [ebp-0x28]
+00730e28  a5               movsd   dword [edi], [esi]
+00730e29  e8 d1 6f f0 ff   call    StdDequePtr_AdvanceIteratorByOffset
+00730e2e  8b 45 d8         mov     eax, dword [ebp-0x28]
+00730e31  ff 30            push    dword [eax]
+00730e33  e8 f8 62 04 00   call    ??3@YAXPAX@Z
+00730e38  59               pop     ecx
+00730e39  8b 45 ec         mov     eax, dword [ebp-0x14]
+00730e3c  8d 7d c8         lea     edi, [ebp-0x38]
+00730e3f  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+00730e43  6a 00            push    0x0
+00730e45  8d 58 0c         lea     ebx, [eax+0xc]
+00730e48  8d 4d c8         lea     ecx, [ebp-0x38]
+00730e4b  8b f3            mov     esi, ebx
+00730e4d  a5               movsd   dword [edi], [esi]
+00730e4e  a5               movsd   dword [edi], [esi]
+00730e4f  a5               movsd   dword [edi], [esi]
+00730e50  a5               movsd   dword [edi], [esi]
+00730e51  e8 a9 6f f0 ff   call    StdDequePtr_AdvanceIteratorByOffset
+00730e56  8b 45 c8         mov     eax, dword [ebp-0x38]
+00730e59  83 20 00         and     dword [eax], 0x0
+
+# Block 9 at 0x730e5c
+00730e5c  8b 4b 08         mov     ecx, dword [ebx+0x8]
+00730e5f  8b 03            mov     eax, dword [ebx]
+00730e61  83 e9 04         sub     ecx, 0x4
+00730e64  3b c1            cmp     eax, ecx
+00730e66  74 26            je      0x730e8e
+
+# Block 12 at 0x730e68
+00730e68  83 c0 04         add     eax, 0x4
+00730e6b  89 03            mov     dword [ebx], eax
+00730e6d  eb 26            jmp     0x730e95
+
+# Block 11 at 0x730e8e
+00730e8e  8b cb            mov     ecx, ebx
+00730e90  e8 ab e2 ea ff   call    0x5df140
+
+# Block 15 at 0x730e95
+00730e95  8b 4d ec         mov     ecx, dword [ebp-0x14]
+00730e98  8b 41 04         mov     eax, dword [ecx+0x4]
+00730e9b  85 c0            test    eax, eax
+00730e9d  76 04            jbe     0x730ea3
+
+# Block 14 at 0x730e9f
+00730e9f  48               dec     eax
+00730ea0  89 41 04         mov     dword [ecx+0x4], eax
+
+# Block 6 at 0x730ea3
+00730ea3  8d 45 e8         lea     eax, [ebp-0x18]
+00730ea6  8b cb            mov     ecx, ebx
+00730ea8  50               push    eax
+00730ea9  e8 a9 ba cf ff   call    0x42c957
+00730eae  6a 01            push    0x1
+00730eb0  58               pop     eax
+00730eb1  eb 02            jmp     0x730eb5
+
+# Block 2 at 0x730eb3
+00730eb3  33 c0            xor     eax, eax
+
+# Block 8 at 0x730eb5
+00730eb5  8b 4d f4         mov     ecx, dword [ebp-0xc]
+00730eb8  5f               pop     edi
+00730eb9  5e               pop     esi
+00730eba  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+00730ec1  5b               pop     ebx
+00730ec2  c9               leave
+00730ec3  c2 04 00         retn    0x4
+

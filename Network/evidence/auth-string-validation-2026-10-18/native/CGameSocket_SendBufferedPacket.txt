@@ -1,0 +1,225 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6e1a07
+006e1a07  b8 a8 2b 83 00   mov     eax, 0x832ba8  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+Wire proof: copy to TX queue at 0x6E1AE4; mode at socket+0x12428 read 0x6E1AE9. Modes1/3/4 call legacy transform at 0x6E1BDC; mode2 pending DH preserves already-wrapped bytes; mode2 established encrypts packet at 0x6E1B4D and TQClient[8] at 0x6E1B98 via CAST wrapper 0x753C5B. Flush0x6E215C -> send0x6E218B. Standard 1055 session-derived legacy rekey cannot alter this mode2 output.
+Evidence: 20_notes/Network/14_session_derived_legacy_cipher_mask.md and 10_work/docs/evidence/session-mask-5517/. Analyst names; VAs authoritative.
+006e1a0c  e8 3f 5c 09 00   call    __EH_prolog
+006e1a11  51               push    ecx
+006e1a12  b8 04 20 00 00   mov     eax, 0x2004
+006e1a17  e8 44 60 09 00   call    __chkstk
+006e1a1c  8b 45 08         mov     eax, dword [ebp+0x8]
+006e1a1f  53               push    ebx
+006e1a20  56               push    esi
+006e1a21  33 d2            xor     edx, edx
+006e1a23  57               push    edi
+006e1a24  8b f1            mov     esi, ecx
+006e1a26  3b c2            cmp     eax, edx
+006e1a28  89 65 f0         mov     dword [ebp-0x10], esp
+006e1a2b  89 75 ec         mov     dword [ebp-0x14], esi
+006e1a2e  89 55 fc         mov     dword [ebp-0x4], edx
+006e1a31  0f 84 fb 01 00 00 je      0x6e1c32
+
+# Block 3 at 0x6e1a37
+006e1a37  8b 5d 0c         mov     ebx, dword [ebp+0xc]
+006e1a3a  3b da            cmp     ebx, edx
+006e1a3c  0f 8e f0 01 00 00 jle     0x6e1c32
+
+# Block 5 at 0x6e1a42
+006e1a42  b9 00 04 00 00   mov     ecx, 0x400
+006e1a47  3b d9            cmp     ebx, ecx
+006e1a49  0f 8f e3 01 00 00 jg      0x6e1c32
+
+# Block 6 at 0x6e1a4f
+006e1a4f  39 96 08 20 00 00 cmp     dword [esi+0x2008], edx
+006e1a55  74 7f            je      0x6e1ad6
+
+# Block 8 at 0x6e1a57
+006e1a57  83 be 28 24 01 00 02 cmp     dword [esi+0x12428], 0x2
+006e1a5e  c6 45 fc 01      mov     byte [ebp-0x4], 0x1
+006e1a62  75 0c            jne     0x6e1a70
+
+# Block 10 at 0x6e1a64
+006e1a64  38 96 24 24 01 00 cmp     byte [esi+0x12424], dl
+006e1a6a  74 04            je      0x6e1a70
+
+# Block 13 at 0x6e1a6c
+006e1a6c  8b c3            mov     eax, ebx
+006e1a6e  eb 03            jmp     0x6e1a73
+
+# Block 9 at 0x6e1a70
+006e1a70  0f b7 00         movzx   eax, word [eax]
+
+# Block 15 at 0x6e1a73
+006e1a73  3b c2            cmp     eax, edx
+006e1a75  0f 8e 74 01 00 00 jle     0x6e1bef
+
+# Block 12 at 0x6e1a7b
+006e1a7b  3b c1            cmp     eax, ecx
+006e1a7d  0f 8f 6c 01 00 00 jg      0x6e1bef
+
+# Block 14 at 0x6e1a83
+006e1a83  3b c3            cmp     eax, ebx
+006e1a85  74 1f            je      0x6e1aa6
+
+# Block 17 at 0x6e1a87
+006e1a87  68 53 01 00 00   push    0x153
+006e1a8c  68 a8 4c 94 00   push    0x944ca8
+006e1a91  50               push    eax
+006e1a92  53               push    ebx
+006e1a93  68 94 4d 94 00   push    0x944d94
+006e1a98  56               push    esi
+006e1a99  e8 8b 09 00 00   call    0x6e2429
+006e1a9e  83 c4 18         add     esp, 0x18
+006e1aa1  e9 cc 01 00 00   jmp     0x6e1c72
+
+# Block 16 at 0x6e1aa6
+006e1aa6  8b 86 00 20 00 00 mov     eax, dword [esi+0x2000]
+006e1aac  bf 00 20 00 00   mov     edi, 0x2000
+006e1ab1  89 55 fc         mov     dword [ebp-0x4], edx
+006e1ab4  8d 0c 18         lea     ecx, [eax+ebx]
+006e1ab7  3b cf            cmp     ecx, edi
+006e1ab9  7e 22            jle     0x6e1add
+
+# Block 19 at 0x6e1abb
+006e1abb  8b ce            mov     ecx, esi
+006e1abd  e8 9a 06 00 00   call    CGameSocket_FlushSendBuffer
+006e1ac2  8b 86 00 20 00 00 mov     eax, dword [esi+0x2000]
+006e1ac8  8d 0c 18         lea     ecx, [eax+ebx]
+006e1acb  3b cf            cmp     ecx, edi
+006e1acd  7e 0e            jle     0x6e1add
+
+# Block 22 at 0x6e1acf
+006e1acf  8b ce            mov     ecx, esi
+006e1ad1  e8 c4 07 00 00   call    CGameSocket_CloseAndReset
+
+# Block 7 at 0x6e1ad6
+006e1ad6  33 c0            xor     eax, eax
+006e1ad8  e9 95 01 00 00   jmp     0x6e1c72
+
+# Block 18 at 0x6e1add
+006e1add  53               push    ebx
+006e1ade  03 c6            add     eax, esi
+006e1ae0  ff 75 08         push    dword [ebp+0x8]
+006e1ae3  50               push    eax
+006e1ae4  e8 d1 5b 09 00   call    memcpy
+006e1ae9  8b 86 28 24 01 00 mov     eax, dword [esi+0x12428]
+006e1aef  83 c4 0c         add     esp, 0xc
+006e1af2  83 f8 01         cmp     eax, 0x1
+006e1af5  0f 84 cf 00 00 00 je      0x6e1bca
+
+# Block 21 at 0x6e1afb
+006e1afb  83 f8 02         cmp     eax, 0x2
+006e1afe  74 14            je      0x6e1b14
+
+# Block 24 at 0x6e1b00
+006e1b00  0f 8e db 00 00 00 jle     0x6e1be1
+
+# Block 27 at 0x6e1b06
+006e1b06  83 f8 04         cmp     eax, 0x4
+006e1b09  0f 8e bb 00 00 00 jle     0x6e1bca
+
+# Block 28 at 0x6e1b0f
+006e1b0f  e9 cd 00 00 00   jmp     0x6e1be1
+
+# Block 23 at 0x6e1b14
+006e1b14  80 be 24 24 01 00 00 cmp     byte [esi+0x12424], 0x0
+006e1b1b  0f 85 c0 00 00 00 jne     0x6e1be1
+
+# Block 26 at 0x6e1b21
+006e1b21  80 a5 ec df ff ff 00 and     byte [ebp-0x2014], 0x0
+006e1b28  b9 ff 07 00 00   mov     ecx, 0x7ff
+006e1b2d  33 c0            xor     eax, eax
+006e1b2f  8d bd ed df ff ff lea     edi, [ebp-0x2013]
+006e1b35  f3 ab            rep stosd dword [edi]
+006e1b37  66 ab            stosw   word [edi]
+006e1b39  aa               stosb   byte [edi]
+006e1b3a  8d 85 ec df ff ff lea     eax, [ebp-0x2014]
+006e1b40  53               push    ebx
+006e1b41  50               push    eax
+006e1b42  8d be 30 24 01 00 lea     edi, [esi+0x12430]
+006e1b48  ff 75 08         push    dword [ebp+0x8]
+006e1b4b  8b cf            mov     ecx, edi
+006e1b4d  e8 09 21 07 00   call    CClientSecurity__EncryptCast5Cfb64  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+Mode2 established packet encryption ->0x753C5B CAST5-CFB64, ClientSecurity+0x12430. No legacy schedule access.
+006e1b52  8d 85 ec df ff ff lea     eax, [ebp-0x2014]
+006e1b58  53               push    ebx
+006e1b59  50               push    eax
+006e1b5a  8b 86 00 20 00 00 mov     eax, dword [esi+0x2000]
+006e1b60  03 c6            add     eax, esi
+006e1b62  50               push    eax
+006e1b63  e8 52 5b 09 00   call    memcpy
+006e1b68  68 00 20 00 00   push    0x2000
+006e1b6d  8d 85 ec df ff ff lea     eax, [ebp-0x2014]
+006e1b73  6a 00            push    0x0
+006e1b75  50               push    eax
+006e1b76  e8 b9 5a 09 00   call    memset
+006e1b7b  83 c4 18         add     esp, 0x18
+006e1b7e  e8 a9 a8 d5 ff   call    0x43c42c
+006e1b83  89 45 08         mov     dword [ebp+0x8], eax
+006e1b86  e8 40 22 07 00   call    0x753dcb
+006e1b8b  ff 75 08         push    dword [ebp+0x8]
+006e1b8e  8d 8d ec df ff ff lea     ecx, [ebp-0x2014]
+006e1b94  51               push    ecx
+006e1b95  50               push    eax
+006e1b96  8b cf            mov     ecx, edi
+006e1b98  e8 be 20 07 00   call    CClientSecurity__EncryptCast5Cfb64  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+Encrypt8-byte TQClient trailer through same ongoing directional CAST stream; no mask-dependent framing.
+006e1b9d  e8 8a a8 d5 ff   call    0x43c42c
+006e1ba2  50               push    eax
+006e1ba3  8d 85 ec df ff ff lea     eax, [ebp-0x2014]
+006e1ba9  50               push    eax
+006e1baa  8b 86 00 20 00 00 mov     eax, dword [esi+0x2000]
+006e1bb0  03 c3            add     eax, ebx
+006e1bb2  03 c6            add     eax, esi
+006e1bb4  50               push    eax
+006e1bb5  e8 00 5b 09 00   call    memcpy
+006e1bba  83 c4 0c         add     esp, 0xc
+006e1bbd  e8 6a a8 d5 ff   call    0x43c42c
+006e1bc2  01 86 00 20 00 00 add     dword [esi+0x2000], eax
+006e1bc8  eb 17            jmp     0x6e1be1
+
+# Block 20 at 0x6e1bca
+006e1bca  8b 86 00 20 00 00 mov     eax, dword [esi+0x2000]
+006e1bd0  6a 01            push    0x1
+006e1bd2  03 c6            add     eax, esi
+006e1bd4  53               push    ebx
+006e1bd5  50               push    eax
+006e1bd6  8d 8e 14 20 01 00 lea     ecx, [esi+0x12014]
+006e1bdc  e8 c4 07 00 00   call    CGameSocketLegacyCipher_TransformBuffer  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+Legacy outbound transform(socket+0x12014). Reachable ONLY modes1/3/4; standard GameServer mode2 bypasses it.
+
+# Block 25 at 0x6e1be1
+006e1be1  01 9e 00 20 00 00 add     dword [esi+0x2000], ebx
+006e1be7  6a 01            push    0x1
+006e1be9  58               pop     eax
+006e1bea  e9 83 00 00 00   jmp     0x6e1c72
+
+# Block 11 at 0x6e1bef
+006e1bef  68 4d 01 00 00   push    0x14d
+006e1bf4  68 a8 4c 94 00   push    0x944ca8
+006e1bf9  50               push    eax
+006e1bfa  68 58 4d 94 00   push    0x944d58
+006e1bff  56               push    esi
+006e1c00  e8 24 08 00 00   call    0x6e2429
+006e1c05  83 c4 14         add     esp, 0x14
+006e1c08  eb 68            jmp     0x6e1c72
+
+# Block 2 at 0x6e1c32
+006e1c32  68 36 01 00 00   push    0x136
+006e1c37  68 a8 4c 94 00   push    0x944ca8
+006e1c3c  68 e8 4c 94 00   push    0x944ce8
+006e1c41  56               push    esi
+006e1c42  e8 e2 07 00 00   call    0x6e2429
+006e1c47  83 c4 10         add     esp, 0x10
+006e1c4a  eb 26            jmp     0x6e1c72
+
+# Block 4 at 0x6e1c72
+006e1c72  8b 4d f4         mov     ecx, dword [ebp-0xc]
+006e1c75  5f               pop     edi
+006e1c76  5e               pop     esi
+006e1c77  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+006e1c7e  5b               pop     ebx
+006e1c7f  c9               leave
+006e1c80  c2 08 00         retn    0x8
+

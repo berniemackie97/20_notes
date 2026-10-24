@@ -106,3 +106,77 @@ Files:
 - `10_work/src/Conquer.Play/Composition/PlayRootPathResolver.cs`
 - `10_work/src/Conquer.Play/Composition/PlayStartupComposition.cs`
 - `10_work/src/Conquer.Play/Composition/PlayLauncherComposition.cs`
+
+## `CPlayDlg` UI (proven 2026-10-17)
+
+Source `F:\Play-1.14\PlayDlg.cpp`. Dialog 102: `DLGTEMPLATEEX`, `WS_POPUP|WS_VISIBLE|DS_SETFONT`, `WS_EX_APPWINDOW`, 9pt `宋体`.
+All controls repositioned/skinned from `ini/PlayGui.ini` section `0-<id>` (`x,y,w,h`; `normal/over/down/disabled/focus<variant>`).
+
+| Addr | Name |
+|---|---|
+| `0x403F74` | `CPlayDlg_OnInitDialog` |
+| `0x403E83` | `CPlayDlg_DoDataExchange` |
+| `0x405583` | `CPlayDlg_LoadBackgroundAndWindowRegions` |
+| `0x403907` | `PlayGui_ApplyControlLayoutAndSkin` |
+| `0x40522A` | `CPlayDlg_PlayConfiguredSound` |
+| `0x406979` | `PlayLauncherDialog_OnStartHighModeLaunchAutoPatch` |
+| `0x405A59` / `0x405BAC` / `0x405BC2` | `CPlayDlg_OnLowModeButton` / `..ConfirmContinue` / `..ConfirmReturn` |
+| `0x405BF8` / `0x405CBF` / `0x405D7E` / `0x405ED0` | `CPlayDlg_OnExit` / `OnOffice` / `OnRegister` / `OnLogo` |
+| `0x405E3D` / `0x4052FC` / `0x4052AD` | `CPlayDlg_OnTimer` / `OnPaint` / `OnSysCommand` (About) |
+| `0x4054AC` / `0x4054ED` / `0x405501` | window drag: LButtonDown capture, Up release, MouseMove `MoveWindow` |
+| `0x405818` / `0x405944` / `0x406746` | `OnDestroy` / `OnSetCursor` (`SetCursor([this+0x210])` = `Normal.ani`, returns TRUE; only `SetCursor` call in play.exe, so it also covers the skin buttons) / `WindowProc_PlayHoverSounds` (`WM_MOUSEHOVER`, wParam=id) |
+| `0x405F9F` / `0x40608B` / `0x40609F` / `0x4062AD` | centre web navigate / hide / masked image / Title+Content text |
+| `0x404E18` / `0x404F32` | `GetUnescapedPlayDatString` (`\n`→LF, `\32`→space) / `BuildTextBlockFromGuiSection` |
+| `0x407B0C` / `0x407D9A` / `0x407134` | `CSkinButton_LoadStateBitmaps` / `..CreateRegionFromColorKey` / `..DrawItem` |
+| `0x408007` / `0x4080A6` / `0x40751C` | tooltip text / max width / `CSkinText_DrawLines` |
+| `0x401E66` / `0x401D53` / `0x401D1C` | `MyIni_CreateNewByBuffer` / `GetString` / `GetInt` |
+
+Message map `0x40A5B8`; DDX members:
+
+| Id | Member | Role | PlayGui rect | Art |
+|---:|---|---|---|---|
+| 102 | dlg | window | 0,0 900x650; bg `Play/main.bmp` 800x600 | region `Play/Main.rgn` (299 rects, bounds 1,1–800,599) |
+| 1000 | `+0x90C` | `CWebBrowser2` | 40,106 548x405 | region `Play/Center.rgn` (one rect 546x410) |
+| 1001 | `+0xD3C` | Standard start | 585,443 | `low0x/low1x.bmp` 210x90 ("Standard Definition") |
+| 1007 | `+0xA9C` | High start | 580,392 | `high0x/high1x.bmp` 210x80 |
+| 1008 | `+0x7BC` | Low start | 580,520 | `Simplify0x/1x.bmp` 198x77 ("Low Definition") |
+| 1002 | `+0xE8C` | Site | 273,541 | `Office0x.bmp` 108x30 |
+| 1003 | `+0xFDC` | Register | 385,541 | `Register0x.bmp` 108x30 |
+| 1004 | `+0x94C` | Exit | 160,541 | `Exit0x.bmp` 108x30 |
+| 1005 | `+0xBEC` | Logo (disabled) | 385,-1 | `Play/LOGO.bmp`; `OnTimer` id 1 would cycle `Play/logo/logo0100%02d.bmp` 1–50, but timer 1 is never set (only `SetTimer` sites `0x4042FC`, `0x405F75` use id 2); dir absent in clean |
+| 1009 | `+0x66C` | Hint popup (disabled) | 160,200 | `Hint.bmp` 397x207; text 20,20 color 0x7F, font 20/10 |
+| 1010 | `+0x51C` | Continue | 220,350 | `Continue0x.bmp` 102x32 |
+| 1011 | `+0x3CC` | Return | 380,350 | `Return0x.bmp` 102x32 ("Cancel") |
+| 1012 | `+0x27C` | version text (disabled) | 110,33 | `version.dat` line 1; font 15/6; color 0xFF |
+
+`0x` = `01 normal, 02 over, 03 down`; `1x` = variant 1. Foreground children (`fgcount=2`): `Play/MainS.bmp` at 594,0; `Play/Version.bmp` at 35,29.
+
+- Skin button: window region = normal-bitmap pixels `!= RGB(0,255,0)` (exact). Resized to bitmap size. Draw priority disabled > pressed(down) > hover(over) > focus > normal.
+- Modes (`ini/GameSetup.ini [GameMode]`): High → `HighTimes++`, `GameModeRecord=1`; Standard → `NormalTimes++`, `=0`; Low → `LowTimes++`, `=2`; then `ShellExecute AutoPatch.exe blacknull`, `EndDialog`. All three variant 1; most-used gets variant 0: `m = max(H,N) > L ? max(H,N) : L`, first of Normal, High, Low equal to `m` (fresh install → Standard).
+- Low: first time (`LowTimes == 0`) shows Hint+Continue+Return; Continue → low launch; Return hides popup.
+- Conquer.exe reads only `GameModeRecord == 2` (`0x65CF9B`).
+- Exit/Site/Register: Oem.ini `[ExitPopUp]/[Office]/[Register] url` else Play.dat `[IE]`; `EnumWindows` for an open window titled `*Title`, else `ShellExecute`. Exit then `EndDialog`.
+- Tooltips: system tooltip, `TTDT_AUTOMATIC` 500 ms, `TTM_SETMAXTIPWIDTH` 2000; `STR_PLAY_HIGH/NORMAL/LOW_TIP`.
+- Sounds: click `EnterClick/ExitClick/OfficeClick/RegisterClick` = `Enter/Exit/Office/Register.wav` under `Sound/`; all `*Over` empty. Files absent in clean 5517; `PlaySoundA(SND_FILENAME)` without `SND_NODEFAULT` → system default sound.
+
+### `ini/Play.dat`
+
+Cipher: each byte −6. Decoded clean: `[Start] Type=1 Interval=5000`; `[Web] web1=http://co.91.com/gamer/gamer.shtml`; `[IE]` Office/Register/Exit URLs; `[Sound]` above; `[Title]`/`[Content]` empty text, 12pt, color `99FFFF`, default face `宋体`; `[Str]` tips + `STR_PLAY_SIMPILYCONFIRM`; `[Tip] MaxWidth=2000`.
+
+## `AutoPatch.exe` UI (proven 2026-10-17)
+
+| Addr | Name |
+|---|---|
+| `0x401010` | `CAutoPatchApp_Constructor` (theApp `0x451BA0`, config `+0x1E8`) |
+| `0x401EB0` | `AutoPatchConfig_LoadFromConfigIni` (`AutoPatch\config.ini`) |
+| `0x4052D0` | `CAutoPatchDlg_ApplyGuiIniLayout` (`AutoPatch\GUI.ini`) |
+| `0x404820` | `CAutoPatchDlg_OnInitDialog` |
+| `0x406D50` | `CAutoPatchDlg_OnTimer` (download state machine) |
+| `0x407AF0` | `CPatchProgressBar_Draw` |
+| `0x407CA0` | `CPatchProgressText_DrawLabelAndPercent` |
+
+- Window 640x470 (GUI.ini `[Dialog]`), title `TqAutopatch`.
+- `srand(time)`: download pic `DownPic[rand%3]` (`D1..D3.bmp`), setup pic `SetupPic[rand%3]` (`S1..S3.bmp`), 640x466.
+- Bars (max 100): GUI ids 1002 (22,397 592x17), 1006 (22,436), 1008 (24,437); bar art `schedule.bmp` 678x17 revealed left-to-right, width `rectW*value/max`, not stretched.
+- Text rows 1004 (27,377), 1005/1007 (27,416): label (`LableColor`, default 0x808000) then `%.0fK/%.0fK = %.2f%%` at x+80 (`TextColor` 0xFFFFFF). Labels `Updated:`/`Total:`/`Installed:`.
+- Link font Arial 14 underlined (`WebTip` "Download from site").

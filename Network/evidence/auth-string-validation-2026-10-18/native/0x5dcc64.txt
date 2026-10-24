@@ -1,0 +1,115 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x5dcc64
+005dcc64  53               push    ebx  ; Verified login-control talk split: "ANSWER_OK" continues startup world bootstrap; "NEW_ROLE" sets callback mode 0x3EC and posts WM_COMMAND 0x464 / wParam=3 for create-role transition. Anchors: 0x5DCD27, 0x5DCD38.
+
+Post-auth audit 2026-09-15: processes received messages, drains login-status queue 0x96B330 through DisconnectMsgQueue_ReadNextString (0x730FBC), compares ANSWER_OK with _stricmp. No literal retail 2078/2079 payloads are constructed or checked here.
+005dcc65  56               push    esi
+005dcc66  8b f1            mov     esi, ecx
+005dcc68  57               push    edi
+005dcc69  b9 c8 af 96 00   mov     ecx, 0x96afc8
+005dcc6e  e8 32 1f 10 00   call    CNetMsg__ProcessMsg
+005dcc73  b9 30 b3 96 00   mov     ecx, 0x96b330
+005dcc78  e8 3f 43 15 00   call    DisconnectMsgQueue_ReadNextString
+005dcc7d  8b f8            mov     edi, eax
+005dcc7f  85 ff            test    edi, edi
+005dcc81  0f 84 e2 00 00 00 je      0x5dcd69
+
+# Block 3 at 0x5dcc87
+005dcc87  8b 1d e8 48 84 00 mov     ebx, dword [0x8448e8]
+005dcc8d  57               push    edi
+005dcc8e  68 18 88 93 00   push    0x938818
+005dcc93  ff d3            call    ebx
+005dcc95  59               pop     ecx
+005dcc96  85 c0            test    eax, eax
+005dcc98  59               pop     ecx
+005dcc99  75 72            jne     0x5dcd0d
+
+# Block 5 at 0x5dcc9b
+005dcc9b  8b ce            mov     ecx, esi
+005dcc9d  e8 36 c5 fd ff   call    CMyShellDlg_InitializeShellRegionAndHintSlots
+005dcca2  8d be 20 08 00 00 lea     edi, [esi+0x820]
+005dcca8  6a 01            push    0x1
+005dccaa  8b cf            mov     ecx, edi
+005dccac  e8 10 98 fb ff   call    CFlashHostDialog_IsWindowVisibleOrPendingActivation
+005dccb1  84 c0            test    al, al
+005dccb3  74 24            je      0x5dccd9
+
+# Block 9 at 0x5dccb5
+005dccb5  ff 15 a8 40 84 00 call    dword [GameDataSetQuery]
+005dccbb  8b 10            mov     edx, dword [eax]
+005dccbd  68 e6 2b 00 00   push    0x2be6
+005dccc2  8b c8            mov     ecx, eax
+005dccc4  ff 52 3c         call    dword [edx+0x3c]
+005dccc7  50               push    eax
+005dccc8  68 c4 b7 92 00   push    0x92b7c4
+005dcccd  8b cf            mov     ecx, edi
+005dcccf  e8 f0 f9 ec ff   call    CLoginFlashDlg_SetFlashVariableAndDispatch
+005dccd4  e9 90 00 00 00   jmp     0x5dcd69
+
+# Block 8 at 0x5dccd9
+005dccd9  81 c6 40 0e 00 00 add     esi, 0xe40
+005dccdf  6a 01            push    0x1
+005dcce1  8b ce            mov     ecx, esi
+005dcce3  e8 d9 97 fb ff   call    CFlashHostDialog_IsWindowVisibleOrPendingActivation
+005dcce8  84 c0            test    al, al
+005dccea  74 7d            je      0x5dcd69
+
+# Block 12 at 0x5dccec
+005dccec  ff 15 a8 40 84 00 call    dword [GameDataSetQuery]
+005dccf2  8b 10            mov     edx, dword [eax]
+005dccf4  68 e6 2b 00 00   push    0x2be6
+005dccf9  8b c8            mov     ecx, eax
+005dccfb  ff 52 3c         call    dword [edx+0x3c]
+005dccfe  50               push    eax
+005dccff  68 c4 b7 92 00   push    0x92b7c4
+005dcd04  8b ce            mov     ecx, esi
+005dcd06  e8 b8 f4 f3 ff   call    CRoleCreateFlashDlg_SetFlashVariableAndDispatch
+005dcd0b  eb 5c            jmp     0x5dcd69
+
+# Block 4 at 0x5dcd0d
+005dcd0d  57               push    edi
+005dcd0e  68 0c 88 93 00   push    0x93880c
+005dcd13  ff d3            call    ebx
+005dcd15  59               pop     ecx
+005dcd16  85 c0            test    eax, eax
+005dcd18  59               pop     ecx
+005dcd19  75 25            jne     0x5dcd40
+
+# Block 7 at 0x5dcd1b
+005dcd1b  68 ec 03 00 00   push    0x3ec
+005dcd20  e8 87 3a ed ff   call    CLoginFlashDlg_GetSingletonPtr
+005dcd25  8b c8            mov     ecx, eax
+005dcd27  e8 7a b5 f9 ff   call    CLoginFlashCallbackState_SetModeHandlerByCode
+005dcd2c  6a 00            push    0x0
+005dcd2e  6a 03            push    0x3
+005dcd30  68 64 04 00 00   push    0x464
+005dcd35  ff 76 20         push    dword [esi+0x20]
+005dcd38  ff 15 8c 4a 84 00 call    dword [PostMessageA]
+005dcd3e  eb 29            jmp     0x5dcd69
+
+# Block 6 at 0x5dcd40
+005dcd40  81 c6 20 08 00 00 add     esi, 0x820
+005dcd46  6a 01            push    0x1
+005dcd48  8b ce            mov     ecx, esi
+005dcd4a  e8 72 97 fb ff   call    CFlashHostDialog_IsWindowVisibleOrPendingActivation
+005dcd4f  84 c0            test    al, al
+005dcd51  74 0a            je      0x5dcd5d
+
+# Block 11 at 0x5dcd53
+005dcd53  6a 01            push    0x1
+005dcd55  57               push    edi
+005dcd56  8b ce            mov     ecx, esi
+005dcd58  e8 f6 f6 ec ff   call    CLoginFlashDlg_ShowLoginErrorText
+
+# Block 10 at 0x5dcd5d
+005dcd5d  e8 4a 3a ed ff   call    CLoginFlashDlg_GetSingletonPtr
+005dcd62  8b c8            mov     ecx, eax
+005dcd64  e8 53 bc f9 ff   call    CLoginFlashCallbackState_InvokeProviderMethod8IfPresent
+
+# Block 2 at 0x5dcd69
+005dcd69  5f               pop     edi
+005dcd6a  5e               pop     esi
+005dcd6b  5b               pop     ebx
+005dcd6c  c3               retn
+

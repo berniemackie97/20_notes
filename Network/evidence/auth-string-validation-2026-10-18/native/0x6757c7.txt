@@ -1,0 +1,92 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6757c7
+006757c7  55               push    ebp
+006757c8  8b ec            mov     ebp, esp
+006757ca  83 ec 10         sub     esp, 0x10
+006757cd  80 65 f0 00      and     byte [ebp-0x10], 0x0
+006757d1  57               push    edi
+006757d2  33 c0            xor     eax, eax
+006757d4  8d 7d f1         lea     edi, [ebp-0xf]
+006757d7  ab               stosd   dword [edi]
+006757d8  ab               stosd   dword [edi]
+006757d9  ab               stosd   dword [edi]
+006757da  66 ab            stosw   word [edi]
+006757dc  6a 10            push    0x10
+006757de  ff b1 4c 01 00 00 push    dword [ecx+0x14c]
+006757e4  aa               stosb   byte [edi]
+006757e5  8d 45 f0         lea     eax, [ebp-0x10]
+006757e8  50               push    eax
+006757e9  ff 15 f4 47 84 00 call    dword [strncpy]
+006757ef  80 65 ff 00      and     byte [ebp-0x1], 0x0
+006757f3  8d 45 f0         lea     eax, [ebp-0x10]
+006757f6  50               push    eax
+006757f7  e8 74 1e 10 00   call    strlen
+006757fc  83 c4 10         add     esp, 0x10
+006757ff  83 f8 04         cmp     eax, 0x4
+00675802  7d 04            jge     0x675808
+
+# Block 3 at 0x675804
+00675804  32 c0            xor     al, al
+00675806  eb 25            jmp     0x67582d
+
+# Block 2 at 0x675808
+00675808  8d 44 05 f0      lea     eax, [ebp+eax-0x10]
+0067580c  56               push    esi
+0067580d  8d 70 fc         lea     esi, [eax-0x4]
+00675810  8b ce            mov     ecx, esi
+00675812  3b c8            cmp     ecx, eax
+00675814  74 13            je      0x675829
+
+# Block 5 at 0x675816
+00675816  bf 7c 02 94 00   mov     edi, 0x94027c
+0067581b  2b fe            sub     edi, esi
+
+# Block 10 at 0x67581d
+0067581d  8a 11            mov     dl, byte [ecx]
+0067581f  3a 14 0f         cmp     dl, byte [edi+ecx]
+00675822  75 0c            jne     0x675830
+
+# Block 8 at 0x675824
+00675824  41               inc     ecx
+00675825  3b c8            cmp     ecx, eax
+00675827  75 f4            jne     0x67581d
+
+# Block 4 at 0x675829
+00675829  6a 01            push    0x1
+0067582b  58               pop     eax
+
+# Block 13 at 0x67582c
+0067582c  5e               pop     esi
+
+# Block 6 at 0x67582d
+0067582d  5f               pop     edi
+0067582e  c9               leave
+0067582f  c3               retn
+
+# Block 7 at 0x675830
+00675830  8b ce            mov     ecx, esi
+00675832  3b c8            cmp     ecx, eax
+00675834  74 f3            je      0x675829
+
+# Block 9 at 0x675836
+00675836  bf 78 f5 93 00   mov     edi, 0x93f578
+0067583b  2b fe            sub     edi, esi
+
+# Block 14 at 0x67583d
+0067583d  8a 11            mov     dl, byte [ecx]
+0067583f  3a 14 0f         cmp     dl, byte [edi+ecx]
+00675842  75 07            jne     0x67584b
+
+# Block 12 at 0x675844
+00675844  41               inc     ecx
+00675845  3b c8            cmp     ecx, eax
+00675847  75 f4            jne     0x67583d
+
+# Block 15 at 0x675849
+00675849  eb de            jmp     0x675829
+
+# Block 11 at 0x67584b
+0067584b  33 c0            xor     eax, eax
+0067584d  eb dd            jmp     0x67582c
+

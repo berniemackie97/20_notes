@@ -1,0 +1,145 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x754d4c
+00754d4c  61               popad  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+Real endpoint-validation continuation reached through overlapping return-address jumps. Connects new GameServer socket, mode 2 at 0x754E98, mask=key XOR stack-local cookie at 0x754EAC, passes socket+0x12014 to 0x755DF3 at 0x754EDE. Mask affects only dormant outbound legacy tables, not ClientSecurity at +0x12430. The rejection gate filters invalid/127.x addresses; it does not select a protected-login cipher.
+Evidence: 20_notes/Network/14_session_derived_legacy_cipher_mask.md and 10_work/docs/evidence/session-mask-5517/. Analyst names; VAs authoritative.
+
+2026-09-17 control-flow audit:
+Real continuation reached through 0x754d35 from CALL 0x754d1f. POPAD balances caller PUSHAD. Uses original stack frame; separately defined analysis anchor, not an independent callable gameplay function. See native-trampoline-edges.json.
+00754d4d  83 bd cc f6 ff ff ff cmp     dword [ebp-0x934], 0xffffffff
+00754d54  74 24            je      0x754d7a
+
+# Block 3 at 0x754d56
+00754d56  0f b6 85 cc f6 ff ff movzx   eax, byte [ebp-0x934]
+00754d5d  99               cdq
+00754d5e  6a 07            push    0x7
+00754d60  59               pop     ecx
+00754d61  f7 f9            idiv    ecx
+00754d63  83 fa 01         cmp     edx, 0x1
+00754d66  75 6a            jne     0x754dd2
+
+# Block 5 at 0x754d68
+00754d68  0f b6 85 cc f6 ff ff movzx   eax, byte [ebp-0x934]
+00754d6f  99               cdq
+00754d70  6a 17            push    0x17
+00754d72  59               pop     ecx
+00754d73  f7 f9            idiv    ecx
+00754d75  83 fa 0c         cmp     edx, 0xc
+00754d78  75 58            jne     0x754dd2
+
+# Block 2 at 0x754d7a
+00754d7a  60               pushad
+00754d7b  e8 17 00 00 00   call    0x754d97
+00754d80  59               pop     ecx
+00754d81  5f               pop     edi
+00754d82  5e               pop     esi
+00754d83  5b               pop     ebx
+00754d84  c9               leave
+00754d85  51               push    ecx
+00754d86  c3               retn
+
+# Block 4 at 0x754dd2
+00754dd2  68 ff 00 00 00   push    0xff
+00754dd7  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+00754ddd  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754de3  83 c0 14         add     eax, 0x14
+00754de6  50               push    eax
+00754de7  68 5c ad 96 00   push    0x96ad5c
+00754dec  e8 23 59 01 00   call    0x76a714
+00754df1  83 c4 0c         add     esp, 0xc
+00754df4  80 25 5b ae 96 00 00 and     byte [0x96ae5b], 0x0
+00754dfb  6a 1e            push    0x1e
+00754dfd  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+00754e03  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754e09  ff 70 0c         push    dword [eax+0xc]
+00754e0c  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+00754e12  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754e18  83 c0 14         add     eax, 0x14
+00754e1b  50               push    eax
+00754e1c  b9 c8 af 96 00   mov     ecx, 0x96afc8
+00754e21  e8 39 a1 f8 ff   call    CNetClient_ConnectWithEndpointAndTimeout
+00754e26  85 c0            test    eax, eax
+00754e28  75 67            jne     0x754e91
+
+# Block 7 at 0x754e2a
+00754e2a  e8 7d b9 d5 ff   call    CLoginFlashDlg_GetSingletonPtr
+00754e2f  8b c8            mov     ecx, eax
+00754e31  e8 5f 3b e2 ff   call    CLoginFlashDlg_OnConnectionLost
+00754e36  68 04 87 01 00   push    0x18704
+00754e3b  ff 15 a8 40 84 00 call    dword [GameDataSetQuery]
+00754e41  89 85 70 f6 ff ff mov     dword [ebp-0x990], eax
+00754e47  8b 85 70 f6 ff ff mov     eax, dword [ebp-0x990]
+00754e4d  8b 00            mov     eax, dword [eax]
+00754e4f  8b 8d 70 f6 ff ff mov     ecx, dword [ebp-0x990]
+00754e55  ff 50 3c         call    dword [eax+0x3c]
+00754e58  89 85 88 f6 ff ff mov     dword [ebp-0x978], eax
+00754e5e  ff b5 88 f6 ff ff push    dword [ebp-0x978]
+00754e64  b9 30 b3 96 00   mov     ecx, 0x96b330
+00754e69  e8 fe be fd ff   call    DisconnectMsgQueue_EnqueueString
+00754e6e  c6 45 fc 07      mov     byte [ebp-0x4], 0x7
+00754e72  8d 8d e0 fb ff ff lea     ecx, [ebp-0x420]
+00754e78  e8 42 f5 ff ff   call    CMsgLoginBootstrap1052__Dtor
+00754e7d  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+00754e81  8d 8d d4 f7 ff ff lea     ecx, [ebp-0x82c]
+00754e87  e8 0a 2f 01 00   call    0x767d96
+00754e8c  e9 ab 00 00 00   jmp     0x754f3c
+
+# Block 6 at 0x754e91
+00754e91  6a 02            push    0x2
+00754e93  b9 c8 af 96 00   mov     ecx, 0x96afc8
+00754e98  e8 13 a3 f8 ff   call    CNetClient_SetSocketEncryptionMode  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+Select GameServer mode2 BEFORE outbound legacy rekey. This gate makes the later mask mutation dormant for the active send/receive path.
+00754e9d  8b 85 7c f6 ff ff mov     eax, dword [ebp-0x984]
+00754ea3  8b 80 04 04 00 00 mov     eax, dword [eax+0x404]
+00754ea9  8b 40 08         mov     eax, dword [eax+0x8]
+00754eac  33 85 d0 f7 ff ff xor     eax, dword [ebp-0x830]  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+mask=authenticationKey XOR cookie (uint32). Stored only in stack local[ebp-0x980]; lasting effect is two legacy TXtable mutations, not a socket scalar.
+00754eb2  89 85 80 f6 ff ff mov     dword [ebp-0x980], eax
+00754eb8  83 3d dc af 96 00 00 cmp     dword [0x96afdc], 0x0
+00754ebf  74 22            je      0x754ee3
+
+# Block 9 at 0x754ec1
+00754ec1  a1 dc af 96 00   mov     eax, dword [0x96afdc]
+00754ec6  89 85 84 f6 ff ff mov     dword [ebp-0x97c], eax
+00754ecc  ff b5 80 f6 ff ff push    dword [ebp-0x980]
+00754ed2  8b 8d 84 f6 ff ff mov     ecx, dword [ebp-0x97c]
+00754ed8  81 c1 14 20 01 00 add     ecx, 0x12014
+00754ede  e8 10 0f 00 00   call    CGameSocketLegacyCipher_ApplySessionXorMask  ; [5517 session-mask audit 2026-09-03; SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62]
+this=*(0x96AFDC)+0x12014; apply mask to outbound legacy schedules. Mode2 already selected at0x754E98; CAST security state starts atsocket+0x12430 and is untouched.
+
+# Block 8 at 0x754ee3
+00754ee3  68 eb 03 00 00   push    0x3eb
+00754ee8  e8 bf b8 d5 ff   call    CLoginFlashDlg_GetSingletonPtr
+00754eed  8b c8            mov     ecx, eax
+00754eef  e8 b2 33 e2 ff   call    CLoginFlashCallbackState_SetModeHandlerByCode
+00754ef4  6a 00            push    0x0
+00754ef6  68 e5 04 00 00   push    0x4e5
+00754efb  e8 15 81 ef ff   call    Conquer_PostMainWindowMessage464
+00754f00  59               pop     ecx
+00754f01  59               pop     ecx
+00754f02  6a 00            push    0x0
+00754f04  68 19 05 00 00   push    0x519
+00754f09  e8 07 81 ef ff   call    Conquer_PostMainWindowMessage464
+00754f0e  59               pop     ecx
+00754f0f  59               pop     ecx
+00754f10  6a 00            push    0x0
+00754f12  e8 49 f5 ca ff   call    CHero_GetSingletonPtr
+00754f17  8b c8            mov     ecx, eax
+00754f19  e8 e8 28 f0 ff   call    0x657806
+00754f1e  c6 45 fc 07      mov     byte [ebp-0x4], 0x7
+00754f22  8d 8d e0 fb ff ff lea     ecx, [ebp-0x420]
+00754f28  e8 92 f4 ff ff   call    CMsgLoginBootstrap1052__Dtor
+00754f2d  83 4d fc ff      or      dword [ebp-0x4], 0xffffffff
+00754f31  8d 8d d4 f7 ff ff lea     ecx, [ebp-0x82c]
+00754f37  e8 5a 2e 01 00   call    0x767d96
+
+# Block 10 at 0x754f3c
+00754f3c  8b 4d f4         mov     ecx, dword [ebp-0xc]
+00754f3f  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx
+00754f46  5f               pop     edi
+00754f47  5e               pop     esi
+00754f48  5b               pop     ebx
+00754f49  c9               leave
+00754f4a  c2 04 00         retn    0x4
+

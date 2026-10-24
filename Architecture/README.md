@@ -38,3 +38,5 @@ continuity with the slices that produced them.
 - [07_client_application_world_structure_refactor.md](07_client_application_world_structure_refactor.md)
 - [08_client_contract_model_folder_normalization.md](08_client_contract_model_folder_normalization.md)
 - [10_conquer_project_source_structure.md](10_conquer_project_source_structure.md)
+
+- [Retail 5517 login UI assets and interactions](11_login_ui_assets_and_interactions.md) — source-hashed Flash artwork, timelines, account controls, credential editing, original-asset package and explicit runtime gaps (2026-10-14; research only).

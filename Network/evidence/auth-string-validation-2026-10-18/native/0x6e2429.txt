@@ -1,0 +1,25 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x6e2429
+006e2429  55               push    ebp
+006e242a  8b ec            mov     ebp, esp
+006e242c  81 ec 00 04 00 00 sub     esp, 0x400
+006e2432  8b 4d 08         mov     ecx, dword [ebp+0x8]
+006e2435  e8 60 fe ff ff   call    CGameSocket_CloseAndReset
+006e243a  8d 45 10         lea     eax, [ebp+0x10]
+006e243d  50               push    eax
+006e243e  8d 85 00 fc ff ff lea     eax, [ebp-0x400]
+006e2444  ff 75 0c         push    dword [ebp+0xc]
+006e2447  68 00 04 00 00   push    0x400
+006e244c  50               push    eax
+006e244d  ff 15 58 47 84 00 call    dword [_vsnprintf]
+006e2453  80 65 ff 00      and     byte [ebp-0x1], 0x0
+006e2457  8d 85 00 fc ff ff lea     eax, [ebp-0x400]
+006e245d  50               push    eax
+006e245e  6a 00            push    0x0
+006e2460  e8 67 5e 03 00   call    0x7182cc
+006e2465  83 c4 18         add     esp, 0x18
+006e2468  33 c0            xor     eax, eax
+006e246a  c9               leave
+006e246b  c3               retn
+

@@ -1,0 +1,31 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb
+
+# Block 1 at 0x76a714
+0076a714  56               push    esi
+0076a715  57               push    edi
+0076a716  8b 7c 24 0c      mov     edi, dword [esp+0xc]
+0076a71a  85 ff            test    edi, edi
+0076a71c  74 23            je      0x76a741
+
+# Block 3 at 0x76a71e
+0076a71e  83 7c 24 10 00   cmp     dword [esp+0x10], 0x0
+0076a723  74 1c            je      0x76a741
+
+# Block 4 at 0x76a725
+0076a725  8b 74 24 14      mov     esi, dword [esp+0x14]
+0076a729  85 f6            test    esi, esi
+0076a72b  7e 14            jle     0x76a741
+
+# Block 5 at 0x76a72d
+0076a72d  56               push    esi
+0076a72e  ff 74 24 14      push    dword [esp+0x14]
+0076a732  57               push    edi
+0076a733  ff 15 f4 47 84 00 call    dword [strncpy]
+0076a739  83 c4 0c         add     esp, 0xc
+0076a73c  80 64 37 ff 00   and     byte [edi+esi-0x1], 0x0
+
+# Block 2 at 0x76a741
+0076a741  5f               pop     edi
+0076a742  5e               pop     esi
+0076a743  c3               retn
+

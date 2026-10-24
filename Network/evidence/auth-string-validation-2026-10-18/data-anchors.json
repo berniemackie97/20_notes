@@ -1,0 +1,14 @@
+{
+  "module": "Conquer.exe",
+  "anchors": [
+    {"address":"0x84411c","source":"Binary Ninja typed import data","meaning":"MultiByteToWideChar import"},
+    {"address":"0x844118","source":"Binary Ninja typed import data","meaning":"WideCharToMultiByte import"},
+    {"address":"0x943758","source":"clean PE bytes","ascii":"ini/Slient.dat"},
+    {"address":"0x94027c","source":"clean PE bytes","ascii":"[GM]"},
+    {"address":"0x93f578","source":"clean PE bytes","ascii":"[PM]"},
+    {"address":"0x9226f8","source":"clean PE bytes","hex":"0d00","meaning":"sender/recipient CR replacement search"},
+    {"address":"0x9226f4","source":"clean PE bytes","hex":"0a00","meaning":"sender/recipient LF replacement search"},
+    {"address":"0x9390dc","source":"Binary Ninja hex dump","hex":"0e0e0000","meaning":"Flash SetVariable InvokeHelper signature: two strings"},
+    {"address":"0x86c4b4","source":"Binary Ninja hex dump","hex":"8411730028137300a4f26d0055f36d0071137300","meaning":"MsgTalk vtable Parse slot points to0x731328"}
+  ]
+}
