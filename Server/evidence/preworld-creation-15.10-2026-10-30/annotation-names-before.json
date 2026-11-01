@@ -1,0 +1,71 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[{\"query\":\"0x4b0b17\",\"fn\":{\"addr\":\"0x4b0b17\",\"name\":\"sub_4B0B17\",\"size\":\"0x393\"},\"error\":null},{\"query\":\"0x4b5227\",\"fn\":{\"addr\":\"0x4b5227\",\"name\":\"sub_4B5227\",\"size\":\"0x173\"},\"error\":null},{\"query\":\"0x4a618c\",\"fn\":{\"addr\":\"0x4a618c\",\"name\":\"sub_4A618C\",\"size\":\"0x44\"},\"error\":null},{\"query\":\"0x4b22b2\",\"fn\":{\"addr\":\"0x4b22b2\",\"name\":\"sub_4B22B2\",\"size\":\"0x79\"},\"error\":null},{\"query\":\"0x4b232b\",\"fn\":{\"addr\":\"0x4b232b\",\"name\":\"sub_4B232B\",\"size\":\"0x48d\"},\"error\":null},{\"query\":\"0x4a79f7\",\"fn\":{\"addr\":\"0x4a79f7\",\"name\":\"sub_4A79F7\",\"size\":\"0x76\"},\"error\":null}]"
+      }
+    ],
+    "structuredContent": {
+      "result": [
+        {
+          "query": "0x4b0b17",
+          "fn": {
+            "addr": "0x4b0b17",
+            "name": "sub_4B0B17",
+            "size": "0x393"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4b5227",
+          "fn": {
+            "addr": "0x4b5227",
+            "name": "sub_4B5227",
+            "size": "0x173"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4a618c",
+          "fn": {
+            "addr": "0x4a618c",
+            "name": "sub_4A618C",
+            "size": "0x44"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4b22b2",
+          "fn": {
+            "addr": "0x4b22b2",
+            "name": "sub_4B22B2",
+            "size": "0x79"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4b232b",
+          "fn": {
+            "addr": "0x4b232b",
+            "name": "sub_4B232B",
+            "size": "0x48d"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4a79f7",
+          "fn": {
+            "addr": "0x4a79f7",
+            "name": "sub_4A79F7",
+            "size": "0x76"
+          },
+          "error": null
+        }
+      ]
+    },
+    "isError": false
+  },
+  "id": 1
+}

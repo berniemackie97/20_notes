@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Declaration (0x86a8a8 0x86a8a8):\nvoid* 0x86a8a8;\n\nHexdump:\n86a8a8  0x86a8a8:\n86a8a8                          21 b4 64 00                      !.d.    \n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Declaration (0x86a8a8 0x86a8a8):\nvoid* 0x86a8a8;\n\nHexdump:\n86a8a8  0x86a8a8:\n86a8a8                          21 b4 64 00                      !.d.    \n"
+  },
+  "isError": false
+}

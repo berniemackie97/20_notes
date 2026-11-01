@@ -1,0 +1,150 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"addr\":\"0x4b532f\",\"asm\":{\"name\":\"CMyDatabase__ExecuteSQL\",\"start_ea\":\"0x4b532f\",\"segment\":\".text\",\"lines\":[{\"addr\":\"4b532f\",\"instruction\":\"call mysql_query; 2026-10-30: mysql_query nonzero returns false with generic error 1004; zero returns true. No mysql_errno classification, affected-row check, transaction or rollback in this recovered creation path. Native code alone does not prove failure atomicity of external DB/engine/triggers.\",\"comments\":[\"2026-10-30: mysql_query nonzero returns false with generic error 1004; zero returns true. No mysql_errno classification, affected-row check, transaction or rollback in this recovered creation path. Native code alone does not prove failure atomicity of external DB/engine/triggers.\"],\"refs\":[{\"addr\":\"0x4ccf36\",\"name\":\"mysql_query\"}]}],\"stack_frame\":[{\"name\":\"Buffer\",\"offset\":\"0xc\",\"size\":\"0x1\",\"type\":\"char\"},{\"name\":\"var_42B\",\"offset\":\"0xd\",\"size\":\"0x1\",\"type\":\"_BYTE\"},{\"name\":\"var_2F\",\"offset\":\"0x409\",\"size\":\"0x2\",\"type\":\"_WORD\"},{\"name\":\"var_2D\",\"offset\":\"0x40b\",\"size\":\"0x1\",\"type\":\"_BYTE\"},{\"name\":\"var_2C\",\"offset\":\"0x40c\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_28\",\"offset\":\"0x410\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_24\",\"offset\":\"0x414\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_20\",\"offset\":\"0x418\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_18\",\"offset\":\"0x420\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_14\",\"offset\":\"0x424\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_10\",\"offset\":\"0x428\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_C\",\"offset\":\"0x42c\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_4\",\"offset\":\"0x434\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"__saved_registers\",\"offset\":\"0x438\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"__return_address\",\"offset\":\"0x43c\",\"size\":\"0x4\",\"type\":\"_UNKNOWN *\"},{\"name\":\"Str2\",\"offset\":\"0x440\",\"size\":\"0x4\",\"type\":\"char *\"}],\"return_type\":\"char\",\"arguments\":[{\"name\":\"this\",\"type\":\"void *\"},{\"name\":\"Str2\",\"type\":\"char *\"}]},\"instruction_count\":1,\"total_instructions\":null,\"cursor\":{\"next\":1}}"
+      }
+    ],
+    "structuredContent": {
+      "addr": "0x4b532f",
+      "asm": {
+        "name": "CMyDatabase__ExecuteSQL",
+        "start_ea": "0x4b532f",
+        "segment": ".text",
+        "lines": [
+          {
+            "addr": "4b532f",
+            "instruction": "call mysql_query; 2026-10-30: mysql_query nonzero returns false with generic error 1004; zero returns true. No mysql_errno classification, affected-row check, transaction or rollback in this recovered creation path. Native code alone does not prove failure atomicity of external DB/engine/triggers.",
+            "comments": [
+              "2026-10-30: mysql_query nonzero returns false with generic error 1004; zero returns true. No mysql_errno classification, affected-row check, transaction or rollback in this recovered creation path. Native code alone does not prove failure atomicity of external DB/engine/triggers."
+            ],
+            "refs": [
+              {
+                "addr": "0x4ccf36",
+                "name": "mysql_query"
+              }
+            ]
+          }
+        ],
+        "stack_frame": [
+          {
+            "name": "Buffer",
+            "offset": "0xc",
+            "size": "0x1",
+            "type": "char"
+          },
+          {
+            "name": "var_42B",
+            "offset": "0xd",
+            "size": "0x1",
+            "type": "_BYTE"
+          },
+          {
+            "name": "var_2F",
+            "offset": "0x409",
+            "size": "0x2",
+            "type": "_WORD"
+          },
+          {
+            "name": "var_2D",
+            "offset": "0x40b",
+            "size": "0x1",
+            "type": "_BYTE"
+          },
+          {
+            "name": "var_2C",
+            "offset": "0x40c",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_28",
+            "offset": "0x410",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_24",
+            "offset": "0x414",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_20",
+            "offset": "0x418",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_18",
+            "offset": "0x420",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_14",
+            "offset": "0x424",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_10",
+            "offset": "0x428",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_C",
+            "offset": "0x42c",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_4",
+            "offset": "0x434",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "__saved_registers",
+            "offset": "0x438",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "__return_address",
+            "offset": "0x43c",
+            "size": "0x4",
+            "type": "_UNKNOWN *"
+          },
+          {
+            "name": "Str2",
+            "offset": "0x440",
+            "size": "0x4",
+            "type": "char *"
+          }
+        ],
+        "return_type": "char",
+        "arguments": [
+          {
+            "name": "this",
+            "type": "void *"
+          },
+          {
+            "name": "Str2",
+            "type": "char *"
+          }
+        ]
+      },
+      "instruction_count": 1,
+      "total_instructions": null,
+      "cursor": {
+        "next": 1
+      }
+    },
+    "isError": false
+  },
+  "id": 1
+}

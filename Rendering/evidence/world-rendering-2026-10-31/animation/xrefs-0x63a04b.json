@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"address\": \"0x63a04b\", \"code_references\": [{\"function\": \"CMapGroundEntityLayer_Render\", \"address\": \"0x638e7b\"}, {\"function\": \"CGameMap2DPuzzleOverlay_Render\", \"address\": \"0x64b8e9\"}], \"data_references\": []}"
+    }
+  ],
+  "isError": false
+}

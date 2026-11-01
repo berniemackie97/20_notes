@@ -1,0 +1,27 @@
+{
+  "name": "CMapTerrainObject_Tick",
+  "asm": {
+    "content": [
+      {
+        "type": "text",
+        "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x644b7d\n00644b7d  56               push    esi\n00644b7e  8b f1            mov     esi, ecx\n00644b80  e8 00 bb dc ff   call    CGameMap_GetSingletonPtr\n00644b85  6a 08            push    0x8\n00644b87  8b c8            mov     ecx, eax\n00644b89  ff 76 10         push    dword [esi+0x10]\n00644b8c  ff 76 0c         push    dword [esi+0xc]\n00644b8f  e8 79 94 fd ff   call    CGameMap_IsTileWithinScaledScreenBoundsWithMargin\n00644b94  85 c0            test    eax, eax\n00644b96  74 0d            je      0x644ba5\n\n# Block 3 at 0x644b98\n00644b98  56               push    esi\n00644b99  e8 e7 ba dc ff   call    CGameMap_GetSingletonPtr\n00644b9e  8b c8            mov     ecx, eax\n00644ba0  e8 a6 9b fd ff   call    CGameMap_NotifySceneryComponentSubcomponentUpdated\n\n# Block 2 at 0x644ba5\n00644ba5  5e               pop     esi\n00644ba6  c2 04 00         retn    0x4\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x644b7d\n00644b7d  56               push    esi\n00644b7e  8b f1            mov     esi, ecx\n00644b80  e8 00 bb dc ff   call    CGameMap_GetSingletonPtr\n00644b85  6a 08            push    0x8\n00644b87  8b c8            mov     ecx, eax\n00644b89  ff 76 10         push    dword [esi+0x10]\n00644b8c  ff 76 0c         push    dword [esi+0xc]\n00644b8f  e8 79 94 fd ff   call    CGameMap_IsTileWithinScaledScreenBoundsWithMargin\n00644b94  85 c0            test    eax, eax\n00644b96  74 0d            je      0x644ba5\n\n# Block 3 at 0x644b98\n00644b98  56               push    esi\n00644b99  e8 e7 ba dc ff   call    CGameMap_GetSingletonPtr\n00644b9e  8b c8            mov     ecx, eax\n00644ba0  e8 a6 9b fd ff   call    CGameMap_NotifySceneryComponentSubcomponentUpdated\n\n# Block 2 at 0x644ba5\n00644ba5  5e               pop     esi\n00644ba6  c2 04 00         retn    0x4\n"
+    },
+    "isError": false
+  },
+  "hlil": {
+    "content": [
+      {
+        "type": "text",
+        "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n00644b8f        int32_t result = CGameMap_IsTileWithinScaledScreenBoundsWithMargin(CGameMap_GetSingletonPtr(), *(arg1 + 0xc), *(arg1 + 0x10), 8)\n00644b96        if (result == 0)\n00644ba6        return result\n00644b99        CGameMap_GetSingletonPtr()\n00644ba0        return CGameMap_NotifySceneryComponentSubcomponentUpdated(arg1)"
+      }
+    ],
+    "structuredContent": {
+      "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n00644b8f        int32_t result = CGameMap_IsTileWithinScaledScreenBoundsWithMargin(CGameMap_GetSingletonPtr(), *(arg1 + 0xc), *(arg1 + 0x10), 8)\n00644b96        if (result == 0)\n00644ba6        return result\n00644b99        CGameMap_GetSingletonPtr()\n00644ba0        return CGameMap_NotifySceneryComponentSubcomponentUpdated(arg1)"
+    },
+    "isError": false
+  }
+}

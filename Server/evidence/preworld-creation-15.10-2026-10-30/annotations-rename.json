@@ -1,0 +1,60 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"func\":[{\"addr\":\"0x4b0b17\",\"old\":\"sub_4B0B17\",\"name\":\"CMsgRegister__ProcessCharacterCreation_15_10\",\"dir\":\"vibe\"},{\"addr\":\"0x4b5227\",\"old\":\"sub_4B5227\",\"name\":\"CMyDatabase__ExecuteSQL\",\"dir\":\"vibe\"},{\"addr\":\"0x4a618c\",\"old\":\"sub_4A618C\",\"name\":\"CWorldKernel__SendCharacterCreatedNotice1100\",\"dir\":\"vibe\"},{\"addr\":\"0x4b22b2\",\"old\":\"sub_4B22B2\",\"name\":\"ValidateLegacyTextBytes\",\"dir\":\"vibe\"},{\"addr\":\"0x4b232b\",\"old\":\"sub_4B232B\",\"name\":\"ValidateCharacterNameSyntaxAndReservedWords\",\"dir\":\"vibe\"},{\"addr\":\"0x4a79f7\",\"old\":\"sub_4A79F7\",\"name\":\"CWorldKernel__MatchesUnlawfulNameRule\",\"dir\":\"vibe\"}],\"summary\":{\"total\":6,\"ok\":6,\"failed\":0,\"stopped\":false,\"stop_on_error\":true}}"
+      }
+    ],
+    "structuredContent": {
+      "func": [
+        {
+          "addr": "0x4b0b17",
+          "old": "sub_4B0B17",
+          "name": "CMsgRegister__ProcessCharacterCreation_15_10",
+          "dir": "vibe"
+        },
+        {
+          "addr": "0x4b5227",
+          "old": "sub_4B5227",
+          "name": "CMyDatabase__ExecuteSQL",
+          "dir": "vibe"
+        },
+        {
+          "addr": "0x4a618c",
+          "old": "sub_4A618C",
+          "name": "CWorldKernel__SendCharacterCreatedNotice1100",
+          "dir": "vibe"
+        },
+        {
+          "addr": "0x4b22b2",
+          "old": "sub_4B22B2",
+          "name": "ValidateLegacyTextBytes",
+          "dir": "vibe"
+        },
+        {
+          "addr": "0x4b232b",
+          "old": "sub_4B232B",
+          "name": "ValidateCharacterNameSyntaxAndReservedWords",
+          "dir": "vibe"
+        },
+        {
+          "addr": "0x4a79f7",
+          "old": "sub_4A79F7",
+          "name": "CWorldKernel__MatchesUnlawfulNameRule",
+          "dir": "vibe"
+        }
+      ],
+      "summary": {
+        "total": 6,
+        "ok": 6,
+        "failed": 0,
+        "stopped": false,
+        "stop_on_error": true
+      }
+    },
+    "isError": false
+  },
+  "id": 1
+}

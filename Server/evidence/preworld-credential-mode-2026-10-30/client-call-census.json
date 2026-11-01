@@ -1,0 +1,31 @@
+{
+  "sha256": "b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62",
+  "target": "0x59e59f",
+  "rel32_candidates": [
+    {
+      "address": "0x4ada53",
+      "opcode": "0xe8"
+    },
+    {
+      "address": "0x4adad9",
+      "opcode": "0xe8"
+    },
+    {
+      "address": "0x4adc0b",
+      "opcode": "0xe8"
+    },
+    {
+      "address": "0x4ade26",
+      "opcode": "0xe8"
+    },
+    {
+      "address": "0x4ae059",
+      "opcode": "0xe8"
+    },
+    {
+      "address": "0x4ae21f",
+      "opcode": "0xe8"
+    }
+  ],
+  "absolute_pointer_candidates": []
+}

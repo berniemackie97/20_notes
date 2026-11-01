@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x64b9a1\n0064b9a1  56               push    esi  ; Shared tile-to-screen projection getter used by positioned-overlay child type-03 and type-3 subtype-04 scenery. Projects this+0x0C/+0x10 tile coordinates via Map_ProjectTileToScreenCoordinates.\n0064b9a2  8b f1            mov     esi, ecx\n0064b9a4  e8 dc 4c dc ff   call    CGameMap_GetSingletonPtr\n0064b9a9  8b 54 24 08      mov     edx, dword [esp+0x8]\n0064b9ad  8d 4a 04         lea     ecx, [edx+0x4]\n0064b9b0  51               push    ecx\n0064b9b1  52               push    edx\n0064b9b2  ff 76 10         push    dword [esi+0x10]\n0064b9b5  8b c8            mov     ecx, eax\n0064b9b7  ff 76 0c         push    dword [esi+0xc]\n0064b9ba  e8 91 1e fd ff   call    Map_ProjectTileToScreenCoordinates\n0064b9bf  5e               pop     esi\n0064b9c0  c2 04 00         retn    0x4\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x64b9a1\n0064b9a1  56               push    esi  ; Shared tile-to-screen projection getter used by positioned-overlay child type-03 and type-3 subtype-04 scenery. Projects this+0x0C/+0x10 tile coordinates via Map_ProjectTileToScreenCoordinates.\n0064b9a2  8b f1            mov     esi, ecx\n0064b9a4  e8 dc 4c dc ff   call    CGameMap_GetSingletonPtr\n0064b9a9  8b 54 24 08      mov     edx, dword [esp+0x8]\n0064b9ad  8d 4a 04         lea     ecx, [edx+0x4]\n0064b9b0  51               push    ecx\n0064b9b1  52               push    edx\n0064b9b2  ff 76 10         push    dword [esi+0x10]\n0064b9b5  8b c8            mov     ecx, eax\n0064b9b7  ff 76 0c         push    dword [esi+0xc]\n0064b9ba  e8 91 1e fd ff   call    Map_ProjectTileToScreenCoordinates\n0064b9bf  5e               pop     esi\n0064b9c0  c2 04 00         retn    0x4\n"
+  },
+  "isError": false
+}

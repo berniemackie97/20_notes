@@ -1,0 +1,29 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"addr\":\"0x438614\",\"code\":\"void *__thiscall sub_438614(_DWORD *this)\\n{\\n  void *result; // eax\\n\\n  result = memset(this + 3, 0, 0x400u); /*0x438622*/\\n  *(this + 2) = 0; /*0x438627*/\\n  *(this + 1) = 0; /*0x43862b*/\\n  return result; /*0x438632*/\\n}\",\"line_count\":9,\"total_lines\":9,\"truncated\":false,\"cursor\":{\"done\":true},\"refs\":[{\"addr\":\"0x4bb4c0\",\"name\":\"_memset\"}]}"
+      }
+    ],
+    "structuredContent": {
+      "addr": "0x438614",
+      "code": "void *__thiscall sub_438614(_DWORD *this)\n{\n  void *result; // eax\n\n  result = memset(this + 3, 0, 0x400u); /*0x438622*/\n  *(this + 2) = 0; /*0x438627*/\n  *(this + 1) = 0; /*0x43862b*/\n  return result; /*0x438632*/\n}",
+      "line_count": 9,
+      "total_lines": 9,
+      "truncated": false,
+      "cursor": {
+        "done": true
+      },
+      "refs": [
+        {
+          "addr": "0x4bb4c0",
+          "name": "_memset"
+        }
+      ]
+    },
+    "isError": false
+  },
+  "id": 1
+}

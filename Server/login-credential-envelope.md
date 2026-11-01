@@ -53,10 +53,11 @@ server must not try to reverse it.
 branches at 0x59EC41 on an encode flag: set → per-account keypad permutation
 (`CGameInput_ResetPasswordKeypadSeedFromAccount` 0x59F02D +
 `CGameInput_MapVirtualKeyToLoginCipherByte` 0x59EF7B); clear → `sub_59F0AA`, which maps the scan
-code straight to ASCII. The login dialog computes that flag at 0x4ADDFF from the selected server's
-charge type, which made a raw form look plausible for a plain server — **it is not**. Measurement
-against the live client shows the keypad stage is applied; see the SETTLED section. Do not infer
-the transform from that flag without re-measuring.
+code straight to ASCII. **Mode-selection correction, 2026-10-30:** `0x4ADDFF` computes a separate
+fourth argument controlling soft-key-only input. The password caller explicitly pushes encoding
+mode **1** as its third argument at `0x4ADE1C`; `0x59EC41` reads that third argument. Charge type
+cannot select raw encoding through this path. See the [native mode-selection closure](credential-mode-selection-5517.md)
+for all six callers, writer provenance, account switching, and the separate exceptional preload path.
 
 The permutation itself: weight `seed[i & 0xF] ^ i` over values `1..255`, sorted descending; the
 cipher byte is the sorted index of the scan code, `+0x80` when shifted. Seed is the signed byte
@@ -137,11 +138,9 @@ rename is lost.
 Known-unknown, recorded so they are not mistaken for settled. The RC5 key question is **no longer
 among them** — see above.
 
-- **Why the charge-type flag at 0x4ADDFF did not predict the transform.** The branch at 0x59EC41
-  genuinely selects keypad vs raw, and a plain server looked like it should take the raw path, yet
-  the live client sent keypad. Either the flag is set for reasons not traced, or the raw branch is
-  unreachable from the login dialog. Not chased once measurement settled the behaviour. Given the
-  0x764BC6 lesson, assume a writer elsewhere sets that flag rather than that the branch is dead.
+- **Mode-selection gap closed, 2026-10-30:** the old charge-type explanation conflated stack arguments.
+  [Native closure](credential-mode-selection-5517.md) proves constant keypad mode for ordinary password
+  entry; raw mode serves other input fields. Exceptional startup preload remains separately bounded.
 - **Non-ASCII account names are untested.** The keypad seed is a signed byte sum; ASCII names make
   signed and unsigned identical, so the sign only matters above 0x7F. We match native's `sx.d`,
   but no live test has exercised it, and usernames allow 32 unrestricted characters.

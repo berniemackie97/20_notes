@@ -1,0 +1,21 @@
+{
+  "names": {
+    "0x4b0b17": "CMsgRegister__ProcessCharacterCreation_15_10",
+    "0x4b5227": "CMyDatabase__ExecuteSQL",
+    "0x4a618c": "CWorldKernel__SendCharacterCreatedNotice1100",
+    "0x4b22b2": "ValidateLegacyTextBytes",
+    "0x4b232b": "ValidateCharacterNameSyntaxAndReservedWords",
+    "0x4a79f7": "CWorldKernel__MatchesUnlawfulNameRule"
+  },
+  "comments": {
+    "0x4aa843": "2026-10-30 native correction: unsupported profession is COERCED to 20, not rejected. 10/40/50/100 retain their branches; zero also becomes 20. See 20_notes/Server/character-creation-decision-15.10.md. Historical 15.10 only.",
+    "0x4b0ce9": "2026-10-30: CreateNewUser receives request body account/name/password, u16 body+48/+50, and u32 account_id from body+52. Recovered socket dispatch and handler contain no account/session ownership lookup. False maps to generic STR_ERROR_DUPLICATE_NAME, including invalid body/map and DB failures; this is not a dedicated uniqueness result.",
+    "0x4b0d63": "2026-10-30: after ANSWER_OK talk creation/send attempt, issue AccountServer notice 1100 using request account_id +52 and string +56. Talk construction/send success is not a prerequisite. No rollback/compensation follows either send in this handler. Ordering is call issuance, not delivery across sockets.",
+    "0x4aa91a": "2026-10-30: DB vtable 0x4EE274 +0x0C resolves CMyDatabase__ExecuteSQL (0x4B5227). Returns its BOOL after one INSERT cq_user. No pre-insert SELECT for name/account and no follow-up persistence stage here.",
+    "0x4b532f": "2026-10-30: mysql_query nonzero returns false with generic error 1004; zero returns true. No mysql_errno classification, affected-row check, transaction or rollback in this recovered creation path. Native code alone does not prove failure atomicity of external DB/engine/triggers."
+  },
+  "backup_sha256": "50530d2c96d4e898777b2dd031ec4b6b6b3eba41fd82c9f755c1251b24930f6e",
+  "saved_db_sha256": "7045f363b966dab3be26188a8d01e9036637ec419e03c4f714b90ac91c335652",
+  "existing_db_path": "/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/binaries/_re/MsgServer.exe.i64",
+  "no_executable_patches": true
+}

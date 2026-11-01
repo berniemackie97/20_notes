@@ -1,0 +1,32 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[{\"addr\":\"0x4aa843\"},{\"addr\":\"0x4b0ce9\"},{\"addr\":\"0x4b0d63\"},{\"addr\":\"0x4aa91a\"},{\"addr\":\"0x4b532f\"}]"
+      }
+    ],
+    "structuredContent": {
+      "result": [
+        {
+          "addr": "0x4aa843"
+        },
+        {
+          "addr": "0x4b0ce9"
+        },
+        {
+          "addr": "0x4b0d63"
+        },
+        {
+          "addr": "0x4aa91a"
+        },
+        {
+          "addr": "0x4b532f"
+        }
+      ]
+    },
+    "isError": false
+  },
+  "id": 1
+}

@@ -57,12 +57,7 @@ Managed own-UI runtime contract mirrors this ordering:
    - no `0x483` world enable on that branch
    - no waiting for the world-bootstrap packet set on that branch
 6. Once create-role mode is active, the verified native command surface moves to `role.dat` host commands:
-   - `CMD_NICK` -> update nickname buffer
-   - `CMD_BODYSIZE` -> update body-size selector
-   - `CMD_VOCATION` -> update vocation index
-   - `CMD_ENTERGAME` -> validate + send `1001`
-   - `CMD_DRIVERBACK` -> send cancel `1001` and post `0x481`
-   - `CMD_CLOSE` -> `0x483`, `0xC6B`, `0x3F2`
+   see [12_create_role_flow.md](12_create_role_flow.md).
 
 Verified `WM_COMMAND 0x464` branch handlers in `CMyShellDlg_WindowProc_DispatchMainWindowMessages`
 (`0x5BB79D`) for startup command ids:
@@ -87,70 +82,13 @@ Verified `WM_COMMAND 0x464` branch handlers in `CMyShellDlg_WindowProc_DispatchM
 - `0x5CAA2D`:
   `CMyShellDlg_HandleStartupCommand0x483_EnableWorldFrameGateAfterStartupLayoutChecks`
   (`this+0x179AB9 = 1` only on converged success path after startup checks).
-- command `3` branch inside `0x5BB79D`:
-  create-role transition path reached from server control talk `"NEW_ROLE"` after callback mode `0x3EC` is set.
+- command `3` is not in `0x5BB79D`'s own `0x464` tree: it falls through to the `0x464` message-map entry,
+  `CMyShellDlg_DispatchCommandCode` case 3 (`0x5B2D37`), which swaps the login and create-role dialogs
+  ([12_create_role_flow.md](12_create_role_flow.md)).
 
-## Verified Create-Role Host Contract (`role.dat`, own-UI replacement boundary)
+## Verified Create-Role Host Contract (`role.dat`)
 
-BNinja anchors:
-
-- `CRoleCreateFlashDlg_InitializeFlashMovieAndSeedVariables` (`0x51C0AB`)
-- `CRoleCreateFlashDlg_HandleFlashCommandString` (`0x51C32E`)
-- `CRoleCreateFlashDlg_SubmitCreatePlayerRequest` (`0x51C5C3`)
-- `CRoleCreateFlashDlg_SendCreatePlayerCancelAndPostHostCommand481` (`0x51C54B`)
-- `CRoleCreateFlashDlg_SetFlashVariableAndDispatch` (`0x51C1C3`)
-- `CRoleCreateFlashDlg_SetProgressVariable` (`0x51C289`)
-
-Verified native role-create host initialization:
-
-- movie path: `%s/data/main/role.dat`
-- seeded variables:
-  - `PATH`
-  - `USERACCOUNT`
-  - `HIDERETURNBTN`
-
-Verified command surface:
-
-| Command | Verified native effect |
-|---|---|
-| `CMD_NICK` | writes nickname buffer at `this+0x14C` |
-| `CMD_BODYSIZE` | parses integer and stores selector at `this+0x138` |
-| `CMD_VOCATION` | parses integer and stores vocation index at `this+0x13C` |
-| `CMD_DRIVERBACK` | sends cancel `1001` and posts `WM_COMMAND 0x464 / 0x481` |
-| `CMD_ENTERGAME` | validates nickname, sets callback mode `0x3EC`, builds/sends `1001`, then pushes `PROGRESS` |
-| `CMD_CLOSE` | posts `0x483`, `0xC6B`, `0x3F2` |
-| `CMD_EXIT` | posts main-window command `0x55` |
-| `CMD_GAMESTART` | posts `WM_COMMAND 0x464 / 0x480` |
-
-Verified create submit field mapping:
-
-- nickname length gate: `4..15`
-- body mapping from `(vocation_index % 2, body_size == 1)`:
-  - even vocation index -> `2001` / `2002`
-  - odd vocation index -> `1003` / `1004`
-- profession mapping from vocation index:
-  - `0,1 -> 100`
-  - `2,3 -> 10`
-  - `4,5 -> 40`
-  - `6,7 -> 20`
-  - `8,9 -> 50`
-  - `10,11 -> 60`
-
-Verified status/result handling:
-
-- create success is `1004 "ANSWER_OK"` handled by `CMyShellDlg_HandleCreateRoleStatusSystemTalk`.
-- that branch clears startup connect flag, pushes `STR_CREATE_ROLE_SUCCESS` through `LOADING_TRACE`, and calls
-  `CConnectionFlow__SendGameSessionBootstrap`.
-- non-success create talk is surfaced to the role-create host as `ERROR`.
-
-Own-UI replacement contract:
-
-- our native UI may diverge visually from the Flash movie, but it must expose the full verified option surface
-  above and send the same verified `1001` fields.
-- option labels/descriptions for the own-UI screen may be sourced from shipped asset file
-  `ini/selectCharacter.ini` (`affirmPanel`, `info`, `infoII`), while packet/body/profession mapping remains the
-  BNinja-verified native contract.
-- create success must continue on the same authenticated game session; do not force relogin in the own-UI path.
+Moved to [12_create_role_flow.md](12_create_role_flow.md) (2026-10-24; body mapping corrected there).
 
 Status/progress callback contract in own-UI path (anchored to `0x5DCEA3` branch behavior):
 
@@ -203,35 +141,31 @@ Account-first routing requirement derived from the verified message split:
   - `"ANSWER_OK"` -> world bootstrap gate -> `0x483`
   - `"NEW_ROLE"` -> create-role transition -> `0x464 / 3`
 
-## Own-UI registration extension (non-native feature, `main-own-ui`)
+## OpenConquer registration extension (non-native)
 
 Retail 5517 does not register an account over the account-server packet stream. The startup SWF
 Register button selects the OEM registration URL when configured, otherwise the default registration
 URL, and calls `fscommand("CMD_GETURL", url)`. `CLoginFlashDlg_HandleFlashCommandString` handles
 `CMD_GETURL` at `0x4AA86E` by passing that URL to `ShellExecuteA`. Account creation therefore remains
 a website operation in the shipped client; packets `1084`, `1098`, `1102`, and `1121` are login
-authentication variants, not registration requests.
+authentication variants, not registration requests. StrRes 10054/10055 ("Registering…", "Your
+character is ready") belong to character creation (eosource `MsgRegister`), not accounts.
 
-The rebuilt client adds registration as an explicitly project-owned extension:
+Current implementation (2026-10-24): OpenConquerServer #171, OpenConquerClient FLOW-001B.
 
-- `LOGIN` button keeps the verified native-equivalent submit route:
-  `SetLoginUser` -> `SetLoginPassword` -> post `WM_COMMAND 0x464 / wParam=0x480`.
-- `REGISTER` uses the same account endpoint, packet-1059 seed exchange, login-stream cipher, and
-  native credential-field transform as login, but uses reserved OpenConquer packet IDs:
-  - request `0xF001` (`260` bytes): `[length][id][accountName:128][encryptedCredential:128]`;
-  - response `0xF002` (`8` bytes): `[length][id][resultCode:uint32]`.
-- response result codes are `0=Success`, `1=InvalidRequest`, `2=AccountNameTaken`, and `3=Failed`.
-- AccountServer now treats login and registration as separate operations:
-  - login path authenticates only (no account auto-create);
-  - register path creates an account only and returns failure when the username already exists;
-  - registration never emits native auth response `1055`, creates a game-login ticket, or enters
-    the post-authentication game handoff.
+| Item | Value |
+|---|---|
+| Request | `0xF001`, 260 B: `[len][id][account:128][credential:128]` — first 256 B of 1060, no server name |
+| Credential | same seed-keyed RC5 + keypad transform as 1060 |
+| Response | `0xF002`, 8 B: `[len][id][result:u32]`; then server closes; never 1055/ticket |
+| Results | 0 created · 1 invalid · 2 name taken · 3 failed · 4 unavailable (disabled / rate limited) |
+| Server policy | name 4–16 printable ASCII no space; password 6–15, keypad alphabet |
+| Client policy | name 4–16, password 6–14 (English login refuses >14, StrRes 11400); fields accept keypad alphabet only |
+| UI | Sign Up opens modal "Create Account" dialog: clearMC (sprite 285) picture, body +40 rows, at (361,239); 3 × shape-328 password box; native Ok/Cancel; 10-frame mask timeline, input on frame 6; Tab/Enter/Escape |
+| UI results | problems inline (#FF4642); created ⇒ dialog closes, name fills field 363, errorMC notice |
 
-UI status contract for register:
-
-- success: `ACCOUNT REGISTERED`
-- duplicate username: `ACCOUNT NAME TAKEN`
-- transport/endpoint failure: same endpoint/offline status family as login submit.
+All registration text is project-owned except connect failure (StrRes 10397).
+Legacy `main-own-ui` (10_work, abandoned) used the same IDs with codes 0–3 and status text banners.
 
 ## Verified startup submit credential-buffer + legacy transport cipher contract (2026-03-11)
 

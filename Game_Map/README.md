@@ -4,6 +4,9 @@ World rendering, the radar, and the on-disk terrain formats.
 
 - [cgamemap_class.md](cgamemap_class.md) — `CGameMap` / `C3DGameMap`, world
   rendering. IDA folder `/Game_Map/`, 23 functions across 2 sub-folders.
+- [world_render_contract_5517.md](world_render_contract_5517.md) — **start here for world
+  rendering**: camera/projection formulas, scenery activation and depth sort, render order,
+  `.scene` format, puzzle/ANI animation and blending (Newbie 1010). Corrects older notes.
 - [post_login_world_loading_orchestration.md](post_login_world_loading_orchestration.md) —
   the order in which the world comes up after login, and which handler owns each
   piece of local-hero state.

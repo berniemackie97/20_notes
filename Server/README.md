@@ -83,3 +83,7 @@ and three documents carry no date at all.
   tests; retail-identity overclaims corrected by the audit above.
 - [map-assets.md](map-assets.md) — native map asset formats and the server
   contract over them.
+
+- [Retail credential mode selection](credential-mode-selection-5517.md) — 2026-10-30: encoding/policy argument separation, all direct callers, account switching, and exceptional preload boundary.
+
+- [Historical 15.10 creation decisions](character-creation-decision-15.10.md) — acceptance/refusal, ownership, response order, and persistence failure boundaries.

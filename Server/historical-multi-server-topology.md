@@ -62,7 +62,7 @@ backlog** (`CWorldKernel__GetMapGroupMessageBacklog` `0x4A5B3A` → `StdList__Si
 | Client 1052 | version mismatch ⇒ talk 2101 `STR_ERROR_VERSION`; < 0x7B ⇒ `STR_ERROR_LOWER_VERSION`; online > max ∧ account > 1000 ⇒ talk 2101 `STR_ERROR_SERVER_FULL`; validation fail ⇒ talk 2101 `account locked!` | `CMsgConnect__Process` `0x4B0688` → `CWorldKernel__ClientConnect` `0x4A661B` |
 | Rate gate | after 1800 s uptime, logins per **10 s** window < 15 / 10 / 5 (online < 200 / < 500 / more); fail ⇒ talk 2101 `STR_ERROR_SERVER_BUSY`, close | `CWorldKernel__IsLoginRateAllowed` `0x4A6849` |
 | Matched login | account already in world ⇒ `CUserList__KickOutAccount(STR_LOGIN_AGAIN)`, **new login refused**. `LoginUser` 0 ⇒ ok (login count++), 1 ⇒ talk 2101 `NEW_ROLE`, 2 ⇒ talk 2101 `STR_ERROR_LACK_OF_BALANCE` + close | `CWorldKernel__LoginConnectedAccount` `0x4A688A` |
-| Character load | `SELECT … cq_user WHERE account_id=X`, first row ⇒ one character per account per world | `CUserList__LoginUser` `0x4A9D1A` |
+| Character load | `SELECT … cq_user WHERE account_id=X`, first row is loaded; this does not enforce one character per account per world | `CUserList__LoginUser` `0x4A9D1A` |
 | Create | `INSERT cq_user` without `id` (DB-assigned ⇒ ids unique per world DB only); map 1010 | `CUserList__CreateNewUser` `0x4AA79A` |
 | Logout | `SendFee(account, 1)`, `INSERT login_rcd`, online−− | `CUserList__LogoutUser` `0x4AA096` |
 | Kick | `SendFee(account, 1)`; talk SYSTEM→ALLUSERS text on channel **2100**; close socket | `CUserList__KickOutAccount` `0x4AA260` |
@@ -140,3 +140,5 @@ zf package schema: `cq_user` PK `id`, UNIQUE `name`, non-unique `account_id` (pa
 Retail AccountServer binary: absent; its C++ source is in fight-master (policy above). Packaged account servers are third-party — .NET `CoAccountServer`
 (`592534841d0eb68d`, `04a112398a1ace87`), E-language `AccServer` (`8f108fd3d3cfb9df`) / `EACC1.03`
 (`93b41a5a1226d024`), 2020 .NET `TQAccServer` (`af66921411d7fed0`). Not evidence.
+
+Creation-time ownership and uniqueness checks, response ordering, and the single-INSERT failure boundary are now traced in [the focused 15.10 addendum](character-creation-decision-15.10.md). This does not establish 5517 server parity.

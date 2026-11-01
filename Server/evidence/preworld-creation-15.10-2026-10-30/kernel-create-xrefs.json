@@ -1,0 +1,1 @@
+{"jsonrpc": "2.0", "result": {"content": [{"type": "text", "text": "[{\"addr\":\"0x4A48A9\",\"xrefs\":[{\"addr\":\"0x4edfb4\",\"type\":\"data\",\"fn\":null}],\"more\":false,\"xref_count\":1}]"}], "structuredContent": {"result": [{"addr": "0x4A48A9", "xrefs": [{"addr": "0x4edfb4", "type": "data", "fn": null}], "more": false, "xref_count": 1}]}, "isError": false}, "id": 1}

@@ -89,8 +89,8 @@ Inside `Exe_TickMapProjectionAndDispatchMapRender`:
   - `keyboardState[0x12]` (`VK_MENU`) read from stack slot `-0xF6` at `0x5ACB07`
   - `keyboardState[0x10]` (`VK_SHIFT`) read from stack slot `-0xF8` at `0x5ACB6F`
 - computed call arguments:
-  - `centerX = heroVf10OutX + GetScreenWidth()/2`
-  - `centerY = heroVf10OutY + GetScreenHeight()/2`
+  - `centerX = heroVf10OutX + GetScreenWidth()/(-2)` = hero − half screen (`idiv` by `0xFFFFFFFE`; corrected 2026-10-31, see [world_render_contract_5517](world_render_contract_5517.md))
+  - `centerY = heroVf10OutY + GetScreenHeight()/(-2)`
   - `allowEdgeScroll = (vkMenuHighBitSet && g_projectionEdgeScrollEnabled != 0 && !Role_HasStatusFlag(hero, 0x3C))`
 - projection/camera update call is `CGameMap_UpdateProjectionAndCameraFromScreenCenter` (`0x61E0E7`) at `0x5ACB4A`
 - earthquake queue processing call is `CEarthQuakeEffectMgr_ProcessQueuedEffects(CEarthQuakeEffectMgr_GetSingletonPtr())` at `0x5ACB4F`/`0x5ACB56`
@@ -311,10 +311,10 @@ Both callsites pass `index = -1` and append the same 5 creator results in the sa
 | Order | Creator | Constructor | VTable write in ctor | `GetTypeCode` |
 |---:|---|---|---|---:|
 | 1 | `CGameMapGroundEntityLayerComponent_Create` (`0x637516`) | `CGameMapGroundEntityLayerComponent_Constructor` (`0x63738F`) | `mov [esi], 0x86A2FC` at `0x637407` | `1` (`CGameMapGroundEntityLayerComponent_GetTypeCode`, `0x6375C0`) |
-| 2 | `CGameMapComponentType2_Create` (`0x637201`) | `CGameMapComponentType2_Constructor` (`0x637126`) | `mov [esi], 0x86A2EC` at `0x637170` | `2` (`CGameMapComponentType2_GetTypeCode`, `0x63738B`) |
-| 3 | `CGameMapComponentType6_Create` (`0x6370F4`) | `CGameMapComponentType6_Constructor` (`0x6370BB`) | `mov [esi], 0x86A2A8` at `0x6370C3` | `6` (`CGameMapComponentType6_GetTypeCode`, `0x6370F0`) |
+| 2 | `CFloorLayer_CreateNew` (`0x637201`) | `CFloorLayer_Constructor` (`0x637126`) | `mov [esi], 0x86A2EC` at `0x637170` | `2` (`CGameMapComponentType2_GetTypeCode`, `0x63738B`) |
+| 3 | `CSurfaceLayer_CreateNew` (`0x6370F4`) | `CGameMapComponentType6_Constructor` (`0x6370BB`) | `mov [esi], 0x86A2A8` at `0x6370C3` | `6` (`CGameMapComponentType6_GetTypeCode`, `0x6370F0`) |
 | 4 | `CMapSceneryComponent_Create` (`0x63551C`) | `CMapSceneryComponent_Constructor` (`0x635210`) | `mov [esi], 0x86A258` at `0x635263` | `3` (`CMapSceneryComponent_GetTypeCode`, `0x43D103`) |
-| 5 | `CGameMapComponentType5_Create` (`0x634B36`) | `CGameMapComponentType5_Constructor` (`0x6349D8`) | `mov [esi], 0x86A238` at `0x634A46` | `5` (`CGameMapComponentType5_GetTypeCode`, `0x63520C`) |
+| 5 | `CSkyLayer_CreateNew` (`0x634B36`) | `CGameMapComponentType5_Constructor` (`0x6349D8`) | `mov [esi], 0x86A238` at `0x634A46` | `5` (`CGameMapComponentType5_GetTypeCode`, `0x63520C`) |
 
 Concrete call sequence evidence:
 
@@ -323,7 +323,7 @@ Concrete call sequence evidence:
 | `CGameMap_Constructor` (`0x61B875`) | `0x61BA3C`, `0x61BA4B`, `0x61BA5A`, `0x61BA69`, `0x61BA78` | `0x61BA46`, `0x61BA55`, `0x61BA64`, `0x61BA73`, `0x61BA82` |
 | `CGameMap_ResetAndInitializeDefaultComponents` (`0x61D07A`) | `0x61D0D9`, `0x61D0EA`, `0x61D0F8`, `0x61D106`, `0x61D114` | `0x61D0E5`, `0x61D0F3`, `0x61D101`, `0x61D10F`, `0x61D11D` |
 
-Verified default appended type-code order is therefore:
+Verified default appended type-code order is therefore (layer names from eosource `MapLayer.h`: 1 TERRAIN, 2 FLOOR, 6 SURFACE, 3 INTERACTIVE, 5 SKY; see [world_render_contract_5517](world_render_contract_5517.md)):
 
 `[1, 2, 6, 3, 5]`
 
@@ -339,10 +339,10 @@ Verified callback mapping for default producer types:
 | Type code | VTable | `+0x4` render callback | `+0x8` tick callback | `+0xC` get type |
 |---:|---:|---|---|---|
 | `1` | `0x86A2FC` | `CGameMapGroundEntityLayerComponent_MapComponentRenderTick` (`0x637553`) | `CGameMapGroundEntityLayerComponent_PerFrameTick` (`0x637566`) | `CGameMapGroundEntityLayerComponent_GetTypeCode` (`0x6375C0`) |
-| `2` | `0x86A2EC` | `CGameMapComponentType2_MapComponentRenderTick` (`0x63723E`) | `CGameMapComponentType2_PerFrameTick` (`0x6372A2`) | `CGameMapComponentType2_GetTypeCode` (`0x63738B`) |
+| `2` | `0x86A2EC` | `CFloorLayer_Show` (`0x63723E`) | `CFloorLayer_Process` (`0x6372A2`) | `CGameMapComponentType2_GetTypeCode` (`0x63738B`) |
 | `6` | `0x86A2A8` | `NoOpVirtualCallback_Arg2` (`0x768140`) | `NoOpVirtualCallback_Arg1` (`0x5AD9B1`) | `CGameMapComponentType6_GetTypeCode` (`0x6370F0`) |
 | `3` | `0x86A258` | `CMapSceneryComponent_Render` (`0x6352F4`) | `CMapSceneryComponent_PerFrameTick` (`0x63537B`) | `CMapSceneryComponent_GetTypeCode` (`0x43D103`) |
-| `5` | `0x86A238` | `CGameMapComponentType5_MapComponentRenderTick` (`0x634C34`) | `CGameMapComponentType5_PerFrameTick` (`0x634B6B`) | `CGameMapComponentType5_GetTypeCode` (`0x63520C`) |
+| `5` | `0x86A238` | `CSkyLayer_Show` (`0x634C34`) | `CSkyLayer_Process` (`0x634B6B`) | `CGameMapComponentType5_GetTypeCode` (`0x63520C`) |
 
 Type-6 callback evidence:
 - `NoOpVirtualCallback_Arg2` disassembly at `0x768140`: `retn 0x8`
@@ -350,10 +350,10 @@ Type-6 callback evidence:
 
 ### Type-2 callback body (fully verified)
 
-`CGameMapComponentType2_MapComponentRenderTick` (`0x63723E`):
+`CFloorLayer_Show` (`0x63723E`):
 - pre-steps:
-  - `CGameMapComponentType2_RenderPreStepA(this+0x0C)` (`0x648060`) at `0x63724B`
-  - `CGameMapComponentType2_RenderPreStepB(this+0x40)` (`0x646CE9`) at `0x637253`
+  - `CRoseSys_Show(this+0x0C)` (`0x648060`) at `0x63724B`
+  - `CPatternRoseSys_Show(this+0x40)` (`0x646CE9`) at `0x637253`
 - child list count:
   - `count = StdDequePtr_GetElementCount_Type2ChildList(this+0x84, this+0x74)` at `0x63725F`
 - loop `index=0..count-1`:
@@ -361,7 +361,7 @@ Type-6 callback evidence:
   - child render callback via `call [vtable+0x4]` with literal `0` at `0x637287..0x63728D`
 - incoming projection args are not consumed by the child-call path.
 
-`CGameMapComponentType2_PerFrameTick` (`0x6372A2`):
+`CFloorLayer_Process` (`0x6372A2`):
 - child list count:
   - `count = StdDequePtr_GetElementCount_Type2ChildList(this+0x84, this+0x74)` at `0x6372B0`
 - loop `index=0..count-1`:
@@ -383,14 +383,14 @@ Type-6 callback evidence:
 - allocates a temporary iterator/deque state on the stack (`0x635390..0x63539D`),
 - clears the active render deque rooted at `this+0x74/+0x78` through `MotionPathNodeDeque_ClearAndResetCursors(this+0x74)` at `0x6353A9`,
 - iterates the loaded subcomponent deque rooted at `this+0x34/+0x38` through `0x641D2C(this+0x34, &iter)` at `0x6353B5`,
-- dispatches child tick callbacks by child virtual type code (`vtable+0x0C`), then feeds selected children into the active render deque update helper at `0x6355E7`.
+- dispatches child tick callbacks by child virtual type code (`vtable+0x0C`), then passes selected (expired) children to `CMapSceneryComponent_DetachAndRemoveSubcomponent` (`0x6355E7`). Correction 2026-10-31: this removes them; children enter the active deque only through their own notify call ([world_render_contract_5517](world_render_contract_5517.md) §2).
 
 Verified branch table from `0x6353FC..0x6354D6`:
 
-| Child type code | Tick call argument | Post-tick active-render behavior | Evidence |
+| Child type code | Tick call argument | Post-tick removal (`DetachAndRemoveSubcomponent`) | Evidence |
 |---:|---|---|---|
 | `0x01` | `nullptr` | no direct insertion; nested external objects drive updates | `0x63540C..0x635478` |
-| `0x04` | hero projection-pair temp from `CHero_GetSingletonPtr()->vfunc+0x10` | always enters active-render helper at `0x6354D6` after tick | `0x635449..0x6354D6` |
+| `0x04` | hero projection-pair temp from `CHero_GetSingletonPtr()->vfunc+0x10` | never removed here; activates itself via notify `0x645625` | `0x635449..0x635478` |
 | `0x05` | `nullptr` | no direct insertion | `0x635415..0x635478` |
 | `0x06` | dispatcher tick arg | no direct insertion | `0x63541A..0x635447` |
 | `0x07` | dispatcher tick arg | no direct insertion | `0x63541A..0x635447` |
@@ -744,7 +744,7 @@ Loop increments entry index at `0x635AC7` and continues while `index < count` (`
   - it allocates a `0x0C` `MapTileLinkNode`, copies metadata `surfaceId` to `node+0x00` and `passabilityFlag` to `node+0x02`, adds metadata `elevationDelta` to the current tail elevation for `node+0x04`, then appends the node through `MapTileEntry_SetTailLinkAttachmentRecordPointer`
   - `MapTileEntry_GetTailLinkElevation` (`0x61EBC5`) resolves the final node through `MapTileEntry_GetTailLinkNode` (`0x61EAEE`) and returns signed `node+0x04`
   - every later attachment therefore uses the preceding attachment's accumulated elevation and becomes the live surface/passability/elevation source
-- If returned type code is `0x11`, appends pointer into a dedicated pointer array rooted at `this+0x0C` via `CMapType3Component_AppendType11SubcomponentPointer` (`0x6355B7`).
+- If returned type code is `0x11`, appends pointer into a dedicated pointer array rooted at `this+0x0C` via `StdDequeSharedPtr_PushBack` (`0x6355B7`).
 
 #### Terrain Object Group Load Block (type `0x01`, verified)
 
@@ -1100,7 +1100,7 @@ Color source for this object is `this+0x08`:
 - frame index write: `this+0x3C = ((timeGetTime()-this+0x44)/(this+0x40)) % frameCount` (`0x64558D..0x645593`),
 - visibility-margin helper: `CMapType3SubcomponentType04_GetVisibilityMarginTilesFromCachedFrameExtents` (`0x6454C4`) returns `max(this+0x50, this+0x54)`,
 - notify reorder path: `CGameMap_NotifyType3ComponentSubcomponentUpdated(this)` (`0x645625`).
-- main type-3 tick still routes subtype `0x04` through the active-render update helper at `0x6354D6` after the tick callback returns (`0x635449..0x6354D6`).
+- (corrected 2026-10-31) the main type-3 tick does not route subtype `0x04` to `0x6354D6`; that target removes expired children.
 
 Practical consequence for managed parity:
 - subtype-04 payload `+0x34/+0x38` must not be used as a render-position pair.

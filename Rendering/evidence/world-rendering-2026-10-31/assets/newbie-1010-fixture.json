@@ -1,0 +1,3152 @@
+{
+  "evidence_kind": "local retail artifact byte audit using layouts already documented from native 5517; no new Binary Ninja query in this subtask",
+  "source_root": "/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517",
+  "gamemap": {
+    "path": "ini/GameMap.dat",
+    "size": 8131,
+    "sha256": "0676b7d6969dd8277438704a289b1f57e8debb89fe5d3f912819c3a7880686a0",
+    "declared_entries": 262,
+    "matches1010": [
+      {
+        "index": 20,
+        "offset": 587,
+        "map_data_id": 1010,
+        "path": "map/map/newbie.7z",
+        "path_byte_length": 17,
+        "component_link_id": 256
+      }
+    ]
+  },
+  "archive": {
+    "path": "map/map/newbie.7z",
+    "size": 1275,
+    "sha256": "650793aae73babd90400b424c39a21db6a6d9337bcd7811ece0a22ba0e64ba7a"
+  },
+  "payload": {
+    "member": "newbie.DMap",
+    "size": 118644,
+    "sha256": "e35523ff239343b555369d9ba5851cffc579f9be4f0941bd29ced73446fcfbd5",
+    "matches_loose": true,
+    "loose": {
+      "path": "map/map/newbie.DMap",
+      "size": 118644,
+      "sha256": "e35523ff239343b555369d9ba5851cffc579f9be4f0941bd29ced73446fcfbd5"
+    }
+  },
+  "dmap": {
+    "header": [
+      1346456900,
+      3223601
+    ],
+    "ground_puzzle": "map\\puzzle\\newbie.pul",
+    "grid": [
+      132,
+      132
+    ],
+    "grid_offset": 276,
+    "all_row_checksums_match": true,
+    "passability_counts": {
+      "1": 15863,
+      "0": 1561
+    },
+    "elevation_counts": {
+      "0": 17424
+    },
+    "exit_offset": 105348,
+    "exits": [],
+    "scenery_offset": 105352,
+    "scenery": [
+      {
+        "index": 0,
+        "offset": 105356,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie17.tga",
+        "tile": [
+          91,
+          35
+        ],
+        "depth_span": [
+          1,
+          5
+        ],
+        "render_offset": [
+          45,
+          117
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 1,
+        "offset": 105776,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie16.tga",
+        "tile": [
+          91,
+          38
+        ],
+        "depth_span": [
+          1,
+          3
+        ],
+        "render_offset": [
+          38,
+          153
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 2,
+        "offset": 106196,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie15.tga",
+        "tile": [
+          91,
+          39
+        ],
+        "depth_span": [
+          1,
+          2
+        ],
+        "render_offset": [
+          80,
+          297
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 3,
+        "offset": 106616,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie10.tga",
+        "tile": [
+          68,
+          48
+        ],
+        "depth_span": [
+          1,
+          1
+        ],
+        "render_offset": [
+          31,
+          39
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 4,
+        "offset": 107036,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie09.tga",
+        "tile": [
+          69,
+          37
+        ],
+        "depth_span": [
+          1,
+          1
+        ],
+        "render_offset": [
+          18,
+          47
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 5,
+        "offset": 107456,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie07.tga",
+        "tile": [
+          74,
+          55
+        ],
+        "depth_span": [
+          1,
+          1
+        ],
+        "render_offset": [
+          32,
+          103
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 6,
+        "offset": 107876,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie01.tga",
+        "tile": [
+          77,
+          33
+        ],
+        "depth_span": [
+          1,
+          1
+        ],
+        "render_offset": [
+          18,
+          169
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 7,
+        "offset": 108296,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie06.tga",
+        "tile": [
+          66,
+          35
+        ],
+        "depth_span": [
+          1,
+          1
+        ],
+        "render_offset": [
+          13,
+          20
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 8,
+        "offset": 108716,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie05.tga",
+        "tile": [
+          60,
+          36
+        ],
+        "depth_span": [
+          1,
+          1
+        ],
+        "render_offset": [
+          22,
+          46
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 9,
+        "offset": 109136,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie06.tga",
+        "tile": [
+          74,
+          32
+        ],
+        "depth_span": [
+          1,
+          1
+        ],
+        "render_offset": [
+          14,
+          27
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 10,
+        "offset": 109556,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie11.tga",
+        "tile": [
+          58,
+          38
+        ],
+        "depth_span": [
+          1,
+          1
+        ],
+        "render_offset": [
+          25,
+          43
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 11,
+        "offset": 109976,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie12.tga",
+        "tile": [
+          70,
+          49
+        ],
+        "depth_span": [
+          1,
+          1
+        ],
+        "render_offset": [
+          7,
+          20
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 12,
+        "offset": 110396,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie13.tga",
+        "tile": [
+          66,
+          48
+        ],
+        "depth_span": [
+          1,
+          1
+        ],
+        "render_offset": [
+          26,
+          106
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 13,
+        "offset": 110816,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie18.tga",
+        "tile": [
+          90,
+          31
+        ],
+        "depth_span": [
+          1,
+          2
+        ],
+        "render_offset": [
+          13,
+          86
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 14,
+        "offset": 111236,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie14.tga",
+        "tile": [
+          96,
+          40
+        ],
+        "depth_span": [
+          3,
+          1
+        ],
+        "render_offset": [
+          100,
+          180
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 15,
+        "offset": 111656,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie04.tga",
+        "tile": [
+          94,
+          42
+        ],
+        "depth_span": [
+          1,
+          1
+        ],
+        "render_offset": [
+          54,
+          92
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 16,
+        "offset": 112076,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie08.tga",
+        "tile": [
+          78,
+          61
+        ],
+        "depth_span": [
+          1,
+          1
+        ],
+        "render_offset": [
+          33,
+          109
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 17,
+        "offset": 112496,
+        "type": 4,
+        "ani": "ani\\MapScene.ani",
+        "section": "newbie16.tga",
+        "tile": [
+          91,
+          38
+        ],
+        "depth_span": [
+          1,
+          3
+        ],
+        "render_offset": [
+          38,
+          153
+        ],
+        "frame_interval_ms": 100,
+        "bytes": 420
+      },
+      {
+        "index": 18,
+        "offset": 112916,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          69,
+          106
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 19,
+        "offset": 113188,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          71,
+          105
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 20,
+        "offset": 113460,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          73,
+          104
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 21,
+        "offset": 113732,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          74,
+          102
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 22,
+        "offset": 114004,
+        "type": 1,
+        "path": "map\\Scene\\stand05.scene",
+        "anchor": [
+          76,
+          100
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 23,
+        "offset": 114276,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          76,
+          96
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 24,
+        "offset": 114548,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          77,
+          94
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 25,
+        "offset": 114820,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          78,
+          92
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 26,
+        "offset": 115092,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          80,
+          91
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 27,
+        "offset": 115364,
+        "type": 1,
+        "path": "map\\Scene\\stand01.scene",
+        "anchor": [
+          84,
+          91
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 28,
+        "offset": 115636,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          86,
+          89
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 29,
+        "offset": 115908,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          87,
+          87
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 30,
+        "offset": 116180,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          88,
+          85
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 31,
+        "offset": 116452,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          89,
+          83
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 32,
+        "offset": 116724,
+        "type": 1,
+        "path": "map\\Scene\\stand08.scene",
+        "anchor": [
+          91,
+          79
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 33,
+        "offset": 116996,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          90,
+          81
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 34,
+        "offset": 117268,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          81,
+          74
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 35,
+        "offset": 117540,
+        "type": 1,
+        "path": "map\\Scene\\stand06.scene",
+        "anchor": [
+          82,
+          81
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 36,
+        "offset": 117812,
+        "type": 1,
+        "path": "map\\Scene\\stand03.scene",
+        "anchor": [
+          50,
+          105
+        ],
+        "bytes": 272
+      },
+      {
+        "index": 37,
+        "offset": 118084,
+        "type": 1,
+        "path": "map\\Scene\\stand02.scene",
+        "anchor": [
+          49,
+          96
+        ],
+        "bytes": 272
+      }
+    ],
+    "overlay_offset": 118356,
+    "overlays": [
+      {
+        "index": 0,
+        "offset": 118360,
+        "insert_index": 0,
+        "type": 4,
+        "parallax_percent": [
+          18,
+          35
+        ],
+        "children": [
+          {
+            "index": 0,
+            "offset": 118380,
+            "type": 8,
+            "path": "map\\puzzle\\newbiebg.pul",
+            "bytes": 264
+          }
+        ],
+        "bytes": 284
+      }
+    ],
+    "consumed_all_bytes": true
+  },
+  "scenes": [
+    {
+      "path": "map/Scene/stand01.scene",
+      "size": 552,
+      "sha256": "5e208ea7cd4b9fef2c168c5fe816b272160caf8763d2a4c80e4593413f8586b6",
+      "entries": [
+        {
+          "index": 0,
+          "offset": 4,
+          "ani": "ani\\MapScene.ani",
+          "section": "stand01.tga",
+          "render_offset": [
+            -101,
+            -111
+          ],
+          "frame_interval_ms": 200,
+          "metadata_grid": [
+            4,
+            4
+          ],
+          "argb": "0x0",
+          "anchor_offset": [
+            0,
+            0
+          ],
+          "draw_parameter": 0,
+          "metadata_records": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "bytes": 548
+        }
+      ]
+    },
+    {
+      "path": "map/Scene/stand02.scene",
+      "size": 408,
+      "sha256": "b80b9f8ed1a23beb28d7f6169da9682315889e80e96f7a615f0e3b4e32579893",
+      "entries": [
+        {
+          "index": 0,
+          "offset": 4,
+          "ani": "ani\\MapScene.ani",
+          "section": "stand02.tga",
+          "render_offset": [
+            -63,
+            -55
+          ],
+          "frame_interval_ms": 200,
+          "metadata_grid": [
+            2,
+            2
+          ],
+          "argb": "0x0",
+          "anchor_offset": [
+            0,
+            0
+          ],
+          "draw_parameter": 0,
+          "metadata_records": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "bytes": 404
+        }
+      ]
+    },
+    {
+      "path": "map/Scene/stand03.scene",
+      "size": 552,
+      "sha256": "9987b9a133b54e465c83571facdaf66174a0a4295c1468f7cea8997f1b955ae5",
+      "entries": [
+        {
+          "index": 0,
+          "offset": 4,
+          "ani": "ani\\MapScene.ani",
+          "section": "stand03.tga",
+          "render_offset": [
+            -99,
+            -110
+          ],
+          "frame_interval_ms": 200,
+          "metadata_grid": [
+            4,
+            4
+          ],
+          "argb": "0x0",
+          "anchor_offset": [
+            0,
+            0
+          ],
+          "draw_parameter": 0,
+          "metadata_records": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "bytes": 548
+        }
+      ]
+    },
+    {
+      "path": "map/Scene/stand05.scene",
+      "size": 552,
+      "sha256": "f5853fa69b88bdc91ab442fb8fd310969ac8888c8f7daa111a28e97e3dd17747",
+      "entries": [
+        {
+          "index": 0,
+          "offset": 4,
+          "ani": "ani\\MapScene.ani",
+          "section": "stand05.tga",
+          "render_offset": [
+            -97,
+            -110
+          ],
+          "frame_interval_ms": 200,
+          "metadata_grid": [
+            4,
+            4
+          ],
+          "argb": "0x0",
+          "anchor_offset": [
+            0,
+            0
+          ],
+          "draw_parameter": 0,
+          "metadata_records": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          "bytes": 548
+        }
+      ]
+    },
+    {
+      "path": "map/Scene/stand06.scene",
+      "size": 408,
+      "sha256": "16d2a3eeacce8c45fe6b4a250b84162bd9ca3a7cdb7acc13144058358960969a",
+      "entries": [
+        {
+          "index": 0,
+          "offset": 4,
+          "ani": "ani\\MapScene.ani",
+          "section": "stand06.tga",
+          "render_offset": [
+            -60,
+            -48
+          ],
+          "frame_interval_ms": 200,
+          "metadata_grid": [
+            2,
+            2
+          ],
+          "argb": "0x0",
+          "anchor_offset": [
+            0,
+            0
+          ],
+          "draw_parameter": 0,
+          "metadata_records": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "bytes": 404
+        }
+      ]
+    },
+    {
+      "path": "map/Scene/stand08.scene",
+      "size": 468,
+      "sha256": "b26571c9b3bfc9c8a8018dbfd673ea121d4cd5d0089692ad0b5808b2320433a2",
+      "entries": [
+        {
+          "index": 0,
+          "offset": 4,
+          "ani": "ani\\MapScene.ani",
+          "section": "stand08.tga",
+          "render_offset": [
+            -90,
+            -76
+          ],
+          "frame_interval_ms": 200,
+          "metadata_grid": [
+            3,
+            3
+          ],
+          "argb": "0x0",
+          "anchor_offset": [
+            0,
+            0
+          ],
+          "draw_parameter": 0,
+          "metadata_records": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "bytes": 464
+        }
+      ]
+    }
+  ],
+  "puzzles": [
+    {
+      "path": "map/puzzle/newbie.pul",
+      "size": 542,
+      "sha256": "e69862b5af3c96c6602c4e0f217d16553b599792858a7ee13a9f924a31a69022",
+      "signature": "PUZZLE",
+      "ani": "ani\\newbie.ani",
+      "grid": [
+        15,
+        9
+      ],
+      "nominal_pixel_dimensions": [
+        3840,
+        2304
+      ],
+      "indices_row_major": [
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        1,
+        2,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        3,
+        4,
+        5,
+        6,
+        7,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        86,
+        87,
+        88,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        89,
+        90,
+        91,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        92,
+        93,
+        94,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        65535,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ],
+      "empty_count": 77,
+      "unique_nonempty_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94
+      ],
+      "scroll": [
+        0,
+        0
+      ]
+    },
+    {
+      "path": "map/puzzle/newbiebg.pul",
+      "size": 344,
+      "sha256": "1e5d8ca6a5e2e701158ec0bcb5c5bcd0392db4fd7a308e1c44a1723e40fc2f05",
+      "signature": "PUZZLE",
+      "ani": "ani\\newbie.ani",
+      "grid": [
+        6,
+        6
+      ],
+      "nominal_pixel_dimensions": [
+        1536,
+        1536
+      ],
+      "indices_row_major": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85
+      ],
+      "empty_count": 0,
+      "unique_nonempty_indices": [
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85
+      ],
+      "scroll": [
+        0,
+        0
+      ]
+    }
+  ],
+  "anis": [
+    {
+      "path": "ani/MapScene.ani",
+      "size": 129051,
+      "sha256": "70addd15af3b979dd1e3540b5495090ef825b5572bf40579ca28f833098b2fa8",
+      "requested_sections": [
+        {
+          "section": "newbie01.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie01.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie01.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie04.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie04.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie04.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie05.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie05.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie05.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie06.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie06.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie06.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie07.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie07.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie07.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie08.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie08.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie08.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie09.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie09.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie09.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie10.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie10.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie10.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie11.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie11.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie11.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie12.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie12.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie12.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie13.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie13.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie13.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie14.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie14.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie14.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie15.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie15.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie15.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie16.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie16.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie16.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie17.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie17.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie17.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "newbie18.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newbie/newbie18.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newbie/newbie18.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "stand01.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/sky/stand01.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/sky/stand01.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "stand02.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/sky/stand02.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/sky/stand02.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "stand03.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/sky/stand03.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/sky/stand03.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "stand05.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/sky/stand05.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/sky/stand05.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "stand06.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/sky/stand06.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/sky/stand06.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "stand08.tga",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/sky/stand08.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/sky/stand08.dds",
+              "loose_exists": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "ani/newbie.ani",
+      "size": 6860,
+      "sha256": "458d1714f455576df74c866bdd5027b1fc79d227bf6134353374bba2876c79c3",
+      "requested_sections": [
+        {
+          "section": "Puzzle1",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie004.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie004.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle10",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie014.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie014.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle11",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie015.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie015.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle12",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie016.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie016.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle13",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie017.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie017.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle14",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie018.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie018.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle15",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie019.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie019.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle16",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie020.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie020.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle17",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie021.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie021.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle18",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie022.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie022.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle19",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie023.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie023.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle2",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie005.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie005.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle20",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie024.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie024.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle21",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie025.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie025.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle22",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie026.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie026.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle23",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie027.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie027.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle24",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie028.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie028.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle25",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie029.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie029.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle26",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie030.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie030.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle27",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie031.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie031.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle28",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie032.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie032.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle29",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie033.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie033.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle3",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie007.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie007.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle30",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie034.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie034.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle31",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie035.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie035.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle32",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie036.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie036.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle33",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie037.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie037.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle34",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie038.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie038.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle35",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie039.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie039.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle36",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie040.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie040.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle37",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie041.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie041.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle38",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie042.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie042.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle39",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie043.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie043.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle4",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie008.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie008.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle40",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie044.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie044.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle41",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie045.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie045.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle42",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie046.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie046.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle43",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie047.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie047.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle44",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie048.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie048.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle45",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie049.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie049.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle46",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie050.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie050.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle47",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie051.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie051.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle48",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie052.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie052.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle49",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie053.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie053.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle5",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie009.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie009.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle50",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg000.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg000.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle51",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg001.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg001.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle52",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg002.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg002.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle53",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg003.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg003.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle54",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg004.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg004.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle55",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg005.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg005.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle56",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg006.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg006.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle57",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg007.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg007.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle58",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg008.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg008.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle59",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg009.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg009.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle6",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie010.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie010.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle60",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg010.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg010.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle61",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg011.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg011.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle62",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg012.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg012.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle63",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg013.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg013.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle64",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg014.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg014.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle65",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg015.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg015.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle66",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg016.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg016.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle67",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg017.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg017.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle68",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg018.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg018.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle69",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg019.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg019.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle7",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie011.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie011.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle70",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg020.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg020.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle71",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg021.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg021.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle72",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg022.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg022.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle73",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg023.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg023.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle74",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg024.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg024.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle75",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg025.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg025.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle76",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg026.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg026.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle77",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg027.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg027.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle78",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg028.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg028.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle79",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg029.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg029.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle8",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie012.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie012.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle80",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg030.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg030.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle81",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg031.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg031.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle82",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg032.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg032.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle83",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg033.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg033.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle84",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg034.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg034.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle85",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/bg035.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/bg035.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle86",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/sky/stand/bird01.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/sky/stand/bird01.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle87",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/sky/stand/bird02.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/sky/stand/bird02.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle88",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/sky/stand/bird03.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/sky/stand/bird03.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle89",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/sky/stand/bird04.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/sky/stand/bird04.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle9",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/newbie/newbie013.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/newbie/newbie013.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle90",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/sky/stand/bird05.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/sky/stand/bird05.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle91",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/sky/stand/bird06.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/sky/stand/bird06.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle92",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/sky/stand/bird07.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/sky/stand/bird07.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle93",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/sky/stand/bird08.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/sky/stand/bird08.dds",
+              "loose_exists": false
+            }
+          ]
+        },
+        {
+          "section": "Puzzle94",
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/puzzle/sky/stand/bird09.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/puzzle/sky/stand/bird09.dds",
+              "loose_exists": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "missing_requested_ani_sections": []
+}

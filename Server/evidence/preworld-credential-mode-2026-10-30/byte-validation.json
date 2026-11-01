@@ -1,0 +1,212 @@
+{
+  "input_sha256": "b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62",
+  "captured_functions_checked": 51,
+  "instruction_records_checked": 10208,
+  "all_match": true,
+  "checks": [
+    {
+      "function": "bridge",
+      "instructions_checked": 697
+    },
+    {
+      "function": "CLoginFlashDlg_Constructor",
+      "instructions_checked": 296
+    },
+    {
+      "function": "CLoginFlashDlg_ResetAccountProtectionState",
+      "instructions_checked": 6
+    },
+    {
+      "function": "CLoginFlashDlg_GetServerChargeType",
+      "instructions_checked": 56
+    },
+    {
+      "function": "CLoginFlashDlg_BeginAccountBindServerHandshake",
+      "instructions_checked": 263
+    },
+    {
+      "function": "CLoginFlashDlg_HandleAccountBindResult",
+      "instructions_checked": 137
+    },
+    {
+      "function": "CLoginFlashDlg_HandleCloseCommandAndPostWorldEntryMessages",
+      "instructions_checked": 51
+    },
+    {
+      "function": "CLoginFlashDlg_HandleFlashCommandString",
+      "instructions_checked": 788
+    },
+    {
+      "function": "CLoginFlashDlg_SubmitLoginRequestAndPostCommand482",
+      "instructions_checked": 219
+    },
+    {
+      "function": "CLoginFlashDlg_StorePictureKeyChallenge",
+      "instructions_checked": 23
+    },
+    {
+      "function": "CLoginFlashDlg_ClearPasswordAndMobileProtectFields",
+      "instructions_checked": 30
+    },
+    {
+      "function": "CGameMain_AccountSetupAndSendLoginAuthPacket",
+      "instructions_checked": 436
+    },
+    {
+      "function": "CGameInputString_ProcessFrameInputAndSelection",
+      "instructions_checked": 686
+    },
+    {
+      "function": "CLoginFlashDlg_BuildAndPushServerListToFlash",
+      "instructions_checked": 712
+    },
+    {
+      "function": "CLoginFlashDlg_CheckCallbackActiveMessageCode",
+      "instructions_checked": 11
+    },
+    {
+      "function": "CLoginFlashDlg_ClearSavedGroupServerAndAccountRecords",
+      "instructions_checked": 25
+    },
+    {
+      "function": "CLoginFlashDlg_DeleteSavedAccountAndRefreshAccountList",
+      "instructions_checked": 667
+    },
+    {
+      "function": "CLoginFlashDlg_GetServerEndpointByServerRowAndRole",
+      "instructions_checked": 541
+    },
+    {
+      "function": "CLoginFlashDlg_GetSingletonPtr",
+      "instructions_checked": 54
+    },
+    {
+      "function": "CLoginFlashDlg_HandleEnterGameCommand_ValidateAndBeginBindHandshake",
+      "instructions_checked": 49
+    },
+    {
+      "function": "CLoginFlashDlg_HandlePasswordProtectCommand",
+      "instructions_checked": 137
+    },
+    {
+      "function": "CLoginFlashDlg_HasFocusableTextEntry",
+      "instructions_checked": 10
+    },
+    {
+      "function": "CLoginFlashDlg_HasSuccessfulAccountBindResult",
+      "instructions_checked": 2
+    },
+    {
+      "function": "CLoginFlashDlg_InitializeStartupFlashAndSelectBgMusic",
+      "instructions_checked": 772
+    },
+    {
+      "function": "CLoginFlashDlg_IsWorldEntryComplete",
+      "instructions_checked": 3
+    },
+    {
+      "function": "CLoginFlashDlg_LoadProgressThreadProc",
+      "instructions_checked": 23
+    },
+    {
+      "function": "CLoginFlashDlg_LoadProgressThreadProc_CatchAllSkipsRefresh",
+      "instructions_checked": 2
+    },
+    {
+      "function": "CLoginFlashDlg_OnConnectionLost",
+      "instructions_checked": 6
+    },
+    {
+      "function": "CLoginFlashDlg_OnInitDialog",
+      "instructions_checked": 52
+    },
+    {
+      "function": "CLoginFlashDlg_OnTimerTickFlashHostAndDispatchCallbacks",
+      "instructions_checked": 7
+    },
+    {
+      "function": "CLoginFlashDlg_PersistSelectionAndConnectAccountServer",
+      "instructions_checked": 121
+    },
+    {
+      "function": "CLoginFlashDlg_PollInputAndCacheCapsState",
+      "instructions_checked": 31
+    },
+    {
+      "function": "CLoginFlashDlg_PrepareServerRootAndSelectionFromIni",
+      "instructions_checked": 917
+    },
+    {
+      "function": "CLoginFlashDlg_ReadBoundAccountRecordValue",
+      "instructions_checked": 147
+    },
+    {
+      "function": "CLoginFlashDlg_RecordAccountAndPushAccountListToFlash",
+      "instructions_checked": 736
+    },
+    {
+      "function": "CLoginFlashDlg_ReleaseMonitorAndAssistResources",
+      "instructions_checked": 42
+    },
+    {
+      "function": "CLoginFlashDlg_ResetBoundAccountRecordIndex",
+      "instructions_checked": 2
+    },
+    {
+      "function": "CLoginFlashDlg_ResizeDialogAndFlashControlToMainShellViewport",
+      "instructions_checked": 42
+    },
+    {
+      "function": "CLoginFlashDlg_RunLoadProgressStep",
+      "instructions_checked": 2
+    },
+    {
+      "function": "CLoginFlashDlg_SetFlashVariableAndDispatch",
+      "instructions_checked": 76
+    },
+    {
+      "function": "CLoginFlashDlg_SetLoadThreadRunningFlag",
+      "instructions_checked": 3
+    },
+    {
+      "function": "CLoginFlashDlg_SetProgressVariable",
+      "instructions_checked": 6
+    },
+    {
+      "function": "CLoginFlashDlg_ShowLoginErrorText",
+      "instructions_checked": 14
+    },
+    {
+      "function": "CLoginFlashDlg_ShowSoftKeyboardAndSyncFlags",
+      "instructions_checked": 93
+    },
+    {
+      "function": "CLoginFlashDlg_StartFlashLoopTimer",
+      "instructions_checked": 14
+    },
+    {
+      "function": "CLoginFlashDlg_SyncMonitorManagerAccounts",
+      "instructions_checked": 40
+    },
+    {
+      "function": "CLoginFlashDlg_TickFlashHostStateAndInputBridge",
+      "instructions_checked": 697
+    },
+    {
+      "function": "CLoginFlashDlg_UpdateLoginFieldVisibilityAndShortPwdTip",
+      "instructions_checked": 116
+    },
+    {
+      "function": "StartupCredentialPreload",
+      "instructions_checked": 194
+    },
+    {
+      "function": "sub_4ac4d7",
+      "instructions_checked": 92
+    },
+    {
+      "function": "sub_4af99b",
+      "instructions_checked": 62
+    }
+  ]
+}

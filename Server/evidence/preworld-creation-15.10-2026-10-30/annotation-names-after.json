@@ -1,0 +1,71 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[{\"query\":\"0x4b0b17\",\"fn\":{\"addr\":\"0x4b0b17\",\"name\":\"CMsgRegister__ProcessCharacterCreation_15_10\",\"size\":\"0x393\"},\"error\":null},{\"query\":\"0x4b5227\",\"fn\":{\"addr\":\"0x4b5227\",\"name\":\"CMyDatabase__ExecuteSQL\",\"size\":\"0x173\"},\"error\":null},{\"query\":\"0x4a618c\",\"fn\":{\"addr\":\"0x4a618c\",\"name\":\"CWorldKernel__SendCharacterCreatedNotice1100\",\"size\":\"0x44\"},\"error\":null},{\"query\":\"0x4b22b2\",\"fn\":{\"addr\":\"0x4b22b2\",\"name\":\"ValidateLegacyTextBytes\",\"size\":\"0x79\"},\"error\":null},{\"query\":\"0x4b232b\",\"fn\":{\"addr\":\"0x4b232b\",\"name\":\"ValidateCharacterNameSyntaxAndReservedWords\",\"size\":\"0x48d\"},\"error\":null},{\"query\":\"0x4a79f7\",\"fn\":{\"addr\":\"0x4a79f7\",\"name\":\"CWorldKernel__MatchesUnlawfulNameRule\",\"size\":\"0x76\"},\"error\":null}]"
+      }
+    ],
+    "structuredContent": {
+      "result": [
+        {
+          "query": "0x4b0b17",
+          "fn": {
+            "addr": "0x4b0b17",
+            "name": "CMsgRegister__ProcessCharacterCreation_15_10",
+            "size": "0x393"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4b5227",
+          "fn": {
+            "addr": "0x4b5227",
+            "name": "CMyDatabase__ExecuteSQL",
+            "size": "0x173"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4a618c",
+          "fn": {
+            "addr": "0x4a618c",
+            "name": "CWorldKernel__SendCharacterCreatedNotice1100",
+            "size": "0x44"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4b22b2",
+          "fn": {
+            "addr": "0x4b22b2",
+            "name": "ValidateLegacyTextBytes",
+            "size": "0x79"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4b232b",
+          "fn": {
+            "addr": "0x4b232b",
+            "name": "ValidateCharacterNameSyntaxAndReservedWords",
+            "size": "0x48d"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4a79f7",
+          "fn": {
+            "addr": "0x4a79f7",
+            "name": "CWorldKernel__MatchesUnlawfulNameRule",
+            "size": "0x76"
+          },
+          "error": null
+        }
+      ]
+    },
+    "isError": false
+  },
+  "id": 1
+}

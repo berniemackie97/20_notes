@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"address\": \"0x93d218\", \"code_references\": [{\"function\": \"CMapPuzzleBitmap_Constructor\", \"address\": \"0x639f7a\"}, {\"function\": \"CMapGroundEntityLayer_GetGroundBitmapScaleDivisor\", \"address\": \"0x63a95b\"}, {\"function\": \"sub_63a961\", \"address\": \"0x63a965\"}], \"data_references\": []}"
+    }
+  ],
+  "isError": false
+}

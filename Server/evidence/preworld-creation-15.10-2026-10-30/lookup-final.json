@@ -1,0 +1,125 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "[{\"query\":\"0x4B0B17\",\"fn\":{\"addr\":\"0x4b0b17\",\"name\":\"sub_4B0B17\",\"size\":\"0x393\"},\"error\":null},{\"query\":\"0x4B22B2\",\"fn\":{\"addr\":\"0x4b22b2\",\"name\":\"sub_4B22B2\",\"size\":\"0x79\"},\"error\":null},{\"query\":\"0x4B232B\",\"fn\":{\"addr\":\"0x4b232b\",\"name\":\"sub_4B232B\",\"size\":\"0x48d\"},\"error\":null},{\"query\":\"0x4B2806\",\"fn\":{\"addr\":\"0x4b2806\",\"name\":\"sub_4B2806\",\"size\":\"0x8e\"},\"error\":null},{\"query\":\"0x4A79F7\",\"fn\":{\"addr\":\"0x4a79f7\",\"name\":\"sub_4A79F7\",\"size\":\"0x76\"},\"error\":null},{\"query\":\"0x4A618C\",\"fn\":{\"addr\":\"0x4a618c\",\"name\":\"sub_4A618C\",\"size\":\"0x44\"},\"error\":null},{\"query\":\"0x4AF335\",\"fn\":{\"addr\":\"0x4af335\",\"name\":\"sub_4AF335\",\"size\":\"0x42\"},\"error\":null},{\"query\":\"0x4AF377\",\"fn\":{\"addr\":\"0x4af377\",\"name\":\"sub_4AF377\",\"size\":\"0xc3\"},\"error\":null},{\"query\":\"0x4A5B65\",\"fn\":{\"addr\":\"0x4a5b65\",\"name\":\"sub_4A5B65\",\"size\":\"0xda\"},\"error\":null},{\"query\":\"0x4A1F08\",\"fn\":{\"addr\":\"0x4a1f08\",\"name\":\"sub_4A1F08\",\"size\":\"0x7a\"},\"error\":null},{\"query\":\"0x4A18C3\",\"fn\":{\"addr\":\"0x4a18c3\",\"name\":\"sub_4A18C3\",\"size\":\"0x187\"},\"error\":null},{\"query\":\"0x4B5227\",\"fn\":{\"addr\":\"0x4b5227\",\"name\":\"sub_4B5227\",\"size\":\"0x173\"},\"error\":null}]"
+      }
+    ],
+    "structuredContent": {
+      "result": [
+        {
+          "query": "0x4B0B17",
+          "fn": {
+            "addr": "0x4b0b17",
+            "name": "sub_4B0B17",
+            "size": "0x393"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4B22B2",
+          "fn": {
+            "addr": "0x4b22b2",
+            "name": "sub_4B22B2",
+            "size": "0x79"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4B232B",
+          "fn": {
+            "addr": "0x4b232b",
+            "name": "sub_4B232B",
+            "size": "0x48d"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4B2806",
+          "fn": {
+            "addr": "0x4b2806",
+            "name": "sub_4B2806",
+            "size": "0x8e"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4A79F7",
+          "fn": {
+            "addr": "0x4a79f7",
+            "name": "sub_4A79F7",
+            "size": "0x76"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4A618C",
+          "fn": {
+            "addr": "0x4a618c",
+            "name": "sub_4A618C",
+            "size": "0x44"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4AF335",
+          "fn": {
+            "addr": "0x4af335",
+            "name": "sub_4AF335",
+            "size": "0x42"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4AF377",
+          "fn": {
+            "addr": "0x4af377",
+            "name": "sub_4AF377",
+            "size": "0xc3"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4A5B65",
+          "fn": {
+            "addr": "0x4a5b65",
+            "name": "sub_4A5B65",
+            "size": "0xda"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4A1F08",
+          "fn": {
+            "addr": "0x4a1f08",
+            "name": "sub_4A1F08",
+            "size": "0x7a"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4A18C3",
+          "fn": {
+            "addr": "0x4a18c3",
+            "name": "sub_4A18C3",
+            "size": "0x187"
+          },
+          "error": null
+        },
+        {
+          "query": "0x4B5227",
+          "fn": {
+            "addr": "0x4b5227",
+            "name": "sub_4B5227",
+            "size": "0x173"
+          },
+          "error": null
+        }
+      ]
+    },
+    "isError": false
+  },
+  "id": 1
+}

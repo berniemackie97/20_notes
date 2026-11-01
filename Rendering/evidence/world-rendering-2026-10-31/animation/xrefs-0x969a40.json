@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"address\": \"0x969a40\", \"code_references\": [{\"function\": \"CMapPuzzleBitmap_LoadFrameIntervalFromInfoIni\", \"address\": \"0x639eeb\"}, {\"function\": \"CMapPuzzleBitmap_RenderAtOffset\", \"address\": \"0x63a5c6\"}], \"data_references\": []}"
+    }
+  ],
+  "isError": false
+}

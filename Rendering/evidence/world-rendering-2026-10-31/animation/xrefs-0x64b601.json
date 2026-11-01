@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"address\": \"0x64b601\", \"code_references\": [], \"data_references\": [{\"function\": null, \"address\": \"0x86a8b0\"}]}"
+    }
+  ],
+  "isError": false
+}

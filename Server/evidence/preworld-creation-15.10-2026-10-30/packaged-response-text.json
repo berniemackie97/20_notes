@@ -1,0 +1,23 @@
+{
+  "path": "50_server/binaries/ZFSERVER/GameServer/ini/Cn_Res.ini",
+  "sha256": "ca6be9f2dd400c3b8dc14631894fb2dac54d31c4beca78ec091e030198462cbb",
+  "scope": "Packaged resource text only; runtime resource selection not established for this executable.",
+  "entries": [
+    {
+      "line": 7,
+      "text": "STR_ERROR_DUPLICATE_NAME=Error> This name already exist."
+    },
+    {
+      "line": 8,
+      "text": "STR_ERROR_ILLEGAL_NAME=Error> UNallowed/invalid characters in name!"
+    },
+    {
+      "line": 10,
+      "text": "STR_ERROR_ILLEGAL_PASSWORD=Error> Invalid password!"
+    },
+    {
+      "line": 11,
+      "text": "STR_ERROR_ILLEGAL_ACCOUNT=Error> Invalid accountID!"
+    }
+  ]
+}

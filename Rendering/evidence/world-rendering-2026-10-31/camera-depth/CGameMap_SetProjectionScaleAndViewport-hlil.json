@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n0061ede0        if (arg2 == 0)\n0061ede2        int32_t var_8_1 = 0x6f7\n0061ede7        char* var_c_1 = \"F:\\CQ2ClientRelease-42.0.1\\3DGameMap\\3DGameMap.cpp\"\n0061edec        char* var_10_1 = \"nScale\"\n0061edf1        char* var_14_1 = \"CHECK\"\n0061edfb        return Debug_LogMessageToDailyFileWithDedup(&data_92176c)\n0061ee05        *(arg1 + 0x140) = arg2\n0061ee0b        *(arg1 + 0x350) = arg2\n0061ee1e        int32_t eax_2\n0061ee1e        int32_t edx_1\n0061ee1e        edx_1:eax_2 = sx.q(CMyBitmap::GetScreenWidth() * data_93c6c0)\n0061ee1f        *(arg1 + 0x140)\n0061ee25        *(arg1 + 0x14c) = divs.dp.d(edx_1:eax_2, *(arg1 + 0x140))\n0061ee38        int32_t eax_6\n0061ee38        int32_t edx_3\n0061ee38        edx_3:eax_6 = sx.q(CMyBitmap::GetScreenHeight() * data_93c6c0)\n0061ee39        *(arg1 + 0x140)\n0061ee39        int32_t result = divs.dp.d(edx_3:eax_6, *(arg1 + 0x140))\n0061ee3f        *(arg1 + 0x150) = result\n0061ee46        return result"
+    }
+  ],
+  "structuredContent": {
+    "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n0061ede0        if (arg2 == 0)\n0061ede2        int32_t var_8_1 = 0x6f7\n0061ede7        char* var_c_1 = \"F:\\CQ2ClientRelease-42.0.1\\3DGameMap\\3DGameMap.cpp\"\n0061edec        char* var_10_1 = \"nScale\"\n0061edf1        char* var_14_1 = \"CHECK\"\n0061edfb        return Debug_LogMessageToDailyFileWithDedup(&data_92176c)\n0061ee05        *(arg1 + 0x140) = arg2\n0061ee0b        *(arg1 + 0x350) = arg2\n0061ee1e        int32_t eax_2\n0061ee1e        int32_t edx_1\n0061ee1e        edx_1:eax_2 = sx.q(CMyBitmap::GetScreenWidth() * data_93c6c0)\n0061ee1f        *(arg1 + 0x140)\n0061ee25        *(arg1 + 0x14c) = divs.dp.d(edx_1:eax_2, *(arg1 + 0x140))\n0061ee38        int32_t eax_6\n0061ee38        int32_t edx_3\n0061ee38        edx_3:eax_6 = sx.q(CMyBitmap::GetScreenHeight() * data_93c6c0)\n0061ee39        *(arg1 + 0x140)\n0061ee39        int32_t result = divs.dp.d(edx_3:eax_6, *(arg1 + 0x140))\n0061ee3f        *(arg1 + 0x150) = result\n0061ee46        return result"
+  },
+  "isError": false
+}

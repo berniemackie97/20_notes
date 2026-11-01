@@ -1,0 +1,17 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"ok\":true,\"path\":\"/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/binaries/_re/MsgServer.exe.i64\"}"
+      }
+    ],
+    "structuredContent": {
+      "ok": true,
+      "path": "/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/50_server/binaries/_re/MsgServer.exe.i64"
+    },
+    "isError": false
+  },
+  "id": 1
+}

@@ -123,3 +123,7 @@ Death record (binary-traced 2026-10-16): `CUser__BeKill` sets the record to the 
 map's `portal0` via `CGameMap__GetRebornMap` / `CUser__SetRecordPos`; see [death/ghost/revive](death-ghost-revive-5517.md).
 Record position on leave-map (fight-master, not binary-traced): `SetRecordPos(current)` only if `IsStandEnable` ∧
 ¬`MAPTYPE_RECORD_DISABLE` (`0x4`); otherwise the record keeps the previous/reborn point.
+
+## Creation decision-path addendum (2026-10-30)
+
+[Character-creation decisions](character-creation-decision-15.10.md) adds upstream validation, generic refusal mapping, ownership, and persistence boundaries. Unsupported professions normalize to 20; they are not rejected. Existing attribute/spawn evidence above is unchanged.

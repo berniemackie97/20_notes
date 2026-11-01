@@ -1,0 +1,27 @@
+{
+  "name": "CMapSceneryType2Subcomponent_FootprintContainsTile",
+  "asm": {
+    "content": [
+      {
+        "type": "text",
+        "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x644e0e\n00644e0e  56               push    esi  ; (entry, a, b) -> BOOL. Half-open footprint containment on a type-2 subcomponent.\n\n  baseA = entry[0x0C]  baseB = entry[0x10]\n  spanA = entry[0x1C]  spanB = entry[0x20]\n  return a <= baseA && b <= baseB && a > baseA - spanA && b > baseB - spanB;\n\nSo the anchor at +0x0C/+0x10 is the FAR corner and the span extends backwards: the covered\ninterval is (base - span, base] on each axis. This is why the ordering tests elsewhere take the\nform (x - spanX - y + 1) <= 0 - that is the same half-open interval overlap written out.\n\nUsed by CMapSceneryComponent_ReorderSubcomponentForDepth (0x635AE6) to decide whether a\nnon-type-2 subcomponent should be parented to this entry rather than inserted into the deque.\n00644e0f  8b 71 0c         mov     esi, dword [ecx+0xc]\n00644e12  57               push    edi\n00644e13  8b 79 10         mov     edi, dword [ecx+0x10]\n00644e16  8b c6            mov     eax, esi\n00644e18  8b d7            mov     edx, edi\n00644e1a  2b 41 1c         sub     eax, dword [ecx+0x1c]\n00644e1d  2b 51 20         sub     edx, dword [ecx+0x20]\n00644e20  39 74 24 0c      cmp     dword [esp+0xc], esi\n00644e24  7f 17            jg      0x644e3d\n\n# Block 3 at 0x644e26\n00644e26  39 7c 24 10      cmp     dword [esp+0x10], edi\n00644e2a  7f 11            jg      0x644e3d\n\n# Block 4 at 0x644e2c\n00644e2c  39 44 24 0c      cmp     dword [esp+0xc], eax\n00644e30  7e 0b            jle     0x644e3d\n\n# Block 5 at 0x644e32\n00644e32  39 54 24 10      cmp     dword [esp+0x10], edx\n00644e36  7e 05            jle     0x644e3d\n\n# Block 6 at 0x644e38\n00644e38  6a 01            push    0x1\n00644e3a  58               pop     eax\n00644e3b  eb 02            jmp     0x644e3f\n\n# Block 2 at 0x644e3d\n00644e3d  33 c0            xor     eax, eax\n\n# Block 7 at 0x644e3f\n00644e3f  5f               pop     edi\n00644e40  5e               pop     esi\n00644e41  c2 08 00         retn    0x8\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x644e0e\n00644e0e  56               push    esi  ; (entry, a, b) -> BOOL. Half-open footprint containment on a type-2 subcomponent.\n\n  baseA = entry[0x0C]  baseB = entry[0x10]\n  spanA = entry[0x1C]  spanB = entry[0x20]\n  return a <= baseA && b <= baseB && a > baseA - spanA && b > baseB - spanB;\n\nSo the anchor at +0x0C/+0x10 is the FAR corner and the span extends backwards: the covered\ninterval is (base - span, base] on each axis. This is why the ordering tests elsewhere take the\nform (x - spanX - y + 1) <= 0 - that is the same half-open interval overlap written out.\n\nUsed by CMapSceneryComponent_ReorderSubcomponentForDepth (0x635AE6) to decide whether a\nnon-type-2 subcomponent should be parented to this entry rather than inserted into the deque.\n00644e0f  8b 71 0c         mov     esi, dword [ecx+0xc]\n00644e12  57               push    edi\n00644e13  8b 79 10         mov     edi, dword [ecx+0x10]\n00644e16  8b c6            mov     eax, esi\n00644e18  8b d7            mov     edx, edi\n00644e1a  2b 41 1c         sub     eax, dword [ecx+0x1c]\n00644e1d  2b 51 20         sub     edx, dword [ecx+0x20]\n00644e20  39 74 24 0c      cmp     dword [esp+0xc], esi\n00644e24  7f 17            jg      0x644e3d\n\n# Block 3 at 0x644e26\n00644e26  39 7c 24 10      cmp     dword [esp+0x10], edi\n00644e2a  7f 11            jg      0x644e3d\n\n# Block 4 at 0x644e2c\n00644e2c  39 44 24 0c      cmp     dword [esp+0xc], eax\n00644e30  7e 0b            jle     0x644e3d\n\n# Block 5 at 0x644e32\n00644e32  39 54 24 10      cmp     dword [esp+0x10], edx\n00644e36  7e 05            jle     0x644e3d\n\n# Block 6 at 0x644e38\n00644e38  6a 01            push    0x1\n00644e3a  58               pop     eax\n00644e3b  eb 02            jmp     0x644e3f\n\n# Block 2 at 0x644e3d\n00644e3d  33 c0            xor     eax, eax\n\n# Block 7 at 0x644e3f\n00644e3f  5f               pop     edi\n00644e40  5e               pop     esi\n00644e41  c2 08 00         retn    0x8\n"
+    },
+    "isError": false
+  },
+  "hlil": {
+    "content": [
+      {
+        "type": "text",
+        "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n00644e0f        int32_t esi = *(arg1 + 0xc)\n00644e13        int32_t edi = *(arg1 + 0x10)\n00644e36        if (arg2 s<= esi && arg3 s<= edi && arg2 s> esi - *(arg1 + 0x1c) && arg3 s> edi - *(arg1 + 0x20))\n00644e3a        return 1\n00644e3d        return 0"
+      }
+    ],
+    "structuredContent": {
+      "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n00644e0f        int32_t esi = *(arg1 + 0xc)\n00644e13        int32_t edi = *(arg1 + 0x10)\n00644e36        if (arg2 s<= esi && arg3 s<= edi && arg2 s> esi - *(arg1 + 0x1c) && arg3 s> edi - *(arg1 + 0x20))\n00644e3a        return 1\n00644e3d        return 0"
+    },
+    "isError": false
+  }
+}

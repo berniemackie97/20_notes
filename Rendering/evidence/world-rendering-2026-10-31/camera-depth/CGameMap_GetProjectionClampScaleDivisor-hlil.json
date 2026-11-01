@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n0061edd6        return divs.dp.d(sx.q(*(arg1 + 0x154) * *(arg1 + 0x140)), 0x64)"
+    }
+  ],
+  "structuredContent": {
+    "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n0061edd6        return divs.dp.d(sx.q(*(arg1 + 0x154) * *(arg1 + 0x140)), 0x64)"
+  },
+  "isError": false
+}

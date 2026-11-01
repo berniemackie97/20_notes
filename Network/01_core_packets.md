@@ -1011,11 +1011,11 @@ struct MsgCreatePlayer1001 {
     uint16_t type;           // +2: 1001
     uint32_t cancel_flag;    // +4: 0=create, 1=cancel
     uint8_t  reserved_08[16];// +8: zero
-    char     name[48];       // +24: desired nickname, NUL-terminated C string
+    char     name[48];       // +24: nickname; builder copies 16 bytes and forces NUL at +39; +40..+71 zero
     uint16_t body;           // +72: body id (derived from vocation index + body-size selection)
     uint16_t profession;     // +74: profession code
     uint32_t session_uid;    // +76: `CHero+0xA9C`
-    char     mac_text[40];   // +80: MAC-address text field
+    char     mac_text[40];   // +80: first NetBIOS adapter MAC, rewritten as "%02X"x6 only when the lookup succeeds
     uint8_t  trailing_zero;  // +120: forced zero
 };
 ```
@@ -1026,18 +1026,17 @@ struct MsgCreatePlayer1001 {
 - vocation index source: `this+0x13C`
 - session uid source: `*(CHero_GetSingletonPtr() + 0xA9C)`
 
-**Verified name gate before send**:
-- reject if `strlen(name) < 4`
-- reject if `strlen(name) >= 16`
-- then run native font/pixel validation (`CMyBitmap::CheckStringPixels`) before packet send
+**Verified name gate before send** (full table: [Architecture/12](../Architecture/12_create_role_flow.md#submit-0x51c5c3)):
+- reject `""`, `strlen < 4`, `strlen >= 16` → StrRes 10037
+- per DBCS char: `.` not first/last accepted; else `CMyBitmap::CheckStringPixels(ch, 5, GUI face, normal height)` → StrRes 11089
 
-**Verified body mapping**:
-- even vocation indices (`0,2,4,6,8,10`):
-  - `body_size == 1` -> `0x7D1` (`2001`)
-  - otherwise -> `0x7D2` (`2002`)
-- odd vocation indices (`1,3,5,7,9,11`):
+**Verified body mapping** (corrected 2026-10-24; the earlier even/odd table was swapped — `test edx,edx; je 0x51C78C`):
+- even vocation indices (`0,2,4,6,8,10`, male):
   - `body_size == 1` -> `0x3EB` (`1003`)
   - otherwise -> `0x3EC` (`1004`)
+- odd vocation indices (`1,3,5,7,9,11`, female):
+  - `body_size == 1` -> `0x7D1` (`2001`)
+  - otherwise -> `0x7D2` (`2002`)
 
 **Verified profession mapping**:
 - vocation indices `0,1` -> `100`
@@ -1050,7 +1049,7 @@ struct MsgCreatePlayer1001 {
 **Verified control-flow implications**:
 - create submit stays on the already-authenticated post-DH game socket; it does **not** reopen the account socket.
 - cancel is also packet `1001`, but with `cancel_flag=1`, empty name/body/profession, and the same `session_uid`.
-- on create success, the client does not reconnect; it waits for `1004 "ANSWER_OK"` and then calls `CConnectionFlow__SendGameSessionBootstrap` on the existing game session.
+- on create success, the client does not reconnect; it waits for `1004` channel 2100 `"ANSWER_OK"` and then calls `CConnectionFlow__SendGameSessionBootstrap`, which re-sends `1052` on the existing game session.
 
 **Own-UI data source note**:
 - the shipped label/description surface for vocation/body choices lives in `ini/selectCharacter.ini`

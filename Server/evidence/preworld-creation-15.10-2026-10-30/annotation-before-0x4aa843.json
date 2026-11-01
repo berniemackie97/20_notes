@@ -1,0 +1,133 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"addr\":\"0x4aa843\",\"asm\":{\"name\":\"CUserList__CreateNewUser\",\"start_ea\":\"0x4aa843\",\"segment\":\".text\",\"lines\":[{\"addr\":\"4aa843\",\"instruction\":\"mov [ebp+arg_10], ecx\"}],\"stack_frame\":[{\"name\":\"Buffer\",\"offset\":\"0x4\",\"size\":\"0x1\",\"type\":\"char\"},{\"name\":\"var_14\",\"offset\":\"0x404\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_10\",\"offset\":\"0x408\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_C\",\"offset\":\"0x40c\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_8\",\"offset\":\"0x410\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_4\",\"offset\":\"0x414\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"__saved_registers\",\"offset\":\"0x418\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"__return_address\",\"offset\":\"0x41c\",\"size\":\"0x4\",\"type\":\"_UNKNOWN *\"},{\"name\":\"arg_4\",\"offset\":\"0x424\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"arg_C\",\"offset\":\"0x42c\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"arg_10\",\"offset\":\"0x430\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"arg_14\",\"offset\":\"0x434\",\"size\":\"0x4\",\"type\":\"_DWORD\"}],\"return_type\":\"char\",\"arguments\":[{\"name\":\"arg0\",\"type\":\"int\"},{\"name\":\"arg1\",\"type\":\"const char *\"},{\"name\":\"arg2\",\"type\":\"int\"},{\"name\":\"arg3\",\"type\":\"int\"},{\"name\":\"arg4\",\"type\":\"int\"},{\"name\":\"arg5\",\"type\":\"int\"}]},\"instruction_count\":1,\"total_instructions\":null,\"cursor\":{\"next\":1}}"
+      }
+    ],
+    "structuredContent": {
+      "addr": "0x4aa843",
+      "asm": {
+        "name": "CUserList__CreateNewUser",
+        "start_ea": "0x4aa843",
+        "segment": ".text",
+        "lines": [
+          {
+            "addr": "4aa843",
+            "instruction": "mov [ebp+arg_10], ecx"
+          }
+        ],
+        "stack_frame": [
+          {
+            "name": "Buffer",
+            "offset": "0x4",
+            "size": "0x1",
+            "type": "char"
+          },
+          {
+            "name": "var_14",
+            "offset": "0x404",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_10",
+            "offset": "0x408",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_C",
+            "offset": "0x40c",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_8",
+            "offset": "0x410",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_4",
+            "offset": "0x414",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "__saved_registers",
+            "offset": "0x418",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "__return_address",
+            "offset": "0x41c",
+            "size": "0x4",
+            "type": "_UNKNOWN *"
+          },
+          {
+            "name": "arg_4",
+            "offset": "0x424",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "arg_C",
+            "offset": "0x42c",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "arg_10",
+            "offset": "0x430",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "arg_14",
+            "offset": "0x434",
+            "size": "0x4",
+            "type": "_DWORD"
+          }
+        ],
+        "return_type": "char",
+        "arguments": [
+          {
+            "name": "arg0",
+            "type": "int"
+          },
+          {
+            "name": "arg1",
+            "type": "const char *"
+          },
+          {
+            "name": "arg2",
+            "type": "int"
+          },
+          {
+            "name": "arg3",
+            "type": "int"
+          },
+          {
+            "name": "arg4",
+            "type": "int"
+          },
+          {
+            "name": "arg5",
+            "type": "int"
+          }
+        ]
+      },
+      "instruction_count": 1,
+      "total_instructions": null,
+      "cursor": {
+        "next": 1
+      }
+    },
+    "isError": false
+  },
+  "id": 1
+}

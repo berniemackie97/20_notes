@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n00637563        return CMapGroundEntityLayer_Render(groundEntityLayerComponent + 0x18, componentProjectionOffsetX, componentProjectionOffsetY)"
+    }
+  ],
+  "structuredContent": {
+    "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n00637563        return CMapGroundEntityLayer_Render(groundEntityLayerComponent + 0x18, componentProjectionOffsetX, componentProjectionOffsetY)"
+  },
+  "isError": false
+}

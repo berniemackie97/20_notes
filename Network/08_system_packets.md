@@ -209,7 +209,30 @@ event layer would add no native-visible behavior.
   - `+10 = 0`, `+11 = 0`
 
 ## MsgMissionSystemUpdate (Type 1134)
-**Direction**: S->C
+**Direction**: S->C and C->S
+**C->S (verified 2026-10-25, Binja + retail runtime)**: same layout.
+
+| Sender | Trigger | Frames |
+|---|---|---|
+| `CQuestTaskTypeMgr_SendMissionCatalogOnLogin` `0x6A580C` | login-channel `ANSWER_OK`: `CMyShellDlg_HandleLoginStatusSystemTalk` `0x5DCC64` (call `0x5DCC9D`, after its `CNetMsg__ProcessMsg`) → `CMyShellDlg_InitializeShellRegionAndHintSlots` `0x5B91D8` (call `0x5B9B80`) | subtype `3`, every MissionId, one contiguous burst |
+| `CQuestTaskTypeMgr_ExpireTimedMissionsAndReport` `0x6A5182` | tick `0x6A4E0F`; timed id with `timeGetTime() > +0x3C + 1000*(+0x40)` | subtype `4`, record `{id, state 5}` |
+
+Builder `CMsgMissionSystemUpdate__AppendEntry` `0x72D473` (subtype 3) / `__AppendEntryWithState` `0x72D4F4` (subtype 4):
+- fails without writing if `id <= 0` (signed `jle`) or count `>= 80` (`cmp si,0x50`); sender then Send + `__ResetEntries` `0x72D589` + retry.
+- writes `+2 = 1134`, `+4` subtype, record `+8+12i` id, `+12+12i` state u16 (`0` for subtype 3); `+6` count++; `__SetPacketSize` `0x72D5A0` = `8 + 12*count` (max 968).
+- `+14+12i` and value `+16+12i` never written; `__Create` `0x72D0DA` zeroes the 0x400 buffer → zero.
+
+Subtype 3 burst:
+- source: mission map `mgr+0x18`, filled by `CQuestTaskTypeMgr__LoadMissionConfig` `0x6A28B3` from `ini/Questinfo.ini` (`[TotalMission]`, `[1..N] MissionId`) via `CQuestTaskTypeMgr_MissionMap_FindOrInsert` `0x6A5BA5` (key = MissionId, signed `<`). STLport tree (`0x404189`) → ids unique, ascending.
+- shipped `Questinfo.ini` (SHA-256 `98d92e41…5bad`): `TotalMission=230`, 224 distinct MissionIds (600..20001) → frames `80/80/64`.
+- no other client send between frames. Every send appends to one 0x2000 B buffer (`CGameSocket_SendBufferedPacket` `0x6E1A07`, flushes first when full) → FIFO; flushed at end of `CNetMsg__ProcessMsg`.
+- wire position: `1006` handler sends `0x4A` inside `ProcessMsg`; `ANSWER_OK` is drained after it → burst follows `0x4A` when `1004` and `1006` arrive in one `ProcessMsg`, precedes it when `1006` arrives later. `0x198` comes from processing the `0x4A` reply (`1110`), always a later `ProcessMsg` → burst always before `0x198`.
+- retail run: after the `0x4A` exchange, before `0x198`; first frame 968 B, count 80, ids 600, 601, 602… (`C8036E04 0300 5000 58020000 …`).
+- `0x6A580C` first resets the timed list (`mgr+0xC`, `CQuestTaskTypeMgr_ClearTimedMissionIds` `0x6A52B3`).
+
+Subtype 4: timed list filled only by `CQuestTaskTypeMgr_AppendTimedMissionId` `0x6A52A3`, callers only S->C `Process` subtypes 1/3 with value ≠ 0 → no subtype 4 unless the server sent such a 1134.
+
+Server reply to subtype 3: not established. No client path waits on one. TQ 15.10 `MsgServer` CreateClientMsg factory `0x4388F3` has no 1134 case (unknown type → null → dropped by `0x409A76`); no `0x46E` immediate in any TQ 15.10 IDB.
 **Purpose**: Mission-system entry update packet (single/batch state transitions, value updates, and mission-fail handling).
 **Dispatch**: Create `CMsgMissionSystemUpdate__Create` (0x72D0DA), parse `CMsgMissionSystemUpdate__Parse` (0x72D140), process `CMsgMissionSystemUpdate__Process` (0x72D163)
 

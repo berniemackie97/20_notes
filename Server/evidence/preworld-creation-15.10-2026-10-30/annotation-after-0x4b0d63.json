@@ -1,0 +1,102 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"addr\":\"0x4b0d63\",\"asm\":{\"name\":\"CMsgRegister__ProcessCharacterCreation_15_10\",\"start_ea\":\"0x4b0d63\",\"segment\":\".text\",\"lines\":[{\"addr\":\"4b0d63\",\"instruction\":\"call CWorldKernel__SendCharacterCreatedNotice1100; 2026-10-30: after ANSWER_OK talk creation/send attempt, issue AccountServer notice 1100 using request account_id +52 and string +56. Talk construction/send success is not a prerequisite. No rollback/compensation follows either send in this handler. Ordering is call issuance, not delivery across sockets.\",\"comments\":[\"2026-10-30: after ANSWER_OK talk creation/send attempt, issue AccountServer notice 1100 using request account_id +52 and string +56. Talk construction/send success is not a prerequisite. No rollback/compensation follows either send in this handler. Ordering is call issuance, not delivery across sockets.\"],\"refs\":[{\"addr\":\"0x4a618c\",\"name\":\"CWorldKernel__SendCharacterCreatedNotice1100\"}]}],\"stack_frame\":[{\"name\":\"var_874\",\"offset\":\"0xc\",\"size\":\"0x1\",\"type\":\"_BYTE\"},{\"name\":\"var_448\",\"offset\":\"0x438\",\"size\":\"0x1\",\"type\":\"_BYTE\"},{\"name\":\"var_1C\",\"offset\":\"0x864\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_14\",\"offset\":\"0x86c\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"var_D\",\"offset\":\"0x873\",\"size\":\"0x4\",\"type\":\"int\"},{\"name\":\"var_4\",\"offset\":\"0x87c\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"__saved_registers\",\"offset\":\"0x880\",\"size\":\"0x4\",\"type\":\"_DWORD\"},{\"name\":\"__return_address\",\"offset\":\"0x884\",\"size\":\"0x4\",\"type\":\"_UNKNOWN *\"}],\"return_type\":\"int\",\"arguments\":[{\"name\":\"this\",\"type\":\"int *\"},{\"name\":\"arg1\",\"type\":\"int\"}]},\"instruction_count\":1,\"total_instructions\":null,\"cursor\":{\"next\":1}}"
+      }
+    ],
+    "structuredContent": {
+      "addr": "0x4b0d63",
+      "asm": {
+        "name": "CMsgRegister__ProcessCharacterCreation_15_10",
+        "start_ea": "0x4b0d63",
+        "segment": ".text",
+        "lines": [
+          {
+            "addr": "4b0d63",
+            "instruction": "call CWorldKernel__SendCharacterCreatedNotice1100; 2026-10-30: after ANSWER_OK talk creation/send attempt, issue AccountServer notice 1100 using request account_id +52 and string +56. Talk construction/send success is not a prerequisite. No rollback/compensation follows either send in this handler. Ordering is call issuance, not delivery across sockets.",
+            "comments": [
+              "2026-10-30: after ANSWER_OK talk creation/send attempt, issue AccountServer notice 1100 using request account_id +52 and string +56. Talk construction/send success is not a prerequisite. No rollback/compensation follows either send in this handler. Ordering is call issuance, not delivery across sockets."
+            ],
+            "refs": [
+              {
+                "addr": "0x4a618c",
+                "name": "CWorldKernel__SendCharacterCreatedNotice1100"
+              }
+            ]
+          }
+        ],
+        "stack_frame": [
+          {
+            "name": "var_874",
+            "offset": "0xc",
+            "size": "0x1",
+            "type": "_BYTE"
+          },
+          {
+            "name": "var_448",
+            "offset": "0x438",
+            "size": "0x1",
+            "type": "_BYTE"
+          },
+          {
+            "name": "var_1C",
+            "offset": "0x864",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_14",
+            "offset": "0x86c",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "var_D",
+            "offset": "0x873",
+            "size": "0x4",
+            "type": "int"
+          },
+          {
+            "name": "var_4",
+            "offset": "0x87c",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "__saved_registers",
+            "offset": "0x880",
+            "size": "0x4",
+            "type": "_DWORD"
+          },
+          {
+            "name": "__return_address",
+            "offset": "0x884",
+            "size": "0x4",
+            "type": "_UNKNOWN *"
+          }
+        ],
+        "return_type": "int",
+        "arguments": [
+          {
+            "name": "this",
+            "type": "int *"
+          },
+          {
+            "name": "arg1",
+            "type": "int"
+          }
+        ]
+      },
+      "instruction_count": 1,
+      "total_instructions": null,
+      "cursor": {
+        "next": 1
+      }
+    },
+    "isError": false
+  },
+  "id": 1
+}

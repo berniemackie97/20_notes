@@ -1,0 +1,27 @@
+{
+  "name": "CMapType3SubcomponentType04_GetVisibilityMarginTilesFromCachedFrameExtents",
+  "asm": {
+    "content": [
+      {
+        "type": "text",
+        "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x6454c4\n006454c4  8b 41 54         mov     eax, dword [ecx+0x54]\n006454c7  8b 49 50         mov     ecx, dword [ecx+0x50]\n006454ca  3b c1            cmp     eax, ecx\n006454cc  7f 02            jg      0x6454d0\n\n# Block 3 at 0x6454ce\n006454ce  8b c1            mov     eax, ecx\n\n# Block 2 at 0x6454d0\n006454d0  c3               retn\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x6454c4\n006454c4  8b 41 54         mov     eax, dword [ecx+0x54]\n006454c7  8b 49 50         mov     ecx, dword [ecx+0x50]\n006454ca  3b c1            cmp     eax, ecx\n006454cc  7f 02            jg      0x6454d0\n\n# Block 3 at 0x6454ce\n006454ce  8b c1            mov     eax, ecx\n\n# Block 2 at 0x6454d0\n006454d0  c3               retn\n"
+    },
+    "isError": false
+  },
+  "hlil": {
+    "content": [
+      {
+        "type": "text",
+        "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n006454c4        int32_t eax = *(arg1 + 0x54)\n006454c7        int32_t ecx = *(arg1 + 0x50)\n006454cc        if (eax s> ecx)\n006454d0        return eax\n006454ce        return ecx"
+      }
+    ],
+    "structuredContent": {
+      "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n006454c4        int32_t eax = *(arg1 + 0x54)\n006454c7        int32_t ecx = *(arg1 + 0x50)\n006454cc        if (eax s> ecx)\n006454d0        return eax\n006454ce        return ecx"
+    },
+    "isError": false
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "changes": [
+    {
+      "address": "0x4ADDFF",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x4addff\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x4addff\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "comment": "2026-10-30 credential-mode correction: this JNE completes fourth stack argument softKeyOnly = (byte dlg+0x158 != 0 || dword dlg+0x150 == 1 || byte dlg+0x155 != 0). It does NOT select raw/keypad encoding and does not read ChargeType. At 0x4ADE15 push EDX passes policy; independent PUSH 1 at 0x4ADE1C sets third stack argument encodeCredential. See 20_notes/Server/credential-mode-selection-5517.md.",
+      "readback": [
+        {
+          "type": "text",
+          "text": "{\"success\": true, \"address\": \"0x4addff\", \"comment\": \"2026-10-30 credential-mode correction: this JNE completes fourth stack argument softKeyOnly = (byte dlg+0x158 != 0 || dword dlg+0x150 == 1 || byte dlg+0x155 != 0). It does NOT select raw/keypad encoding and does not read ChargeType. At 0x4ADE15 push EDX passes policy; independent PUSH 1 at 0x4ADE1C sets third stack argument encodeCredential. See 20_notes/Server/credential-mode-selection-5517.md.\"}"
+        }
+      ]
+    },
+    {
+      "address": "0x4ADE1C",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x4ade1c\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x4ade1c\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "comment": "2026-10-30: literal third stack argument encodeCredential=1 for password input. Callee 0x59E59F tests BYTE [ebp+0x10] at 0x59EC41. Fourth argument at [ebp+0x14] is separate soft-key-only policy. Ordinary password entry cannot select raw via bind/charge policy.",
+      "readback": [
+        {
+          "type": "text",
+          "text": "{\"success\": true, \"address\": \"0x4ade1c\", \"comment\": \"2026-10-30: literal third stack argument encodeCredential=1 for password input. Callee 0x59E59F tests BYTE [ebp+0x10] at 0x59EC41. Fourth argument at [ebp+0x14] is separate soft-key-only policy. Ordinary password entry cannot select raw via bind/charge policy.\"}"
+        }
+      ]
+    },
+    {
+      "address": "0x59EC41",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x59ec41\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x59ec41\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "comment": "2026-10-30: tests third stack argument encodeCredential, not fourth argument softKeyOnly. All six direct callers are in login input bridge: password call 0x4ADE26 passes literal 1; other five pass 0. No in-function store/address escape of [ebp+0x10]. Raw branch 0x59EC68 serves non-password input. Fourth slot [ebp+0x14] is checked at entry then reused for keyboard-state pointer at 0x59E5D5.",
+      "readback": [
+        {
+          "type": "text",
+          "text": "{\"success\": true, \"address\": \"0x59ec41\", \"comment\": \"2026-10-30: tests third stack argument encodeCredential, not fourth argument softKeyOnly. All six direct callers are in login input bridge: password call 0x4ADE26 passes literal 1; other five pass 0. No in-function store/address escape of [ebp+0x10]. Raw branch 0x59EC68 serves non-password input. Fourth slot [ebp+0x14] is checked at entry then reused for keyboard-state pointer at 0x59E5D5.\"}"
+        }
+      ]
+    },
+    {
+      "address": "0x4AC580",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x4ac580\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x4ac580\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "comment": "2026-10-30 credential provenance: helper permits direct storage if account pointer NULL/empty or dlg+0x15C input object NULL. Sole recovered caller 0x5AB43E proves nonempty account before call. Retail English normally constructs input object; French build condition and allocation failure can leave it NULL. This initializer bypass is separate from 0x59EC41 and is not a charge/OEM raw-mode selector.",
+      "readback": [
+        {
+          "type": "text",
+          "text": "{\"success\": true, \"address\": \"0x4ac580\", \"comment\": \"2026-10-30 credential provenance: helper permits direct storage if account pointer NULL/empty or dlg+0x15C input object NULL. Sole recovered caller 0x5AB43E proves nonempty account before call. Retail English normally constructs input object; French build condition and allocation failure can leave it NULL. This initializer bypass is separate from 0x59EC41 and is not a charge/OEM raw-mode selector.\"}"
+        }
+      ]
+    },
+    {
+      "address": "0x4AF95E",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x4af95e\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x4af95e\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "comment": "2026-10-30 policy writer: StorePictureKeyChallenge sets DWORD dlg+0x150=2 unless already 1. Password input soft-key-only policy tests ==1, not nonzero. Encoding remains literal 1 at 0x4ADE1C.",
+      "readback": [
+        {
+          "type": "text",
+          "text": "{\"success\": true, \"address\": \"0x4af95e\", \"comment\": \"2026-10-30 policy writer: StorePictureKeyChallenge sets DWORD dlg+0x150=2 unless already 1. Password input soft-key-only policy tests ==1, not nonzero. Encoding remains literal 1 at 0x4ADE1C.\"}"
+        }
+      ]
+    }
+  ],
+  "function_comment": [
+    {
+      "type": "text",
+      "text": "{\"success\": true, \"function\": \"CGameInputString_ProcessFrameInputAndSelection\", \"comment\": \"2026-10-30 verified x86 ABI: ECX=input object; stack arguments [ebp+8]=selectionStart*, +0xC=selectionEnd*, +0x10=encodeCredential byte, +0x14=softKeyOnly byte, +0x18=account string. Entry +0x14 restricts physical input when nonzero; slot reused for this+0x2C at 0x59E5D5. +0x10 is read-only throughout and selects keypad/raw at 0x59EC1D/0x59EC41. Password caller 0x4ADE26 always passes 1; five other call sites pass 0. Branch near 0x4ADDFF computes policy only. Evidence: 20_notes/Server/credential-mode-selection-5517.md.\"}"
+    }
+  ],
+  "renames": [
+    [
+      {
+        "type": "text",
+        "text": "{\"matches\": [{\"name\": \"CLoginFlashDlg_SetInitialPasswordWithOptionalAccountEncoding\", \"address\": \"0x4ac4d7\", \"raw_name\": \"CLoginFlashDlg_SetInitialPasswordWithOptionalAccountEncoding\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CLoginFlashDlg_SetInitialPasswordWithOptionalAccountEncoding\"}}]}"
+      }
+    ],
+    [
+      {
+        "type": "text",
+        "text": "{\"matches\": [{\"name\": \"CLoginFlashDlg_EncodeAccountSessionCredential\", \"address\": \"0x4af99b\", \"raw_name\": \"CLoginFlashDlg_EncodeAccountSessionCredential\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CLoginFlashDlg_EncodeAccountSessionCredential\"}}]}"
+      }
+    ]
+  ]
+}

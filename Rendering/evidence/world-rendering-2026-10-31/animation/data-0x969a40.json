@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Declaration (0x969a40 0x969a40):\nint32_t 0x969a40;\n\nHexdump:\n969a40  0x969a40:\n969a40  00 00 00 00                                      ....            \n"
+    }
+  ],
+  "structuredContent": {
+    "result": "Declaration (0x969a40 0x969a40):\nint32_t 0x969a40;\n\nHexdump:\n969a40  0x969a40:\n969a40  00 00 00 00                                      ....            \n"
+  },
+  "isError": false
+}

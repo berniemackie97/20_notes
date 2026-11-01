@@ -1,0 +1,356 @@
+{
+  "input_sha256": "48749fc1ede8783eae5d97bf3d025143609bfbdbd0362a49888194e749caf726",
+  "hex_is_authoritative": true,
+  "items": [
+    {
+      "push_address": "0x4b23c2",
+      "literal_address": "0x5209bc",
+      "match": "exact",
+      "hex": "cede",
+      "gbk_display": "无"
+    },
+    {
+      "push_address": "0x4b23d7",
+      "literal_address": "0x5209b8",
+      "match": "substring",
+      "hex": "a1f9",
+      "gbk_display": "※"
+    },
+    {
+      "push_address": "0x4b23ec",
+      "literal_address": "0x5209b4",
+      "match": "substring",
+      "hex": "a3a0",
+      "gbk_display": "��"
+    },
+    {
+      "push_address": "0x4b2401",
+      "literal_address": "0x5209b0",
+      "match": "substring",
+      "hex": "a1a1",
+      "gbk_display": "　"
+    },
+    {
+      "push_address": "0x4b2416",
+      "literal_address": "0x509e00",
+      "match": "substring",
+      "hex": "a1be",
+      "gbk_display": "【"
+    },
+    {
+      "push_address": "0x4b242b",
+      "literal_address": "0x509dfc",
+      "match": "substring",
+      "hex": "a1bf",
+      "gbk_display": "】"
+    },
+    {
+      "push_address": "0x4b2440",
+      "literal_address": "0x5209a8",
+      "match": "substring",
+      "hex": "a3f0a3ed",
+      "gbk_display": "ｐｍ"
+    },
+    {
+      "push_address": "0x4b2455",
+      "literal_address": "0x5209a0",
+      "match": "substring",
+      "hex": "a3d0a3cd",
+      "gbk_display": "ＰＭ"
+    },
+    {
+      "push_address": "0x4b246a",
+      "literal_address": "0x520998",
+      "match": "substring",
+      "hex": "a3d0a3ed",
+      "gbk_display": "Ｐｍ"
+    },
+    {
+      "push_address": "0x4b247f",
+      "literal_address": "0x520990",
+      "match": "substring",
+      "hex": "a3f0a3cd",
+      "gbk_display": "ｐＭ"
+    },
+    {
+      "push_address": "0x4b2494",
+      "literal_address": "0x520988",
+      "match": "substring",
+      "hex": "a3e7a3ed",
+      "gbk_display": "ｇｍ"
+    },
+    {
+      "push_address": "0x4b24a9",
+      "literal_address": "0x520980",
+      "match": "substring",
+      "hex": "a3c7a3cd",
+      "gbk_display": "ＧＭ"
+    },
+    {
+      "push_address": "0x4b24be",
+      "literal_address": "0x520978",
+      "match": "substring",
+      "hex": "a3e7a3cd",
+      "gbk_display": "ｇＭ"
+    },
+    {
+      "push_address": "0x4b24d3",
+      "literal_address": "0x520970",
+      "match": "substring",
+      "hex": "a3c7a3ed",
+      "gbk_display": "Ｇｍ"
+    },
+    {
+      "push_address": "0x4b24e8",
+      "literal_address": "0x52096c",
+      "match": "substring",
+      "hex": "a3c76d",
+      "gbk_display": "Ｇm"
+    },
+    {
+      "push_address": "0x4b24fd",
+      "literal_address": "0x520968",
+      "match": "substring",
+      "hex": "a3c74d",
+      "gbk_display": "ＧM"
+    },
+    {
+      "push_address": "0x4b2512",
+      "literal_address": "0x520964",
+      "match": "substring",
+      "hex": "a3e76d",
+      "gbk_display": "ｇm"
+    },
+    {
+      "push_address": "0x4b2527",
+      "literal_address": "0x520960",
+      "match": "substring",
+      "hex": "a3e74d",
+      "gbk_display": "ｇM"
+    },
+    {
+      "push_address": "0x4b253c",
+      "literal_address": "0x52095c",
+      "match": "substring",
+      "hex": "47a3cd",
+      "gbk_display": "GＭ"
+    },
+    {
+      "push_address": "0x4b2551",
+      "literal_address": "0x520958",
+      "match": "substring",
+      "hex": "67a3cd",
+      "gbk_display": "gＭ"
+    },
+    {
+      "push_address": "0x4b2566",
+      "literal_address": "0x520954",
+      "match": "substring",
+      "hex": "47a3ed",
+      "gbk_display": "Gｍ"
+    },
+    {
+      "push_address": "0x4b257b",
+      "literal_address": "0x520950",
+      "match": "substring",
+      "hex": "67a3ed",
+      "gbk_display": "gｍ"
+    },
+    {
+      "push_address": "0x4b2590",
+      "literal_address": "0x520948",
+      "match": "substring",
+      "hex": "ccecc7e7",
+      "gbk_display": "天晴"
+    },
+    {
+      "push_address": "0x4b25a5",
+      "literal_address": "0x520940",
+      "match": "substring",
+      "hex": "cfb5cdb3",
+      "gbk_display": "系统"
+    },
+    {
+      "push_address": "0x4b25ba",
+      "literal_address": "0x520938",
+      "match": "substring",
+      "hex": "b2dfbbae",
+      "gbk_display": "策划"
+    },
+    {
+      "push_address": "0x4b25cf",
+      "literal_address": "0x520930",
+      "match": "substring",
+      "hex": "b7fecef1",
+      "gbk_display": "服务"
+    },
+    {
+      "push_address": "0x4b25e4",
+      "literal_address": "0x520928",
+      "match": "substring",
+      "hex": "b9dcc0ed",
+      "gbk_display": "管理"
+    },
+    {
+      "push_address": "0x4b25f9",
+      "literal_address": "0x520920",
+      "match": "substring",
+      "hex": "bfcdb7fe",
+      "gbk_display": "客服"
+    },
+    {
+      "push_address": "0x4b260e",
+      "literal_address": "0x520918",
+      "match": "substring",
+      "hex": "b9abb8e6",
+      "gbk_display": "公告"
+    },
+    {
+      "push_address": "0x4b2623",
+      "literal_address": "0x520910",
+      "match": "substring",
+      "hex": "c1ecbdb1",
+      "gbk_display": "领奖"
+    },
+    {
+      "push_address": "0x4b2638",
+      "literal_address": "0x5208ec",
+      "match": "substring",
+      "hex": "b0efc5c9",
+      "gbk_display": "帮派"
+    },
+    {
+      "push_address": "0x4b264d",
+      "literal_address": "0x5208e4",
+      "match": "substring",
+      "hex": "cec0b1f8",
+      "gbk_display": "卫兵"
+    },
+    {
+      "push_address": "0x4b2662",
+      "literal_address": "0x5208dc",
+      "match": "substring",
+      "hex": "cad8cec0",
+      "gbk_display": "守卫"
+    },
+    {
+      "push_address": "0x4b2677",
+      "literal_address": "0x5208d4",
+      "match": "substring",
+      "hex": "b6d3cee9",
+      "gbk_display": "队伍"
+    },
+    {
+      "push_address": "0x4b268c",
+      "literal_address": "0x5208cc",
+      "match": "substring",
+      "hex": "bac3d3d1",
+      "gbk_display": "好友"
+    },
+    {
+      "push_address": "0x4b26a1",
+      "literal_address": "0x5208c4",
+      "match": "substring",
+      "hex": "b4f3bcd2",
+      "gbk_display": "大家"
+    },
+    {
+      "push_address": "0x4b26b6",
+      "literal_address": "0x5208bc",
+      "match": "substring",
+      "hex": "d5c5c8fdb7e1",
+      "gbk_display": "张三丰"
+    },
+    {
+      "push_address": "0x4b2706",
+      "literal_address": "0x51f85c",
+      "match": "uppercase_substring",
+      "hex": "474d",
+      "gbk_display": "GM"
+    },
+    {
+      "push_address": "0x4b2723",
+      "literal_address": "0x51f860",
+      "match": "uppercase_substring",
+      "hex": "504d",
+      "gbk_display": "PM"
+    },
+    {
+      "push_address": "0x4b273a",
+      "literal_address": "0x50cd88",
+      "match": "uppercase_substring",
+      "hex": "53595354454d",
+      "gbk_display": "SYSTEM"
+    },
+    {
+      "push_address": "0x4b2751",
+      "literal_address": "0x52090c",
+      "match": "uppercase_substring",
+      "hex": "4e5043",
+      "gbk_display": "NPC"
+    },
+    {
+      "push_address": "0x4b2768",
+      "literal_address": "0x520904",
+      "match": "uppercase_substring",
+      "hex": "4755415244",
+      "gbk_display": "GUARD"
+    },
+    {
+      "push_address": "0x4b277f",
+      "literal_address": "0x5208fc",
+      "match": "uppercase_substring",
+      "hex": "504154524f4c",
+      "gbk_display": "PATROL"
+    },
+    {
+      "push_address": "0x4b2796",
+      "literal_address": "0x5208f4",
+      "match": "uppercase_substring",
+      "hex": "4e4f4e45",
+      "gbk_display": "NONE"
+    },
+    {
+      "literal_address": "0x5209f0",
+      "match": "tail_substring",
+      "hex": "b7a8c2d6",
+      "gbk_display": "法轮"
+    },
+    {
+      "literal_address": "0x5209e8",
+      "match": "tail_substring",
+      "hex": "cca8b6c0",
+      "gbk_display": "台独"
+    },
+    {
+      "literal_address": "0x5209e0",
+      "match": "tail_substring",
+      "hex": "b6c0c1a2",
+      "gbk_display": "独立"
+    },
+    {
+      "literal_address": "0x5209d8",
+      "match": "tail_substring",
+      "hex": "c3f1bdf8",
+      "gbk_display": "民进"
+    },
+    {
+      "literal_address": "0x5209d0",
+      "match": "tail_substring",
+      "hex": "baead6be",
+      "gbk_display": "宏志"
+    },
+    {
+      "literal_address": "0x5209c8",
+      "match": "tail_substring",
+      "hex": "d4f3c3f1",
+      "gbk_display": "泽民"
+    },
+    {
+      "literal_address": "0x5209c0",
+      "match": "tail_substring",
+      "hex": "bdf5ccce",
+      "gbk_display": "锦涛"
+    }
+  ]
+}
