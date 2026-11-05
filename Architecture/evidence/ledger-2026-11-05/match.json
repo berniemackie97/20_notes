@@ -1,0 +1,4243 @@
+{
+"OCC:development.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+32.9,
+"Rendering/21_main_hud_magic_status_hint_native_contract.md",
+[
+"subprofessioninfo.ini",
+"strres.ini",
+"font.ini",
+"cn_res.ini"
+]
+],
+[
+19.8,
+"Architecture/02_conquer_client_startup_chain.md",
+[
+"cmybutton",
+"ini/gamesetup.ini",
+"server.dat",
+"info.ini"
+]
+],
+[
+16.1,
+"Architecture/11_login_ui_assets_and_interactions.md",
+[
+"gamesetup.ini",
+"ini/gamesetup.ini",
+"server.dat",
+"info.ini"
+]
+]
+]
+},
+"OCC:studio-integration.md": {
+"cls": "modern",
+"cited": false,
+"top": []
+},
+"OCC:compatibility/native-graphics.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+172.6,
+"Architecture/02_conquer_client_startup_chain.md",
+[
+"check43",
+"check40",
+"button46",
+"button43"
+]
+],
+[
+151.5,
+"Rendering/13_hud_progress_gauges.md",
+[
+"cmyimage",
+"progressbk.dds",
+"progressmpa.dds",
+"progressmp.dds"
+]
+],
+[
+75.7,
+"Rendering/17_main_hud_action_strip_native_contract.md",
+[
+"chatbtn.dds",
+"bn_clicked",
+"0x3f3",
+"0x3f1"
+]
+]
+]
+},
+"OCC:compatibility/native-text.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+35.8,
+"Rendering/graphic_dll/04_fonts_and_text.md",
+[
+"ini/codepage.ini",
+"cp_acp",
+"ini/font.ini",
+"codepage.ini"
+]
+],
+[
+15.6,
+"Rendering/19_main_hud_quickbar_native_contract.md",
+[
+"ini/font.ini",
+"fontsetting.ini",
+"info.ini",
+"ini/info.ini"
+]
+],
+[
+13.0,
+"Rendering/21_main_hud_magic_status_hint_native_contract.md",
+[
+"strres.ini",
+"font.ini",
+"info.ini",
+"5517"
+]
+]
+]
+},
+"OCC:compatibility/server-dat.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+59.8,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"id=0",
+"65537",
+"cconfigdatatablequeryprovider",
+"flashname"
+]
+],
+[
+32.5,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"flashname",
+"flashhint",
+"flashicon",
+"serverip"
+]
+],
+[
+26.9,
+"Crypto/02_server_dat_rsa_public_key_5517.md",
+[
+"38819",
+"2495",
+"65537",
+"outenserver"
+]
+]
+]
+},
+"OCC:networking/AUTH-001A-account-wire-codecs.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+33.5,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"0x6e23a5",
+"cgamesocketlegacycipher_initkeyschedule",
+"0x6e2344",
+"0x75492c"
+]
+],
+[
+17.9,
+"Network/13_connection_lifecycle.md",
+[
+"0x75492c",
+"1059",
+"tqclient",
+"1060"
+]
+],
+[
+14.8,
+"Server/multi-realm-architecture-5517.md",
+[
+"standardaccountrequest1060",
+"server.dat",
+"1060",
+"1055"
+]
+]
+]
+},
+"OCC:networking/AUTH-001B-bounded-account-session.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+10.6,
+"Network/13_connection_lifecycle.md",
+[
+"1059",
+"tqclient",
+"1055",
+"5517"
+]
+],
+[
+10.6,
+"Network/00_protocol_overview.md",
+[
+"1059",
+"tqclient",
+"1055",
+"5517"
+]
+],
+[
+10.0,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"tqclient",
+"server.dat",
+"1055",
+"5517"
+]
+]
+]
+},
+"OCC:networking/AUTH-001C-native-credential-composition.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+29.9,
+"Server/credential-mode-selection-5517.md",
+[
+"encodecredential",
+"0x4ac4d7",
+"0x4addff",
+"0x4ade26"
+]
+],
+[
+23.2,
+"Server/multi-realm-architecture-5517.md",
+[
+"standardaccountrequest1060",
+"protocolservername",
+"[a-za-z0-9_()-]",
+"1060"
+]
+],
+[
+21.1,
+"Server/login-credential-envelope.md",
+[
+"0x4ade1c",
+"0x4addff",
+"cgameinputstring_processframeinputandselection",
+"1060"
+]
+]
+]
+},
+"OCC:networking/AUTH-001D-bounded-account-exchange.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+34.3,
+"Network/13_connection_lifecycle.md",
+[
+"0x754909",
+"0x767da1",
+"0x7543ca",
+"0x75492c"
+]
+],
+[
+30.5,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"0x754909",
+"0x767da1",
+"0x7543ca",
+"0x75492c"
+]
+],
+[
+16.3,
+"Network/00_protocol_overview.md",
+[
+"1059",
+"1100",
+"1060",
+"1052"
+]
+]
+]
+},
+"OCC:networking/AUTH-001E-account-post-authentication-reports.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+43.1,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"0x767da1",
+"cmsgaccountmacaddress1100__build",
+"cmsgmapinfo1052__buildsimplestring",
+"0x7543ca"
+]
+],
+[
+42.2,
+"Network/13_connection_lifecycle.md",
+[
+"0x767da1",
+"cmsgaccountmacaddress1100__build",
+"0x7543ca",
+"0x75492c"
+]
+],
+[
+26.6,
+"Network/07_world_packets.md",
+[
+"cmsgmapinfo1052__buildsimplestring",
+"0x7543ca",
+"0x75492c",
+"res.dat"
+]
+]
+]
+},
+"OCC:networking/AUTH-001F-offline-game-login-proof.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+37.3,
+"Network/13_connection_lifecycle.md",
+[
+"cmsgloginbootstrap1052__buildgameloginproof",
+"0x75443e",
+"0x6df1d0",
+"res.dat"
+]
+],
+[
+28.4,
+"Network/07_world_packets.md",
+[
+"0x75443e",
+"0x6df1d0",
+"res.dat",
+"0x7c"
+]
+],
+[
+21.7,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"0x75443e",
+"res.dat",
+"0x7c",
+"1100"
+]
+]
+]
+},
+"OCC:networking/AUTH-001G-game-server-challenge-envelope.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+33.6,
+"Network/13_connection_lifecycle.md",
+[
+"0x6e1c83",
+"cgamesocket__receivemsg",
+"cclientsecurity__processserverdhchallenge",
+"1059"
+]
+],
+[
+33.6,
+"Network/00_protocol_overview.md",
+[
+"cgamesocket__receivemsg",
+"cclientsecurity__generateclientdhresponse",
+"cclientsecurity__processserverdhchallenge",
+"1059"
+]
+],
+[
+12.5,
+"Network/14_session_derived_legacy_cipher_mask.md",
+[
+"1100",
+"1060",
+"1052",
+"1055"
+]
+]
+]
+},
+"OCC:networking/AUTH-001H-game-bootstrap-cast5-cfb64.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+10.9,
+"Network/13_connection_lifecycle.md",
+[
+"bc234xs45nme7hu9",
+"tqserver",
+"1055",
+"5517"
+]
+],
+[
+10.9,
+"Network/00_protocol_overview.md",
+[
+"bc234xs45nme7hu9",
+"tqserver",
+"1055",
+"5517"
+]
+],
+[
+8.2,
+"Server/tq-server-binaries-2008.md",
+[
+"bc234xs45nme7hu9",
+"tqserver",
+"5517"
+]
+]
+]
+},
+"OCC:networking/AUTH-001I-offline-game-dh-response.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+35.0,
+"Network/00_protocol_overview.md",
+[
+"dh_size",
+"cgamesocket__receivemsg",
+"dh_compute_key",
+"cclientsecurity__generateclientdhresponse"
+]
+],
+[
+20.2,
+"Network/13_connection_lifecycle.md",
+[
+"cgamesocket__receivemsg",
+"1017",
+"cclientsecurity__processserverdhchallenge",
+"tqclient"
+]
+],
+[
+9.5,
+"Network/12_address_index.md",
+[
+"cclientsecurity__generateclientdhresponse",
+"cclientsecurity__processserverdhchallenge",
+"5517"
+]
+]
+]
+},
+"OCC:networking/AUTH-001J-game-session-cast5-cfb64.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+3.2,
+"Server/world-entry-bootstrap.md",
+[
+"1052",
+"5517"
+]
+],
+[
+3.2,
+"Server/portal-transition-5517.md",
+[
+"1052",
+"5517"
+]
+],
+[
+3.2,
+"Server/multi-realm-architecture-5517.md",
+[
+"1052",
+"5517"
+]
+]
+]
+},
+"OCC:networking/AUTH-001K-game-secured-framing.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+16.2,
+"Network/13_connection_lifecycle.md",
+[
+"tqclient",
+"tqserver",
+"1032",
+"1052"
+]
+],
+[
+16.2,
+"Network/00_protocol_overview.md",
+[
+"tqclient",
+"tqserver",
+"1032",
+"1052"
+]
+],
+[
+9.9,
+"Network/06_combat_packets.md",
+[
+"tqserver",
+"1032",
+"1024",
+"5517"
+]
+]
+]
+},
+"OCC:networking/AUTH-001L-bounded-loopback-game-handshake.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+20.8,
+"Network/00_protocol_overview.md",
+[
+"1035",
+"tqclient",
+"1100",
+"1060"
+]
+],
+[
+16.1,
+"Network/13_connection_lifecycle.md",
+[
+"tqclient",
+"1100",
+"1060",
+"1052"
+]
+],
+[
+16.1,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"tqclient",
+"1100",
+"1060",
+"1052"
+]
+]
+]
+},
+"OCC:networking/AUTH-001M-game-login-proof-and-secured-io.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+29.3,
+"Network/13_connection_lifecycle.md",
+[
+"1059",
+"tqclient",
+"tqserver",
+"1100"
+]
+],
+[
+29.3,
+"Network/00_protocol_overview.md",
+[
+"1059",
+"tqclient",
+"tqserver",
+"1100"
+]
+],
+[
+16.1,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"tqclient",
+"1100",
+"1060",
+"1052"
+]
+]
+]
+},
+"OCC:networking/AUTH-001N-game-login-control.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+27.9,
+"Network/Native-auth-string-validation-2026-10-18.md",
+[
+"0x5dcd13",
+"1252",
+"0x5dcc93",
+"msgstringlist_trygetentry"
+]
+],
+[
+23.3,
+"Network/01_core_packets.md",
+[
+"0x835",
+"msgstringlist_trygetentry",
+"new_role",
+"answer_ok"
+]
+],
+[
+17.8,
+"Architecture/12_create_role_flow.md",
+[
+"new_role",
+"_stricmp",
+"answer_ok",
+"1052"
+]
+]
+]
+},
+"OCC:networking/AUTH-001O-existing-character-prelude.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+32.5,
+"Network/01_core_packets.md",
+[
+"chero_setaccountloginalertdata",
+"0x6577bf",
+"2001",
+"2079"
+]
+],
+[
+30.2,
+"Network/10_extended_packets.md",
+[
+"chero_setaccountloginalertdata",
+"0x6577bf",
+"2001",
+"2079"
+]
+],
+[
+23.5,
+"Network/13_connection_lifecycle.md",
+[
+"2001",
+"2079",
+"strlen",
+"2000"
+]
+]
+]
+},
+"OCC:networking/AUTH-001P-character-info-1006.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+11.4,
+"Network/Native-auth-string-validation-2026-10-18.md",
+[
+"1252",
+"1006",
+"1024",
+"2026"
+]
+],
+[
+6.0,
+"Network/13_connection_lifecycle.md",
+[
+"1024",
+"1006",
+"2026",
+"5517"
+]
+],
+[
+6.0,
+"Network/06_combat_packets.md",
+[
+"1024",
+"1006",
+"2026",
+"5517"
+]
+]
+]
+},
+"OCC:networking/AUTH-001Q-character-info-receipt.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+18.3,
+"Server/world-entry-bootstrap.md",
+[
+"2079",
+"cmsguserinfo__process",
+"2078",
+"1052"
+]
+],
+[
+18.3,
+"Network/13_connection_lifecycle.md",
+[
+"2079",
+"cmsguserinfo__process",
+"2078",
+"1052"
+]
+],
+[
+18.3,
+"Network/01_core_packets.md",
+[
+"2079",
+"cmsguserinfo__process",
+"2078",
+"1052"
+]
+]
+]
+},
+"OCC:networking/AUTH-001R-character-creation-continuation.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+75.1,
+"Architecture/12_create_role_flow.md",
+[
+"1202",
+"0x7314d2",
+"0x5dcddf",
+"0x7200bf"
+]
+],
+[
+74.6,
+"Network/13_connection_lifecycle.md",
+[
+"0x51c54b",
+"0x5dcddf",
+"0x7200bf",
+"cmsgcreateplayer1001__build"
+]
+],
+[
+63.0,
+"Network/01_core_packets.md",
+[
+"0x51c54b",
+"0x7200bf",
+"cmsgcreateplayer1001__build",
+"crolecreateflashdlg_submitcreateplayerrequest"
+]
+]
+]
+},
+"OCC:networking/FLOW-001A-live-login-bootstrap.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+29.3,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"str_login_fail",
+"kickout_banaccount",
+"str_connect_error_msg_type_%03u",
+"2079"
+]
+],
+[
+19.2,
+"Network/13_connection_lifecycle.md",
+[
+"str_connect_error_msg_type_%03u",
+"2079",
+"start.dat",
+"2078"
+]
+],
+[
+16.0,
+"Architecture/FLOW-001A-login-error-ui-2026-10-20.md",
+[
+"0x754dfb",
+"kickout_banaccount",
+"start.dat",
+"1055"
+]
+]
+]
+},
+"OCC:networking/FLOW-001B-account-registration.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+30.2,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"0xf002",
+"0xf001",
+"11400",
+"shellexecutea"
+]
+],
+[
+25.3,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"0xf002",
+"0xf001",
+"shellexecutea",
+"cmd_geturl"
+]
+],
+[
+11.5,
+"Network/13_connection_lifecycle.md",
+[
+"cmd_geturl",
+"1059",
+"1060",
+"5517"
+]
+]
+]
+},
+"OCC:networking/README.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+14.6,
+"Server/world-entry-bootstrap.md",
+[
+"2079",
+"2078",
+"1052",
+"1001"
+]
+],
+[
+14.6,
+"Network/13_connection_lifecycle.md",
+[
+"2079",
+"2078",
+"1052",
+"1001"
+]
+],
+[
+14.6,
+"Network/01_core_packets.md",
+[
+"2079",
+"2078",
+"1052",
+"1001"
+]
+]
+]
+},
+"OCC:world/WORLD-001-map-cell-grid.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+17.7,
+"Game_Map/cgamemap_class.md",
+[
+"map\\\\puzzle\\\\newbie.pul",
+".dmap",
+"0x104",
+"ini/gamemap.dat"
+]
+],
+[
+8.3,
+"Game_Map/post_login_world_loading_orchestration.md",
+[
+"map/map/newbie.7z",
+"ini/gamemap.dat"
+]
+],
+[
+7.9,
+"Server/map-assets.md",
+[
+".dmap",
+"ini/gamemap.dat"
+]
+]
+]
+},
+"OCC:world/WORLD-002-scene-sections.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+13.7,
+"Game_Map/cgamemap_class.md",
+[
+"1999",
+".pul",
+"1005",
+"1110"
+]
+],
+[
+13.3,
+"Rendering/00_rendering_gap_analysis.md",
+[
+"map/map/newbie.7z",
+"map/puzzle/newbiebg.pul",
+".pul",
+"5517"
+]
+],
+[
+11.4,
+"Game_Map/README.md",
+[
+"1999",
+".scene",
+"1005"
+]
+]
+]
+},
+"OCC:world/WORLD-003-map-archive.md": {
+"cls": "native",
+"cited": false,
+"top": []
+},
+"OCC:world/WORLD-004-map-content-loading.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+13.4,
+"Game_Map/post_login_world_loading_orchestration.md",
+[
+"map/map/newbie.7z",
+"ini/gamemap.dat",
+"1010",
+"1110"
+]
+],
+[
+11.9,
+"Server/tq-server-15.10-runtime-semantics.md",
+[
+"ini/gamemap.dat",
+"gamemap.dat",
+"1010",
+"1110"
+]
+],
+[
+9.4,
+"Server/map-identity-flags-native-5517.md",
+[
+"ini/gamemap.dat",
+"gamemap.dat",
+"1110"
+]
+]
+]
+},
+"OCC:world/WORLD-005-puzzle-resources.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+5.9,
+"Game_Map/world_render_contract_5517.md",
+[
+".pul",
+"1010"
+]
+],
+[
+3.3,
+"Server/movement.md",
+[
+".pul"
+]
+],
+[
+3.3,
+"Rendering/graphic_dll/06_targetbmp.md",
+[
+".pul"
+]
+]
+]
+},
+"OCC:world/WORLD-006-puzzle-animation-binding.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+9.4,
+"Rendering/00_rendering_gap_analysis.md",
+[
+"newbie.pul",
+"newbiebg.pul"
+]
+],
+[
+7.3,
+"Game_Map/world_render_contract_5517.md",
+[
+"newbie.pul",
+"1010"
+]
+],
+[
+5.4,
+"Game_Map/pux_aoxpuzzle_terrain.md",
+[
+"puzzle<n>"
+]
+]
+]
+},
+"OCC:world/WORLD-007-dds-compression.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+3.3,
+"Rendering/c3_core_dll/11_datafile_and_wdf.md",
+[
+"data.wdf"
+]
+],
+[
+3.3,
+"Rendering/21_main_hud_magic_status_hint_native_contract.md",
+[
+"data.wdf"
+]
+],
+[
+3.3,
+"Rendering/16_main_hud_skill_progress_render_contract.md",
+[
+"data.wdf"
+]
+]
+]
+},
+"OCC:world/WORLD-008-map-puzzle-preflight.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+6.3,
+"Server/tq-server-15.10-runtime-semantics.md",
+[
+"gamemap.dat",
+"1010",
+"5517"
+]
+],
+[
+6.3,
+"Server/portal-transition-5517.md",
+[
+"gamemap.dat",
+"1010",
+"5517"
+]
+],
+[
+6.3,
+"Server/map-catalog-5517.md",
+[
+"gamemap.dat",
+"1010",
+"5517"
+]
+]
+]
+},
+"OCC:world/WORLD-009-puzzle-layer-drawing.md": {
+"cls": "native",
+"cited": false,
+"top": []
+},
+"OCC:world/WORLD-010-scenery-ani-binding.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+6.6,
+"Game_Map/world_render_contract_5517.md",
+[
+".scene",
+"1010"
+]
+],
+[
+6.6,
+"Game_Map/README.md",
+[
+".scene",
+"1010"
+]
+],
+[
+4.0,
+"Server/movement.md",
+[
+".scene"
+]
+]
+]
+},
+"OCC:world/WORLD-011-camera-and-puzzle-frames.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+6.9,
+"Game_Map/world_render_contract_5517.md",
+[
+"2304",
+"1000"
+]
+],
+[
+1.4,
+"Server/tq-server-binaries-2008.md",
+[
+"1000"
+]
+],
+[
+1.4,
+"Server/portal-transition-5517.md",
+[
+"1000"
+]
+]
+]
+},
+"OCC:world/WORLD-012-terrain-scene-resources.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+17.5,
+"Game_Map/world_render_contract_5517.md",
+[
+"stand01",
+".scene",
+"0x100",
+"0x40"
+]
+],
+[
+10.9,
+"Game_Map/cgamemap_class.md",
+[
+"0x164",
+"0x100",
+"0x40"
+]
+],
+[
+8.1,
+"Network/01_core_packets.md",
+[
+"0x100",
+"0x40",
+"1010"
+]
+]
+]
+},
+"OCC:world/WORLD-013-terrain-scene-drawing.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+5.4,
+"Rendering/21_main_hud_magic_status_hint_native_contract.md",
+[
+"clientapplication"
+]
+]
+]
+},
+"OCC:world/WORLD-014-world-scene-activation.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+7.5,
+"Game_Map/world_render_contract_5517.md",
+[
+"ini/info.ini",
+"1010",
+"1000",
+"5517"
+]
+],
+[
+5.0,
+"Rendering/roleview_dll/07_action_playback_transition_state.md",
+[
+"ini/info.ini",
+"1000",
+"5517"
+]
+],
+[
+5.0,
+"Rendering/06_hero_render_pipeline.md",
+[
+"ini/info.ini",
+"1000",
+"5517"
+]
+]
+]
+},
+"OCC:world/WORLD-015-role-geometry.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+12.5,
+"Rendering/graphic_dll/12_meshcreate_and_c3dobjx.md",
+[
+"0x33",
+"0x34",
+"0x32",
+"0x20"
+]
+],
+[
+12.5,
+"Rendering/02_roleview_object_interface.md",
+[
+"0x33",
+"0x34",
+"0x32",
+"0x20"
+]
+],
+[
+12.5,
+"Network/01_core_packets.md",
+[
+"0x33",
+"0x34",
+"0x32",
+"0x20"
+]
+]
+]
+},
+"OCC:world/WORLD-016-phy-geometry.md": {
+"cls": "native",
+"cited": false,
+"top": []
+},
+"OCC:world/WORLD-017-c3-motion.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+17.6,
+"Rendering/graphic_dll/14_motion_file_loading.md",
+[
+"zkey",
+"xkey",
+"kkey",
+"moti"
+]
+],
+[
+17.6,
+"Rendering/c3_core_dll/12_motion_load_formats.md",
+[
+"zkey",
+"xkey",
+"kkey",
+"moti"
+]
+],
+[
+3.5,
+"Rendering/graphicdata_dll/14_asset_resolution_pipeline.md",
+[
+"moti"
+]
+]
+]
+},
+"OCC:world/WORLD-018-phy-deformation.md": {
+"cls": "native",
+"cited": false,
+"top": []
+},
+"OCC:world/WORLD-019-indexed-mesh-submission.md": {
+"cls": "native",
+"cited": false,
+"top": []
+},
+"OCC:world/WORLD-020-character-mesh-world-depth.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+4.5,
+"Server/tq-server-binaries-2008.md",
+[
+"1010",
+"1000",
+"5517"
+]
+],
+[
+4.5,
+"Server/portal-transition-5517.md",
+[
+"1010",
+"1000",
+"5517"
+]
+],
+[
+4.5,
+"Server/map-catalog-5517.md",
+[
+"1010",
+"1000",
+"5517"
+]
+]
+]
+},
+"OCC:world/WORLD-021-local-role-playback-and-world-presentation.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+1.4,
+"Server/tq-server-binaries-2008.md",
+[
+"1000"
+]
+],
+[
+1.4,
+"Server/portal-transition-5517.md",
+[
+"1000"
+]
+],
+[
+1.4,
+"Server/movement-eligibility-5517.md",
+[
+"1000"
+]
+]
+]
+},
+"OCC:world/WORLD-022-initial-character-parts.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+7.8,
+"Rendering/06_hero_render_pipeline.md",
+[
+"v_armet",
+"armet"
+]
+],
+[
+6.4,
+"Network/08_system_packets.md",
+[
+"1009",
+"1008"
+]
+],
+[
+6.4,
+"Network/03_item_packets.md",
+[
+"1009",
+"1008"
+]
+]
+]
+},
+"OCC:world/WORLD-023-authenticated-world-ingress.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+18.4,
+"Network/01_core_packets.md",
+[
+"1009",
+"10017",
+"1016",
+"1008"
+]
+],
+[
+18.4,
+"Network/00_protocol_overview.md",
+[
+"1009",
+"10017",
+"1016",
+"1008"
+]
+],
+[
+9.1,
+"Network/08_system_packets.md",
+[
+"1009",
+"1008",
+"10010"
+]
+]
+]
+},
+"OCC:world/WORLD-024-ground-walk-transport.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+2.9,
+"Server/tq-server-binaries-2008.md",
+[
+"10005"
+]
+],
+[
+2.9,
+"Server/movement.md",
+[
+"10005"
+]
+],
+[
+2.9,
+"Server/movement-eligibility-5517.md",
+[
+"10005"
+]
+]
+]
+},
+"OCC:world/WORLD-025-first-world-hero-attributes.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+5.9,
+"Network/01_core_packets.md",
+[
+"10017",
+"1010"
+]
+],
+[
+5.9,
+"Network/00_protocol_overview.md",
+[
+"10017",
+"1010"
+]
+],
+[
+3.3,
+"Server/movement-eligibility-5517.md",
+[
+"10017"
+]
+]
+]
+},
+"OCC:world/WORLD-026-initial-equipment-state.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+6.4,
+"Network/08_system_packets.md",
+[
+"1009",
+"1008"
+]
+],
+[
+6.4,
+"Network/03_item_packets.md",
+[
+"1009",
+"1008"
+]
+],
+[
+6.4,
+"Network/01_core_packets.md",
+[
+"1009",
+"1008"
+]
+]
+]
+},
+"OCC:world/WORLD-027-first-world-vitals.md": {
+"cls": "native",
+"cited": false,
+"top": []
+},
+"OCC:world/WORLD-028-first-world-experience.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+4.0,
+"Server/database-provenance.md",
+[
+"ini/levexp.dat"
+]
+],
+[
+4.0,
+"Server/character-attributes-and-auto-allot.md",
+[
+"ini/levexp.dat"
+]
+],
+[
+4.0,
+"Rendering/13_hud_progress_gauges.md",
+[
+"ini/levexp.dat"
+]
+]
+]
+},
+"OCC:content/c3-studio-assets.md": {
+"cls": "native",
+"cited": true,
+"top": []
+},
+"OCC:content/local-content.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+5.4,
+"Server/historical-reconciliation-5095.md",
+[
+"content/"
+]
+]
+]
+},
+"OCC:content/retail-5517-content-plan.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+82.5,
+"Rendering/13_hud_progress_gauges.md",
+[
+"progressforcea.dds",
+"progressforce2.dds",
+"progressmph.dds",
+"progressmpa.dds"
+]
+],
+[
+50.1,
+"Rendering/12_hud_status_hint_panel.md",
+[
+"ini/progresshp.rgn",
+"ini/progressmp.rgn",
+"ini/progressxp.rgn",
+"data/main/msgdlg.dds"
+]
+],
+[
+47.1,
+"Rendering/19_main_hud_quickbar_native_contract.md",
+[
+"data/main3/skill38.dds",
+"ini/font.ini",
+"effect.ani",
+"ani/itemminicon.ani"
+]
+]
+]
+},
+"OCC:content/retail-5517-inventory.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+78.4,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"id=0",
+"65537",
+"flashname",
+"cconfigdatatablequeryprovider"
+]
+],
+[
+47.2,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"data/main/start-facebook.dat",
+"flashname",
+".bmp",
+"cn_res.ini"
+]
+],
+[
+44.4,
+"Rendering/c3_core_dll/11_datafile_and_wdf.md",
+[
+"package.ini",
+"ini/package.ini",
+".dbc",
+"tqpackagesopen"
+]
+]
+]
+},
+"OCC:architecture/architecture.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+9.8,
+"Architecture/02_conquer_client_startup_chain.md",
+[
+"play.exe",
+"server.dat",
+"1024",
+"5517"
+]
+],
+[
+7.5,
+"Rendering/21_main_hud_magic_status_hint_native_contract.md",
+[
+"strres.ini",
+"1024",
+"5517"
+]
+],
+[
+7.5,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"play.exe",
+"server.dat",
+"5517"
+]
+]
+]
+},
+"OCC:architecture/content-distribution.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+10.9,
+"Game_Map/README.md",
+[
+"1929",
+"1999",
+"1010"
+]
+],
+[
+8.3,
+"Game_Map/cgamemap_class.md",
+[
+"1929",
+"1999"
+]
+],
+[
+6.6,
+"Server/map-catalog-5517.md",
+[
+"1999",
+"1010"
+]
+]
+]
+},
+"OCC:architecture/launcher-instances.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+5.4,
+"Architecture/07_client_application_world_structure_refactor.md",
+[
+"program"
+]
+]
+]
+},
+"OCC:architecture/launcher-managed-installation.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+5.4,
+"Sound/02_map_sound_path.md",
+[
+"close"
+]
+],
+[
+3.2,
+"Server/multi-realm-architecture-5517.md",
+[
+"server.dat"
+]
+],
+[
+3.2,
+"Network/5517-server-selection-and-realm-handoff.md",
+[
+"server.dat"
+]
+]
+]
+},
+"OCC:architecture/launcher-play-screen.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+42.2,
+"Architecture/01_play_launcher_startup_and_handoff.md",
+[
+"cplaydlg",
+"ini/playgui.ini",
+"normal.ani",
+"play/main.rgn"
+]
+],
+[
+4.3,
+"Architecture/README.md",
+[
+"play.exe",
+"5517"
+]
+],
+[
+4.3,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"play.exe",
+"5517"
+]
+]
+]
+},
+"OCC:architecture/launcher-settings.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+5.4,
+"Server/movement-eligibility-5517.md",
+[
+"1280"
+]
+],
+[
+5.4,
+"Rendering/23_first_static_mesh_native_fixture.md",
+[
+"16384"
+]
+],
+[
+4.7,
+"Rendering/22_main_hud_dance_weapon_swap_status_hint_native_contract.md",
+[
+"fixed"
+]
+]
+]
+},
+"OCC:startup/LOADING-001.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+5.9,
+"Server/historical-reconciliation-5095.md",
+[
+"content/",
+"5517"
+]
+],
+[
+3.1,
+"Server/world-entry-bootstrap.md",
+[
+"1010",
+"5517"
+]
+],
+[
+3.1,
+"Server/tq-server-binaries-2008.md",
+[
+"1010",
+"5517"
+]
+]
+]
+},
+"OCC:startup/README.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+0.5,
+"Tooling/reference_binary_provenance.md",
+[
+"5517"
+]
+],
+[
+0.5,
+"Tooling/README.md",
+[
+"5517"
+]
+],
+[
+0.5,
+"Sound/README.md",
+[
+"5517"
+]
+]
+]
+},
+"OCC:startup/ROLE-001A.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+78.3,
+"Architecture/12_create_role_flow.md",
+[
+"tip.show",
+"hidereturnbtn",
+"cmd_nick",
+"hitarea"
+]
+],
+[
+27.3,
+"Architecture/11_login_ui_assets_and_interactions.md",
+[
+"selection.setfocus",
+"onenterframe",
+"logo.swf",
+"role.dat"
+]
+],
+[
+20.5,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"role.dat",
+"logomc",
+"loadmovie",
+"new_role"
+]
+]
+]
+},
+"OCC:startup/ROLE-001B.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+51.4,
+"Architecture/12_create_role_flow.md",
+[
+"snd_bs",
+"ab=cd",
+"snd_cs",
+"snd_db"
+]
+],
+[
+45.4,
+"Network/01_core_packets.md",
+[
+"2078/2079",
+"ini/selectcharacter.ini",
+"0x198",
+"new_role"
+]
+],
+[
+40.4,
+"Network/13_connection_lifecycle.md",
+[
+"2078/2079",
+"new_role",
+"1100",
+"2100"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001C.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+11.9,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"data/main/start.dat",
+"(0,0)",
+"ini/gamesetup.ini",
+"5517"
+]
+],
+[
+8.3,
+"Architecture/11_login_ui_assets_and_interactions.md",
+[
+"data/main/start.dat",
+"ini/gamesetup.ini",
+"5517"
+]
+],
+[
+8.3,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"data/main/start.dat",
+"ini/gamesetup.ini",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001D.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+7.9,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"data/main/start.dat",
+"(0,0)"
+]
+],
+[
+4.3,
+"Architecture/11_login_ui_assets_and_interactions.md",
+[
+"data/main/start.dat"
+]
+],
+[
+4.3,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"data/main/start.dat"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001E.md": {
+"cls": "native",
+"cited": false,
+"top": []
+},
+"OCC:startup/STARTUP-001F.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+12.9,
+"Server/multi-realm-architecture-5517.md",
+[
+"loginservercatalog",
+"servername",
+"server.dat",
+"5517"
+]
+],
+[
+7.5,
+"Network/5517-server-selection-and-realm-handoff.md",
+[
+"servername",
+"server.dat",
+"5517"
+]
+],
+[
+7.5,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"servername",
+"server.dat",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001G.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+9.1,
+"Rendering/21_main_hud_magic_status_hint_native_contract.md",
+[
+"clientapplication",
+"1024",
+"2026",
+"5517"
+]
+],
+[
+8.9,
+"Server/multi-realm-architecture-5517.md",
+[
+"9958",
+"server.dat",
+"2026",
+"5517"
+]
+],
+[
+8.9,
+"Network/5517-server-selection-and-realm-handoff.md",
+[
+"9958",
+"server.dat",
+"2026",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001H.md": {
+"cls": "native",
+"cited": false,
+"top": []
+},
+"OCC:startup/STARTUP-001I.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+14.5,
+"Server/multi-realm-architecture-5517.md",
+[
+"protocolservername",
+"loginservercatalog",
+"server.dat",
+"5517"
+]
+],
+[
+6.0,
+"Architecture/11_login_ui_assets_and_interactions.md",
+[
+"server.dat",
+"1024",
+"5517"
+]
+],
+[
+6.0,
+"Architecture/02_conquer_client_startup_chain.md",
+[
+"server.dat",
+"1024",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001J.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+5.9,
+"Rendering/21_main_hud_magic_status_hint_native_contract.md",
+[
+"clientapplication",
+"5517"
+]
+],
+[
+3.7,
+"Server/multi-realm-architecture-5517.md",
+[
+"server.dat",
+"5517"
+]
+],
+[
+3.7,
+"Network/5517-server-selection-and-realm-handoff.md",
+[
+"server.dat",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001K.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+16.8,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"cmd_name",
+"cmd_password",
+"cloginflashdlg_handleflashcommandstring",
+"1060"
+]
+],
+[
+13.9,
+"Architecture/02_conquer_client_startup_chain.md",
+[
+"cmd_name",
+"cloginflashdlg_handleflashcommandstring",
+"cmd_password",
+"5517"
+]
+],
+[
+7.7,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"cloginflashdlg_handleflashcommandstring",
+"1060",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001L.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+18.1,
+"Network/13_connection_lifecycle.md",
+[
+"cmsg1060__create",
+"strncpy",
+"memcpy",
+"0x80"
+]
+],
+[
+14.6,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"cmsg1060__create",
+"strncpy",
+"0x80",
+"1060"
+]
+],
+[
+8.8,
+"Server/multi-realm-architecture-5517.md",
+[
+"protocolservername",
+"1060",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001M.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+3.7,
+"Network/13_connection_lifecycle.md",
+[
+"start.dat",
+"5517"
+]
+],
+[
+3.7,
+"Architecture/README.md",
+[
+"start.dat",
+"5517"
+]
+],
+[
+3.7,
+"Architecture/12_create_role_flow.md",
+[
+"start.dat",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001N.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+11.0,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"progress",
+"loading_trace",
+"1060",
+"5517"
+]
+],
+[
+11.0,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"progress",
+"loading_trace",
+"1060",
+"5517"
+]
+],
+[
+8.1,
+"Architecture/12_create_role_flow.md",
+[
+"progress",
+"loading_trace",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001P.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+18.2,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"flashlogin.ini",
+"definebitsjpeg3",
+"data/main/start.dat",
+"server.dat"
+]
+],
+[
+12.8,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"definebitsjpeg3",
+"data/main/start.dat",
+"server.dat",
+"5517"
+]
+],
+[
+8.0,
+"Architecture/11_login_ui_assets_and_interactions.md",
+[
+"data/main/start.dat",
+"server.dat",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001Q.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+76.1,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"flashlogin.ini",
+"flashname",
+"definebitsjpeg3",
+"flashhint"
+]
+],
+[
+69.5,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"definebitsjpeg3",
+"flashname",
+"flashhint",
+"placeobject"
+]
+],
+[
+39.6,
+"Architecture/02_conquer_client_startup_chain.md",
+[
+"flashicon",
+"serverip",
+"outenserver",
+"cmd_gamestart"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001R.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+26.8,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"definebitsjpeg3",
+"flashname",
+"flashhint",
+"flashicon"
+]
+],
+[
+26.8,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"definebitsjpeg3",
+"flashname",
+"flashhint",
+"flashicon"
+]
+],
+[
+12.9,
+"Architecture/10_conquer_project_source_structure.md",
+[
+"05_startup_data_files_and_native_replacement.md",
+"9958",
+"server.dat"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001S.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+32.5,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"flashname",
+"flashhint",
+"flashicon",
+"serverip"
+]
+],
+[
+32.5,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"flashname",
+"flashhint",
+"flashicon",
+"serverip"
+]
+],
+[
+20.2,
+"Server/multi-realm-architecture-5517.md",
+[
+"protocolservername",
+"9958",
+"servername",
+"server.dat"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001T.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+4.8,
+"Architecture/11_login_ui_assets_and_interactions.md",
+[
+"data/main/start.dat",
+"5517"
+]
+],
+[
+4.8,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"data/main/start.dat",
+"5517"
+]
+],
+[
+4.8,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"data/main/start.dat",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001U.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+5.9,
+"Rendering/22_main_hud_dance_weapon_swap_status_hint_native_contract.md",
+[
+"unavailable",
+"5517"
+]
+],
+[
+3.4,
+"Server/multi-realm-architecture-5517.md",
+[
+"1060",
+"5517"
+]
+],
+[
+3.4,
+"Server/login-credential-envelope.md",
+[
+"1060",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001V.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+6.6,
+"Server/multi-realm-architecture-5517.md",
+[
+"server.dat",
+"1060",
+"5517"
+]
+],
+[
+6.6,
+"Network/5517-server-selection-and-realm-handoff.md",
+[
+"server.dat",
+"1060",
+"5517"
+]
+],
+[
+6.6,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"server.dat",
+"1060",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001W.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+11.6,
+"Network/08_system_packets.md",
+[
+"0x764bc6",
+"1059",
+"cmsgloginseed__process_derivecredentialrc5keyfromseed"
+]
+],
+[
+9.6,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"1059",
+"1060",
+"0xffffffff",
+"5517"
+]
+],
+[
+8.3,
+"Server/README.md",
+[
+"0x764bc6",
+"cmsgloginseed__process_derivecredentialrc5keyfromseed",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001X.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+34.0,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"flashlogin.ini",
+"sound/",
+"ini/flashlogin.ini",
+"data/main/start.dat"
+]
+],
+[
+32.9,
+"Architecture/11_login_ui_assets_and_interactions.md",
+[
+"click_region",
+"dragonmov",
+"rollover_region",
+"ini/flashlogin.ini"
+]
+],
+[
+17.7,
+"Architecture/01_play_launcher_startup_and_handoff.md",
+[
+"normal.ani",
+"sound/",
+"gamesetup.ini",
+"ini/gamesetup.ini"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001Y.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+5.9,
+"Rendering/21_main_hud_magic_status_hint_native_contract.md",
+[
+"clientapplication",
+"5517"
+]
+],
+[
+5.9,
+"Architecture/12_create_role_flow.md",
+[
+"keyboarddown_0..2",
+"5517"
+]
+],
+[
+5.9,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"flashlogin.ini",
+"5517"
+]
+]
+]
+},
+"OCC:startup/STARTUP-001Z.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+112.8,
+"Architecture/11_login_ui_assets_and_interactions.md",
+[
+"grouprecord=0",
+"vertxt",
+"serverrecord=0",
+"flushlight"
+]
+],
+[
+45.8,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"flashlogin.ini",
+"key_3.mp3",
+"music.mp3",
+"key_2.mp3"
+]
+],
+[
+44.5,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"unopenedr",
+"unopeneds",
+"cmd_clearaccount",
+"cmd_recordaccount"
+]
+]
+]
+},
+"OCC:startup/STARTUP-002-world-activation.md": {
+"cls": "native",
+"cited": false,
+"top": []
+},
+"OCS:README.md": {
+"cls": "modern",
+"cited": false,
+"top": []
+},
+"OCS:status.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+31.3,
+"Network/00_protocol_overview.md",
+[
+"1134",
+"1056",
+"1115",
+"10017"
+]
+],
+[
+24.2,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"0xf002",
+"0xf001",
+"1115",
+"1060"
+]
+],
+[
+17.3,
+"Network/01_core_packets.md",
+[
+"10017",
+"1060",
+"10005",
+"10010"
+]
+]
+]
+},
+"OCS:content/README.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+22.5,
+"Server/historical-reconciliation-5095.md",
+[
+"item-types.json",
+"content/",
+"flags",
+"mapid"
+]
+],
+[
+5.4,
+"Server/zf-map-reconciliation-5517.md",
+[
+"maps"
+]
+],
+[
+4.3,
+"Rendering/c3_core_dll/08_depth_stencil_and_presentation.md",
+[
+"flags"
+]
+]
+]
+},
+"OCS:content/base-terrain-format.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+17.5,
+"Game_Map/cgamemap_class.md",
+[
+"surfaceid",
+"passabilityflag",
+"int32",
+"uint32"
+]
+],
+[
+10.1,
+"Rendering/c3_core_dll/05_phy.md",
+[
+"int32",
+"uint16",
+"uint32"
+]
+],
+[
+7.9,
+"Server/historical-reconciliation-5095.md",
+[
+"passwayindex",
+"gamemap.dat"
+]
+]
+]
+},
+"OCS:content/collision-format.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+13.8,
+"Game_Map/cgamemap_class.md",
+[
+"surfaceid",
+"passabilityflag",
+"uint32"
+]
+],
+[
+6.5,
+"Rendering/c3_core_dll/05_phy.md",
+[
+"uint16",
+"uint32"
+]
+],
+[
+6.5,
+"Network/04_social_packets.md",
+[
+"uint16",
+"uint32"
+]
+]
+]
+},
+"OCS:content/historical-source-reconciliation.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+55.0,
+"Server/historical-reconciliation-5095.md",
+[
+"openconquer-5095-server-evidence-analysis.zip",
+"zfserver.zip",
+"1766",
+"cq_goods"
+]
+],
+[
+28.8,
+"Server/database-provenance.md",
+[
+"cq_itemtype",
+"cq_goods",
+"shop.dat",
+"cq_task"
+]
+],
+[
+25.2,
+"Server/zf-map-reconciliation-5517.md",
+[
+"npcserver.exe",
+"msgserver.exe",
+"cq_task",
+"cq_action"
+]
+]
+]
+},
+"OCS:content/item-type-catalog-v2.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+18.0,
+"Server/historical-reconciliation-5095.md",
+[
+"speedpercentoffset",
+"dodge",
+"itemtype.dat",
+"5095"
+]
+],
+[
+5.9,
+"Server/map-catalogue-corrections.md",
+[
+"uint",
+"5517"
+]
+],
+[
+3.8,
+"Server/tq-server-binaries-2008.md",
+[
+"5095",
+"5517"
+]
+]
+]
+},
+"OCS:content/item-type-native-source.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+33.5,
+"Server/historical-reconciliation-5095.md",
+[
+"field-mapping-matrix.csv",
+"item-types.json",
+"speedpercentoffset",
+"dodge"
+]
+],
+[
+5.2,
+"Network/MsgItem1008-domain-contract-5517.md",
+[
+"itemtypeid",
+"5517"
+]
+],
+[
+3.8,
+"Server/tq-server-binaries-2008.md",
+[
+"5095",
+"5517"
+]
+]
+]
+},
+"OCS:content/map-transitions.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+17.2,
+"Server/map-transitions.md",
+[
+"maptransitioncatalog",
+"chero_tickportaldetectionandmapchangerequest",
+"0x65d9b2",
+"conquer.exe"
+]
+],
+[
+8.9,
+"Server/portal-transition-5517.md",
+[
+"0x65d9b2",
+"1110",
+"conquer.exe",
+"5517"
+]
+],
+[
+4.2,
+"Server/world-entry-bootstrap.md",
+[
+"1110",
+"conquer.exe",
+"5517"
+]
+]
+]
+},
+"OCS:protocol/README.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+115.1,
+"Network/13_connection_lifecycle.md",
+[
+"0x4d",
+"0x00",
+"0xfb",
+"0x61"
+]
+],
+[
+113.2,
+"Network/01_core_packets.md",
+[
+"0x4d",
+"0x835",
+"0xfb",
+"0x61"
+]
+],
+[
+85.7,
+"Network/00_protocol_overview.md",
+[
+"1134",
+"1103",
+"1104",
+"1059"
+]
+]
+]
+},
+"OCS:protocol/character-creation.md": {
+"cls": "native",
+"cited": true,
+"top": [
+[
+65.0,
+"Network/13_connection_lifecycle.md",
+[
+"cmsgcreateplayer1001__ctor",
+"0x720059",
+"0x51c54b",
+"0x5dcddf"
+]
+],
+[
+63.9,
+"Network/01_core_packets.md",
+[
+"cmsgcreateplayer1001__ctor",
+"0x720059",
+"0x51c54b",
+"0x7200bf"
+]
+],
+[
+62.8,
+"Architecture/12_create_role_flow.md",
+[
+"error",
+"0x7200bf",
+"cmsgcreateplayer1001__build",
+"2002"
+]
+]
+]
+},
+"OCS:protocol/framing.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+3.5,
+"Rendering/ndsound_dll/07_dxvolume_save_flush_contract.md",
+[
+"uint16"
+]
+],
+[
+3.5,
+"Rendering/ndsound_dll/03_dxplaymedia_contract.md",
+[
+"uint16"
+]
+],
+[
+3.5,
+"Rendering/ndsound_dll/02_dxplay3dsound_contract.md",
+[
+"uint16"
+]
+]
+]
+},
+"OCS:protocol/text-encoding.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+5.4,
+"Network/Native-auth-string-validation-2026-10-18.md",
+[
+"1252"
+]
+]
+]
+},
+"OCS:operations/account-server.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+4.7,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"127.0.0.1:9958"
+]
+],
+[
+4.7,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"127.0.0.1:9958"
+]
+],
+[
+3.8,
+"Rendering/roleview_dll/13_role_compute_frame_interval.md",
+[
+"false"
+]
+]
+]
+},
+"OCS:operations/character-creation-persistence.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+12.1,
+"Network/13_connection_lifecycle.md",
+[
+"new_role",
+"answer_ok",
+"1052",
+"1001"
+]
+],
+[
+12.1,
+"Network/01_core_packets.md",
+[
+"new_role",
+"answer_ok",
+"1052",
+"1001"
+]
+],
+[
+12.1,
+"Architecture/12_create_role_flow.md",
+[
+"new_role",
+"answer_ok",
+"1052",
+"1001"
+]
+]
+]
+},
+"OCS:operations/character-creation-starting-state.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+12.5,
+"Network/01_core_packets.md",
+[
+"ushort",
+"ini/selectcharacter.ini",
+"1010",
+"5517"
+]
+],
+[
+11.1,
+"Server/tq-server-15.10-runtime-semantics.md",
+[
+"portal0",
+"5095",
+"1010",
+"5517"
+]
+],
+[
+8.6,
+"Server/death-ghost-revive-5517.md",
+[
+"portal0",
+"5095",
+"5517"
+]
+]
+]
+},
+"OCS:operations/database-identities.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+27.1,
+"Server/multi-realm-architecture-5517.md",
+[
+"realm_binding",
+"realm_status",
+"realms",
+"account_sessions"
+]
+],
+[
+10.1,
+"Server/database-provenance.md",
+[
+"accounts",
+"delete"
+]
+],
+[
+5.4,
+"Server/historical-reconciliation-5095.md",
+[
+"magic"
+]
+]
+]
+},
+"OCS:operations/database-migrations.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+32.5,
+"Server/multi-realm-architecture-5517.md",
+[
+"realm_binding",
+"realm_status",
+"realms",
+"account_sessions"
+]
+],
+[
+9.0,
+"Server/historical-reconciliation-5095.md",
+[
+"magic",
+"level"
+]
+],
+[
+9.0,
+"Server/database-provenance.md",
+[
+"accounts",
+"level"
+]
+]
+]
+},
+"OCS:operations/game-realm-binding.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+16.2,
+"Server/multi-realm-architecture-5517.md",
+[
+"realms",
+"realm_binding",
+"realm_id"
+]
+],
+[
+4.7,
+"Server/npc-dialog.md",
+[
+"delete"
+]
+],
+[
+4.7,
+"Server/database-provenance.md",
+[
+"delete"
+]
+]
+]
+},
+"OCS:operations/game-server.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+10.8,
+"Server/multi-realm-architecture-5517.md",
+[
+"gameserver:realmstatus:reportinterval",
+"gameserver:world:maxcharacters"
+]
+],
+[
+5.4,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"port"
+]
+],
+[
+3.8,
+"Rendering/roleview_dll/13_role_compute_frame_interval.md",
+[
+"false"
+]
+]
+]
+},
+"OCS:operations/local-realm-provisioning.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+30.0,
+"Server/multi-realm-architecture-5517.md",
+[
+"realm_binding",
+"realmid",
+"realms",
+"9958"
+]
+],
+[
+18.5,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"127.0.0.1:9958",
+"5816",
+"servername",
+"1060"
+]
+],
+[
+13.7,
+"Server/historical-multi-server-topology.md",
+[
+"5816",
+"servername",
+"1060",
+"1055"
+]
+]
+]
+},
+"OCS:operations/realm-bound-tickets.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+17.0,
+"Server/multi-realm-architecture-5517.md",
+[
+"realm_binding",
+"realms",
+"1060",
+"1055"
+]
+],
+[
+15.2,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"127.0.0.1:9958",
+"5816",
+"1060",
+"1055"
+]
+],
+[
+10.4,
+"Server/historical-multi-server-topology.md",
+[
+"5816",
+"1060",
+"1055",
+"5517"
+]
+]
+]
+},
+"OCS:operations/realm-registry.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+11.3,
+"Server/multi-realm-architecture-5517.md",
+[
+"realms",
+"realm_id",
+"5517"
+]
+],
+[
+5.2,
+"Server/npc-dialog.md",
+[
+"delete",
+"5517"
+]
+],
+[
+5.2,
+"Server/database-provenance.md",
+[
+"delete",
+"5517"
+]
+]
+]
+},
+"OCS:operations/realms.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+38.6,
+"Server/multi-realm-architecture-5517.md",
+[
+"realm_binding",
+"gameserver:realmstatus:reportinterval",
+"realms",
+"[a-za-z0-9_()-]"
+]
+],
+[
+6.1,
+"Server/login-credential-envelope.md",
+[
+"1060",
+"1055",
+"5517"
+]
+],
+[
+6.1,
+"Server/historical-multi-server-topology.md",
+[
+"1060",
+"1055",
+"5517"
+]
+]
+]
+},
+"OCS:architecture/README.md": {
+"cls": "modern",
+"cited": false,
+"top": []
+},
+"OCS:architecture/account-registration.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+9.7,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"login",
+"1059",
+"5517"
+]
+],
+[
+5.9,
+"Server/multi-realm-architecture-5517.md",
+[
+"loginhandshakeprocessor",
+"5517"
+]
+],
+[
+4.3,
+"Network/13_connection_lifecycle.md",
+[
+"1059",
+"5517"
+]
+]
+]
+},
+"OCS:architecture/authentication.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+11.0,
+"Server/multi-realm-architecture-5517.md",
+[
+"realms",
+"1060",
+"1055"
+]
+],
+[
+10.3,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"banned",
+"1060",
+"1055"
+]
+],
+[
+8.3,
+"Server/database-provenance.md",
+[
+"accounts",
+"1060"
+]
+]
+]
+},
+"OCS:architecture/authoritative-movement-eligibility.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+20.7,
+"Network/00_protocol_overview.md",
+[
+"1033",
+"2075",
+"1056",
+"10017"
+]
+],
+[
+18.2,
+"Server/movement-eligibility-5517.md",
+[
+"1033",
+"2075",
+"10017",
+"10005"
+]
+],
+[
+14.2,
+"Server/death-ghost-revive-5517.md",
+[
+"1056",
+"10017",
+"10005",
+"10014"
+]
+]
+]
+},
+"OCS:architecture/character-creation-session-primitives.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+24.3,
+"Network/01_core_packets.md",
+[
+"0x835",
+"0x834",
+"new_role",
+"answer_ok"
+]
+],
+[
+14.9,
+"Network/13_connection_lifecycle.md",
+[
+"new_role",
+"answer_ok",
+"1052",
+"1001"
+]
+],
+[
+14.9,
+"Architecture/12_create_role_flow.md",
+[
+"new_role",
+"answer_ok",
+"1052",
+"1001"
+]
+]
+]
+},
+"OCS:architecture/character-creation.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+44.0,
+"Server/character-creation-decision-15.10.md",
+[
+"cmsgregister__processcharactercreation_15_10",
+"0x4b0b17",
+"0x4aa79a",
+"2002"
+]
+],
+[
+34.6,
+"Network/01_core_packets.md",
+[
+"2002",
+"new_role",
+"2001",
+"answer_ok"
+]
+],
+[
+32.6,
+"Architecture/12_create_role_flow.md",
+[
+"2002",
+"new_role",
+"2001",
+"answer_ok"
+]
+]
+]
+},
+"OCS:architecture/connected-portal-transfers.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+22.9,
+"Network/01_core_packets.md",
+[
+"0x6ff652",
+"0x3f0",
+"1016",
+"0x3f2"
+]
+],
+[
+20.2,
+"Server/portal-transition-5517.md",
+[
+"0x6ff652",
+"0x3f0",
+"1016",
+"0x3f2"
+]
+],
+[
+11.2,
+"Server/world-entry-bootstrap.md",
+[
+"1016",
+"10010",
+"1110",
+"cmsgaction__process"
+]
+]
+]
+},
+"OCS:architecture/durable-character-location.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+5.2,
+"Server/npc-dialog.md",
+[
+"delete",
+"5517"
+]
+],
+[
+5.2,
+"Server/historical-multi-server-topology.md",
+[
+"account_id",
+"5517"
+]
+],
+[
+5.2,
+"Server/database-provenance.md",
+[
+"delete",
+"5517"
+]
+]
+]
+},
+"OCS:architecture/fenced-character-admission.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+2.8,
+"Server/world-entry-bootstrap.md",
+[
+"1006",
+"5517"
+]
+],
+[
+2.8,
+"Server/historical-reconciliation-5095.md",
+[
+"1006",
+"5517"
+]
+],
+[
+2.8,
+"Server/death-ghost-revive-5517.md",
+[
+"1006",
+"5517"
+]
+]
+]
+},
+"OCS:architecture/ground-walking.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+35.3,
+"Rendering/roleview_dll/07_action_playback_transition_state.md",
+[
+"role_commandtype03_updatemotionpathandselectaction",
+"data_86c628",
+"0x7350b3",
+"data_86c608"
+]
+],
+[
+29.9,
+"Network/15_msgwalk_10005_direction_index_order.md",
+[
+"role_commandtype03_updatemotionpathandselectaction",
+"data_86c628",
+"0x7350b3",
+"data_86c608"
+]
+],
+[
+13.7,
+"Network/11_else_branch_packets.md",
+[
+"0x736315",
+"role_applygroundmoveactionandposefrompathcursor",
+"10005",
+"10014"
+]
+]
+]
+},
+"OCS:architecture/multi-realm.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+77.6,
+"Server/multi-realm-architecture-5517.md",
+[
+"realmid",
+"realm_status",
+"gameserver:realmstatus:reportinterval",
+"realms"
+]
+],
+[
+20.7,
+"Server/historical-multi-server-topology.md",
+[
+"rejointimewaitsecs",
+"2100",
+"2008",
+"2101"
+]
+],
+[
+18.8,
+"Network/13_connection_lifecycle.md",
+[
+"1115",
+"2100",
+"2101",
+"1060"
+]
+]
+]
+},
+"OCS:architecture/native-24-direction-movement.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+24.5,
+"Server/movement.md",
+[
+"0x86c804",
+"0x7405e7",
+"0x86c864",
+"cmsgentityaction__process"
+]
+],
+[
+14.0,
+"Rendering/00_rendering_gap_analysis.md",
+[
+"0x86c804",
+"0x86c864",
+"cmsgentityaction__process",
+"5517"
+]
+],
+[
+12.2,
+"Network/11_else_branch_packets.md",
+[
+"0x7405e7",
+"cmsgentityaction__process",
+"10005",
+"5517"
+]
+]
+]
+},
+"OCS:architecture/native-avatar-actions.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+13.0,
+"Server/death-ghost-revive-5517.md",
+[
+"+0x5b",
+"10010",
+"10014",
+"cmsgaction__process"
+]
+],
+[
+13.0,
+"Network/01_core_packets.md",
+[
+"+0x5b",
+"10010",
+"10014",
+"cmsgaction__process"
+]
+],
+[
+9.8,
+"Network/00_protocol_overview.md",
+[
+"msgaction",
+"10014",
+"10010",
+"5517"
+]
+]
+]
+},
+"OCS:architecture/native-chat.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+46.3,
+"Server/chat.md",
+[
+"0x836",
+"0x838",
+"0x835",
+"0x7d2"
+]
+],
+[
+30.5,
+"Network/01_core_packets.md",
+[
+"0x835",
+"0x7d2",
+"0x834",
+"msgtalk"
+]
+],
+[
+19.0,
+"Server/npc-dialog.md",
+[
+"0x7d7",
+"0x7d0",
+"0x7d5",
+"cmsgtalk__process"
+]
+]
+]
+},
+"OCS:architecture/native-jumping.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+40.4,
+"Server/movement.md",
+[
+"0x700352..0x7003de",
+"role_requestjumptotile",
+"mount_jump_movepoint_limit",
+"0x61e5f0"
+]
+],
+[
+17.6,
+"Server/movement-eligibility-5517.md",
+[
+"role_requestjumptotile",
+"mount_jump_movepoint_limit",
+"0x658965",
+"10005"
+]
+],
+[
+15.7,
+"Network/01_core_packets.md",
+[
+"0x89",
+"10005",
+"0x32",
+"10010"
+]
+]
+]
+},
+"OCS:architecture/native-portal-preflight.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+26.7,
+"Server/map-transitions.md",
+[
+"maptransitioncatalog",
+"chero_tickportaldetectionandmapchangerequest",
+"0x63777d",
+"0x637700"
+]
+],
+[
+13.6,
+"Server/portal-transition-5517.md",
+[
+"0x637700",
+"0x65d9b2",
+"1110",
+"conquer.exe"
+]
+],
+[
+8.9,
+"Game_Map/cgamemap_class.md",
+[
+"0x63777d",
+"1110",
+"conquer.exe",
+"5517"
+]
+]
+]
+},
+"OCS:architecture/networking.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+21.3,
+"Network/13_connection_lifecycle.md",
+[
+"1059",
+"1100",
+"2101",
+"1060"
+]
+],
+[
+21.3,
+"Network/00_protocol_overview.md",
+[
+"1059",
+"1100",
+"2101",
+"1060"
+]
+],
+[
+19.3,
+"Server/multi-realm-architecture-5517.md",
+[
+"loginhandshakeprocessor",
+"2101",
+"1060",
+"1052"
+]
+]
+]
+},
+"OCS:architecture/persistence.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+5.9,
+"Server/multi-realm-architecture-5517.md",
+[
+"realms",
+"5517"
+]
+],
+[
+0.5,
+"Tooling/reference_binary_provenance.md",
+[
+"5517"
+]
+],
+[
+0.5,
+"Tooling/README.md",
+[
+"5517"
+]
+]
+]
+},
+"OCS:architecture/player-visibility.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+16.4,
+"Network/00_protocol_overview.md",
+[
+"msgaction",
+"1115",
+"10005",
+"10010"
+]
+],
+[
+14.8,
+"Network/11_else_branch_packets.md",
+[
+"msgplayerspawn",
+"msgaction",
+"10005",
+"10014"
+]
+],
+[
+13.4,
+"Network/01_core_packets.md",
+[
+"msgplayerspawn",
+"10005",
+"10010",
+"10014"
+]
+]
+]
+},
+"OCS:architecture/position-synchronization.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+7.2,
+"Network/00_protocol_overview.md",
+[
+"msgaction",
+"10010",
+"5517"
+]
+],
+[
+6.2,
+"Rendering/roleview_dll/07_action_playback_transition_state.md",
+[
+"uint32",
+"10010",
+"5517"
+]
+],
+[
+4.5,
+"Rendering/02_roleview_object_interface.md",
+[
+"msgaction",
+"5517"
+]
+]
+]
+},
+"OCS:architecture/revival-destination-authority.md": {
+"cls": "modern",
+"cited": true,
+"top": [
+[
+35.0,
+"Server/death-ghost-revive-5517.md",
+[
+"2060",
+"portal0_x/y",
+"bekill",
+"reborn_map"
+]
+],
+[
+19.1,
+"Server/map-catalog-5517.md",
+[
+"1926",
+"1036",
+"1013",
+"cq_map"
+]
+],
+[
+17.6,
+"Network/00_protocol_overview.md",
+[
+"1011",
+"1036",
+"1013",
+"10017"
+]
+]
+]
+},
+"OCS:architecture/world-execution.md": {
+"cls": "native",
+"cited": false,
+"top": [
+[
+3.4,
+"Rendering/roleview_dll/09_role_scale_formula.md",
+[
+"null",
+"5517"
+]
+],
+[
+3.4,
+"Rendering/c3_core_dll/11_datafile_and_wdf.md",
+[
+"null",
+"5517"
+]
+],
+[
+3.4,
+"Rendering/11_3d_role_part_loaders.md",
+[
+"null",
+"5517"
+]
+]
+]
+},
+"OCS:architecture/world-transfer-preflight.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+5.9,
+"Sound/02_map_sound_path.md",
+[
+"isactive",
+"5517"
+]
+],
+[
+3.0,
+"Server/zf-map-reconciliation-5517.md",
+[
+"1110",
+"5517"
+]
+],
+[
+3.0,
+"Server/world-entry-bootstrap.md",
+[
+"1110",
+"5517"
+]
+]
+]
+},
+"OCS:architecture/world-transition-catalog-readiness.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+0.5,
+"Tooling/reference_binary_provenance.md",
+[
+"5517"
+]
+],
+[
+0.5,
+"Tooling/README.md",
+[
+"5517"
+]
+],
+[
+0.5,
+"Sound/README.md",
+[
+"5517"
+]
+]
+]
+},
+"OCS:reviews/PR-171-registration-audit.md": {
+"cls": "modern",
+"cited": false,
+"top": [
+[
+15.1,
+"Architecture/03_login_flash_startup_command_contract.md",
+[
+"0xf002",
+"0xf001",
+"1060",
+"1055"
+]
+],
+[
+12.4,
+"Architecture/05_startup_data_files_and_native_replacement.md",
+[
+"0xf002",
+"0xf001",
+"1060"
+]
+],
+[
+11.0,
+"Server/multi-realm-architecture-5517.md",
+[
+"loginhandshakeprocessor",
+"1060",
+"1055"
+]
+]
+]
+}
+}

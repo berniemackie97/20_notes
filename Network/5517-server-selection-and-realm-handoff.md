@@ -25,7 +25,7 @@ Server.dat (outenserver) ─► REGION/SERVER push (0x4AD12F)
 |---|---|---|
 | `0x4ABFBD` | `CLoginFlashDlg_HandleEnterGameCommand_ValidateAndBeginBindHandshake` | CMD_ENTERGAME; role-2 row check first (StrRes 10012) |
 | `0x4AF12D` | `CLoginFlashDlg_PersistSelectionAndConnectAccountServer` | writes GameSetup.Ini Group/ServerRecord, connects |
-| `0x66D3FF` | `CGameMain_ConnectAccountServerWithBgpFallback` | 10 s connect, BGP retry, StrRes 10397 on fail |
+| `0x66D3FF` | `CGameMain_ConnectAccountServerWithBgpFallback` | 10 s connect, BGP retry, StrRes 10397 on fail; fail path `Sleep(5000)` (`push 0x1388` `0x66D472`, `call [0x8440E4]` `0x66D477`) |
 | `0x4AAA49` | `CLoginFlashDlg_PrepareServerRootAndSelectionFromIni` | root `.\Server[%d]` (oem id); indices from `GameSetup.Ini`, fallback `DefaultGameSetup.ini`; missing −1 (prior) |
 | `0x4AEE6A` | `CLoginFlashDlg_SubmitLoginRequestAndPostCommand482` | rowId; endpoint role 2 (fail ⇒ CHECK log, no send); ServerName copy cap 0x21 |
 | `0x4AFE37` | `CLoginFlashDlg_GetServerEndpointByServerRowAndRole` | roles: 0 Pic, 1 Bind, 2 Server (account), 3 `nameRes.ini` KeyServer[_Charges], 4 AccountBindServer[_Charges], 5 BGP |

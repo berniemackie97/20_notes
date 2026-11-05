@@ -1,0 +1,1579 @@
+[
+{
+"repo": "OCC",
+"doc": "development.md",
+"title": "# Development",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 539
+},
+{
+"repo": "OCC",
+"doc": "studio-integration.md",
+"title": "# Studio integration",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 28
+},
+{
+"repo": "OCC",
+"doc": "compatibility/native-graphics.md",
+"title": "# Retail 5517 Graphics Compatibility",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 1430
+},
+{
+"repo": "OCC",
+"doc": "compatibility/native-text.md",
+"title": "# 5517 Text Compatibility",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 1782
+},
+{
+"repo": "OCC",
+"doc": "compatibility/server-dat.md",
+"title": "# Retail 5517 Server.dat Compatibility Record",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 377
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001A-account-wire-codecs.md",
+"title": "# AUTH-001A: AccountServer wire codecs",
+"addrs": [
+"0x6e2344",
+"0x6e23a5",
+"0x75492c"
+],
+"notes": [
+"20_notes/Architecture/03_login_flash_startup_command_contract.md",
+"20_notes/Network/00_protocol_overview.md"
+],
+"syms": [
+"CGameSocketLegacyCipher_InitKeySchedule"
+],
+"lines": 108
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001B-bounded-account-session.md",
+"title": "# AUTH-001B: AccountServer seed session",
+"addrs": [],
+"notes": [
+"20_notes/Architecture/03_login_flash_startup_command_contract.md",
+"20_notes/Network/5517-server-selection-and-realm-handoff.md"
+],
+"syms": [],
+"lines": 79
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001C-native-credential-composition.md",
+"title": "# AUTH-001C: 5517 keypad encoding and account request composition",
+"addrs": [
+"0x4ac4d7",
+"0x4addff",
+"0x4ade1c",
+"0x4ade26",
+"0x59e59f"
+],
+"notes": [
+"20_notes/Architecture/03_login_flash_startup_command_contract.md",
+"20_notes/Server/credential-mode-selection-5517.md",
+"20_notes/Server/login-credential-envelope.md"
+],
+"syms": [
+"CGameInputString_ProcessFrameInputAndSelection",
+"CMD_PASSWORD"
+],
+"lines": 114
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001D-bounded-account-exchange.md",
+"title": "# AUTH-001D: AccountServer authentication exchange",
+"addrs": [
+"0x7543ca",
+"0x754909",
+"0x75492c",
+"0x767da1"
+],
+"notes": [
+"20_notes/Architecture/03_login_flash_startup_command_contract.md",
+"20_notes/Network/5517-server-selection-and-realm-handoff.md"
+],
+"syms": [],
+"lines": 95
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001E-account-post-authentication-reports.md",
+"title": "# AUTH-001E: AccountServer post-authentication reports",
+"addrs": [
+"0x7543ca",
+"0x75492c",
+"0x767da1"
+],
+"notes": [
+"20_notes/Architecture/03_login_flash_startup_command_contract.md"
+],
+"syms": [
+"CMsgAccountAuthResponse__Process",
+"CMsgAccountMacAddress1100__Build",
+"CMsgMapInfo1052__BuildSimpleString"
+],
+"lines": 96
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001F-offline-game-login-proof.md",
+"title": "# AUTH-001F: Standard GameServer login proof (offline)",
+"addrs": [
+"0x6df1d0",
+"0x75443e",
+"0x7545fc"
+],
+"notes": [
+"20_notes/Network/13_connection_lifecycle.md",
+"20_notes/Network/14_session_derived_legacy_cipher_mask.md"
+],
+"syms": [
+"CConnectionFlow__SendGameSessionBootstrap",
+"CMsgLoginBootstrap1052__BuildGameLoginProof"
+],
+"lines": 105
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001G-game-server-challenge-envelope.md",
+"title": "# AUTH-001G: GameServer DH challenge envelope (offline)",
+"addrs": [
+"0x6e1c83",
+"0x753669",
+"0x753801"
+],
+"notes": [
+"20_notes/Network/13_connection_lifecycle.md",
+"20_notes/Network/14_session_derived_legacy_cipher_mask.md"
+],
+"syms": [
+"CClientSecurity__GenerateClientDhResponse",
+"CClientSecurity__ProcessServerDhChallenge",
+"CGameSocket__ReceiveMsg"
+],
+"lines": 107
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001H-game-bootstrap-cast5-cfb64.md",
+"title": "# AUTH-001H: GameServer bootstrap CAST5-CFB64",
+"addrs": [],
+"notes": [
+"20_notes/Network/13_connection_lifecycle.md"
+],
+"syms": [],
+"lines": 106
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001I-offline-game-dh-response.md",
+"title": "# AUTH-001I: Client GameServer DH response and session material (offline)",
+"addrs": [
+"0x6e1c83",
+"0x753669",
+"0x753801"
+],
+"notes": [
+"20_notes/Network/13_connection_lifecycle.md",
+"20_notes/Network/14_session_derived_legacy_cipher_mask.md"
+],
+"syms": [
+"CClientSecurity__GenerateClientDhResponse",
+"CClientSecurity__ProcessServerDhChallenge",
+"CGameSocket__ReceiveMsg"
+],
+"lines": 124
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001J-game-session-cast5-cfb64.md",
+"title": "# AUTH-001J: GameServer session CAST5-CFB64 (offline)",
+"addrs": [],
+"notes": [
+"20_notes/Network/13_connection_lifecycle.md",
+"20_notes/Network/14_session_derived_legacy_cipher_mask.md"
+],
+"syms": [],
+"lines": 114
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001K-game-secured-framing.md",
+"title": "# AUTH-001K: Secured GameServer framing (offline)",
+"addrs": [],
+"notes": [
+"20_notes/Network/13_connection_lifecycle.md",
+"20_notes/Network/14_session_derived_legacy_cipher_mask.md"
+],
+"syms": [],
+"lines": 149
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001L-bounded-loopback-game-handshake.md",
+"title": "# AUTH-001L: Loopback GameServer DH handshake",
+"addrs": [],
+"notes": [
+"20_notes/Network/13_connection_lifecycle.md"
+],
+"syms": [],
+"lines": 133
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001M-game-login-proof-and-secured-io.md",
+"title": "# AUTH-001M: Loopback GameServer 1052 proof and secured inbound I/O",
+"addrs": [],
+"notes": [
+"20_notes/Network/13_connection_lifecycle.md"
+],
+"syms": [],
+"lines": 127
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001N-game-login-control.md",
+"title": "# AUTH-001N: First GameServer login control after the proof",
+"addrs": [
+"0x5dcc93",
+"0x5dcd13"
+],
+"notes": [
+"20_notes/Network/Native-auth-string-validation-2026-10-18.md"
+],
+"syms": [],
+"lines": 67
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001O-existing-character-prelude.md",
+"title": "# AUTH-001O: Existing-character 2078/2079 prelude",
+"addrs": [
+"0x6577bf"
+],
+"notes": [
+"20_notes/Network/10_extended_packets.md",
+"20_notes/Network/Native-auth-string-validation-2026-10-18.md"
+],
+"syms": [
+"CHero_SetAccountLoginAlertData"
+],
+"lines": 57
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001P-character-info-1006.md",
+"title": "# AUTH-001P: 5517 1006 character information snapshot",
+"addrs": [],
+"notes": [
+"20_notes/Network/MsgUserInfo1006-semantic-closure-2026-09-17.md"
+],
+"syms": [],
+"lines": 64
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001Q-character-info-receipt.md",
+"title": "# AUTH-001Q: Reading character information (1006) after the prelude",
+"addrs": [
+"0x764276",
+"0x764873",
+"0x7648a3"
+],
+"notes": [
+"20_notes/Network/13_connection_lifecycle.md",
+"20_notes/Network/MsgUserInfo1006-semantic-closure-2026-09-17.md",
+"20_notes/Network/Native-auth-string-validation-2026-10-18.md"
+],
+"syms": [
+"CMsgUserInfo__Process"
+],
+"lines": 75
+},
+{
+"repo": "OCC",
+"doc": "networking/AUTH-001R-character-creation-continuation.md",
+"title": "# AUTH-001R: Character creation on the login session",
+"addrs": [
+"0x51c54b",
+"0x51c5c3",
+"0x5dcddf",
+"0x6df1d0",
+"0x7200bf",
+"0x7314d2"
+],
+"notes": [
+"20_notes/Architecture/12_create_role_flow.md",
+"20_notes/Network/01_core_packets.md"
+],
+"syms": [
+"CConnectionFlow__SendGameSessionBootstrap",
+"CMsgCreatePlayer1001__Build",
+"CMsgTalk__Process",
+"CMyShellDlg_HandleCreateRoleStatusSystemTalk",
+"CRoleCreateFlashDlg_SendCreatePlayerCancelAndPostHostCommand481",
+"CRoleCreateFlashDlg_SubmitCreatePlayerRequest"
+],
+"lines": 67
+},
+{
+"repo": "OCC",
+"doc": "networking/FLOW-001A-live-login-bootstrap.md",
+"title": "# FLOW-001A \u2014 Login bootstrap and native error presentation",
+"addrs": [
+"0x66d477",
+"0x754dfb"
+],
+"notes": [
+"20_notes/Architecture/03_login_flash_startup_command_contract.md",
+"20_notes/Architecture/11_login_ui_assets_and_interactions.md",
+"20_notes/Architecture/FLOW-001A-login-error-ui-2026-10-20.md",
+"20_notes/Network/13_connection_lifecycle.md"
+],
+"syms": [],
+"lines": 127
+},
+{
+"repo": "OCC",
+"doc": "networking/FLOW-001B-account-registration.md",
+"title": "# FLOW-001B \u2014 In-client account registration",
+"addrs": [],
+"notes": [],
+"syms": [
+"CMD_GETURL"
+],
+"lines": 89
+},
+{
+"repo": "OCC",
+"doc": "networking/README.md",
+"title": "# Login networking notes",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 33
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-001-map-cell-grid.md",
+"title": "# WORLD-001: DMap cell-grid input",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 43
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-002-scene-sections.md",
+"title": "# WORLD-002: Decoded DMap scenery and positioned overlays",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 47
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-003-map-archive.md",
+"title": "# WORLD-003: Seven-zip DMap extraction",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 32
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-004-map-content-loading.md",
+"title": "# WORLD-004: Map-data-ID-driven content loading",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 31
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-005-puzzle-resources.md",
+"title": "# WORLD-005: Map puzzle resource loading",
+"addrs": [],
+"notes": [
+"20_notes/Rendering/05_dmap_positioned_overlay_system.md."
+],
+"syms": [],
+"lines": 29
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-006-puzzle-animation-binding.md",
+"title": "# WORLD-006: Bind puzzle tile indices to ANI frames",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 35
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-007-dds-compression.md",
+"title": "# WORLD-007: Newbie Village DDS compression support",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 36
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-008-map-puzzle-preflight.md",
+"title": "# WORLD-008: Offline map-puzzle preflight",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 45
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-009-puzzle-layer-drawing.md",
+"title": "# WORLD-009: Puzzle layer drawing",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 50
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-010-scenery-ani-binding.md",
+"title": "# WORLD-010: Scenery ANI resource binding",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 45
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-011-camera-and-puzzle-frames.md",
+"title": "# WORLD-011: Camera projection and puzzle frames",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 45
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-012-terrain-scene-resources.md",
+"title": "# WORLD-012: Terrain scene resources",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 67
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-013-terrain-scene-drawing.md",
+"title": "# WORLD-013: Terrain scene sprite drawing",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 20
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-014-world-scene-activation.md",
+"title": "# WORLD-014: Authenticated map presentation",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 96
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-015-role-geometry.md",
+"title": "# WORLD-015: C3 mesh container",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 22
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-016-phy-geometry.md",
+"title": "# WORLD-016: PHY geometry decoding",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 30
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-017-c3-motion.md",
+"title": "# WORLD-017: C3 motion decoding and matrix sampling",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 37
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-018-phy-deformation.md",
+"title": "# WORLD-018: PHY vertex deformation",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 40
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-019-indexed-mesh-submission.md",
+"title": "# WORLD-019: Indexed mesh submission",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 46
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-020-character-mesh-world-depth.md",
+"title": "# WORLD-020: Character mesh composition and world-depth placement",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 52
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-021-local-role-playback-and-world-presentation.md",
+"title": "# WORLD-021: Local-role idle playback and world presentation",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 48
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-022-initial-character-parts.md",
+"title": "# WORLD-022: Initial local-character part assembly",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 26
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-023-authenticated-world-ingress.md",
+"title": "# WORLD-023: Authenticated world ingress",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 36
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-024-ground-walk-transport.md",
+"title": "# WORLD-024: Ground-walk request and acknowledgement transport",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 30
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-025-first-world-hero-attributes.md",
+"title": "# WORLD-025: First-world hero attribute state",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 35
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-026-initial-equipment-state.md",
+"title": "# WORLD-026: Initial equipment state",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 45
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-027-first-world-vitals.md",
+"title": "# WORLD-027: Initial effective stats and HUD activation",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 35
+},
+{
+"repo": "OCC",
+"doc": "world/WORLD-028-first-world-experience.md",
+"title": "# WORLD-028: First-world experience band",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 23
+},
+{
+"repo": "OCC",
+"doc": "content/c3-studio-assets.md",
+"title": "# C3 compatibility assets for Studio",
+"addrs": [],
+"notes": [
+"20_notes/Rendering/c3_core_dll/05_phy.md"
+],
+"syms": [],
+"lines": 53
+},
+{
+"repo": "OCC",
+"doc": "content/local-content.md",
+"title": "# Local game content",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 26
+},
+{
+"repo": "OCC",
+"doc": "content/retail-5517-content-plan.md",
+"title": "# Retail 5517 Content Plan",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 567
+},
+{
+"repo": "OCC",
+"doc": "content/retail-5517-inventory.md",
+"title": "# Retail 5517 Content Inventory",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 484
+},
+{
+"repo": "OCC",
+"doc": "architecture/architecture.md",
+"title": "# Client Architecture",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 490
+},
+{
+"repo": "OCC",
+"doc": "architecture/content-distribution.md",
+"title": "# Content compilation and distribution",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 249
+},
+{
+"repo": "OCC",
+"doc": "architecture/launcher-instances.md",
+"title": "# Launcher instances",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 116
+},
+{
+"repo": "OCC",
+"doc": "architecture/launcher-managed-installation.md",
+"title": "# Managed launcher installation",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 475
+},
+{
+"repo": "OCC",
+"doc": "architecture/launcher-play-screen.md",
+"title": "# Launcher play screen",
+"addrs": [],
+"notes": [
+"20_notes/Architecture/01_play_launcher_startup_and_handoff.md"
+],
+"syms": [
+"CPlayDlg_OnSetCursor"
+],
+"lines": 100
+},
+{
+"repo": "OCC",
+"doc": "architecture/launcher-settings.md",
+"title": "# Launcher display settings",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 70
+},
+{
+"repo": "OCC",
+"doc": "startup/LOADING-001.md",
+"title": "# Loading-screen media preparation",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 54
+},
+{
+"repo": "OCC",
+"doc": "startup/README.md",
+"title": "# Startup and login screen notes",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 40
+},
+{
+"repo": "OCC",
+"doc": "startup/ROLE-001A.md",
+"title": "# ROLE-001A: Retail 5517 create-role movies on a Flash stage",
+"addrs": [],
+"notes": [
+"20_notes/Architecture/12_create_role_flow.md"
+],
+"syms": [
+"CMD_BODYSIZE",
+"CMD_ENTERGAME",
+"CMD_NICK",
+"CMD_VOCATION"
+],
+"lines": 108
+},
+{
+"repo": "OCC",
+"doc": "startup/ROLE-001B.md",
+"title": "# ROLE-001B: Authenticated character creation and world-entry boundary",
+"addrs": [],
+"notes": [
+"20_notes/Architecture/12_create_role_flow.md",
+"20_notes/Game_Map/cgamemap_class.md",
+"20_notes/Rendering/05_dmap_positioned_overlay_system.md",
+"20_notes/Rendering/ndsound_dll/",
+"20_notes/Server/world-entry-bootstrap.md",
+"20_notes/Sound/02_map_sound_path.md"
+],
+"syms": [
+"CMD_CLOSE",
+"CMD_GAMESTART"
+],
+"lines": 166
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001C.md",
+"title": "# STARTUP-001C: Pre-world login backdrop",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 33
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001D.md",
+"title": "# STARTUP-001D: Login chrome and account-panel alignment",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 39
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001E.md",
+"title": "# STARTUP-001E: Login selection chrome",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 47
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001F.md",
+"title": "# STARTUP-001F: Region/server selection model and input",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 28
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001G.md",
+"title": "# STARTUP-001G: Signed realm catalog download",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 76
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001H.md",
+"title": "# STARTUP-001H: Unicode text layout",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 21
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001I.md",
+"title": "# STARTUP-001I: Realm labels from the signed catalog",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 28
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001J.md",
+"title": "# STARTUP-001J: Realm catalog refresh",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 22
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001K.md",
+"title": "# STARTUP-001K: Credential entry before authentication",
+"addrs": [
+"0x4aa72d",
+"0x4aa7b3"
+],
+"notes": [
+"20_notes/Architecture/03_login_flash_startup_command_contract.md",
+"20_notes/Server/login-credential-envelope.md"
+],
+"syms": [
+"CLoginFlashDlg_HandleFlashCommandString",
+"CMD_NAME",
+"CMD_PASSWORD"
+],
+"lines": 34
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001L.md",
+"title": "# STARTUP-001L: Standard 5517 account request framing",
+"addrs": [],
+"notes": [
+"20_notes/Network/13_connection_lifecycle.md",
+"20_notes/Server/login-credential-envelope.md"
+],
+"syms": [
+"CMsg1060__Create"
+],
+"lines": 34
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001M.md",
+"title": "# STARTUP-001M: Region and server page buttons",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 26
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001N.md",
+"title": "# STARTUP-001N: Realm directory status strip",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 30
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001P.md",
+"title": "# STARTUP-001P: Retail account panel field alignment",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 37
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001Q.md",
+"title": "# STARTUP-001Q: Retail 5517 Enter and Exit buttons",
+"addrs": [],
+"notes": [
+"20_notes/Architecture/03_login_flash_startup_command_contract.md",
+"20_notes/Architecture/05_startup_data_files_and_native_replacement.md"
+],
+"syms": [
+"CMD_ENTERGAME",
+"CMD_EXIT",
+"CMD_GAMESTART",
+"CMD_GETURL"
+],
+"lines": 51
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001R.md",
+"title": "# STARTUP-001R: Server icons in the signed realm directory",
+"addrs": [],
+"notes": [
+"20_notes/Architecture/03_login_flash_startup_command_contract.md"
+],
+"syms": [],
+"lines": 36
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001S.md",
+"title": "# STARTUP-001S: Authoring the signed realm directory",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 90
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001T.md",
+"title": "# STARTUP-001T: Original 5517 selection artwork",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 37
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001U.md",
+"title": "# STARTUP-001U: Local signed-realm builds and selection screen cleanup",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 34
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001V.md",
+"title": "# STARTUP-001V: Keeping the selection across signed directory renewals",
+"addrs": [],
+"notes": [
+"20_notes/Network/5517-server-selection-and-realm-handoff.md"
+],
+"syms": [],
+"lines": 44
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001W.md",
+"title": "# STARTUP-001W: 5517 login seed and credential cipher primitives",
+"addrs": [
+"0x764bc6"
+],
+"notes": [],
+"syms": [
+"CMsgLoginSeed__Process_DeriveCredentialRc5KeyFromSeed"
+],
+"lines": 26
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001X.md",
+"title": "# STARTUP-001X: Original 5517 cursor and login sounds",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 48
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001Y.md",
+"title": "# STARTUP-001Y: 5517 login credential editing",
+"addrs": [],
+"notes": [],
+"syms": [
+"CMD_SOFTKEYDOWN"
+],
+"lines": 22
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-001Z.md",
+"title": "# STARTUP-001Z: Retail 5517 login screen",
+"addrs": [
+"0x5ea5a2",
+"0x5ea7c5"
+],
+"notes": [
+"20_notes/Architecture/11_login_ui_assets_and_interactions.md"
+],
+"syms": [
+"CMD_CLEARACCOUNT",
+"CMD_RECORDACCOUNT"
+],
+"lines": 159
+},
+{
+"repo": "OCC",
+"doc": "startup/STARTUP-002-world-activation.md",
+"title": "# STARTUP-002: World activation and frame presentation",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 39
+},
+{
+"repo": "OCS",
+"doc": "README.md",
+"title": "# Documentation",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 25
+},
+{
+"repo": "OCS",
+"doc": "status.md",
+"title": "# Implementation status",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 184
+},
+{
+"repo": "OCS",
+"doc": "content/README.md",
+"title": "# Content",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 104
+},
+{
+"repo": "OCS",
+"doc": "content/base-terrain-format.md",
+"title": "# Base terrain format (`.ocbt`)",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 69
+},
+{
+"repo": "OCS",
+"doc": "content/collision-format.md",
+"title": "# Collision format (`.ocmc`)",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 60
+},
+{
+"repo": "OCS",
+"doc": "content/historical-source-reconciliation.md",
+"title": "# Historical source reconciliation (5095 sources and the 5517 server)",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 115
+},
+{
+"repo": "OCS",
+"doc": "content/item-type-catalog-v2.md",
+"title": "# Item type catalog v2",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 50
+},
+{
+"repo": "OCS",
+"doc": "content/item-type-native-source.md",
+"title": "# 5517 item definitions: full source-field export",
+"addrs": [],
+"notes": [
+"20_notes/Server/historical-reconciliation-5095.md"
+],
+"syms": [],
+"lines": 77
+},
+{
+"repo": "OCS",
+"doc": "content/map-transitions.md",
+"title": "# Map-transition candidates by DMap exit (v1)",
+"addrs": [
+"0x65d9b2"
+],
+"notes": [
+"20_notes/Server/historical-reconciliation-5095.md",
+"20_notes/Server/map-catalog-5517.md",
+"20_notes/Server/map-transitions.md"
+],
+"syms": [
+"CHero_TickPortalDetectionAndMapChangeRequest"
+],
+"lines": 88
+},
+{
+"repo": "OCS",
+"doc": "protocol/README.md",
+"title": "# Protocol",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 205
+},
+{
+"repo": "OCS",
+"doc": "protocol/character-creation.md",
+"title": "# Character creation request (5517 packet 1001)",
+"addrs": [
+"0x51c54b",
+"0x51c5c3",
+"0x5dcddf",
+"0x6df1d0",
+"0x720059",
+"0x7200bf"
+],
+"notes": [
+"20_notes/Network/01_core_packets.md",
+"20_notes/Network/13_connection_lifecycle.md",
+"20_notes/Server/character-attributes-and-auto-allot.md"
+],
+"syms": [
+"CConnectionFlow__SendGameSessionBootstrap",
+"CMsgCreatePlayer1001__Build",
+"CMsgCreatePlayer1001__Ctor",
+"CMyShellDlg_HandleCreateRoleStatusSystemTalk",
+"CRoleCreateFlashDlg_SendCreatePlayerCancelAndPostHostCommand481",
+"CRoleCreateFlashDlg_SubmitCreatePlayerRequest"
+],
+"lines": 222
+},
+{
+"repo": "OCS",
+"doc": "protocol/framing.md",
+"title": "# Framing",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 80
+},
+{
+"repo": "OCS",
+"doc": "protocol/text-encoding.md",
+"title": "# Text encoding",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 51
+},
+{
+"repo": "OCS",
+"doc": "operations/account-server.md",
+"title": "# AccountServer operations",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 109
+},
+{
+"repo": "OCS",
+"doc": "operations/character-creation-persistence.md",
+"title": "# Character creation persistence",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 37
+},
+{
+"repo": "OCS",
+"doc": "operations/character-creation-starting-state.md",
+"title": "# Character creation: starting state",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 94
+},
+{
+"repo": "OCS",
+"doc": "operations/database-identities.md",
+"title": "# Database identities",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 87
+},
+{
+"repo": "OCS",
+"doc": "operations/database-migrations.md",
+"title": "# Database migrations",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 278
+},
+{
+"repo": "OCS",
+"doc": "operations/game-realm-binding.md",
+"title": "# Game database realm binding (schema v10)",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 56
+},
+{
+"repo": "OCS",
+"doc": "operations/game-server.md",
+"title": "# GameServer operations",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 138
+},
+{
+"repo": "OCS",
+"doc": "operations/local-realm-provisioning.md",
+"title": "# LocalRealm provisioning (development only)",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 62
+},
+{
+"repo": "OCS",
+"doc": "operations/realm-bound-tickets.md",
+"title": "# Accounts v4: realm-bound login tickets",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 55
+},
+{
+"repo": "OCS",
+"doc": "operations/realm-registry.md",
+"title": "# Realm registry migration (Accounts schema v3)",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 48
+},
+{
+"repo": "OCS",
+"doc": "operations/realms.md",
+"title": "# Realm operations",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 137
+},
+{
+"repo": "OCS",
+"doc": "architecture/README.md",
+"title": "# Architecture overview",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 107
+},
+{
+"repo": "OCS",
+"doc": "architecture/account-registration.md",
+"title": "# Account registration",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 106
+},
+{
+"repo": "OCS",
+"doc": "architecture/authentication.md",
+"title": "# Authentication",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 135
+},
+{
+"repo": "OCS",
+"doc": "architecture/authoritative-movement-eligibility.md",
+"title": "# Movement eligibility",
+"addrs": [],
+"notes": [
+"20_notes/Server/movement-eligibility-5517.md"
+],
+"syms": [],
+"lines": 91
+},
+{
+"repo": "OCS",
+"doc": "architecture/character-creation-session-primitives.md",
+"title": "# Character creation: control messages and repeated login proof",
+"addrs": [],
+"notes": [
+"20_notes/Network/13_connection_lifecycle.md"
+],
+"syms": [],
+"lines": 95
+},
+{
+"repo": "OCS",
+"doc": "architecture/character-creation.md",
+"title": "# Character creation",
+"addrs": [
+"0x4aa79a",
+"0x4b0b17"
+],
+"notes": [
+"20_notes/Server/character-creation-decision-15.10.md"
+],
+"syms": [
+"CMsgRegister__ProcessCharacterCreation_15_10",
+"CUserList__CreateNewUser"
+],
+"lines": 220
+},
+{
+"repo": "OCS",
+"doc": "architecture/connected-portal-transfers.md",
+"title": "# Connected portal transfers (retail 5517)",
+"addrs": [
+"0x6ff652"
+],
+"notes": [
+"20_notes/Server/portal-transition-5517.md"
+],
+"syms": [
+"CMsgAction__Process"
+],
+"lines": 99
+},
+{
+"repo": "OCS",
+"doc": "architecture/durable-character-location.md",
+"title": "# Durable character location",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 182
+},
+{
+"repo": "OCS",
+"doc": "architecture/fenced-character-admission.md",
+"title": "# Durable-fenced existing-character admission (Game v13)",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 29
+},
+{
+"repo": "OCS",
+"doc": "architecture/ground-walking.md",
+"title": "# Ground walking",
+"addrs": [
+"0x7350b3",
+"0x736315"
+],
+"notes": [
+"20_notes/Network/15_msgwalk_10005_direction_index_order.md",
+"20_notes/Server/movement.md"
+],
+"syms": [],
+"lines": 76
+},
+{
+"repo": "OCS",
+"doc": "architecture/multi-realm.md",
+"title": "# Realm identity and registry",
+"addrs": [],
+"notes": [
+"20_notes/Server/multi-realm-architecture-5517.md"
+],
+"syms": [],
+"lines": 152
+},
+{
+"repo": "OCS",
+"doc": "architecture/native-24-direction-movement.md",
+"title": "# 24-direction movement (5517)",
+"addrs": [
+"0x7405e7",
+"0x86c804",
+"0x86c864"
+],
+"notes": [
+"20_notes/Server/movement.md"
+],
+"syms": [
+"CMsgEntityAction__Process"
+],
+"lines": 52
+},
+{
+"repo": "OCS",
+"doc": "architecture/native-avatar-actions.md",
+"title": "# Turn and pose actions (5517)",
+"addrs": [
+"0x6ff5b6",
+"0x6ffa24"
+],
+"notes": [
+"20_notes/Network/01_core_packets.md"
+],
+"syms": [
+"CMsgAction__Process"
+],
+"lines": 59
+},
+{
+"repo": "OCS",
+"doc": "architecture/native-chat.md",
+"title": "# In-world chat (5517)",
+"addrs": [],
+"notes": [
+"20_notes/Network/04_social_packets.md",
+"20_notes/Server/chat.md"
+],
+"syms": [
+"CMsgTalk__Process"
+],
+"lines": 69
+},
+{
+"repo": "OCS",
+"doc": "architecture/native-jumping.md",
+"title": "# Ground jumping (5517)",
+"addrs": [
+"0x61e5f0",
+"0x658965",
+"0x700352",
+"0x7003de"
+],
+"notes": [
+"20_notes/Server/movement.md"
+],
+"syms": [
+"CMsgAction__Process"
+],
+"lines": 73
+},
+{
+"repo": "OCS",
+"doc": "architecture/native-portal-preflight.md",
+"title": "# Portal preflight",
+"addrs": [
+"0x637700",
+"0x63777d",
+"0x65d9b2"
+],
+"notes": [
+"20_notes/Server/map-transitions.md"
+],
+"syms": [
+"CHero_TickPortalDetectionAndMapChangeRequest"
+],
+"lines": 89
+},
+{
+"repo": "OCS",
+"doc": "architecture/networking.md",
+"title": "# Networking",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 170
+},
+{
+"repo": "OCS",
+"doc": "architecture/persistence.md",
+"title": "# Persistence",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 131
+},
+{
+"repo": "OCS",
+"doc": "architecture/player-visibility.md",
+"title": "# Player visibility (5517)",
+"addrs": [
+"0x61ed75",
+"0x70051a",
+"0x740730",
+"0x7407b4",
+"0x755f64"
+],
+"notes": [
+"20_notes/Server/entity-visibility.md",
+"20_notes/Server/movement.md"
+],
+"syms": [],
+"lines": 72
+},
+{
+"repo": "OCS",
+"doc": "architecture/position-synchronization.md",
+"title": "# Position reconciliation (5517)",
+"addrs": [],
+"notes": [
+"20_notes/Server/position-sync.md"
+],
+"syms": [],
+"lines": 44
+},
+{
+"repo": "OCS",
+"doc": "architecture/revival-destination-authority.md",
+"title": "# Revival destinations",
+"addrs": [],
+"notes": [
+"20_notes/Server/death-ghost-revive-5517.md"
+],
+"syms": [],
+"lines": 39
+},
+{
+"repo": "OCS",
+"doc": "architecture/world-execution.md",
+"title": "# World execution",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 139
+},
+{
+"repo": "OCS",
+"doc": "architecture/world-transfer-preflight.md",
+"title": "# World transfer preflight",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 161
+},
+{
+"repo": "OCS",
+"doc": "architecture/world-transition-catalog-readiness.md",
+"title": "# Transition catalog readiness",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 53
+},
+{
+"repo": "OCS",
+"doc": "reviews/PR-171-registration-audit.md",
+"title": "# PR #171 registration audit",
+"addrs": [],
+"notes": [],
+"syms": [],
+"lines": 46
+}
+]

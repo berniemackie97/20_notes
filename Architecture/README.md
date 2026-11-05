@@ -40,3 +40,4 @@ continuity with the slices that produced them.
 - [10_conquer_project_source_structure.md](10_conquer_project_source_structure.md)
 
 - [Retail 5517 login UI assets and interactions](11_login_ui_assets_and_interactions.md) — source-hashed Flash artwork, timelines, account controls, credential editing, original-asset package and explicit runtime gaps (2026-10-14; research only).
+- [Implementation evidence ledger](implementation-evidence-ledger.md) — every OCC/OCS doc and OCS status feature → native anchor level (A/B/B?/C/H/M/P); CP0.3 2026-11-05.
