@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x620abc\n00620abc  81 c1 2c 03 00 00 add     ecx, 0x32c\n00620ac2  e9 f2 1a 00 00   jmp     0x6225b9\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x620abc\n00620abc  81 c1 2c 03 00 00 add     ecx, 0x32c\n00620ac2  e9 f2 1a 00 00   jmp     0x6225b9\n"
+  },
+  "isError": false
+}

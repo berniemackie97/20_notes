@@ -46,7 +46,7 @@ first/previous-profession identities remain unchanged.
 ## Attribute23 is the update for the +44 field
 
 `CMsgUserAttribEx__Parse` (`0x757351`) validates type `0x2721` (10017) at `0x75736D`.
-`CMsgUserAttribEx__Process` (`0x757374`) loads the discriminator at `0x75746F` and
+`CMsgUserAttrib__Process` (`0x757374`) loads the discriminator at `0x75746F` and
 dispatches through table `0x758D19` at `0x75748E`:
 
 | Discriminator | Table slot | Target | Native effect |
@@ -63,7 +63,7 @@ update semantics, not a server-side virtue earning formula or maximum.
 
 ## Specific checks against misleading alternatives
 
-**MedalSelect versus life:** `CMsgPlayerSpawn__Process` (`0x755F64`) in the player
+**MedalSelect versus life:** `CMsgPlayer__Process` (`0x755F64`) in the player
 ID greater than999999 branch loads spawn packet`+0x50` as a DWORD at `0x756522` and
 stores role`+0x848` at `0x756525`. The nonplayer branch uses a WORD from the same
 wire position and calls the protected life setter at `0x756407`. These branches do

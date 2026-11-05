@@ -42,7 +42,7 @@ The trace carries 1004, 2078, 2079, 1006, 1110, 1016, 10010 — eight of nine.
 
 ## The server must not send a self-spawn
 
-`CMsgPlayerSpawn__Process` (0x755F64) compares the packet's entity id against the hero's
+`CMsgPlayer__Process` (0x755F64) compares the packet's entity id against the hero's
 before anything else:
 
 ```
@@ -73,7 +73,7 @@ required. It is not: the native client discards it. We do not send it, and
 `if (g_objGameMap.m_idDoc == 1010) return;` — "disable other player in newbie map". That
 is *not* a disabled map; the player plays there normally and only other players' spawns
 are hidden, giving Birth Village an instanced feel. More importantly the rule is **gone
-from 5517**: `CMsgPlayerSpawn__Process` contains no reference to 1010 (0x3F2). 5517 gates
+from 5517**: `CMsgPlayer__Process` contains no reference to 1010 (0x3F2). 5517 gates
 instead on a per-packet byte at `body+0xB2` combined with `sub_62071e`, which is an OR of
 six CGameMap flag predicates (`sub_620785`, `sub_6207A8`, `sub_6207CB`, `sub_620693`,
 `sub_62080F`, `sub_6206AC`) — `sub_6207CB` being the same `JumpForbidden` bit

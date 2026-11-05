@@ -621,7 +621,7 @@ When device-reset: chat backgrounds are flipped instead of normal scene.
 ## Anti-Addiction System
 
 **Grade values** (`CHero_GetAntiAddictionGrade`, `hero+0x2E34`; init −1 at `0x662FC0`; written only by
-`CMsgUserAttribEx__Process` via `0x66311D`). **Corrected 2026-10-24.** The earlier table had the ends swapped.
+`CMsgUserAttrib__Process` via `0x66311D`). **Corrected 2026-10-24.** The earlier table had the ends swapped.
 - 0x00 (0) = strictest: StrRes 11061 ("unhealthy time", income 0) every 0xDBBA0 ms (15 min); exit-tile map change refused
   (`STR_WALLOW_OPT_LIMIT_WARNING_NONE`)
 - 0x32 (50) = StrRes 11060 ("fatigue time") every 0x1B7740 ms (30 min); map change refused (`…_HALF`)

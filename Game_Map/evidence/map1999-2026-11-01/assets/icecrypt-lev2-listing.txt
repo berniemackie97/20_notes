@@ -1,0 +1,29 @@
+
+7-Zip (z) 26.01 (arm64) : Copyright (c) 1999-2026 Igor Pavlov : 2026-04-27
+ 64-bit arm_v:8.5-A locale=C.UTF-8 Threads:10 OPEN_MAX:1048575, ASM
+
+Scanning the drive for archives:
+1 file, 25482 bytes (25 KiB)
+
+Listing archive: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517/map/map/icecrypt-lev2.7z
+
+--
+Path = /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517/map/map/icecrypt-lev2.7z
+Type = 7z
+Physical Size = 25482
+Headers Size = 137
+Method = LZMA:3m
+Solid = -
+Blocks = 1
+
+----------
+Path = icecrypt-lev2.DMap
+Size = 3095252
+Packed Size = 25345
+Modified = 2004-08-24 03:22:36.0000000
+Attributes = A
+CRC = C1350BCB
+Encrypted = -
+Method = LZMA:3m
+Block = 0
+

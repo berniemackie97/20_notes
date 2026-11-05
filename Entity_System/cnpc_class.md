@@ -331,7 +331,7 @@ Oracle-backed stopgap (not yet directly pinned from 5517 BNinja parser control f
 | 0x743A9F | CMsgNpcInfo__Parse | | Validates type 2030 and copies the packet bytes |
 | 0x743B32 | CMsgNpcInfo__Process | 0x3DF | Processes NPC spawn packet |
 | 0x75E38D | CMsgNpcInfo__ProcessBattleLevel | 0xB9 | Updates NPC battle level/power field |
-| 0x74A5E6 | CMsgNpcInfoEX__Process | 0x115 | Handles time sync and related type-coded updates |
+| 0x74A5E6 | CMsg1033__Process | 0x115 | Handles time sync and related type-coded updates |
 | 0x66EB93 | CNpc__AllocateMemory | | Allocates 0xA58 bytes for NPC |
 | 0x505C58 | CSmartPtr__Create | | Creates smart pointer wrapper (ref-counted) |
 

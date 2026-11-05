@@ -14,7 +14,7 @@ The following types are dispatched via the else-branch of `CNetMsg__ProcessMsg_D
 
 Family/guild territory occupation notification. Process handler reads string entries from the MsgStringList buffer and dispatches family occupy text to the UI.
 
-### CMsgLotteryAward (Type 1314)
+### MsgLottery (Type 1314) — class proven by `MsgLottery.cpp` assert (CP0.1 2026-11-05); former label `MsgLotteryAward` withdrawn
 **Create**: `CMsgLotteryAward__Create` @ `0x74DE0F`
 **Process**: `CMsgLotteryAward__Process` @ `0x74DEBF` (IDA: `CMsgLottery__func_000`)
 **Alloc**: `operator new(0x408u)`
@@ -64,7 +64,7 @@ NPC despawn); `5` calls `sub_660AC5(hero, packet+8, flag)` with the flag set for
 2030 routes to RoleView mode 9; anything else posts `0x42A` and returns. The packet has no string
 list. Full write-up in `../Server/npcs.md`.
 
-### CMsgTaskDialogEx (Type 2032)
+### MsgTaskDialog (Type 2032) — class proven by `MsgTaskDialog.cpp` assert (CP0.1 2026-11-05); former label `MsgTaskDialogEx` withdrawn
 **Create**: `CMsgTaskDialogEx__Create` @ `0x72BBFF`
 **Process**: `CMsgTaskDialogEx__Process` @ `0x72BD72` (IDA: `CMsgTaskDialog__HandleResponse`)
 **Alloc**: `operator new(0x414u)` — MsgStringList variant
@@ -147,7 +147,7 @@ Buddy update with item/position data. Updates buddy entity position and associat
 Per-status detail records (status index, op, flag, duration, values) driving status handlers and replacing the
 secondary status mask. Layout and handlers: [movement eligibility](../Server/movement-eligibility-5517.md#status-storage-and-sync-client-proven).
 
-### CMsgContainerInfo (Type 2101)
+### MsgFactionRankInfo (Type 2101) — class proven by `MsgFactionRankInfo.cpp` assert (CP0.1 2026-11-05); former label `MsgContainerInfo` withdrawn
 **Create**: `CMsgContainerInfo__Create` @ `0x7022AF`
 **Process**: `CMsgContainerInfo__Process` @ `0x702372` (IDA: `CHero__CONTIR_TYPE_ALL`)
 **Alloc**: `operator new(0x408u)`
@@ -189,7 +189,7 @@ Leaveword/message board entry. Handles posting and displaying messages on the in
 
 Texas Hold'em NPC management. Controls the Texas Hold'em poker table NPCs and game state.
 
-### CMsgTexasHoldEm (Type 2172)
+### MsgTexasNpcInfo (Type 2172) — class proven by `MsgTexasNpcInfo.cpp` assert (CP0.1 2026-11-05); former label `MsgTexasHoldEm` withdrawn
 **Create**: `CMsgTexasHoldEm__Create` @ `0x75AA46`
 **Process**: `CMsgTexasHoldEm__Process` @ `0x75AACF` (IDA: `CTexasTableRole__LoadTexasHoldEmInfo`)
 **Alloc**: `operator new(0x408u)`
@@ -423,7 +423,7 @@ Cross-server flag war team data. Sub-action 0 delivers initial team list — ite
 
 Faction chief base data. Reads 3 string entries from MsgStringList (base name, leader name, description), sets up the `CFactionChiefBaseMgr` singleton with base info (9 entries at stride 16), sets member count and base ID, then posts 0xDDE.
 
-### CMsgSilentUpdate (Type 2520)
+### MsgStrCheckKey (Type 2520) — class proven by `MsgStrCheckKey.cpp` assert (CP0.1 2026-11-05); former label `MsgSilentUpdate` withdrawn
 **Create**: `CMsgSilentUpdate__Create` @ `0x758DF1`
 **Process**: `CMsgSilentUpdate__Process` @ `0x758E57` (IDA: `Load_SlientVersion_Ini_758E57`)
 **Alloc**: `operator new(0x408u)`
@@ -456,10 +456,10 @@ Entity movement packet (S→C) with custom send method. This is the only type wi
 | +12 | BYTE | Movement mode (9 = 24-dir mount ride, 1 = 8-dir walk, other = 8-dir alt) |
 | +16 | DWORD | Position/map parameter (used in hero self-update path) |
 
-### CMsgPlayerSpawn (Type 10014)
+### MsgPlayer (Type 10014) — class proven by `MsgPlayer.cpp` assert (CP0.1 2026-11-05); former label `MsgPlayerSpawn` withdrawn
 **Direction**: S→C
 **Create**: `CMsgPlayerSpawn__Create` @ `0x755E83`
-**Process**: `CMsgPlayerSpawn__Process` @ `0x755F64` (IDA: `CMsgPlayer__func_000`)
+**Process**: `CMsgPlayer__Process` @ `0x755F64` (IDA: `CMsgPlayer__func_000`)
 **Alloc**: `operator new(0x414u)` — MsgStringList variant
 
 Full player spawn/update — the most complex packet in the protocol (S→C). Process handler creates or updates a player entity via `CNpc__Constructor` (allocates 0xA58 = 2648 bytes per CPlayer) with full character data including:
@@ -476,7 +476,7 @@ Full player spawn/update — the most complex packet in the protocol (S→C). Pr
 - Anti-cheat/PK effect attachment, cross-server data
 - Texas Hold'em NPC integration for poker table entities
 
-BNinja confirmation of the self-spawn guard (`CMsgPlayerSpawn__Process`, `0x755F64`):
+BNinja confirmation of the self-spawn guard (`CMsgPlayer__Process`, `0x755F64`):
 - compares `packet+8` against `CHero+0xCC` at the top of the handler;
 - on equality, formats/logs `"Got a player with hero id! %u"` and returns immediately before:
   - `EntityRef_ResolveByIdOrLocalHero`
@@ -578,7 +578,7 @@ String List entries (via MsgStringList at object+1032, max 36 chars each):
 Verified player RoleView note:
 
 - player entities use RoleView type `1`
-- `CMsgPlayerSpawn__Process` feeds both:
+- `CMsgPlayer__Process` feeds both:
   - packed `lookface` / hair composites
   - the separate low-range appearance seed at `+0x26`
 - in `RoleView.dll`, type-1 key `0` (the type-1 body/helmet million-range rewrite helper at `0x10001EB8`) rewrites body/helmet million-range source ids as `bodyAppearanceSourceId * 1_000_000 + existing_low_6_digits`
@@ -635,10 +635,10 @@ Conservative scope note:
 - it still does **not** claim full native RoleView mesh draw parity yet; the remaining unresolved stage is the exact
   managed replacement for the native `Role_TickAndRender -> RoleView slot +0x10/+0x18/+0x28` draw contract.
 
-### CMsgUserAttribEx (Type 10017)
+### MsgUserAttrib (Type 10017) — class proven by `MsgUserAttrib.cpp` assert (CP0.1 2026-11-05); former label `MsgUserAttribEx` withdrawn
 **Direction**: S→C
-**Create**: `CMsgUserAttribEx__Create` @ `0x7572EB`
-**Process**: `CMsgUserAttribEx__Process` @ `0x757374`
+**Create**: `CMsgUserAttrib__Ctor` @ `0x7572EB`
+**Process**: `CMsgUserAttrib__Process` @ `0x757374`
 **Alloc**: `operator new(0x408u)`
 
 Extended user attribute update — the second most complex packet handler (~6000 lines). Process handler iterates an array of attribute entries (stride 20 bytes each), dispatching on attribute type via two switch statements (0–27 and 28–54) plus special case 128.

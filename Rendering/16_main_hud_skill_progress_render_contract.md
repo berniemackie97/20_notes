@@ -86,7 +86,7 @@ not a claim about arbitrary memory corruption or injected code.
 
 When the status update receiver is the local CHero:
 
-1. `CMsgUserAttribEx__Process 0x757374` (packet 10017), discriminator **25**,
+1. `CMsgUserAttrib__Process 0x757374` (packet 10017), discriminator **25**,
    enters `0x7574C5`, copies the incoming 16-byte status bitfield, and invokes
    virtual slot `+0xD0` at `0x757712`.
 2. CHero construction installs vtable `0x86AD08`; slot address `0x86ADD8`

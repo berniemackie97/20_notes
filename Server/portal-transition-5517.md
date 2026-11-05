@@ -108,7 +108,7 @@ Client-side refusals (no packet sent; message once per latch `0x93EF7D`, re-arme
 | Gate | Text |
 |---|---|
 | current action 0x12C | `STR_ALERTING_CANNOT_CHANGEMAP` "You can`t enter another map while in combat!" |
-| anti-addiction grade `+0x2E34` == 0 / 50 (set only by `CMsgUserAttribEx__Process`; init −1 `0x662FC0`) | `STR_WALLOW_OPT_LIMIT_WARNING_NONE` / `_HALF` "Operation failed." |
+| anti-addiction grade `+0x2E34` == 0 / 50 (set only by `CMsgUserAttrib__Process`; init −1 `0x662FC0`) | `STR_WALLOW_OPT_LIMIT_WARNING_NONE` / `_HALF` "Operation failed." |
 | status 5/10, state `0x1EC` ≠ 6, action not standby-set, auto-run UI lock | silent |
 
 ## 5 Refusal, interruption, repetition, malformed input

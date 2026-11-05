@@ -1,4 +1,4 @@
-# Equipment — equip and unequip over MsgTick (1009)
+# Equipment — equip and unequip over MsgItem (1009)
 
 Verified 2026-08-29 against `Conquer.exe.bndb`. Every claim below is read from the binary; the two
 places where the server deliberately departs from the client are labelled as such, and the one
@@ -9,9 +9,9 @@ client rule that is not reproduced is named with the exact missing evidence.
 | Subtype | Direction | Built / applied at | Fields read |
 |---|---|---|---|
 | `4` | C→S | `CHeroItem__RequestEquipItemAtPosition` `0x6DB116`, send at `0x6DB493` | uid `+4`, position `+8` |
-| `5` | S→C | `CMsgTick__Process` `0x6EB31C` | uid `+4`, position `+8`, count `+0x14`, uid list from `+0x54` |
+| `5` | S→C | `CMsgItem__Process` `0x6EB31C` | uid `+4`, position `+8`, count `+0x14`, uid list from `+0x54` |
 | `6` | C→S | `CHeroItem__RequestUnequipPosition` `0x6DB8E9`, send at `0x6DBB5D` | uid and position |
-| `6` | S→C | `CMsgTick__Process` `0x6EB118` | **position `+8` only** — the uid is ignored |
+| `6` | S→C | `CMsgItem__Process` `0x6EB118` | **position `+8` only** — the uid is ignored |
 
 The equip request builder stamps `+16` with `(localHeroId ^ timeGetTime())`. The unequip request
 passes the uid at that position (`Folded_GetDword_0x0C(item)`), but the apply branch never reads it.
@@ -93,7 +93,7 @@ while the off hand is occupied; only a server applying an unequip the client wou
 makes it reachable.
 
 Both applies end by sending MsgAction 10010 subtype `0x198` = 408, and so do the equipment-set
-switch paths in `sub_6DAEB9` (right after MsgTick subtype `0x2C` / `0x2D`) and the subtype 17 and 18
+switch paths in `sub_6DAEB9` (right after MsgItem subtype `0x2C` / `0x2D`) and the subtype 17 and 18
 branches at `0x6EB099` / `0x6EB6F5`. Every one builds it with
 `CMsgAction__BuildType10010(message, 0x198, 0)` — no fields.
 
@@ -113,7 +113,7 @@ it silently is complete behaviour.
 
 ## Refusals
 
-There is no proven packet for a server to refuse a MsgTick with. The client raises its own message
+There is no proven packet for a server to refuse a MsgItem with. The client raises its own message
 for each case before it ever sends.
 
 ## What OpenConquerPublic does with this
@@ -127,7 +127,7 @@ for each case before it ever sends.
   refused, and category 4 is confined to the four hand positions rather than the client's
   everything-but-`5`/`0x19`.
 - The displaced list therefore holds at most the destination's occupant.
-- An applied change re-broadcasts MsgPlayerSpawn (10014) to observers; `CMsgPlayerSpawn__Process`
+- An applied change re-broadcasts MsgPlayer (10014) to observers; `CMsgPlayer__Process`
   updates an existing entity in place through the `...AndRefreshRoleView` setters.
 - Action 408 (`ClientStateApplied`) is a registered handler that deliberately does nothing, so it is
   accounted for rather than logged as an unimplemented subtype on every equip.

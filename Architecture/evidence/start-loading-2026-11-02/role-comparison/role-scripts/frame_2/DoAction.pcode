@@ -1,0 +1,9 @@
+; 96 0d 00 00 69 73 4c 6f 61 64 69 6e 67 00 05 01
+Push "isLoading", true
+; 1d
+SetVariable
+; 96 09 00 00 00 07 07 00 00 00 05 01
+Push "", 7, true
+; 23
+SetProperty
+; 00

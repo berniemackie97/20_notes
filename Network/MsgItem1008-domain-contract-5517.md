@@ -1,4 +1,4 @@
-# MsgItem 1008 — item state and persistence contract
+# Msg1008 1008 — item state and persistence contract
 
 Clean English 5517 `Conquer.exe` and `GameData.dll`; native evidence reviewed 2026-09-25.
 
@@ -42,7 +42,7 @@ capacity, base attributes, lifetime defaults and composition requirements are S 
 
 | Packet offset / width | Semantic / proposed domain name | Native destination / decisive evidence | Class | Confidence / encoding and zero |
 |---|---|---|---|---|
-| `+0x00` u16 | `PacketLength` | framing; MsgItem parser `0x762AA0` | W | Header, not item state. This contract uses the established 68-byte row; last read ends at `+0x42`. |
+| `+0x00` u16 | `PacketLength` | framing; Msg1008 parser `0x762AA0` | W | Header, not item state. This contract uses the established 68-byte row; last read ends at `+0x42`. |
 | `+0x02` u16 | `PacketType` | parser `0x762AA0`, type 1008 | W | 1008. |
 | `+0x04` u32 | `ItemId` for subtype 1/3; subtype 4 `InspectedRoleId` | `+0x0C`; `0x67AD73..0x67AD8D`; dummy comparison `0x66CEEC` | P | Native nonzero identity required by initializer. Subtype 4 is a protocol projection of role identity, not a new persistent item identity. |
 | `+0x08` u32 | `ItemTypeId` | `+0x1C` static-record key; `0x67AD77..0x67AD8D`, loader `0x67ABB5` | P | Nonzero, successful native itemtype lookup required. |
@@ -206,7 +206,7 @@ decaying seconds field as the only durable fact. No exact server clock/rounding 
 
 ## Stack semantics
 
-`0x67D80C` stores `max(signedArgument,1)` at `+0x190`; MsgItem supplies a zero-extended word.
+`0x67D80C` stores `max(signedArgument,1)` at `+0x190`; Msg1008 supplies a zero-extended word.
 It does not clamp to itemtype capacity. Getter `0x67D7EF` returns that field except for arrows,
 where it returns **current durability `+0x194`**. Arrow predicate `0x5681F9` tests equipment
 category0 and subtype50000. Capacity getter `0x67D7D5` uses arrow maximum durability
@@ -321,7 +321,7 @@ No million-based allocation floor or player/item disjoint numeric range is check
 The inspection role path separately tests role identity >999999 at `0x66CAD7`; that actor
 predicate must not be transferred to the item initializer as an ItemId constraint.
 Inventory, tracked and active equipment hold shared `CItem` references; equipment moves in
-MsgTick subtype5/6 (`0x6EAEB6`) resolve the existing item by UID rather than inventing identity.
+MsgItem subtype5/6 (`0x6EAEB6`) resolve the existing item by UID rather than inventing identity.
 ItemStatus2048 searches local hero items, package/storage (`0x6AA0DD`), and the additional
 hero item set (`0x667B5B`), with secondary warehouse view (`0x685DCE`) for mode2.
 This demonstrates identity-based cross-container lookup, **not retail database global uniqueness**.
@@ -335,11 +335,11 @@ This demonstrates identity-based cross-container lookup, **not retail database g
 - `ItemInstance` owns identity and mutable instance attributes. `ItemOwner` and `ItemLocation`
   are separate concepts. A location can be inventory, equipment, warehouse/storage, ground,
   or escrow; use typed payloads (storage identity, map instance/coordinates, equipment set/slot).
-  Which account/character/guild can own each storage is server policy, not specified by MsgItem.
+  Which account/character/guild can own each storage is server policy, not specified by Msg1008.
 - Inventory→equipment and ownership-preserving storage movement keep the same identity.
   Trade UI display is a view, not proof that ownership already transferred. Atomically move
   ownership/location on the server's actual successful transfer. A ground representation need
-  not use the identical packet layout; do not infer a ground packet contract from MsgItem.
+  not use the identical packet layout; do not infer a ground packet contract from Msg1008.
 - Enforce one current location per item, referential integrity, unique equipped slots and
   transactionally safe transfers. `character_items` may be a placement relation, but should not
   define the lifetime of item identity or make character ownership permanent.

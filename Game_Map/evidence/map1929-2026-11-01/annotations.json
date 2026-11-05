@@ -1,0 +1,226 @@
+{
+  "records": [
+    {
+      "address": "0x61DDC9",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x61ddc9\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x61ddc9\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "addition": "2026-11-01 map1929: ground-path setter is non-propagating. After this call, execution unconditionally reads DMap dimensions/cells. Missing arenamap.pul alone does NOT make LoadMapFile return false. Path was built as CWD + '/' + DMap bytes[8:0x10C]. See 20_notes/Game_Map/map1929_missing_puzzle_native.md.",
+      "write": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x61ddc9\", \"comment\": \"2026-11-01 map1929: ground-path setter is non-propagating. After this call, execution unconditionally reads DMap dimensions/cells. Missing arenamap.pul alone does NOT make LoadMapFile return false. Path was built as CWD + '/' + DMap bytes[8:0x10C]. See 20_notes/Game_Map/map1929_missing_puzzle_native.md.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x61ddc9\", \"comment\": \"2026-11-01 map1929: ground-path setter is non-propagating. After this call, execution unconditionally reads DMap dimensions/cells. Missing arenamap.pul alone does NOT make LoadMapFile return false. Path was built as CWD + '/' + DMap bytes[8:0x10C]. See 20_notes/Game_Map/map1929_missing_puzzle_native.md.\"}"
+        },
+        "isError": false
+      },
+      "readback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x61ddc9\", \"comment\": \"2026-11-01 map1929: ground-path setter is non-propagating. After this call, execution unconditionally reads DMap dimensions/cells. Missing arenamap.pul alone does NOT make LoadMapFile return false. Path was built as CWD + '/' + DMap bytes[8:0x10C]. See 20_notes/Game_Map/map1929_missing_puzzle_native.md.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x61ddc9\", \"comment\": \"2026-11-01 map1929: ground-path setter is non-propagating. After this call, execution unconditionally reads DMap dimensions/cells. Missing arenamap.pul alone does NOT make LoadMapFile return false. Path was built as CWD + '/' + DMap bytes[8:0x10C]. See 20_notes/Game_Map/map1929_missing_puzzle_native.md.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x6375FD",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x6375fd\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x6375fd\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "addition": "2026-11-01: logs 'PuzzleBmp [%s] Load fail in %s %d' after loader false, then returns without a usable success/failure contract. Caller61DDC9 does not test EAX/AL. No retry, filename alias, arena.pul substitution, or map-load abort here.",
+      "write": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x6375fd\", \"comment\": \"2026-11-01: logs 'PuzzleBmp [%s] Load fail in %s %d' after loader false, then returns without a usable success/failure contract. Caller61DDC9 does not test EAX/AL. No retry, filename alias, arena.pul substitution, or map-load abort here.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x6375fd\", \"comment\": \"2026-11-01: logs 'PuzzleBmp [%s] Load fail in %s %d' after loader false, then returns without a usable success/failure contract. Caller61DDC9 does not test EAX/AL. No retry, filename alias, arena.pul substitution, or map-load abort here.\"}"
+        },
+        "isError": false
+      },
+      "readback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x6375fd\", \"comment\": \"2026-11-01: logs 'PuzzleBmp [%s] Load fail in %s %d' after loader false, then returns without a usable success/failure contract. Caller61DDC9 does not test EAX/AL. No retry, filename alias, arena.pul substitution, or map-load abort here.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x6375fd\", \"comment\": \"2026-11-01: logs 'PuzzleBmp [%s] Load fail in %s %d' after loader false, then returns without a usable success/failure contract. Caller61DDC9 does not test EAX/AL. No retry, filename alias, arena.pul substitution, or map-load abort here.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x63A61E",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x63a61e\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x63a61e\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "addition": "2026-11-01: direct imported CRT fopen(path,'rb'), not DataFile_Load/Common_OpenRes/TqFOpen. NULL logs file-not-found and returns0 at63A646. No registered-package fallback. On fresh ground object, count+04=0/grid+10=NULL/dims+18,+1C=20 remain unchanged.",
+      "write": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x63a61e\", \"comment\": \"2026-11-01: direct imported CRT fopen(path,'rb'), not DataFile_Load/Common_OpenRes/TqFOpen. NULL logs file-not-found and returns0 at63A646. No registered-package fallback. On fresh ground object, count+04=0/grid+10=NULL/dims+18,+1C=20 remain unchanged.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x63a61e\", \"comment\": \"2026-11-01: direct imported CRT fopen(path,'rb'), not DataFile_Load/Common_OpenRes/TqFOpen. NULL logs file-not-found and returns0 at63A646. No registered-package fallback. On fresh ground object, count+04=0/grid+10=NULL/dims+18,+1C=20 remain unchanged.\"}"
+        },
+        "isError": false
+      },
+      "readback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x63a61e\", \"comment\": \"2026-11-01: direct imported CRT fopen(path,'rb'), not DataFile_Load/Common_OpenRes/TqFOpen. NULL logs file-not-found and returns0 at63A646. No registered-package fallback. On fresh ground object, count+04=0/grid+10=NULL/dims+18,+1C=20 remain unchanged.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x63a61e\", \"comment\": \"2026-11-01: direct imported CRT fopen(path,'rb'), not DataFile_Load/Common_OpenRes/TqFOpen. NULL logs file-not-found and returns0 at63A646. No registered-package fallback. On fresh ground object, count+04=0/grid+10=NULL/dims+18,+1C=20 remain unchanged.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x63A7A6",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x63a7a6\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x63a7a6\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "addition": "2026-11-01 missing-puzzle consequence: fresh constructor count+04=0 makes every otherwise in-bounds index fail this comparison and return0xFFFF. Grid remains NULL but is not dereferenced. Dimensions remain20x20, not zero.",
+      "write": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x63a7a6\", \"comment\": \"2026-11-01 missing-puzzle consequence: fresh constructor count+04=0 makes every otherwise in-bounds index fail this comparison and return0xFFFF. Grid remains NULL but is not dereferenced. Dimensions remain20x20, not zero.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x63a7a6\", \"comment\": \"2026-11-01 missing-puzzle consequence: fresh constructor count+04=0 makes every otherwise in-bounds index fail this comparison and return0xFFFF. Grid remains NULL but is not dereferenced. Dimensions remain20x20, not zero.\"}"
+        },
+        "isError": false
+      },
+      "readback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x63a7a6\", \"comment\": \"2026-11-01 missing-puzzle consequence: fresh constructor count+04=0 makes every otherwise in-bounds index fail this comparison and return0xFFFF. Grid remains NULL but is not dereferenced. Dimensions remain20x20, not zero.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x63a7a6\", \"comment\": \"2026-11-01 missing-puzzle consequence: fresh constructor count+04=0 makes every otherwise in-bounds index fail this comparison and return0xFFFF. Grid remains NULL but is not dereferenced. Dimensions remain20x20, not zero.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x63A2CB",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x63a2cb\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x63a2cb\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "addition": "2026-11-01: failed fresh ground puzzle produces0xFFFF. Ground renderer passes debug flags0,0, so this branch skips texture draw without a replacement. Does not imply all other map/scenery/entity passes are skipped.",
+      "write": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x63a2cb\", \"comment\": \"2026-11-01: failed fresh ground puzzle produces0xFFFF. Ground renderer passes debug flags0,0, so this branch skips texture draw without a replacement. Does not imply all other map/scenery/entity passes are skipped.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x63a2cb\", \"comment\": \"2026-11-01: failed fresh ground puzzle produces0xFFFF. Ground renderer passes debug flags0,0, so this branch skips texture draw without a replacement. Does not imply all other map/scenery/entity passes are skipped.\"}"
+        },
+        "isError": false
+      },
+      "readback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x63a2cb\", \"comment\": \"2026-11-01: failed fresh ground puzzle produces0xFFFF. Ground renderer passes debug flags0,0, so this branch skips texture draw without a replacement. Does not imply all other map/scenery/entity passes are skipped.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x63a2cb\", \"comment\": \"2026-11-01: failed fresh ground puzzle produces0xFFFF. Ground renderer passes debug flags0,0, so this branch skips texture draw without a replacement. Does not imply all other map/scenery/entity passes are skipped.\"}"
+        },
+        "isError": false
+      }
+    }
+  ],
+  "rename": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\": true, \"message\": \"Successfully renamed function from sub_638b99 to CMapGroundEntityLayer_Constructor\", \"function\": {\"name\": \"sub_638b99\", \"raw_name\": \"sub_638b99\", \"address\": \"0x638b99\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"sub_638b99\"}}}"
+      }
+    ],
+    "structuredContent": {
+      "result": "{\"success\": true, \"message\": \"Successfully renamed function from sub_638b99 to CMapGroundEntityLayer_Constructor\", \"function\": {\"name\": \"sub_638b99\", \"raw_name\": \"sub_638b99\", \"address\": \"0x638b99\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"sub_638b99\"}}}"
+    },
+    "isError": false
+  },
+  "readback": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"matches\": [{\"name\": \"CMapGroundEntityLayer_Constructor\", \"address\": \"0x638b99\", \"raw_name\": \"CMapGroundEntityLayer_Constructor\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CMapGroundEntityLayer_Constructor\"}}]}"
+      }
+    ],
+    "isError": false
+  },
+  "bndb_saved": false
+}

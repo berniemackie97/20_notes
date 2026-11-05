@@ -1,0 +1,2667 @@
+{
+"1002": {
+"ctor_name": "sub_753f88",
+"ctor": "0x753f88",
+"vtable": "0x86d038",
+"slots": [
+"0x753fc7",
+"0x753fee",
+"0x6df2a4",
+"0x6df355",
+"0x5ad9b1",
+"0x7543a3",
+"0x7544c5",
+"0x6df2a4"
+]
+},
+"1004": {
+"ctor_name": "CMsgTalk__Ctor",
+"ctor": "0x731122",
+"vtable": "0x86c4b4",
+"slots": [
+"0x731184",
+"0x731328",
+"0x6df2a4",
+"0x6df355",
+"0x731371"
+]
+},
+"1006": {
+"ctor_name": "CMsgUserInfo__Ctor",
+"ctor": "0x764197",
+"vtable": "0x86d678",
+"slots": [
+"0x7641f9",
+"0x764253",
+"0x6df2a4",
+"0x6df355",
+"0x764276",
+"0x7649d6",
+"0x7649fd",
+"0x6df2a4"
+]
+},
+"1008": {
+"ctor_name": "CMsgItem__Ctor",
+"ctor": "0x762a3a",
+"vtable": "0x86d650",
+"slots": [
+"0x762a79",
+"0x762aa0",
+"0x6df2a4",
+"0x6df355",
+"0x762ac3",
+"0x76404a",
+"0x7640df",
+"0x6df2a4"
+]
+},
+"1009": {
+"ctor_name": "CMsgTick__Ctor",
+"ctor": "0x6eabeb",
+"vtable": "0x86b8cc",
+"slots": [
+"0x6eac2a",
+"0x6eae56",
+"0x6df2a4",
+"0x6df355",
+"0x6eaeb6",
+"0x6ec81d",
+"0x6ec844",
+"0x6df2a4"
+]
+},
+"1012": {
+"ctor_name": "sub_764997",
+"ctor": "0x764997",
+"vtable": "0x86d68c",
+"slots": [
+"0x7649d6",
+"0x7649fd",
+"0x6df2a4",
+"0x764a20",
+"0x764a42",
+"0x764b7c",
+"0x764ba3",
+"0x6df2a4"
+]
+},
+"1015": {
+"ctor_name": "sub_73ecc9",
+"ctor": "0x73ecc9",
+"vtable": "0x86c79c",
+"slots": [
+"0x73ed2b",
+"0x73ee2b",
+"0x6df2a4",
+"0x6df355",
+"0x73efdf",
+"0x73fde6",
+"0x73ffb6",
+"0x6df2a4"
+]
+},
+"1016": {
+"ctor_name": "CMsgWeatherUpdate__Ctor",
+"ctor": "0x760667",
+"vtable": "0x86d4e0",
+"slots": [
+"0x7606a6",
+"0x7607de",
+"0x6df2a4",
+"0x6df355",
+"0x760801",
+"0x7608c5",
+"0x7608ec",
+"0x6df2a4"
+]
+},
+"1019": {
+"ctor_name": "CMsgFriend__ctor",
+"ctor": "0x74d66d",
+"vtable": "0x86ce2c",
+"slots": [
+"0x74d6ac",
+"0x74d766",
+"0x6df2a4",
+"0x6df355",
+"0x74d789",
+"0x74de4e",
+"0x74de9c",
+"0x6df2a4"
+]
+},
+"1022": {
+"ctor_name": "CMsgInteract__ctor",
+"ctor": "0x6fadee",
+"vtable": "0x86ba9c",
+"slots": [
+"0x6fae2d",
+"0x6fb16a",
+"0x6df2a4",
+"0x6fb18d",
+"0x6fb1cb",
+"0x6fe445",
+"0x6fe46c",
+"0x6df2a4"
+]
+},
+"1023": {
+"ctor_name": "sub_72ac9a",
+"ctor": "0x72ac9a",
+"vtable": "0x86c380",
+"slots": [
+"0x72acd9",
+"0x72ad00",
+"0x6df2a4",
+"0x6df355",
+"0x72ad85",
+"0x72b493",
+"0x72b4f4",
+"0x6df2a4"
+]
+},
+"1024": {
+"ctor_name": "sub_740951",
+"ctor": "0x740951",
+"vtable": "0x86c8ec",
+"slots": [
+"0x740990",
+"0x7409b7",
+"0x6df2a4",
+"0x6df355",
+"0x740a37",
+"0x74124a"
+]
+},
+"1025": {
+"ctor_name": "sub_761fd0",
+"ctor": "0x761fd0",
+"vtable": "0x86d5ac",
+"slots": [
+"0x76200f",
+"0x762036",
+"0x6df2a4",
+"0x6df355",
+"0x762059",
+"0x7620cd",
+"0x7620f4",
+"0x6df2a4"
+]
+},
+"1026": {
+"ctor_name": "CMsgTeamMember1026__Ctor",
+"ctor": "0x761a02",
+"vtable": "0x86d584",
+"slots": [
+"0x761a41",
+"0x761a68",
+"0x6df2a4",
+"0x6df355",
+"0x761ab1",
+"0x761d12",
+"0x761d39",
+"0x6df2a4"
+]
+},
+"1027": {
+"ctor_name": "sub_7533ae",
+"ctor": "0x7533ae",
+"vtable": "0x86cfb4",
+"slots": [
+"0x7533ed",
+"0x75347e",
+"0x6df2a4",
+"0x6df355",
+"0x5ad9b1",
+"0x7534e0",
+"0x753507",
+"0x6df2a4"
+]
+},
+"1028": {
+"ctor_name": "sub_7534a1",
+"ctor": "0x7534a1",
+"vtable": "0x86cfc8",
+"slots": [
+"0x7534e0",
+"0x753507",
+"0x6df2a4",
+"0x6df355",
+"0x5ad9b1"
+]
+},
+"1029": {
+"ctor_name": "CMsgTeamAward__Create",
+"ctor": "0x75e446",
+"vtable": "0x86d468",
+"slots": [
+"0x75e485",
+"0x75e4ac",
+"0x6df2a4",
+"0x6df355",
+"0x75e4cf",
+"0x75e57a",
+"0x75e5a1",
+"0x6df2a4"
+]
+},
+"1032": {
+"ctor_name": "sub_75e304",
+"ctor": "0x75e304",
+"vtable": "0x86d454",
+"slots": [
+"0x75e343",
+"0x75e36a",
+"0x6df2a4",
+"0x6df355",
+"0x75e38d",
+"0x75e485",
+"0x75e4ac",
+"0x6df2a4"
+]
+},
+"1033": {
+"ctor_name": "sub_74a4e6",
+"ctor": "0x74a4e6",
+"vtable": "0x86cd2c",
+"slots": [
+"0x74a525",
+"0x74a54c",
+"0x6df2a4",
+"0x6df355",
+"0x74a5e6",
+"0x74a73a",
+"0x74a761",
+"0x6df2a4"
+]
+},
+"1034": {
+"ctor_name": "sub_75df38",
+"ctor": "0x75df38",
+"vtable": "0x86d440",
+"slots": [
+"0x75df77",
+"0x75df9e",
+"0x6df2a4",
+"0x6df355",
+"0x75dfc1",
+"0x75e343",
+"0x75e36a",
+"0x6df2a4"
+]
+},
+"1035": {
+"ctor_name": "sub_75db5b",
+"ctor": "0x75db5b",
+"vtable": "0x86d42c",
+"slots": [
+"0x75db9a",
+"0x75dbc1",
+"0x6df2a4",
+"0x6df355",
+"0x75dbe4",
+"0x75df77",
+"0x75df9e",
+"0x6df2a4"
+]
+},
+"1036": {
+"ctor_name": "sub_716545",
+"ctor": "0x716545",
+"vtable": "0x86c12c",
+"slots": [
+"0x716584",
+"0x7165d2",
+"0x6df2a4",
+"0x6df355",
+"0x7165f5",
+"0x716761",
+"0x716788",
+"0x6df2a4"
+]
+},
+"1037": {
+"ctor_name": "sub_743f64",
+"ctor": "0x743f64",
+"vtable": "0x86caac",
+"slots": [
+"0x743fa3",
+"0x743fca",
+"0x6df2a4",
+"0x6df355",
+"0x6df2f6",
+"0x744085",
+"0x7440e4",
+"0x6df2a4"
+]
+},
+"1038": {
+"ctor_name": "sub_717afa",
+"ctor": "0x717afa",
+"vtable": "0x86c184",
+"slots": [
+"0x717b39",
+"0x717b60",
+"0x6df2a4",
+"0x6df355",
+"0x5ad9b1",
+"0x717c74",
+"0x718a18",
+"0x718a72"
+]
+},
+"1039": {
+"ctor_name": "sub_72b91e",
+"ctor": "0x72b91e",
+"vtable": "0x86c3b8",
+"slots": [
+"0x72b980",
+"0x72b9da",
+"0x6df2a4",
+"0x6df355",
+"0x72ba6c",
+"0x72bc61",
+"0x72bcbb",
+"0x6df2a4"
+]
+},
+"1040": {
+"ctor_name": "sub_72ccef",
+"ctor": "0x72ccef",
+"vtable": "0x86c424",
+"slots": [
+"0x72cd2e",
+"0x72cd55",
+"0x6df2a4",
+"0x6df355",
+"0x72cda9",
+"0x72d119",
+"0x72d140",
+"0x6df2a4"
+]
+},
+"1041": {
+"ctor_name": "CMsgEnemyList__ctor",
+"ctor": "0x6fe406",
+"vtable": "0x86bab0",
+"slots": [
+"0x6fe445",
+"0x6fe46c",
+"0x6df2a4",
+"0x6df355",
+"0x6fe4c0",
+"0x6fe641",
+"0x75d08c",
+"0x694b12"
+]
+},
+"1042": {
+"ctor_name": "CMsgGuide__Create",
+"ctor": "0x761cd3",
+"vtable": "0x86d598",
+"slots": [
+"0x761d12",
+"0x761d39",
+"0x6df2a4",
+"0x6df355",
+"0x761d5c",
+"0x76200f",
+"0x762036",
+"0x6df2a4"
+]
+},
+"1043": {
+"ctor_name": "sub_720357",
+"ctor": "0x720357",
+"vtable": "0x86c2c8",
+"slots": [
+"0x720396",
+"0x7203bd",
+"0x6df2a4",
+"0x6df355",
+"0x720427"
+]
+},
+"1052": {
+"ctor_name": "CMsgLoginBootstrap1052__Ctor",
+"ctor": "0x754364",
+"vtable": "0x86d04c",
+"slots": [
+"0x7543a3",
+"0x7544c5",
+"0x6df2a4",
+"0x6df355",
+"0x75464c",
+"0x7548e2",
+"0x754909",
+"0x6df2a4"
+]
+},
+"1055": {
+"ctor_name": "CMsgAccountAuthResponse__Ctor",
+"ctor": "0x7548a3",
+"vtable": "0x86d060",
+"slots": [
+"0x7548e2",
+"0x754909",
+"0x6df2a4",
+"0x6df355",
+"0x75492c",
+"0x754f8c",
+"0x754fb3",
+"0x6df2a4"
+]
+},
+"1056": {
+"ctor_name": "sub_7622f4",
+"ctor": "0x7622f4",
+"vtable": "0x86d5e8",
+"slots": [
+"0x762333",
+"0x762396",
+"0x6df2a4",
+"0x6df355",
+"0x7623b9"
+]
+},
+"1057": {
+"ctor_name": "CMsgAccountAuthResponse1057__Ctor",
+"ctor": "0x754f4d",
+"vtable": "0x86d074",
+"slots": [
+"0x754f8c",
+"0x754fb3",
+"0x6df2a4",
+"0x6df355",
+"0x754fd6",
+"0x755909",
+"0x7559d9",
+"0x6df2a4"
+]
+},
+"1058": {
+"ctor_name": "sub_701c52",
+"ctor": "0x701c52",
+"vtable": "0x86baec",
+"slots": [
+"0x701c91",
+"0x701cb8",
+"0x6df2a4",
+"0x6df355",
+"0x701d0c",
+"0x701f45",
+"0x701f9f",
+"0x6df2a4"
+]
+},
+"1059": {
+"ctor_name": "sub_764b3d",
+"ctor": "0x764b3d",
+"vtable": "0x86d6a0",
+"slots": [
+"0x764b7c",
+"0x764ba3",
+"0x6df2a4",
+"0x6df355",
+"0x764bc6",
+"0x76555f",
+"0x766588",
+"0x76666a"
+]
+},
+"1061": {
+"ctor_name": "CMsg1060__Ctor",
+"ctor": "0x76221f",
+"vtable": "0x86d5d4",
+"slots": [
+"0x76225e",
+"0x762285",
+"0x6df2a4",
+"0x6df355",
+"0x7622a8",
+"0x762333",
+"0x762396",
+"0x6df2a4"
+]
+},
+"1062": {
+"ctor_name": "sub_75d5fd",
+"ctor": "0x75d5fd",
+"vtable": "0x86d3c8",
+"slots": [
+"0x75d63c",
+"0x75d663",
+"0x6df2a4",
+"0x6df355",
+"0x75d686",
+"0x75d7c4",
+"0x75d7eb",
+"0x6df2a4"
+]
+},
+"1063": {
+"ctor_name": "sub_6f448c",
+"ctor": "0x6f448c",
+"vtable": "0x86b958",
+"slots": [
+"0x6f44cb",
+"0x6f44f2",
+"0x6df2a4",
+"0x6df355",
+"0x6f469f",
+"0x6f4cd5",
+"0x75d08c",
+"0x694b12"
+]
+},
+"1065": {
+"ctor_name": "sub_6f942f",
+"ctor": "0x6f942f",
+"vtable": "0x86ba40",
+"slots": [
+"0x6f946e",
+"0x6f9495",
+"0x6df2a4",
+"0x6df355",
+"0x6f94e1",
+"0x6f95cf",
+"0x6f9fa0"
+]
+},
+"1066": {
+"ctor_name": "sub_716722",
+"ctor": "0x716722",
+"vtable": "0x86c140",
+"slots": [
+"0x716761",
+"0x716788",
+"0x6df2a4",
+"0x6df355",
+"0x7167e5",
+"0x716b5f",
+"0x716b86",
+"0x6df2a4"
+]
+},
+"1071": {
+"ctor_name": "sub_76208e",
+"ctor": "0x76208e",
+"vtable": "0x86d5c0",
+"slots": [
+"0x7620cd",
+"0x7620f4",
+"0x6df2a4",
+"0x6df355",
+"0x762117",
+"0x76225e",
+"0x762285",
+"0x6df2a4"
+]
+},
+"1074": {
+"ctor_name": "sub_75d874",
+"ctor": "0x75d874",
+"vtable": "0x86d3f0",
+"slots": [
+"0x75d8b3",
+"0x75d8da",
+"0x6df2a4",
+"0x6df355",
+"0x75d8fd",
+"0x75d970",
+"0x75d9ca",
+"0x6df2a4"
+]
+},
+"1075": {
+"ctor_name": "CMsgPictureKey1075__Ctor",
+"ctor": "0x715061",
+"vtable": "0x86c0d8",
+"slots": [
+"0x7150a0",
+"0x7150c7",
+"0x6df2a4",
+"0x6df355",
+"0x715125",
+"0x715335"
+]
+},
+"1081": {
+"ctor_name": "sub_75d90e",
+"ctor": "0x75d90e",
+"vtable": "0x86d404",
+"slots": [
+"0x75d970",
+"0x75d9ca",
+"0x6df2a4",
+"0x6df355",
+"0x75d9ed",
+"0x75daa0",
+"0x75dac7",
+"0x6df2a4"
+]
+},
+"1083": {
+"ctor_name": "sub_714b0b",
+"ctor": "0x714b0b",
+"vtable": "0x86c0b4",
+"slots": [
+"0x714b4a",
+"0x714b71",
+"0x6df2a4",
+"0x6df355",
+"0x714c89"
+]
+},
+"1101": {
+"ctor_name": "sub_73fda7",
+"ctor": "0x73fda7",
+"vtable": "0x86c7b0",
+"slots": [
+"0x73fde6",
+"0x73ffb6",
+"0x6df2a4",
+"0x73ffd9",
+"0x740007"
+]
+},
+"1102": {
+"ctor_name": "CMsgAccount1102__Ctor",
+"ctor": "0x74e08a",
+"vtable": "0x86ce54",
+"slots": [
+"0x74e0c9",
+"0x74978c",
+"0x6df2a4",
+"0x6df355",
+"0x74e158",
+"0x74ea81",
+"0x74eaa8",
+"0x6df2a4"
+]
+},
+"1103": {
+"ctor_name": "sub_760abc",
+"ctor": "0x760abc",
+"vtable": "0x86d508",
+"slots": [
+"0x760afb",
+"0x760b22",
+"0x6df2a4",
+"0x6df355",
+"0x760b45"
+]
+},
+"1104": {
+"ctor_name": "CMsgFlushExp1104__ctor",
+"ctor": "0x76179a",
+"vtable": "0x86d570",
+"slots": [
+"0x7617d9",
+"0x761800",
+"0x6df2a4",
+"0x6df355",
+"0x761823",
+"0x761a41",
+"0x761a68",
+"0x6df2a4"
+]
+},
+"1105": {
+"ctor_name": "sub_760b79",
+"ctor": "0x760b79",
+"vtable": "0x86d55c",
+"slots": [
+"0x760bb8",
+"0x760bdf",
+"0x6df2a4",
+"0x6df355",
+"0x760c02",
+"0x7617d9",
+"0x761800",
+"0x6df2a4"
+]
+},
+"1106": {
+"ctor_name": "CMsgSyndicateAttributeInfo1106__Ctor",
+"ctor": "0x760886",
+"vtable": "0x86d4f4",
+"slots": [
+"0x7608c5",
+"0x7608ec",
+"0x6df2a4",
+"0x6df355",
+"0x76090f",
+"0x760afb",
+"0x760b22",
+"0x6df2a4"
+]
+},
+"1107": {
+"ctor_name": "sub_702520",
+"ctor": "0x702520",
+"vtable": "0x86bb28",
+"slots": [
+"0x702582",
+"0x7025dc",
+"0x6df2a4",
+"0x6df355",
+"0x7031b9",
+"0x703c43",
+"0x703c5f",
+"0x6df2a4"
+]
+},
+"1108": {
+"ctor_name": "sub_75f94e",
+"ctor": "0x75f94e",
+"vtable": "0x86d4cc",
+"slots": [
+"0x75f98d",
+"0x75f9b4",
+"0x6df2a4",
+"0x6df355",
+"0x75f9d7",
+"0x7606a6",
+"0x7607de",
+"0x6df2a4"
+]
+},
+"1109": {
+"ctor_name": "sub_75eeb0",
+"ctor": "0x75eeb0",
+"vtable": "0x86d4b8",
+"slots": [
+"0x75ef12",
+"0x75ef6c",
+"0x6df2a4",
+"0x6df355",
+"0x75ef8f",
+"0x75f98d",
+"0x75f9b4",
+"0x6df2a4"
+]
+},
+"1110": {
+"ctor_name": "CMsgMapInfo1110__Ctor",
+"ctor": "0x732a87",
+"vtable": "0x86c50c",
+"slots": [
+"0x732ac6",
+"0x732aed",
+"0x6df2a4",
+"0x6df355",
+"0x732b10",
+"0x732e56",
+"0x732ee7"
+]
+},
+"1111": {
+"ctor_name": "sub_75ed21",
+"ctor": "0x75ed21",
+"vtable": "0x86d4a4",
+"slots": [
+"0x75ed83",
+"0x75eddd",
+"0x6df2a4",
+"0x6df355",
+"0x75ee72",
+"0x75ef12",
+"0x75ef6c",
+"0x6df2a4"
+]
+},
+"1112": {
+"ctor_name": "sub_75ebfc",
+"ctor": "0x75ebfc",
+"vtable": "0x86d490",
+"slots": [
+"0x75ec3b",
+"0x75ec62",
+"0x6df2a4",
+"0x6df355",
+"0x75ec85",
+"0x75ed83",
+"0x75eddd",
+"0x6df2a4"
+]
+},
+"1113": {
+"ctor_name": "sub_75e53b",
+"ctor": "0x75e53b",
+"vtable": "0x86d47c",
+"slots": [
+"0x75e57a",
+"0x75e5a1",
+"0x6df2a4",
+"0x6df355",
+"0x75e627",
+"0x75ec3b",
+"0x75ec62",
+"0x6df2a4"
+]
+},
+"1114": {
+"ctor_name": "sub_7624e8",
+"ctor": "0x7624e8",
+"vtable": "0x86d63c",
+"slots": [
+"0x762527",
+"0x76254e",
+"0x6df2a4",
+"0x6df355",
+"0x762571",
+"0x762a79",
+"0x762aa0",
+"0x6df2a4"
+]
+},
+"1115": {
+"ctor_name": "CMsgKickoutNotice__Create",
+"ctor": "0x75d785",
+"vtable": "0x86d3dc",
+"slots": [
+"0x75d7c4",
+"0x75d7eb",
+"0x6df2a4",
+"0x6df355",
+"0x75d80e",
+"0x75d8b3",
+"0x75d8da",
+"0x6df2a4"
+]
+},
+"1126": {
+"ctor_name": "sub_72c76e",
+"ctor": "0x72c76e",
+"vtable": "0x86c3f4",
+"slots": [
+"0x72c7ad",
+"0x72c820",
+"0x6df2a4",
+"0x6df355",
+"0x72c843",
+"0x72c933",
+"0x72cb5c",
+"0x72cbb8"
+]
+},
+"1127": {
+"ctor_name": "sub_6ed9f1",
+"ctor": "0x6ed9f1",
+"vtable": "0x86b908",
+"slots": [
+"0x6eda30",
+"0x6eda57",
+"0x6df2a4",
+"0x6df355",
+"0x6edac8"
+]
+},
+"1128": {
+"ctor_name": "sub_72a561",
+"ctor": "0x72a561",
+"vtable": "0x86c36c",
+"slots": [
+"0x72a5a0",
+"0x72a5c7",
+"0x6df2a4",
+"0x6df355",
+"0x72a623",
+"0x72acd9",
+"0x72ad00",
+"0x6df2a4"
+]
+},
+"1129": {
+"ctor_name": "sub_75da61",
+"ctor": "0x75da61",
+"vtable": "0x86d418",
+"slots": [
+"0x75daa0",
+"0x75dac7",
+"0x6df2a4",
+"0x6df355",
+"0x75daea",
+"0x75db9a",
+"0x75dbc1",
+"0x6df2a4"
+]
+},
+"1130": {
+"ctor_name": "sub_6ec7de",
+"ctor": "0x6ec7de",
+"vtable": "0x86b8e0",
+"slots": [
+"0x6ec81d",
+"0x6ec844",
+"0x6df2a4",
+"0x6df355",
+"0x6ec8c8",
+"0x6ecb62",
+"0x6ecbec",
+"0x6df2a4"
+]
+},
+"1134": {
+"ctor_name": "CMsgMissionSystemUpdate__Create",
+"ctor": "0x72d0da",
+"vtable": "0x86c438",
+"slots": [
+"0x72d119",
+"0x72d140",
+"0x6df2a4",
+"0x6df355",
+"0x72d163",
+"0x72d955"
+]
+},
+"1135": {
+"ctor_name": "sub_716b20",
+"ctor": "0x716b20",
+"vtable": "0x86c154",
+"slots": [
+"0x716b5f",
+"0x716b86",
+"0x6df2a4",
+"0x6df355",
+"0x716bcf",
+"0x716d76",
+"0x716d9d",
+"0x6df2a4"
+]
+},
+"1150": {
+"ctor_name": "sub_76400b",
+"ctor": "0x76400b",
+"vtable": "0x86d664",
+"slots": [
+"0x76404a",
+"0x7640df",
+"0x6df2a4",
+"0x6df355",
+"0x764102",
+"0x7641f9",
+"0x764253",
+"0x6df2a4"
+]
+},
+"1151": {
+"ctor_name": "sub_706d07",
+"ctor": "0x706d07",
+"vtable": "0x86bbdc",
+"slots": [
+"0x706d46",
+"0x706dc7",
+"0x6df2a4",
+"0x6df355",
+"0x706dea"
+]
+},
+"1312": {
+"ctor_name": "sub_703be1",
+"ctor": "0x703be1",
+"vtable": "0x86bb3c",
+"slots": [
+"0x703c43",
+"0x703c5f",
+"0x6df2a4",
+"0x6df355",
+"0x7041f4",
+"0x704c71",
+"0x704d07",
+"0x6df2a4"
+]
+},
+"1313": {
+"ctor_name": "sub_7069f1",
+"ctor": "0x7069f1",
+"vtable": "0x86bbc8",
+"slots": [
+"0x706a30",
+"0x706a57",
+"0x6df2a4",
+"0x6df355",
+"0x706ac6",
+"0x706d46",
+"0x706dc7",
+"0x6df2a4"
+]
+},
+"1314": {
+"ctor_name": "sub_74de0f",
+"ctor": "0x74de0f",
+"vtable": "0x86ce40",
+"slots": [
+"0x74de4e",
+"0x74de9c",
+"0x6df2a4",
+"0x6df355",
+"0x74debf",
+"0x74e0c9",
+"0x74978c",
+"0x6df2a4"
+]
+},
+"1350": {
+"ctor_name": "sub_75d217",
+"ctor": "0x75d217",
+"vtable": "0x86d3a0",
+"slots": [
+"0x75d256",
+"0x75d27d",
+"0x6df2a4",
+"0x6df355",
+"0x75d2a0",
+"0x75d318",
+"0x75d33f",
+"0x6df2a4"
+]
+},
+"2030": {
+"ctor_name": "CMsgNpcInfo__Create",
+"ctor": "0x7439e3",
+"vtable": "0x86ca98",
+"slots": [
+"0x743a45",
+"0x743a9f",
+"0x6df2a4",
+"0x6df355",
+"0x743b32",
+"0x743fa3",
+"0x743fca",
+"0x6df2a4"
+]
+},
+"2031": {
+"ctor_name": "sub_72cb79",
+"ctor": "0x72cb79",
+"vtable": "0x86c410",
+"slots": [
+"0x72cbb8",
+"0x72cc3d",
+"0x6df2a4",
+"0x6df355",
+"0x72cc60",
+"0x72cd2e",
+"0x72cd55",
+"0x6df2a4"
+]
+},
+"2032": {
+"ctor_name": "sub_72bbff",
+"ctor": "0x72bbff",
+"vtable": "0x86c3cc",
+"slots": [
+"0x72bc61",
+"0x72bcbb",
+"0x6df2a4",
+"0x6df355",
+"0x72bd72",
+"0x72c52f",
+"0x72c589",
+"0x6df2a4"
+]
+},
+"2033": {
+"ctor_name": "sub_75d2d9",
+"ctor": "0x75d2d9",
+"vtable": "0x86d3b4",
+"slots": [
+"0x75d318",
+"0x75d33f",
+"0x6df2a4",
+"0x6df355",
+"0x75d362",
+"0x75d63c",
+"0x75d663",
+"0x6df2a4"
+]
+},
+"2034": {
+"ctor_name": "sub_75d18e",
+"ctor": "0x75d18e",
+"vtable": "0x86d38c",
+"slots": [
+"0x75d1cd",
+"0x75d1f4",
+"0x6df2a4",
+"0x6df355",
+"0x5ad9b1",
+"0x75d256",
+"0x75d27d",
+"0x6df2a4"
+]
+},
+"2035": {
+"ctor_name": "CMsgPetSpawn__Create",
+"ctor": "0x75ce78",
+"vtable": "0x86d354",
+"slots": [
+"0x75ceb7",
+"0x75cede",
+"0x6df2a4",
+"0x6df355",
+"0x75cf01",
+"0x75d08c",
+"0x694b12",
+"0x42dc65"
+]
+},
+"2036": {
+"ctor_name": "sub_716d37",
+"ctor": "0x716d37",
+"vtable": "0x86c168",
+"slots": [
+"0x716d76",
+"0x716d9d",
+"0x6df2a4",
+"0x6df355",
+"0x5ad9b1",
+"0x717916"
+]
+},
+"2043": {
+"ctor_name": "sub_75d0a8",
+"ctor": "0x75d0a8",
+"vtable": "0x86d378",
+"slots": [
+"0x75d0e7",
+"0x75d10e",
+"0x6df2a4",
+"0x6df355",
+"0x75d131",
+"0x75d1cd",
+"0x75d1f4",
+"0x6df2a4"
+]
+},
+"2044": {
+"ctor_name": "sub_744046",
+"ctor": "0x744046",
+"vtable": "0x86cac0",
+"slots": [
+"0x744085",
+"0x7440e4",
+"0x6df2a4",
+"0x6df355",
+"0x744107"
+]
+},
+"2045": {
+"ctor_name": "sub_70a355",
+"ctor": "0x70a355",
+"vtable": "0x86bc50",
+"slots": [
+"0x70a394",
+"0x6df2ae",
+"0x6df2a4",
+"0x6df355",
+"0x70a3bb"
+]
+},
+"2046": {
+"ctor_name": "sub_72b454",
+"ctor": "0x72b454",
+"vtable": "0x86c394",
+"slots": [
+"0x72b493",
+"0x72b4f4",
+"0x6df2a4",
+"0x6df355",
+"0x72b517",
+"0x75d08c",
+"0x694b12",
+"0x42dc65"
+]
+},
+"2047": {
+"ctor_name": "sub_75cca3",
+"ctor": "0x75cca3",
+"vtable": "0x86d340",
+"slots": [
+"0x75cce2",
+"0x75cd09",
+"0x6df2a4",
+"0x6df355",
+"0x75cd2c",
+"0x75ceb7",
+"0x75cede",
+"0x6df2a4"
+]
+},
+"2048": {
+"ctor_name": "sub_6e702e",
+"ctor": "0x6e702e",
+"vtable": "0x86b774",
+"slots": [
+"0x6e706d",
+"0x6e70c4",
+"0x6df2a4",
+"0x6df355",
+"0x6e70e7"
+]
+},
+"2050": {
+"ctor_name": "sub_7189b6",
+"ctor": "0x7189b6",
+"vtable": "0x86c19c",
+"slots": [
+"0x718a18",
+"0x718a72",
+"0x6df2a4",
+"0x6df355",
+"0x718b8a",
+"0x71adae",
+"0x71b7ad",
+"0x71b843"
+]
+},
+"2051": {
+"ctor_name": "sub_75c9a0",
+"ctor": "0x75c9a0",
+"vtable": "0x86d318",
+"slots": [
+"0x75c9df",
+"0x75ca06",
+"0x6df2a4",
+"0x6df355",
+"0x75ca29",
+"0x75cbc6",
+"0x75cbed",
+"0x6df2a4"
+]
+},
+"2064": {
+"ctor_name": "sub_74a132",
+"ctor": "0x74a132",
+"vtable": "0x86cd18",
+"slots": [
+"0x74a194",
+"0x74a1ee",
+"0x6df2a4",
+"0x6df355",
+"0x74a2b3",
+"0x74a525",
+"0x74a54c",
+"0x6df2a4"
+]
+},
+"2065": {
+"ctor_name": "sub_74c355",
+"ctor": "0x74c355",
+"vtable": "0x86cdc8",
+"slots": [
+"0x74c3b7",
+"0x74c461",
+"0x6df2a4",
+"0x6df355",
+"0x74c484",
+"0x74cfca",
+"0x74d027",
+"0x6df2a4"
+]
+},
+"2066": {
+"ctor_name": "sub_7155cf",
+"ctor": "0x7155cf",
+"vtable": "0x86c0f4",
+"slots": [
+"0x715631",
+"0x7156bb",
+"0x6df2a4",
+"0x6df355",
+"0x7156de",
+"0x75d08c",
+"0x694b12",
+"0x42dc65"
+]
+},
+"2067": {
+"ctor_name": "sub_716106",
+"ctor": "0x716106",
+"vtable": "0x86c118",
+"slots": [
+"0x716168",
+"0x716226",
+"0x6df2a4",
+"0x6df355",
+"0x716249",
+"0x716584",
+"0x7165d2",
+"0x6df2a4"
+]
+},
+"2068": {
+"ctor_name": "sub_71eb16",
+"ctor": "0x71eb16",
+"vtable": "0x86c270",
+"slots": [
+"0x71eb78",
+"0x71ebd2",
+"0x6df2a4",
+"0x6df355",
+"0x71ec45"
+]
+},
+"2069": {
+"ctor_name": "sub_75c8ff",
+"ctor": "0x75c8ff",
+"vtable": "0x86d304",
+"slots": [
+"0x75c93e",
+"0x75c965",
+"0x6df2a4",
+"0x6df355",
+"0x75c988",
+"0x75c9df",
+"0x75ca06",
+"0x6df2a4"
+]
+},
+"2070": {
+"ctor_name": "sub_707c29",
+"ctor": "0x707c29",
+"vtable": "0x86bc00",
+"slots": [
+"0x707c68",
+"0x707c8f",
+"0x6df2a4",
+"0x6df355",
+"0x707ce4"
+]
+},
+"2071": {
+"ctor_name": "sub_75c7ec",
+"ctor": "0x75c7ec",
+"vtable": "0x86d2f0",
+"slots": [
+"0x75c82b",
+"0x75c852",
+"0x6df2a4",
+"0x6df355",
+"0x75c875",
+"0x75c93e",
+"0x75c965",
+"0x6df2a4"
+]
+},
+"2072": {
+"ctor_name": "sub_74f3e1",
+"ctor": "0x74f3e1",
+"vtable": "0x86ce80",
+"slots": [
+"0x74f420",
+"0x74f447",
+"0x6df2a4",
+"0x6df355",
+"0x74f55b",
+"0x74f6f4",
+"0x750183",
+"0x7510ae"
+]
+},
+"2073": {
+"ctor_name": "sub_75cb87",
+"ctor": "0x75cb87",
+"vtable": "0x86d32c",
+"slots": [
+"0x75cbc6",
+"0x75cbed",
+"0x6df2a4",
+"0x6df355",
+"0x75cc10",
+"0x75cce2",
+"0x75cd09",
+"0x6df2a4"
+]
+},
+"2075": {
+"ctor_name": "sub_75c570",
+"ctor": "0x75c570",
+"vtable": "0x86d2dc",
+"slots": [
+"0x75c5af",
+"0x75c5d6",
+"0x6df2a4",
+"0x6df355",
+"0x75c5f9",
+"0x75c82b",
+"0x75c852",
+"0x6df2a4"
+]
+},
+"2077": {
+"ctor_name": "sub_75b05b",
+"ctor": "0x75b05b",
+"vtable": "0x86d250",
+"slots": [
+"0x75b09a",
+"0x75b0c1",
+"0x6df2a4",
+"0x6df355",
+"0x75b0e4",
+"0x75b5b4",
+"0x75b5db",
+"0x6df2a4"
+]
+},
+"2078": {
+"ctor_name": "CMsgAccountLoginAlert2078__Ctor",
+"ctor": "0x75afa0",
+"vtable": "0x86d23c",
+"slots": [
+"0x75afdf",
+"0x75b006",
+"0x6df2a4",
+"0x6df355",
+"0x75b029",
+"0x75b09a",
+"0x75b0c1",
+"0x6df2a4"
+]
+},
+"2079": {
+"ctor_name": "CMsgServerState2079__Ctor",
+"ctor": "0x75aeed",
+"vtable": "0x86d228",
+"slots": [
+"0x75af2c",
+"0x75af53",
+"0x6df2a4",
+"0x6df355",
+"0x75af76",
+"0x75afdf",
+"0x75b006",
+"0x6df2a4"
+]
+},
+"2080": {
+"ctor_name": "sub_74b5ae",
+"ctor": "0x74b5ae",
+"vtable": "0x86cd78",
+"slots": [
+"0x74b5ed",
+"0x74b67e",
+"0x6df2a4",
+"0x6df355",
+"0x74b6a1",
+"0x74b82c",
+"0x74b853",
+"0x6df2a4"
+]
+},
+"2090": {
+"ctor_name": "sub_7513b2",
+"ctor": "0x7513b2",
+"vtable": "0x86cec4",
+"slots": [
+"0x7513f1",
+"0x751441",
+"0x6df2a4",
+"0x6df355",
+"0x7514b5",
+"0x7517e0",
+"0x751830",
+"0x6df2a4"
+]
+},
+"2091": {
+"ctor_name": "sub_75bd80",
+"ctor": "0x75bd80",
+"vtable": "0x86d2a0",
+"slots": [
+"0x75bdbf",
+"0x75bf6f",
+"0x6df2a4",
+"0x6df355",
+"0x75bf92",
+"0x75c2b1",
+"0x75c2d8",
+"0x6df2a4"
+]
+},
+"2092": {
+"ctor_name": "sub_75c272",
+"ctor": "0x75c272",
+"vtable": "0x86d2b4",
+"slots": [
+"0x75c2b1",
+"0x75c2d8",
+"0x6df2a4",
+"0x6df355",
+"0x75c2fb",
+"0x75c4b0",
+"0x75c4d7",
+"0x6df2a4"
+]
+},
+"2093": {
+"ctor_name": "sub_75106f",
+"ctor": "0x75106f",
+"vtable": "0x86ce9c",
+"slots": [
+"0x7510ae",
+"0x751111",
+"0x6df2a4",
+"0x6df355",
+"0x751180",
+"0x75129d",
+"0x7512c4",
+"0x6df2a4"
+]
+},
+"2094": {
+"ctor_name": "sub_75baae",
+"ctor": "0x75baae",
+"vtable": "0x86d28c",
+"slots": [
+"0x75baed",
+"0x75bc3d",
+"0x6df2a4",
+"0x6df355",
+"0x75bc60",
+"0x75bdbf",
+"0x75bf6f",
+"0x6df2a4"
+]
+},
+"2095": {
+"ctor_name": "sub_75b80f",
+"ctor": "0x75b80f",
+"vtable": "0x86d278",
+"slots": [
+"0x75b84e",
+"0x75b875",
+"0x6df2a4",
+"0x6df355",
+"0x75b898",
+"0x75baed",
+"0x75bc3d",
+"0x6df2a4"
+]
+},
+"2096": {
+"ctor_name": "sub_75125e",
+"ctor": "0x75125e",
+"vtable": "0x86ceb0",
+"slots": [
+"0x75129d",
+"0x7512c4",
+"0x6df2a4",
+"0x6df355",
+"0x751326",
+"0x7513f1",
+"0x751441",
+"0x6df2a4"
+]
+},
+"2097": {
+"ctor_name": "sub_75c471",
+"ctor": "0x75c471",
+"vtable": "0x86d2c8",
+"slots": [
+"0x75c4b0",
+"0x75c4d7",
+"0x6df2a4",
+"0x6df355",
+"0x75c4fa",
+"0x75c5af",
+"0x75c5d6",
+"0x6df2a4"
+]
+},
+"2098": {
+"ctor_name": "sub_75b575",
+"ctor": "0x75b575",
+"vtable": "0x86d264",
+"slots": [
+"0x75b5b4",
+"0x75b5db",
+"0x6df2a4",
+"0x6df355",
+"0x75b5fe",
+"0x75b84e",
+"0x75b875",
+"0x6df2a4"
+]
+},
+"2101": {
+"ctor_name": "sub_7022af",
+"ctor": "0x7022af",
+"vtable": "0x86bb14",
+"slots": [
+"0x7022ee",
+"0x702315",
+"0x6df2a4",
+"0x6df355",
+"0x702372",
+"0x702582",
+"0x7025dc",
+"0x6df2a4"
+]
+},
+"2102": {
+"ctor_name": "sub_75a834",
+"ctor": "0x75a834",
+"vtable": "0x86d1f0",
+"slots": [
+"0x75a873",
+"0x75a89a",
+"0x6df2a4",
+"0x6df355",
+"0x75a8f9",
+"0x75aa85",
+"0x75aaac",
+"0x6df2a4"
+]
+},
+"2103": {
+"ctor_name": "sub_6ecb23",
+"ctor": "0x6ecb23",
+"vtable": "0x86b8f4",
+"slots": [
+"0x6ecb62",
+"0x6ecbec",
+"0x6df2a4",
+"0x6df355",
+"0x6ecc0f",
+"0x6eda30",
+"0x6eda57",
+"0x6df2a4"
+]
+},
+"2110": {
+"ctor_name": "sub_7518e3",
+"ctor": "0x7518e3",
+"vtable": "0x86ceec",
+"slots": [
+"0x751922",
+"0x751949",
+"0x6df2a4",
+"0x6df355",
+"0x751a49",
+"0x751c85",
+"0x751d01",
+"0x6df2a4"
+]
+},
+"2170": {
+"ctor_name": "sub_72c4cd",
+"ctor": "0x72c4cd",
+"vtable": "0x86c3e0",
+"slots": [
+"0x72c52f",
+"0x72c589",
+"0x6df2a4",
+"0x6df355",
+"0x72c615",
+"0x72c7ad",
+"0x72c820",
+"0x6df2a4"
+]
+},
+"2171": {
+"ctor_name": "sub_744da5",
+"ctor": "0x744da5",
+"vtable": "0x86cae8",
+"slots": [
+"0x744de4",
+"0x744e0b",
+"0x6df2a4",
+"0x6df355",
+"0x744e8b"
+]
+},
+"2172": {
+"ctor_name": "sub_75aa46",
+"ctor": "0x75aa46",
+"vtable": "0x86d204",
+"slots": [
+"0x75aa85",
+"0x75aaac",
+"0x6df2a4",
+"0x6df355",
+"0x75aacf",
+"0x75d08c",
+"0x694b12",
+"0x42dc65"
+]
+},
+"2201": {
+"ctor_name": "sub_75a695",
+"ctor": "0x75a695",
+"vtable": "0x86d1dc",
+"slots": [
+"0x75a6d4",
+"0x75a6fb",
+"0x6df2a4",
+"0x6df355",
+"0x75a71e",
+"0x75a873",
+"0x75a89a",
+"0x6df2a4"
+]
+},
+"2202": {
+"ctor_name": "sub_752ea9",
+"ctor": "0x752ea9",
+"vtable": "0x86cf8c",
+"slots": [
+"0x752ee8",
+"0x752f0f",
+"0x6df2a4",
+"0x6df355",
+"0x752f93",
+"0x7531fc",
+"0x753223",
+"0x6df2a4"
+]
+},
+"2203": {
+"ctor_name": "sub_709f7f",
+"ctor": "0x709f7f",
+"vtable": "0x86bc3c",
+"slots": [
+"0x709fbe",
+"0x709fe5",
+"0x6df2a4",
+"0x6df355",
+"0x70a063",
+"0x70a394",
+"0x6df2ae",
+"0x6df2a4"
+]
+},
+"2205": {
+"ctor_name": "sub_71b76e",
+"ctor": "0x71b76e",
+"vtable": "0x86c1b4",
+"slots": [
+"0x71b7ad",
+"0x71b843",
+"0x6df2a4",
+"0x6df355",
+"0x71b866",
+"0x71bb8f",
+"0x71bbdc",
+"0x6df2a4"
+]
+},
+"2206": {
+"ctor_name": "sub_71bef7",
+"ctor": "0x71bef7",
+"vtable": "0x86c1f0",
+"slots": [
+"0x71bf36",
+"0x71bfaa",
+"0x6df2a4",
+"0x6df355",
+"0x71bfcd",
+"0x71c1f2",
+"0x71c219",
+"0x6df2a4"
+]
+},
+"2207": {
+"ctor_name": "sub_71c1b3",
+"ctor": "0x71c1b3",
+"vtable": "0x86c204",
+"slots": [
+"0x71c1f2",
+"0x71c219",
+"0x6df2a4",
+"0x6df355",
+"0x71c26a",
+"0x71c3c1",
+"0x71c3e8",
+"0x6df2a4"
+]
+},
+"2208": {
+"ctor_name": "sub_71bb50",
+"ctor": "0x71bb50",
+"vtable": "0x86c1c8",
+"slots": [
+"0x71bb8f",
+"0x71bbdc",
+"0x6df2a4",
+"0x6df355",
+"0x71bbff",
+"0x71bd43",
+"0x71bd90",
+"0x6df2a4"
+]
+},
+"2209": {
+"ctor_name": "sub_71bd04",
+"ctor": "0x71bd04",
+"vtable": "0x86c1dc",
+"slots": [
+"0x71bd43",
+"0x71bd90",
+"0x6df2a4",
+"0x6df355",
+"0x71bdb3",
+"0x71bf36",
+"0x71bfaa",
+"0x6df2a4"
+]
+},
+"2210": {
+"ctor_name": "sub_71c382",
+"ctor": "0x71c382",
+"vtable": "0x86c218",
+"slots": [
+"0x71c3c1",
+"0x71c3e8",
+"0x6df2a4",
+"0x6df355",
+"0x71c40b",
+"0x71c537",
+"0x71c599",
+"0x6df2a4"
+]
+},
+"2211": {
+"ctor_name": "sub_6e6cb6",
+"ctor": "0x6e6cb6",
+"vtable": "0x86b760",
+"slots": [
+"0x6e6cf5",
+"0x6e6d1c",
+"0x6df2a4",
+"0x6df355",
+"0x6e6e4b",
+"0x6e706d",
+"0x6e70c4",
+"0x6df2a4"
+]
+},
+"2212": {
+"ctor_name": "sub_704c32",
+"ctor": "0x704c32",
+"vtable": "0x86bb50",
+"slots": [
+"0x704c71",
+"0x704d07",
+"0x6df2a4",
+"0x6df355",
+"0x704d2a",
+"0x705002",
+"0x705029",
+"0x6df2a4"
+]
+},
+"2213": {
+"ctor_name": "sub_7054be",
+"ctor": "0x7054be",
+"vtable": "0x86bba0",
+"slots": [
+"0x7054fd",
+"0x705524",
+"0x6df2a4",
+"0x6df355",
+"0x705594",
+"0x70578e",
+"0x7057b5",
+"0x6df2a4"
+]
+},
+"2214": {
+"ctor_name": "sub_70574f",
+"ctor": "0x70574f",
+"vtable": "0x86bbb4",
+"slots": [
+"0x70578e",
+"0x7057b5",
+"0x6df2a4",
+"0x6df355",
+"0x7057f9",
+"0x706a30",
+"0x706a57",
+"0x6df2a4"
+]
+},
+"2215": {
+"ctor_name": "sub_70535c",
+"ctor": "0x70535c",
+"vtable": "0x86bb8c",
+"slots": [
+"0x70539b",
+"0x7053e8",
+"0x6df2a4",
+"0x6df355",
+"0x70540b",
+"0x7054fd",
+"0x705524",
+"0x6df2a4"
+]
+},
+"2216": {
+"ctor_name": "sub_705171",
+"ctor": "0x705171",
+"vtable": "0x86bb78",
+"slots": [
+"0x7051b0",
+"0x7051fd",
+"0x6df2a4",
+"0x6df355",
+"0x705220",
+"0x70539b",
+"0x7053e8",
+"0x6df2a4"
+]
+},
+"2217": {
+"ctor_name": "sub_704fc3",
+"ctor": "0x704fc3",
+"vtable": "0x86bb64",
+"slots": [
+"0x705002",
+"0x705029",
+"0x6df2a4",
+"0x6df355",
+"0x70504c",
+"0x7051b0",
+"0x7051fd",
+"0x6df2a4"
+]
+},
+"2218": {
+"ctor_name": "sub_75a35c",
+"ctor": "0x75a35c",
+"vtable": "0x86d1b4",
+"slots": [
+"0x75a39b",
+"0x75a4cc",
+"0x6df2a4",
+"0x6df355",
+"0x75a3c2",
+"0x75a52e",
+"0x75a555",
+"0x6df2a4"
+]
+},
+"2219": {
+"ctor_name": "sub_6de376",
+"ctor": "0x6de376",
+"vtable": "0x86b648",
+"slots": [
+"0x6de3b5",
+"0x6de3dc",
+"0x6df2a4",
+"0x6df355",
+"0x6de4f0",
+"0x6e213a",
+"0x6df25e",
+"0x6df2ae"
+]
+},
+"2220": {
+"ctor_name": "sub_74ea42",
+"ctor": "0x74ea42",
+"vtable": "0x86ce68",
+"slots": [
+"0x74ea81",
+"0x74eaa8",
+"0x6df2a4",
+"0x6df355",
+"0x74eb02",
+"0x74ec4b",
+"0x74f420",
+"0x74f447"
+]
+},
+"2221": {
+"ctor_name": "sub_75a4ef",
+"ctor": "0x75a4ef",
+"vtable": "0x86d1c8",
+"slots": [
+"0x75a52e",
+"0x75a555",
+"0x6df2a4",
+"0x6df355",
+"0x75a578",
+"0x75a6d4",
+"0x75a6fb",
+"0x6df2a4"
+]
+},
+"2222": {
+"ctor_name": "sub_75a236",
+"ctor": "0x75a236",
+"vtable": "0x86d1a0",
+"slots": [
+"0x75a275",
+"0x75a29c",
+"0x6df2a4",
+"0x6df355",
+"0x75a2bf",
+"0x75a39b",
+"0x75a4cc",
+"0x6df2a4"
+]
+},
+"2223": {
+"ctor_name": "sub_72e552",
+"ctor": "0x72e552",
+"vtable": "0x86c480",
+"slots": [
+"0x72e591",
+"0x72e5b8",
+"0x6df2a4",
+"0x6df355",
+"0x72e616",
+"0x72f163"
+]
+},
+"2224": {
+"ctor_name": "sub_74ba9b",
+"ctor": "0x74ba9b",
+"vtable": "0x86cda0",
+"slots": [
+"0x74bada",
+"0x74bb01",
+"0x6df2a4",
+"0x6df355",
+"0x74bb60",
+"0x74c19e",
+"0x74c1c5",
+"0x6df2a4"
+]
+},
+"2225": {
+"ctor_name": "sub_74d26b",
+"ctor": "0x74d26b",
+"vtable": "0x86ce04",
+"slots": [
+"0x74d2aa",
+"0x74d2d1",
+"0x6df2a4",
+"0x6df355",
+"0x74d3e6",
+"0x74d456",
+"0x74d4af",
+"0x6df2a4"
+]
+},
+"2226": {
+"ctor_name": "sub_74cf8b",
+"ctor": "0x74cf8b",
+"vtable": "0x86cddc",
+"slots": [
+"0x74cfca",
+"0x74d027",
+"0x6df2a4",
+"0x6df355",
+"0x74d04a",
+"0x74d209",
+"0x6df2ae",
+"0x6df2a4"
+]
+},
+"2230": {
+"ctor_name": "sub_759eca",
+"ctor": "0x759eca",
+"vtable": "0x86d178",
+"slots": [
+"0x759f09",
+"0x759f30",
+"0x6df2a4",
+"0x6df355",
+"0x759f53",
+"0x75a14f",
+"0x75a176",
+"0x6df2a4"
+]
+},
+"2231": {
+"ctor_name": "sub_75a110",
+"ctor": "0x75a110",
+"vtable": "0x86d18c",
+"slots": [
+"0x75a14f",
+"0x75a176",
+"0x6df2a4",
+"0x6df355",
+"0x75a199",
+"0x75a275",
+"0x75a29c",
+"0x6df2a4"
+]
+},
+"2232": {
+"ctor_name": "sub_6e267e",
+"ctor": "0x6e267e",
+"vtable": "0x86b674",
+"slots": [
+"0x6e26bd",
+"0x6e26e4",
+"0x6df2a4",
+"0x6df355",
+"0x6e27f8",
+"0x6e2dab",
+"0x6e2dd2",
+"0x6df2a4"
+]
+},
+"2233": {
+"ctor_name": "sub_72e342",
+"ctor": "0x72e342",
+"vtable": "0x86c46c",
+"slots": [
+"0x72e381",
+"0x72e3a8",
+"0x6df2a4",
+"0x6df355",
+"0x72e406",
+"0x72e591",
+"0x72e5b8",
+"0x6df2a4"
+]
+},
+"2240": {
+"ctor_name": "sub_729704",
+"ctor": "0x729704",
+"vtable": "0x86c330",
+"slots": [
+"0x729743",
+"0x72976a",
+"0x6df2a4",
+"0x6df355",
+"0x7297b3",
+"0x7299ba",
+"0x7299e1",
+"0x6df2a4"
+]
+},
+"2241": {
+"ctor_name": "sub_751c46",
+"ctor": "0x751c46",
+"vtable": "0x86cf00",
+"slots": [
+"0x751c85",
+"0x751d01",
+"0x6df2a4",
+"0x6df355",
+"0x751d24",
+"0x7520bd",
+"0x7520fd",
+"0x6df2a4"
+]
+},
+"2242": {
+"ctor_name": "sub_75272b",
+"ctor": "0x75272b",
+"vtable": "0x86cf50",
+"slots": [
+"0x75276a",
+"0x7527be",
+"0x6df2a4",
+"0x6df355",
+"0x7527e1",
+"0x7529be",
+"0x752a09",
+"0x6df2a4"
+]
+},
+"2243": {
+"ctor_name": "sub_752250",
+"ctor": "0x752250",
+"vtable": "0x86cf28",
+"slots": [
+"0x75228f",
+"0x7522b6",
+"0x6df2a4",
+"0x6df355",
+"0x7522ff",
+"0x7524c6",
+"0x752506",
+"0x6df2a4"
+]
+},
+"2244": {
+"ctor_name": "sub_75207e",
+"ctor": "0x75207e",
+"vtable": "0x86cf14",
+"slots": [
+"0x7520bd",
+"0x7520fd",
+"0x6df2a4",
+"0x6df355",
+"0x752120",
+"0x75228f",
+"0x7522b6",
+"0x6df2a4"
+]
+},
+"2245": {
+"ctor_name": "sub_752487",
+"ctor": "0x752487",
+"vtable": "0x86cf3c",
+"slots": [
+"0x7524c6",
+"0x752506",
+"0x6df2a4",
+"0x6df355",
+"0x752529",
+"0x75276a",
+"0x7527be",
+"0x6df2a4"
+]
+},
+"2246": {
+"ctor_name": "sub_752d26",
+"ctor": "0x752d26",
+"vtable": "0x86cf78",
+"slots": [
+"0x752d65",
+"0x752d8c",
+"0x6df2a4",
+"0x6df355",
+"0x752daf",
+"0x752ee8",
+"0x752f0f",
+"0x6df2a4"
+]
+},
+"2247": {
+"ctor_name": "sub_75297f",
+"ctor": "0x75297f",
+"vtable": "0x86cf64",
+"slots": [
+"0x7529be",
+"0x752a09",
+"0x6df2a4",
+"0x6df355",
+"0x752a2c",
+"0x752d65",
+"0x752d8c",
+"0x6df2a4"
+]
+},
+"2250": {
+"ctor_name": "sub_759bfb",
+"ctor": "0x759bfb",
+"vtable": "0x86d150",
+"slots": [
+"0x759c3a",
+"0x759c61",
+"0x6df2a4",
+"0x6df355",
+"0x759c84",
+"0x759e80",
+"0x759ea7",
+"0x6df2a4"
+]
+},
+"2251": {
+"ctor_name": "sub_759e41",
+"ctor": "0x759e41",
+"vtable": "0x86d164",
+"slots": [
+"0x759e80",
+"0x759ea7",
+"0x6df2a4",
+"0x6df355",
+"0x75a199",
+"0x759f09",
+"0x759f30",
+"0x6df2a4"
+]
+},
+"2252": {
+"ctor_name": "sub_6e2d6c",
+"ctor": "0x6e2d6c",
+"vtable": "0x86b688",
+"slots": [
+"0x6e2dab",
+"0x6e2dd2",
+"0x6df2a4",
+"0x6df355",
+"0x6e2ee6",
+"0x6e4585"
+]
+},
+"2253": {
+"ctor_name": "sub_72e132",
+"ctor": "0x72e132",
+"vtable": "0x86c458",
+"slots": [
+"0x72e171",
+"0x72e198",
+"0x6df2a4",
+"0x6df355",
+"0x72e1f6",
+"0x72e381",
+"0x72e3a8",
+"0x6df2a4"
+]
+},
+"2260": {
+"ctor_name": "sub_72997b",
+"ctor": "0x72997b",
+"vtable": "0x86c344",
+"slots": [
+"0x7299ba",
+"0x7299e1",
+"0x6df2a4",
+"0x6df355",
+"0x729a2a",
+"0x72a4eb",
+"0x6df2ae",
+"0x6df2a4"
+]
+},
+"2320": {
+"ctor_name": "CMsgSubProfession__Ctor",
+"ctor": "0x728e0a",
+"vtable": "0x86c31c",
+"slots": [
+"0x728e49",
+"0x7293d9",
+"0x6df2a4",
+"0x6df355",
+"0x728e70",
+"0x729743",
+"0x72976a",
+"0x6df2a4"
+]
+},
+"2330": {
+"ctor_name": "sub_74d417",
+"ctor": "0x74d417",
+"vtable": "0x86ce18",
+"slots": [
+"0x74d456",
+"0x74d4af",
+"0x6df2a4",
+"0x6df355",
+"0x74d4d2",
+"0x74d6ac",
+"0x74d766",
+"0x6df2a4"
+]
+},
+"2331": {
+"ctor_name": "sub_7599b4",
+"ctor": "0x7599b4",
+"vtable": "0x86d128",
+"slots": [
+"0x7599f3",
+"0x759a1a",
+"0x6df2a4",
+"0x6df355",
+"0x759a3d",
+"0x759ae8",
+"0x759b0f",
+"0x6df2a4"
+]
+},
+"2332": {
+"ctor_name": "sub_759aa9",
+"ctor": "0x759aa9",
+"vtable": "0x86d13c",
+"slots": [
+"0x759ae8",
+"0x759b0f",
+"0x6df2a4",
+"0x6df355",
+"0x759b32",
+"0x759c3a",
+"0x759c61",
+"0x6df2a4"
+]
+},
+"2333": {
+"ctor_name": "sub_71c4f8",
+"ctor": "0x71c4f8",
+"vtable": "0x86c22c",
+"slots": [
+"0x71c537",
+"0x71c599",
+"0x6df2a4",
+"0x6df355",
+"0x71c5bc",
+"0x71c70f",
+"0x71c812",
+"0x75d08c"
+]
+},
+"2400": {
+"ctor_name": "CMsgMapInfo2400__Ctor",
+"ctor": "0x740837",
+"vtable": "0x86c8d8",
+"slots": [
+"0x740876",
+"0x74089d",
+"0x6df2a4",
+"0x6df355",
+"0x7408f9",
+"0x740990",
+"0x7409b7",
+"0x6df2a4"
+]
+},
+"2401": {
+"ctor_name": "sub_6f8f5f",
+"ctor": "0x6f8f5f",
+"vtable": "0x86b984",
+"slots": [
+"0x6f8fc1",
+"0x6f901b",
+"0x6df2a4",
+"0x6df355",
+"0x6f9094"
+]
+},
+"2410": {
+"ctor_name": "sub_74a6fb",
+"ctor": "0x74a6fb",
+"vtable": "0x86cd40",
+"slots": [
+"0x74a73a",
+"0x74a761",
+"0x6df2a4",
+"0x6df355",
+"0x74a7d2"
+]
+},
+"2420": {
+"ctor_name": "sub_7593d9",
+"ctor": "0x7593d9",
+"vtable": "0x86d100",
+"slots": [
+"0x759418",
+"0x75943f",
+"0x6df2a4",
+"0x6df355",
+"0x759462",
+"0x7597b5",
+"0x7597dc",
+"0x6df2a4"
+]
+},
+"2501": {
+"ctor_name": "sub_759776",
+"ctor": "0x759776",
+"vtable": "0x86d114",
+"slots": [
+"0x7597b5",
+"0x7597dc",
+"0x6df2a4",
+"0x6df355",
+"0x7597ff",
+"0x7599f3",
+"0x759a1a",
+"0x6df2a4"
+]
+},
+"2502": {
+"ctor_name": "sub_7592fb",
+"ctor": "0x7592fb",
+"vtable": "0x86d0ec",
+"slots": [
+"0x75933a",
+"0x759361",
+"0x6df2a4",
+"0x6df355",
+"0x759384",
+"0x759418",
+"0x75943f",
+"0x6df2a4"
+]
+},
+"2504": {
+"ctor_name": "sub_74c15f",
+"ctor": "0x74c15f",
+"vtable": "0x86cdb4",
+"slots": [
+"0x74c19e",
+"0x74c1c5",
+"0x6df2a4",
+"0x6df355",
+"0x74c21a",
+"0x74c3b7",
+"0x74c461",
+"0x6df2a4"
+]
+},
+"2505": {
+"ctor_name": "sub_75904e",
+"ctor": "0x75904e",
+"vtable": "0x86d0d8",
+"slots": [
+"0x75908d",
+"0x7590b4",
+"0x6df2a4",
+"0x6df355",
+"0x7590d7",
+"0x75933a",
+"0x759361",
+"0x6df2a4"
+]
+},
+"2506": {
+"ctor_name": "sub_7531bd",
+"ctor": "0x7531bd",
+"vtable": "0x86cfa0",
+"slots": [
+"0x7531fc",
+"0x753223",
+"0x6df2a4",
+"0x6df355",
+"0x753278",
+"0x7533ed",
+"0x75347e",
+"0x6df2a4"
+]
+},
+"2507": {
+"ctor_name": "sub_74b7ed",
+"ctor": "0x74b7ed",
+"vtable": "0x86cd8c",
+"slots": [
+"0x74b82c",
+"0x74b853",
+"0x6df2a4",
+"0x6df355",
+"0x74b8a8",
+"0x74bada",
+"0x74bb01",
+"0x6df2a4"
+]
+},
+"2510": {
+"ctor_name": "sub_701ee1",
+"ctor": "0x701ee1",
+"vtable": "0x86bb00",
+"slots": [
+"0x701f45",
+"0x701f9f",
+"0x6df2a4",
+"0x6df355",
+"0x702071",
+"0x7022ee",
+"0x702315",
+"0x6df2a4"
+]
+},
+"2520": {
+"ctor_name": "CMsgStrCheckKey2520__Ctor",
+"ctor": "0x758df1",
+"vtable": "0x86d0c4",
+"slots": [
+"0x758e30",
+"0x6df2ae",
+"0x6df2a4",
+"0x6df355",
+"0x758e57",
+"0x75908d",
+"0x7590b4",
+"0x6df2a4"
+]
+},
+"10005": {
+"ctor_name": "CMsgEntityAction_Ctor",
+"ctor": "0x7403a1",
+"vtable": "0x86c8c4",
+"slots": [
+"0x7403e0",
+"0x7404be",
+"0x6df2a4",
+"0x7404e1",
+"0x7405e7",
+"0x740876",
+"0x74089d",
+"0x6df2a4"
+]
+},
+"10010": {
+"ctor_name": "CMsgAction_Ctor",
+"ctor": "0x6fe8a3",
+"vtable": "0x86bad8",
+"slots": [
+"0x6fe905",
+"0x6feb93",
+"0x6df2a4",
+"0x6df355",
+"0x6fed1f",
+"0x701c91",
+"0x701cb8",
+"0x6df2a4"
+]
+},
+"10014": {
+"ctor_name": "CMsgPlayerSpawn__Ctor",
+"ctor": "0x755e83",
+"vtable": "0x86d09c",
+"slots": [
+"0x755ee7",
+"0x755f41",
+"0x6df2a4",
+"0x6df355",
+"0x755f64",
+"0x75732a",
+"0x757351",
+"0x6df2a4"
+]
+},
+"10017": {
+"ctor_name": "CMsgUserAttribEx__Create",
+"ctor": "0x7572eb",
+"vtable": "0x86d0b0",
+"slots": [
+"0x75732a",
+"0x757351",
+"0x6df2a4",
+"0x6df355",
+"0x757374",
+"0x758e30",
+"0x6df2ae",
+"0x6df2a4"
+]
+}
+}

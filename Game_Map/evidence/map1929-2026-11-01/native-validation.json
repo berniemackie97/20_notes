@@ -1,0 +1,237 @@
+{
+  "source_root": "/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517",
+  "binary_identity": [
+    {
+      "binary": "Conquer.exe",
+      "source_sha256": "b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62",
+      "bndb_input_copy_sha256": "b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62"
+    },
+    {
+      "binary": "TqPackageWdf.dll",
+      "source_sha256": "51312489c69ce51205cf2b84768a2bc875468e1177b092fed0aca0b1ee14c571",
+      "bndb_input_copy_sha256": "51312489c69ce51205cf2b84768a2bc875468e1177b092fed0aca0b1ee14c571"
+    },
+    {
+      "binary": "GameData.dll",
+      "source_sha256": "8168fd126234cbda52442dced750770ecf40d861d4b2aa483f08b91efa8c5077",
+      "bndb_input_copy_sha256": "8168fd126234cbda52442dced750770ecf40d861d4b2aa483f08b91efa8c5077"
+    },
+    {
+      "binary": "GraphicData.dll",
+      "source_sha256": "d5a7685aac412a96374deb3c8a42a62827a705d4d66d4ab4f475fba2c09619ee",
+      "bndb_input_copy_sha256": "d5a7685aac412a96374deb3c8a42a62827a705d4d66d4ab4f475fba2c09619ee"
+    }
+  ],
+  "all_captured_instruction_bytes_match_source": true,
+  "instruction_records": 6578,
+  "captures": [
+    {
+      "evidence": "CMapGroundEntityLayer_GetGroundBitmapScaleDivisor.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 2
+    },
+    {
+      "evidence": "WDF-TqPackagesOpen.json",
+      "binary": "TqPackageWdf.dll",
+      "instruction_records": 251
+    },
+    {
+      "evidence": "CGameMap_CreateFromDataId.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 177
+    },
+    {
+      "evidence": "CGameMap_GetProjectionBaseCenterFromOffsets.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 50
+    },
+    {
+      "evidence": "sub_4ec1e6.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 558
+    },
+    {
+      "evidence": "CMapGroundEntityLayer_LoadGroundPuzzleBitmapFromPath.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 47
+    },
+    {
+      "evidence": "CMapGroundEntityLayer_GetGroundBitmapHeightPixels.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 17
+    },
+    {
+      "evidence": "CMapGroundEntityLayer_SetGroundPuzzleBitmapPathAndLoad.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 28
+    },
+    {
+      "evidence": "sub_48e13d.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 734
+    },
+    {
+      "evidence": "GameData-RoleDataSingleton_GetGameMapInfoRecordByMapDataId.json",
+      "binary": "GameData.dll",
+      "instruction_records": 18
+    },
+    {
+      "evidence": "CMapGroundEntityLayer_GetGroundBitmapWidthPixels.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 17
+    },
+    {
+      "evidence": "WDF-sub_10003c30.json",
+      "binary": "TqPackageWdf.dll",
+      "instruction_records": 34
+    },
+    {
+      "evidence": "CMsgAction__Process.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 1988
+    },
+    {
+      "evidence": "CGameMap_ResetAndInitializeDefaultComponents.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 68
+    },
+    {
+      "evidence": "CMapGroundEntityLayer_GetGroundBitmapDimensions.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 13
+    },
+    {
+      "evidence": "CGameMap_LoadMapFileFromRelativePath.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 314
+    },
+    {
+      "evidence": "CMapPuzzleBitmap_LoadFromPath.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 132
+    },
+    {
+      "evidence": "CMapGroundEntityLayer_Render.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 37
+    },
+    {
+      "evidence": "CMapPuzzleBitmap_PreloadVisibleTileResources.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 107
+    },
+    {
+      "evidence": "sub_638b99.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 62
+    },
+    {
+      "evidence": "CGameMap_RenderComponentsAndShowScreenEffects.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 87
+    },
+    {
+      "evidence": "WDF-sub_10003cd0.json",
+      "binary": "TqPackageWdf.dll",
+      "instruction_records": 22
+    },
+    {
+      "evidence": "WDF-WdfHash_Core.json",
+      "binary": "TqPackageWdf.dll",
+      "instruction_records": 71
+    },
+    {
+      "evidence": "CRadar_Show.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 140
+    },
+    {
+      "evidence": "CGameMap_GetGroundEntityLayerScaledBitmapExtents.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 35
+    },
+    {
+      "evidence": "sub_5e40dd.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 219
+    },
+    {
+      "evidence": "CMapPuzzleBitmap_ResetPuzzleIndexGrid.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 13
+    },
+    {
+      "evidence": "MapFileReaderConstructFromPathAndMode.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 34
+    },
+    {
+      "evidence": "GraphicData-packages.json",
+      "binary": "GraphicData.dll",
+      "instruction_records": 48
+    },
+    {
+      "evidence": "GameData-RoleDataSingleton_LoadGameMapDatTable.json",
+      "binary": "GameData.dll",
+      "instruction_records": 107
+    },
+    {
+      "evidence": "WDF-sub_10003c80.json",
+      "binary": "TqPackageWdf.dll",
+      "instruction_records": 24
+    },
+    {
+      "evidence": "CGameMapGroundEntityLayerComponent_Constructor.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 62
+    },
+    {
+      "evidence": "CGameMap_ResetProjectionViewportState.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 12
+    },
+    {
+      "evidence": "sub_4388dd.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 436
+    },
+    {
+      "evidence": "CMapGroundEntityLayer_GetGroundBitmapScaleFactorRaw.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 5
+    },
+    {
+      "evidence": "WDF-WdfHash_NormalizePath.json",
+      "binary": "TqPackageWdf.dll",
+      "instruction_records": 47
+    },
+    {
+      "evidence": "CMapPuzzleBitmap_GetScaledBitmapDimensions.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 11
+    },
+    {
+      "evidence": "CMapPuzzleBitmap_RenderAtOffset.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 479
+    },
+    {
+      "evidence": "CMapPuzzleBitmap_GetPuzzleIndexAtOrFFFF.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 30
+    },
+    {
+      "evidence": "CMapPuzzleBitmap_Constructor.json",
+      "binary": "Conquer.exe",
+      "instruction_records": 42
+    }
+  ],
+  "fopen_import": [
+    {
+      "dll": "MSVCRT.dll",
+      "symbol": "fopen",
+      "iat": "0x844770"
+    }
+  ],
+  "execution_observed": false
+}

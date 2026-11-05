@@ -387,7 +387,7 @@ value other than 0 and 1 falls straight through with no work):
 Not a PK-elite packet. It is the account kick notice `CMsgKickoutNotice`: see
 [13_connection_lifecycle](13_connection_lifecycle.md#kick-notice-1115-cmsgkickoutnotice).
 
-## MsgBattleEffectiveness (Type 1111)
+## Type 1111 — class unproven; label `MsgBattleEffectiveness` withdrawn (`MsgBattleEffectiveness.cpp` asserts are in the type 1032 handler; CP0.1 2026-11-05)
 **Direction**: S→C
 **Purpose**: Updates the hero bulletin payload from a string-list triplet format when subtype `3` is received.
 **Dispatch**: Create `CMsgBattleEffectiveness__Create` (0x75ED21), parse `CMsgBattleEffectiveness__Parse` (0x75EDDD), process `CMsgBattleEffectiveness__Process` (0x75EE72)

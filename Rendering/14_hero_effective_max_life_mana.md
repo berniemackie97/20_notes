@@ -60,7 +60,7 @@ lookup (`RoleData` vtable `+0x28`, `RoleDataSingleton_LookupTransformLookRecord`
 value. With look `0` it clears `+0xEC`, resets `+0x174` to `0` and `+0x184` to `0x64`, and reapplies
 the visual sources.
 
-The look itself is derived from the appearance composite carried by **MsgUserAttribEx attribute id
+The look itself is derived from the appearance composite carried by **MsgUserAttrib attribute id
 `0xB`** (`0x757AC7`), read as a u64:
 
 ```
@@ -78,7 +78,7 @@ else:
 CRole__SetTransformLook(role, look)
 ```
 
-`CMsgPlayerSpawn__Process` (`0x756BA4`) calls `CRole__SetTransformLook` on the spawn path as well.
+`CMsgPlayer__Process` (`0x756BA4`) calls `CRole__SetTransformLook` on the spawn path as well.
 The transform table is `ini/Transform.ini`, already parsed managed-side by
 `TransformLookIniTable`.
 
@@ -203,7 +203,7 @@ formula consumes had been inherited from existing field names rather than checke
 
 ### The override and overlay offsets are confirmed
 
-`ClientWorldLocalHeroStatState` names three fields fed by `MsgUserAttribEx` ids 1, 3 and 43. Each id
+`ClientWorldLocalHeroStatState` names three fields fed by `MsgUserAttrib` ids 1, 3 and 43. Each id
 was traced to its actual store, and all three match what the formulas read:
 
 | Attrib id | Native path | Field |
@@ -235,7 +235,7 @@ setIndex15(smoothed)
 So it snaps **down** instantly when life drops and climbs back at `maxLife / 80` per frame when life
 rises. That is exactly the current/target pair `CMyProgress::Show` draws with frames 1 and 0.
 
-`CMsgTick__Process` (`0x6EC485`–`0x6EC4C7`) also writes it, which is why the "never comes off the
+`CMsgItem__Process` (`0x6EC485`–`0x6EC4C7`) also writes it, which is why the "never comes off the
 wire" claim in the gauge note was wrong:
 
 ```
@@ -285,12 +285,12 @@ The writer is `CRole_SetPlayerDataByIndex` (`0x673EAC`), the counterpart of
 index is 1, and the new value is **lower** than the current one, it first pokes `hero+0x2C30`
 (`FrameTickPerfTimer_RecordDeviceResetStart`) — the took-damage hook. A null container is a no-op.
 
-It has nine call sites; five write index 1: `CMsgUserInfo__Process`, `CMsgUserAttribEx__Process`,
-`CMsgPlayerSpawn__Process`, `CMsgTick__Process` and `CMsgInteract__Process`. Managed now covers the
-`MsgUserInfo`, `MsgUserAttribEx`, subtype-46 `MsgTick`, and three verified `MsgInteract` paths. The
+It has nine call sites; five write index 1: `CMsgUserInfo__Process`, `CMsgUserAttrib__Process`,
+`CMsgPlayer__Process`, `CMsgItem__Process` and `CMsgInteract__Process`. Managed now covers the
+`MsgUserInfo`, `MsgUserAttrib`, subtype-46 `MsgItem`, and three verified `MsgInteract` paths. The
 remaining uncovered writer is the remote-player spawn path described below.
 
-**`CMsgTick__Process` subtype 46 is the complete equipment snapshot plus clamp.** Packet offsets
+**`CMsgItem__Process` subtype 46 is the complete equipment snapshot plus clamp.** Packet offsets
 `0x20` through `0x50` contain 13 item UIDs mapped in order to slots
 `{1,2,3,5,4,6,7,8,9,16,15,17,18}`. Native resolves each UID with
 `CHeroItem__FindTrackedItemByUid`; zero or missing UIDs clear that slot. After
@@ -349,7 +349,7 @@ Two consequences worth stating because they look like bugs and are not:
 Subtype `0x2D` additionally stores the raw amount at `role+0x97C`
 (`89 81 7c090000`), which subtype `0x38` does not.
 
-**`CMsgPlayerSpawn__Process` carries current life on the wire** at `packet+0x50`. Raw x86 resolves
+**`CMsgPlayer__Process` carries current life on the wire** at `packet+0x50`. Raw x86 resolves
 all three arms and their precedence:
 
 - the self-spawn guard returns before mutation;

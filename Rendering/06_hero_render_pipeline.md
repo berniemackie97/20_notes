@@ -699,7 +699,7 @@ Verified startup order in `CMsgUserInfo__Process` for the local hero:
 5. `CRole__SetLinkedSourceLookupId(hero, hairCompositeId % 1000, 1)`
 6. `CRole__SetHeadAttachmentSource(hero, hairCompositeId / 1000, 1)`
 
-`CMsgPlayerSpawn__Process` explicitly ignores the local hero and returns before any tile/direction or
+`CMsgPlayer__Process` explicitly ignores the local hero and returns before any tile/direction or
 appearance writes from `10014`, so this `1006` chain is the verified
 native startup seed for local-hero body appearance, mesh-transform seed, and transform flag.
 

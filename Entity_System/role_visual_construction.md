@@ -261,7 +261,7 @@ Current managed status:
   - secondary texture rebinding
   - stored material reapply at the OpenGL draw boundary
 
-Verified `CMsgPlayerSpawn__Process` packet feed into this same cluster:
+Verified `CMsgPlayer__Process` packet feed into this same cluster:
 
 - `packet+0x28` (`PrimaryHelmetSourceId`) feeds `CRole__SetPrimaryHelmetVariantInputsAndRefreshRoleView`
 - `packet+0x2C` (`SharedBodyHelmetVariantLookupSourceId`) feeds
@@ -320,7 +320,7 @@ CNetMsg__Send(msg)
 The startup seed above is not the only native consumer of the packed appearance fields.
 The same family is re-consumed later by verified runtime update handlers:
 
-- `CMsgUserAttribEx__Process` (`0x757374`), attribute id `11`
+- `CMsgUserAttrib__Process` (`0x757374`), attribute id `11`
   - re-decomposes the incoming 64-bit composite
   - updates mesh transform id through
     `CRole__SetMeshTransformIdAndResolveEffectiveMeshTransform`
@@ -335,7 +335,7 @@ These are verified runtime mutation paths, not the initial local-hero bootstrap 
 
 ## Verified local-hero spawn boundary
 
-`CMsgPlayerSpawn__Process` explicitly ignores packets whose `entity_id == CHero+0xCC`.
+`CMsgPlayer__Process` explicitly ignores packets whose `entity_id == CHero+0xCC`.
 The handler logs `"Got a player with hero id! %u"` and returns before constructing or refreshing
 another local entity, before `EntityRef_ResolveByIdOrLocalHero`, and before any tile, direction,
 appearance, or RoleView writes from that packet are applied.

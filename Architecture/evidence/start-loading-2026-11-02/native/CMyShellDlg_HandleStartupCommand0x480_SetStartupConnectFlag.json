@@ -1,0 +1,26 @@
+{
+  "asm": {
+    "content": [
+      {
+        "type": "text",
+        "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x5c6eb0\n005c6eb0  8b 85 18 71 ff ff mov     eax, dword [ebp-0x8ee8]\n005c6eb6  c7 80 ac 9a 17 00 01 00 00 00 mov     dword [eax+0x179aac], 0x1\n005c6ec0  e9 a9 6a 00 00   jmp     0x5cd96e\n\n# Block 2 at 0x5cd96e\n005cd96e  ff 75 10         push    dword [ebp+0x10]\n005cd971  ff 75 0c         push    dword [ebp+0xc]\n005cd974  ff 75 08         push    dword [ebp+0x8]\n005cd977  8b 8d 18 71 ff ff mov     ecx, dword [ebp-0x8ee8]\n005cd97d  e8 ea 97 1a 00   call    ?WindowProc@CWnd@@MAEJIIJ@Z\n005cd982  8b 4d f4         mov     ecx, dword [ebp-0xc]\n005cd985  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx\n005cd98c  5f               pop     edi\n005cd98d  5e               pop     esi\n005cd98e  5b               pop     ebx\n005cd98f  c9               leave\n005cd990  c2 0c 00         retn    0xc\n"
+      }
+    ],
+    "structuredContent": {
+      "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x5c6eb0\n005c6eb0  8b 85 18 71 ff ff mov     eax, dword [ebp-0x8ee8]\n005c6eb6  c7 80 ac 9a 17 00 01 00 00 00 mov     dword [eax+0x179aac], 0x1\n005c6ec0  e9 a9 6a 00 00   jmp     0x5cd96e\n\n# Block 2 at 0x5cd96e\n005cd96e  ff 75 10         push    dword [ebp+0x10]\n005cd971  ff 75 0c         push    dword [ebp+0xc]\n005cd974  ff 75 08         push    dword [ebp+0x8]\n005cd977  8b 8d 18 71 ff ff mov     ecx, dword [ebp-0x8ee8]\n005cd97d  e8 ea 97 1a 00   call    ?WindowProc@CWnd@@MAEJIIJ@Z\n005cd982  8b 4d f4         mov     ecx, dword [ebp-0xc]\n005cd985  64 89 0d 00 00 00 00 mov     dword [fs:0x0], ecx\n005cd98c  5f               pop     edi\n005cd98d  5e               pop     esi\n005cd98e  5b               pop     ebx\n005cd98f  c9               leave\n005cd990  c2 0c 00         retn    0xc\n"
+    },
+    "isError": false
+  },
+  "hlil": {
+    "content": [
+      {
+        "type": "text",
+        "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n005c6eb6        *(arg1[-0x23ba] + 0x179aac) = 1\n005cd97d        long result = CWnd::WindowProc(arg1[-0x23ba], arg1[2], arg1[3], arg1[4])\n005cd985        TEB* fsbase\n005cd985        fsbase->NtTib.ExceptionList = arg1[-3]\n005cd98f        *arg1\n005cd990        return result"
+      }
+    ],
+    "structuredContent": {
+      "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n005c6eb6        *(arg1[-0x23ba] + 0x179aac) = 1\n005cd97d        long result = CWnd::WindowProc(arg1[-0x23ba], arg1[2], arg1[3], arg1[4])\n005cd985        TEB* fsbase\n005cd985        fsbase->NtTib.ExceptionList = arg1[-3]\n005cd98f        *arg1\n005cd990        return result"
+    },
+    "isError": false
+  }
+}

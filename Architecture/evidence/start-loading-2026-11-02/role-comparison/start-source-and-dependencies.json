@@ -1,0 +1,639 @@
+{
+  "source": {
+    "path": "/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517/data/main/start.dat",
+    "sha256": "db4b4550bc4b3fa91b2fd7cc173bb9a6f8109dbc65221e7f0df290610655da20",
+    "file_bytes": 548855,
+    "uncompressed_bytes": 663315,
+    "compressed": "CWS"
+  },
+  "header": {
+    "_xmlExportMajor": "2",
+    "_xmlExportMinor": "2",
+    "_generator": "JPEXS Free Flash Decompiler v.26.3.0",
+    "type": "SWF",
+    "charset": "UTF-8",
+    "compression": "ZLIB",
+    "encrypted": "false",
+    "frameCount": "4",
+    "frameRate": "30.0",
+    "gfx": "false",
+    "hasEndTag": "true",
+    "version": "6"
+  },
+  "sprite_id": 394,
+  "definition": {
+    "offset": "0x965f6",
+    "payload_offset": "0x965fc",
+    "length": 2429,
+    "code": 39,
+    "timeline": "root",
+    "frame": 1,
+    "payload_sha256": "45a0e93a474bbe4b83b5702883afd0d9c502a1a629a2c32a51d436db56a3451f",
+    "id": 394
+  },
+  "dependencies": [
+    {
+      "id": 3,
+      "kind": "DefineFontNameTag",
+      "direct_dependencies": [
+        3
+      ],
+      "definition": {
+        "offset": "0x6a",
+        "payload_offset": "0x70",
+        "length": 1155,
+        "code": 48,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "e0be88aa42777f15157f1c8a3cc6580622e3f8fbc84c4cb501ad2d14a6ab670e",
+        "id": 3
+      }
+    },
+    {
+      "id": 261,
+      "kind": "DefineShape3Tag",
+      "direct_dependencies": [],
+      "definition": {
+        "offset": "0x7a317",
+        "payload_offset": "0x7a31d",
+        "length": 69,
+        "code": 32,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "ce584df489bc17313dd13f91235ed48b9a21904bdbafed5b9aebc097fe0c9749",
+        "id": 261
+      }
+    },
+    {
+      "id": 262,
+      "kind": "DefineSpriteTag",
+      "direct_dependencies": [
+        261
+      ],
+      "definition": {
+        "offset": "0x7a362",
+        "payload_offset": "0x7a368",
+        "length": 65,
+        "code": 39,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "7d8ea25a804646eebe96b1a968afece866bc16a5aa4aff6a9dfa8c7b3da571a4",
+        "id": 262
+      }
+    },
+    {
+      "id": 373,
+      "kind": "DefineEditTextTag",
+      "direct_dependencies": [
+        3
+      ],
+      "definition": {
+        "offset": "0x8d2f1",
+        "payload_offset": "0x8d2f7",
+        "length": 31,
+        "code": 37,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "cdacf36a51bcb28a8485a146b69063fe0f3b03202b5f9801c4aa8491da3396be",
+        "id": 373
+      }
+    },
+    {
+      "id": 374,
+      "kind": "DefineBitsJPEG3Tag",
+      "direct_dependencies": [],
+      "definition": {
+        "offset": "0x8d316",
+        "payload_offset": "0x8d31c",
+        "length": 3205,
+        "code": 35,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "08a5e4c2f5ae7565e80f480b6039e4c08dc215b9cfad5890f891c20ab1200c25",
+        "id": 374
+      }
+    },
+    {
+      "id": 375,
+      "kind": "DefineShape2Tag",
+      "direct_dependencies": [
+        374
+      ],
+      "definition": {
+        "offset": "0x8dfa1",
+        "payload_offset": "0x8dfa7",
+        "length": 100,
+        "code": 22,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "71dd457def04843d6b1c461ec045f18b6a6043706e8354b004f8687faf2b0965",
+        "id": 375
+      }
+    },
+    {
+      "id": 376,
+      "kind": "DefineBitsJPEG2Tag",
+      "direct_dependencies": [],
+      "definition": {
+        "offset": "0x8e00b",
+        "payload_offset": "0x8e011",
+        "length": 18839,
+        "code": 21,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "c0de1e5a6c19fea4bb64e7e4617c2b0fa44b2eb082e6544d8c4395f78b18db84",
+        "id": 376
+      }
+    },
+    {
+      "id": 377,
+      "kind": "DefineShapeTag",
+      "direct_dependencies": [
+        376
+      ],
+      "definition": {
+        "offset": "0x929a8",
+        "payload_offset": "0x929ae",
+        "length": 55,
+        "code": 2,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "0a0d8e63b06d13b27a6b3434ad67ab0c544b9bd461e7a7afc51b3fe647c3c4f7",
+        "id": 377
+      }
+    },
+    {
+      "id": 378,
+      "kind": "DefineBitsJPEG3Tag",
+      "direct_dependencies": [],
+      "definition": {
+        "offset": "0x929e5",
+        "payload_offset": "0x929eb",
+        "length": 1550,
+        "code": 35,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "e2c7293ff21766526816024494edf3ea92ef932ca47de628777ac05958e5e7db",
+        "id": 378
+      }
+    },
+    {
+      "id": 379,
+      "kind": "DefineShape3Tag",
+      "direct_dependencies": [
+        378
+      ],
+      "definition": {
+        "offset": "0x92ff9",
+        "payload_offset": "0x92fff",
+        "length": 81,
+        "code": 32,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "104290c9090f94829ccdbc787af0121b615f0272e9673c17caf7876ddcf24b31",
+        "id": 379
+      }
+    },
+    {
+      "id": 380,
+      "kind": "DefineSpriteTag",
+      "direct_dependencies": [
+        379
+      ],
+      "definition": {
+        "offset": "0x93050",
+        "payload_offset": "0x93056",
+        "length": 16,
+        "code": 39,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "e5d28c24a01151bdc57ab9f45ee7a33161b8eda2906d3ec9addaa37817c9f999",
+        "id": 380
+      }
+    },
+    {
+      "id": 381,
+      "kind": "DefineBitsJPEG2Tag",
+      "direct_dependencies": [],
+      "definition": {
+        "offset": "0x93066",
+        "payload_offset": "0x9306c",
+        "length": 5433,
+        "code": 21,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "c18391e064435523171372af6f9d4747ab554ece4b6068974615e8c40cd7a301",
+        "id": 381
+      }
+    },
+    {
+      "id": 382,
+      "kind": "DefineBitsJPEG2Tag",
+      "direct_dependencies": [],
+      "definition": {
+        "offset": "0x945a5",
+        "payload_offset": "0x945ab",
+        "length": 5173,
+        "code": 21,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "59ff89a15ecadc77aab6d7e4cfdf5786609fecb1fb3ff3c8ee4a3e72b6dc75a0",
+        "id": 382
+      }
+    },
+    {
+      "id": 383,
+      "kind": "DefineShape2Tag",
+      "direct_dependencies": [
+        381,
+        382
+      ],
+      "definition": {
+        "offset": "0x959e0",
+        "payload_offset": "0x959e6",
+        "length": 102,
+        "code": 22,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "184ac8faa51178cec4947896d36061f3679069c364a89afa8b2fb627884ee61a",
+        "id": 383
+      }
+    },
+    {
+      "id": 384,
+      "kind": "DefineBitsJPEG3Tag",
+      "direct_dependencies": [],
+      "definition": {
+        "offset": "0x95a4c",
+        "payload_offset": "0x95a52",
+        "length": 1263,
+        "code": 35,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "d05222f4276d0d87f1eacd3dc135fb59530ae101d41c81c76d2a3ba21cb402f6",
+        "id": 384
+      }
+    },
+    {
+      "id": 385,
+      "kind": "DefineShapeTag",
+      "direct_dependencies": [
+        384
+      ],
+      "definition": {
+        "offset": "0x95f41",
+        "payload_offset": "0x95f47",
+        "length": 49,
+        "code": 2,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "531a522521920c5c83734a96cee5d790de88deae81d1d15935e1b120077deb95",
+        "id": 385
+      }
+    },
+    {
+      "id": 386,
+      "kind": "DefineSpriteTag",
+      "direct_dependencies": [
+        385
+      ],
+      "definition": {
+        "offset": "0x95f78",
+        "payload_offset": "0x95f7e",
+        "length": 16,
+        "code": 39,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "5443414eb3594e4501e6efc1f66fe64a0dd280dd01634521a9dc0565ebb43347",
+        "id": 386
+      }
+    },
+    {
+      "id": 387,
+      "kind": "DefineSpriteTag",
+      "direct_dependencies": [
+        386
+      ],
+      "definition": {
+        "offset": "0x95f8e",
+        "payload_offset": "0x95f94",
+        "length": 89,
+        "code": 39,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "616b434bcb3b1abf34d6ff314fd25ef25cbcf2e11959e7fb259e71b42aa4fc4d",
+        "id": 387
+      }
+    },
+    {
+      "id": 388,
+      "kind": "DefineBitsJPEG3Tag",
+      "direct_dependencies": [],
+      "definition": {
+        "offset": "0x95fed",
+        "payload_offset": "0x95ff3",
+        "length": 1224,
+        "code": 35,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "1929bfb9c7b933fc5bd6f268dd2c5308e1e508ecb0a3c8b6ffe098b51300dc0c",
+        "id": 388
+      }
+    },
+    {
+      "id": 389,
+      "kind": "DefineShapeTag",
+      "direct_dependencies": [
+        388
+      ],
+      "definition": {
+        "offset": "0x964bb",
+        "payload_offset": "0x964c1",
+        "length": 40,
+        "code": 2,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "84f0f2b57694f53a40293014a993d1a98d2c97410c2fb03c2d07df1bbb5d896c",
+        "id": 389
+      }
+    },
+    {
+      "id": 390,
+      "kind": "DefineShapeTag",
+      "direct_dependencies": [
+        388
+      ],
+      "definition": {
+        "offset": "0x964e9",
+        "payload_offset": "0x964ef",
+        "length": 40,
+        "code": 2,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "844713a6049b99199c20b43789dc30312bb0234405a211090d71ba1c024940b0",
+        "id": 390
+      }
+    },
+    {
+      "id": 391,
+      "kind": "DefineShapeTag",
+      "direct_dependencies": [
+        388
+      ],
+      "definition": {
+        "offset": "0x96517",
+        "payload_offset": "0x9651d",
+        "length": 40,
+        "code": 2,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "1c4134052cf2e9c1fa676b5494b352927f1a40468fe4439f32254f8027dedaa6",
+        "id": 391
+      }
+    },
+    {
+      "id": 392,
+      "kind": "DefineShapeTag",
+      "direct_dependencies": [
+        388
+      ],
+      "definition": {
+        "offset": "0x96545",
+        "payload_offset": "0x9654b",
+        "length": 50,
+        "code": 2,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "af355b7ca009db9104d7703541d22853e290ff6c2a5c2fd07d477bcb832bf8f8",
+        "id": 392
+      }
+    },
+    {
+      "id": 393,
+      "kind": "DefineSpriteTag",
+      "direct_dependencies": [
+        389,
+        390,
+        391,
+        392
+      ],
+      "definition": {
+        "offset": "0x9657d",
+        "payload_offset": "0x96583",
+        "length": 115,
+        "code": 39,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "5be032a4b8e9bc89f17eeea9b759f537340d61259e54ed69f1eefd54fcec8a5f",
+        "id": 393
+      }
+    },
+    {
+      "id": 394,
+      "kind": "DefineSpriteTag",
+      "direct_dependencies": [
+        262,
+        373,
+        375,
+        377,
+        380,
+        383,
+        387,
+        393
+      ],
+      "definition": {
+        "offset": "0x965f6",
+        "payload_offset": "0x965fc",
+        "length": 2429,
+        "code": 39,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "45a0e93a474bbe4b83b5702883afd0d9c502a1a629a2c32a51d436db56a3451f",
+        "id": 394
+      }
+    }
+  ],
+  "bitmaps": [
+    {
+      "id": 374,
+      "kind": "DefineBitsJPEG3Tag",
+      "definition": {
+        "offset": "0x8d316",
+        "payload_offset": "0x8d31c",
+        "length": 3205,
+        "code": 35,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "08a5e4c2f5ae7565e80f480b6039e4c08dc215b9cfad5890f891c20ab1200c25",
+        "id": 374
+      },
+      "payload_excluding_id_sha256": "4631534a1ab92aba0da6f848cd876ed8552b1453f8ce304b785a93239e9fa54e",
+      "jpeg_sha256": "ec16a5fc1bc0c6f3201b2c3de85da2ad31d7de753c045c4e5c975f6a7d206748",
+      "alpha_sha256": "10e93c44c443919e0c671807b62543007a5b1c13136d1269695e1b82068e7d30",
+      "encoded_image_bytes": 1516
+    },
+    {
+      "id": 376,
+      "kind": "DefineBitsJPEG2Tag",
+      "definition": {
+        "offset": "0x8e00b",
+        "payload_offset": "0x8e011",
+        "length": 18839,
+        "code": 21,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "c0de1e5a6c19fea4bb64e7e4617c2b0fa44b2eb082e6544d8c4395f78b18db84",
+        "id": 376
+      },
+      "payload_excluding_id_sha256": "eb0b4aec34e91dc50f9a62ad24d561007288a72c1b376104a6c260c43ae5f608"
+    },
+    {
+      "id": 378,
+      "kind": "DefineBitsJPEG3Tag",
+      "definition": {
+        "offset": "0x929e5",
+        "payload_offset": "0x929eb",
+        "length": 1550,
+        "code": 35,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "e2c7293ff21766526816024494edf3ea92ef932ca47de628777ac05958e5e7db",
+        "id": 378
+      },
+      "payload_excluding_id_sha256": "65c60f4cce09e1326f58e3b9fb6e3d3273afa753c7b1d38340241a08f9187565",
+      "jpeg_sha256": "bc36562ad6cc70af38ba90730280fa0a55a45c5e2da6cb7f6ba5a2674ae4e254",
+      "alpha_sha256": "de12b2d21a018f7941b62a59e9828cbf3b9a8d81ad038f5db00f48402687602d",
+      "encoded_image_bytes": 532
+    },
+    {
+      "id": 381,
+      "kind": "DefineBitsJPEG2Tag",
+      "definition": {
+        "offset": "0x93066",
+        "payload_offset": "0x9306c",
+        "length": 5433,
+        "code": 21,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "c18391e064435523171372af6f9d4747ab554ece4b6068974615e8c40cd7a301",
+        "id": 381
+      },
+      "payload_excluding_id_sha256": "364386ca6b629da415ddcceae7c8b6545ad10d3559552be38b3c62451489b8a6"
+    },
+    {
+      "id": 382,
+      "kind": "DefineBitsJPEG2Tag",
+      "definition": {
+        "offset": "0x945a5",
+        "payload_offset": "0x945ab",
+        "length": 5173,
+        "code": 21,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "59ff89a15ecadc77aab6d7e4cfdf5786609fecb1fb3ff3c8ee4a3e72b6dc75a0",
+        "id": 382
+      },
+      "payload_excluding_id_sha256": "e650408d231ff495972ea8198854486cb69e3619cbb4f5497abb1890934fd2a6"
+    },
+    {
+      "id": 384,
+      "kind": "DefineBitsJPEG3Tag",
+      "definition": {
+        "offset": "0x95a4c",
+        "payload_offset": "0x95a52",
+        "length": 1263,
+        "code": 35,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "d05222f4276d0d87f1eacd3dc135fb59530ae101d41c81c76d2a3ba21cb402f6",
+        "id": 384
+      },
+      "payload_excluding_id_sha256": "14aaeffb8a1308d9723de1f2101de09e75f417a5fc4cba23436cdaa0c0af56be",
+      "jpeg_sha256": "c46733e5e8e2d1f54c9e43d4938cfd020e0af15e7680a4661e62117be4f14441",
+      "alpha_sha256": "bb7528efe68c81e72e725e275e845a775a31e332eb35b195aa890061adaeee8b",
+      "encoded_image_bytes": 415
+    },
+    {
+      "id": 388,
+      "kind": "DefineBitsJPEG3Tag",
+      "definition": {
+        "offset": "0x95fed",
+        "payload_offset": "0x95ff3",
+        "length": 1224,
+        "code": 35,
+        "timeline": "root",
+        "frame": 1,
+        "payload_sha256": "1929bfb9c7b933fc5bd6f268dd2c5308e1e508ecb0a3c8b6ffe098b51300dc0c",
+        "id": 388
+      },
+      "payload_excluding_id_sha256": "85b5373da86700d2477049f6325ec60e6b4a003101d4335310949def84a38499",
+      "jpeg_sha256": "b0ee2b259cbbd165ca85232f360651572a9defa0caa04f14b3b8d01673f92d4a",
+      "alpha_sha256": "53b9701d2d13685c84c73a5fdd888192622ef9511025a47fbe3ef9dd6e324d5b",
+      "encoded_image_bytes": 787
+    }
+  ],
+  "actions": [
+    {
+      "offset": "0x96600",
+      "payload_offset": "0x96606",
+      "length": 130,
+      "code": 12,
+      "timeline": "394",
+      "frame": 1,
+      "payload_sha256": "e02e0594fe67a96043c8bf5b878234bffdfe5281f796f26f8ad68accc91fcadc",
+      "artifact": "start-actions/frame-1-0x96600.bin"
+    },
+    {
+      "offset": "0x96688",
+      "payload_offset": "0x9668e",
+      "length": 72,
+      "code": 12,
+      "timeline": "394",
+      "frame": 1,
+      "payload_sha256": "69056edbc6b94fc68cab0bcf6cded788df0434daad29077e1a42602c4b7bb9af",
+      "artifact": "start-actions/frame-1-0x96688.bin"
+    },
+    {
+      "offset": "0x966f5",
+      "payload_offset": "0x966fb",
+      "length": 129,
+      "code": 12,
+      "timeline": "394",
+      "frame": 2,
+      "payload_sha256": "7b6b45584f314051a60832f851d2fa8b4ea78d8ce5da3623b46ce73b8cd551da",
+      "artifact": "start-actions/frame-2-0x966f5.bin"
+    },
+    {
+      "offset": "0x967c0",
+      "payload_offset": "0x967c6",
+      "length": 42,
+      "code": 12,
+      "timeline": "394",
+      "frame": 17,
+      "payload_sha256": "3e18d69cbc1cd443692c09bcfacf7c6559d921de7e45245a32a69d2b1b98aeac",
+      "artifact": "start-actions/frame-17-0x967c0.bin"
+    },
+    {
+      "offset": "0x9699f",
+      "payload_offset": "0x969a5",
+      "length": 39,
+      "code": 12,
+      "timeline": "394",
+      "frame": 36,
+      "payload_sha256": "4380d62a2c1d819f5cfb5da323aa977565e161a346421128f7fe8a5c0977ed90",
+      "artifact": "start-actions/frame-36-0x9699f.bin"
+    },
+    {
+      "offset": "0x96f22",
+      "payload_offset": "0x96f28",
+      "length": 35,
+      "code": 12,
+      "timeline": "394",
+      "frame": 99,
+      "payload_sha256": "bf1599d7e0265e1491aa25e1879d02f2eedcb57981d4ce68552b384e2e4bcb0b",
+      "artifact": "start-actions/frame-99-0x96f22.bin"
+    }
+  ],
+  "xml_source": "/Volumes/EnderChest/Development/Repos/DotNet/Conquer/Evidence/nativeflashevidence/work/login-ui-research/decode/start.xml",
+  "xml_sha256": "6ad5e72823712b6ff6260e3440f23eaf4f1024e7bc89d0d1104736ea6b288e7c"
+}

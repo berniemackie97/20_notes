@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x638e9f\n00638e9f  55               push    ebp\n00638ea0  8b ec            mov     ebp, esp\n00638ea2  51               push    ecx\n00638ea3  51               push    ecx\n00638ea4  83 79 04 00      cmp     dword [ecx+0x4], 0x0\n00638ea8  74 0a            je      0x638eb4\n\n# Block 3 at 0x638eaa\n00638eaa  83 c1 08         add     ecx, 0x8\n00638ead  e8 21 0a 01 00   call    CMapGroundEntityLayer_GetTerrainCacheScaledBitmapWidthPixels\n00638eb2  c9               leave\n00638eb3  c3               retn\n\n# Block 2 at 0x638eb4\n00638eb4  8d 45 f8         lea     eax, [ebp-0x8]\n00638eb7  81 c1 a0 00 00 00 add     ecx, 0xa0\n00638ebd  50               push    eax\n00638ebe  e8 19 19 00 00   call    CMapPuzzleBitmap_GetScaledBitmapDimensions\n00638ec3  8b 45 f8         mov     eax, dword [ebp-0x8]\n00638ec6  c9               leave\n00638ec7  c3               retn\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x638e9f\n00638e9f  55               push    ebp\n00638ea0  8b ec            mov     ebp, esp\n00638ea2  51               push    ecx\n00638ea3  51               push    ecx\n00638ea4  83 79 04 00      cmp     dword [ecx+0x4], 0x0\n00638ea8  74 0a            je      0x638eb4\n\n# Block 3 at 0x638eaa\n00638eaa  83 c1 08         add     ecx, 0x8\n00638ead  e8 21 0a 01 00   call    CMapGroundEntityLayer_GetTerrainCacheScaledBitmapWidthPixels\n00638eb2  c9               leave\n00638eb3  c3               retn\n\n# Block 2 at 0x638eb4\n00638eb4  8d 45 f8         lea     eax, [ebp-0x8]\n00638eb7  81 c1 a0 00 00 00 add     ecx, 0xa0\n00638ebd  50               push    eax\n00638ebe  e8 19 19 00 00   call    CMapPuzzleBitmap_GetScaledBitmapDimensions\n00638ec3  8b 45 f8         mov     eax, dword [ebp-0x8]\n00638ec6  c9               leave\n00638ec7  c3               retn\n"
+  },
+  "isError": false
+}

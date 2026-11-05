@@ -503,7 +503,7 @@ The end-to-end upstream chain is now verified in `Conquer.exe`:
 
 ```
 spawn_packet_frame[+0x30]                                       ; body offset 44
-    → CMsgPlayerSpawn__Process @ 0x756a88
+    → CMsgPlayer__Process @ 0x756a88
     → CRole__SetPrimaryBodyVariantInputsAndRefreshRoleView      ; writes role[+0x11C]
     → CRole__RefreshPrimaryBodyVariantSourcesToRoleView
     → key 4 dispatch on PlayerRoleView
@@ -528,7 +528,7 @@ Each setter is therefore consuming the equipped item's `[+0x1c]` field — the c
 **not** the inventory row Uid.
 
 **Slot map for `MsgSpawnPlayer` (10014).** The call sites in
-`CMsgPlayerSpawn__Process` @ `0x755F64..0x756B43` read from
+`CMsgPlayer__Process` @ `0x755F64..0x756B43` read from
 `*(esi+0x404)` (the spawn frame, which includes the 4-byte header — so
 `frame[N] = body[N-4]`). Each per-slot setter is fed two slices of the frame:
 `arg2` from the per-slot body-variant input region, and `arg3` from the per-slot
@@ -657,7 +657,7 @@ The refresh pushes `this->m_pRoleView@+0x3b4` into
 `CRole__ApplyMiscSourceToRoleView`, which invokes
 `(*(*roleView + 4))(propertyKey=9, value=this->+0x12c)` — dispatch key 9 =
 `PlayerRoleView_SetMiscSource` (slice 9). Call site
-`CMsgPlayerSpawn__Process @ 0x7564bf` passes `lookRecord[+0x40]` as the look's default
+`CMsgPlayer__Process @ 0x7564bf` passes `lookRecord[+0x40]` as the look's default
 misc source. This field comes from the client-side look catalog; MsgSpawnPlayer does
 not carry a misc source over the wire.
 
@@ -1069,7 +1069,7 @@ Verified player construction call-sites in `Conquer.exe`:
   - computes `% 1000`
   - calls `CRole__CreateRoleView(role, remainder, 1)` (`0x64D51F`)
   - then immediately applies packet `+0x08` through the separate refresh path (`CRole__SetTransformLookSourceId`, `0x650B1F`)
-- `CMsgPlayerSpawn__Process` (`0x755F64`)
+- `CMsgPlayer__Process` (`0x755F64`)
   - reads packet `+0x04`
   - computes `% 1000`
   - calls `CRole__CreateRoleView(role, remainder, 1)` (`0x64D51F`)
@@ -1499,7 +1499,7 @@ Verified packet call-sites:
 - `CMsgUserInfo__Process` (`0x764276`)
   - `HairCompositeId % 1000` -> `CRole__SetLinkedSourceLookupId(role, linkedSourceLookupId, 1)`
   - `HairCompositeId / 1000` -> `CRole__SetHeadAttachmentSource(role, headAttachmentSource, 1)`
-- `CMsgPlayerSpawn__Process` (`0x755F64`)
+- `CMsgPlayer__Process` (`0x755F64`)
   - `HairCompositeId % 1000` -> `CRole__SetLinkedSourceLookupId(role, linkedSourceLookupId, 1)`
   - `HairCompositeId / 1000` -> `CRole__SetHeadAttachmentSource(role, headAttachmentSource, 1)`
 

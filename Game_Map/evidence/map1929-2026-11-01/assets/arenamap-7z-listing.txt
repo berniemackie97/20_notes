@@ -1,0 +1,29 @@
+
+7-Zip (z) 26.01 (arm64) : Copyright (c) 1999-2026 Igor Pavlov : 2026-04-27
+ 64-bit arm_v:8.5-A locale=C.UTF-8 Threads:10 OPEN_MAX:1048575, ASM
+
+Scanning the drive for archives:
+1 file, 3394 bytes (4 KiB)
+
+Listing archive: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517/map/map/arenamap.7z
+
+--
+Path = /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517/map/map/arenamap.7z
+Type = 7z
+Physical Size = 3394
+Headers Size = 125
+Method = LZMA:17
+Solid = -
+Blocks = 1
+
+----------
+Path = arenamap.DMap
+Size = 107308
+Packed Size = 3269
+Modified = 2009-06-07 21:44:10.0000000
+Attributes = A
+CRC = 17824C54
+Encrypted = -
+Method = LZMA:17
+Block = 0
+

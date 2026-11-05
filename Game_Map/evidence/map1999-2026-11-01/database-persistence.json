@@ -1,0 +1,15 @@
+{
+  "path": "/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb",
+  "before": {
+    "size": 6620549120,
+    "mtime_ns": 1793588423191701397
+  },
+  "authorization": "Current user explicitly requested save Binary Ninja database annotations.",
+  "after": {
+    "size": 6650814464,
+    "mtime_ns": 1793593700987784512
+  },
+  "save_command_issued": true,
+  "file_changed": true,
+  "ui_completion_verified": false
+}

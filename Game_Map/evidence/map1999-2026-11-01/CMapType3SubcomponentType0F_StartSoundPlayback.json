@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x6459cb\n006459cb  56               push    esi\n006459cc  8b f1            mov     esi, ecx\n006459ce  8b 46 20         mov     eax, dword [esi+0x20]\n006459d1  85 c0            test    eax, eax\n006459d3  74 07            je      0x6459dc\n\n# Block 3 at 0x6459d5\n006459d5  50               push    eax\n006459d6  ff 15 6c 49 84 00 call    dword [_DXClose2DSound@4]\n\n# Block 2 at 0x6459dc\n006459dc  ff 76 28         push    dword [esi+0x28]\n006459df  8b 46 2c         mov     eax, dword [esi+0x2c]\n006459e2  6a ff            push    0xffffffff\n006459e4  ff 76 24         push    dword [esi+0x24]\n006459e7  ff 76 10         push    dword [esi+0x10]\n006459ea  ff 76 0c         push    dword [esi+0xc]\n006459ed  50               push    eax\n006459ee  ff 15 74 49 84 00 call    dword [_DXPlaySound@24]\n006459f4  89 46 20         mov     dword [esi+0x20], eax\n006459f7  5e               pop     esi\n006459f8  c3               retn\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x6459cb\n006459cb  56               push    esi\n006459cc  8b f1            mov     esi, ecx\n006459ce  8b 46 20         mov     eax, dword [esi+0x20]\n006459d1  85 c0            test    eax, eax\n006459d3  74 07            je      0x6459dc\n\n# Block 3 at 0x6459d5\n006459d5  50               push    eax\n006459d6  ff 15 6c 49 84 00 call    dword [_DXClose2DSound@4]\n\n# Block 2 at 0x6459dc\n006459dc  ff 76 28         push    dword [esi+0x28]\n006459df  8b 46 2c         mov     eax, dword [esi+0x2c]\n006459e2  6a ff            push    0xffffffff\n006459e4  ff 76 24         push    dword [esi+0x24]\n006459e7  ff 76 10         push    dword [esi+0x10]\n006459ea  ff 76 0c         push    dword [esi+0xc]\n006459ed  50               push    eax\n006459ee  ff 15 74 49 84 00 call    dword [_DXPlaySound@24]\n006459f4  89 46 20         mov     dword [esi+0x20], eax\n006459f7  5e               pop     esi\n006459f8  c3               retn\n"
+  },
+  "isError": false
+}

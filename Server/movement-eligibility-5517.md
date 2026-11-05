@@ -12,7 +12,7 @@ Related: [movement.md](movement.md), [position-sync.md](position-sync.md),
 |---|---|
 | Primary mask | `CRole+0x70`, 128 bits; `Role_HasStatusFlag` `0x6E50D4` (index ≥0x80 ⇒ false) |
 | Secondary mask | `CRole+0x80`, 128 bits; `Role_TestSecondaryStatusBit` `0x6E5248` |
-| Primary writers | `10017` attribute **25**: 16-byte value = whole mask (`CMsgUserAttribEx__Process` `0x7574CB`, record stride 0x14, value at record+0x10); `10014` spawn; client sets only 0x3E/0x3F (equipment lock) itself |
+| Primary writers | `10017` attribute **25**: 16-byte value = whole mask (`CMsgUserAttrib__Process` `0x7574CB`, record stride 0x14, value at record+0x10); `10014` spawn; client sets only 0x3E/0x3F (equipment lock) itself |
 | Secondary writer | **2075** `CMsgStatusDetail2075__Process` `0x75C5F9` (was mislabelled CMsgMagicEffect): builds a fresh set from the records whose flag byte ≠0 and **replaces** `+0x80` wholesale |
 | 2075 layout | `+4` entity, `+8` count, records 0x14 from `+0xC`: `+0` status index, `+4` u8 op (0 add, 1 remove, 2 update-if-flag), `+5` u8 flag, `+8` value A, `+0xC` duration, `+0x10` value B. Handler table `StatusDetailHandler_GetForStatus` `0x7688D7` |
 | Expiry | client never clears movement statuses; server sends the mask/records |
@@ -76,7 +76,7 @@ elevation ≤ `CRole+0x1258` — set to **200** in both constructors and never w
 
 | Item | Fact |
 |---|---|
-| Vigor | `CHero+0x2DA8`; only writer `CHero_SetMountVigor` ← packet **1033** mode 2 value `+8` (`CMsgNpcInfoEX__Process` `0x74A5E6`). Client never decrements or regenerates it — server-authoritative |
+| Vigor | `CHero+0x2DA8`; only writer `CHero_SetMountVigor` ← packet **1033** mode 2 value `+8` (`CMsg1033__Process` `0x74A5E6`). Client never decrements or regenerates it — server-authoritative |
 | Max shown | steed (equip slot 12) item `+0x18C` u8 + item `+0x4A` s16 + `CHero+0x2DA4` (Sprint bonus) — `STR_MOUNT_MPICON_TIP` "Vigor: %d/%d … restored while standing still" |
 | Mount request | `CHero_RequestMountRideMagic7001` `0x716EB4`: not fly; not interacting; map flag `0x40000` or map region type 8 at hero tile with `+0x18`=0 ⇒ forbidden; not dead/ghost; steed in slot 12; steed add level ≥ region `+0x18`; magic 7001 learned; capped stamina ≥ magic cost (tip text: 20). Sends magic 7001 on self. Status 0x32 comes back from the server |
 | Riding move | cmd 0x13 ⇒ actions 0x7A/0x7B ⇒ 10005 selector 9 (24-dir); vigor ≤1 ⇒ walk |

@@ -1,0 +1,351 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/C3_CORE_DLL.dll.bndb
+
+# Block 1 at 0x10009a20
+10009a20  81 ec 04 01 00 00 sub     esp, 0x104  ; Samples a per-bone matrix from C3Motion keyframes at a frame position.
+Behavior:
+  - null motion or boneIndex out of range -> writes identity matrix.
+  - frame <= first key index -> copies first key matrix.
+  - frame >= last key index -> copies last key matrix.
+  - between keys -> element-wise linear interpolation of all 16 matrix floats using weight (frame - prevKey) / (nextKey - prevKey).
+Interpolation is plain float lerp with no orthonormalization.
+10009a26  53               push    ebx
+10009a27  55               push    ebp
+10009a28  56               push    esi
+10009a29  57               push    edi
+10009a2a  8b bc 24 18 01 00 00 mov     edi, dword [esp+0x118]
+10009a31  33 f6            xor     esi, esi
+10009a33  3b fe            cmp     edi, esi
+10009a35  0f 84 e3 03 00 00 je      0x10009e1e
+
+# Block 3 at 0x10009a3b
+10009a3b  8b 9c 24 1c 01 00 00 mov     ebx, dword [esp+0x11c]
+10009a42  3b 1f            cmp     ebx, dword [edi]
+10009a44  0f 83 d4 03 00 00 jae     0x10009e1e
+
+# Block 4 at 0x10009a4a
+10009a4a  8b 4f 0c         mov     ecx, dword [edi+0xc]
+10009a4d  8b 94 24 20 01 00 00 mov     edx, dword [esp+0x120]
+10009a54  8b 29            mov     ebp, dword [ecx]
+10009a56  83 c8 ff         or      eax, 0xffffffff
+10009a59  3b d5            cmp     edx, ebp
+10009a5b  7f 04            jg      0x10009a61
+
+# Block 6 at 0x10009a5d
+10009a5d  33 c0            xor     eax, eax
+10009a5f  eb 4a            jmp     0x10009aab
+
+# Block 5 at 0x10009a61
+10009a61  8b 7f 08         mov     edi, dword [edi+0x8]
+10009a64  3b 54 f9 f8      cmp     edx, dword [ecx+edi*8-0x8]
+10009a68  7c 05            jl      0x10009a6f
+
+# Block 8 at 0x10009a6a
+10009a6a  8d 77 ff         lea     esi, [edi-0x1]
+10009a6d  eb 2f            jmp     0x10009a9e
+
+# Block 7 at 0x10009a6f
+10009a6f  b8 01 00 00 00   mov     eax, 0x1
+10009a74  3b f8            cmp     edi, eax
+10009a76  0f 86 dd 03 00 00 jbe     0x10009e59
+
+# Block 11 at 0x10009a7c
+10009a7c  8d 71 08         lea     esi, [ecx+0x8]
+
+# Block 17 at 0x10009a7f
+10009a7f  3b 56 f8         cmp     edx, dword [esi-0x8]
+10009a82  7c 04            jl      0x10009a88
+
+# Block 14 at 0x10009a84
+10009a84  3b 16            cmp     edx, dword [esi]
+10009a86  7c 13            jl      0x10009a9b
+
+# Block 13 at 0x10009a88
+10009a88  40               inc     eax
+10009a89  83 c6 08         add     esi, 0x8
+10009a8c  3b c7            cmp     eax, edi
+10009a8e  72 ef            jb      0x10009a7f
+
+# Block 18 at 0x10009a90
+10009a90  5f               pop     edi
+10009a91  5e               pop     esi
+10009a92  5d               pop     ebp
+10009a93  5b               pop     ebx
+10009a94  81 c4 04 01 00 00 add     esp, 0x104
+10009a9a  c3               retn
+
+# Block 19 at 0x10009a9b
+10009a9b  8d 70 ff         lea     esi, [eax-0x1]
+
+# Block 12 at 0x10009a9e
+10009a9e  83 fe ff         cmp     esi, 0xffffffff
+10009aa1  75 2a            jne     0x10009acd
+
+# Block 16 at 0x10009aa3
+10009aa3  3b c6            cmp     eax, esi
+10009aa5  0f 8e ae 03 00 00 jle     0x10009e59
+
+# Block 9 at 0x10009aab
+10009aab  8b 74 c1 04      mov     esi, dword [ecx+eax*8+0x4]
+10009aaf  8b bc 24 24 01 00 00 mov     edi, dword [esp+0x124]
+10009ab6  c1 e3 06         shl     ebx, 0x6
+10009ab9  03 f3            add     esi, ebx
+10009abb  b9 10 00 00 00   mov     ecx, 0x10
+10009ac0  f3 a5            rep movsd dword [edi], [esi]
+10009ac2  5f               pop     edi
+10009ac3  5e               pop     esi
+10009ac4  5d               pop     ebp
+10009ac5  5b               pop     ebx
+10009ac6  81 c4 04 01 00 00 add     esp, 0x104
+10009acc  c3               retn
+
+# Block 15 at 0x10009acd
+10009acd  0f 8e 86 03 00 00 jle     0x10009e59
+
+# Block 20 at 0x10009ad3
+10009ad3  83 f8 ff         cmp     eax, 0xffffffff
+10009ad6  75 22            jne     0x10009afa
+
+# Block 22 at 0x10009ad8
+10009ad8  8b 74 f1 04      mov     esi, dword [ecx+esi*8+0x4]
+10009adc  8b bc 24 24 01 00 00 mov     edi, dword [esp+0x124]
+10009ae3  c1 e3 06         shl     ebx, 0x6
+10009ae6  03 f3            add     esi, ebx
+10009ae8  b9 10 00 00 00   mov     ecx, 0x10
+10009aed  f3 a5            rep movsd dword [edi], [esi]
+10009aef  5f               pop     edi
+10009af0  5e               pop     esi
+10009af1  5d               pop     ebp
+10009af2  5b               pop     ebx
+10009af3  81 c4 04 01 00 00 add     esp, 0x104
+10009af9  c3               retn
+
+# Block 21 at 0x10009afa
+10009afa  0f 8e 59 03 00 00 jle     0x10009e59
+
+# Block 23 at 0x10009b00
+10009b00  8b 3c f1         mov     edi, dword [ecx+esi*8]
+10009b03  2b d7            sub     edx, edi
+10009b05  89 54 24 10      mov     dword [esp+0x10], edx
+10009b09  8b 14 c1         mov     edx, dword [ecx+eax*8]
+10009b0c  db 44 24 10      fild    st0, dword [esp+0x10]
+10009b10  2b d7            sub     edx, edi
+10009b12  89 54 24 10      mov     dword [esp+0x10], edx
+10009b16  d9 5c 24 14      fstp    dword [esp+0x14], st0
+10009b1a  8b 44 c1 04      mov     eax, dword [ecx+eax*8+0x4]
+10009b1e  db 44 24 10      fild    st0, dword [esp+0x10]
+10009b22  c1 e3 06         shl     ebx, 0x6
+10009b25  8b d3            mov     edx, ebx
+10009b27  03 c2            add     eax, edx
+10009b29  d9 5c 24 10      fstp    dword [esp+0x10], st0
+10009b2d  d9 44 24 14      fld     st0, dword [esp+0x14]
+10009b31  d8 74 24 10      fdiv    st0, dword [esp+0x10]
+10009b35  d9 5c 24 10      fstp    dword [esp+0x10], st0
+10009b39  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009b3d  d8 48 3c         fmul    st0, dword [eax+0x3c]
+10009b40  d9 5c 24 44      fstp    dword [esp+0x44], st0
+10009b44  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009b48  d8 48 38         fmul    st0, dword [eax+0x38]
+10009b4b  d9 5c 24 3c      fstp    dword [esp+0x3c], st0
+10009b4f  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009b53  d8 48 34         fmul    st0, dword [eax+0x34]
+10009b56  d9 5c 24 34      fstp    dword [esp+0x34], st0
+10009b5a  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009b5e  d8 48 30         fmul    st0, dword [eax+0x30]
+10009b61  d9 5c 24 2c      fstp    dword [esp+0x2c], st0
+10009b65  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009b69  d8 48 2c         fmul    st0, dword [eax+0x2c]
+10009b6c  d9 5c 24 24      fstp    dword [esp+0x24], st0
+10009b70  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009b74  d8 48 28         fmul    st0, dword [eax+0x28]
+10009b77  d9 5c 24 1c      fstp    dword [esp+0x1c], st0
+10009b7b  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009b7f  d8 48 24         fmul    st0, dword [eax+0x24]
+10009b82  d9 5c 24 50      fstp    dword [esp+0x50], st0
+10009b86  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009b8a  d8 48 20         fmul    st0, dword [eax+0x20]
+10009b8d  d9 5c 24 18      fstp    dword [esp+0x18], st0
+10009b91  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009b95  d8 48 1c         fmul    st0, dword [eax+0x1c]
+10009b98  d9 5c 24 48      fstp    dword [esp+0x48], st0
+10009b9c  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009ba0  d8 48 18         fmul    st0, dword [eax+0x18]
+10009ba3  d9 5c 24 30      fstp    dword [esp+0x30], st0
+10009ba7  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009bab  d8 48 14         fmul    st0, dword [eax+0x14]
+10009bae  d9 5c 24 4c      fstp    dword [esp+0x4c], st0
+10009bb2  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009bb6  d8 48 10         fmul    st0, dword [eax+0x10]
+10009bb9  d9 5c 24 28      fstp    dword [esp+0x28], st0
+10009bbd  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009bc1  d8 48 0c         fmul    st0, dword [eax+0xc]
+10009bc4  d9 5c 24 40      fstp    dword [esp+0x40], st0
+10009bc8  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009bcc  d8 48 08         fmul    st0, dword [eax+0x8]
+10009bcf  d9 5c 24 20      fstp    dword [esp+0x20], st0
+10009bd3  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009bd7  d8 48 04         fmul    st0, dword [eax+0x4]
+10009bda  d9 5c 24 38      fstp    dword [esp+0x38], st0
+10009bde  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009be2  d8 08            fmul    st0, dword [eax]
+10009be4  d9 5c 24 14      fstp    dword [esp+0x14], st0
+10009be8  8b 44 24 14      mov     eax, dword [esp+0x14]
+10009bec  89 44 24 54      mov     dword [esp+0x54], eax
+10009bf0  8b 44 24 38      mov     eax, dword [esp+0x38]
+10009bf4  89 44 24 58      mov     dword [esp+0x58], eax
+10009bf8  8b 44 24 20      mov     eax, dword [esp+0x20]
+10009bfc  89 44 24 5c      mov     dword [esp+0x5c], eax
+10009c00  8b 44 24 40      mov     eax, dword [esp+0x40]
+10009c04  89 44 24 60      mov     dword [esp+0x60], eax
+10009c08  8b 44 24 28      mov     eax, dword [esp+0x28]
+10009c0c  89 44 24 64      mov     dword [esp+0x64], eax
+10009c10  8b 44 24 4c      mov     eax, dword [esp+0x4c]
+10009c14  89 44 24 68      mov     dword [esp+0x68], eax
+10009c18  8b 44 24 30      mov     eax, dword [esp+0x30]
+10009c1c  89 44 24 6c      mov     dword [esp+0x6c], eax
+10009c20  8b 44 24 48      mov     eax, dword [esp+0x48]
+10009c24  89 44 24 70      mov     dword [esp+0x70], eax
+10009c28  8b 44 24 18      mov     eax, dword [esp+0x18]
+10009c2c  d9 05 c0 11 0a 10 fld     st0, dword [0x100a11c0]
+10009c32  d8 64 24 10      fsub    st0, dword [esp+0x10]
+10009c36  89 44 24 74      mov     dword [esp+0x74], eax
+10009c3a  8b 44 24 50      mov     eax, dword [esp+0x50]
+10009c3e  89 44 24 78      mov     dword [esp+0x78], eax
+10009c42  8b 44 24 1c      mov     eax, dword [esp+0x1c]
+10009c46  89 44 24 7c      mov     dword [esp+0x7c], eax
+10009c4a  8b 44 24 24      mov     eax, dword [esp+0x24]
+10009c4e  89 84 24 80 00 00 00 mov     dword [esp+0x80], eax
+10009c55  8b 44 24 2c      mov     eax, dword [esp+0x2c]
+10009c59  89 84 24 84 00 00 00 mov     dword [esp+0x84], eax
+10009c60  8b 44 24 34      mov     eax, dword [esp+0x34]
+10009c64  89 84 24 88 00 00 00 mov     dword [esp+0x88], eax
+10009c6b  8b 44 24 3c      mov     eax, dword [esp+0x3c]
+10009c6f  89 84 24 8c 00 00 00 mov     dword [esp+0x8c], eax
+10009c76  8b 44 24 44      mov     eax, dword [esp+0x44]
+10009c7a  89 84 24 90 00 00 00 mov     dword [esp+0x90], eax
+10009c81  8b 44 f1 04      mov     eax, dword [ecx+esi*8+0x4]
+10009c85  03 c2            add     eax, edx
+10009c87  d9 5c 24 10      fstp    dword [esp+0x10], st0
+10009c8b  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009c8f  d8 48 3c         fmul    st0, dword [eax+0x3c]
+10009c92  d9 5c 24 14      fstp    dword [esp+0x14], st0
+10009c96  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009c9a  d8 48 38         fmul    st0, dword [eax+0x38]
+10009c9d  d9 5c 24 38      fstp    dword [esp+0x38], st0
+10009ca1  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009ca5  d8 48 34         fmul    st0, dword [eax+0x34]
+10009ca8  d9 5c 24 20      fstp    dword [esp+0x20], st0
+10009cac  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009cb0  d8 48 30         fmul    st0, dword [eax+0x30]
+10009cb3  d9 5c 24 40      fstp    dword [esp+0x40], st0
+10009cb7  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009cbb  d8 48 2c         fmul    st0, dword [eax+0x2c]
+10009cbe  d9 5c 24 28      fstp    dword [esp+0x28], st0
+10009cc2  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009cc6  d8 48 28         fmul    st0, dword [eax+0x28]
+10009cc9  d9 5c 24 4c      fstp    dword [esp+0x4c], st0
+10009ccd  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009cd1  d8 48 24         fmul    st0, dword [eax+0x24]
+10009cd4  d9 5c 24 30      fstp    dword [esp+0x30], st0
+10009cd8  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009cdc  d8 48 20         fmul    st0, dword [eax+0x20]
+10009cdf  d9 5c 24 48      fstp    dword [esp+0x48], st0
+10009ce3  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009ce7  d8 48 1c         fmul    st0, dword [eax+0x1c]
+10009cea  d9 5c 24 18      fstp    dword [esp+0x18], st0
+10009cee  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009cf2  d8 48 18         fmul    st0, dword [eax+0x18]
+10009cf5  d9 5c 24 50      fstp    dword [esp+0x50], st0
+10009cf9  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009cfd  d8 48 14         fmul    st0, dword [eax+0x14]
+10009d00  d9 5c 24 1c      fstp    dword [esp+0x1c], st0
+10009d04  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009d08  d8 48 10         fmul    st0, dword [eax+0x10]
+10009d0b  d9 5c 24 24      fstp    dword [esp+0x24], st0
+10009d0f  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009d13  d8 48 0c         fmul    st0, dword [eax+0xc]
+10009d16  d9 5c 24 2c      fstp    dword [esp+0x2c], st0
+10009d1a  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009d1e  d8 48 08         fmul    st0, dword [eax+0x8]
+10009d21  d9 5c 24 34      fstp    dword [esp+0x34], st0
+10009d25  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009d29  d8 48 04         fmul    st0, dword [eax+0x4]
+10009d2c  d9 5c 24 3c      fstp    dword [esp+0x3c], st0
+10009d30  d9 44 24 10      fld     st0, dword [esp+0x10]
+10009d34  8b 54 24 3c      mov     edx, dword [esp+0x3c]
+10009d38  d8 08            fmul    st0, dword [eax]
+10009d3a  8b 44 24 34      mov     eax, dword [esp+0x34]
+10009d3e  89 94 24 98 00 00 00 mov     dword [esp+0x98], edx
+10009d45  8b 54 24 24      mov     edx, dword [esp+0x24]
+10009d49  d9 5c 24 44      fstp    dword [esp+0x44], st0
+10009d4d  89 84 24 9c 00 00 00 mov     dword [esp+0x9c], eax
+10009d54  8b 4c 24 44      mov     ecx, dword [esp+0x44]
+10009d58  8b 44 24 1c      mov     eax, dword [esp+0x1c]
+10009d5c  89 8c 24 94 00 00 00 mov     dword [esp+0x94], ecx
+10009d63  8b 4c 24 2c      mov     ecx, dword [esp+0x2c]
+10009d67  89 8c 24 a0 00 00 00 mov     dword [esp+0xa0], ecx
+10009d6e  89 94 24 a4 00 00 00 mov     dword [esp+0xa4], edx
+10009d75  8b 54 24 18      mov     edx, dword [esp+0x18]
+10009d79  8b 4c 24 50      mov     ecx, dword [esp+0x50]
+10009d7d  89 84 24 a8 00 00 00 mov     dword [esp+0xa8], eax
+10009d84  8b 44 24 48      mov     eax, dword [esp+0x48]
+10009d88  89 8c 24 ac 00 00 00 mov     dword [esp+0xac], ecx
+10009d8f  8b 4c 24 30      mov     ecx, dword [esp+0x30]
+10009d93  89 94 24 b0 00 00 00 mov     dword [esp+0xb0], edx
+10009d9a  8b 54 24 4c      mov     edx, dword [esp+0x4c]
+10009d9e  89 84 24 b4 00 00 00 mov     dword [esp+0xb4], eax
+10009da5  8b 44 24 28      mov     eax, dword [esp+0x28]
+10009da9  89 8c 24 b8 00 00 00 mov     dword [esp+0xb8], ecx
+10009db0  8b 4c 24 40      mov     ecx, dword [esp+0x40]
+10009db4  89 94 24 bc 00 00 00 mov     dword [esp+0xbc], edx
+10009dbb  8b 54 24 20      mov     edx, dword [esp+0x20]
+10009dbf  89 84 24 c0 00 00 00 mov     dword [esp+0xc0], eax
+10009dc6  8b 44 24 38      mov     eax, dword [esp+0x38]
+10009dca  89 8c 24 c4 00 00 00 mov     dword [esp+0xc4], ecx
+10009dd1  8b 4c 24 14      mov     ecx, dword [esp+0x14]
+10009dd5  89 94 24 c8 00 00 00 mov     dword [esp+0xc8], edx
+10009ddc  8d 54 24 54      lea     edx, [esp+0x54]
+10009de0  89 84 24 cc 00 00 00 mov     dword [esp+0xcc], eax
+10009de7  52               push    edx
+10009de8  8d 84 24 d8 00 00 00 lea     eax, [esp+0xd8]
+10009def  89 8c 24 d4 00 00 00 mov     dword [esp+0xd4], ecx
+10009df6  50               push    eax
+10009df7  8d 8c 24 9c 00 00 00 lea     ecx, [esp+0x9c]
+10009dfe  e8 1d 17 00 00   call    Matrix4x4_AddElementwise
+10009e03  8b bc 24 24 01 00 00 mov     edi, dword [esp+0x124]
+10009e0a  b9 10 00 00 00   mov     ecx, 0x10
+10009e0f  8b f0            mov     esi, eax
+10009e11  f3 a5            rep movsd dword [edi], [esi]
+10009e13  5f               pop     edi
+10009e14  5e               pop     esi
+10009e15  5d               pop     ebp
+10009e16  5b               pop     ebx
+10009e17  81 c4 04 01 00 00 add     esp, 0x104
+10009e1d  c3               retn
+
+# Block 2 at 0x10009e1e
+10009e1e  8b 84 24 24 01 00 00 mov     eax, dword [esp+0x124]
+10009e25  b9 00 00 80 3f   mov     ecx, 0x3f800000
+10009e2a  89 70 38         mov     dword [eax+0x38], esi
+10009e2d  89 70 34         mov     dword [eax+0x34], esi
+10009e30  89 70 30         mov     dword [eax+0x30], esi
+10009e33  89 70 2c         mov     dword [eax+0x2c], esi
+10009e36  89 70 24         mov     dword [eax+0x24], esi
+10009e39  89 70 20         mov     dword [eax+0x20], esi
+10009e3c  89 70 1c         mov     dword [eax+0x1c], esi
+10009e3f  89 70 18         mov     dword [eax+0x18], esi
+10009e42  89 70 10         mov     dword [eax+0x10], esi
+10009e45  89 70 0c         mov     dword [eax+0xc], esi
+10009e48  89 70 08         mov     dword [eax+0x8], esi
+10009e4b  89 70 04         mov     dword [eax+0x4], esi
+10009e4e  89 48 3c         mov     dword [eax+0x3c], ecx
+10009e51  89 48 28         mov     dword [eax+0x28], ecx
+10009e54  89 48 14         mov     dword [eax+0x14], ecx
+10009e57  89 08            mov     dword [eax], ecx
+
+# Block 10 at 0x10009e59
+10009e59  5f               pop     edi
+10009e5a  5e               pop     esi
+10009e5b  5d               pop     ebp
+10009e5c  5b               pop     ebx
+10009e5d  81 c4 04 01 00 00 add     esp, 0x104
+10009e63  c3               retn

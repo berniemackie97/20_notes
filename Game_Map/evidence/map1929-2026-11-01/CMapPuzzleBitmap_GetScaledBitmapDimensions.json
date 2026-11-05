@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x63a7dc\n0063a7dc  56               push    esi\n0063a7dd  8b 71 1c         mov     esi, dword [ecx+0x1c]\n0063a7e0  0f af b1 24 01 00 00 imul    esi, dword [ecx+0x124]\n0063a7e7  8d 81 24 01 00 00 lea     eax, [ecx+0x124]\n0063a7ed  8b 54 24 08      mov     edx, dword [esp+0x8]\n0063a7f1  89 72 04         mov     dword [edx+0x4], esi\n0063a7f4  8b 49 18         mov     ecx, dword [ecx+0x18]\n0063a7f7  0f af 08         imul    ecx, dword [eax]\n0063a7fa  89 0a            mov     dword [edx], ecx\n0063a7fc  5e               pop     esi\n0063a7fd  c2 04 00         retn    0x4\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x63a7dc\n0063a7dc  56               push    esi\n0063a7dd  8b 71 1c         mov     esi, dword [ecx+0x1c]\n0063a7e0  0f af b1 24 01 00 00 imul    esi, dword [ecx+0x124]\n0063a7e7  8d 81 24 01 00 00 lea     eax, [ecx+0x124]\n0063a7ed  8b 54 24 08      mov     edx, dword [esp+0x8]\n0063a7f1  89 72 04         mov     dword [edx+0x4], esi\n0063a7f4  8b 49 18         mov     ecx, dword [ecx+0x18]\n0063a7f7  0f af 08         imul    ecx, dword [eax]\n0063a7fa  89 0a            mov     dword [edx], ecx\n0063a7fc  5e               pop     esi\n0063a7fd  c2 04 00         retn    0x4\n"
+  },
+  "isError": false
+}

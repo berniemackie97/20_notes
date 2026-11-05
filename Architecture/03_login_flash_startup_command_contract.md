@@ -1236,7 +1236,7 @@ Raw table evidence used for managed parity extraction:
 5. User selects server → `CMD_SELECTSERVER` → C++ stores server index
 6. User enters account name → `CMD_NAME` → C++ stores to `this+0x198`
 7. User enters password → `CMD_PASSWORD` → C++ encrypts and stores to `this+0x414`
-8. User clicks login → inGameMC frame 17 `CMD_ENTERGAME` → validator `0x4ABFBD` + account-server connect; frame 36 `CMD_GAMESTART` → C++ posts `0x480` → Submit `0x4AEE6A` (corrected 2026-10-15; no automatic account record)
+8. User clicks login → inGameMC frame 17 `CMD_ENTERGAME` → validator `0x4ABFBD` + account-server connect → seed packet → cmd `0xCEE` → Submit `0x4AEE6A` (auth packet, `PROGRESS "1"` resumes inGameMC) → frame 36 `CMD_GAMESTART` → `0x480` sets `+0x179AAC = 1` (corrected 2026-11-02; Submit is not on `0x480`). Full sequence: note 11 "Login loading presentation"
 9. After successful login: `CMD_CLOSE` → C++ kills timer, posts `0x483` (world-frame enable), `0xC6B`, `0x3F2`
 10. World gate byte (`this+0x179AB9`) set to 1 → world rendering begins
 

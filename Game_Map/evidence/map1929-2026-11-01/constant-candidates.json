@@ -1,0 +1,63 @@
+{
+  "scope": "Exact LE32 1929 and arenamap text scan in all Conquer.exe PE sections. Not a complete computed-reference or 16-bit immediate analysis.",
+  "candidates": [
+    {
+      "section": ".text",
+      "executable": true,
+      "address": "0x438c3d",
+      "needle": "89070000",
+      "context": "8d864c3c00005068890700005756e895b41a008d"
+    },
+    {
+      "section": ".text",
+      "executable": true,
+      "address": "0x48e6f1",
+      "needle": "89070000",
+      "context": "8d86d01800005068890700005756e8e15915008d"
+    },
+    {
+      "section": ".text",
+      "executable": true,
+      "address": "0x4ec7a6",
+      "needle": "89070000",
+      "context": "8d86503a00005068890700005756e82c790f0083"
+    },
+    {
+      "section": ".text",
+      "executable": true,
+      "address": "0x6929e9",
+      "needle": "89070000",
+      "context": "ff37ff7604ff36e8890700008b4df483c4108947"
+    },
+    {
+      "section": ".text",
+      "executable": true,
+      "address": "0x6bcb89",
+      "needle": "89070000",
+      "context": "ff749804ff3498e88907000083eb0279e8eb2133"
+    },
+    {
+      "section": ".text",
+      "executable": true,
+      "address": "0x6e3512",
+      "needle": "89070000",
+      "context": "fc01508d45f250e8890700008b4df48bc65e6489"
+    },
+    {
+      "section": ".rsrc",
+      "executable": false,
+      "address": "0x97df6c",
+      "needle": "89070000",
+      "context": "0b005e000800080089070000ffff820036000000"
+    }
+  ],
+  "classification": {
+    "0x438c3d": "UI control ID push, consumed by CDataExchange::PrepareCtrl via5E40DD",
+    "0x48e6f1": "UI control ID push, same helper",
+    "0x4ec7a6": "UI control ID push, same helper",
+    "0x6929e9": "rel32 CALL displacement, not mapID",
+    "0x6bcb89": "rel32 CALL displacement, not mapID",
+    "0x6e3512": "rel32 CALL displacement, not mapID",
+    "0x97df6c": "resource-section integer; no map dispatch provenance established"
+  }
+}

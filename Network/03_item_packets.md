@@ -2,9 +2,9 @@
 
 Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
-## MsgItem (Type 1008)
+## Type 1008 — class unproven; label `MsgItem` withdrawn (`MsgItem.cpp` asserts are in the type 1009 handler; CP0.1 2026-11-05)
 **Direction**: S→C (action dispatch based on server-sent mode)
-**Handler**: CMsgItem__Process (0x762AC3)
+**Handler**: CMsg1008__Process (0x762AC3)
 **Parse**: `CMsgItem__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1008`.
 
 **Verified local-hero item ownership model**:
@@ -12,7 +12,7 @@ Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 - `CHeroItem__TrackItemAtPosition` and `CHeroItem__GetTrackedItemRefByPosition` operate on the tracked-position map at `heroItem+0xF20` with tracked-position keys (`1..0x1D`).
 - `CHeroItem__FindTrackedItemByUid` scans that same tracked-position map by item UID, and `CHeroItem__FindTrackedPositionByItemUid` returns the tracked-position key for a given item UID.
 - `CHeroItem__GetEquipSlotItemRef` and `CHeroItem__SetEquipSlot` operate on the equip-slot ref table at `heroItem+0xE84` / stride `8`.
-- `MsgItem` action handling mutates those hero item tables first; visible equipment appearance is derived afterward.
+- `Msg1008` action handling mutates those hero item tables first; visible equipment appearance is derived afterward.
 
 **Verified field layout (offsets from packet start)**:
 
@@ -54,7 +54,7 @@ The `+33` ItemAdd key and `+36` enchantment are not display-only metadata. The n
 max-life path consumes ItemAdd payload word 0 for every non-broken equipped item and consumes
 the `+36` enchantment for every such slot except steed slot 12.
 
-Broken-state mutation is also exact: new MsgItem equipment objects set `CItem+0x1AC` only when
+Broken-state mutation is also exact: new Msg1008 equipment objects set `CItem+0x1AC` only when
 current durability `+12` is zero; action 3 update-existing writes 0 for positive durability and
 1 for zero. CMsgTick subtype 17 always writes the incoming low word to current durability and
 sets `+0x1AC` for a non-positive equipment update, but does not clear that byte on its positive
@@ -63,7 +63,7 @@ path.
 **Action switch (`packet+0x10` as u8)**:
 - `1`: Creates a new item, initializes from `+4/+8`, copies the fields above, sets `CItem__SetByte_0x165(1)`, then routes by `+18`. If `+18 != 0`, it tracks the item through `CHeroItem__TrackItemAtPosition` and refreshes UI (`0x445/0x446`). If `+18 == 0`, it tries `CHeroItem__TryAddInventoryItem` and posts `0x3EB`. If status flag `0x3F` is clear and the item passes the native unlocked-equipment score predicate, it posts `0x4B9`. If the item passes equipment lock bit2 test, it posts `0x4B3` with the item UID.
 - `2`: Creates a new item, initializes from `+4/+8`, copies the fields above, sets `CItem__SetByte_0x165(0)`, then routes it into the verified hero singleton side container path.
-- `3`: Finds an existing item by UID through `CHeroItem__FindItemByUid` (which falls back to `CHeroItem__FindTrackedItemByUid`), updates all fields above, then re-checks inventory-only membership via `CHeroItem__FindItemByUid(..., inventory_only=1)`. If the item is still in inventory, it posts `0x3EB`. Otherwise it reroutes through `CHeroItem__TrackItemAtPosition` using `+18` and posts `0x3FB/0x445/0x446/0x4F1`. This is an update-existing-item path, not a delete path. Native item removal uses `MsgTick (1009)` subtype `3`.
+- `3`: Finds an existing item by UID through `CHeroItem__FindItemByUid` (which falls back to `CHeroItem__FindTrackedItemByUid`), updates all fields above, then re-checks inventory-only membership via `CHeroItem__FindItemByUid(..., inventory_only=1)`. If the item is still in inventory, it posts `0x3EB`. Otherwise it reroutes through `CHeroItem__TrackItemAtPosition` using `+18` and posts `0x3FB/0x445/0x446/0x4F1`. This is an update-existing-item path, not a delete path. Native item removal uses `MsgItem (1009)` subtype `3`.
 - `4`: Requires `+18 != 0`. Creates an inspected item, copies the fields above, then calls `ItemPosition_NormalizeEquipmentPosition` / `CDummy_SetInspectedEquipmentSlot` on hero+`0x1EA0` (`0x762D51`). Packet+4 is checked as inspected-role identity against dummy+`0xA88`. Posts `0x432` after the call without testing its return value. This is not local hero equipment hydration.
 - `5`: Creates a new item, initializes from `+4/+8`, copies the fields above, sets `CItem__SetByte_0x165(1)`, then routes it through the verified special-add path. If the item passes the same equipment lock bit2 test, it posts `0x4B3` with the item UID.
 - `6`: default path (no handler observed).
@@ -139,7 +139,7 @@ path.
   - `+16` (u16) = slot index (1 or 2),
   - `+18` (u16) = action (0 = embed, 1 = takeout).
 
-## MsgPackage (Type 1039)
+## Type 1039 — class unproven; label `MsgPackage` withdrawn (`MsgPackage.cpp` asserts are in the type 1102 handler; CP0.1 2026-11-05)
 **Direction**: S→C
 **Purpose**: Warehouse/package operations (verified by warehouse/inventory handlers in `CMsgPackage__Process`).
 **Dispatch**: Create `CMsgPackage__Create` (0x72B91E), parse `CMsgPackage__Parse` (0x72B9DA), process `CMsgPackage__Process` (0x72BA6C)
@@ -170,7 +170,7 @@ path.
 - `+16` (u32) is an additional session field stored at CHero+0xAA0 and forwarded by alternate 1203.
 - The derived `key ^ cookie` rekeys outbound legacy tables after mode 2 is selected. Those tables are unused by standard GameServer send/receive. [Verified native consumer audit](14_session_derived_legacy_cipher_mask.md).
 
-## MsgDetainedItem (Type 1102)
+## MsgPackage (Type 1102) — class proven by `MsgPackage.cpp` assert (CP0.1 2026-11-05); former label `MsgDetainedItem` withdrawn
 **Direction**: S→C
 **Purpose**: Detained‑item package sync (add/remove/update items; timeout notifications).
 **Dispatch**: Create `CMsgDetainedItem__Create` (0x74E08A), parse `CMsgDetainedItem__Parse` (0x74978C), process `CMsgDetainedItem__Process` (0x74E158)

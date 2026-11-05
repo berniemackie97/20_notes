@@ -18,3 +18,6 @@ World rendering, the radar, and the on-disk terrain formats.
 
 Map transitions, map assets and the server's side of world entry are in
 [../Server/](../Server/README.md).
+
+- [Map-data 1929 missing puzzle](map1929_missing_puzzle_native.md) — exact catalog/dependency evidence, non-propagated ground-open failure, empty-ground rendering, package boundary, and server-reachability limits.
+- [Map-data 1999 IceCrypt level 3](map1999_icecrypt_archive_native.md) — archived DMap header 1005 ignored; extra type-4 dword misaligns tail, positioned count 100 is a shifted field; load still returns 1.

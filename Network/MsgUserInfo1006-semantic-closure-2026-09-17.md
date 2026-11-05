@@ -143,7 +143,7 @@ obfuscated stack is displayed as a generic `call(...)` by Binary Ninja. Matching
 a call site is not a proof of complete propagation of every memory alias.
 
 This route independently recovers the known player-spawn store at `0x756525`
-and MsgUserAttribEx store at `0x757BFF`; it has not established a new gameplay
+and MsgUserAttrib store at `0x757BFF`; it has not established a new gameplay
 consumer of those fields. Candidate output aliases conservatively include other
 entities and reused stack storage, so native receiver review is still required.
 

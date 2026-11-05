@@ -1,0 +1,1256 @@
+{
+  "scanned": [
+    {
+      "path": "AutoPatch/GUI.ini",
+      "size": 607,
+      "sha256": "7523cdb2401d7245ff896b1113069cf79924a9d1ab0d0bd15787b02ebaed57f4"
+    },
+    {
+      "path": "AutoPatch/SocketConfig.ini",
+      "size": 430,
+      "sha256": "4f08280ec890a69df83328453c36f9e66ee0952ea9322e1a4891145447adeb21"
+    },
+    {
+      "path": "AutoPatch/config.ini",
+      "size": 1439,
+      "sha256": "f90a00213cbc2d4b23119d01c7f9cf9b07f94e3345d909c5edd4610394e254d9"
+    },
+    {
+      "path": "GameServer.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "Play/Cursor/Normal.ani",
+      "size": 11298,
+      "sha256": "c03b49c05053bf0f92200f720c9d85b9a358c50217b5c07232fac94d6b09968c"
+    },
+    {
+      "path": "ani/ChatEmotion.ani",
+      "size": 15283,
+      "sha256": "d41ab8f7fcd92c64de2f149ea915892f991086291e556669de94220acb3e3c3c"
+    },
+    {
+      "path": "ani/Common.Ani",
+      "size": 2988,
+      "sha256": "130736a15e893416a7bb5771d1567b3abbf2c6aaf775b914dd56682a44067b63"
+    },
+    {
+      "path": "ani/Control.Ani",
+      "size": 317837,
+      "sha256": "a1db47baaeb2f75eea3b5216378f97d713c2afeaefe05ec02e6f584794532d27"
+    },
+    {
+      "path": "ani/Control1.Ani",
+      "size": 37201,
+      "sha256": "4cd973cccc6799c4cf995d04bc8557ebc9f797d9c909a4bb0724bfe7dab586b7"
+    },
+    {
+      "path": "ani/Control2.Ani",
+      "size": 38307,
+      "sha256": "fa4dac1a5eed1fcbee03b4c9add5ca7d00bf61a69b1df658365b74402c55baf3"
+    },
+    {
+      "path": "ani/Dcity.ani",
+      "size": 111189,
+      "sha256": "f077bc26adf919e36b2806ae7f97349be1189778397dbd0abc832e32ed06aa7b"
+    },
+    {
+      "path": "ani/EmotionIco.ani",
+      "size": 12592,
+      "sha256": "5adfd74108477975900f60ee0a7ba47be65f9bb13aa61733b308bac6e57be599"
+    },
+    {
+      "path": "ani/ItemMinIcon.Ani",
+      "size": 3066940,
+      "sha256": "3ae59a925af65570394b95a0028383d147be9b01bf9b235a0bd6f3b0acd67a15"
+    },
+    {
+      "path": "ani/Magic.Ani",
+      "size": 12314,
+      "sha256": "6aaeb99c8f931e0e48551b7bc9eb230348e6a5f610108e1f90ea8650a6c07b80"
+    },
+    {
+      "path": "ani/Magic1.Ani",
+      "size": 7622,
+      "sha256": "8957d35a842e5b5c12766e73008eda311f36d88509260dc843afbe25cc226d1d"
+    },
+    {
+      "path": "ani/MapItemIcon.Ani",
+      "size": 2886487,
+      "sha256": "8657ce56e2f9944706faa512e75d5fbedb286ae9596a924bb53a21f92f52733c"
+    },
+    {
+      "path": "ani/MapScene-saya.ani",
+      "size": 16112,
+      "sha256": "b4b8a24ce366e4b68076e45f0ef541c017e477d962fe608e0f033206b2b3012b"
+    },
+    {
+      "path": "ani/MapScene-snail.ani",
+      "size": 3569,
+      "sha256": "67fc4e925b7a88beda53f96fee67a8cb106a927ed00331f8609102a034f45b2e"
+    },
+    {
+      "path": "ani/MapScene-snow.ani",
+      "size": 11125,
+      "sha256": "30a7cb78758fbc6a2e233422b414812717a90f9958622bba69f5f4dbe96e5895"
+    },
+    {
+      "path": "ani/MapScene.ani",
+      "size": 129051,
+      "sha256": "70addd15af3b979dd1e3540b5495090ef825b5572bf40579ca28f833098b2fa8"
+    },
+    {
+      "path": "ani/Mapscene-task.ani",
+      "size": 140,
+      "sha256": "3e50c846b8bb8a22b89257586787b7deac524b312dbbb79bf236db4a82eff626"
+    },
+    {
+      "path": "ani/MiniMap.Ani",
+      "size": 16224,
+      "sha256": "f20b4bec8678f1d8c75622c3fa1b90050e5a708e588e19ab52c8f7295886dc34"
+    },
+    {
+      "path": "ani/NpcFace.Ani",
+      "size": 12972,
+      "sha256": "f94edfb681ee620bd8dda5d84167083238fc959b8f07cf9426534abfb9748d06"
+    },
+    {
+      "path": "ani/PlayerFace.Ani",
+      "size": 23846,
+      "sha256": "976ffecb1ea931fbccd97326ef35b8f3fe53228282f8e7c24260b545bbb6ab44"
+    },
+    {
+      "path": "ani/Server.Ani",
+      "size": 5986,
+      "sha256": "a3c6d38eeb92f332a83c33109358b412a18a00979a9551e6de79c17cd8b543e2"
+    },
+    {
+      "path": "ani/ShowHandCard.ani",
+      "size": 13970,
+      "sha256": "99d5340fbb3184906e6fe952e8bc3d8fcdb2d0b9104e90e5e19d4a2301125d5d"
+    },
+    {
+      "path": "ani/brave.ani",
+      "size": 197601,
+      "sha256": "31f06ac892cde0071bdf73486a2e519b5e40a1a7411b5fd65ae6fe05e7574252"
+    },
+    {
+      "path": "ani/canyon.ani",
+      "size": 59262,
+      "sha256": "65b1aadce9c62e877a9aeac55ec2bbb29005a59c2182c24cdc16a1fd06a05738"
+    },
+    {
+      "path": "ani/card.ani",
+      "size": 3855,
+      "sha256": "58e5df985c99ac0b2c13bef85f26b0ddab38546be8e9d741b6c5b964b8f36062"
+    },
+    {
+      "path": "ani/cartoon-snail.ani",
+      "size": 2135,
+      "sha256": "cc9fdd9c2817c9d1da47108e8328292f000a2b77d35a39ba77d3a3fe4f92c171"
+    },
+    {
+      "path": "ani/cartoon.ani",
+      "size": 66390,
+      "sha256": "1bb2c0e4106e3993d144377c4bc9dbba814f2ff97dae8c7d4803d56823bc5ebe"
+    },
+    {
+      "path": "ani/chat.ANI",
+      "size": 3095,
+      "sha256": "e917caacfb7fbb2a4ce86c97578a05bbb6a81888377bdcefc50e37bc682c2b9a"
+    },
+    {
+      "path": "ani/chatContribute.Ani",
+      "size": 1926,
+      "sha256": "c8e05616e4362ba8b344fa2af801ff79c73677a3b6ce6aa150cc3d4a9dd539e5"
+    },
+    {
+      "path": "ani/chatFace.ANI",
+      "size": 43776,
+      "sha256": "34210d707f6a8d6b24f679cb19e11c9c0a7be1de714cd1c7e4e40790b95755ad"
+    },
+    {
+      "path": "ani/color3map.ani",
+      "size": 10332,
+      "sha256": "76764bd1b5f8c672bae1765c62bed7448d16d7451ed51ab3b2c0be6535cb0368"
+    },
+    {
+      "path": "ani/d02.ani",
+      "size": 51242,
+      "sha256": "acdf7273480f2d732ea94b77eb7af8a5e6d87ee52ca0430c15ff33c7c7cdad95"
+    },
+    {
+      "path": "ani/effect.ani",
+      "size": 11112,
+      "sha256": "db435ccc97f1963ecbbdbc2456477e2eab1b5f3ad6781ac756fc403e8d6f3eac"
+    },
+    {
+      "path": "ani/faction.ani",
+      "size": 39798,
+      "sha256": "0a00ffb8397e356ba5d4482ed93e0b4d925044d7ac5c0fc48345aeb594fce945"
+    },
+    {
+      "path": "ani/family.ani",
+      "size": 230393,
+      "sha256": "530812fac0a658619987931ead01d8e288815e47863ebe11ed7ec5d0a9b3b6c1"
+    },
+    {
+      "path": "ani/icecrypt.ani",
+      "size": 159565,
+      "sha256": "64cd3a0df4a2d11731650fb58dec22ad0cad07fd0e1a98cb956df5dba4638a46"
+    },
+    {
+      "path": "ani/island.ani",
+      "size": 42132,
+      "sha256": "9f48fdd3e4672940f20ce5a278e0d460f568f8822168662dfbc60f8afda540c5"
+    },
+    {
+      "path": "ani/mapscene-scene.ani",
+      "size": 21733,
+      "sha256": "62b732cc03fe54c832b1be23fa1964b9aa0c3875f48734b54bf342c542a49cf6"
+    },
+    {
+      "path": "ani/mapscene02.ani",
+      "size": 28013,
+      "sha256": "9777f0bcf100cb5e46c5535da8260a95d12de98262330181f84e90dd07ef5cff"
+    },
+    {
+      "path": "ani/mine.ani",
+      "size": 81646,
+      "sha256": "fd57e572f3e11aa9f35687edb58f5d08b4a763b58eebb1ae54999d8e3015923a"
+    },
+    {
+      "path": "ani/newbie.ani",
+      "size": 6860,
+      "sha256": "458d1714f455576df74c866bdd5027b1fc79d227bf6134353374bba2876c79c3"
+    },
+    {
+      "path": "ani/newplain.ani",
+      "size": 142552,
+      "sha256": "a68959b8ed7d70d85e728f9b737593ff253ab7a313326e8be9c4a0768a9b354e"
+    },
+    {
+      "path": "ani/plain.ani",
+      "size": 185368,
+      "sha256": "b8c63a6af388a630c42500e0867e81f8a9ca7f735cfe39bddb38d45f1cda3e4c"
+    },
+    {
+      "path": "ani/poker.ani",
+      "size": 13840,
+      "sha256": "50fef784dda9c6f538de3d891b0e4a309d62a8d4531af8fee49415536d1de9bd"
+    },
+    {
+      "path": "ani/pond.ani",
+      "size": 938,
+      "sha256": "9c815952ff18d3ba9f9aeaed43448c98dc1e01ab2ee5c8cfc5d11b40c85b5aa9"
+    },
+    {
+      "path": "ani/room.ani",
+      "size": 14704,
+      "sha256": "a20af4f24f1bd46f5528aba4a646c776ba9007a6e7f74c832159e8d54c93db2d"
+    },
+    {
+      "path": "ani/sand.ani",
+      "size": 91542,
+      "sha256": "2a5ec891dffa166d969c68dd8b44d21f6102b5c5eb39946e57f31ea282355558"
+    },
+    {
+      "path": "ani/ship.ani",
+      "size": 16060,
+      "sha256": "8413001d405708ebac3ba6f60e077595b37464f276ce0b1b573852ab2b44a111"
+    },
+    {
+      "path": "ani/sky.ani",
+      "size": 33274,
+      "sha256": "f9f9bb79afd571a58dd73cf899d45db0f025abf31151983b9590e0a80dc5c561"
+    },
+    {
+      "path": "ani/skybg.ani",
+      "size": 3984,
+      "sha256": "cbc899390d99d5faf23281ff83ce249537de7a06acd2147f01c7de5f2f2fff55"
+    },
+    {
+      "path": "ani/stars.ani",
+      "size": 8782,
+      "sha256": "43a6c5eb7f72fa8309d57fafa2fa2ac9938104a0c17b5a25f9d3925eccf79e5d"
+    },
+    {
+      "path": "ani/street.ani",
+      "size": 7840,
+      "sha256": "95238aca1e84c0639c6e424f1874bd4bf290ef4302d24ecf35159a04aa4229d5"
+    },
+    {
+      "path": "ani/weather.ani",
+      "size": 46505,
+      "sha256": "559e167fc750138fd749130bad8e8d223e02221ba456578833622c2ba0631638"
+    },
+    {
+      "path": "ani/woods.ani",
+      "size": 109775,
+      "sha256": "661455dddf87df3dc2176c42799c8fc9f381fda001d9110d095c9c1bb76209ac"
+    },
+    {
+      "path": "ani/woodsbg.ani",
+      "size": 5234,
+      "sha256": "b240501604e8a274046f797693c350f2e23be4841334f23d8d952941d67aa460"
+    },
+    {
+      "path": "data/AutoPatch_pic/Res.ini",
+      "size": 1051,
+      "sha256": "4a3e599d5cfeb6d2ecd9e3e195ca41f242fedd798ad1f87adbd798273fbfe645"
+    },
+    {
+      "path": "data/AutoPatch_pic/config.ini",
+      "size": 580,
+      "sha256": "355672676c58c942db2038d2f1a23d9c761494a049c63a995f91bfe0fd7e99b6"
+    },
+    {
+      "path": "data/Cursor/CenturyKiss.ani",
+      "size": 9926,
+      "sha256": "cff2ea0850d653467fae05b5bb6ce1e62acf9dfe7cb22d4965f50701011c4e88"
+    },
+    {
+      "path": "data/Cursor/CrazyKiss.ani",
+      "size": 6624,
+      "sha256": "a1e1f386e2cfb2e1bf8945d37e61f4621bef03b62a881bb9102ccfdfaba5527e"
+    },
+    {
+      "path": "data/Cursor/Diplomatic.ani",
+      "size": 6624,
+      "sha256": "7fff956ec0d504436fec84d82638f32cfd0243a572562bd1ef39afe646999243"
+    },
+    {
+      "path": "data/Cursor/DoubleRide.ani",
+      "size": 6648,
+      "sha256": "5ca0ee93d2a757210a53dd731835e913f5e532b51b14bd7e30cd361ea83f058e"
+    },
+    {
+      "path": "data/Cursor/Embrace.ani",
+      "size": 6624,
+      "sha256": "cfd25dff3020b7656192e9c72007e76816dbda55c3879419dc02704cbddccb45"
+    },
+    {
+      "path": "data/Cursor/Faction.ani",
+      "size": 26272,
+      "sha256": "490fa751bffa39197f341892e5894be34f86d3000a94b58feea345f7b78ce41f"
+    },
+    {
+      "path": "data/Cursor/Family.ani",
+      "size": 13148,
+      "sha256": "c93478d026b5c24e13000c76fbaf69b8f193a03ba3b12c35a84698d877109c99"
+    },
+    {
+      "path": "data/Cursor/Flower.ani",
+      "size": 9076,
+      "sha256": "443e55a57141f9cba72d329bf26a067d30c35acce65181f603035d68bac037f4"
+    },
+    {
+      "path": "data/Cursor/FlySinker.ani",
+      "size": 9898,
+      "sha256": "5832c0586b2398cb2ff28e01819540ee2b09aa2a4bad52432204cbf5791eaf97"
+    },
+    {
+      "path": "data/Cursor/HoldHand.ani",
+      "size": 13212,
+      "sha256": "658406ea8682f5eb4ef87da7667af36d899ec8a525fdb3fc5bb6db7896901f25"
+    },
+    {
+      "path": "data/Cursor/Hostility.ani",
+      "size": 13148,
+      "sha256": "4438c119cb1fe637ad78e729a486f361b28a103ea806f50e6ae7cdbf77903de6"
+    },
+    {
+      "path": "data/Cursor/HugWalk.ani",
+      "size": 16482,
+      "sha256": "8b7c47311b4765543178164d0224978c3605ee656b5fa5c8bbba80d92d89bbc9"
+    },
+    {
+      "path": "data/Cursor/Invite.ani",
+      "size": 9076,
+      "sha256": "0feccf6a72d69e3db1a34dc098f7a345ecc9e2150c70ccbe019ab0bf3be6a285"
+    },
+    {
+      "path": "data/Cursor/League.ani",
+      "size": 6608,
+      "sha256": "7ecebe3660a8e30dd3b6729b74d5ddc8dde0e62d7ac84813535ca179df3f4f45"
+    },
+    {
+      "path": "data/Cursor/Marriage.ani",
+      "size": 9076,
+      "sha256": "443e55a57141f9cba72d329bf26a067d30c35acce65181f603035d68bac037f4"
+    },
+    {
+      "path": "data/Cursor/Normal.ani",
+      "size": 11298,
+      "sha256": "c03b49c05053bf0f92200f720c9d85b9a358c50217b5c07232fac94d6b09968c"
+    },
+    {
+      "path": "data/Cursor/Npc.ani",
+      "size": 11298,
+      "sha256": "c03b49c05053bf0f92200f720c9d85b9a358c50217b5c07232fac94d6b09968c"
+    },
+    {
+      "path": "data/Cursor/PureKiss.ani",
+      "size": 19776,
+      "sha256": "0c9c2aca8b617ffc0694d39157e55fecccfac2146ffd6fca71d70621ee3cfa0c"
+    },
+    {
+      "path": "data/Cursor/Quenching.ani",
+      "size": 19720,
+      "sha256": "74fca1633b0ced7b14ce21a9ed7c8871dd0bcbf3b25333078ba5a7559ef32b8d"
+    },
+    {
+      "path": "data/Cursor/SweetKiss.ani",
+      "size": 6624,
+      "sha256": "fb0c10bd0d16309663e29c9ffca34649065a6ee8a85f983605d4527dc7c7bb98"
+    },
+    {
+      "path": "data/Cursor/Tempers.ani",
+      "size": 9926,
+      "sha256": "ca8734948c10205459d4d32dc62b14ea63620214bea4288b4db1fbc47fc210ac"
+    },
+    {
+      "path": "data/Cursor/Trywear.ani",
+      "size": 3350,
+      "sha256": "086c8d89da31e8781a255417d25a5f5653ac45d7cb7b2d4b0d8f747378d5431f"
+    },
+    {
+      "path": "data/Cursor/browbeat.ani",
+      "size": 17292,
+      "sha256": "d541136201d4c60c10040ef0b1eb1cd5d5f3a1e4fb6e29bcb5915e2e9a09f06f"
+    },
+    {
+      "path": "data/Cursor/coach.ani",
+      "size": 9942,
+      "sha256": "1ff54942e5074879ea7d0f60589f0c960937a9bc9bcff1b817e30a5bffc8bfa3"
+    },
+    {
+      "path": "data/Cursor/delete.ani",
+      "size": 22958,
+      "sha256": "5ecb2a41294cba1d3cf1ef1be685ac309eac68ac7d27932307b4038bbc29df35"
+    },
+    {
+      "path": "data/Cursor/pickup.ani",
+      "size": 9926,
+      "sha256": "ff8637607ee09baa68c26d065ae65db15b263c06f123f15390c9e69cac40fc10"
+    },
+    {
+      "path": "data/Cursor/pk.ani",
+      "size": 15790,
+      "sha256": "c67f1e4eea75f366e1d0ae6dc47f68a4cf0d4b968ec9bdf9ff2ba469144ee1ea"
+    },
+    {
+      "path": "data/Cursor/trade.ani",
+      "size": 6608,
+      "sha256": "71c4cdcdcfe5d8975672b6ff9d3d1d8c7e915924d990a2fe2b644c4b2ae09d53"
+    },
+    {
+      "path": "ini/3DEffect.ini",
+      "size": 599875,
+      "sha256": "aa059fc7a8fcb6629106cbc8381038b71bc60bb0aed81d9026aab78c55adde8b"
+    },
+    {
+      "path": "ini/3DEffectInfo.ini",
+      "size": 200,
+      "sha256": "e239777cd8e8de144bd55f9427d28d80ed8863a1f4cd8494a45ed57484c21895"
+    },
+    {
+      "path": "ini/3DEffectObj.ini",
+      "size": 118564,
+      "sha256": "3ba0aa169631f59f64743cb625369b50e0475c0968a898ddf627a24d4af32de8"
+    },
+    {
+      "path": "ini/3DFlyingObj.ini",
+      "size": 27356,
+      "sha256": "f7d48e6a16afcf0c635c438abf1fb115253522d8abbadd3e15634cb6114db3dc"
+    },
+    {
+      "path": "ini/3DSimpleObj.ini",
+      "size": 12834,
+      "sha256": "f34f56332383809968074ceda1130507011583d0fa79610110dcf66bcf3d7efc"
+    },
+    {
+      "path": "ini/3DSimpleObjEx.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/3DsimpleRole.ini",
+      "size": 2435,
+      "sha256": "79ce29e87a66492350ee7cf606fe7e4e082cbe43078d15d4fc39181e58fd4957"
+    },
+    {
+      "path": "ini/3dmotion.ini",
+      "size": 2073662,
+      "sha256": "9951727aa1ed461fdbb083cc49fb35299fbd15a146a2289f842a6c5df33533f1"
+    },
+    {
+      "path": "ini/3dobj.ini",
+      "size": 43017,
+      "sha256": "9202de93aa033d9a32bab73e72a1fe7bee659ee36ac7ce87c9c92cf3ea49e822"
+    },
+    {
+      "path": "ini/3dtexture.ini",
+      "size": 312407,
+      "sha256": "6be2fece83fd052bd211712d9a705191197f5510e0df8208f4e253dab155be92"
+    },
+    {
+      "path": "ini/Action3DEffect.ini",
+      "size": 306060,
+      "sha256": "3b854ba119e18771df148a8e7644d4937bc9b1ba18ac1e9da7d5d092affb57b3"
+    },
+    {
+      "path": "ini/ActionCtrl.ini",
+      "size": 7417,
+      "sha256": "fe61842f0892074db2e514f34f1c38e54f5c0984a8a416df49435e75e90062b8"
+    },
+    {
+      "path": "ini/ActionDelay.ini",
+      "size": 242882,
+      "sha256": "586ece4e16fde9dacf190cf344dfd1ce022baa13fe6bd30fbc59a602f8a613e7"
+    },
+    {
+      "path": "ini/ActionMap3DEffect.ini",
+      "size": 8068,
+      "sha256": "d19b43385c0829125ab58713b566c061052fe16515fcd484f659a881a4334d12"
+    },
+    {
+      "path": "ini/ActionSound.ini",
+      "size": 127396,
+      "sha256": "c6c927e48c01955edb0a6bf6ce68421f2490dbc24cd807a06d7fa77ac07c5b4b"
+    },
+    {
+      "path": "ini/ActionTransition.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/AdditiveSize.ini",
+      "size": 3414,
+      "sha256": "16230bc3749816d87e390015abee848813d02d8a6191f2614054378bc5b50bd9"
+    },
+    {
+      "path": "ini/BindAccountGUI.ini",
+      "size": 1698,
+      "sha256": "639bf78080f3eaaad070f4b3780571a844bdda7549bf5610634cf55c93e7a709"
+    },
+    {
+      "path": "ini/CHATGUI.ini",
+      "size": 1851,
+      "sha256": "472372290f23965f1c5d369d1fafdecd5a3b9b0d23c901c1ef05ebcd7a768e0e"
+    },
+    {
+      "path": "ini/ChatFilter.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/ChatTips.ini",
+      "size": 14918,
+      "sha256": "f53614d93053ec2dacc4b3b4ffce6254615a8509b90de0c0c5218f7c8553fd37"
+    },
+    {
+      "path": "ini/Cn_Res.ini",
+      "size": 138697,
+      "sha256": "23c23e12a954a97c202bb10cab86c6c7253c55232aa7491cdadbc52070db6026"
+    },
+    {
+      "path": "ini/Common.ini",
+      "size": 2372,
+      "sha256": "370a07242724880c7703ce5f641130472ff821f5e46e4d8efa3d833f6307e3b3"
+    },
+    {
+      "path": "ini/Compatible.ini",
+      "size": 141,
+      "sha256": "fc3af9cc0362ff7e6b83a1d090be0c66145376e22e611e0912779341e8484d37"
+    },
+    {
+      "path": "ini/ControlAction.ini",
+      "size": 29,
+      "sha256": "64957464501cf4ac56945782df61b613bcd9fbb1a623445c32c2d3011e34b42b"
+    },
+    {
+      "path": "ini/Cursor.ini",
+      "size": 955,
+      "sha256": "ac2c3ce1b6fc9e3b16543902cda76b13e35a0defc25240870feefd2a6c6a1ce9"
+    },
+    {
+      "path": "ini/DailyActivity.ini",
+      "size": 6765,
+      "sha256": "cd39ad203c67c734d9b8f3f8c0841b3ca3edd1a5ff7ffe7e155805d9be918d72"
+    },
+    {
+      "path": "ini/DefaultGameSetup.ini",
+      "size": 50,
+      "sha256": "ac8263fb13bc46319fe75736ddb1892108c093101b5f098c3fcba6b447c1d986"
+    },
+    {
+      "path": "ini/DummyMovie.ini",
+      "size": 2215,
+      "sha256": "7277bf702e4e698f98c7bb36c0478de028efc2bf0447358a4232ee2ca619ef10"
+    },
+    {
+      "path": "ini/DummyMovie800X600.ini",
+      "size": 2211,
+      "sha256": "9ec8e192f36d948cb491e8ecd521420b0c56cc4fc7cfa7e4871a8a6a69fe5af6"
+    },
+    {
+      "path": "ini/Dynarank.ini",
+      "size": 1944,
+      "sha256": "8bf7e8ddfa0000d8e7f44722fbf40ff6877010ce6763fbdc82abd93a5978b42a"
+    },
+    {
+      "path": "ini/EarthQuakeEffect.ini",
+      "size": 2631,
+      "sha256": "a9fb0d301c6afaf9c18416bcee598c83243f096c24dea0a4f89af57fdcfa0ce0"
+    },
+    {
+      "path": "ini/ElitePKFinalEffect.ini",
+      "size": 1626,
+      "sha256": "3ee902d4e865cd1580458901debd469cd61d9adbb2196877c140cbacb3b7fc3f"
+    },
+    {
+      "path": "ini/EmotionIco.ini",
+      "size": 712,
+      "sha256": "5aba79feec74204dac8a2a7b2e4136d4f600d08b6b3e68ad846e4b556514eac6"
+    },
+    {
+      "path": "ini/EventTypeName.ini",
+      "size": 382,
+      "sha256": "98751cc65ca6f1bedb3260a39cdba2ae6476c06d778a2d8c02f68b4c3b550eb2"
+    },
+    {
+      "path": "ini/FamilyArenaHonorRewards.ini",
+      "size": 1470,
+      "sha256": "b279250cddffbd67f6f3b07885a20910104674f61f737b7df6c49bb27f4af3e8"
+    },
+    {
+      "path": "ini/Font.ini",
+      "size": 8,
+      "sha256": "a8bc4c8523360dd55fea61a4f1c908fe1e70cce00c9962a263968765ef47e8bb"
+    },
+    {
+      "path": "ini/GUI.ini",
+      "size": 345504,
+      "sha256": "9820ab992e9e8aea5bf8da570d7bab6f2f4e8225a483ba5bb19b4a8faa5cd027"
+    },
+    {
+      "path": "ini/GUI800X600.ini",
+      "size": 346226,
+      "sha256": "384d9fdcd3f650cd22e7b63d53f162f52d3bbbadb648f79dd8e7600501f093a3"
+    },
+    {
+      "path": "ini/GameMapEx.ini",
+      "size": 7841,
+      "sha256": "a9336ae6848fbafb63952ae621b5d99cf06753976290bda2197b4bc7aa2da993"
+    },
+    {
+      "path": "ini/GameSetUp.ini",
+      "size": 157,
+      "sha256": "d32d919e831a52fb8942ca51492df34add95ea64530307f1fddd3ef07cfcd492"
+    },
+    {
+      "path": "ini/GemTip.ini",
+      "size": 3450,
+      "sha256": "982a91f87fde451a4f8a21e173a4e2e2f03c9af2b76f24e8c4d389af2bdff65d"
+    },
+    {
+      "path": "ini/HairMotion.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/HonorRewards.ini",
+      "size": 15528,
+      "sha256": "548c70da5ef935812ea24a051dd4b867d4a914c9de4c38707de2a2ef047caf05"
+    },
+    {
+      "path": "ini/HonorShop.ini",
+      "size": 2014,
+      "sha256": "edcf328875727d940e42e84c50a337f3e9a796e0da2bedd4e5d630fccb604c31"
+    },
+    {
+      "path": "ini/ItemAdd.ini",
+      "size": 312482,
+      "sha256": "eeaf14aa1657869f8a0217a9775815757dd17992f39b242a7fb0e6e641da51f8"
+    },
+    {
+      "path": "ini/ItemQuench.ini",
+      "size": 2812,
+      "sha256": "f73a8cd6bd9ddc7f0cf48c282d38aca852ff61a8d79e9ec027a7171fd7bb2778"
+    },
+    {
+      "path": "ini/ItemQuenchTipInfo.ini",
+      "size": 43109,
+      "sha256": "47d019d1f8dda60c3dfe87dbc146fa540387a547d1e34c02a675e832791f5417"
+    },
+    {
+      "path": "ini/ItemSolidify.ini",
+      "size": 23,
+      "sha256": "de0cb6073eafd41510124d0ad6393a1d90aff017ed4851b3f7a2f72fafcf8339"
+    },
+    {
+      "path": "ini/ItemTexture.ini",
+      "size": 355250,
+      "sha256": "8e086ba1bff7c8f612304323a85ab94a646df1325821b139aa1599d7d247a018"
+    },
+    {
+      "path": "ini/LotteryEffect.ini",
+      "size": 22740,
+      "sha256": "9e1057a9afa88e5c0bd298e971a98339f83cdb7ca067affd666070a9f173c575"
+    },
+    {
+      "path": "ini/MagicEarthQuake.ini",
+      "size": 1342,
+      "sha256": "39ae0e457945d56bf23e0fb55ec92ba6ac050ad3eaf47cd3537effb4e6c465de"
+    },
+    {
+      "path": "ini/MagicEffect.ini",
+      "size": 236878,
+      "sha256": "092091f8ff22ce700e3fe7562a767baa51fde3516d9df635e7dfb1a60ad1ad0b"
+    },
+    {
+      "path": "ini/MapMagicItem.ini",
+      "size": 7318,
+      "sha256": "1aff748e8de6797c9e5cee11177dfe74020b31676ff5f3df0bea47911422c934"
+    },
+    {
+      "path": "ini/MapRelationInfo.ini",
+      "size": 692,
+      "sha256": "ec89ae147970ec062121c28d9ade53b5806449ca99245f12c9b7f5b4247c1a9f"
+    },
+    {
+      "path": "ini/Material.ini",
+      "size": 50,
+      "sha256": "54af9bcd6c43d74149496647a04f544cbeda4edc13cfdd6bb17c5c3fe90f4179"
+    },
+    {
+      "path": "ini/MediaEffect.ini",
+      "size": 1808,
+      "sha256": "d4365f8eb6ade8fa3ba3909de6eed7d4d3a7f56667110652809a4e87fda259f1"
+    },
+    {
+      "path": "ini/Mount.ini",
+      "size": 49,
+      "sha256": "aad7f0df81dbaa578153ad9b15fb6e77fe8ce497854f9f90610463e928f8b579"
+    },
+    {
+      "path": "ini/MountMotion.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/MusicRegion.ini",
+      "size": 39351,
+      "sha256": "56a402de7017290cab2784e0a222dfd3cbd9b820baad6f4c743e4c762f41de54"
+    },
+    {
+      "path": "ini/NoArmorSoulEffectAction.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/NpcX.ini",
+      "size": 1006,
+      "sha256": "f6adc888f12849790b88d666fed1c552f56d9cd2fc5df8334a79e1d068b89870"
+    },
+    {
+      "path": "ini/PKVisibleControl.ini",
+      "size": 154,
+      "sha256": "0d28a998783f0094377c3bc0e9b49b7b36fa5a6e7cff2042ee2dd8ce28d759c0"
+    },
+    {
+      "path": "ini/Play.dat",
+      "size": 1676,
+      "sha256": "9a1b456d15c305972a98d18ee4433a2a44ede878d0489785d8ecaeabf193a716"
+    },
+    {
+      "path": "ini/PlayGui.ini",
+      "size": 2297,
+      "sha256": "a35abb95b47cb899a564af9104808933b16fe1a265f14eb4fdb7e6427cad5e52"
+    },
+    {
+      "path": "ini/ProfessionalName.ini",
+      "size": 3886,
+      "sha256": "d53ed42345b657930b2f8c6caaea8c61408770380f8fbb26aff862c131f62bf2"
+    },
+    {
+      "path": "ini/Questinfo.ini",
+      "size": 180811,
+      "sha256": "98d92e41bb092f406e601a6e728f1a4758561b82523fd8d7001daaa112185bad"
+    },
+    {
+      "path": "ini/RacePointShop.ini",
+      "size": 3544,
+      "sha256": "f20888d5e59b37fbfe19da34c6c29b66161137c6187413999e071dfd587921b7"
+    },
+    {
+      "path": "ini/RolePart.ini",
+      "size": 721,
+      "sha256": "c8c7184c6edfd026d4b3a9bc999f9ae4e74a575a68cb3fdf790356a3a618e29d"
+    },
+    {
+      "path": "ini/Shop.dat",
+      "size": 32947,
+      "sha256": "017609bd19798938a8bcb0eefe9fe0f043e843b398c92219cedbc69e3f6c85bc"
+    },
+    {
+      "path": "ini/ShowHandRule.ini",
+      "size": 4641,
+      "sha256": "60ad597e26457144308caddf1019aa06b091b6b12b50e684c69ddaffce50cb5f"
+    },
+    {
+      "path": "ini/SoulPart.ini",
+      "size": 3402,
+      "sha256": "e54e78ed91c3d2e1dc6a83be60f2eb69a7855eaee2fdaa549d9ccf745a895320"
+    },
+    {
+      "path": "ini/Sponsor.ini",
+      "size": 31,
+      "sha256": "042115dfad0d195d534b937dd38ba41f2de80079cf36d3a21511a130c4216617"
+    },
+    {
+      "path": "ini/StartGame.ini",
+      "size": 34,
+      "sha256": "b5bf7faa9b20c9a476535748353f4facaa456b9e27335e640b4488afde79eb4e"
+    },
+    {
+      "path": "ini/StatusTips.ini",
+      "size": 9374,
+      "sha256": "72113ba8ea34782d6e4e19ec58dcd2abf08ff22ad1eb6d6273d6813aaff0c957"
+    },
+    {
+      "path": "ini/StrRes.ini",
+      "size": 59577,
+      "sha256": "efe9f5f1d3e29bb79b9970c25dcb238179e3ab6e059e94d981b37236157cd072"
+    },
+    {
+      "path": "ini/SubProfessionInfo.ini",
+      "size": 26293,
+      "sha256": "a5bf8d02082f429f082c4b3ac2614b292f8eb0f2493118b07c1b16eb9152c63e"
+    },
+    {
+      "path": "ini/TeamArenaHonorRewards.ini",
+      "size": 6124,
+      "sha256": "3b27cc21b10baf4370019496ef51954c2448939690825f2a233030d80b41e8bd"
+    },
+    {
+      "path": "ini/TeamMemberStatus.ini",
+      "size": 358,
+      "sha256": "4080ba5624e3d90dab818c5917837f5b65f660165173acf136bda9718b89e345"
+    },
+    {
+      "path": "ini/TeamPKFinalEffect.ini",
+      "size": 1626,
+      "sha256": "19a9435329f2e471f2a4185cff9eea38e8ef7924ad41e38c17dcaf0257d7d894"
+    },
+    {
+      "path": "ini/TexasHoldEm.ini",
+      "size": 15851,
+      "sha256": "3b61fbca0f124a2ac8319820257d17036cf032ef14564d9826d0bfb141441846"
+    },
+    {
+      "path": "ini/Title.ini",
+      "size": 2095,
+      "sha256": "c6dc77fb1a0aca246f5cedbc4b8b657b600762c872b8013531f76c8f6e37935e"
+    },
+    {
+      "path": "ini/TransForm.ini",
+      "size": 11651,
+      "sha256": "7763bc3490921470bd0cfe1d72c3d4f3a66f4eabeeb881952f3bbf396b9dc875"
+    },
+    {
+      "path": "ini/TxtAction.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/TxtColor.ini",
+      "size": 49,
+      "sha256": "7ec1ab48a89ad25b611e0d8698fe3d326196a6c4b764a58b593f683579b7e821"
+    },
+    {
+      "path": "ini/TxtEmotion.ini",
+      "size": 146,
+      "sha256": "2c2fe6097e5274192aaeaae8bcb9da46e89507d1ad7a966cc7ef80e3763ef132"
+    },
+    {
+      "path": "ini/UserHelpInfo.ini",
+      "size": 557287,
+      "sha256": "6638902b7c0b2fa1a66892f184a12157878c6cce322a4915b2e5f12fde0ffab2"
+    },
+    {
+      "path": "ini/VipTrans.ini",
+      "size": 747,
+      "sha256": "7e2118f2de5974859685b0360afc87f1894d3611bb95111163ccb53182cb4284"
+    },
+    {
+      "path": "ini/WeaponCombin.ini",
+      "size": 27,
+      "sha256": "9901cb61fd4c97091d1e03a7a30120a0d2c0c5dc562d942bba9d665f5750f844"
+    },
+    {
+      "path": "ini/WeaponEffect.ini",
+      "size": 11533,
+      "sha256": "42de2e650d134c35a3c3e855480bcf970913d5487fb869f3dcf5f23ce85f207f"
+    },
+    {
+      "path": "ini/WeaponMotion.ini",
+      "size": 902748,
+      "sha256": "33c902b725409ce83df9e3c8a05f53ba4fc3ddf9c6a85d71096fa827620fec60"
+    },
+    {
+      "path": "ini/WeaponSkillLevelExp.ini",
+      "size": 270,
+      "sha256": "57b5864d4e33ba9a86bc25435e612c7a7c5daa10c7cdf993efda7c218abbc8c9"
+    },
+    {
+      "path": "ini/WeaponSkillName.ini",
+      "size": 575,
+      "sha256": "e4970827c1b4c58ae25ccc072b36e7786bb50719650d96431e61c9c8d1dcbbf7"
+    },
+    {
+      "path": "ini/armet.ini",
+      "size": 129646,
+      "sha256": "50e2e37ff080650b14ea64fd3bbcdfecf4fbeca40dbc1036639abb65a29feb0b"
+    },
+    {
+      "path": "ini/armetmotion.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/armor.ini",
+      "size": 108283,
+      "sha256": "8e64691e0f00f2d92cff9197b37571c1d5c67511f7ee3fd70753e86a9237161f"
+    },
+    {
+      "path": "ini/booth.ini",
+      "size": 1372,
+      "sha256": "e6eb1dc048a169ec7056ff885a5be6b90394cbae11263e2ef7250ecc8bb3ce17"
+    },
+    {
+      "path": "ini/cardplay.ini",
+      "size": 1481,
+      "sha256": "3aff9620d6ed4af20b235807196cc3c8ed327ddcbfe458f2bb5eb043df836808"
+    },
+    {
+      "path": "ini/cardshow.ini",
+      "size": 9033,
+      "sha256": "1c93b5e24372f5b7637acf143e720e3dd8d0b4f60f33869d3aa825184bc5db32"
+    },
+    {
+      "path": "ini/chatSetup.ini",
+      "size": 174,
+      "sha256": "9cc52a46ab06bdfd6fda579fce58b5f1aad6889bc1796242a2ade798afdb2d77"
+    },
+    {
+      "path": "ini/effect.ini",
+      "size": 11923,
+      "sha256": "bca7caedbfcf251b3849a3c2ad86cbc0023c12c21b1b8810b0fd650662ef44a8"
+    },
+    {
+      "path": "ini/emoneyshop.ini",
+      "size": 10588,
+      "sha256": "7a6ae5249147238c3ba3add96e98d44584f8cbe3ebed433c59e077beeb128e5c"
+    },
+    {
+      "path": "ini/flashLogin.ini",
+      "size": 1700,
+      "sha256": "323cdc428ac85c76616a89869057d616161ee0ce8867be2e4b37d61bd0d76ba9"
+    },
+    {
+      "path": "ini/fuse.ini",
+      "size": 27663,
+      "sha256": "43e5800399a1013dc64205f98a5bcf6c1890c97b84e29e775711577821038fc1"
+    },
+    {
+      "path": "ini/graphic.ini",
+      "size": 37,
+      "sha256": "c603939153b5aa5b119b75f7263128f8f693a36fed75f393b4dbd47d3bb690b1"
+    },
+    {
+      "path": "ini/head.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/headmotion.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/immediate.ini",
+      "size": 675996,
+      "sha256": "d82d64fd58397425166d463385d686d8275b7a02afdb6c039a4696f2e1486f7e"
+    },
+    {
+      "path": "ini/info.ini",
+      "size": 17145,
+      "sha256": "da9400900fc84898b428f302723c7949197bb1e94b00475010d72ff937e6790a"
+    },
+    {
+      "path": "ini/itemprice.ini",
+      "size": 14827,
+      "sha256": "38a3f9a05bf31a46cb8f0fbf134037312e862a0cb05a1f769fab42d4283f7ace"
+    },
+    {
+      "path": "ini/misc.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/miscmotion.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/monstersay.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/msgbox.ini",
+      "size": 10872,
+      "sha256": "a4d02ca414eb18ce569d7e06357d5c77b365678ae0db9b0e8ddb5ccb9c5812b2"
+    },
+    {
+      "path": "ini/nameRes.ini",
+      "size": 339,
+      "sha256": "849431ec179e667991deff5cb7ed3005388728420c537a71a4b439ca1517d6dc"
+    },
+    {
+      "path": "ini/npc.ini",
+      "size": 184549,
+      "sha256": "0813a51f0929dcaca7fdb9376ac54cdea862790ff8471ca3aeed304161e8d318"
+    },
+    {
+      "path": "ini/npcex.ini",
+      "size": 113,
+      "sha256": "f578547c80c53ad608d84c3bd672c4a1aff9758646afd373d03006b0c53e415d"
+    },
+    {
+      "path": "ini/numRes.ini",
+      "size": 2693,
+      "sha256": "59ff0969111738ba1c4e9886f2976fc675e2f4927d2d18fe913d71be0df91a01"
+    },
+    {
+      "path": "ini/outerwearprice.ini",
+      "size": 493,
+      "sha256": "d4d84e98a2708a383e673a254c38bb26a4faeecce5e8e8e800d57d6c282c15cc"
+    },
+    {
+      "path": "ini/outerwearshop.ini",
+      "size": 2401,
+      "sha256": "7e99c30648ae233da6513c91214f6c529ecf671df473b8f0ccb317f08b1509a6"
+    },
+    {
+      "path": "ini/package.ini",
+      "size": 29,
+      "sha256": "511028e125d43635d90f777806b0f0fee65895b5b1a604cf278001fee536a8f2"
+    },
+    {
+      "path": "ini/peerage.ini",
+      "size": 4637,
+      "sha256": "4e6994281f9c64e7b46fcfbb485157b8fd57f385bbd029512608c70309eb3f2c"
+    },
+    {
+      "path": "ini/region.ini",
+      "size": 3975,
+      "sha256": "8a4254059041a0314a3149243f6b2b2975615761720936684cd5fe1a72aaa54a"
+    },
+    {
+      "path": "ini/restrain.ini",
+      "size": 322,
+      "sha256": "c2353ec967ac7b767cdb19bc4a2e1df1573030da0de556824b17344aab7b7f92"
+    },
+    {
+      "path": "ini/selectCharacter.ini",
+      "size": 3612,
+      "sha256": "45192235789d6c5ff43d963ce65b531b61d4b9f9423b669fa5e0496536cda92d"
+    },
+    {
+      "path": "ini/slient.dat",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/sound.ini",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ini/statuseffect.ini",
+      "size": 1939,
+      "sha256": "4453d0f7375d37d8a2ee4ddf6a98936ca8248dcdbc89718eb017401171bd2d57"
+    },
+    {
+      "path": "ini/synmembertitle.ini",
+      "size": 940,
+      "sha256": "b82dc994038793fa97d8652af0168212415f8108b6639bd5ddb3f1056835e1bb"
+    },
+    {
+      "path": "ini/terrainnpc.ini",
+      "size": 28034,
+      "sha256": "4daba8a506f6b28ebc1528d0d86fe876bc0b54d97ba019a0000cc3e2baaea887"
+    },
+    {
+      "path": "ini/totempole.ini",
+      "size": 270,
+      "sha256": "f2612dce305345c668461c2c6dfcf9b8054bada22da4f8fcfe7b32867793a16d"
+    },
+    {
+      "path": "ini/tutorType.ini",
+      "size": 70,
+      "sha256": "742cd7805f5f224ae2c0cdb071aa68cc743cd6f883ac2172f6cdc797e8fc9d13"
+    },
+    {
+      "path": "ini/weapon.ini",
+      "size": 521496,
+      "sha256": "11df4435553d77b227167a86e6230268b720dafe938c60e0d06e5cd5ff565a0e"
+    },
+    {
+      "path": "ini/weather.ini",
+      "size": 105,
+      "sha256": "ecb1724aeb2d1cbd31075419f2f3299b4ac67fa82876934dfedbd91289816e39"
+    },
+    {
+      "path": "readme.txt",
+      "size": 543,
+      "sha256": "afabf93eb3c6232becae8c0b4e800b3f41ff0b0d95c9e2845ff0a3b3f978051a"
+    },
+    {
+      "path": "zftqat/Language.ini",
+      "size": 2430,
+      "sha256": "b4d5040ad5b5116a08f8969a1c39fdefed9791c5b6dbb32f7581599d61da1b58"
+    },
+    {
+      "path": "zftqat/krt.ini",
+      "size": 46,
+      "sha256": "9d32fc428e62a94d27a8bb99e769df3a7c719bd03b5f31bb549ba1ec2ef5879e"
+    }
+  ],
+  "binary_skipped": [
+    {
+      "path": "ini/Action.dat",
+      "size": 1064,
+      "sha256": "21d582f2ebad31bff12e368330e083955db3ee5bf42038858bacb5d1763df165"
+    },
+    {
+      "path": "ini/AutoAllot.dat",
+      "size": 17324,
+      "sha256": "7ae286139f9cd927e1178dd7ab998e08ec391a0fa0b828a67b89fc2a5d875d80"
+    },
+    {
+      "path": "ini/GameMap.dat",
+      "size": 8131,
+      "sha256": "0676b7d6969dd8277438704a289b1f57e8debb89fe5d3f912819c3a7880686a0"
+    },
+    {
+      "path": "ini/LevelExp.dat",
+      "size": 516,
+      "sha256": "20642c3fefb4df0af7d24f03073e10fe1c506cf8018fd050cec924e788291dbd"
+    },
+    {
+      "path": "ini/MagicType.dat",
+      "size": 155373,
+      "sha256": "e8b9559e640c75ed61fc859743f18bd372e6c5d9051457a639cedff9ba2a6e3d"
+    },
+    {
+      "path": "ini/MapDestination.dat",
+      "size": 48898,
+      "sha256": "425ec421b9c519fb2c7595f6bd7e5736783bfdebe45439abc37af712a89fb6c4"
+    },
+    {
+      "path": "ini/Monster.dat",
+      "size": 246812,
+      "sha256": "82c9bef839ce21cbbd7870aabaa0dfa22e3d4d05c72c7a2980b277af1c68bf0a"
+    },
+    {
+      "path": "ini/MyAnimate.dat",
+      "size": 1280,
+      "sha256": "a00afd6ab6a9962ab3435fbf688716d94e419d14d3469f76441dc7a03db82d2f"
+    },
+    {
+      "path": "ini/MyAnimate800X600.dat",
+      "size": 1024,
+      "sha256": "cfc4a0e65107851e0c4887ffdfa39d501f4898276907e9739b9dde86f070b373"
+    },
+    {
+      "path": "ini/Pet.Dat",
+      "size": 236,
+      "sha256": "ac31dcad7a3219235e00a0d4925cb390846ac343844502dba439874a90850ecd"
+    },
+    {
+      "path": "ini/RaceTrackProp.dat",
+      "size": 1792,
+      "sha256": "d2a7817f2c6efa1a09f1c0571edaf6b6b3d83f4efa8f8292edf6fdc241e32493"
+    },
+    {
+      "path": "ini/ShowHandTable.dat",
+      "size": 1024,
+      "sha256": "734abd50f3a0dcac81f210da978139d95a05eef1fa699b03a31adf711421abee"
+    },
+    {
+      "path": "ini/Tips.dat",
+      "size": 2799,
+      "sha256": "5e137c52f571ee8e180e418cf035639be145a9751aa19433fc43772b4a70805a"
+    },
+    {
+      "path": "ini/UserHelpInfo.dat",
+      "size": 679065,
+      "sha256": "b34744af10ffc2b38ee0a9182d11c0b48afb77894faf24b3ee911d1ee50f2717"
+    },
+    {
+      "path": "ini/UserHelpInfo.ini.dat",
+      "size": 559414,
+      "sha256": "737748ccd29d54c7687fc2647dda89dd0b0d3390ce198f597f269f194aeac35e"
+    },
+    {
+      "path": "ini/itemtype.dat",
+      "size": 3634428,
+      "sha256": "90e9c983b0f78337f20720a3cf61d8f1392f23979565da14eb01dc514e3a71e7"
+    },
+    {
+      "path": "ini/levexp.dat",
+      "size": 4030,
+      "sha256": "df41c576aa47dda77bb8d02b434cdee2b9deac32f2c34934aa2faae1f2c28283"
+    },
+    {
+      "path": "ini/magictypeop.dat",
+      "size": 66180,
+      "sha256": "1f810c81afad2e26052765c065e2ea4c19038d7af85d41d2acfa26ca66c916a8"
+    },
+    {
+      "path": "ini/mounttype.dat",
+      "size": 291474,
+      "sha256": "d4affabd9c846e0443aaf335cd6e966733dcae5829f1fd9933380940c97cea55"
+    },
+    {
+      "path": "ini/showhandlayout.dat",
+      "size": 5888,
+      "sha256": "f9096985c27e64eb0349a3c3486c058d010a882e53bf00c21c7508af233504e0"
+    },
+    {
+      "path": "ini/showhandlayout800X600.dat",
+      "size": 5888,
+      "sha256": "11610d2d1dc3910073ce73e63ff98475f491512ea91f83b40aee1b3330fe4851"
+    },
+    {
+      "path": "ini/silent.dat",
+      "size": 9121,
+      "sha256": "4fc55a4899fff3db2c336db31698d1d68143d16aaee583b7b02848f569eb732d"
+    },
+    {
+      "path": "ini/suittype.dat",
+      "size": 1024,
+      "sha256": "53082aa3d025e3b5420b1cc4fa5ac1f09b587d9619f720666a37b7951946fdbb"
+    },
+    {
+      "path": "ini/tqist.dat",
+      "size": 2696,
+      "sha256": "f6daef247de005b68f51f968729e43bd1c5965e33ccf4cf687d1604a581de4fa"
+    }
+  ]
+}

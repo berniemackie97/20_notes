@@ -2,7 +2,7 @@
 
 Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
-## MsgNpcInfo (Type 1032)
+## MsgBattleEffectiveness (Type 1032) — class proven by `MsgBattleEffectiveness.cpp` assert (CP0.1 2026-11-05); former label `MsgNpcInfo` withdrawn
 **Direction**: S→C
 **Purpose**: NPC entity information
 **Dispatch**: Create `CMsgNpcInfo__Create` (0x75E304), parse `CMsgNpcInfo__Parse` (0x75E36A), process `CMsgNpcInfo__Process` (0x75E38D)
@@ -13,14 +13,14 @@ Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 - `+4` is compared to the local player ID from singleton `+204`. If it matches, the handler compares `+8` against a vtable call at offset `+184` on the singleton object and asserts on mismatch.
 - If `+4` does not match the local player ID, `+4` is used to look up an entity via `EntityManager__FindEntityById`, and a vtable call at offset `+188` is invoked with `+8`.
 
-## MsgNpcInfoEX (Type 1033)
+## Type 1033 — class unproven; label `MsgNpcInfoEX` withdrawn (`MsgNpcInfoEX.cpp` asserts are in the type 1109 handler; CP0.1 2026-11-05)
 **Direction**: S→C
 **Purpose**: Extended NPC information (server time sync, mode-based data)
-**Dispatch**: Create `CMsgNpcInfoEX__Create` (0x74A4E6), parse `CMsgNpcInfoEX__Parse` (0x74A54C), process `CMsgNpcInfoEX__Process` (0x74A5E6)
+**Dispatch**: Create `CMsgNpcInfoEX__Create` (0x74A4E6), parse `CMsgNpcInfoEX__Parse` (0x74A54C), process `CMsg1033__Process` (0x74A5E6)
 
 **Parse**: `CMsgNpcInfoEX__Parse` — standard header validation, then `type == 1033`.
 
-**Verified field usage in `CMsgNpcInfoEX__Process`** (offsets relative to packet start):
+**Verified field usage in `CMsg1033__Process`** (offsets relative to packet start):
 - `+4` is treated as a `u8` mode selector.
 - If `+4 == 0`: the handler reads seven 32-bit fields and fills a `tm` struct:
   - `+8` -> `tm_year`, `+12` -> `tm_mon`, `+16` -> `tm_yday`, `+20` -> `tm_mday`,
@@ -30,7 +30,7 @@ Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 - If `+4 == 3`: passes `+8` (u32) to `CMsgNpcInfoEX__SendType3` after `s__GetSingletonPtr_5DF90A`.
 - If `+4 == 4`: passes `+8` and `+12` (u32/u32) to `CMsgNpcInfoEX__HandleType4` after `s__GetSingletonPtr_5DF90A`.
 
-## MsgTaskDialog (Type 1034)
+## Type 1034 — class unproven; label `MsgTaskDialog` withdrawn (`MsgTaskDialog.cpp` asserts are in the type 2032 handler; CP0.1 2026-11-05)
 **Direction**: S→C
 **Purpose**: Quest/task dialog system
 **Dispatch**: Create `CMsgTaskDialog__Create` (0x75DF38), parse `CMsgTaskDialog__Parse` (0x75DF9E), process `CMsgTaskDialog__Process` (0x75DFC1)
@@ -67,10 +67,10 @@ Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 - `packet+8` is a sub-type selector (switch on `*(uint8_t *)(packet+8)`).
 - String list is read via `MsgStringList__GetEntry` from the list object at `this+0x408` (same list format as MsgTalk/MsgUserInfo).
 
-## MsgMonsterTransform (Type 1112)
+## Type 1112 (class unproven; label `MsgMonsterTransform` withdrawn — `MsgMonsterTransform.cpp` asserts are in the 1042 handler `0x761D5C`)
 **Direction**: S→C
 **Purpose**: Writes two hero-side display strings from packet values (decimal id string + SynMgr lookup string).
-**Dispatch**: Create `CMsgMonsterTransform__Create` (0x75EBFC), parse `CMsgMonsterTransform__Parse` (0x75EC62), process `CMsgMonsterTransform__Process` (0x75EC85)
+**Dispatch**: Create `CMsg1112__Ctor` (0x75EBFC), parse `CMsg1112__Parse` (0x75EC62), process `CMsg1112__Process` (0x75EC85)
 
 **Parse**: `CMsgMonsterTransform__Parse` — standard header validation, then `type == 1112`.
 

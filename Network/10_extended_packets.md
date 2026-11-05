@@ -327,7 +327,7 @@ Updates eudemon (pet/companion) attributes. Checks 8 flag bytes to determine whi
 2. Scan flags `+20` through `+27` to determine category (1–8). First flag set wins (priority order: +20, +21, +22, +23, +24, +26, +25, +27).
 3. Call `CHero__SetEudemonAttrib(eudemonId, param1, param2, category)` to update the eudemon's attributes.
 
-## CMsgRaceTrackPropSync (Type 2072)
+## MsgRaceTrackProp (Type 2072) — class proven by `MsgRaceTrackProp.cpp` assert (CP0.1 2026-11-05); former label `MsgRaceTrackPropSync` withdrawn
 
 **Direction**: S→C
 **Wire type**: 2072 (0x0818)
@@ -1124,7 +1124,7 @@ Team arena challenge notification — structurally very similar to `CMsgTeamPKCh
 | +40 | 16 bytes | Player/team name 2 (null-terminated string) |
 | +56 | DWORD | Score 2 |
 
-## CMsgTeamArenaPlayerInfo (Type 2247)
+## MsgTeamArena (Type 2247) — class proven by `MsgTeamArena.cpp` assert (CP0.1 2026-11-05); former label `MsgTeamArenaPlayerInfo` withdrawn
 
 **Wire type**: 2247 (0x08C7)
 **Create**: `CMsgTeamArenaPlayerInfo__Create` @ `0x75297F`

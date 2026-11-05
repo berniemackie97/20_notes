@@ -43,7 +43,7 @@ and three documents carry no date at all.
 - [chat.md](chat.md) — `MsgTalk` (1004).
 - [npc-dialog.md](npc-dialog.md) — `MsgTaskDialog` (2032). Transport only; what a
   server puts through it is a separate question.
-- [equipment.md](equipment.md) — equip and unequip over `MsgTick` (1009).
+- [equipment.md](equipment.md) — equip and unequip over `MsgItem` (1009).
 - [character-attributes-and-auto-allot.md](character-attributes-and-auto-allot.md) —
   attributes, auto-allot, and the profession family, anchored on
   `CHero::GetEffectiveMaxLife` (`0x65D0C9`–`0x65D0EF`).

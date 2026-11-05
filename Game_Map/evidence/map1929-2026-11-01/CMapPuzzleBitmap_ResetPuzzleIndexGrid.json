@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x639fe7\n00639fe7  56               push    esi\n00639fe8  8b f1            mov     esi, ecx\n00639fea  8b 46 10         mov     eax, dword [esi+0x10]\n00639fed  85 c0            test    eax, eax\n00639fef  74 0b            je      0x639ffc\n\n# Block 3 at 0x639ff1\n00639ff1  50               push    eax\n00639ff2  e8 39 d1 13 00   call    ??3@YAXPAX@Z\n00639ff7  83 66 10 00      and     dword [esi+0x10], 0x0\n00639ffb  59               pop     ecx\n\n# Block 2 at 0x639ffc\n00639ffc  83 66 10 00      and     dword [esi+0x10], 0x0\n0063a000  83 66 04 00      and     dword [esi+0x4], 0x0\n0063a004  5e               pop     esi\n0063a005  c3               retn\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x639fe7\n00639fe7  56               push    esi\n00639fe8  8b f1            mov     esi, ecx\n00639fea  8b 46 10         mov     eax, dword [esi+0x10]\n00639fed  85 c0            test    eax, eax\n00639fef  74 0b            je      0x639ffc\n\n# Block 3 at 0x639ff1\n00639ff1  50               push    eax\n00639ff2  e8 39 d1 13 00   call    ??3@YAXPAX@Z\n00639ff7  83 66 10 00      and     dword [esi+0x10], 0x0\n00639ffb  59               pop     ecx\n\n# Block 2 at 0x639ffc\n00639ffc  83 66 10 00      and     dword [esi+0x10], 0x0\n0063a000  83 66 04 00      and     dword [esi+0x4], 0x0\n0063a004  5e               pop     esi\n0063a005  c3               retn\n"
+  },
+  "isError": false
+}

@@ -90,8 +90,8 @@ Ordinals resolved against bundled `libeay32.dll` exports.
 - Runtime semantics traced so far (shops, actions/tasks, generators, map cells): [tq-server-15.10-runtime-semantics.md](tq-server-15.10-runtime-semantics.md).
 - World topology, AccountServer link, capacity: [historical-multi-server-topology.md](historical-multi-server-topology.md).
 
-- Accepted client version: check exists (`STR_ERROR_VERSION` @`0x5207B4` used @`0x4B0795`;
-  `STR_ERROR_LOWER_VERSION` @`0x52079C` used @`0x4B0847`; fn `0x4B0688`). Constant not derived.
+- Accepted client version: `CMsgConnect__Process` `0x4B0688`: language-gated 2-byte compare at `+10` → `STR_ERROR_VERSION`;
+  word `+8` < `0x7B` (123) → `STR_ERROR_LOWER_VERSION` (`0x52079C`, used `0x4B0847`). Floor only, not a patch number.
 
 ## Excluded
 
@@ -99,3 +99,54 @@ Ordinals resolved against bundled `libeay32.dll` exports.
 - `zfserver-1/GameServer/GameServer.exe` = `ForGameServer.exe`: 5.3 MB, 5.2 MB overlay, VC9 2010, no version info — launcher.
 - `ZFSERVER/GameServer/ConquerAimbotHook.dll`: 12 bytes.
 - Each package bundles a private `zf` MyISAM DB (101–109 tables) → data rules in `database-provenance.md`.
+
+## Era (CP0.2, 2026-11-05)
+
+Proven: `__DATE__` `Oct 21 2008`; source root `CQServer-15.10-1021`; walk = 1005, action = 1010 (5517: 10005/10010);
+Blowfish game cipher; client floor `+8 ≥ 0x7B`. **No client patch number in MsgServer or NpcServer** (raw string scan).
+"≤5095" and "~518x" both unproven → era **unknown**. Older than 5517 (protocol IDs). Tag every finding `historical`.
+
+## Thread / timer model (MsgServer, historical, CP0.2 2026-11-05)
+
+Per-thread pass functions (IDA function comments set, names left `sub_`; class/method names not proven by this binary):
+
+| Fn | TU (assert) | Timer | Pass |
+|---|---|---|---|
+| `0x401153` | `MapGroupThread.cpp` | **500 ms**, `next += 500`; \|drift\| > 10 s → resync + log | drain port (buf 1048) → MapGroup `ProcessMsg`; break after 15000 ms (checked every 512 msgs); then MapGroup `OnTimer(now)` |
+| `0x404DF6` | `WorldThread.cpp` | **1000 ms**, same drift rule | World `OnTimer(now)`; port wait 400 |
+| `0x40475D` | `SocketThread.cpp` | **1000 ms**, same drift rule | socket `OnTimer`; socket process; port wait |
+| `0x404ACF` | `UserLoginThread.cpp` | none (every pass) | UserKernel `OnTimer(now)`; port wait 400 |
+
+- `0x408168`: profiler label table (`CUserManager::OnTimer()`, `CMapManager::OnTimer()`, `CRoleManager::OnTimer()`, …) — **not** a dispatcher.
+- `0x421383`: per-user periodic routine (virtual, no direct callers). Literals: CATCH `CUser autoheallife timer crash`
+  (`0x50E1C4`, `0x50E1D8`), deadloop label `m_dequeServerTick`, thresholds 30000 / 75000 ms. Semantics untraced → roadmap CP5.1.
+- NpcServer (`KernelThread.cpp`, `CNpcWorld::OnTimer`, named `NpcServer__OnTimerStateMachine` `0x408175`): loop cadence untraced.
+
+## Source TU inventory (asserts, historical)
+
+**MsgServer.exe** (144 `.cpp`):
+
+- `Comm/source`: InternetPort MessagePort
+- `Common`: BaseFunc IniFile MyHeap StringManager
+- `GameBaseCodeMT/source`: MyConstRecord MyDatabase MyRecord MyRecordset
+- `MapData/source`: Cell MapData MapDataPath TerrainObj TerrainObjPart
+- `MsgServer`: MapGroupThread MsgServerDlg SocketThread UserLoginThread WorldThread
+- `MsgServer/Adapter/Src`: Adapter FlowerActor GuideActor LotteryActor LotteryPrize PeerageActor PigeonActor RankActor Responder TrainActor
+- `MsgServer/LockLib`: ServerLock
+- `MsgServer/MapGroupKernel`: AINpc BattleSystem BetOutside Booth ClientDetector Detain DisdainDataSet Enemy EventPack Friend FriendData FuseItem GMToolCfg GameAction GameBlock GameMap Item ItemAddition ItemData ItemType LeaveWord Magic Magic_Process MapGroup MapGroupKernel MapItem MapManager MapTrap Npc NpcLink NpcManager NpcScene NpcStorage NpcTask Package PoliceWanted RoleManager SquareDeal Status StatusData StatusMore StatusOnce SynAttr SynManager Syndicate Team TradeBuddy Transformation User UserData UserInfo UserKernel UserManager UserTeam UserWeaponSkill User_Item User_Task WantedList Weather WeatherRegion
+- `MsgServer/MapGroupKernel/Network`: MsgAction MsgAiNpcInfo MsgBetOutside MsgCallPetInfo MsgDataArray MsgDetainItemInfo MsgDialog MsgEquipLock MsgFlushExp MsgFriend MsgFriendInfo MsgInteract MsgInviteTrans MsgItem MsgItemInfo MsgItemInfoEx MsgMagicEffect MsgMagicInfo MsgMapInfo MsgMapItem MsgName MsgPackage MsgPlayer MsgSynAttrInfo MsgSynMemberInfo MsgSyndicate MsgTalk MsgTeam MsgTeamAward MsgTrade MsgTradeBuddy MsgUserAttrib MsgUserInfo MsgWalk MsgWeather NetMsg NetMsgTracker
+- `MsgServer/ServerSocket`: SSocket ServerSocket
+- `MsgServer/WorldKernel`: ClientSocket MapList MessageBoard SupermanList SynWorldManager SynWorldShell UserList WorldKernel
+- `MsgServer/WorldKernel/NETWORK2`: MsgDialog MsgMessageBoard MsgName MsgTalk MsgTime NetMsg
+
+**NpcServer.exe** (53 `.cpp`):
+
+- `AiModule/source`: AiCenter FactSet RuleSet Syntax
+- `Comm/source`: InternetPort
+- `Common`: BaseFunc IniFile MyHeap StringManager
+- `GameBaseCodeMT/source`: MyConstRecord MyDatabase MyRecord MyRecordset
+- `MapData/source`: Cell MapData MapDataPath TerrainObj TerrainObjPart
+- `NpcServer`: ClientSocket KernelThread NpcServerDlg
+- `NpcServer/NpcKernel`: Agent Body DynaNpcGen GameMap Item ItemPack ItemType MapManager Npc NpcGenerator NpcManager NpcType NpcWorld RoleFight RoleMove Sense SynManager Team User UserManager
+- `NpcServer/NpcKernel/NetWork`: MsgAction MsgAiNpcInfo MsgInteract MsgItem MsgItemInfo MsgLogin MsgPlayer MsgSyndicate MsgTalk MsgUserInfo MsgWalk NetMsg
+

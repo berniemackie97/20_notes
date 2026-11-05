@@ -1,0 +1,22 @@
+; 07
+Stop
+; 96 1e 00 00 46 53 43 6f 6d 6d 61 6e 64 3a 43 4d 44 5f 47 41 4d 45 53 54 41 52 54 00 07 64 00 00 00
+Push "FSCommand:CMD_GAMESTART", 100
+; 9a 01 00 00
+GetURL2 false, false, 0
+; 96 07 00 00 5f 72 6f 6f 74 00
+Push "_root"
+; 1c
+GetVariable
+; 96 08 00 00 69 73 44 65 6d 6f 00
+Push "isDemo"
+; 4e
+GetMember
+; 12
+Not
+; 9d 02 00 01 00
+If loc0044
+; 06
+Play
+; 00
+loc0044:

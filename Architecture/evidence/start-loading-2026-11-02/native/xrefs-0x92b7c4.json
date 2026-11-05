@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"address\": \"0x92b7c4\", \"code_references\": [{\"function\": \"CMyShellDlg_ProcessNetAndTraceAccountLogin11237\", \"address\": \"0x5dc76b\"}, {\"function\": \"CMyShellDlg_HandleLoginStatusSystemTalk\", \"address\": \"0x5dccc8\"}, {\"function\": \"CMyShellDlg_HandleLoginStatusSystemTalk\", \"address\": \"0x5dccff\"}, {\"function\": \"CMyShellDlg_HandleCreateRoleStatusSystemTalk\", \"address\": \"0x5dce70\"}, {\"function\": \"CMyShellDlg_RunPreWorldFlashHostFrameCallbacks\", \"address\": \"0x5dcefb\"}, {\"function\": \"CMyShellDlg_RunPreWorldFlashHostFrameCallbacks\", \"address\": \"0x5dcf76\"}, {\"function\": \"CMyShellDlg_WindowProc_DispatchMainWindowMessages\", \"address\": \"0x5c137c\"}, {\"function\": \"CMyShellDlg_WindowProc_DispatchMainWindowMessages\", \"address\": \"0x5c13eb\"}, {\"function\": \"CLoginFlashDlg_BeginAccountBindServerHandshake\", \"address\": \"0x4af429\"}], \"data_references\": []}"
+    }
+  ],
+  "isError": false
+}

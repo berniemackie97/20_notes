@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x771595\n00771595  c7 01 4c d8 86 00 mov     dword [ecx], 0x86d84c\n0077159b  8b 49 08         mov     ecx, dword [ecx+0x8]\n0077159e  85 c9            test    ecx, ecx\n007715a0  74 05            je      0x7715a7\n\n# Block 3 at 0x7715a2\n007715a2  e9 3d 37 c9 ff   jmp     0x404ce4\n\n# Block 2 at 0x7715a7\n007715a7  c3               retn\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x771595\n00771595  c7 01 4c d8 86 00 mov     dword [ecx], 0x86d84c\n0077159b  8b 49 08         mov     ecx, dword [ecx+0x8]\n0077159e  85 c9            test    ecx, ecx\n007715a0  74 05            je      0x7715a7\n\n# Block 3 at 0x7715a2\n007715a2  e9 3d 37 c9 ff   jmp     0x404ce4\n\n# Block 2 at 0x7715a7\n007715a7  c3               retn\n"
+  },
+  "isError": false
+}

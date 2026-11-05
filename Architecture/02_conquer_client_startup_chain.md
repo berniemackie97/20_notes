@@ -229,14 +229,14 @@ This is the verified world-frame enable transition used by startup/login command
 Current managed startup UI preserves native main-window message sequencing for login handoff:
 
 1. user submit queues native-equivalent credential commands (`CMD_NAME`, `CMD_PASSWORD`) in managed form;
-2. submit stage posts `WM_COMMAND 0x464` with `wParam=0x480` (native `CMD_GAMESTART` branch; `CMD_ENTERGAME` is the earlier validator/connect step `0x4ABFBD`, see note 11);
+2. auth submit runs on main-window cmd `0xCEE`, posted by `CMsgLoginSeed__Process_DeriveCredentialRc5KeyFromSeed` (`0x764C02`) when the account server's seed arrives (corrected 2026-11-02: switch `0x5BBCC2` base `0xBE3`, byte index 267 → target `0x5BC81B`). `CMD_GAMESTART` → `0x480` only sets `+0x179AAC = 1` (`0x5C6EB0`). `CMD_ENTERGAME` is the earlier validator/connect step `0x4ABFBD` (note 11);
 3. startup status callbacks (`LOADING_TRACE` `0x2BE7`/`0x2BE8`, `PROGRESS`) are treated as visual status only;
 4. world-load stage posts `wParam=0x483` (plus `0xC6B`, `0x3F2`) only on explicit world-ready transition
    matching `CLoginFlashDlg_HandleCloseCommandAndPostWorldEntryMessages` (`0x4AC62B`) semantics.
 
 Practical endpoint consequence from verified handlers:
 
-- `WM_COMMAND 0x464` submit branch at `0x5BC81B..0x5BC846`:
+- `WM_COMMAND 0x464` cmd `0xCEE` (login seed) submit branch at `0x5BC81B..0x5BC846`:
   - checks startup host visibility via `CFlashHostDialog_IsWindowVisibleOrPendingActivation` (`0x5964C1`);
   - when visible, calls `CLoginFlashDlg_SubmitLoginRequestAndPostCommand482` (`0x4AEE6A`) at `0x5BC841`.
 - inside `0x4AEE6A`, submit first resolves account/login endpoint via

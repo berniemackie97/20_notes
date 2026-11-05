@@ -1,0 +1,38 @@
+; 88 34 00 06 00 00 74 78 74 4d 73 67 31 00 74 65 78 74 00 73 4d 73 67 00 67 65 74 4c 6f 61 64 69 6e 67 54 61 63 65 20 3a 20 20 20 20 00 69 73 4c 6f 61 64 69 6e 67 00
+ConstantPool "", "txtMsg1", "text", "sMsg", "getLoadingTace :    ", "isLoading"
+; 9b 18 00 67 65 74 4c 6f 61 64 69 6e 67 54 61 63 65 00 01 00 73 4d 73 67 00 26 00
+DefineFunction "getLoadingTace", 1, "sMsg"  {
+; 96 09 00 08 00 07 07 00 00 00 05 01
+Push "", 7, true
+; 23
+SetProperty
+; 96 02 00 08 01
+Push "txtMsg1"
+; 1c
+GetVariable
+; 96 04 00 08 02 08 03
+Push "text", "sMsg"
+; 1c
+GetVariable
+; 4f
+SetMember
+; 96 04 00 08 04 08 03
+Push "getLoadingTace :    ", "sMsg"
+; 1c
+GetVariable
+; 47
+Add2
+; 26
+Trace
+; 07
+}
+Stop
+; 96 04 00 08 05 05 00
+Push "isLoading", false
+; 1d
+SetVariable
+; 96 09 00 08 00 07 07 00 00 00 05 00
+Push "", 7, false
+; 23
+SetProperty
+; 00

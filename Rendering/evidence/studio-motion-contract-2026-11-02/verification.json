@@ -1,0 +1,21 @@
+{
+  "binary": "00_clean/clean/5517/C3_CORE_DLL.dll",
+  "sha256": "f5bbe1d408320de33c17422b58576d3e883fa6f93830fe159ac27f3396551a7b",
+  "imageBase": "0x10000000",
+  "functions": [
+    {
+      "name": "sample",
+      "start": "0x10009a20",
+      "endExclusive": "0x10009e64",
+      "instructionsCompared": 298,
+      "byteRangeSha256": "ec609da72ed134b865b68107d6732f8392b4a1477974d7135c09d40b0c5ffa47"
+    },
+    {
+      "name": "blend",
+      "start": "0x10009e70",
+      "endExclusive": "0x1000a1bc",
+      "instructionsCompared": 214,
+      "byteRangeSha256": "4556a54e22e6dc16a0184235efefcc4ce9db5f4af354aa9d26f25de72caf3654"
+    }
+  ]
+}

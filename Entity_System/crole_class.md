@@ -226,7 +226,7 @@ CRole uses three separate bitset regions for entity status:
 This is a `CDummy` method, not a `CRole` local-equipment setter. The assert at `0x66CF6E`
 names `3DRole/Dummy.cpp`. It checks the inspected-role identity against `this+0xA88`
 (`0x66CEEC`) and stores shared references at `this+0xA98 + 8*(slot-1)` for slots1..12/15..18.
-MsgItem subtype4 calls it on hero+`0x1EA0` and passes packet+4 as the inspection identity.
+Msg1008 subtype4 calls it on hero+`0x1EA0` and passes packet+4 as the inspection identity.
 See [the corrected item contract](../Network/MsgItem1008-domain-contract-5517.md).
 
 ### Animation (3 functions)
@@ -377,7 +377,7 @@ rounding rules are documented in
   - role+0x1A0 = projectedScreenY
 - This is the direct world-entry writer that feeds CRole_GetProjectedScreenCoordinatesFromCommittedPathCursor on the
   first world frame before later movement paths start staging through role+0x19C/+0x1A0.
-- CMsgPlayerSpawn__Process is a verified caller at 0x756E7E.
+- CMsgPlayer__Process is a verified caller at 0x756E7E.
 ```
 
 #### CRole_SetDirectionFromPacked8 (0x650CC2, size=29)

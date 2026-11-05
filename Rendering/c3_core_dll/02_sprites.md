@@ -192,7 +192,7 @@ The first three switch to **mode 0** for their falling/fading branches:
 their calculated fall alpha as a mode-1 input. Resource names come from `ani/weather.ani`.
 Their creation/resource-name provenance is qualified in the following paragraphs.
 
-**Proven firework activation path (subsequent checkpoint):** `CMsgTick__Process`
+**Proven firework activation path (subsequent checkpoint):** `CMsgItem__Process`
 calls `WeatherFireworkSystem_AddEmitterByKind` (`0x62D578`) at `0x6EB7F9`,
 `0x6EB873`, `0x6EB8EA`, with kind 0 and resource variant `rand()%5+1`.
 The chain is `0x62D05A -> 0x62B47D`; the latter builds `YinFa%d`.

@@ -1,0 +1,2763 @@
+{
+  "source_root": "/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517",
+  "gamemap": {
+    "path": "ini/GameMap.dat",
+    "size": 8131,
+    "sha256": "0676b7d6969dd8277438704a289b1f57e8debb89fe5d3f912819c3a7880686a0",
+    "declared_count": 262,
+    "all_bytes_consumed": true,
+    "selected_rows": [
+      {
+        "index": 146,
+        "offset": 4434,
+        "map_data_id": 1762,
+        "path": "map/map/icecrypt-lev1.7z",
+        "path_length": 24,
+        "link": 128
+      },
+      {
+        "index": 198,
+        "offset": 6209,
+        "map_data_id": 1999,
+        "path": "map/map/icecrypt-lev3.7z",
+        "path_length": 24,
+        "link": 128
+      },
+      {
+        "index": 199,
+        "offset": 6245,
+        "map_data_id": 2054,
+        "path": "map/map/icecrypt-lev4.7z",
+        "path_length": 24,
+        "link": 128
+      },
+      {
+        "index": 200,
+        "offset": 6281,
+        "map_data_id": 2055,
+        "path": "map/map/icecrypt-lev5.7z",
+        "path_length": 24,
+        "link": 128
+      },
+      {
+        "index": 201,
+        "offset": 6317,
+        "map_data_id": 2056,
+        "path": "map/map/icecrypt-lev6.7z",
+        "path_length": 24,
+        "link": 128
+      }
+    ]
+  },
+  "maps": [
+    {
+      "archive": {
+        "path": "map/map/icecrypt-lev1.7z",
+        "size": 20909,
+        "sha256": "f6e656e4005b7f9882e9a3822ec8ba3b4e233256e17201abea197f69943e98cc"
+      },
+      "payload": {
+        "label": "icecrypt-lev1 archive",
+        "size": 2979628,
+        "sha256": "4b28c12aaa897dd9f39b913fe58a1328068c660cc64f7e904d70f158588417ce",
+        "header": [
+          1004,
+          0
+        ],
+        "puzzle_path": "map\\puzzle\\icecrypt-lev1.pul",
+        "grid": [
+          688,
+          688
+        ],
+        "grid_start": 276,
+        "tail_start": 2843092,
+        "tail_start_hex": "0x2b61d4",
+        "tail_size": 136536,
+        "tail_sha256": "db8c84a4e3d05c4a358b18543717441e8cd9b0fabb40e0846c17f04a9f4ce4f7",
+        "all_row_checksums_match": true,
+        "checksum_failures": [],
+        "first_tail_words": [
+          {
+            "offset": 2843092,
+            "offset_hex": "0x2b61d4",
+            "u32": 2,
+            "hex": "02000000"
+          },
+          {
+            "offset": 2843096,
+            "offset_hex": "0x2b61d8",
+            "u32": 637,
+            "hex": "7d020000"
+          },
+          {
+            "offset": 2843100,
+            "offset_hex": "0x2b61dc",
+            "u32": 372,
+            "hex": "74010000"
+          },
+          {
+            "offset": 2843104,
+            "offset_hex": "0x2b61e0",
+            "u32": 1,
+            "hex": "01000000"
+          },
+          {
+            "offset": 2843108,
+            "offset_hex": "0x2b61e4",
+            "u32": 59,
+            "hex": "3b000000"
+          },
+          {
+            "offset": 2843112,
+            "offset_hex": "0x2b61e8",
+            "u32": 249,
+            "hex": "f9000000"
+          },
+          {
+            "offset": 2843116,
+            "offset_hex": "0x2b61ec",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843120,
+            "offset_hex": "0x2b61f0",
+            "u32": 325,
+            "hex": "45010000"
+          },
+          {
+            "offset": 2843124,
+            "offset_hex": "0x2b61f4",
+            "u32": 4,
+            "hex": "04000000"
+          },
+          {
+            "offset": 2843128,
+            "offset_hex": "0x2b61f8",
+            "u32": 1550413409,
+            "hex": "616e695c"
+          },
+          {
+            "offset": 2843132,
+            "offset_hex": "0x2b61fc",
+            "u32": 1936744813,
+            "hex": "6d617073"
+          },
+          {
+            "offset": 2843136,
+            "offset_hex": "0x2b6200",
+            "u32": 1701733731,
+            "hex": "63656e65"
+          },
+          {
+            "offset": 2843140,
+            "offset_hex": "0x2b6204",
+            "u32": 1630417456,
+            "hex": "30322e61"
+          },
+          {
+            "offset": 2843144,
+            "offset_hex": "0x2b6208",
+            "u32": 26990,
+            "hex": "6e690000"
+          },
+          {
+            "offset": 2843148,
+            "offset_hex": "0x2b620c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843152,
+            "offset_hex": "0x2b6210",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843156,
+            "offset_hex": "0x2b6214",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843160,
+            "offset_hex": "0x2b6218",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843164,
+            "offset_hex": "0x2b621c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843168,
+            "offset_hex": "0x2b6220",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843172,
+            "offset_hex": "0x2b6224",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843176,
+            "offset_hex": "0x2b6228",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843180,
+            "offset_hex": "0x2b622c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843184,
+            "offset_hex": "0x2b6230",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843188,
+            "offset_hex": "0x2b6234",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843192,
+            "offset_hex": "0x2b6238",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843196,
+            "offset_hex": "0x2b623c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843200,
+            "offset_hex": "0x2b6240",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843204,
+            "offset_hex": "0x2b6244",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843208,
+            "offset_hex": "0x2b6248",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843212,
+            "offset_hex": "0x2b624c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843216,
+            "offset_hex": "0x2b6250",
+            "u32": 0,
+            "hex": "00000000"
+          }
+        ],
+        "tail_prefix_hex": "020000007d02000074010000010000003b000000f9000000000000004501000004000000616e695c6d61707363656e6530322e616e6900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "loose": {
+        "label": "icecrypt-lev1 loose",
+        "size": 2979628,
+        "sha256": "4b28c12aaa897dd9f39b913fe58a1328068c660cc64f7e904d70f158588417ce",
+        "header": [
+          1004,
+          0
+        ],
+        "puzzle_path": "map\\puzzle\\icecrypt-lev1.pul",
+        "grid": [
+          688,
+          688
+        ],
+        "grid_start": 276,
+        "tail_start": 2843092,
+        "tail_start_hex": "0x2b61d4",
+        "tail_size": 136536,
+        "tail_sha256": "db8c84a4e3d05c4a358b18543717441e8cd9b0fabb40e0846c17f04a9f4ce4f7",
+        "all_row_checksums_match": true,
+        "checksum_failures": [],
+        "first_tail_words": [
+          {
+            "offset": 2843092,
+            "offset_hex": "0x2b61d4",
+            "u32": 2,
+            "hex": "02000000"
+          },
+          {
+            "offset": 2843096,
+            "offset_hex": "0x2b61d8",
+            "u32": 637,
+            "hex": "7d020000"
+          },
+          {
+            "offset": 2843100,
+            "offset_hex": "0x2b61dc",
+            "u32": 372,
+            "hex": "74010000"
+          },
+          {
+            "offset": 2843104,
+            "offset_hex": "0x2b61e0",
+            "u32": 1,
+            "hex": "01000000"
+          },
+          {
+            "offset": 2843108,
+            "offset_hex": "0x2b61e4",
+            "u32": 59,
+            "hex": "3b000000"
+          },
+          {
+            "offset": 2843112,
+            "offset_hex": "0x2b61e8",
+            "u32": 249,
+            "hex": "f9000000"
+          },
+          {
+            "offset": 2843116,
+            "offset_hex": "0x2b61ec",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843120,
+            "offset_hex": "0x2b61f0",
+            "u32": 325,
+            "hex": "45010000"
+          },
+          {
+            "offset": 2843124,
+            "offset_hex": "0x2b61f4",
+            "u32": 4,
+            "hex": "04000000"
+          },
+          {
+            "offset": 2843128,
+            "offset_hex": "0x2b61f8",
+            "u32": 1550413409,
+            "hex": "616e695c"
+          },
+          {
+            "offset": 2843132,
+            "offset_hex": "0x2b61fc",
+            "u32": 1936744813,
+            "hex": "6d617073"
+          },
+          {
+            "offset": 2843136,
+            "offset_hex": "0x2b6200",
+            "u32": 1701733731,
+            "hex": "63656e65"
+          },
+          {
+            "offset": 2843140,
+            "offset_hex": "0x2b6204",
+            "u32": 1630417456,
+            "hex": "30322e61"
+          },
+          {
+            "offset": 2843144,
+            "offset_hex": "0x2b6208",
+            "u32": 26990,
+            "hex": "6e690000"
+          },
+          {
+            "offset": 2843148,
+            "offset_hex": "0x2b620c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843152,
+            "offset_hex": "0x2b6210",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843156,
+            "offset_hex": "0x2b6214",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843160,
+            "offset_hex": "0x2b6218",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843164,
+            "offset_hex": "0x2b621c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843168,
+            "offset_hex": "0x2b6220",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843172,
+            "offset_hex": "0x2b6224",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843176,
+            "offset_hex": "0x2b6228",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843180,
+            "offset_hex": "0x2b622c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843184,
+            "offset_hex": "0x2b6230",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843188,
+            "offset_hex": "0x2b6234",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843192,
+            "offset_hex": "0x2b6238",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843196,
+            "offset_hex": "0x2b623c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843200,
+            "offset_hex": "0x2b6240",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843204,
+            "offset_hex": "0x2b6244",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843208,
+            "offset_hex": "0x2b6248",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843212,
+            "offset_hex": "0x2b624c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843216,
+            "offset_hex": "0x2b6250",
+            "u32": 0,
+            "hex": "00000000"
+          }
+        ],
+        "tail_prefix_hex": "020000007d02000074010000010000003b000000f9000000000000004501000004000000616e695c6d61707363656e6530322e616e6900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "equal": true,
+      "comparison": {
+        "common_length": 2979628,
+        "different_bytes_in_common_range": 0,
+        "first_difference": null,
+        "first_32_difference_offsets": []
+      }
+    },
+    {
+      "archive": {
+        "path": "map/map/icecrypt-lev2.7z",
+        "size": 25482,
+        "sha256": "ee72bcf2d93ba492f9b71fd2636ce6acd1b70bed9842a6b0a431fd51274422d2"
+      },
+      "payload": {
+        "label": "icecrypt-lev2 archive",
+        "size": 3095252,
+        "sha256": "f084c911d3c4416862cf85c66cbe1dbb49e8b5a36502b48c3365a759ecf7831f",
+        "header": [
+          1004,
+          0
+        ],
+        "puzzle_path": "map\\puzzle\\icecrypt-lev2.pul",
+        "grid": [
+          704,
+          704
+        ],
+        "grid_start": 276,
+        "tail_start": 2976788,
+        "tail_start_hex": "0x2d6c14",
+        "tail_size": 118464,
+        "tail_sha256": "e6e05b88b2dcaa5f0e4db3c74423f9f085030b33c4341b9be5d85f58802a7c9e",
+        "all_row_checksums_match": true,
+        "checksum_failures": [],
+        "first_tail_words": [
+          {
+            "offset": 2976788,
+            "offset_hex": "0x2d6c14",
+            "u32": 1,
+            "hex": "01000000"
+          },
+          {
+            "offset": 2976792,
+            "offset_hex": "0x2d6c18",
+            "u32": 39,
+            "hex": "27000000"
+          },
+          {
+            "offset": 2976796,
+            "offset_hex": "0x2d6c1c",
+            "u32": 277,
+            "hex": "15010000"
+          },
+          {
+            "offset": 2976800,
+            "offset_hex": "0x2d6c20",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2976804,
+            "offset_hex": "0x2d6c24",
+            "u32": 282,
+            "hex": "1a010000"
+          },
+          {
+            "offset": 2976808,
+            "offset_hex": "0x2d6c28",
+            "u32": 4,
+            "hex": "04000000"
+          },
+          {
+            "offset": 2976812,
+            "offset_hex": "0x2d6c2c",
+            "u32": 1550413409,
+            "hex": "616e695c"
+          },
+          {
+            "offset": 2976816,
+            "offset_hex": "0x2d6c30",
+            "u32": 1936744813,
+            "hex": "6d617073"
+          },
+          {
+            "offset": 2976820,
+            "offset_hex": "0x2d6c34",
+            "u32": 1701733731,
+            "hex": "63656e65"
+          },
+          {
+            "offset": 2976824,
+            "offset_hex": "0x2d6c38",
+            "u32": 1630417456,
+            "hex": "30322e61"
+          },
+          {
+            "offset": 2976828,
+            "offset_hex": "0x2d6c3c",
+            "u32": 16804206,
+            "hex": "6e690001"
+          },
+          {
+            "offset": 2976832,
+            "offset_hex": "0x2d6c40",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976836,
+            "offset_hex": "0x2d6c44",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976840,
+            "offset_hex": "0x2d6c48",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976844,
+            "offset_hex": "0x2d6c4c",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976848,
+            "offset_hex": "0x2d6c50",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976852,
+            "offset_hex": "0x2d6c54",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976856,
+            "offset_hex": "0x2d6c58",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976860,
+            "offset_hex": "0x2d6c5c",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976864,
+            "offset_hex": "0x2d6c60",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976868,
+            "offset_hex": "0x2d6c64",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976872,
+            "offset_hex": "0x2d6c68",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976876,
+            "offset_hex": "0x2d6c6c",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976880,
+            "offset_hex": "0x2d6c70",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976884,
+            "offset_hex": "0x2d6c74",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976888,
+            "offset_hex": "0x2d6c78",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976892,
+            "offset_hex": "0x2d6c7c",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976896,
+            "offset_hex": "0x2d6c80",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976900,
+            "offset_hex": "0x2d6c84",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976904,
+            "offset_hex": "0x2d6c88",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976908,
+            "offset_hex": "0x2d6c8c",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976912,
+            "offset_hex": "0x2d6c90",
+            "u32": 24707449,
+            "hex": "79017901"
+          }
+        ],
+        "tail_prefix_hex": "010000002700000015010000000000001a01000004000000616e695c6d61707363656e6530322e616e6900017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179010000000000000000850086009200930055005600570079017901790179017901790179015100520053009500960082008300c5008d058e0588058905aa00ab008700880089007c007d007e006a006b00ad00ae00c500f40588058905f105f20588059f00a000a1007a007b007c007d007e006a00"
+      },
+      "loose": {
+        "label": "icecrypt-lev2 loose",
+        "size": 3095252,
+        "sha256": "f084c911d3c4416862cf85c66cbe1dbb49e8b5a36502b48c3365a759ecf7831f",
+        "header": [
+          1004,
+          0
+        ],
+        "puzzle_path": "map\\puzzle\\icecrypt-lev2.pul",
+        "grid": [
+          704,
+          704
+        ],
+        "grid_start": 276,
+        "tail_start": 2976788,
+        "tail_start_hex": "0x2d6c14",
+        "tail_size": 118464,
+        "tail_sha256": "e6e05b88b2dcaa5f0e4db3c74423f9f085030b33c4341b9be5d85f58802a7c9e",
+        "all_row_checksums_match": true,
+        "checksum_failures": [],
+        "first_tail_words": [
+          {
+            "offset": 2976788,
+            "offset_hex": "0x2d6c14",
+            "u32": 1,
+            "hex": "01000000"
+          },
+          {
+            "offset": 2976792,
+            "offset_hex": "0x2d6c18",
+            "u32": 39,
+            "hex": "27000000"
+          },
+          {
+            "offset": 2976796,
+            "offset_hex": "0x2d6c1c",
+            "u32": 277,
+            "hex": "15010000"
+          },
+          {
+            "offset": 2976800,
+            "offset_hex": "0x2d6c20",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2976804,
+            "offset_hex": "0x2d6c24",
+            "u32": 282,
+            "hex": "1a010000"
+          },
+          {
+            "offset": 2976808,
+            "offset_hex": "0x2d6c28",
+            "u32": 4,
+            "hex": "04000000"
+          },
+          {
+            "offset": 2976812,
+            "offset_hex": "0x2d6c2c",
+            "u32": 1550413409,
+            "hex": "616e695c"
+          },
+          {
+            "offset": 2976816,
+            "offset_hex": "0x2d6c30",
+            "u32": 1936744813,
+            "hex": "6d617073"
+          },
+          {
+            "offset": 2976820,
+            "offset_hex": "0x2d6c34",
+            "u32": 1701733731,
+            "hex": "63656e65"
+          },
+          {
+            "offset": 2976824,
+            "offset_hex": "0x2d6c38",
+            "u32": 1630417456,
+            "hex": "30322e61"
+          },
+          {
+            "offset": 2976828,
+            "offset_hex": "0x2d6c3c",
+            "u32": 16804206,
+            "hex": "6e690001"
+          },
+          {
+            "offset": 2976832,
+            "offset_hex": "0x2d6c40",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976836,
+            "offset_hex": "0x2d6c44",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976840,
+            "offset_hex": "0x2d6c48",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976844,
+            "offset_hex": "0x2d6c4c",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976848,
+            "offset_hex": "0x2d6c50",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976852,
+            "offset_hex": "0x2d6c54",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976856,
+            "offset_hex": "0x2d6c58",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976860,
+            "offset_hex": "0x2d6c5c",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976864,
+            "offset_hex": "0x2d6c60",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976868,
+            "offset_hex": "0x2d6c64",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976872,
+            "offset_hex": "0x2d6c68",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976876,
+            "offset_hex": "0x2d6c6c",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976880,
+            "offset_hex": "0x2d6c70",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976884,
+            "offset_hex": "0x2d6c74",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976888,
+            "offset_hex": "0x2d6c78",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976892,
+            "offset_hex": "0x2d6c7c",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976896,
+            "offset_hex": "0x2d6c80",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976900,
+            "offset_hex": "0x2d6c84",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976904,
+            "offset_hex": "0x2d6c88",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976908,
+            "offset_hex": "0x2d6c8c",
+            "u32": 24707449,
+            "hex": "79017901"
+          },
+          {
+            "offset": 2976912,
+            "offset_hex": "0x2d6c90",
+            "u32": 24707449,
+            "hex": "79017901"
+          }
+        ],
+        "tail_prefix_hex": "010000002700000015010000000000001a01000004000000616e695c6d61707363656e6530322e616e6900017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179017901790179010000000000000000850086009200930055005600570079017901790179017901790179015100520053009500960082008300c5008d058e0588058905aa00ab008700880089007c007d007e006a006b00ad00ae00c500f40588058905f105f20588059f00a000a1007a007b007c007d007e006a00"
+      },
+      "equal": true,
+      "comparison": {
+        "common_length": 3095252,
+        "different_bytes_in_common_range": 0,
+        "first_difference": null,
+        "first_32_difference_offsets": []
+      }
+    },
+    {
+      "archive": {
+        "path": "map/map/icecrypt-lev3.7z",
+        "size": 19766,
+        "sha256": "8ddb39291d1a8aea31ab1c7df6be0083b35b7da43939c8a9255d98db54809cb8"
+      },
+      "payload": {
+        "label": "icecrypt-lev3 archive",
+        "size": 4039008,
+        "sha256": "08cf96b84fd0ad8a17a833d80925c8686940498d2c0fbfe68bb17095c4af9a9d",
+        "header": [
+          1005,
+          0
+        ],
+        "puzzle_path": "map\\puzzle\\icecrypt-lev3.pul",
+        "grid": [
+          820,
+          820
+        ],
+        "grid_start": 276,
+        "tail_start": 4037956,
+        "tail_start_hex": "0x3d9d44",
+        "tail_size": 1052,
+        "tail_sha256": "db0a5dd2c55d7cfe2c298691dc9abe6b7bc03424c7eec2fca0418e4463d8aa08",
+        "all_row_checksums_match": true,
+        "checksum_failures": [],
+        "first_tail_words": [
+          {
+            "offset": 4037956,
+            "offset_hex": "0x3d9d44",
+            "u32": 16,
+            "hex": "10000000"
+          },
+          {
+            "offset": 4037960,
+            "offset_hex": "0x3d9d48",
+            "u32": 590,
+            "hex": "4e020000"
+          },
+          {
+            "offset": 4037964,
+            "offset_hex": "0x3d9d4c",
+            "u32": 427,
+            "hex": "ab010000"
+          },
+          {
+            "offset": 4037968,
+            "offset_hex": "0x3d9d50",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 4037972,
+            "offset_hex": "0x3d9d54",
+            "u32": 408,
+            "hex": "98010000"
+          },
+          {
+            "offset": 4037976,
+            "offset_hex": "0x3d9d58",
+            "u32": 490,
+            "hex": "ea010000"
+          },
+          {
+            "offset": 4037980,
+            "offset_hex": "0x3d9d5c",
+            "u32": 1,
+            "hex": "01000000"
+          },
+          {
+            "offset": 4037984,
+            "offset_hex": "0x3d9d60",
+            "u32": 233,
+            "hex": "e9000000"
+          },
+          {
+            "offset": 4037988,
+            "offset_hex": "0x3d9d64",
+            "u32": 288,
+            "hex": "20010000"
+          },
+          {
+            "offset": 4037992,
+            "offset_hex": "0x3d9d68",
+            "u32": 2,
+            "hex": "02000000"
+          },
+          {
+            "offset": 4037996,
+            "offset_hex": "0x3d9d6c",
+            "u32": 451,
+            "hex": "c3010000"
+          },
+          {
+            "offset": 4038000,
+            "offset_hex": "0x3d9d70",
+            "u32": 222,
+            "hex": "de000000"
+          },
+          {
+            "offset": 4038004,
+            "offset_hex": "0x3d9d74",
+            "u32": 3,
+            "hex": "03000000"
+          },
+          {
+            "offset": 4038008,
+            "offset_hex": "0x3d9d78",
+            "u32": 340,
+            "hex": "54010000"
+          },
+          {
+            "offset": 4038012,
+            "offset_hex": "0x3d9d7c",
+            "u32": 43,
+            "hex": "2b000000"
+          },
+          {
+            "offset": 4038016,
+            "offset_hex": "0x3d9d80",
+            "u32": 4,
+            "hex": "04000000"
+          },
+          {
+            "offset": 4038020,
+            "offset_hex": "0x3d9d84",
+            "u32": 393,
+            "hex": "89010000"
+          },
+          {
+            "offset": 4038024,
+            "offset_hex": "0x3d9d88",
+            "u32": 550,
+            "hex": "26020000"
+          },
+          {
+            "offset": 4038028,
+            "offset_hex": "0x3d9d8c",
+            "u32": 5,
+            "hex": "05000000"
+          },
+          {
+            "offset": 4038032,
+            "offset_hex": "0x3d9d90",
+            "u32": 506,
+            "hex": "fa010000"
+          },
+          {
+            "offset": 4038036,
+            "offset_hex": "0x3d9d94",
+            "u32": 241,
+            "hex": "f1000000"
+          },
+          {
+            "offset": 4038040,
+            "offset_hex": "0x3d9d98",
+            "u32": 6,
+            "hex": "06000000"
+          },
+          {
+            "offset": 4038044,
+            "offset_hex": "0x3d9d9c",
+            "u32": 286,
+            "hex": "1e010000"
+          },
+          {
+            "offset": 4038048,
+            "offset_hex": "0x3d9da0",
+            "u32": 572,
+            "hex": "3c020000"
+          },
+          {
+            "offset": 4038052,
+            "offset_hex": "0x3d9da4",
+            "u32": 8,
+            "hex": "08000000"
+          },
+          {
+            "offset": 4038056,
+            "offset_hex": "0x3d9da8",
+            "u32": 739,
+            "hex": "e3020000"
+          },
+          {
+            "offset": 4038060,
+            "offset_hex": "0x3d9dac",
+            "u32": 505,
+            "hex": "f9010000"
+          },
+          {
+            "offset": 4038064,
+            "offset_hex": "0x3d9db0",
+            "u32": 9,
+            "hex": "09000000"
+          },
+          {
+            "offset": 4038068,
+            "offset_hex": "0x3d9db4",
+            "u32": 645,
+            "hex": "85020000"
+          },
+          {
+            "offset": 4038072,
+            "offset_hex": "0x3d9db8",
+            "u32": 523,
+            "hex": "0b020000"
+          },
+          {
+            "offset": 4038076,
+            "offset_hex": "0x3d9dbc",
+            "u32": 8,
+            "hex": "08000000"
+          },
+          {
+            "offset": 4038080,
+            "offset_hex": "0x3d9dc0",
+            "u32": 262,
+            "hex": "06010000"
+          }
+        ],
+        "tail_prefix_hex": "100000004e020000ab0100000000000098010000ea01000001000000e90000002001000002000000c3010000de00000003000000540100002b00000004000000890100002602000005000000fa010000f1000000060000001e0100003c02000008000000e3020000f901000009000000850200000b02000008000000060100005b0100000a0000004b010000b90100000b000000b0000000dc0000000c00000069010000b50000000d0000004b010000370200000e00000050020000630100000f0000000200000004000000616e695c6d61707363656e6530322e616e6900000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "loose": {
+        "label": "icecrypt-lev3 loose",
+        "size": 4106200,
+        "sha256": "bd3c075d818ad6de21db9a8c1363b5172da723af56bdb5104a83b41dd44b029a",
+        "header": [
+          1004,
+          0
+        ],
+        "puzzle_path": "map\\puzzle\\icecrypt-lev3.pul",
+        "grid": [
+          820,
+          820
+        ],
+        "grid_start": 276,
+        "tail_start": 4037956,
+        "tail_start_hex": "0x3d9d44",
+        "tail_size": 68244,
+        "tail_sha256": "2cad678be6e022d97015b4973c5c631a3099dff819e8ab9ef3f2b427d4cde556",
+        "all_row_checksums_match": true,
+        "checksum_failures": [],
+        "first_tail_words": [
+          {
+            "offset": 4037956,
+            "offset_hex": "0x3d9d44",
+            "u32": 16,
+            "hex": "10000000"
+          },
+          {
+            "offset": 4037960,
+            "offset_hex": "0x3d9d48",
+            "u32": 590,
+            "hex": "4e020000"
+          },
+          {
+            "offset": 4037964,
+            "offset_hex": "0x3d9d4c",
+            "u32": 427,
+            "hex": "ab010000"
+          },
+          {
+            "offset": 4037968,
+            "offset_hex": "0x3d9d50",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 4037972,
+            "offset_hex": "0x3d9d54",
+            "u32": 408,
+            "hex": "98010000"
+          },
+          {
+            "offset": 4037976,
+            "offset_hex": "0x3d9d58",
+            "u32": 490,
+            "hex": "ea010000"
+          },
+          {
+            "offset": 4037980,
+            "offset_hex": "0x3d9d5c",
+            "u32": 1,
+            "hex": "01000000"
+          },
+          {
+            "offset": 4037984,
+            "offset_hex": "0x3d9d60",
+            "u32": 233,
+            "hex": "e9000000"
+          },
+          {
+            "offset": 4037988,
+            "offset_hex": "0x3d9d64",
+            "u32": 288,
+            "hex": "20010000"
+          },
+          {
+            "offset": 4037992,
+            "offset_hex": "0x3d9d68",
+            "u32": 2,
+            "hex": "02000000"
+          },
+          {
+            "offset": 4037996,
+            "offset_hex": "0x3d9d6c",
+            "u32": 451,
+            "hex": "c3010000"
+          },
+          {
+            "offset": 4038000,
+            "offset_hex": "0x3d9d70",
+            "u32": 222,
+            "hex": "de000000"
+          },
+          {
+            "offset": 4038004,
+            "offset_hex": "0x3d9d74",
+            "u32": 3,
+            "hex": "03000000"
+          },
+          {
+            "offset": 4038008,
+            "offset_hex": "0x3d9d78",
+            "u32": 340,
+            "hex": "54010000"
+          },
+          {
+            "offset": 4038012,
+            "offset_hex": "0x3d9d7c",
+            "u32": 43,
+            "hex": "2b000000"
+          },
+          {
+            "offset": 4038016,
+            "offset_hex": "0x3d9d80",
+            "u32": 4,
+            "hex": "04000000"
+          },
+          {
+            "offset": 4038020,
+            "offset_hex": "0x3d9d84",
+            "u32": 393,
+            "hex": "89010000"
+          },
+          {
+            "offset": 4038024,
+            "offset_hex": "0x3d9d88",
+            "u32": 550,
+            "hex": "26020000"
+          },
+          {
+            "offset": 4038028,
+            "offset_hex": "0x3d9d8c",
+            "u32": 5,
+            "hex": "05000000"
+          },
+          {
+            "offset": 4038032,
+            "offset_hex": "0x3d9d90",
+            "u32": 506,
+            "hex": "fa010000"
+          },
+          {
+            "offset": 4038036,
+            "offset_hex": "0x3d9d94",
+            "u32": 241,
+            "hex": "f1000000"
+          },
+          {
+            "offset": 4038040,
+            "offset_hex": "0x3d9d98",
+            "u32": 6,
+            "hex": "06000000"
+          },
+          {
+            "offset": 4038044,
+            "offset_hex": "0x3d9d9c",
+            "u32": 286,
+            "hex": "1e010000"
+          },
+          {
+            "offset": 4038048,
+            "offset_hex": "0x3d9da0",
+            "u32": 572,
+            "hex": "3c020000"
+          },
+          {
+            "offset": 4038052,
+            "offset_hex": "0x3d9da4",
+            "u32": 8,
+            "hex": "08000000"
+          },
+          {
+            "offset": 4038056,
+            "offset_hex": "0x3d9da8",
+            "u32": 739,
+            "hex": "e3020000"
+          },
+          {
+            "offset": 4038060,
+            "offset_hex": "0x3d9dac",
+            "u32": 505,
+            "hex": "f9010000"
+          },
+          {
+            "offset": 4038064,
+            "offset_hex": "0x3d9db0",
+            "u32": 9,
+            "hex": "09000000"
+          },
+          {
+            "offset": 4038068,
+            "offset_hex": "0x3d9db4",
+            "u32": 645,
+            "hex": "85020000"
+          },
+          {
+            "offset": 4038072,
+            "offset_hex": "0x3d9db8",
+            "u32": 523,
+            "hex": "0b020000"
+          },
+          {
+            "offset": 4038076,
+            "offset_hex": "0x3d9dbc",
+            "u32": 8,
+            "hex": "08000000"
+          },
+          {
+            "offset": 4038080,
+            "offset_hex": "0x3d9dc0",
+            "u32": 262,
+            "hex": "06010000"
+          }
+        ],
+        "tail_prefix_hex": "100000004e020000ab0100000000000098010000ea01000001000000e90000002001000002000000c3010000de00000003000000540100002b00000004000000890100002602000005000000fa010000f1000000060000001e0100003c02000008000000e3020000f901000009000000850200000b02000008000000060100005b0100000a0000004b010000b90100000b000000b0000000dc0000000c00000069010000b50000000d0000004b010000370200000e00000050020000630100000f000000a200000004000000616e695c6d61707363656e6530322e616e6900000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "equal": false,
+      "comparison": {
+        "common_length": 4039008,
+        "different_bytes_in_common_range": 2498,
+        "first_difference": 0,
+        "first_32_difference_offsets": [
+          0,
+          246,
+          247,
+          248,
+          249,
+          250,
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          258,
+          259,
+          260,
+          261,
+          262,
+          263,
+          264,
+          265,
+          266,
+          267,
+          770724,
+          770728,
+          770729,
+          770730,
+          770734,
+          770735,
+          770736,
+          770740,
+          770741,
+          770742
+        ]
+      }
+    },
+    {
+      "archive": {
+        "path": "map/map/icecrypt-lev4.7z",
+        "size": 18260,
+        "sha256": "d3d3616e3269fbbca75001a10f61e7c404a6d6be62c3d5bdd6ff57e07b5be907"
+      },
+      "payload": {
+        "label": "icecrypt-lev4 archive",
+        "size": 2883028,
+        "sha256": "7e29d5c9abd85756d75da0a5a5c30eae6c4e8f530056cb00ca08e718c8ce279f",
+        "header": [
+          1004,
+          0
+        ],
+        "puzzle_path": "map\\puzzle\\icecrypt-lev4.pul",
+        "grid": [
+          688,
+          688
+        ],
+        "grid_start": 276,
+        "tail_start": 2843092,
+        "tail_start_hex": "0x2b61d4",
+        "tail_size": 39936,
+        "tail_sha256": "bc24770133b1b514c25a7344bffa16f764d71e1630ba0618e89f015493bacf79",
+        "all_row_checksums_match": true,
+        "checksum_failures": [],
+        "first_tail_words": [
+          {
+            "offset": 2843092,
+            "offset_hex": "0x2b61d4",
+            "u32": 2,
+            "hex": "02000000"
+          },
+          {
+            "offset": 2843096,
+            "offset_hex": "0x2b61d8",
+            "u32": 535,
+            "hex": "17020000"
+          },
+          {
+            "offset": 2843100,
+            "offset_hex": "0x2b61dc",
+            "u32": 432,
+            "hex": "b0010000"
+          },
+          {
+            "offset": 2843104,
+            "offset_hex": "0x2b61e0",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843108,
+            "offset_hex": "0x2b61e4",
+            "u32": 269,
+            "hex": "0d010000"
+          },
+          {
+            "offset": 2843112,
+            "offset_hex": "0x2b61e8",
+            "u32": 377,
+            "hex": "79010000"
+          },
+          {
+            "offset": 2843116,
+            "offset_hex": "0x2b61ec",
+            "u32": 1,
+            "hex": "01000000"
+          },
+          {
+            "offset": 2843120,
+            "offset_hex": "0x2b61f0",
+            "u32": 95,
+            "hex": "5f000000"
+          },
+          {
+            "offset": 2843124,
+            "offset_hex": "0x2b61f4",
+            "u32": 4,
+            "hex": "04000000"
+          },
+          {
+            "offset": 2843128,
+            "offset_hex": "0x2b61f8",
+            "u32": 1550413409,
+            "hex": "616e695c"
+          },
+          {
+            "offset": 2843132,
+            "offset_hex": "0x2b61fc",
+            "u32": 1936744813,
+            "hex": "6d617073"
+          },
+          {
+            "offset": 2843136,
+            "offset_hex": "0x2b6200",
+            "u32": 1701733731,
+            "hex": "63656e65"
+          },
+          {
+            "offset": 2843140,
+            "offset_hex": "0x2b6204",
+            "u32": 1630417456,
+            "hex": "30322e61"
+          },
+          {
+            "offset": 2843144,
+            "offset_hex": "0x2b6208",
+            "u32": 26990,
+            "hex": "6e690000"
+          },
+          {
+            "offset": 2843148,
+            "offset_hex": "0x2b620c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843152,
+            "offset_hex": "0x2b6210",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843156,
+            "offset_hex": "0x2b6214",
+            "u32": 1667588969,
+            "hex": "69636563"
+          },
+          {
+            "offset": 2843160,
+            "offset_hex": "0x2b6218",
+            "u32": 1953528178,
+            "hex": "72797074"
+          },
+          {
+            "offset": 2843164,
+            "offset_hex": "0x2b621c",
+            "u32": 1949184053,
+            "hex": "35302e74"
+          },
+          {
+            "offset": 2843168,
+            "offset_hex": "0x2b6220",
+            "u32": 24935,
+            "hex": "67610000"
+          },
+          {
+            "offset": 2843172,
+            "offset_hex": "0x2b6224",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843176,
+            "offset_hex": "0x2b6228",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843180,
+            "offset_hex": "0x2b622c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843184,
+            "offset_hex": "0x2b6230",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843188,
+            "offset_hex": "0x2b6234",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843192,
+            "offset_hex": "0x2b6238",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843196,
+            "offset_hex": "0x2b623c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843200,
+            "offset_hex": "0x2b6240",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843204,
+            "offset_hex": "0x2b6244",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843208,
+            "offset_hex": "0x2b6248",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843212,
+            "offset_hex": "0x2b624c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843216,
+            "offset_hex": "0x2b6250",
+            "u32": 0,
+            "hex": "00000000"
+          }
+        ],
+        "tail_prefix_hex": "0200000017020000b0010000000000000d01000079010000010000005f00000004000000616e695c6d61707363656e6530322e616e6900000000000000000000696365637279707435302e74676100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000082000000c10000000300000003000000000000006400000013492d000000000000000000000000003900c9040201080094cf48000000000000000000c6000000"
+      },
+      "loose": {
+        "label": "icecrypt-lev4 loose",
+        "size": 2883028,
+        "sha256": "7e29d5c9abd85756d75da0a5a5c30eae6c4e8f530056cb00ca08e718c8ce279f",
+        "header": [
+          1004,
+          0
+        ],
+        "puzzle_path": "map\\puzzle\\icecrypt-lev4.pul",
+        "grid": [
+          688,
+          688
+        ],
+        "grid_start": 276,
+        "tail_start": 2843092,
+        "tail_start_hex": "0x2b61d4",
+        "tail_size": 39936,
+        "tail_sha256": "bc24770133b1b514c25a7344bffa16f764d71e1630ba0618e89f015493bacf79",
+        "all_row_checksums_match": true,
+        "checksum_failures": [],
+        "first_tail_words": [
+          {
+            "offset": 2843092,
+            "offset_hex": "0x2b61d4",
+            "u32": 2,
+            "hex": "02000000"
+          },
+          {
+            "offset": 2843096,
+            "offset_hex": "0x2b61d8",
+            "u32": 535,
+            "hex": "17020000"
+          },
+          {
+            "offset": 2843100,
+            "offset_hex": "0x2b61dc",
+            "u32": 432,
+            "hex": "b0010000"
+          },
+          {
+            "offset": 2843104,
+            "offset_hex": "0x2b61e0",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843108,
+            "offset_hex": "0x2b61e4",
+            "u32": 269,
+            "hex": "0d010000"
+          },
+          {
+            "offset": 2843112,
+            "offset_hex": "0x2b61e8",
+            "u32": 377,
+            "hex": "79010000"
+          },
+          {
+            "offset": 2843116,
+            "offset_hex": "0x2b61ec",
+            "u32": 1,
+            "hex": "01000000"
+          },
+          {
+            "offset": 2843120,
+            "offset_hex": "0x2b61f0",
+            "u32": 95,
+            "hex": "5f000000"
+          },
+          {
+            "offset": 2843124,
+            "offset_hex": "0x2b61f4",
+            "u32": 4,
+            "hex": "04000000"
+          },
+          {
+            "offset": 2843128,
+            "offset_hex": "0x2b61f8",
+            "u32": 1550413409,
+            "hex": "616e695c"
+          },
+          {
+            "offset": 2843132,
+            "offset_hex": "0x2b61fc",
+            "u32": 1936744813,
+            "hex": "6d617073"
+          },
+          {
+            "offset": 2843136,
+            "offset_hex": "0x2b6200",
+            "u32": 1701733731,
+            "hex": "63656e65"
+          },
+          {
+            "offset": 2843140,
+            "offset_hex": "0x2b6204",
+            "u32": 1630417456,
+            "hex": "30322e61"
+          },
+          {
+            "offset": 2843144,
+            "offset_hex": "0x2b6208",
+            "u32": 26990,
+            "hex": "6e690000"
+          },
+          {
+            "offset": 2843148,
+            "offset_hex": "0x2b620c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843152,
+            "offset_hex": "0x2b6210",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843156,
+            "offset_hex": "0x2b6214",
+            "u32": 1667588969,
+            "hex": "69636563"
+          },
+          {
+            "offset": 2843160,
+            "offset_hex": "0x2b6218",
+            "u32": 1953528178,
+            "hex": "72797074"
+          },
+          {
+            "offset": 2843164,
+            "offset_hex": "0x2b621c",
+            "u32": 1949184053,
+            "hex": "35302e74"
+          },
+          {
+            "offset": 2843168,
+            "offset_hex": "0x2b6220",
+            "u32": 24935,
+            "hex": "67610000"
+          },
+          {
+            "offset": 2843172,
+            "offset_hex": "0x2b6224",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843176,
+            "offset_hex": "0x2b6228",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843180,
+            "offset_hex": "0x2b622c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843184,
+            "offset_hex": "0x2b6230",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843188,
+            "offset_hex": "0x2b6234",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843192,
+            "offset_hex": "0x2b6238",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843196,
+            "offset_hex": "0x2b623c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843200,
+            "offset_hex": "0x2b6240",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843204,
+            "offset_hex": "0x2b6244",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843208,
+            "offset_hex": "0x2b6248",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843212,
+            "offset_hex": "0x2b624c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 2843216,
+            "offset_hex": "0x2b6250",
+            "u32": 0,
+            "hex": "00000000"
+          }
+        ],
+        "tail_prefix_hex": "0200000017020000b0010000000000000d01000079010000010000005f00000004000000616e695c6d61707363656e6530322e616e6900000000000000000000696365637279707435302e74676100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000082000000c10000000300000003000000000000006400000013492d000000000000000000000000003900c9040201080094cf48000000000000000000c6000000"
+      },
+      "equal": true,
+      "comparison": {
+        "common_length": 2883028,
+        "different_bytes_in_common_range": 0,
+        "first_difference": null,
+        "first_32_difference_offsets": []
+      }
+    },
+    {
+      "archive": {
+        "path": "map/map/icecrypt-lev5.7z",
+        "size": 19514,
+        "sha256": "df6e14480af09c61ed7b1ad632c7c04873ed01148160747ebcd55579d426a275"
+      },
+      "payload": {
+        "label": "icecrypt-lev5 archive",
+        "size": 3313032,
+        "sha256": "4083e5336463a61c47ea3dd450358505e48e415581e8e2729078bea3ff4205ba",
+        "header": [
+          1004,
+          0
+        ],
+        "puzzle_path": "map\\puzzle\\icecrypt-lev5.pul",
+        "grid": [
+          740,
+          740
+        ],
+        "grid_start": 276,
+        "tail_start": 3288836,
+        "tail_start_hex": "0x322f04",
+        "tail_size": 24196,
+        "tail_sha256": "4b04a87e5de9400f7a5b7390526e3d7161036eec2c8c4bb30da63d33329d45d1",
+        "all_row_checksums_match": true,
+        "checksum_failures": [],
+        "first_tail_words": [
+          {
+            "offset": 3288836,
+            "offset_hex": "0x322f04",
+            "u32": 43,
+            "hex": "2b000000"
+          },
+          {
+            "offset": 3288840,
+            "offset_hex": "0x322f08",
+            "u32": 21,
+            "hex": "15000000"
+          },
+          {
+            "offset": 3288844,
+            "offset_hex": "0x322f0c",
+            "u32": 307,
+            "hex": "33010000"
+          },
+          {
+            "offset": 3288848,
+            "offset_hex": "0x322f10",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3288852,
+            "offset_hex": "0x322f14",
+            "u32": 153,
+            "hex": "99000000"
+          },
+          {
+            "offset": 3288856,
+            "offset_hex": "0x322f18",
+            "u32": 272,
+            "hex": "10010000"
+          },
+          {
+            "offset": 3288860,
+            "offset_hex": "0x322f1c",
+            "u32": 1,
+            "hex": "01000000"
+          },
+          {
+            "offset": 3288864,
+            "offset_hex": "0x322f20",
+            "u32": 267,
+            "hex": "0b010000"
+          },
+          {
+            "offset": 3288868,
+            "offset_hex": "0x322f24",
+            "u32": 318,
+            "hex": "3e010000"
+          },
+          {
+            "offset": 3288872,
+            "offset_hex": "0x322f28",
+            "u32": 4,
+            "hex": "04000000"
+          },
+          {
+            "offset": 3288876,
+            "offset_hex": "0x322f2c",
+            "u32": 242,
+            "hex": "f2000000"
+          },
+          {
+            "offset": 3288880,
+            "offset_hex": "0x322f30",
+            "u32": 387,
+            "hex": "83010000"
+          },
+          {
+            "offset": 3288884,
+            "offset_hex": "0x322f34",
+            "u32": 2,
+            "hex": "02000000"
+          },
+          {
+            "offset": 3288888,
+            "offset_hex": "0x322f38",
+            "u32": 326,
+            "hex": "46010000"
+          },
+          {
+            "offset": 3288892,
+            "offset_hex": "0x322f3c",
+            "u32": 472,
+            "hex": "d8010000"
+          },
+          {
+            "offset": 3288896,
+            "offset_hex": "0x322f40",
+            "u32": 3,
+            "hex": "03000000"
+          },
+          {
+            "offset": 3288900,
+            "offset_hex": "0x322f44",
+            "u32": 358,
+            "hex": "66010000"
+          },
+          {
+            "offset": 3288904,
+            "offset_hex": "0x322f48",
+            "u32": 402,
+            "hex": "92010000"
+          },
+          {
+            "offset": 3288908,
+            "offset_hex": "0x322f4c",
+            "u32": 5,
+            "hex": "05000000"
+          },
+          {
+            "offset": 3288912,
+            "offset_hex": "0x322f50",
+            "u32": 464,
+            "hex": "d0010000"
+          },
+          {
+            "offset": 3288916,
+            "offset_hex": "0x322f54",
+            "u32": 472,
+            "hex": "d8010000"
+          },
+          {
+            "offset": 3288920,
+            "offset_hex": "0x322f58",
+            "u32": 6,
+            "hex": "06000000"
+          },
+          {
+            "offset": 3288924,
+            "offset_hex": "0x322f5c",
+            "u32": 473,
+            "hex": "d9010000"
+          },
+          {
+            "offset": 3288928,
+            "offset_hex": "0x322f60",
+            "u32": 438,
+            "hex": "b6010000"
+          },
+          {
+            "offset": 3288932,
+            "offset_hex": "0x322f64",
+            "u32": 11,
+            "hex": "0b000000"
+          },
+          {
+            "offset": 3288936,
+            "offset_hex": "0x322f68",
+            "u32": 256,
+            "hex": "00010000"
+          },
+          {
+            "offset": 3288940,
+            "offset_hex": "0x322f6c",
+            "u32": 259,
+            "hex": "03010000"
+          },
+          {
+            "offset": 3288944,
+            "offset_hex": "0x322f70",
+            "u32": 7,
+            "hex": "07000000"
+          },
+          {
+            "offset": 3288948,
+            "offset_hex": "0x322f74",
+            "u32": 279,
+            "hex": "17010000"
+          },
+          {
+            "offset": 3288952,
+            "offset_hex": "0x322f78",
+            "u32": 176,
+            "hex": "b0000000"
+          },
+          {
+            "offset": 3288956,
+            "offset_hex": "0x322f7c",
+            "u32": 8,
+            "hex": "08000000"
+          },
+          {
+            "offset": 3288960,
+            "offset_hex": "0x322f80",
+            "u32": 330,
+            "hex": "4a010000"
+          }
+        ],
+        "tail_prefix_hex": "2b0000001500000033010000000000009900000010010000010000000b0100003e01000004000000f2000000830100000200000046010000d801000003000000660100009201000005000000d0010000d801000006000000d9010000b60100000b00000000010000030100000700000017010000b0000000080000004a010000c900000009000000b0010000200100000a00000038010000200000000c0000001e020000420100000d00000089020000800100000f00000052020000be0100000e000000a90100000b020000100000009a010000e301000011000000710100001e02000012000000a5010000a202000013000000140200006402000014000000"
+      },
+      "loose": {
+        "label": "icecrypt-lev5 loose",
+        "size": 3313032,
+        "sha256": "4083e5336463a61c47ea3dd450358505e48e415581e8e2729078bea3ff4205ba",
+        "header": [
+          1004,
+          0
+        ],
+        "puzzle_path": "map\\puzzle\\icecrypt-lev5.pul",
+        "grid": [
+          740,
+          740
+        ],
+        "grid_start": 276,
+        "tail_start": 3288836,
+        "tail_start_hex": "0x322f04",
+        "tail_size": 24196,
+        "tail_sha256": "4b04a87e5de9400f7a5b7390526e3d7161036eec2c8c4bb30da63d33329d45d1",
+        "all_row_checksums_match": true,
+        "checksum_failures": [],
+        "first_tail_words": [
+          {
+            "offset": 3288836,
+            "offset_hex": "0x322f04",
+            "u32": 43,
+            "hex": "2b000000"
+          },
+          {
+            "offset": 3288840,
+            "offset_hex": "0x322f08",
+            "u32": 21,
+            "hex": "15000000"
+          },
+          {
+            "offset": 3288844,
+            "offset_hex": "0x322f0c",
+            "u32": 307,
+            "hex": "33010000"
+          },
+          {
+            "offset": 3288848,
+            "offset_hex": "0x322f10",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3288852,
+            "offset_hex": "0x322f14",
+            "u32": 153,
+            "hex": "99000000"
+          },
+          {
+            "offset": 3288856,
+            "offset_hex": "0x322f18",
+            "u32": 272,
+            "hex": "10010000"
+          },
+          {
+            "offset": 3288860,
+            "offset_hex": "0x322f1c",
+            "u32": 1,
+            "hex": "01000000"
+          },
+          {
+            "offset": 3288864,
+            "offset_hex": "0x322f20",
+            "u32": 267,
+            "hex": "0b010000"
+          },
+          {
+            "offset": 3288868,
+            "offset_hex": "0x322f24",
+            "u32": 318,
+            "hex": "3e010000"
+          },
+          {
+            "offset": 3288872,
+            "offset_hex": "0x322f28",
+            "u32": 4,
+            "hex": "04000000"
+          },
+          {
+            "offset": 3288876,
+            "offset_hex": "0x322f2c",
+            "u32": 242,
+            "hex": "f2000000"
+          },
+          {
+            "offset": 3288880,
+            "offset_hex": "0x322f30",
+            "u32": 387,
+            "hex": "83010000"
+          },
+          {
+            "offset": 3288884,
+            "offset_hex": "0x322f34",
+            "u32": 2,
+            "hex": "02000000"
+          },
+          {
+            "offset": 3288888,
+            "offset_hex": "0x322f38",
+            "u32": 326,
+            "hex": "46010000"
+          },
+          {
+            "offset": 3288892,
+            "offset_hex": "0x322f3c",
+            "u32": 472,
+            "hex": "d8010000"
+          },
+          {
+            "offset": 3288896,
+            "offset_hex": "0x322f40",
+            "u32": 3,
+            "hex": "03000000"
+          },
+          {
+            "offset": 3288900,
+            "offset_hex": "0x322f44",
+            "u32": 358,
+            "hex": "66010000"
+          },
+          {
+            "offset": 3288904,
+            "offset_hex": "0x322f48",
+            "u32": 402,
+            "hex": "92010000"
+          },
+          {
+            "offset": 3288908,
+            "offset_hex": "0x322f4c",
+            "u32": 5,
+            "hex": "05000000"
+          },
+          {
+            "offset": 3288912,
+            "offset_hex": "0x322f50",
+            "u32": 464,
+            "hex": "d0010000"
+          },
+          {
+            "offset": 3288916,
+            "offset_hex": "0x322f54",
+            "u32": 472,
+            "hex": "d8010000"
+          },
+          {
+            "offset": 3288920,
+            "offset_hex": "0x322f58",
+            "u32": 6,
+            "hex": "06000000"
+          },
+          {
+            "offset": 3288924,
+            "offset_hex": "0x322f5c",
+            "u32": 473,
+            "hex": "d9010000"
+          },
+          {
+            "offset": 3288928,
+            "offset_hex": "0x322f60",
+            "u32": 438,
+            "hex": "b6010000"
+          },
+          {
+            "offset": 3288932,
+            "offset_hex": "0x322f64",
+            "u32": 11,
+            "hex": "0b000000"
+          },
+          {
+            "offset": 3288936,
+            "offset_hex": "0x322f68",
+            "u32": 256,
+            "hex": "00010000"
+          },
+          {
+            "offset": 3288940,
+            "offset_hex": "0x322f6c",
+            "u32": 259,
+            "hex": "03010000"
+          },
+          {
+            "offset": 3288944,
+            "offset_hex": "0x322f70",
+            "u32": 7,
+            "hex": "07000000"
+          },
+          {
+            "offset": 3288948,
+            "offset_hex": "0x322f74",
+            "u32": 279,
+            "hex": "17010000"
+          },
+          {
+            "offset": 3288952,
+            "offset_hex": "0x322f78",
+            "u32": 176,
+            "hex": "b0000000"
+          },
+          {
+            "offset": 3288956,
+            "offset_hex": "0x322f7c",
+            "u32": 8,
+            "hex": "08000000"
+          },
+          {
+            "offset": 3288960,
+            "offset_hex": "0x322f80",
+            "u32": 330,
+            "hex": "4a010000"
+          }
+        ],
+        "tail_prefix_hex": "2b0000001500000033010000000000009900000010010000010000000b0100003e01000004000000f2000000830100000200000046010000d801000003000000660100009201000005000000d0010000d801000006000000d9010000b60100000b00000000010000030100000700000017010000b0000000080000004a010000c900000009000000b0010000200100000a00000038010000200000000c0000001e020000420100000d00000089020000800100000f00000052020000be0100000e000000a90100000b020000100000009a010000e301000011000000710100001e02000012000000a5010000a202000013000000140200006402000014000000"
+      },
+      "equal": true,
+      "comparison": {
+        "common_length": 3313032,
+        "different_bytes_in_common_range": 0,
+        "first_difference": null,
+        "first_32_difference_offsets": []
+      }
+    },
+    {
+      "archive": {
+        "path": "map/map/icecrypt-lev6.7z",
+        "size": 20959,
+        "sha256": "99de651eb619b22f61091548aa8b7193a8d5e3bb2e6290a2932fa56096fe9729"
+      },
+      "payload": {
+        "label": "icecrypt-lev6 archive",
+        "size": 3947040,
+        "sha256": "a24920e48eb536f91371d9f4de6bdecf4ca8f4c32a47e9d493b5e9d4d9ede8a3",
+        "header": [
+          1004,
+          0
+        ],
+        "puzzle_path": "map\\puzzle\\icecrypt-lev6.pul",
+        "grid": [
+          808,
+          808
+        ],
+        "grid_start": 276,
+        "tail_start": 3920692,
+        "tail_start_hex": "0x3bd334",
+        "tail_size": 26348,
+        "tail_sha256": "13933a2cf7c57a42691c893b66c51e06c56c77bbdd68321fa82f0637dbd8bddb",
+        "all_row_checksums_match": true,
+        "checksum_failures": [],
+        "first_tail_words": [
+          {
+            "offset": 3920692,
+            "offset_hex": "0x3bd334",
+            "u32": 1,
+            "hex": "01000000"
+          },
+          {
+            "offset": 3920696,
+            "offset_hex": "0x3bd338",
+            "u32": 484,
+            "hex": "e4010000"
+          },
+          {
+            "offset": 3920700,
+            "offset_hex": "0x3bd33c",
+            "u32": 760,
+            "hex": "f8020000"
+          },
+          {
+            "offset": 3920704,
+            "offset_hex": "0x3bd340",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920708,
+            "offset_hex": "0x3bd344",
+            "u32": 62,
+            "hex": "3e000000"
+          },
+          {
+            "offset": 3920712,
+            "offset_hex": "0x3bd348",
+            "u32": 4,
+            "hex": "04000000"
+          },
+          {
+            "offset": 3920716,
+            "offset_hex": "0x3bd34c",
+            "u32": 1550413409,
+            "hex": "616e695c"
+          },
+          {
+            "offset": 3920720,
+            "offset_hex": "0x3bd350",
+            "u32": 1936744813,
+            "hex": "6d617073"
+          },
+          {
+            "offset": 3920724,
+            "offset_hex": "0x3bd354",
+            "u32": 1701733731,
+            "hex": "63656e65"
+          },
+          {
+            "offset": 3920728,
+            "offset_hex": "0x3bd358",
+            "u32": 1630417456,
+            "hex": "30322e61"
+          },
+          {
+            "offset": 3920732,
+            "offset_hex": "0x3bd35c",
+            "u32": 26990,
+            "hex": "6e690000"
+          },
+          {
+            "offset": 3920736,
+            "offset_hex": "0x3bd360",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920740,
+            "offset_hex": "0x3bd364",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920744,
+            "offset_hex": "0x3bd368",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920748,
+            "offset_hex": "0x3bd36c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920752,
+            "offset_hex": "0x3bd370",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920756,
+            "offset_hex": "0x3bd374",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920760,
+            "offset_hex": "0x3bd378",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920764,
+            "offset_hex": "0x3bd37c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920768,
+            "offset_hex": "0x3bd380",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920772,
+            "offset_hex": "0x3bd384",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920776,
+            "offset_hex": "0x3bd388",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920780,
+            "offset_hex": "0x3bd38c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920784,
+            "offset_hex": "0x3bd390",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920788,
+            "offset_hex": "0x3bd394",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920792,
+            "offset_hex": "0x3bd398",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920796,
+            "offset_hex": "0x3bd39c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920800,
+            "offset_hex": "0x3bd3a0",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920804,
+            "offset_hex": "0x3bd3a4",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920808,
+            "offset_hex": "0x3bd3a8",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920812,
+            "offset_hex": "0x3bd3ac",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920816,
+            "offset_hex": "0x3bd3b0",
+            "u32": 0,
+            "hex": "00000000"
+          }
+        ],
+        "tail_prefix_hex": "01000000e4010000f8020000000000003e00000004000000616e695c6d61707363656e6530322e616e6900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "loose": {
+        "label": "icecrypt-lev6 loose",
+        "size": 3947040,
+        "sha256": "a24920e48eb536f91371d9f4de6bdecf4ca8f4c32a47e9d493b5e9d4d9ede8a3",
+        "header": [
+          1004,
+          0
+        ],
+        "puzzle_path": "map\\puzzle\\icecrypt-lev6.pul",
+        "grid": [
+          808,
+          808
+        ],
+        "grid_start": 276,
+        "tail_start": 3920692,
+        "tail_start_hex": "0x3bd334",
+        "tail_size": 26348,
+        "tail_sha256": "13933a2cf7c57a42691c893b66c51e06c56c77bbdd68321fa82f0637dbd8bddb",
+        "all_row_checksums_match": true,
+        "checksum_failures": [],
+        "first_tail_words": [
+          {
+            "offset": 3920692,
+            "offset_hex": "0x3bd334",
+            "u32": 1,
+            "hex": "01000000"
+          },
+          {
+            "offset": 3920696,
+            "offset_hex": "0x3bd338",
+            "u32": 484,
+            "hex": "e4010000"
+          },
+          {
+            "offset": 3920700,
+            "offset_hex": "0x3bd33c",
+            "u32": 760,
+            "hex": "f8020000"
+          },
+          {
+            "offset": 3920704,
+            "offset_hex": "0x3bd340",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920708,
+            "offset_hex": "0x3bd344",
+            "u32": 62,
+            "hex": "3e000000"
+          },
+          {
+            "offset": 3920712,
+            "offset_hex": "0x3bd348",
+            "u32": 4,
+            "hex": "04000000"
+          },
+          {
+            "offset": 3920716,
+            "offset_hex": "0x3bd34c",
+            "u32": 1550413409,
+            "hex": "616e695c"
+          },
+          {
+            "offset": 3920720,
+            "offset_hex": "0x3bd350",
+            "u32": 1936744813,
+            "hex": "6d617073"
+          },
+          {
+            "offset": 3920724,
+            "offset_hex": "0x3bd354",
+            "u32": 1701733731,
+            "hex": "63656e65"
+          },
+          {
+            "offset": 3920728,
+            "offset_hex": "0x3bd358",
+            "u32": 1630417456,
+            "hex": "30322e61"
+          },
+          {
+            "offset": 3920732,
+            "offset_hex": "0x3bd35c",
+            "u32": 26990,
+            "hex": "6e690000"
+          },
+          {
+            "offset": 3920736,
+            "offset_hex": "0x3bd360",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920740,
+            "offset_hex": "0x3bd364",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920744,
+            "offset_hex": "0x3bd368",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920748,
+            "offset_hex": "0x3bd36c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920752,
+            "offset_hex": "0x3bd370",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920756,
+            "offset_hex": "0x3bd374",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920760,
+            "offset_hex": "0x3bd378",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920764,
+            "offset_hex": "0x3bd37c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920768,
+            "offset_hex": "0x3bd380",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920772,
+            "offset_hex": "0x3bd384",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920776,
+            "offset_hex": "0x3bd388",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920780,
+            "offset_hex": "0x3bd38c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920784,
+            "offset_hex": "0x3bd390",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920788,
+            "offset_hex": "0x3bd394",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920792,
+            "offset_hex": "0x3bd398",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920796,
+            "offset_hex": "0x3bd39c",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920800,
+            "offset_hex": "0x3bd3a0",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920804,
+            "offset_hex": "0x3bd3a4",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920808,
+            "offset_hex": "0x3bd3a8",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920812,
+            "offset_hex": "0x3bd3ac",
+            "u32": 0,
+            "hex": "00000000"
+          },
+          {
+            "offset": 3920816,
+            "offset_hex": "0x3bd3b0",
+            "u32": 0,
+            "hex": "00000000"
+          }
+        ],
+        "tail_prefix_hex": "01000000e4010000f8020000000000003e00000004000000616e695c6d61707363656e6530322e616e6900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "equal": true,
+      "comparison": {
+        "common_length": 3947040,
+        "different_bytes_in_common_range": 0,
+        "first_difference": null,
+        "first_32_difference_offsets": []
+      }
+    }
+  ]
+}

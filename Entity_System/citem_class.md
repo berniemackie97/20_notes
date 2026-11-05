@@ -55,7 +55,7 @@ Weapons (major 7/10): returns 10000 * ((item_id % 100000) / 10000)
 From CItemData__CopyFrom @ 0x67983E and CItemData__ClearFields @ 0x6788DA:
 
 The older sketch below records storage offsets, not established meanings for every member.
-Use the parser-backed tables below and the linked MsgItem contract for semantic names;
+Use the parser-backed tables below and the linked Msg1008 contract for semantic names;
 `field_*` labels and the string-object storage sketch are not a production struct definition.
 
 ```c
@@ -123,7 +123,7 @@ struct CItemData {
 // Total: 192 bytes
 ```
 
-## CItem instance fields verified for MsgItem
+## CItem instance fields verified for Msg1008
 
 Allocation size `0x1EC` (`0x762D7F`). The previous C-like full layout mixed byte and dword
 indices and incorrectly labelled lifetime/quantity fields. This is a partial offset map, not a
@@ -250,7 +250,7 @@ mappings. The equipped-stat slice additionally exposes field 4 as `RequiredLevel
   `Conquer.Assets.Item.ItemAddIniTable` / `ItemAddRecord.SpeedPercentOffsetPayloadWordIndex = 7`.
 
   `CItem_RefreshItemAddRecordCache` (`0x67AC6B`) supplies the equipment-stat lookup. Its
-  secondary key is MsgItem byte `+33`, stored at `CItem+0x61`. Its primary key starts from
+  secondary key is Msg1008 byte `+33`, stored at `CItem+0x61`. Its primary key starts from
   the item type, applies the native category-4/category-5 family substitutions (44,000 or
   55,000 while preserving the 100,000 bucket and low three digits, with the verified
   subtype/family exceptions), then truncates to a multiple of ten. The copied record lives at
@@ -275,7 +275,7 @@ The exact item contribution consumed by `CHero_GetEffectiveMaxLife` / `MaxMana` 
   loaded alternate stats only when a temporary id exists and base required level (field 4) is
   lower than the active soul record's required level. Permanent-only soul stats are not gated
   by that branch.
-- MsgItem byte `+36` is zero-extended into `CItem+0x16C`; max life adds it for every equipped
+- Msg1008 byte `+36` is zero-extended into `CItem+0x16C`; max life adds it for every equipped
   slot except slot 12 (steed).
 - Primary refinement value/effect are `CItem+0x1C0/+0x1CC`; secondary value/effect are
   `CItem+0x1D4/+0x1DC`. Effect id 301 is the max-life effect. The primary value is added when
@@ -285,8 +285,8 @@ The exact item contribution consumed by `CHero_GetEffectiveMaxLife` / `MaxMana` 
 - Max life skips items whose `CItem+0x1AC` broken/disabled byte is nonzero. Max mana iterates
   all 18 non-null equipment slots without consulting that byte and does not add ItemAdd,
   enchantment, or refinement values.
-- The broken byte is state, not a pure `durability == 0` derivation. New MsgItem equipment
-  objects initialize it to 1 only at zero durability; MsgItem update-existing explicitly writes
+- The broken byte is state, not a pure `durability == 0` derivation. New Msg1008 equipment
+  objects initialize it to 1 only at zero durability; Msg1008 update-existing explicitly writes
   0 for positive durability or 1 for zero. CMsgTick subtype 17 sets it on the non-positive path,
   but its positive path updates current durability without clearing an existing 1.
 
@@ -384,7 +384,7 @@ was incorrect. This score is not proof of socket-creation eligibility.
 with neither equipment-lock mask0x1 nor0x2, and score >=5 for category12 talismans or >=8
 for other equipment. It does not test the gifted/untradable binding field. The old
 `CanAddSocket` name was unsupported. See the lock UI consumers in the
-[MsgItem contract](../Network/MsgItem1008-domain-contract-5517.md).
+[Msg1008 contract](../Network/MsgItem1008-domain-contract-5517.md).
 
 ## Functions (verified through decompilation)
 
@@ -499,7 +499,7 @@ for other equipment. It does not test the gifted/untradable binding field. The o
 | 0x6788DA | CItemData__ClearFields | Zeros all fields in record |
 | 0x67888F | CItemData__Init | Constructor, initializes strings + fields |
 | 0x67886B | CItemData__ClearGemSlots | Zeros 8 gem slot WORDs |
-| 0x67AC6B | CItem_RefreshItemAddRecordCache | Normalizes the item type / MsgItem `+33` key and refreshes the eight-word `ItemAdd.ini` cache at `CItem+0x180` |
+| 0x67AC6B | CItem_RefreshItemAddRecordCache | Normalizes the item type / Msg1008 `+33` key and refreshes the eight-word `ItemAdd.ini` cache at `CItem+0x180` |
 | 0x67CBEE | CItem_IsBrokenOrDisabled | Returns the broken/disabled byte at `CItem+0x1AC` |
 | 0x67D95A | CItem__LoadPrimaryItemRecordFieldsFromItemTypeData | Loads a selected soul item record into the alternate cache (`field19 -> +0x110`, `field20 -> +0x130`) |
 | 0x67DC23 | CItem_GetEffectiveLife | Returns signed-16 base plus eligible active-soul life |

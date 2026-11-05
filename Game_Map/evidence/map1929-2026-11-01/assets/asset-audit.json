@@ -1,0 +1,352 @@
+{
+  "source_root": "/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517",
+  "evidence_scope": "Filesystem bytes and previously native-verified layout/hash algorithms; no new BN queries in this asset subtask.",
+  "gamemap": {
+    "path": "ini/GameMap.dat",
+    "size": 8131,
+    "sha256": "0676b7d6969dd8277438704a289b1f57e8debb89fe5d3f912819c3a7880686a0",
+    "declared_count": 262,
+    "all_bytes_consumed": true,
+    "rows1929": [
+      {
+        "index": 182,
+        "offset": 5655,
+        "map_data_id": 1929,
+        "path_byte_length": 19,
+        "path_bytes_hex": "6d61702f6d61702f6172656e616d61702e377a",
+        "path": "map/map/arenamap.7z",
+        "link": 256
+      }
+    ],
+    "all_arenamap_rows": [
+      {
+        "index": 182,
+        "offset": 5655,
+        "map_data_id": 1929,
+        "path_byte_length": 19,
+        "path_bytes_hex": "6d61702f6d61702f6172656e616d61702e377a",
+        "path": "map/map/arenamap.7z",
+        "link": 256
+      }
+    ]
+  },
+  "archive": {
+    "path": "map/map/arenamap.7z",
+    "size": 3394,
+    "sha256": "67c5d818fcc7a8ae8ec11bb45bf039f46e34ff32d4bc2df911791d218e668c81"
+  },
+  "payload": {
+    "member": "arenamap.DMap",
+    "size": 107308,
+    "sha256": "8ade4316514cd151bfe01ad3be339b1b5982c13e6415bc9a7d68e7fdab4b1de0",
+    "header": {
+      "dwords": [
+        1004,
+        0
+      ],
+      "puzzle_field_offset": 8,
+      "puzzle_field_size": 260,
+      "puzzle_field_hex": "6d61705c70757a7a6c655c6172656e616d61702e70756c000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000ffa8f51300ea7c3376b4f513005d7933760cf61300",
+      "requested_puzzle_path": "map\\puzzle\\arenamap.pul",
+      "grid": [
+        100,
+        100
+      ],
+      "loose_companion": {
+        "path": "map/map/arenamap.DMap",
+        "size": 107308,
+        "sha256": "8ade4316514cd151bfe01ad3be339b1b5982c13e6415bc9a7d68e7fdab4b1de0"
+      },
+      "loose_matches_extracted": true
+    }
+  },
+  "requested_loose_path": {
+    "normalized": "map/puzzle/arenamap.pul",
+    "exists_case_insensitive_inventory": false,
+    "exact_path_exists": false,
+    "source_file_count": 26847
+  },
+  "minimap": {
+    "path": "data/minimap/arenamap.jpg",
+    "size": 60718,
+    "sha256": "6b09630d4663d87f1822b26a090ff3e140601f7cdf765f20e537509af90f85ba"
+  },
+  "arena_pul": {
+    "path": "map/puzzle/arena.pul",
+    "size": 412,
+    "sha256": "5336a4a8d714c32a36521c3075307f99c0bffeda8be10b826689097789d5cff5",
+    "signature": "PUZZLE",
+    "texture_path": "ani\\room.ani",
+    "grid": [
+      10,
+      7
+    ],
+    "empty_count": 0,
+    "unique_nonempty_indices": [
+      0,
+      3,
+      4,
+      5,
+      6,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      64,
+      65
+    ],
+    "scroll": [
+      0,
+      0
+    ],
+    "all_bytes_consumed": true
+  },
+  "packages": {
+    "registration_file": {
+      "path": "ini/package.ini",
+      "size": 29,
+      "sha256": "511028e125d43635d90f777806b0f0fee65895b5b1a604cf278001fee536a8f2"
+    },
+    "tokens": [
+      "data.wdf",
+      "c3.wdf",
+      "data3.wdf"
+    ],
+    "registered": [
+      {
+        "token": "data.wdf",
+        "normalized": "data.wdf",
+        "prefix": "data",
+        "prefix_hash": "0xe28e6e42",
+        "duplicate_prefix_hash": false,
+        "exists": true,
+        "path": "data.wdf",
+        "size": 392245257,
+        "sha256": "fc628e4adeb7de48b0b7cde3c7793c7177a289a6defe9b90a33a1f683dcdb132",
+        "magic": "PFDW",
+        "entry_count": 14739,
+        "table_offset": 392009433,
+        "index_sha256": "3f3c4e19fbafcaa40b1c1c8dcc7c175b13ce8826bfa279918402732224058560",
+        "queries": [
+          {
+            "path": "map/puzzle/arenamap.pul",
+            "uid": "0x4e85865d",
+            "prefix_routes_here": false,
+            "matches": []
+          },
+          {
+            "path": "map/puzzle/arena.pul",
+            "uid": "0x456ca21f",
+            "prefix_routes_here": false,
+            "matches": []
+          },
+          {
+            "path": "data/map/puzzle/newbie/newbie004.dds",
+            "uid": "0xde0b31df",
+            "prefix_routes_here": true,
+            "matches": [
+              {
+                "uid": "0xde0b31df",
+                "offset": 239998504,
+                "size": 65664,
+                "reserved": 0,
+                "payload_sha256": "0190e7defc3f2452ca13f362ca2ce3ba4da757b568353b6fab2f42507a5a5f63",
+                "payload_prefix_hex": "444453207c0000000710080000010000"
+              }
+            ]
+          },
+          {
+            "path": "data/map/mapobj/newbie/newbie01.dds",
+            "uid": "0x58517c18",
+            "prefix_routes_here": true,
+            "matches": [
+              {
+                "uid": "0x58517c18",
+                "offset": 67310031,
+                "size": 65664,
+                "reserved": 0,
+                "payload_sha256": "bb4a9356115ba43b3dec38cee926042de66a01ccc56a36e1638be74b130593a9",
+                "payload_prefix_hex": "444453207c0000000710080000010000"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "token": "c3.wdf",
+        "normalized": "c3.wdf",
+        "prefix": "c3",
+        "prefix_hash": "0x13c60262",
+        "duplicate_prefix_hash": false,
+        "exists": true,
+        "path": "c3.wdf",
+        "size": 359069116,
+        "sha256": "ab68f57cc24ae10052031583ce7aa4676247fe8dde5a7bdd98e572adcf7b7243",
+        "magic": "PFDW",
+        "entry_count": 10274,
+        "table_offset": 358904732,
+        "index_sha256": "77ad04423b7972a836e300843d89abcfd15b1453b2d4ab3f9fb6c1bc56121bb9",
+        "queries": [
+          {
+            "path": "map/puzzle/arenamap.pul",
+            "uid": "0x4e85865d",
+            "prefix_routes_here": false,
+            "matches": []
+          },
+          {
+            "path": "map/puzzle/arena.pul",
+            "uid": "0x456ca21f",
+            "prefix_routes_here": false,
+            "matches": []
+          },
+          {
+            "path": "data/map/puzzle/newbie/newbie004.dds",
+            "uid": "0xde0b31df",
+            "prefix_routes_here": false,
+            "matches": []
+          },
+          {
+            "path": "data/map/mapobj/newbie/newbie01.dds",
+            "uid": "0x58517c18",
+            "prefix_routes_here": false,
+            "matches": []
+          }
+        ]
+      },
+      {
+        "token": "data3.wdf",
+        "normalized": "data3.wdf",
+        "prefix": "data3",
+        "prefix_hash": "0x4f0b9715",
+        "duplicate_prefix_hash": false,
+        "exists": false
+      }
+    ],
+    "requested_uid": "0x4e85865d",
+    "requested_prefix": "map",
+    "requested_prefix_hash": "0xa070fef8",
+    "route_prefix_present": false
+  },
+  "configuration_search": {
+    "extensions": [
+      ".ani",
+      ".cfg",
+      ".conf",
+      ".csv",
+      ".ini",
+      ".json",
+      ".lst",
+      ".lua",
+      ".txt",
+      ".xml"
+    ],
+    "additional_scope": "ini/*.dat only when no NUL byte",
+    "pattern": "(?i)arenamap|(?<![0-9])1929(?![0-9])|map[\\\\/]puzzle[\\\\/]arena\\.pul",
+    "scanned_count": 226,
+    "binary_skipped_count": 24,
+    "hits": [
+      {
+        "path": "ani/MiniMap.Ani",
+        "line": 709,
+        "text_latin1": "[1929]"
+      },
+      {
+        "path": "ani/MiniMap.Ani",
+        "line": 711,
+        "text_latin1": "Frame0=data/MiniMap/arenamap.jpg"
+      },
+      {
+        "path": "ani/brave.ani",
+        "line": 7538,
+        "text_latin1": "[Puzzle1929]"
+      },
+      {
+        "path": "ani/family.ani",
+        "line": 7719,
+        "text_latin1": "[Puzzle1929]"
+      },
+      {
+        "path": "ani/plain.ani",
+        "line": 7613,
+        "text_latin1": "[Puzzle1929]"
+      },
+      {
+        "path": "ini/GUI.ini",
+        "line": 5656,
+        "text_latin1": "[294-1929] //order6"
+      },
+      {
+        "path": "ini/GUI.ini",
+        "line": 6604,
+        "text_latin1": "[309-1929]"
+      },
+      {
+        "path": "ini/GUI.ini",
+        "line": 12131,
+        "text_latin1": "[355-1929]"
+      },
+      {
+        "path": "ini/GUI800X600.ini",
+        "line": 5629,
+        "text_latin1": "[294-1929] //order6"
+      },
+      {
+        "path": "ini/GUI800X600.ini",
+        "line": 6578,
+        "text_latin1": "[309-1929]"
+      },
+      {
+        "path": "ini/GUI800X600.ini",
+        "line": 12126,
+        "text_latin1": "[355-1929]"
+      },
+      {
+        "path": "ini/Questinfo.ini",
+        "line": 4011,
+        "text_latin1": "MissionId=1929"
+      }
+    ]
+  }
+}

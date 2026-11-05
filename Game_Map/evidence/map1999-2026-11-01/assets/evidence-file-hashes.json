@@ -1,0 +1,67 @@
+[
+  {
+    "file": "artifact-comparison.json",
+    "size": 75857,
+    "sha256": "454aeb7fa58f5338ac1080a651488ee892ad8a62ff32421bc7ee890c06765824"
+  },
+  {
+    "file": "asset-report.md",
+    "size": 8898,
+    "sha256": "55949364ac0bc78ba9757b95802168f353b704eff8f714d97183ecad03f2873b"
+  },
+  {
+    "file": "decode_tail_candidates.py",
+    "size": 5086,
+    "sha256": "d8ac69cde71f77fb7f18164743be7d11847d5db470b5e436738b443162090ff5"
+  },
+  {
+    "file": "icecrypt-lev1-listing.txt",
+    "size": 731,
+    "sha256": "a410f31c1060c34a3c432bbc4294ca50b69626fd4a82efaacd3b83175a2ec6f4"
+  },
+  {
+    "file": "icecrypt-lev2-listing.txt",
+    "size": 731,
+    "sha256": "8601d47ee051048a2c3273f449bdc7e6c04cbc30317011c7dc96064d2fa8d043"
+  },
+  {
+    "file": "icecrypt-lev3-listing.txt",
+    "size": 731,
+    "sha256": "166925156106ed3ce375e53e0bcb5027916f88586b25da9069b5525cf9a4925c"
+  },
+  {
+    "file": "icecrypt-lev3-tail-archive.hex.txt",
+    "size": 3816,
+    "sha256": "0da750285905f17b6f491e0ce31c424ea72acc1ebceaf99c0d512409769f8e27"
+  },
+  {
+    "file": "icecrypt-lev3-tail-loose.hex.txt",
+    "size": 247392,
+    "sha256": "72e3f898c3db07913dddbcaac4beef0a99c109054af33b603aab4debe8ac9c59"
+  },
+  {
+    "file": "icecrypt-lev4-listing.txt",
+    "size": 731,
+    "sha256": "e7e65cd9340ea5fa2508dc32817ed3f52293bdd20f193822302346f4b7a7042c"
+  },
+  {
+    "file": "icecrypt-lev5-listing.txt",
+    "size": 731,
+    "sha256": "241f0d27c7e1f30e529e05a064adb7ea43374a335b7cfe17520953d97fc77651"
+  },
+  {
+    "file": "icecrypt-lev6-listing.txt",
+    "size": 731,
+    "sha256": "b50bc8c07d04b13ecb06c9e751f8c53e0bb2e8d191df41370b0134b530f315c9"
+  },
+  {
+    "file": "inspect_assets.py",
+    "size": 3924,
+    "sha256": "079aebcaaf9aca421b3c353aec8734a387c86f3977295388bcb55d8ffa1f4dde"
+  },
+  {
+    "file": "tail-decode-candidates.json",
+    "size": 986327,
+    "sha256": "762eaf58fb32bec1b5806c7345c9c86d1f1a9b233a6747fe2d7f7bda202ecff2"
+  }
+]

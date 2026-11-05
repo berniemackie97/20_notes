@@ -162,10 +162,13 @@ Parity implication:
 - these `PartInfo` fan-out setters only prove that motion/blend state is written onto each
   resolved mesh instance through `C3DObjX_SetMotionAndPrimaryFrame` /
   `C3DObjX_SetBlendMotionAndSecondaryFrame`
-- for static body-family meshes, the later `graphic.dll` render path still chooses the CPU
-  branch (`C3DObjX_Render -> Phy_Calculate_Lite -> Phy_DrawNormal_CPU`), so the bound motion
-  state is consumed by linked motion-chain sampling and world-matrix setup, not by per-vertex
-  skinning of the body mesh itself
+
+- Correction (2026-11-02, using the previously verified
+  [render-path contract](12_linked_motion_chain_resolution.md#render-path-selection-for-static-meshes)):
+  Role3D's literal zero selects `C3DObjX_Render -> Phy_Calculate -> Phy_Calculate_CPU`,
+  followed by normal drawing. The former `Phy_Calculate_Lite` classification here was wrong.
+  A serialized PHY layout discriminator does not establish absence of per-vertex influences;
+  retain actual weights and motion state per `../c3_core_dll/05_phy.md`.
 
 ### Rendering
 

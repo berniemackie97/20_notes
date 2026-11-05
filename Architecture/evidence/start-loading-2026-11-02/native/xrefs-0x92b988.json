@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"address\": \"0x92b988\", \"code_references\": [{\"function\": \"CRoleCreateFlashDlg_SetProgressVariable\", \"address\": \"0x51c294\"}, {\"function\": \"CLoginFlashDlg_SetProgressVariable\", \"address\": \"0x4b04c1\"}], \"data_references\": []}"
+    }
+  ],
+  "isError": false
+}

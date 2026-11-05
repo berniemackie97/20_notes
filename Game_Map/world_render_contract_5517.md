@@ -193,7 +193,7 @@ DMap type-1 payload `0x10C`: path `char[0x104]` → `+0x48`, anchor tile X/Y →
 | | 4 | draw parameter → `+0x44` (not passed by `CMapTerrainObject_Render`) |
 | | `12*w*h` | cells, row-major (y outer, x inner): dword1→`+6` passability, dword2→`+4` surface, dword3→`+8` elevation delta (low 16 bits) |
 
-Object size = `0x144 + 12*w*h` (Newbie `stand01` 4×4 = 548). Object tile = group anchor + anchor offset
+Object size = `0x164 + 12*w*h` (`0x100+0x40+9*4`; corrected 2026-11-01, earlier `0x144` was an arithmetic slip) (Newbie `stand01` 4×4 = 548). Object tile = group anchor + anchor offset
 (`0x63F4D3`). Cells also attach to map tiles (passability/surface/elevation) at load (`0x6355C3`).
 
 Render (`CMapTerrainObject_Render` `0x64450F`):

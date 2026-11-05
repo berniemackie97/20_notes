@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "93cec4:\n93cec4              72 62 00 00 69 6e 69 2f                  rb..ini/    \n"
+    }
+  ],
+  "structuredContent": {
+    "result": "93cec4:\n93cec4              72 62 00 00 69 6e 69 2f                  rb..ini/    \n"
+  },
+  "isError": false
+}

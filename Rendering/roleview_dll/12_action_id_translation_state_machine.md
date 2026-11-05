@@ -132,7 +132,7 @@ Quarter-speed playback flag shifts the frame interval right by 2 (4x speed) in
 - `Role_GetActionType` at `0x64DDE6` reads the field.
 
 All 13 setter call sites are traced. Twelve belong to paired-interaction controllers and
-write constants; `CMsgPlayerSpawn__Process` supplies the remaining dynamic packet value.
+write constants; `CMsgPlayer__Process` supplies the remaining dynamic packet value.
 
 | Action type | Dec    | Constant writers | Verified semantic |
 |-------------|--------|------------------|-------------------|
@@ -170,7 +170,7 @@ if (CRole+0x1E8 >= 0x11 && CRole+0x1E8 <= 0x18):
 `Role_GetInteractionActionId` returns `CRole+0x38C`. They must not be conflated with
 the current action type at `CRole+0xD8`.
 
-**Spawn packet:** `CMsgPlayerSpawn__Process` at `0x756604..0x75660A` reads a dword from
+**Spawn packet:** `CMsgPlayer__Process` at `0x756604..0x75660A` reads a dword from
 `frame+0x5B` and calls `Role_SetActionType`. Because the native frame includes the 4-byte
 packet header, this is body offset `0x57` (87), and the field is 32 bits rather than a byte.
 

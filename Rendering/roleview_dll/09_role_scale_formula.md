@@ -42,7 +42,7 @@ Where:
    - When `refreshSourceId == 0` (clear): `role[0x61] = 100` (0x64 = default)
    - See `08_transform_look_record.md` for the Transform.ini record layout.
 
-3. **`CMsgPlayerSpawn__Process`** (0x755F64):
+3. **`CMsgPlayer__Process`** (0x755F64):
    - From RoleData record: `role[0x61] = *(roleDataRecord + 0x0C)` (at 0x756478)
    - From RoleData query (human male/female): `role[0x61] = RoleDataQuery()->GetBodyScale()` (at 0x75720B)
 
@@ -75,7 +75,7 @@ Mounted helper chain verified in `Conquer.exe`:
 - `Role_UpdateMountActionScaleCacheFromRoleState` (`0x6E5E33`)
   - tail-calls `Role_UpdateMountActionScaleCacheFromSources(role+0x50, role+0x3C, role+0x58, role+0x54)`
     with all args sourced from the currently-cached CRole fields — this is an idempotent refresh
-    path, not an initial writer (see `CMsgPlayerSpawn__Process` + `CHeroItem__SetEquipSlot` below).
+    path, not an initial writer (see `CMsgPlayer__Process` + `CHeroItem__SetEquipSlot` below).
 - `Role_UpdateMountActionScaleCacheFromSources` (`0x6E5F41`)
   - writer body verified at `0x6E5F5C..0x6E6020`:
     - `0x6E5F5C`: `CRole+0x48 = 0` (accumulator init)
@@ -96,7 +96,7 @@ Mounted helper chain verified in `Conquer.exe`:
       second speed percent offset contribution, which maps to payload word index 7, i.e. the
       10th whitespace-separated column of the corresponding `ItemAdd.ini` line). The dual-key
       composes `(mountTypeId << 32) | mountPlusLevel` (arg2 is the `role` parameter which
-      `CMsgPlayerSpawn__Process` populates from packet byte 0x44 — the mount *item type id*,
+      `CMsgPlayer__Process` populates from packet byte 0x44 — the mount *item type id*,
       not the CRole pointer; arg3 is the `mountPlusLevel` byte at packet+0x85) and looks up
       the singleton's composite-record tree at `+0x1C` via
       `TileCoordinateAttachmentLookup_FindByTileCoordinates`, copying a 16-byte record from
@@ -117,7 +117,7 @@ Mounted helper chain verified in `Conquer.exe`:
 
 ### Verified initial writers (not refresh-only)
 
-- `CMsgPlayerSpawn__Process` (`0x756B1D`): pushes packet fields as
+- `CMsgPlayer__Process` (`0x756B1D`): pushes packet fields as
   `Role_UpdateMountActionScaleCacheFromSources(*(packet+0x44), zx.d(*(packet+0x85)),
   *(packet+0x8b), *(packet+0x48))`. Packet byte `0x85` = `MsgPlayerSpawn10014Packet.MountPlusLevelOffset`
   = `MountPlusLevel`; this byte becomes the mount-speed-class index stored at `CRole+0x3C`.
@@ -127,7 +127,7 @@ Mounted helper chain verified in `Conquer.exe`:
 
 Verified nonzero callers for the currently traced slice:
 
-- `CMsgPlayerSpawn__Process` (`0x755F64`)
+- `CMsgPlayer__Process` (`0x755F64`)
   - direct `Role_SetMountedActionFrameIntervalAndRefreshActionScale(role, *(record+0x44))` at `0x7564B2`.
 - `Role_ApplyStatusFlagBitfieldAndDispatchEffects` (`0x6729B5`)
   - on gaining status `0x32`, queries `Role_QueryMountActionScaleRecord(role)` and applies `record[0]`.
@@ -533,7 +533,7 @@ Slice 20 already reads `visualPlan.ActionScaleMultiplier`.
 ## Slice 22 — Wire `MountTypeDatTable` into `ClientWorldRoleStateStore`
 
 **Scope:** Consume the Slice-21 loader from the managed spawn path so that
-`MsgPlayerSpawn` writes a non-default `CachedActionScalePercent` and
+`MsgPlayer` writes a non-default `CachedActionScalePercent` and
 `ActionScaleMultiplier` onto `ClientWorldRoleMountActionScaleSourceState`. The
 Slice-20 pipeline was already threaded end-to-end; Slice 22 flips the
 upstream source from the native cached-percent default to the actual
@@ -711,7 +711,7 @@ The relevant v5517 facts are:
   equipment slot 12 (Steed) or 17 (SteedArmor) changes. The primary source is
   the Steed item type; the preferred source is the SteedArmor item type; the
   plus key comes from `CItem+0x61`; the primary color comes from `CItem+0x14C`.
-- `CMsgItem__Process` writes packet byte `+33` to `CItem+0x61` and packet dword
+- `CMsg1008__Process` writes packet byte `+33` to `CItem+0x61` and packet dword
   `+20` to `CItem+0x14C`. Packet byte `+34` is a different field and is not the
   mount lookup plus level.
 - `Role_UpdateMountActionScaleCacheFromSources` (`0x6E5F41`) always writes
@@ -731,9 +731,9 @@ The relevant v5517 facts are:
   cache at `CRole+0x118` remains available for idle exit. When not idle, the
   requested/effect-adjusted interval becomes the active interval normally.
 
-Managed ingress refreshes this state after `MsgUserInfo`, `MsgItem`, and
-equipment-changing `MsgTick` packets and applies the exact bit-`0x32` edge
-semantics after `MsgUserAttribEx`. `RuntimeServices` reuses that same instance
+Managed ingress refreshes this state after `MsgUserInfo`, `Msg1008`, and
+equipment-changing `MsgItem` packets and applies the exact bit-`0x32` edge
+semantics after `MsgUserAttrib`. `RuntimeServices` reuses that same instance
 for command-state, idle, diagnostics, and rendering. The production pre-map
 service now runs frame step 14
 (`CHero_TickPreFrameAutoRunAndIdleDecision`, `0x65CC70`) before frame step 15.

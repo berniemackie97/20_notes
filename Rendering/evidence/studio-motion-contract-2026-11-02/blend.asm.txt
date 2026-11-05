@@ -1,0 +1,229 @@
+File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/C3_CORE_DLL.dll.bndb
+
+# Block 1 at 0x10009e70
+10009e70  81 ec 00 01 00 00 sub     esp, 0x100  ; Blends primary/secondary motion samples for one bone.
+Inputs are read from C3MotionBlendPair {primaryMotion, secondaryMotion}.
+  - if primaryMotion is null: returns without writing outMatrix.
+  - if secondaryMotion is null: samples primary at primaryMotion->primarySampleFramePosition.
+  - else: samples primary at +0x10, samples secondary at +0x14, then computes out = (1 - secondaryMotion->blendAlpha) * primary + blendAlpha * secondary element-wise over 16 floats.
+10009e76  53               push    ebx
+10009e77  8b 9c 24 08 01 00 00 mov     ebx, dword [esp+0x108]
+10009e7e  8b 03            mov     eax, dword [ebx]
+10009e80  85 c0            test    eax, eax
+10009e82  0f 84 2c 03 00 00 je      0x1000a1b4
+
+# Block 3 at 0x10009e88
+10009e88  8b 4b 04         mov     ecx, dword [ebx+0x4]
+10009e8b  85 c9            test    ecx, ecx
+10009e8d  75 25            jne     0x10009eb4
+
+# Block 5 at 0x10009e8f
+10009e8f  8b 8c 24 10 01 00 00 mov     ecx, dword [esp+0x110]
+10009e96  8b 50 10         mov     edx, dword [eax+0x10]
+10009e99  51               push    ecx
+10009e9a  8b 8c 24 10 01 00 00 mov     ecx, dword [esp+0x110]
+10009ea1  52               push    edx
+10009ea2  51               push    ecx
+10009ea3  50               push    eax
+10009ea4  e8 77 fb ff ff   call    C3Motion_GetBoneMatrixAtFrame
+10009ea9  83 c4 10         add     esp, 0x10
+10009eac  5b               pop     ebx
+10009ead  81 c4 00 01 00 00 add     esp, 0x100
+10009eb3  c3               retn
+
+# Block 4 at 0x10009eb4
+10009eb4  8b 51 18         mov     edx, dword [ecx+0x18]
+10009eb7  8b 48 10         mov     ecx, dword [eax+0x10]
+10009eba  56               push    esi
+10009ebb  8b b4 24 10 01 00 00 mov     esi, dword [esp+0x110]
+10009ec2  57               push    edi
+10009ec3  8b bc 24 18 01 00 00 mov     edi, dword [esp+0x118]
+10009eca  57               push    edi
+10009ecb  51               push    ecx
+10009ecc  56               push    esi
+10009ecd  50               push    eax
+10009ece  89 54 24 1c      mov     dword [esp+0x1c], edx
+10009ed2  e8 49 fb ff ff   call    C3Motion_GetBoneMatrixAtFrame
+10009ed7  8b 43 04         mov     eax, dword [ebx+0x4]
+10009eda  8b 48 14         mov     ecx, dword [eax+0x14]
+10009edd  8d 94 24 9c 00 00 00 lea     edx, [esp+0x9c]
+10009ee4  52               push    edx
+10009ee5  51               push    ecx
+10009ee6  56               push    esi
+10009ee7  50               push    eax
+10009ee8  e8 33 fb ff ff   call    C3Motion_GetBoneMatrixAtFrame
+10009eed  d9 84 24 e8 00 00 00 fld     st0, dword [esp+0xe8]
+10009ef4  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009ef8  d9 5c 24 74      fstp    dword [esp+0x74], st0
+10009efc  d9 84 24 e4 00 00 00 fld     st0, dword [esp+0xe4]
+10009f03  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009f07  d9 9c 24 94 00 00 00 fstp    dword [esp+0x94], st0
+10009f0e  d9 84 24 e0 00 00 00 fld     st0, dword [esp+0xe0]
+10009f15  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009f19  d9 5c 24 7c      fstp    dword [esp+0x7c], st0
+10009f1d  d9 84 24 dc 00 00 00 fld     st0, dword [esp+0xdc]
+10009f24  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009f28  d9 9c 24 a4 00 00 00 fstp    dword [esp+0xa4], st0
+10009f2f  d9 84 24 d8 00 00 00 fld     st0, dword [esp+0xd8]
+10009f36  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009f3a  d9 9c 24 84 00 00 00 fstp    dword [esp+0x84], st0
+10009f41  d9 84 24 d4 00 00 00 fld     st0, dword [esp+0xd4]
+10009f48  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009f4c  d9 9c 24 9c 00 00 00 fstp    dword [esp+0x9c], st0
+10009f53  d9 84 24 d0 00 00 00 fld     st0, dword [esp+0xd0]
+10009f5a  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009f5e  d9 9c 24 8c 00 00 00 fstp    dword [esp+0x8c], st0
+10009f65  d9 84 24 cc 00 00 00 fld     st0, dword [esp+0xcc]
+10009f6c  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009f70  d9 5c 24 30      fstp    dword [esp+0x30], st0
+10009f74  d9 84 24 c8 00 00 00 fld     st0, dword [esp+0xc8]
+10009f7b  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009f7f  d9 5c 24 38      fstp    dword [esp+0x38], st0
+10009f83  d9 84 24 c4 00 00 00 fld     st0, dword [esp+0xc4]
+10009f8a  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009f8e  d9 5c 24 48      fstp    dword [esp+0x48], st0
+10009f92  d9 84 24 c0 00 00 00 fld     st0, dword [esp+0xc0]
+10009f99  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009f9d  d9 5c 24 58      fstp    dword [esp+0x58], st0
+10009fa1  d9 84 24 bc 00 00 00 fld     st0, dword [esp+0xbc]
+10009fa8  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009fac  d9 5c 24 68      fstp    dword [esp+0x68], st0
+10009fb0  d9 84 24 b8 00 00 00 fld     st0, dword [esp+0xb8]
+10009fb7  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009fbb  d9 5c 24 78      fstp    dword [esp+0x78], st0
+10009fbf  d9 84 24 b4 00 00 00 fld     st0, dword [esp+0xb4]
+10009fc6  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009fca  d9 9c 24 88 00 00 00 fstp    dword [esp+0x88], st0
+10009fd1  d9 84 24 b0 00 00 00 fld     st0, dword [esp+0xb0]
+10009fd8  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009fdc  d9 9c 24 98 00 00 00 fstp    dword [esp+0x98], st0
+10009fe3  d9 84 24 ac 00 00 00 fld     st0, dword [esp+0xac]
+10009fea  d8 4c 24 2c      fmul    st0, dword [esp+0x2c]
+10009fee  d9 9c 24 a0 00 00 00 fstp    dword [esp+0xa0], st0
+10009ff5  d9 05 c0 11 0a 10 fld     st0, dword [0x100a11c0]
+10009ffb  d8 64 24 2c      fsub    st0, dword [esp+0x2c]
+10009fff  d9 5c 24 2c      fstp    dword [esp+0x2c], st0
+1000a003  d9 44 24 2c      fld     st0, dword [esp+0x2c]
+1000a007  d8 4f 3c         fmul    st0, dword [edi+0x3c]
+1000a00a  d9 9c 24 a8 00 00 00 fstp    dword [esp+0xa8], st0
+1000a011  d9 44 24 2c      fld     st0, dword [esp+0x2c]
+1000a015  d8 4f 38         fmul    st0, dword [edi+0x38]
+1000a018  d9 5c 24 3c      fstp    dword [esp+0x3c], st0
+1000a01c  d9 44 24 2c      fld     st0, dword [esp+0x2c]
+1000a020  d8 4f 34         fmul    st0, dword [edi+0x34]
+1000a023  d9 5c 24 44      fstp    dword [esp+0x44], st0
+1000a027  d9 44 24 2c      fld     st0, dword [esp+0x2c]
+1000a02b  83 c4 1c         add     esp, 0x1c
+1000a02e  d8 4f 30         fmul    st0, dword [edi+0x30]
+1000a031  d9 5c 24 30      fstp    dword [esp+0x30], st0
+1000a035  d9 44 24 10      fld     st0, dword [esp+0x10]
+1000a039  d8 4f 2c         fmul    st0, dword [edi+0x2c]
+1000a03c  d9 5c 24 38      fstp    dword [esp+0x38], st0
+1000a040  d9 44 24 10      fld     st0, dword [esp+0x10]
+1000a044  d8 4f 28         fmul    st0, dword [edi+0x28]
+1000a047  d9 5c 24 40      fstp    dword [esp+0x40], st0
+1000a04b  d9 44 24 10      fld     st0, dword [esp+0x10]
+1000a04f  d8 4f 24         fmul    st0, dword [edi+0x24]
+1000a052  d9 5c 24 48      fstp    dword [esp+0x48], st0
+1000a056  d9 44 24 10      fld     st0, dword [esp+0x10]
+1000a05a  d8 4f 20         fmul    st0, dword [edi+0x20]
+1000a05d  d9 5c 24 50      fstp    dword [esp+0x50], st0
+1000a061  d9 44 24 10      fld     st0, dword [esp+0x10]
+1000a065  d8 4f 1c         fmul    st0, dword [edi+0x1c]
+1000a068  d9 5c 24 18      fstp    dword [esp+0x18], st0
+1000a06c  d9 44 24 10      fld     st0, dword [esp+0x10]
+1000a070  d8 4f 18         fmul    st0, dword [edi+0x18]
+1000a073  d9 5c 24 24      fstp    dword [esp+0x24], st0
+1000a077  d9 44 24 10      fld     st0, dword [esp+0x10]
+1000a07b  d8 4f 14         fmul    st0, dword [edi+0x14]
+1000a07e  d9 5c 24 34      fstp    dword [esp+0x34], st0
+1000a082  d9 44 24 10      fld     st0, dword [esp+0x10]
+1000a086  d8 4f 10         fmul    st0, dword [edi+0x10]
+1000a089  d9 5c 24 44      fstp    dword [esp+0x44], st0
+1000a08d  d9 44 24 10      fld     st0, dword [esp+0x10]
+1000a091  d8 4f 0c         fmul    st0, dword [edi+0xc]
+1000a094  d9 5c 24 54      fstp    dword [esp+0x54], st0
+1000a098  d9 44 24 10      fld     st0, dword [esp+0x10]
+1000a09c  d8 4f 08         fmul    st0, dword [edi+0x8]
+1000a09f  d9 5c 24 64      fstp    dword [esp+0x64], st0
+1000a0a3  d9 44 24 10      fld     st0, dword [esp+0x10]
+1000a0a7  d8 4f 04         fmul    st0, dword [edi+0x4]
+1000a0aa  d9 5c 24 74      fstp    dword [esp+0x74], st0
+1000a0ae  d9 44 24 10      fld     st0, dword [esp+0x10]
+1000a0b2  d8 0f            fmul    st0, dword [edi]
+1000a0b4  d9 5c 24 10      fstp    dword [esp+0x10], st0
+1000a0b8  d9 84 24 8c 00 00 00 fld     st0, dword [esp+0x8c]
+1000a0bf  d8 44 24 58      fadd    dword [esp+0x58]
+1000a0c3  d9 1c 24         fstp    dword [esp], st0
+1000a0c6  51               push    ecx
+1000a0c7  d9 44 24 24      fld     st0, dword [esp+0x24]
+1000a0cb  d8 44 24 7c      fadd    dword [esp+0x7c]
+1000a0cf  d9 1c 24         fstp    dword [esp], st0
+1000a0d2  51               push    ecx
+1000a0d3  d9 44 24 30      fld     st0, dword [esp+0x30]
+1000a0d7  d8 44 24 68      fadd    dword [esp+0x68]
+1000a0db  d9 1c 24         fstp    dword [esp], st0
+1000a0de  51               push    ecx
+1000a0df  d9 44 24 3c      fld     st0, dword [esp+0x3c]
+1000a0e3  d8 84 24 94 00 00 00 fadd    dword [esp+0x94]
+1000a0ea  d9 1c 24         fstp    dword [esp], st0
+1000a0ed  51               push    ecx
+1000a0ee  d9 44 24 48      fld     st0, dword [esp+0x48]
+1000a0f2  d8 44 24 78      fadd    dword [esp+0x78]
+1000a0f6  d9 1c 24         fstp    dword [esp], st0
+1000a0f9  51               push    ecx
+1000a0fa  d9 44 24 54      fld     st0, dword [esp+0x54]
+1000a0fe  d8 84 24 94 00 00 00 fadd    dword [esp+0x94]
+1000a105  d9 1c 24         fstp    dword [esp], st0
+1000a108  51               push    ecx
+1000a109  d9 44 24 60      fld     st0, dword [esp+0x60]
+1000a10d  d8 84 24 88 00 00 00 fadd    dword [esp+0x88]
+1000a114  d9 1c 24         fstp    dword [esp], st0
+1000a117  51               push    ecx
+1000a118  d9 44 24 6c      fld     st0, dword [esp+0x6c]
+1000a11c  d8 44 24 30      fadd    dword [esp+0x30]
+1000a120  d9 1c 24         fstp    dword [esp], st0
+1000a123  51               push    ecx
+1000a124  d9 44 24 38      fld     st0, dword [esp+0x38]
+1000a128  d8 44 24 3c      fadd    dword [esp+0x3c]
+1000a12c  d9 1c 24         fstp    dword [esp], st0
+1000a12f  51               push    ecx
+1000a130  d9 44 24 48      fld     st0, dword [esp+0x48]
+1000a134  d8 44 24 50      fadd    dword [esp+0x50]
+1000a138  d9 1c 24         fstp    dword [esp], st0
+1000a13b  d9 44 24 58      fld     st0, dword [esp+0x58]
+1000a13f  d8 44 24 60      fadd    dword [esp+0x60]
+1000a143  51               push    ecx
+1000a144  d9 1c 24         fstp    dword [esp], st0
+1000a147  51               push    ecx
+1000a148  d9 44 24 70      fld     st0, dword [esp+0x70]
+1000a14c  d8 44 24 78      fadd    dword [esp+0x78]
+1000a150  d9 1c 24         fstp    dword [esp], st0
+1000a153  51               push    ecx
+1000a154  d9 84 24 84 00 00 00 fld     st0, dword [esp+0x84]
+1000a15b  d8 84 24 8c 00 00 00 fadd    dword [esp+0x8c]
+1000a162  d9 1c 24         fstp    dword [esp], st0
+1000a165  51               push    ecx
+1000a166  d9 84 24 98 00 00 00 fld     st0, dword [esp+0x98]
+1000a16d  d8 84 24 a0 00 00 00 fadd    dword [esp+0xa0]
+1000a174  d9 1c 24         fstp    dword [esp], st0
+1000a177  51               push    ecx
+1000a178  d9 84 24 ac 00 00 00 fld     st0, dword [esp+0xac]
+1000a17f  d8 84 24 b4 00 00 00 fadd    dword [esp+0xb4]
+1000a186  d9 1c 24         fstp    dword [esp], st0
+1000a189  51               push    ecx
+1000a18a  d9 44 24 4c      fld     st0, dword [esp+0x4c]
+1000a18e  8d 8c 24 0c 01 00 00 lea     ecx, [esp+0x10c]
+1000a195  d8 84 24 c0 00 00 00 fadd    dword [esp+0xc0]
+1000a19c  d9 1c 24         fstp    dword [esp], st0
+1000a19f  e8 fc 12 00 00   call    Matrix4x4_CreateFromElements
+1000a1a4  b9 10 00 00 00   mov     ecx, 0x10
+1000a1a9  8d b4 24 cc 00 00 00 lea     esi, [esp+0xcc]
+1000a1b0  f3 a5            rep movsd dword [edi], [esi]
+1000a1b2  5f               pop     edi
+1000a1b3  5e               pop     esi
+
+# Block 2 at 0x1000a1b4
+1000a1b4  5b               pop     ebx
+1000a1b5  81 c4 00 01 00 00 add     esp, 0x100
+1000a1bb  c3               retn

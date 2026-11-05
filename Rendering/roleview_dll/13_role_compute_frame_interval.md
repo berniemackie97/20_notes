@@ -329,7 +329,7 @@ fields and broaden `HasStatusFlag` accordingly.
 **Still zero in managed state** (no regression — these stages become no-ops when zero):
 - `SpeedPercentModifier` (CRole+0x5C) — no client-side tracking yet. The field's ctor-time
   zero init is verified in the main `CRole` ctor (`0x64D324`), and the adjacent equipment/item
-  refresh callers (`CMsgItem__Process`, `CMsgUserAttribEx__Process`, `sub_65E330`) have been
+  refresh callers (`CMsg1008__Process`, `CMsgUserAttrib__Process`, `sub_65E330`) have been
   checked, but no packet-backed live writer is proven yet.
 - `Source/TargetTile` (CRole+0x194..+0x1A0) — source comes from `TileX`/`TileY` but target
   comes from the attack target, which isn't part of the role state snapshot. Leaving both at
@@ -341,7 +341,7 @@ fields and broaden `HasStatusFlag` accordingly.
 - `MountedSpeedClassIndex` (CRole+0x3C) — sourced from
   `ClientWorldRoleStateSnapshotRuntime.MountPlusLevel` (the `MsgPlayerSpawn10014Packet`
   byte at offset `0x85`, already decoded by `MsgPlayerSpawn10014PacketReader`). This byte
-  is the value `CMsgPlayerSpawn__Process` pushes as `mountActionScalePrimarySource` at
+  is the value `CMsgPlayer__Process` pushes as `mountActionScalePrimarySource` at
   `0x756B16`, which the cache writer stores at `CRole+0x3C` at `0x6E5F75`. With the class
   index wired, the flag `0x32` common-tail stage now applies the correct per-class cap and
   (for action `0x2C9`) the mount-action ratio tables.
@@ -360,11 +360,11 @@ code references, analyzed for the initial-value provenance:
 
 | Caller                                            | Address   | Role                                   |
 |---------------------------------------------------|-----------|----------------------------------------|
-| `CMsgPlayerSpawn__Process`                        | `0x756B1D`| **Primary packet entry** — pushes packet bytes `0x44/0x85/0x8B/0x48` |
+| `CMsgPlayer__Process`                        | `0x756B1D`| **Primary packet entry** — pushes packet bytes `0x44/0x85/0x8B/0x48` |
 | `CHeroItem__SetEquipSlot`                         | `0x6DACDC`| Mount equip (ecx_56 has eax_28) — derives from item record |
 | `CHeroItem__SetEquipSlot`                         | `0x6DACF4`| Mount equip (null eax_28 branch) — all-zero source tuple |
 | `Role_UpdateMountActionScaleCacheFromRoleState`   | `0x6E5E3F`| **Idempotent refresh** — reads CRole+0x3C/+0x50/+0x54/+0x58 and passes them back (no-op for source fields, but re-runs item-record accumulators into CRole+0x48) |
-| `CMsgPlayerSpawn__Process` (standalone fallback)  | —         | covered above |
+| `CMsgPlayer__Process` (standalone fallback)  | —         | covered above |
 | `sub_503bc1` (×2)                                 | `0x504B07..`| Debug / UI helper — not on main playback path |
 | `Conquer_DispatchSlashCommandText`                | `0x659703`| Slash command (dev/test) — not on main playback path |
 | `sub_66cde7`                                      | `0x66CE36`| Unnamed helper — not on main playback path |
@@ -372,7 +372,7 @@ code references, analyzed for the initial-value provenance:
 The initial-write path for a player spawn is:
 
 ```
-CMsgPlayerSpawn__Process @ 0x755F64
+CMsgPlayer__Process @ 0x755F64
   ├─ *(esp-0x10) = *(packet+0x44)  ; arg1 role             → CRole+0x50
   ├─ *(esp-0x0c) = zx.d(*(packet+0x85))  ; arg2 primary    → CRole+0x3C  (MountPlusLevel byte)
   ├─ *(esp-0x08) = *(packet+0x8B)  ; arg3 secondary        → CRole+0x58
@@ -583,7 +583,7 @@ the native `ItemAdd.ini` reader (not DecodedTextDat).
 
 **Scope:** Synthetic unit tests in Slices 17 and 18 pin parser/encoder behavior, but they
 run on hand-crafted fixtures. Slice 19 adds a real-client regression harness that exercises
-the entire `MsgPlayerSpawn → state store → accumulator` pipeline against the shipping
+the entire `MsgPlayer → state store → accumulator` pipeline against the shipping
 `ItemType.dat` + `ItemAdd.ini`, catching decoder drift, composite-key drift, or
 sign-extension drift between the managed parsers and the state store's consumers.
 

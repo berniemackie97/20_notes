@@ -1,0 +1,70 @@
+{
+ "11237_logging_into_account_server": {
+  "frame_ms": 869,
+  "stage_bbox": [
+   427,
+   293,
+   595,
+   305
+  ],
+  "ink_px": 827,
+  "brightest": [
+   178,
+   122,
+   45
+  ],
+  "non_RGB_ordered_px": 223,
+  "sha256": "2a18877afde1e180ffba69360450df2f76292bbc5df75e4c1d98899e520cb4c1"
+ },
+ "STR_LOGIN_GAME_SERVER": {
+  "frame_ms": 1355,
+  "stage_bbox": [
+   425,
+   293,
+   597,
+   305
+  ],
+  "ink_px": 864,
+  "brightest": [
+   178,
+   122,
+   45
+  ],
+  "non_RGB_ordered_px": 236,
+  "sha256": "e2710d215f9604b15c04318a4f91b1c926425fd4804ad76bbf08e37970ce7c2f"
+ },
+ "11238_initializing": {
+  "frame_ms": 6929,
+  "stage_bbox": [
+   477,
+   293,
+   544,
+   305
+  ],
+  "ink_px": 387,
+  "brightest": [
+   178,
+   122,
+   45
+  ],
+  "non_RGB_ordered_px": 118,
+  "sha256": "e5e146eded35f033077e363458c92ade20ce66e8f63becb71a1936db79c214c1"
+ },
+ "11239_creating_maps": {
+  "frame_ms": 7324,
+  "stage_bbox": [
+   464,
+   293,
+   558,
+   305
+  ],
+  "ink_px": 435,
+  "brightest": [
+   178,
+   122,
+   45
+  ],
+  "non_RGB_ordered_px": 123,
+  "sha256": "3752d22cf7eeebcc02adbf4aaa53ba8e996217350dbb9411b9b24236167c4d4d"
+ }
+}

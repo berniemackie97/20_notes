@@ -176,7 +176,13 @@ Builds the per-part transform for a specific frame by:
 2. Multiplying into the part's world matrix.
 3. Applying `partLocal` as a prefix: `partLocal × accumulated`.
 
-### Static body mesh animation architecture
+### Historical rigid-only interpretation (superseded)
+
+The rigid-only interpretation in this subsection is historical. It is not the
+current general contract for split-layout body meshes. Use the corrected render-path
+selection below and `../c3_core_dll/05_phy.md`: Role3D selects full calculation, and
+actual per-vertex influences determine deformation. A file layout tag does not prove
+that body vertices remain in bind pose.
 
 For a **single-part body mesh** (StaticPacked `'4'` type, no per-vertex bone weights):
 

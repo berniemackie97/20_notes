@@ -642,6 +642,7 @@ Both pass `msg+0x08` as little-endian map data-id.
 - Companion `.DMap` files are not universally authoritative mirrors:
   - `178` companion pairs match byte-for-byte.
   - `3` companions differ from `.7z` payload bytes: `d_antre01.7z`, `horserate.7z`, `icecrypt-lev3.7z`.
+    - `icecrypt-lev3.7z` (id 1999): archive header 1005 + 424 B type-4 records; native reads 420 B, misreads scenery rec 1 and positioned count (100). Load still succeeds. **Runtime: retail renders the loose `.DMap` scenery instead (cause open).** See [map1999_icecrypt_archive_native.md](map1999_icecrypt_archive_native.md).
   - `11` `.7z` map files have no `.DMap` companion in clean set.
 
 **Verified first read block layout:**
@@ -1849,3 +1850,12 @@ CPlayer__UpdateOverlayList(this+92, overlay_x, overlay_y - 100);
 | C3DMapSimpleObj__func_000 (Dtor) | 0x64C7EF | 157 |
 | C3DMapSimpleObj__func_001 (SetAnim) | 0x64C8D4 | 58 |
 | C3DMapSimpleObj__func_002 (RenderUpdate) | 0x64C96E | 270 |
+
+## Ground puzzle failure propagation — verified 2026-11-01
+
+The ground setter at `0x6375C4` logs a false result from `0x638DBD` but does not propagate it.
+Its caller `0x61DDC9` (inside the loader starting `0x61DC3D`) proceeds directly to grid reads.
+A missing `.pul` alone therefore does not fail the DMap load. A fresh failed puzzle retains
+20×20 default dimensions, count 0, and a null index grid; normal ground drawing emits no puzzle tiles.
+See [map-data 1929 evidence](map1929_missing_puzzle_native.md) for the full file-resolution, return-flow,
+rendering, and reachability boundaries. This does not establish that groundless rendering is intended.

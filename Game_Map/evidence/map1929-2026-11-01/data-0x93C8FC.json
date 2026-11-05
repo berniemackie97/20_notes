@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "93c8fc:\n93c8fc                                      45 52 52 4f              ERRO\n93c900  52 3a 20 66 69 6c 65 20 25 73 20 6e 6f 74 20 66  R: file %s not f\n93c910  6f 75 6e 64 20 61 74 20 25 73 2c 20 25 64 00 00  ound at %s, %d..\n93c920  69 6e 69 2f 72 65 67 69 6f 6e 2e 69 6e 69 00 00  ini/region.ini..\n93c930  2b 25 49 36 34 75 00 00 70 50 6f 73              +%I64u..pPos    \n"
+    }
+  ],
+  "structuredContent": {
+    "result": "93c8fc:\n93c8fc                                      45 52 52 4f              ERRO\n93c900  52 3a 20 66 69 6c 65 20 25 73 20 6e 6f 74 20 66  R: file %s not f\n93c910  6f 75 6e 64 20 61 74 20 25 73 2c 20 25 64 00 00  ound at %s, %d..\n93c920  69 6e 69 2f 72 65 67 69 6f 6e 2e 69 6e 69 00 00  ini/region.ini..\n93c930  2b 25 49 36 34 75 00 00 70 50 6f 73              +%I64u..pPos    \n"
+  },
+  "isError": false
+}

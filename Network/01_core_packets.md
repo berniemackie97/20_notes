@@ -125,10 +125,10 @@ struct MsgConnect {
 **Mode 11 (`+4 == 11`)**:
 - Uses `+18` as the sole parameter to update the mode‑11 manager.
 
-## MsgPlayer (Type 1012)
+## Type 1012 (class unproven; label `MsgPlayer` withdrawn — `MsgPlayer.cpp` asserts are in the 10014 handler `0x755F64`)
 **Direction**: C→S (client builds and sends player identity/response)
 **Purpose**: Spawn player entity in world
-**Dispatch**: Create `CMsgPlayer__Create` (0x764997), parse `CMsgPlayer__Parse` (0x7649FD), process `CMsgPlayer__Process` (0x764A42)
+**Dispatch**: Create `CMsg1012__Ctor` (0x764997), parse `CMsg1012__Parse` (0x7649FD), process `CMsg1012__Process` (0x764A42)
 
 **Parse**: `CMsgPlayer__Parse` — standard header validation, then `type == 1012`.
 
@@ -500,7 +500,7 @@ properties including `Size` and the three strings.
 ### Direct local-hero stat substrate (managed slice)
 
 The authoritative managed hero-stat carrier is seeded by `MsgUserInfo (1006)` and then mutated by
-the same verified `MsgUserAttribEx (10017)` IDs as the native `CHero` fields. The HUD-critical direct
+the same verified `MsgUserAttrib (10017)` IDs as the native `CHero` fields. The HUD-critical direct
 set is:
 
 | ID | Managed/native value |
@@ -524,7 +524,7 @@ their UI consumers are elsewhere. `1006` explicitly seeds current physical force
 packet field may be invented for it. The native fresh maximum remains 100 and becomes 150 only
 while status-flag index `0x21` is present.
 
-`CMsgPlayerSpawn__Process` (`10014`) calls `sub_675ABA` as well, so this pair is part of every
+`CMsgPlayer__Process` (`10014`) calls `sub_675ABA` as well, so this pair is part of every
 player's visible appearance, not just the local hero.
 
 Open: the manager's class name (`sub_49A653` is a generic singleton getter; its RTTI `type_info`
@@ -670,19 +670,19 @@ shipped data file*: `TransForm.ini` contains 119 sections, of which just two are
 and `[990]`), while player body ids yield keys 1..4. It is a data coincidence, not a protocol
 property, so the rewritten server models this as its own field defaulting to `0`.
 
-## MsgItem (Type 1008) — dispatch verified 2026-08-16, stat inputs extended 2026-08-20
+## Type 1008 — dispatch verified 2026-08-16, stat inputs extended 2026-08-20 — class unproven; label `MsgItem` withdrawn (`MsgItem.cpp` asserts are in the type 1009 handler; CP0.1 2026-11-05)
 
 Delivered on the client's `MsgAction 0x4B` (75, GetItemSet) leg, **not** on the post-`1006`
 bootstrap.
 
-`CMsgItem__Process` (`0x762AC3`) switches on **`packet+0x10` as a byte, minus 1** — so `+0x10` is the
+`CMsg1008__Process` (`0x762AC3`) switches on **`packet+0x10` as a byte, minus 1** — so `+0x10` is the
 subtype and the handled range is **1..10**. Subtype `6` has no case and is silently ignored.
 
 | Subtype | Behaviour |
 |---|---|
 | **1** | allocates a new `CItem` (`0x1EC` bytes) and populates it — **the add/inventory-row path, i.e. the login item set** |
 | 2, 4, 5, 8, 9, 10 | also allocate a new `CItem` |
-| 3 | `CHeroItem__FindItemByUid` then update an existing item; removal is MsgTick subtype3 |
+| 3 | `CHeroItem__FindItemByUid` then update an existing item; removal is MsgItem subtype3 |
 | 7 | `sub_729CE6` / `sub_72A135` on `CHero`, no item allocation |
 
 Packet offsets read anywhere in the handler: `+4`, `+8`, `+0xC`, `+0xE`, `+0x10`, `+0x11`, `+0x12`,
@@ -710,9 +710,9 @@ The packet is the small half. Serving `0x4B` needs an inventory subsystem: item 
 tables, item-type data, a schema migration with a readiness requirement, and a repository — the same
 shape as the character work, and comparable in size.
 
-## MsgPlayerSpawn (Type 10014) — core fields verified 2026-08-16
+## MsgPlayer (Type 10014) — core fields verified 2026-08-16 — class proven by `MsgPlayer.cpp` assert (CP0.1 2026-11-05); former label `MsgPlayerSpawn` withdrawn
 
-**The client discards a self-spawn.** `CMsgPlayerSpawn__Process` (`0x755F64`) compares `packet+8`
+**The client discards a self-spawn.** `CMsgPlayer__Process` (`0x755F64`) compares `packet+8`
 (entity id) against `CHero+0xCC` as its very first action; on a match it logs
 `"Got a player with hero id! %u"` and **returns** before resolving the entity or applying anything.
 
@@ -758,7 +758,7 @@ Entry `0` is the role name (`CRole_SetName` at `0x75618C`, and the `~`-to-space 
 `Monster.dat` lookup at `0x75642B` runs on the same buffer). Entry `1` is read only on the
 non-player path at `0x756559`; entries `2` and `3` pair with the dwords at `+0x9B` and `+0xA3`.
 
-Body length is exact, not a lower bound: `CMsgPlayerSpawn__Ctor` (`0x755E83`) initialises the
+Body length is exact, not a lower bound: `CMsgPlayer__Ctor` (`0x755E83`) initialises the
 string list at `frame + 0xDA` with capacity `0x326` (`0x755EC4`..`0x755ED2`), so the fixed body is
 218 bytes and the list begins there.
 
@@ -932,7 +932,7 @@ zero rows valid, any order, `CMsgFriend__Process` has no ladder gate. No other p
 on this rung. Enemy list is also re-queried by the client itself via MsgEnemyList 1041 when the enemy
 dialog opens (`0x45D0FD`), independent of the ladder.
 
-Rung payloads verified so far: `0x4B` is answered with `MsgItem` (1008) rows, `0x4C` with
+Rung payloads verified so far: `0x4B` is answered with `Msg1008` (1008) rows, `0x4C` with
 `MsgFriend` (1019) rows (optional, see above), `0x4D actionGetWeaponSkillSet` with one `MsgWeaponSkill` (1025)
 packet per proficiency row, and `0x4E actionGetMagicSet` with one `MsgMagicEffectSimple` (1103)
 per magic — established by xrefs on `CHero__AddOrUpdateMagic` (0x6F5546), the only function that
@@ -1205,7 +1205,7 @@ builder census, replay vectors, and retail-server evidence limits.
 | 114   | 0x72 | CloseBooth | **Verified outbound from `CBoothManager_Close`.** Sent after the manager clears prices, listed items, NPC ID, active state, and cry-out text. |
 | 124   | 0x7C | PlaySoundById | Resolves sound path from `sound_id` (`+8`) via `GameDataSetQuery()->vtable[+0x30]`, then calls `DXPlaySound` with defaults `(0,0,0,0,100)` |
 | 102   | 0x66 | QueryEntity | **Verified 2026-08-28**. Client-originated: `CMsgEntityAction__Process` builds it at `0x740730` when a movement packet names an entity it cannot resolve, carrying its own hero id and facing with the unresolved id in the parameter pair at `+8`. Answered by re-sending that entity's `10014`. |
-| 408   | 0x198 | ClientStateApplied | **Verified 2026-08-29.** Client-to-server only, with every field zero (`CMsgAction__BuildType10010(msg, 0x198, 0)`). Seven senders: the four MsgTick apply branches (`0x6EB099` subtype 17, `0x6EB2ED` unequip, `0x6EB51D` equip, `0x6EB6F5` subtype 18), both equipment-set switch paths in `sub_6DAEB9` after MsgTick `0x2C`/`0x2D`, and `CMsgMapInfo1110__Process` at `0x732D38` after applying a new map. **Corrected**: an earlier note called this equipment-only; the map-info sender disproves that. What the seven share is a just-completed refresh of hero-visible state. **Takes no reply**: `0x198` appears nowhere in `CMsgAction__Process`'s disassembly. |
+| 408   | 0x198 | ClientStateApplied | **Verified 2026-08-29.** Client-to-server only, with every field zero (`CMsgAction__BuildType10010(msg, 0x198, 0)`). Seven senders: the four MsgItem apply branches (`0x6EB099` subtype 17, `0x6EB2ED` unequip, `0x6EB51D` equip, `0x6EB6F5` subtype 18), both equipment-set switch paths in `sub_6DAEB9` after MsgItem `0x2C`/`0x2D`, and `CMsgMapInfo1110__Process` at `0x732D38` after applying a new map. **Corrected**: an earlier note called this equipment-only; the map-info sender disproves that. What the seven share is a just-completed refresh of hero-visible state. **Takes no reply**: `0x198` appears nowhere in `CMsgAction__Process`'s disassembly. |
 | 128   | 0x80 | DropItem | Drop item on ground (calls CAntiCheatMgr__GetBodyMatrixFloat) |
 | 100   | 0x64 | ReportPosition / challenge | **Verified 2026-08-28.** Outbound from the client it is a periodic position report — `CHero_TickIdlePositionSyncSend` (`0x661AAC`) sends the hero id, tile and facing from a tick, unprompted. Inbound to the client it is unrelated: the branch at `0x6FFC39` computes a replacement for packet `+8` and returns the packet, a challenge rather than an acknowledgement. |
 | 108   | 0x6C | CorrectPosition | **Verified 2026-08-28** at `0x6FFC4B`. Server-to-client: applies the tile at `+0x18`/`+0x1A` to the local hero — entity id must resolve to the hero — with no effect or animation, then replies with subtype 146. The right packet for correcting a position; 156 is a teleport and plays `"KOTeleport"`. |
@@ -1326,7 +1326,7 @@ Runtime mapping in `10_work`:
   - updates the local-hero role snapshot position/direction when the entity already resolves as the local hero.
 - startup/bootstrap parity must also emit the verified client follow-up `MsgAction 0x4B (GetItemSet)` after the
   server `0x4A` side effects have been observed and the command/map ingress handlers have run.
-- corrected item receive contract: local inventory and tracked equipment use `MsgItem (1008)` subtype1;
+- corrected item receive contract: local inventory and tracked equipment use `Msg1008 (1008)` subtype1;
   active equipment is selected through MsgTick1009 subtype46. Subtype4 targets inspected `CDummy`
   equipment, not local hero equipment. See [the item contract](MsgItem1008-domain-contract-5517.md).
 
@@ -1465,7 +1465,7 @@ Proven from four independent directions (fifth consumer added 2026-09-28):
 
 1. `CMsgUserInfo__Process` at `0x7646BF` calls `CHero_SetFlowerStatusTier` (`0x673266`), a one-line
    setter storing to `hero+0x474`. Getter is `CHero_GetFlowerStatusTier` (`0x5D4B61`).
-2. `CMsgUserAttribEx__Process` case `0x27` (`0x757E25`) writes the same field through the same
+2. `CMsgUserAttrib__Process` case `0x27` (`0x757E25`) writes the same field through the same
    setter, so the value also arrives as a live attribute update.
 3. `CUserAttribMgr_RenderStatusIconTooltips` case `0x16` (`0x6F13FE`) reads it, clamps
    `v = min(v, 6)`, and uses it as an **index** into the 7-entry ladder `{1,2,3,5,10,15,30}` while
@@ -1489,13 +1489,13 @@ behaviour, and is not ported.
 
 ### `+44` cross-confirmed as a real hero attribute (still unnamed)
 
-`CMsgUserAttribEx__Process` case `0x17` (`0x757BFF`) writes `hero+0x8B8` directly. That fixes the
+`CMsgUserAttrib__Process` case `0x17` (`0x757BFF`) writes `hero+0x8B8` directly. That fixes the
 attribute type code at `0x17` and proves the field is a first-class hero attribute rather than
 packet padding, but the case is a bare store with no strings, so the **meaning is still open**.
 
 ### Enum cross-check (independent confirmation of already-proven fields)
 
-The `MsgUserAttribEx` switch agrees with the `MsgUserInfo` mapping on every field they share:
+The `MsgUserAttrib` switch agrees with the `MsgUserInfo` mapping on every field they share:
 `case 7 -> hero+0x82C` (profession), `case 8 -> hero+0x830` (stamina),
 `case 0xA -> hero+0x840` (unspent attribute points). Two independently written handlers landing on
 the same offsets is strong confirmation — and `case 8` writing stamina to `0x830` independently
@@ -1628,7 +1628,7 @@ and resolved a separate misaligned trampoline chain. See the current audit for e
 
 ### Lead on `+40` / `hero+0x848` — plain vs. protected health storage
 
-`CMsgPlayerSpawn__Process` writes `0x848` at `0x756525`, and the surrounding branch is informative.
+`CMsgPlayer__Process` writes `0x848` at `0x756525`, and the surrounding branch is informative.
 The role id lives at `role+0xCC` (proven: `MsgUserInfo` stores its `EntityId` there at `0x764324`),
 and the handler splits on `id > 0xF423F` (999999). **2026-09-17 correction:** the older
 branch labels were reversed. Native IsPlayer CHECK at 0x67350E rejects IDs<=999999.
@@ -1672,7 +1672,7 @@ out of the `push imm8` preceding each call site:
 
 | Index | Written by | Read by |
 |---|---|---|
-| `1` | `CMsgUserInfo__Process` `0x764351` (from packet `+62`), `CMsgPlayerSpawn__Process` `0x756407`/`0x7564EF`, `CMsgUserAttribEx__Process` `0x757902`, `CMsgTick__Process`, `CMsgInteract__Process` | HUD, `CBossEffectMgr_UpdateTrackedBossLifeState`, `CBossEffectMgr_RenderBossLifeOverlay`, `CMyShellDlg__RenderStatusHintPanel` |
+| `1` | `CMsgUserInfo__Process` `0x764351` (from packet `+62`), `CMsgPlayer__Process` `0x756407`/`0x7564EF`, `CMsgUserAttrib__Process` `0x757902`, `CMsgItem__Process`, `CMsgInteract__Process` | HUD, `CBossEffectMgr_UpdateTrackedBossLifeState`, `CBossEffectMgr_RenderBossLifeOverlay`, `CMyShellDlg__RenderStatusHintPanel` |
 | `0x0F` (15) | `CHero_InitializeState` `0x656D56`, `CHero_PerFrameTickAndSubsystemUpdate` `0x65E167` — **client-side only** | HUD, paired with index 1 |
 
 Index 1 is **current life**: the boss-life manager reads it, and every server packet that carries a
@@ -1728,7 +1728,7 @@ Every one is a **write inside `CMsgUserInfo__Process`**. There is not a single r
 Scope of the claim, stated precisely: this proves no code uses the
 *fetch-the-singleton-then-access* idiom to read these fields. It does **not** prove no reader
 exists — a consumer holding a cached `CHero*`/`CRole*` in a local, a member, or a parameter would
-not match, and `CMsgPlayerSpawn__Process` demonstrates that `+0x848` at least is genuinely used on
+not match, and `CMsgPlayer__Process` demonstrates that `+0x848` at least is genuinely used on
 non-hero `CRole` objects through exactly such a pointer.
 
 What it does settle is that the cheap search space is exhausted and the earlier candidate clusters
@@ -1763,7 +1763,7 @@ was confirmed by decompiling:
 - `0x4E6FB5` (`+36`) — `sub_4E6EB4` is the "Openhole" dialog renderer. `arg1+0x844` is a `CMyButton`
   member; the `0x864` co-occurrence is `IsWindowVisible(*(arg1+0x864))`, a window handle.
 - `0x66CCDC` and `0x66D3C6` (`+32`) — both sit in the accessor block of the **sub-object at
-  `hero+0x1EA0`**, not `CHero`. Proven by `CMsgPlayerSpawn__Process` `0x75724A`, which calls
+  `hero+0x1EA0`**, not `CHero`. Proven by `CMsgPlayer__Process` `0x75724A`, which calls
   `sub_66C9A3(&hero->pad_000[0x1EA0])`, and by `sub_4DD0E4`, which calls
   `sub_66D3C6(&hero->pad_000[0x1EA0])`. Their `0x868` co-occurrence is that sub-object's field, not
   CHero's PK points.
@@ -1775,8 +1775,8 @@ describes that search, not a whole-binary no-reader conclusion:
 |---|---|---|
 | `hero+0x85C` | `MsgUserInfo` | Not found by this search |
 | `hero+0x844` | `MsgUserInfo` | Not found by this search |
-| `hero+0x848` | `MsgUserInfo`, `MsgPlayerSpawn` player branch | Not found by this search |
-| `hero+0x8B8` | `MsgUserInfo`, `MsgUserAttribEx` type `0x17` | Not found by this search |
+| `hero+0x848` | `MsgUserInfo`, `MsgPlayer` player branch | Not found by this search |
+| `hero+0x8B8` | `MsgUserInfo`, `MsgUserAttrib` type `0x17` | Not found by this search |
 | `hero+0xF34` | `MsgUserInfo`; constructor zero | Not found by this search |
 | `hero+0xCE4` | `MsgUserInfo`; constructor zero | Not found by this search |
 
@@ -1833,9 +1833,9 @@ out of both the client and the server.
 Also still unnamed, and left zero: `+97` (u8 digit count) with the `+98`/`+102` u32 pair, which the
 client combines into a 64-bit value and formats via `pow(10, digits - 1)` division then `mod 10`.
 
-## MsgTick (Type 1009) — equip/unequip verified 2026-08-29
+## MsgItem (Type 1009) — equip/unequip verified 2026-08-29 — class proven by `MsgItem.cpp` assert (CP0.1 2026-11-05); former label `MsgTick` withdrawn
 
-`CMsgTick__Ctor` `0x6EABEB`, `CMsgTick__Process` `0x6EAEB6`. Fixed body of `0x58` bytes with an
+`CMsgItem__Ctor` `0x6EABEB`, `CMsgItem__Process` `0x6EAEB6`. Fixed body of `0x58` bytes with an
 optional trailing u32 list: uid `+4`, position `+8`, subtype u16 `+0x0C`, token `+0x10`, list count
 `+0x14`, list from `+0x54`.
 

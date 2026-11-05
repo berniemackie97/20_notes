@@ -1,0 +1,46 @@
+[
+  {
+    "role_bitmap_id": 90,
+    "matching_start_bitmap_ids": [],
+    "match_basis": "entire definition payload after 2-byte character ID; includes compressed image bytes and alpha bytes",
+    "sha256": "577e82aadf5195ff1f45c9e8c7a017b1b2be0fab837bc7d441c24b4dfaf83629"
+  },
+  {
+    "role_bitmap_id": 92,
+    "matching_start_bitmap_ids": [
+      376
+    ],
+    "match_basis": "entire definition payload after 2-byte character ID; includes compressed image bytes and alpha bytes",
+    "sha256": "eb0b4aec34e91dc50f9a62ad24d561007288a72c1b376104a6c260c43ae5f608"
+  },
+  {
+    "role_bitmap_id": 94,
+    "matching_start_bitmap_ids": [],
+    "match_basis": "entire definition payload after 2-byte character ID; includes compressed image bytes and alpha bytes",
+    "sha256": "6243617878a09a8a986ead46eb2a795daf455516c0468f53abb6c4f61c38ad29"
+  },
+  {
+    "role_bitmap_id": 97,
+    "matching_start_bitmap_ids": [],
+    "match_basis": "entire definition payload after 2-byte character ID; includes compressed image bytes and alpha bytes",
+    "sha256": "7f8496effc4b69320c0391a0501d077443ddf0ed93206a8a5de67b1e40a5666a"
+  },
+  {
+    "role_bitmap_id": 98,
+    "matching_start_bitmap_ids": [],
+    "match_basis": "entire definition payload after 2-byte character ID; includes compressed image bytes and alpha bytes",
+    "sha256": "c07cc1948e43ccad688e2989156f60289802f637f213ecea77c97e9405c2125e"
+  },
+  {
+    "role_bitmap_id": 100,
+    "matching_start_bitmap_ids": [],
+    "match_basis": "entire definition payload after 2-byte character ID; includes compressed image bytes and alpha bytes",
+    "sha256": "a645b88c127ab5c17b500d5991958310f09bdbac227aefb6c761bc480349fd0d"
+  },
+  {
+    "role_bitmap_id": 104,
+    "matching_start_bitmap_ids": [],
+    "match_basis": "entire definition payload after 2-byte character ID; includes compressed image bytes and alpha bytes",
+    "sha256": "3e4cde61b6266c9cf12b97880fa206b4b79876cddf5c14f48daa603f04bc658b"
+  }
+]

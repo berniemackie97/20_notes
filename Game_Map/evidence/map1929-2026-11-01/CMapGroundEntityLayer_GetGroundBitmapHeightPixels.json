@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x638ec8\n00638ec8  55               push    ebp\n00638ec9  8b ec            mov     ebp, esp\n00638ecb  51               push    ecx\n00638ecc  51               push    ecx\n00638ecd  83 79 04 00      cmp     dword [ecx+0x4], 0x0\n00638ed1  74 0a            je      0x638edd\n\n# Block 3 at 0x638ed3\n00638ed3  83 c1 08         add     ecx, 0x8\n00638ed6  e8 00 0a 01 00   call    CMapGroundEntityLayer_GetTerrainCacheScaledBitmapHeightPixels\n00638edb  c9               leave\n00638edc  c3               retn\n\n# Block 2 at 0x638edd\n00638edd  8d 45 f8         lea     eax, [ebp-0x8]\n00638ee0  81 c1 a0 00 00 00 add     ecx, 0xa0\n00638ee6  50               push    eax\n00638ee7  e8 f0 18 00 00   call    CMapPuzzleBitmap_GetScaledBitmapDimensions\n00638eec  8b 45 fc         mov     eax, dword [ebp-0x4]\n00638eef  c9               leave\n00638ef0  c3               retn\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x638ec8\n00638ec8  55               push    ebp\n00638ec9  8b ec            mov     ebp, esp\n00638ecb  51               push    ecx\n00638ecc  51               push    ecx\n00638ecd  83 79 04 00      cmp     dword [ecx+0x4], 0x0\n00638ed1  74 0a            je      0x638edd\n\n# Block 3 at 0x638ed3\n00638ed3  83 c1 08         add     ecx, 0x8\n00638ed6  e8 00 0a 01 00   call    CMapGroundEntityLayer_GetTerrainCacheScaledBitmapHeightPixels\n00638edb  c9               leave\n00638edc  c3               retn\n\n# Block 2 at 0x638edd\n00638edd  8d 45 f8         lea     eax, [ebp-0x8]\n00638ee0  81 c1 a0 00 00 00 add     ecx, 0xa0\n00638ee6  50               push    eax\n00638ee7  e8 f0 18 00 00   call    CMapPuzzleBitmap_GetScaledBitmapDimensions\n00638eec  8b 45 fc         mov     eax, dword [ebp-0x4]\n00638eef  c9               leave\n00638ef0  c3               retn\n"
+  },
+  "isError": false
+}

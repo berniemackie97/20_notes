@@ -1,0 +1,297 @@
+{
+  "records": [
+    {
+      "address": "0x61DD00",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x61dd00\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x61dd00\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "addition": "Map1999 audit 2026-11-01: first header DWORD is read into [ebp-4C], second into [ebp-48]. Neither local is tested or passed to post-grid loaders. Header1005 does not select an extended scenery layout in this 5517 function. See20_notes/Game_Map/map1999_icecrypt_archive_native.md.",
+      "write": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x61dd00\", \"comment\": \"Map1999 audit 2026-11-01: first header DWORD is read into [ebp-4C], second into [ebp-48]. Neither local is tested or passed to post-grid loaders. Header1005 does not select an extended scenery layout in this 5517 function. See20_notes/Game_Map/map1999_icecrypt_archive_native.md.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x61dd00\", \"comment\": \"Map1999 audit 2026-11-01: first header DWORD is read into [ebp-4C], second into [ebp-48]. Neither local is tested or passed to post-grid loaders. Header1005 does not select an extended scenery layout in this 5517 function. See20_notes/Game_Map/map1999_icecrypt_archive_native.md.\"}"
+        },
+        "isError": false
+      },
+      "readback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x61dd00\", \"comment\": \"Map1999 audit 2026-11-01: first header DWORD is read into [ebp-4C], second into [ebp-48]. Neither local is tested or passed to post-grid loaders. Header1005 does not select an extended scenery layout in this 5517 function. See20_notes/Game_Map/map1999_icecrypt_archive_native.md.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x61dd00\", \"comment\": \"Map1999 audit 2026-11-01: first header DWORD is read into [ebp-4C], second into [ebp-48]. Neither local is tested or passed to post-grid loaders. Header1005 does not select an extended scenery layout in this 5517 function. See20_notes/Game_Map/map1999_icecrypt_archive_native.md.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x64575C",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x64575c\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x64575c\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "addition": "Map1999 audit: final type-4 payload read is DWORD -> object+40. Body is104h+80h+7*4=1A0h (416), record including subtype=1A4h (420). No eighth DWORD, seek, header test or read-length validation. Archived icecrypt-lev3 has an extra DWORD4 at3D9FB0; next iteration consumes it as subtype.",
+      "write": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x64575c\", \"comment\": \"Map1999 audit: final type-4 payload read is DWORD -> object+40. Body is104h+80h+7*4=1A0h (416), record including subtype=1A4h (420). No eighth DWORD, seek, header test or read-length validation. Archived icecrypt-lev3 has an extra DWORD4 at3D9FB0; next iteration consumes it as subtype.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x64575c\", \"comment\": \"Map1999 audit: final type-4 payload read is DWORD -> object+40. Body is104h+80h+7*4=1A0h (416), record including subtype=1A4h (420). No eighth DWORD, seek, header test or read-length validation. Archived icecrypt-lev3 has an extra DWORD4 at3D9FB0; next iteration consumes it as subtype.\"}"
+        },
+        "isError": false
+      },
+      "readback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x64575c\", \"comment\": \"Map1999 audit: final type-4 payload read is DWORD -> object+40. Body is104h+80h+7*4=1A0h (416), record including subtype=1A4h (420). No eighth DWORD, seek, header test or read-length validation. Archived icecrypt-lev3 has an extra DWORD4 at3D9FB0; next iteration consumes it as subtype.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x64575c\", \"comment\": \"Map1999 audit: final type-4 payload read is DWORD -> object+40. Body is104h+80h+7*4=1A0h (416), record including subtype=1A4h (420). No eighth DWORD, seek, header test or read-length validation. Archived icecrypt-lev3 has an extra DWORD4 at3D9FB0; next iteration consumes it as subtype.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x61DF19",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x61df19\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x61df19\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "addition": "Map1999 archive SHA8ddb3929...: native scenery cursor ends3DA154, so this reads100 as positioned-record count. This is a shifted field: native420-byte type4 framing differs from the archive's424-byte-looking records. Do not infer100 legitimate overlays or switch layout on header1005.",
+      "write": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x61df19\", \"comment\": \"Map1999 archive SHA8ddb3929...: native scenery cursor ends3DA154, so this reads100 as positioned-record count. This is a shifted field: native420-byte type4 framing differs from the archive's424-byte-looking records. Do not infer100 legitimate overlays or switch layout on header1005.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x61df19\", \"comment\": \"Map1999 archive SHA8ddb3929...: native scenery cursor ends3DA154, so this reads100 as positioned-record count. This is a shifted field: native420-byte type4 framing differs from the archive's424-byte-looking records. Do not infer100 legitimate overlays or switch layout on header1005.\"}"
+        },
+        "isError": false
+      },
+      "readback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x61df19\", \"comment\": \"Map1999 archive SHA8ddb3929...: native scenery cursor ends3DA154, so this reads100 as positioned-record count. This is a shifted field: native420-byte type4 framing differs from the archive's424-byte-looking records. Do not infer100 legitimate overlays or switch layout on header1005.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x61df19\", \"comment\": \"Map1999 archive SHA8ddb3929...: native scenery cursor ends3DA154, so this reads100 as positioned-record count. This is a shifted field: native420-byte type4 framing differs from the archive's424-byte-looking records. Do not infer100 legitimate overlays or switch layout on header1005.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x61DF48",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x61df48\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x61df48\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "addition": "Map1999: first positioned pair reads insertIndex4 at3DA158 and kind0 at3DA15C, then EOF. Remaining99 pairs return0 copied bytes, leave locals4/0 unchanged, and all100 iterations skip body because kind!=4. No short-read/EOF rejection; ordinary-return path reaches61DFC0 then returns1.",
+      "write": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x61df48\", \"comment\": \"Map1999: first positioned pair reads insertIndex4 at3DA158 and kind0 at3DA15C, then EOF. Remaining99 pairs return0 copied bytes, leave locals4/0 unchanged, and all100 iterations skip body because kind!=4. No short-read/EOF rejection; ordinary-return path reaches61DFC0 then returns1.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x61df48\", \"comment\": \"Map1999: first positioned pair reads insertIndex4 at3DA158 and kind0 at3DA15C, then EOF. Remaining99 pairs return0 copied bytes, leave locals4/0 unchanged, and all100 iterations skip body because kind!=4. No short-read/EOF rejection; ordinary-return path reaches61DFC0 then returns1.\"}"
+        },
+        "isError": false
+      },
+      "readback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x61df48\", \"comment\": \"Map1999: first positioned pair reads insertIndex4 at3DA158 and kind0 at3DA15C, then EOF. Remaining99 pairs return0 copied bytes, leave locals4/0 unchanged, and all100 iterations skip body because kind!=4. No short-read/EOF rejection; ordinary-return path reaches61DFC0 then returns1.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x61df48\", \"comment\": \"Map1999: first positioned pair reads insertIndex4 at3DA158 and kind0 at3DA15C, then EOF. Remaining99 pairs return0 copied bytes, leave locals4/0 unchanged, and all100 iterations skip body because kind!=4. No short-read/EOF rejection; ordinary-return path reaches61DFC0 then returns1.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x7714FE",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x7714fe\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x7714fe\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "addition": "Map1999 EOF audit: cursor advances by copied bytes only. At cursor==payloadSize, nonzero read requests call memcpy with length0, return0 and leave destination untouched. DMap tail callers ignore that return; no EOF flag or exception here.",
+      "write": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x7714fe\", \"comment\": \"Map1999 EOF audit: cursor advances by copied bytes only. At cursor==payloadSize, nonzero read requests call memcpy with length0, return0 and leave destination untouched. DMap tail callers ignore that return; no EOF flag or exception here.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x7714fe\", \"comment\": \"Map1999 EOF audit: cursor advances by copied bytes only. At cursor==payloadSize, nonzero read requests call memcpy with length0, return0 and leave destination untouched. DMap tail callers ignore that return; no EOF flag or exception here.\"}"
+        },
+        "isError": false
+      },
+      "readback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x7714fe\", \"comment\": \"Map1999 EOF audit: cursor advances by copied bytes only. At cursor==payloadSize, nonzero read requests call memcpy with length0, return0 and leave destination untouched. DMap tail callers ignore that return; no EOF flag or exception here.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x7714fe\", \"comment\": \"Map1999 EOF audit: cursor advances by copied bytes only. At cursor==payloadSize, nonzero read requests call memcpy with length0, return0 and leave destination untouched. DMap tail callers ignore that return; no EOF flag or exception here.\"}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "address": "0x61DFD6",
+      "before": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x61dfd6\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x61dfd6\", \"comment\": null, \"message\": \"No comment found at this address\"}"
+        },
+        "isError": false
+      },
+      "addition": "DMap failure boundary: checksum mismatch or positioned-record allocation failure destroys local reader and returns0. No component/grid rollback here; old components/grid were already destroyed/reset at61DC72/61DC7A. CreateFromDataId logs false and skips its success-only state/role rebuild. Map1999 malformed-looking tail does not take this branch under normal resource allocation.",
+      "write": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully set comment at 0x61dfd6\", \"comment\": \"DMap failure boundary: checksum mismatch or positioned-record allocation failure destroys local reader and returns0. No component/grid rollback here; old components/grid were already destroyed/reset at61DC72/61DC7A. CreateFromDataId logs false and skips its success-only state/role rebuild. Map1999 malformed-looking tail does not take this branch under normal resource allocation.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully set comment at 0x61dfd6\", \"comment\": \"DMap failure boundary: checksum mismatch or positioned-record allocation failure destroys local reader and returns0. No component/grid rollback here; old components/grid were already destroyed/reset at61DC72/61DC7A. CreateFromDataId logs false and skips its success-only state/role rebuild. Map1999 malformed-looking tail does not take this branch under normal resource allocation.\"}"
+        },
+        "isError": false
+      },
+      "readback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"address\": \"0x61dfd6\", \"comment\": \"DMap failure boundary: checksum mismatch or positioned-record allocation failure destroys local reader and returns0. No component/grid rollback here; old components/grid were already destroyed/reset at61DC72/61DC7A. CreateFromDataId logs false and skips its success-only state/role rebuild. Map1999 malformed-looking tail does not take this branch under normal resource allocation.\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"address\": \"0x61dfd6\", \"comment\": \"DMap failure boundary: checksum mismatch or positioned-record allocation failure destroys local reader and returns0. No component/grid rollback here; old components/grid were already destroyed/reset at61DC72/61DC7A. CreateFromDataId logs false and skips its success-only state/role rebuild. Map1999 malformed-looking tail does not take this branch under normal resource allocation.\"}"
+        },
+        "isError": false
+      }
+    }
+  ],
+  "renames": [
+    {
+      "old_name": "sub_61d15b",
+      "new_name": "CGameMap_DestroyAndClearComponents",
+      "write": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully renamed function from sub_61d15b to CGameMap_DestroyAndClearComponents\", \"function\": {\"name\": \"sub_61d15b\", \"raw_name\": \"sub_61d15b\", \"address\": \"0x61d15b\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"sub_61d15b\"}}}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully renamed function from sub_61d15b to CGameMap_DestroyAndClearComponents\", \"function\": {\"name\": \"sub_61d15b\", \"raw_name\": \"sub_61d15b\", \"address\": \"0x61d15b\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"sub_61d15b\"}}}"
+        },
+        "isError": false
+      },
+      "readback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"matches\": [{\"name\": \"CGameMap_DestroyAndClearComponents\", \"address\": \"0x61d15b\", \"raw_name\": \"CGameMap_DestroyAndClearComponents\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CGameMap_DestroyAndClearComponents\"}}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "old_name": "sub_771595",
+      "new_name": "MapFileReader_Destroy",
+      "write": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully renamed function from sub_771595 to MapFileReader_Destroy\", \"function\": {\"name\": \"sub_771595\", \"raw_name\": \"sub_771595\", \"address\": \"0x771595\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"sub_771595\"}}}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully renamed function from sub_771595 to MapFileReader_Destroy\", \"function\": {\"name\": \"sub_771595\", \"raw_name\": \"sub_771595\", \"address\": \"0x771595\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"sub_771595\"}}}"
+        },
+        "isError": false
+      },
+      "readback": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"matches\": [{\"name\": \"MapFileReader_Destroy\", \"address\": \"0x771595\", \"raw_name\": \"MapFileReader_Destroy\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"MapFileReader_Destroy\"}}]}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "persistence": "Pending requested database save"
+}

@@ -1,0 +1,904 @@
+{
+  "source_root": "/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517",
+  "scope": "Only declared type4 ANI sections and FrameN resource paths referenced by the 111 map1929 scenery records. Existing native WDF hash/index semantics reused. Declaration/resource existence does not prove rendering.",
+  "resources": [
+    {
+      "path": "ani\\MapScene.ani",
+      "size": 129051,
+      "sha256": "70addd15af3b979dd1e3540b5495090ef825b5572bf40579ca28f833098b2fa8",
+      "sections": [
+        {
+          "section": "flower13.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/plain/plain/flower13.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/plain/plain/flower13.dds",
+              "normalized": "data/map/mapobj/plain/plain/flower13.dds",
+              "loose_exists": false,
+              "uid": "0xf98dd322",
+              "source": "data.wdf",
+              "offset": 79411496,
+              "size": 4224,
+              "resolved": true,
+              "sha256": "df430da92ef15781a1086ef4de3b408638b4485e2619105df59ce45987198e60",
+              "signature_hex": "444453207c0000000710080040000000",
+              "height": 64,
+              "width": 64,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "flower14.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/plain/plain/flower14.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/plain/plain/flower14.dds",
+              "normalized": "data/map/mapobj/plain/plain/flower14.dds",
+              "loose_exists": false,
+              "uid": "0xd74ace48",
+              "source": "data.wdf",
+              "offset": 79415720,
+              "size": 4224,
+              "resolved": true,
+              "sha256": "a6c29b5b4b5e6ac3aa2ef7bfb5d7003cb3c81d715abfc4a9a0722e6dd7645b70",
+              "signature_hex": "444453207c0000000710080040000000",
+              "height": 64,
+              "width": 64,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "flower21.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/plain/plain/flower21.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/plain/plain/flower21.dds",
+              "normalized": "data/map/mapobj/plain/plain/flower21.dds",
+              "loose_exists": false,
+              "uid": "0x27c72a8b",
+              "source": "data.wdf",
+              "offset": 79494440,
+              "size": 4224,
+              "resolved": true,
+              "sha256": "105d5ce1f012eb2e9445064af5f13ac0b9066da06661dc0640f5363de46e94dd",
+              "signature_hex": "444453207c0000000710080040000000",
+              "height": 64,
+              "width": 64,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "flower23.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/plain/plain/flower23.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/plain/plain/flower23.dds",
+              "normalized": "data/map/mapobj/plain/plain/flower23.dds",
+              "loose_exists": false,
+              "uid": "0xb87f4447",
+              "source": "data.wdf",
+              "offset": 79515176,
+              "size": 4224,
+              "resolved": true,
+              "sha256": "abfe8cc7e761f1d35d740e55695d5c9c2c5392f65b2dbc678983858103514bec",
+              "signature_hex": "444453207c0000000710080040000000",
+              "height": 64,
+              "width": 64,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "flower28.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/plain/plain/flower28.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/plain/plain/flower28.dds",
+              "normalized": "data/map/mapobj/plain/plain/flower28.dds",
+              "loose_exists": false,
+              "uid": "0x8a677cb4",
+              "source": "data.wdf",
+              "offset": 79560872,
+              "size": 16512,
+              "resolved": true,
+              "sha256": "4ff74e7bd77637eed741325b3e65ef2e1019246789424df027d8f0e50ada0a9a",
+              "signature_hex": "444453207c0000000710080080000000",
+              "height": 128,
+              "width": 128,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "flower31.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/plain/plain/flower31.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/plain/plain/flower31.dds",
+              "normalized": "data/map/mapobj/plain/plain/flower31.dds",
+              "loose_exists": false,
+              "uid": "0xeb70ee3f",
+              "source": "data.wdf",
+              "offset": 79598120,
+              "size": 4224,
+              "resolved": true,
+              "sha256": "dfd69d34fefcdb2f65e44bd7b795dc3025805af0c4812da30c49db70b17de591",
+              "signature_hex": "444453207c0000000710080040000000",
+              "height": 64,
+              "width": 64,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "flower35.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/plain/plain/flower35.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/plain/plain/flower35.dds",
+              "normalized": "data/map/mapobj/plain/plain/flower35.dds",
+              "loose_exists": false,
+              "uid": "0x7208d2e6",
+              "source": "data.wdf",
+              "offset": 79627304,
+              "size": 16512,
+              "resolved": true,
+              "sha256": "7b0c7e209b0102770f5b70d81e78dc9674eae61c9b825dc161cd3926fb3faee5",
+              "signature_hex": "444453207c0000000710080080000000",
+              "height": 128,
+              "width": 128,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "flower39.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/plain/plain/flower39.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/plain/plain/flower39.dds",
+              "normalized": "data/map/mapobj/plain/plain/flower39.dds",
+              "loose_exists": false,
+              "uid": "0x8475227d",
+              "source": "data.wdf",
+              "offset": 79668776,
+              "size": 16512,
+              "resolved": true,
+              "sha256": "ac338c573f4ca767f5f39380b8da2fa6d9c8384264f2542e3a8c3ce391c679ff",
+              "signature_hex": "444453207c0000000710080080000000",
+              "height": 128,
+              "width": 128,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "flower42.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/plain/plain/flower42.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/plain/plain/flower42.dds",
+              "normalized": "data/map/mapobj/plain/plain/flower42.dds",
+              "loose_exists": false,
+              "uid": "0x4773e741",
+              "source": "data.wdf",
+              "offset": 79706024,
+              "size": 4224,
+              "resolved": true,
+              "sha256": "3e3a21152278f8dceb1971bd32615570a8eb950d46b5f4b78cf03d8473b9ca49",
+              "signature_hex": "444453207c0000000710080040000000",
+              "height": 64,
+              "width": 64,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "forest01.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/woods/forest01.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/woods/forest01.dds",
+              "normalized": "data/map/mapobj/woods/forest01.dds",
+              "loose_exists": false,
+              "uid": "0x011b8641",
+              "source": "data.wdf",
+              "offset": 95775144,
+              "size": 65664,
+              "resolved": true,
+              "sha256": "9ab2c8f80f2437c144699aafeff1c2cdec2b8caa38a3f4aef7e5b0a586b2427f",
+              "signature_hex": "444453207c0000000710080000010000",
+              "height": 256,
+              "width": 256,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "forest02.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/woods/forest02.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/woods/forest02.dds",
+              "normalized": "data/map/mapobj/woods/forest02.dds",
+              "loose_exists": false,
+              "uid": "0x583acb44",
+              "source": "data.wdf",
+              "offset": 95840808,
+              "size": 65664,
+              "resolved": true,
+              "sha256": "ca5ca621c400ef2b93d5de87412446b5903ff2aca4286e454d5acfa4bb88f352",
+              "signature_hex": "444453207c0000000710080000010000",
+              "height": 256,
+              "width": 256,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "forest03.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/woods/forest03.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/woods/forest03.dds",
+              "normalized": "data/map/mapobj/woods/forest03.dds",
+              "loose_exists": false,
+              "uid": "0x3bce2380",
+              "source": "data.wdf",
+              "offset": 95906472,
+              "size": 16512,
+              "resolved": true,
+              "sha256": "51302efa2343d173b3ee7265601b91ea0ef4e6298e997353798574e3f05586ee",
+              "signature_hex": "444453207c0000000710080080000000",
+              "height": 128,
+              "width": 128,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "forest05.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/woods/forest05.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/woods/forest05.dds",
+              "normalized": "data/map/mapobj/woods/forest05.dds",
+              "loose_exists": false,
+              "uid": "0x327331c8",
+              "source": "data.wdf",
+              "offset": 95927208,
+              "size": 16512,
+              "resolved": true,
+              "sha256": "6ef3132556e322aad927ca88f47e3608fef39cd31dc12a93784531487c32b762",
+              "signature_hex": "444453207c0000000710080080000000",
+              "height": 128,
+              "width": 128,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "forest09.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/woods/forest09.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/woods/forest09.dds",
+              "normalized": "data/map/mapobj/woods/forest09.dds",
+              "loose_exists": false,
+              "uid": "0x1a39d81e",
+              "source": "data.wdf",
+              "offset": 96730536,
+              "size": 262272,
+              "resolved": true,
+              "sha256": "bb7efcdd1f715e90267ae0c81c7026b831f9c8245d6cada777e7f66d8dc170b8",
+              "signature_hex": "444453207c0000000710080000020000",
+              "height": 512,
+              "width": 512,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "forest10.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/woods/forest10.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/woods/forest10.dds",
+              "normalized": "data/map/mapobj/woods/forest10.dds",
+              "loose_exists": false,
+              "uid": "0x9511f7e2",
+              "source": "data.wdf",
+              "offset": 96992808,
+              "size": 262272,
+              "resolved": true,
+              "sha256": "486f6ca48d80d803628fa93da50e427030869ced2d2dd7e4b4e89cc03c3c381a",
+              "signature_hex": "444453207c0000000710080000020000",
+              "height": 512,
+              "width": 512,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "forest14.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/woods/forest14.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/woods/forest14.dds",
+              "normalized": "data/map/mapobj/woods/forest14.dds",
+              "loose_exists": false,
+              "uid": "0x22f799c7",
+              "source": "data.wdf",
+              "offset": 98041896,
+              "size": 262272,
+              "resolved": true,
+              "sha256": "6177bc949e912bba74001c339fa69a214d8a4ac78eb5babe1bcaa671335c936c",
+              "signature_hex": "444453207c0000000710080000020000",
+              "height": 512,
+              "width": 512,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "island09.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/island/island09.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/island/island09.dds",
+              "normalized": "data/map/mapobj/island/island09.dds",
+              "loose_exists": false,
+              "uid": "0xe7002f23",
+              "source": "data.wdf",
+              "offset": 65353039,
+              "size": 65664,
+              "resolved": true,
+              "sha256": "d75f91156b504cedde75779b4df6be3d7171648db8400270ecd764eec985b7bb",
+              "signature_hex": "444453207c0000000710080000010000",
+              "height": 256,
+              "width": 256,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "tree03.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/plain/plain/tree03.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/plain/plain/tree03.dds",
+              "normalized": "data/map/mapobj/plain/plain/tree03.dds",
+              "loose_exists": false,
+              "uid": "0xa0640a6b",
+              "source": "data.wdf",
+              "offset": 82813352,
+              "size": 262272,
+              "resolved": true,
+              "sha256": "e71660e63d3e8be7da94335b4603627a75f7c0ade2ca09adc2f0d81e2b571331",
+              "signature_hex": "444453207c0000000710080000020000",
+              "height": 512,
+              "width": 512,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "tree04.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/plain/plain/tree04.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/plain/plain/tree04.dds",
+              "normalized": "data/map/mapobj/plain/plain/tree04.dds",
+              "loose_exists": false,
+              "uid": "0x37a47d70",
+              "source": "data.wdf",
+              "offset": 83075624,
+              "size": 1048704,
+              "resolved": true,
+              "sha256": "bfbff631bea794cc0ee7e0de014d1b81c8a12a09148a2d4a151e36186f86c917",
+              "signature_hex": "444453207c0000000710080000040000",
+              "height": 1024,
+              "width": 1024,
+              "fourcc": "DXT3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "ani\\MapScene-snow.ani",
+      "size": 11125,
+      "sha256": "30a7cb78758fbc6a2e233422b414812717a90f9958622bba69f5f4dbe96e5895",
+      "sections": [
+        {
+          "section": "np02.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np02.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np02.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np02.dds",
+              "loose_exists": false,
+              "uid": "0x5a48d7ae",
+              "source": "data.wdf",
+              "offset": 70590159,
+              "size": 65664,
+              "resolved": true,
+              "sha256": "664be4a7bad7b286bc0fadcfaca83b6bc0259d57526cb0b9baadd9e2c118e6a7",
+              "signature_hex": "444453207c0000000710080000010000",
+              "height": 256,
+              "width": 256,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np07.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np07.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np07.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np07.dds",
+              "loose_exists": false,
+              "uid": "0xe2b41cbe",
+              "source": "data.wdf",
+              "offset": 70869327,
+              "size": 262272,
+              "resolved": true,
+              "sha256": "bceec25da984c0c3e8c667e24e0b31f7ce6c23d7cabf795221086fea7cd64d89",
+              "signature_hex": "444453207c0000000710080000020000",
+              "height": 512,
+              "width": 512,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np08.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np08.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np08.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np08.dds",
+              "loose_exists": false,
+              "uid": "0xa004a253",
+              "source": "data.wdf",
+              "offset": 71131599,
+              "size": 262272,
+              "resolved": true,
+              "sha256": "1f86daced0238ef25b21efdb3f7e50c008366dd5de5873c7b75538772dff94c2",
+              "signature_hex": "444453207c0000000710080000020000",
+              "height": 512,
+              "width": 512,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np09.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np09.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np09.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np09.dds",
+              "loose_exists": false,
+              "uid": "0x36864885",
+              "source": "data.wdf",
+              "offset": 71393871,
+              "size": 262272,
+              "resolved": true,
+              "sha256": "a5c0d64f82b89663665ace6eaa8d7dd8403c6591a5540f2c9c2a4c58064e9859",
+              "signature_hex": "444453207c0000000710080000020000",
+              "height": 512,
+              "width": 512,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np10.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np10.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np10.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np10.dds",
+              "loose_exists": false,
+              "uid": "0xbe4678e9",
+              "source": "data.wdf",
+              "offset": 71656143,
+              "size": 262272,
+              "resolved": true,
+              "sha256": "7233d6a11107b65174dc948f11607d1570e7c3c1fab522bd132c70556768a7a8",
+              "signature_hex": "444453207c0000000710080000020000",
+              "height": 512,
+              "width": 512,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np11.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np11.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np11.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np11.dds",
+              "loose_exists": false,
+              "uid": "0x15594d24",
+              "source": "data.wdf",
+              "offset": 71918415,
+              "size": 262272,
+              "resolved": true,
+              "sha256": "db9a7ec62dcb97f8e35695d3c5599645d4ae71206d3c3b5bc14d67f0d2a52fed",
+              "signature_hex": "444453207c0000000710080000020000",
+              "height": 512,
+              "width": 512,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np12.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np12.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np12.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np12.dds",
+              "loose_exists": false,
+              "uid": "0x27e88bea",
+              "source": "data.wdf",
+              "offset": 72180687,
+              "size": 262272,
+              "resolved": true,
+              "sha256": "143fbc4d6e5ce71ca3d1ed6b60d7dfa23037ee5bc330bd563be7d40103887e7f",
+              "signature_hex": "444453207c0000000710080000020000",
+              "height": 512,
+              "width": 512,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np13.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np13.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np13.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np13.dds",
+              "loose_exists": false,
+              "uid": "0x92725679",
+              "source": "data.wdf",
+              "offset": 72442959,
+              "size": 262272,
+              "resolved": true,
+              "sha256": "fb8c3257d6b50d2e14c40df12e126f7cba0e4b5283de6db40ef35452115d6cc5",
+              "signature_hex": "444453207c0000000710080000020000",
+              "height": 512,
+              "width": 512,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np14.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np14.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np14.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np14.dds",
+              "loose_exists": false,
+              "uid": "0x2fcb9e89",
+              "source": "data.wdf",
+              "offset": 72705231,
+              "size": 16512,
+              "resolved": true,
+              "sha256": "f9e1c2e93e295e23c7998540bf7128faa9228d94bb4a50ac383ea5a6fd039e4f",
+              "signature_hex": "444453207c0000000710080080000000",
+              "height": 128,
+              "width": 128,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np15.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np15.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np15.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np15.dds",
+              "loose_exists": false,
+              "uid": "0x5280be6e",
+              "source": "data.wdf",
+              "offset": 72721743,
+              "size": 16512,
+              "resolved": true,
+              "sha256": "6e50ffcac2369823adbc65f90a8ed18cce3cd77135a331abcfbc9a6e5b187bf2",
+              "signature_hex": "444453207c0000000710080080000000",
+              "height": 128,
+              "width": 128,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np20.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np20.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np20.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np20.dds",
+              "loose_exists": false,
+              "uid": "0x6ed79f85",
+              "source": "data.wdf",
+              "offset": 73197519,
+              "size": 16512,
+              "resolved": true,
+              "sha256": "2ec70455461fe53c544262dd32baf8a8ccdfede3608b56afaf9c26d4c77c7191",
+              "signature_hex": "444453207c0000000710080080000000",
+              "height": 128,
+              "width": 128,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np29.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np29.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np29.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np29.dds",
+              "loose_exists": false,
+              "uid": "0x1634ad14",
+              "source": "data.wdf",
+              "offset": 74083407,
+              "size": 16512,
+              "resolved": true,
+              "sha256": "9ebafe2160be5591e6301de751e9ea7644b081073a1566cf3776621cd3881319",
+              "signature_hex": "444453207c0000000710080080000000",
+              "height": 128,
+              "width": 128,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np30.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np30.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np30.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np30.dds",
+              "loose_exists": false,
+              "uid": "0xa0e90bcf",
+              "source": "data.wdf",
+              "offset": 74099919,
+              "size": 16512,
+              "resolved": true,
+              "sha256": "0c5a77c01e831cb8819ba9d8bd737e0f00372eee5bd19120c6d878a3b81b0f24",
+              "signature_hex": "444453207c0000000710080080000000",
+              "height": 128,
+              "width": 128,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np31.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np31.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np31.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np31.dds",
+              "loose_exists": false,
+              "uid": "0x91bda7ee",
+              "source": "data.wdf",
+              "offset": 74116431,
+              "size": 16512,
+              "resolved": true,
+              "sha256": "0f89d5195ca04f9fae5e6e9ad6851bc5f5b0478ef52a9413d80ec4804058a967",
+              "signature_hex": "444453207c0000000710080080000000",
+              "height": 128,
+              "width": 128,
+              "fourcc": "DXT3"
+            }
+          ]
+        },
+        {
+          "section": "np33.tga",
+          "exists": true,
+          "values": {
+            "FrameAmount": "1",
+            "Frame0": "data/map/mapobj/newplain/plain/np33.dds"
+          },
+          "frames": [
+            {
+              "key": "Frame0",
+              "path": "data/map/mapobj/newplain/plain/np33.dds",
+              "normalized": "data/map/mapobj/newplain/plain/np33.dds",
+              "loose_exists": false,
+              "uid": "0x81f891e5",
+              "source": "data.wdf",
+              "offset": 74149455,
+              "size": 16512,
+              "resolved": true,
+              "sha256": "7125c9d67af7ffc1dd86a5e0b45919e2a2fa742e6c2fac0c0a34ee02109f5780",
+              "signature_hex": "444453207c0000000710080080000000",
+              "height": 128,
+              "width": 128,
+              "fourcc": "DXT3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

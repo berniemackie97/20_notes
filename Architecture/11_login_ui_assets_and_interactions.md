@@ -190,6 +190,84 @@ Error/save/clear/quit dialogs have a common **10-frame** timeline: frame 1 stop/
 
 Loading sprite 394: frame 1 stops, hides the clip, clears panel blockers and sets `isLoading=false`; frame 2 shows it and sets blockers/`isLoading=true`; frame **17** stops and sends `CMD_ENTERGAME`; frame **36** stops and sends `CMD_GAMESTART` with **100**; frame **99** stops and sends `CMD_CLOSE` with **1**. Root `getProgress` resumes it only for strings **"1"** and **"80"**. `getLoadingTrace` shows it and assigns `txtMsg1`. This is a callback-driven sequence, not a numeric 0–100 progress-to-frame mapping or a free-running 100-frame loop. No new progress labels were invented.
 
+### Login loading presentation (sprite 394, verified 2026-11-02)
+
+Evidence: [evidence/login-loading-394-2026-11-02/](evidence/login-loading-394-2026-11-02/) (`timelines.json`, assets, frames, `SHA256SUMS.json`, `swfwalk.py`). Source `start.dat` `db4b4550…da20`. Root placement: depth 278 at (512,384), 30 fps. Matrices are in px.
+
+**Display list**
+
+| Depth | Char | From frame | Placement | Content |
+|---:|---|---:|---|---|
+| 1 | 262 `maskMC` | 2 | (−512,−552), sy 1.4375 | full-stage click blocker (shape 261) |
+| 3 | 377 | 18 | (0,0) | bar track, bitmap 376 (1024×12) |
+| 4 | 380 | 18 | x 70 → 954, y 1.95 | bar fill (shape 379), +10.7805 px/frame |
+| 8 | 383 | 18 | (0,0) | bar frame, bitmaps 381/382 (1024×90) |
+| 9 | 387 | 18 | x −442.95 → 441.05, y 0 | head; 7-frame loop, alpha mult 256,213,171,128,171,213,256 |
+| 12 | 375 | 2 | (0,0) | dragon end caps, bitmap 374 (82×70) |
+| 13 | 393 | 18 | (−4.75,60.95) | "Loading" text, 40-frame loop: shapes 389/390/391/392 at frames 1/11/21/31 |
+| 15 | 373 `txtMsg1` | 1 | (−426,−94), s 0.99986/0.99585 | trace text: Arial 14 #B27A2D, centered, 856.1×20.1 |
+
+There are no masks (no clipDepth) and no color transforms other than 387's alpha. Depth 4 and depth 9 move linearly from frame 18 to frame 100. Nested 387 and 393 keep looping while 394 is stopped. Frames 2–17 show only `maskMC` + 375, which is the end caps without a bar.
+
+**Stops**
+
+| Frame | Script | Head stage x |
+|---:|---|---:|
+| 1 | `stop`, hidden, blockers off, `isLoading=false` | — |
+| 2 | shown, blockers on, `isLoading=true` | — |
+| 17 | `stop`; `cmd_enterGame()` → `CMD_ENTERGAME` | — (bar not yet placed) |
+| 36 | `stop`; `CMD_GAMESTART 100` | 263.1 (matches the retail capture, dot at x≈263) |
+| 99 | `stop`; `CMD_CLOSE 1` | 942.25 |
+
+**Existing-character sequence** (native; all text from `ini/StrRes.ini`):
+
+| # | Trigger | Clip | `txtMsg1` |
+|---|---|---|---|
+| 1 | Enter → `inGameMC.gotoAndPlay(2)` | 2→17 (0.5 s), stop | (empty) |
+| 2 | frame 17 `CMD_ENTERGAME` → validator `0x4ABFBD` → connect `0x66D3FF`; success sets callback mode **0x3E9** at `0x66D48B` (synchronous, inside the fscommand) | held at 17 | from the next host frame, each frame: mode handler `sub_577FFF` (`CLoginFlashCallbackState_SetModeHandlerByCode` case 1; vtable `0x8665E8`+0x10) → `0x5DC744`: StrRes 11237 "Logging into account server..." + net pump |
+| 3 | seed packet → `0x764BC6` posts `0xCEE` → Submit `0x4AEE6A`: auth packet; `PROGRESS "1"` (`0x4AF0FC`, `0x923AF4`); post `0x482` (clears `+0x179AAC/+0x179AB8`) | play 17→36 (0.63 s), stop | 11237 still (mode 0x3E9) |
+| 3b | packet 1055 success (`0x754F04`) posts 0x464 cmd **0x519**, lParam 0 → `0x5C13A7` | — | Cn_Res `STR_LOGIN_GAME_SERVER` "Logging into the game server.." (lParam≠0 takes `0x5C1338` instead) |
+| 4 | frame 36 `CMD_GAMESTART` → `0x480` → `+0x179AAC = 1` | held at 36 | — |
+| 5 | game server `ANSWER_OK` → `0x5DCC64` (login-dlg push `0x5DCCBD`) | held | StrRes 11238 "Initializing..." |
+| 6 | MsgAction 74 → `0x47F` → `+0x179AB8 = 1`; map created; each map tick runs `0x5DCEA3` | held | StrRes 11239 "Creating maps..." |
+| 7 | first tick with AAC==1 && AB8!=0 → clear both; `PROGRESS "80"` (`0x5DCEDF`) | play 36→99 (2.1 s), stop | StrRes 11240 "Starting... Please wait..." for that one tick; the next tick's else branch writes 11239 again, so 11240 is effectively invisible (not seen at runtime) |
+| 8 | frame 99 `CMD_CLOSE 1` → `0x4AC62B`: post `0x483` (world gate), `0xC6B`, `0x3F2` | — | — |
+
+`getError` at any point → `inGameMC.gotoAndStop(1)` (hidden, unblocked) + errorMC. `PROGRESS` has only those two senders (`"PROGRESS"` xrefs `0x4B04C1`, `0x51C294`).
+
+**role.dat clip (sprite 110, root depth 102 at (508,376))**
+
+Same depths, positions, maskMC and end caps. txtMsg1 is at x −421.4 with scale 1. Nested sprites have the same frame counts (7, 40). The timing differs:
+- The bar appears at frame 7, not frame 18.
+- The clip has 201 frames: head 4.5567 px/frame over frames 7→201, stops at 71 (`CMD_GAMESTART`) and 201 (`CMD_CLOSE`), with no frame-17 stop.
+- Its bitmap tag bodies differ from start.dat's (only 1 of 9 shared). Pixel equality was not checked.
+
+Mode 0x3EF (`0x4AF5C8`, bind-server variant) installs the same `sub_577FFF` handler; retail has no BindServer row.
+
+**Runtime** (retail 5517 in Win11 VM, 1:1 pixels with the HIGHDPIAWARE compat flag on a scratch exe; OpenConquerServer against a throwaway DB copy; existing character). Frames: `evidence/…/runtime-burst/` (ms since the screen turned black; saved on txtMsg1 change, else 1/s).
+
+| ms | Clip | Text |
+|---:|---|---|
+| 70 | frames 2–17, end caps only | (empty) |
+| 869 | ≥ 18, already resumed | Logging into account server... |
+| 1355 | moving toward 36 | Logging into the game server.. |
+| 6624 | held at 36 (head x≈263) | same |
+| 6929 | held at 36 | Initializing... |
+| 7324 | past 36 | Creating maps... |
+| 8391 / 9421 | moving to 99 | Creating maps... |
+| 10060 | closed | world |
+
+The long hold at 36 (≈5.5 s) is server-side time on our server. It is not a client constant.
+
+**txtMsg1 pixels** (`runtime-text/`, crops of stage (84,286)–(942,312), `text-metrics.json`):
+- GDI **ClearType** subpixel AA. Edge per-channel coverage differs, e.g. R 0.01 / G 0.22 / B 0.58.
+- Full-ink pixels are exactly #B27A2D (178,122,45).
+- The background matches the static 394 render to a mean absolute error of 0.08.
+- Glyph box is y 293–305.
+- Text bounding boxes: "Logging into account server..." x 427–595, "Initializing..." 477–544, "Creating maps..." 464–558.
+- Guest: Windows 11 Pro 26200, `FontSmoothing=2`, `FontSmoothingType=2` (ClearType), orientation 1 (RGB), gamma 0 (default), Arial sha256 `B3658EAD…476A`, Flash.ocx 7.0.14.0.
+- The pixels depend on these settings. Grayscale smoothing or a different gamma gives different pixels.
+
 No visible music enable/disable control or handler emitting CMD_SELECTBGMUSIC was found in the complete inspected `start.dat` AVM1/display inventory. Existing native support/persistence of that command is retained in note 03, but it is not visual evidence. No Flash settings panel was resolved in this login movie. Loose `MusicDisable.dds` or a native command name elsewhere would not establish one here.
 
 ## Exact evidence locations
@@ -249,7 +327,7 @@ Dispatch: `strcmp "CMD_ENTERGAME"` at `0x4AA21F`, call at `0x4AA22C`. The body i
 | 6 | language (GameDataSet vf+0x34) ∈ {English, French, Spanish, Russia, Thai, Turkey, Vietnam, Brazil} and password length >14 | StrRes 11400 "Your password must be 10-14 characters…" |
 | 7 | `BeginAccountBindServerHandshake` `0x4AF2C7` | no BindServer row (retail) → `0x4AF12D`: role-2 lookup, role-5 BGP, writes GroupRecord/ServerRecord to `ini/GameSetup.Ini` → `CGameMain_ConnectAccountServerWithBgpFallback` `0x66D3FF` (empty host ⇒ CHECKF and no connect; 10 s connect then BGP; both fail ⇒ StrRes 10397 "Server maintenance or network congested. Try again later." plus `Sleep(5000)`; success ⇒ callback mode 0x3E9) |
 
-Auth packets are not sent here: inGameMC frame 36 `CMD_GAMESTART` posts 0x480, and shell `0x5BC841` calls Submit `0x4AEE6A` (note 02). Every attempt that passes checks 1–2 sets the timestamp, including one that then fails checks 5–6. Account emptiness is checked only by Flash. Field 364's `maxLength` 15 allows a 15-character password, which check 6 rejects whenever the language matches. vf+0x34 is `GameDataSet_GetLanguageName` (GraphicData.dll `0x1001DC00`), which returns the constant `"English"`. Check 6 therefore always applies: passwords longer than 14 characters always fail with StrRes 11400.
+Auth packets are not sent here. The account server's seed packet makes `CMsgLoginSeed__Process_DeriveCredentialRc5KeyFromSeed` (`0x764BC6`) post cmd `0xCEE`; shell case `0x5BC81B` calls Submit `0x4AEE6A` at `0x5BC841` (corrected 2026-11-02; earlier text said 0x480). Every attempt that passes checks 1–2 sets the timestamp, including one that then fails checks 5–6. Account emptiness is checked only by Flash. Field 364's `maxLength` 15 allows a 15-character password, which check 6 rejects whenever the language matches. vf+0x34 is `GameDataSet_GetLanguageName` (GraphicData.dll `0x1001DC00`), which returns the constant `"English"`. Check 6 therefore always applies: passwords longer than 14 characters always fail with StrRes 11400.
 
 ### Device-font text fields (start.dat)
 

@@ -1,0 +1,44 @@
+{
+  "scope": "Real source-file metadata; no new native control-flow claim",
+  "appearance": 2,
+  "hairStyle": 335,
+  "resources": [
+    {
+      "path": "c3/0002/000/100.c3",
+      "sha256": "359584e886ea0a5a17e8cfa8b1db1e748ed9849f24659ab2f36782be50739759",
+      "motions": [
+        {
+          "offset": 24,
+          "boneCount": 84,
+          "frameCount": 16
+        },
+        {
+          "offset": 37716,
+          "boneCount": 1,
+          "frameCount": 16
+        },
+        {
+          "offset": 38224,
+          "boneCount": 1,
+          "frameCount": 16
+        },
+        {
+          "offset": 38732,
+          "boneCount": 1,
+          "frameCount": 16
+        }
+      ]
+    },
+    {
+      "path": "c3/mesh/002000035.c3",
+      "sha256": "386fe0f2aec7b98d95c16cedc08aea9de384e6f260258c385da82dd6c0f07e45",
+      "motions": [
+        {
+          "offset": 14237,
+          "boneCount": 1,
+          "frameCount": 61
+        }
+      ]
+    }
+  ]
+}

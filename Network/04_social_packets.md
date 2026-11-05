@@ -170,7 +170,7 @@ Parity note:
 - `55`: uses `+0x18`; calls `ApplyPropertyEffectFlags`.
 - `56`: jump table target is `0x6FE33A`; IDA does not decode code at that address in this build (next code is at `0x6FE358`). No packet field usage was observed for subtype `56`.
 
-## MsgTeamMemberList (Type 1026)
+## MsgTeamMember (Type 1026) — class proven by `MsgTeamMember.cpp` assert (CP0.1 2026-11-05); former label `MsgTeamMemberList` withdrawn
 **Direction**: S→C
 **Purpose**: Team member list refresh/join notifications (uses string `100114`: "%s has joined the team!").
 **Dispatch**: Create `CMsgTeamMemberList__Create` (0x761A02), parse `CMsgTeamMemberList__Parse` (0x761A68), process `CMsgTeamMemberList__Process` (0x761AB1)
@@ -188,14 +188,14 @@ Parity note:
   - `entry+24` (u16) and `entry+26` (u16) are copied into fields `v12[5]` and `v12[6]`.
 - When a listed member is not already in the team and is not the local player, the handler posts system message `100114` (`%s has joined the team!`).
 
-## MsgGuide (Type 1042)
+## MsgMonsterTransform (Type 1042) — class proven by `MsgMonsterTransform.cpp` assert (CP0.1 2026-11-05); former label `MsgGuide` withdrawn
 **Direction**: Bidirectional
 **Purpose**: Guide/monster transformation UI flow (verified by `Guide__*` calls and entity lookups).
-**Dispatch**: Create `CMsgGuide__Create` (0x761CD3), parse `CMsgGuide__Parse` (0x761D39), process `CMsgGuide__Process` (0x761D5C)
+**Dispatch**: Create `CMsgMonsterTransform__Ctor` (0x761CD3), parse `CMsgGuide__Parse` (0x761D39), process `CMsgMonsterTransform__Process` (0x761D5C)
 
 **Parse**: `CMsgGuide__Parse` — standard header validation, then `type == 1042`.
 
-**Verified field usage in `CMsgGuide__Process`** (offsets relative to packet start):
+**Verified field usage in `CMsgMonsterTransform__Process`** (offsets relative to packet start):
 - `+8` (u32/pointer) is compared against `Concurrency::details::UMSSchedulerProxy::GetTransferListEvent()`; processing only continues if equal.
 - `+36` (u8) must be nonzero to proceed; later passed into string formatting (`Guide__FormatMonsterName`) and used as a parameter for UI/log output.
 - `+20` (u32) is treated as an entity ID ("old monster"): looked up via `EntityManager__FindEntityById`; if missing, logs `"pOldMonster"`; if found, passed to `EntityManager__RemoveEntityById_6E7B23` with flag `1`.

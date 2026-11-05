@@ -2,7 +2,7 @@
 
 Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
-## MsgRaceTrackProp (Type 1075)
+## Type 1075 — class unproven; label `MsgRaceTrackProp` withdrawn (`MsgRaceTrackProp.cpp` asserts are in the type 2072 handler; CP0.1 2026-11-05)
 **Direction**: Bidirectional
 **Purpose**: Race‑track property update with URL‑style encoding (verified by `=`/`+`/`/` encoding logic and `CHANGE_PICKEY` key).
 **Dispatch**: Create `CMsgRaceTrackProp__Create` (0x715061), process `CMsgRaceTrackProp__Process` (0x715125)
@@ -21,7 +21,7 @@ Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 - Allocates a 0x400‑byte buffer with the raw string from `+4` and posts `PostMainWndMsg_0x464(0xCEA, buffer)`.
 - Finally posts `PostMainWndMsg_0x464(0xCEF, 0)`.
 
-## MsgTexasNpcInfo (Type 1126)
+## Type 1126 — class unproven; label `MsgTexasNpcInfo` withdrawn (`MsgTexasNpcInfo.cpp` asserts are in the type 2172 handler; CP0.1 2026-11-05)
 **Direction**: S->C
 **Purpose**: Texas Hold'em invite/notification UI packet (message box + follow-up UI posts, or red chat notification depending on mode).
 **Dispatch**: Create `CMsgTexasNpcInfo__Create` (0x72C76E), parse `CMsgTexasNpcInfo__Parse` (0x72C820), process `CMsgTexasNpcInfo__Process` (0x72C843)

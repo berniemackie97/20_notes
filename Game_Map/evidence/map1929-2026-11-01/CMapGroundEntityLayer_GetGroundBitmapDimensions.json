@@ -1,0 +1,12 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x637803\n00637803  56               push    esi\n00637804  8d 71 18         lea     esi, [ecx+0x18]\n00637807  57               push    edi\n00637808  8b ce            mov     ecx, esi\n0063780a  e8 90 16 00 00   call    CMapGroundEntityLayer_GetGroundBitmapWidthPixels\n0063780f  8b 7c 24 0c      mov     edi, dword [esp+0xc]\n00637813  8b ce            mov     ecx, esi\n00637815  89 07            mov     dword [edi], eax\n00637817  e8 ac 16 00 00   call    CMapGroundEntityLayer_GetGroundBitmapHeightPixels\n0063781c  89 47 04         mov     dword [edi+0x4], eax\n0063781f  5f               pop     edi\n00637820  5e               pop     esi\n00637821  c2 04 00         retn    0x4\n"
+    }
+  ],
+  "structuredContent": {
+    "result": "File: /Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517-bninja/Conquer.exe.bndb\n\n# Block 1 at 0x637803\n00637803  56               push    esi\n00637804  8d 71 18         lea     esi, [ecx+0x18]\n00637807  57               push    edi\n00637808  8b ce            mov     ecx, esi\n0063780a  e8 90 16 00 00   call    CMapGroundEntityLayer_GetGroundBitmapWidthPixels\n0063780f  8b 7c 24 0c      mov     edi, dword [esp+0xc]\n00637813  8b ce            mov     ecx, esi\n00637815  89 07            mov     dword [edi], eax\n00637817  e8 ac 16 00 00   call    CMapGroundEntityLayer_GetGroundBitmapHeightPixels\n0063781c  89 47 04         mov     dword [edi+0x4], eax\n0063781f  5f               pop     edi\n00637820  5e               pop     esi\n00637821  c2 04 00         retn    0x4\n"
+  },
+  "isError": false
+}

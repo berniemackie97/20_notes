@@ -134,7 +134,7 @@ index 1 (current life) against index 15. See
 [01_core_packets.md](../Network/01_core_packets.md) for that index enum — index 1 is
 server-delivered. **Index 15 is now identified — see
 [14_hero_effective_max_life_mana.md](14_hero_effective_max_life_mana.md).** An earlier revision of
-this note claimed it "never comes off the wire"; that is wrong, `CMsgTick__Process` writes it in its
+this note claimed it "never comes off the wire"; that is wrong, `CMsgItem__Process` writes it in its
 clamp branch.
 
 **`Progress41`** uses the same follower rule as HP. `hero+0x5E0` is live current mana;
@@ -154,7 +154,7 @@ That is a direct confirmation of the `+0x84` semantics derived above — this wi
 It calls `CMyProgress_ResetValueRange(this, 0, 0x32)` first, then shows `force - 0x64` — so it
 represents physical force in the range 100..150 on a second, shorter bar.
 
-**`Progress42`** is driven by `hero+0x510`, **now identified**. `CMsgUserAttribEx__Process` attribute
+**`Progress42`** is driven by `hero+0x510`, **now identified**. `CMsgUserAttrib__Process` attribute
 id `0x1B` (27) writes it at `0x757C1F`, **clamping the value to `0x64` first** (`0x757C10`) and then
 posting custom main-window code `0x40F` with payload zero through the common call at `0x7585F3`.
 The `0x464` window-message arm at `0x5C3CC0` reads the current local `CHero+0x510` value and calls
@@ -448,7 +448,7 @@ then chooses shift `0`, `16`, or `32` so that the qword fits a 32-bit `CMyProgre
 stores that shift at `dlg+0x10C`. The draw path shifts current experience by the same amount.
 
 The previously open equipped-item inputs are now binary-closed: Itemtype fields 19/20 provide
-signed life/mana; ItemAdd payload word 0 is max-life; MsgItem `+36` is the non-steed enchantment
+signed life/mana; ItemAdd payload word 0 is max-life; Msg1008 `+36` is the non-steed enchantment
 life bonus; permanent/temporary soul ids select alternate Itemtype fields with the exact
 required-level suppression gate; and CMsgNonSuch 2077 owns the primary/secondary refinement
 state. The managed equipped-item contribution resolver implements this substrate. The remaining

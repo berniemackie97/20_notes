@@ -572,7 +572,7 @@ Verified native write/update path for mounted action-scale state:
 
 Verified callers in currently traced native paths:
 
-- `CMsgPlayerSpawn__Process` (`0x755F64`)
+- `CMsgPlayer__Process` (`0x755F64`)
   - direct set from role-data record: `Role_SetMountedActionFrameIntervalAndRefreshActionScale(role, *(record+0x44))` at `0x7564B2`,
   - then refreshes mounted cache from packet fields via
     `Role_UpdateMountActionScaleCacheFromSources(role, packet+0x44, packet+0x85, packet+0x8B, packet+0x48)` at

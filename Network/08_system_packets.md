@@ -2,12 +2,12 @@
 
 Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 
-## MsgTick (Type 1009)
+## MsgItem (Type 1009) — class proven by `MsgItem.cpp` assert (CP0.1 2026-11-05); former label `MsgTick` withdrawn
 **Direction**: Bidirectional (heartbeat/keepalive)
-**Dispatch**: Create `CMsgTick__Create` (0x6EABEB), parse `CMsgTick__Parse` (0x6EAE56), process `CMsgTick__Process` (0x6EAEB6)
+**Dispatch**: Create `CMsgTick__Create` (0x6EABEB), parse `CMsgTick__Parse` (0x6EAE56), process `CMsgItem__Process` (0x6EAEB6)
 **Parse**: `CMsgTick__Parse` calls `CNetMsg__ValidateHeaderAndCopy` (validates size/type, copies packet to object+4) and checks `type == 1009`.
 
-**Verified field usage in `CMsgTick__Process`** (offsets relative to packet start):
+**Verified field usage in `CMsgItem__Process`** (offsets relative to packet start):
 - `+4` (u32) `param_a` (commonly item UID, tracked-position key, entity ID, or lParam payload depending on subtype)
 - `+8` (u32) `param_b` (commonly tracked-position key, state ID, or lParam payload depending on subtype)
 - `+12` (u16) `subtype` (main switch key)
@@ -17,8 +17,8 @@ Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 - `+28` (u8) optional flag byte (used by outbound builders)
 - `+84` (u32 array) variable dword list region (`count_or_value` entries for list-based subtypes)
 
-**Verified subtype handling in `CMsgTick__Process`** (`subtype = *(u16*)(packet+12)`):
-- `3`: removes item by UID (`+4`) and posts `PostMainWndMsg_0x464(0x3EB,0)` and `PostMainWndMsg_0x464(0x4BA,+4)`. This is the native remove-item packet path; `MsgItem (1008)` action `3` is not deletion.
+**Verified subtype handling in `CMsgItem__Process`** (`subtype = *(u16*)(packet+12)`):
+- `3`: removes item by UID (`+4`) and posts `PostMainWndMsg_0x464(0x3EB,0)` and `PostMainWndMsg_0x464(0x4BA,+4)`. This is the native remove-item packet path; `Msg1008 (1008)` action `3` is not deletion.
 - `5`: inventory/equipment reroute update. Native looks up an inventory-only item by UID `+4`, removes it from the hero item tables, optionally iterates `count_or_value` dwords from `+84` as item UIDs routed through `CHeroItem__FindTrackedPositionByItemUid`, then tracks the moved item at tracked position `+8`. After the item-table mutation it posts `0x3EB/0x3FB/0x445/0x446`, optional `0x4F6` and `0xDF4`, then sends `CMsgAction` type `10010`.
 - `6`: tracked-position sync/update path keyed by tracked position `+8`. Native gets the tracked item directly through `CHeroItem__GetTrackedItemRefByPosition(+8)`. If that item is a two-handed weapon and `+8` is `4` or `0x18`, it also refreshes the paired tracked position (`5` or `0x19`) first. It then re-tracks the current item at `+8`, refreshes derived equipment state, posts `0x3EB/0x3FB/0x445/0x446`, optional `0x4F9`, and sends `CMsgAction` type `10010`.
 - `9`: writes `+8` via `CHero__SetDword_0x114C_AndPost3F8` (stores `hero+0x114C` and posts `0x3F8`).
@@ -68,7 +68,7 @@ life/follower clamp). The native UI notifications therefore remain deliberately 
 corresponding managed consumer exists; reproducing the MFC message IDs as an otherwise unused managed
 event layer would add no native-visible behavior.
 
-**Verified outbound builders (`MsgTick` send-side helpers)**:
+**Verified outbound builders (`MsgItem` send-side helpers)**:
 - `CMsgTick__Build_SubType` (0x6EAC51): fixed-size packet (`size=88`) with fields `+4=a2`, `+8=a3`, `+12=subtype`, `+16=(localHeroId ^ timeGetTime())`.
 - `CMsgTick__Build_SubType1_WithCount` (0x6EACBD): `subtype=1`, writes `+20=count`.
 - `CMsgTick__Build_SubType_WithCountAndByte` (0x6EAD32): writes `+12=subtype`, `+20=count`, `+28=byte_flag`.
@@ -377,7 +377,7 @@ then `while (i u< 0x10) *(i + &g_ScreenModeHeightPixels:3) = (rand() % 0x100).b`
 - Mode `4` uses an alternate manager but the same 4‑dword entry layout.
 - After processing, `PostMainWndMsg_0x464(0xD98, 0)` is triggered.
 
-## MsgStrCheckKey (Type 1108)
+## Type 1108 — class unproven; label `MsgStrCheckKey` withdrawn (`MsgStrCheckKey.cpp` asserts are in the type 2520 handler; CP0.1 2026-11-05)
 **Direction**: Bidirectional
 **Purpose**: Item data verification/update packet (applies item fields and routes updates by mode; includes target entity and item payload).
 **Dispatch**: Create `CMsgStrCheckKey__Create` (0x75F94E), parse `CMsgStrCheckKey__Parse` (0x75F9B4), process `CMsgStrCheckKey__Process` (0x75F9D7)
@@ -416,7 +416,7 @@ then `while (i u< 0x10) *(i + &g_ScreenModeHeightPixels:3) = (rand() % 0x100).b`
 - `+76` also passed to `CItem__SetDword_0x14`
 
 **Verified processing flow**:
-- The item field mapping matches `MsgItem` but is shifted by `+8` bytes (extra dwords at `+8/+12`), and uses `mode` at `+24`.
+- The item field mapping matches `Msg1008` but is shifted by `+8` bytes (extra dwords at `+8/+12`), and uses `mode` at `+24`.
 - `mode == 1`:
   - Requires `*(s__GetSingletonPtr_404460()+10780) == *(u32*)(packet+8)`.
   - Builds a `CItem`, initializes via `CItem__InitFromUIDAndItemId(item_uid, item_id)`, copies all item fields above, and calls `CItem__IsTypeEquipSet_1_8_12_14_15_16_20_21`. If that returns true and `+20 == 0`, calls `CItem__SetByte_0x1AC(1)`.
@@ -434,7 +434,7 @@ then `while (i u< 0x10) *(i + &g_ScreenModeHeightPixels:3) = (rand() % 0x100).b`
 - `mode == 4` and `route_type != 0`:
   - Builds a `CItem`, initializes and copies fields, sets `CItem__SetByte_0x165(0)`, routes through `ItemPosition_NormalizeEquipmentPosition(route_type)` / `CRole__SetEquipSlotItem`, and posts `0x432` if the add path succeeds.
 
-## MsgCrossSwitch (Type 1109)
+## MsgNpcInfoEX (Type 1109) — class proven by `MsgNpcInfoEX.cpp` assert (CP0.1 2026-11-05); former label `MsgCrossSwitch` withdrawn
 **Direction**: Bidirectional
 **Purpose**: NPC/entity spawn-switch packet with role-view construction, map tile reveal updates, and optional name override from an embedded string list.
 **Dispatch**: Create `CMsgCrossSwitch__Create` (0x75EEB0), parse `CMsgCrossSwitch__Parse` (0x75EF6C), process `CMsgCrossSwitch__Process` (0x75EF8F)
@@ -635,7 +635,7 @@ dword replaced (`CHeroConfigMgr_SetFlagBits` 0x652FAC, sole caller this handler)
   `0xDE1`, `0xDE2`, `0xDA5`, etc.) are implemented yet; it only persists the verified state values those branches
   operate on.
 
-## MsgWarFlag (Type 1083)
+## Type 1083 — class unproven; label `MsgWarFlag` withdrawn (`MsgWarFlag.cpp` asserts are in the type 2224 handler; CP0.1 2026-11-05)
 **Direction**: Bidirectional
 **Purpose**: War‑flag UI updates (verified by `PostMainWndMsg_0x464` variants in the handler).
 **Dispatch**: Create `CMsgWarFlag__Create` (0x714B0B), process `CMsgWarFlag__Process` (0x714C89)

@@ -355,7 +355,7 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CMsgTeamMemberList__Parse | 0x761a68 |
 | CMsgTeamMemberList__Process | 0x761ab1 |
 | CMsgGuide__Parse | 0x761d39 |
-| CMsgGuide__Process | 0x761d5c |
+| CMsgMonsterTransform__Process | 0x761d5c |
 | CMsgHero__Create | 0x7624e8 |
 | CMsgHero__Dtor | 0x762543 |
 | CMsgHero__Parse | 0x76254e |
@@ -369,7 +369,7 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CMsgInteract__Parse | 0x6fb16a |
 | CMsgInteract__Process | 0x6fb1cb |
 | CMsgItem__Parse | 0x762aa0 |
-| CMsgItem__Process | 0x762ac3 |
+| CMsg1008__Process | 0x762ac3 |
 | CMsgMagicEffect__Parse | 0x75dbc1 |
 | CMsgMagicEffect__Process | 0x75dbe4 |
 | CMsgMagicEffectSimple__Create | 0x760abc |
@@ -413,11 +413,11 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CMsgBattleEffectiveness__Parse | 0x75eddd |
 | CMsgBattleEffectiveness__Process | 0x75ee72 |
 | CMsgBattleEffectiveness__ScalarDtor | 0x75ed83 |
-| CMsgMonsterTransform__Create | 0x75ebfc |
-| CMsgMonsterTransform__Dtor | 0x75ec57 |
-| CMsgMonsterTransform__Parse | 0x75ec62 |
-| CMsgMonsterTransform__Process | 0x75ec85 |
-| CMsgMonsterTransform__ScalarDtor | 0x75ec3b |
+| CMsg1112__Ctor | 0x75ebfc |
+| CMsg1112__Dtor | 0x75ec57 |
+| CMsg1112__Parse | 0x75ec62 |
+| CMsg1112__Process | 0x75ec85 |
+| CMsg1112__ScalarDtor | 0x75ec3b |
 | CMagicEffect__ProcessByEffectType | 0x7c3c25 |
 | CIMagicEffect__AppendTargetList | 0x7c3be8 |
 | CMagic__CreateFromMagicIdLevelCaster | 0x6f4db3 |
@@ -499,7 +499,7 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CMsgName__Process | 0x73efdf |
 | CMsgNpcInfoEX__HandleType4 | 0x67e286 |
 | CMsgNpcInfoEX__Parse | 0x74a54c |
-| CMsgNpcInfoEX__Process | 0x74a5e6 |
+| CMsg1033__Process | 0x74a5e6 |
 | CMsgNpcInfoEX__SendType3 | 0x67e2c7 |
 | CMsgNpcInfo__Parse | 0x75e36a |
 | CMsgPackage__Parse | 0x72b9da |
@@ -515,8 +515,8 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CMsgMapItem__Parse | `0x73ffb6` |
 | CMsgMapItem__Process | `0x740007` |
 | Packet1101 Send (old Peerage label withdrawn) | 0x73ffd9 |
-| CMsgPlayer__Parse | 0x7649fd |
-| CMsgPlayer__Process | 0x764a42 |
+| CMsg1012__Parse | 0x7649fd |
+| CMsg1012__Process | 0x764a42 |
 | CMsgAccountAuthResponse__Parse | 0x754909 |
 | CMsgAccountAuthResponse__Process | 0x75492c |
 | CMsgEnemyList__Parse (was CMsgSynAttr) | 0x6fe46c |
@@ -557,7 +557,7 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CMsgTick__Build_SubType40_WithDwordList | 0x6eadb7 |
 | CMsgTick__AppendDwordToSubType40List | 0x6eae79 |
 | CMsgTick__Parse | 0x6eae56 |
-| CMsgTick__Process | 0x6eaeb6 |
+| CMsgItem__Process | 0x6eaeb6 |
 | CMsgTick__ScalarDtor | 0x6eac2a |
 | CMsgTradeDialog__Parse | 0x72cd55 |
 | CMsgTradeDialog__Process | 0x72cda9 |
@@ -880,9 +880,9 @@ Historical note aliases: `CClientSecurity__ProcessHandshake` = `CClientSecurity_
 | CMsgEntityAction__Process | 0x7405e7 |
 | CMsgEntityAction__Send | 0x7404e1 |
 | CMsgPlayerSpawn__Create | 0x755e83 |
-| CMsgPlayerSpawn__Process | 0x755f64 |
-| CMsgUserAttribEx__Create | 0x7572eb |
-| CMsgUserAttribEx__Process | 0x757374 |
+| CMsgPlayer__Process | 0x755f64 |
+| CMsgUserAttrib__Ctor | 0x7572eb |
+| CMsgUserAttrib__Process | 0x757374 |
 
 ## MsgUserInfo historical reconciliation anchors
 
@@ -891,7 +891,7 @@ See [the proof and naming boundaries](MsgUserInfo1006-historical-field-reconcili
 | Native name | Address |
 |---|---|
 | CMsgUserAttribEx__Parse | `0x757351` |
-| CMsgUserAttribEx__Process | `0x757374` |
+| CMsgUserAttrib__Process | `0x757374` |
 | CPeerageMgr_CreateSingleton | `0x407676` |
 | CPeerageMgr_GetSingletonPtr | `0x426D2F` |
 | CRole_GetPeerageRank | `0x675587` |
@@ -967,3 +967,8 @@ Analyst names applied/read back in the existing Conquer.exe database. Evidence:
 | CSilentInfo_FilterTextUnlessHeroExempt | 0x6BB382 |
 | CSilentInfo_FilterTextInPlaceUsingSystemACP | 0x6BB9CA |
 | CGameSocket_CloseAndLogProtocolError | 0x6E2429 |
+
+## CP0.1 dispatch-registry names (2026-11-05)
+
+Assert-TU-proven handlers renamed in Binja; full list with old names: `evidence/dispatch-registry-2026-11-05/binja-renames.md`.
+Class proof per type: `00_protocol_overview.md` § Registry derivation.

@@ -89,43 +89,43 @@ Note: This table is the 1002–1151 switch/jumptable view. `CNetMsg__ProcessMsg_
 | 1003 | Default (no handler) | - | - |
 | 1004 | CMsgTalk | 0x731122 | 0x731371 |
 | 1005 | Default (no handler) | - | - |
-| 1006 | CMsgUserInfo | 0x764197 | 0x764276 |
+| 1006 | **CMsgUserInfo** ✓TU | 0x764197 | 0x764276 |
 | 1007 | Default (no handler) | - | - |
-| 1008 | CMsgItem | 0x762a3a | 0x762ac3 |
-| 1009 | CMsgTick | 0x6eabeb | 0x6eaeb6 |
+| 1008 | unproven (label `CMsgItem` withdrawn: TU = 1009) | 0x762a3a | 0x762ac3 |
+| 1009 | **CMsgItem** ✓TU (label `CMsgTick` withdrawn) | 0x6eabeb | 0x6eaeb6 |
 | 1010 | Default (no handler) | - | - |
 | 1011 | Default (no handler) | - | - |
-| 1012 | CMsgPlayer | 0x764997 | 0x764a42 |
+| 1012 | unproven (label `CMsgPlayer` withdrawn: TU = 10014) | 0x764997 | 0x764a42 |
 | 1013 | Default (no handler) | - | - |
 | 1014 | Default (no handler) | - | - |
-| 1015 | CMsgName | 0x73ecc9 | 0x73efdf |
+| 1015 | **CMsgName** ✓TU | 0x73ecc9 | 0x73efdf |
 | 1016 | CMsgWeatherUpdate | 0x760667 | 0x760801 |
 | 1017 | Default (no handler) | - | - |
 | 1018 | Default (no handler) | - | - |
 | 1019 | CMsgFriend | 0x74d66d | 0x74d789 |
 | 1020 | Default (no handler) | - | - |
 | 1021 | Default (no handler) | - | - |
-| 1022 | CMsgInteract | 0x6fadee | 0x6fb1cb |
+| 1022 | **CMsgInteract** ✓TU | 0x6fadee | 0x6fb1cb |
 | 1023 | CMsgAllot | 0x72ac9a | 0x72ad85 |
 | 1024 | CMsgWeapSkill | 0x740951 | 0x740a37 |
 | 1025 | CMsgWeaponSkill | 0x761fd0 | 0x762059 |
-| 1026 | CMsgTeamMember | 0x761a02 | 0x761ab1 |
+| 1026 | **CMsgTeamMember** ✓TU | 0x761a02 | 0x761ab1 |
 | 1027 | CMsgGemEmbed | 0x7533ae | 0x5ad9b1 |
 | 1028 | CMsgWeather | 0x7534a1 | 0x5ad9b1 |
 | 1029 | CMsgTeamAward (historical family name; native triple accumulator) | 0x75e446 | 0x75e4cf |
 | 1030 | Default (no handler) | - | - |
 | 1031 | Default (no handler) | - | - |
-| 1032 | CMsgNpcInfo | 0x75e304 | 0x75e38d |
-| 1033 | CMsgNpcInfoEX | 0x74a4e6 | 0x74a5e6 |
-| 1034 | CMsgTaskDialog | 0x75df38 | 0x75dfc1 |
+| 1032 | **CMsgBattleEffectiveness** ✓TU (label `CMsgNpcInfo` withdrawn) | 0x75e304 | 0x75e38d |
+| 1033 | unproven (label `CMsgNpcInfoEX` withdrawn: TU = 1109) | 0x74a4e6 | 0x74a5e6 |
+| 1034 | unproven (label `CMsgTaskDialog` withdrawn: TU = 2032) | 0x75df38 | 0x75dfc1 |
 | 1035 | CMsgMagicEffect | 0x75db5b | 0x75dbe4 |
 | 1036 | CMsgMagicInfo | 0x716545 | 0x7165f5 |
 | 1037 | CMsgFloorItem | 0x743f64 | 0x6df2f6 |
 | 1038 | CMsgMapItem | 0x717afa | 0x5ad9b1 |
-| 1039 | CMsgPackage | 0x72b91e | 0x72ba6c |
+| 1039 | unproven (label `CMsgPackage` withdrawn: TU = 1102) | 0x72b91e | 0x72ba6c |
 | 1040 | CMsgTradeDialog | 0x72ccef | 0x72cda9 |
 | 1041 | CMsgEnemyList (was CMsgSynAttr) | 0x6fe406 | 0x6fe4c0 |
-| 1042 | CMsgGuide | 0x761cd3 | 0x761d5c |
+| 1042 | **CMsgMonsterTransform** ✓TU (label `CMsgGuide` withdrawn) | 0x761cd3 | 0x761d5c |
 | 1043 | CMsgBrocastMsg | 0x720357 | 0x720427 |
 | 1044 | Default (no handler) | - | - |
 | 1045 | Default (no handler) | - | - |
@@ -142,7 +142,7 @@ Note: This table is the 1002–1151 switch/jumptable view. `CNetMsg__ProcessMsg_
 | 1056 | CMsgDutyMinContri | 0x7622f4 | 0x7623b9 |
 | 1057 | CMsgAccountAuthResponse1057 (old alias: CMsgAchievement) | 0x754f4d | 0x754fd6 |
 | 1058 | CMsgSynMemberInfo | 0x701c52 | 0x701d0c |
-| 1059 | CMsgLottery | 0x764b3d | 0x764bc6 |
+| 1059 | unproven (label `CMsgLottery` withdrawn: TU = 1314) | 0x764b3d | 0x764bc6 |
 | 1060 | Default (no handler) | - | - |
 | 1061 | CMsgSchool | 0x76221f | 0x7622a8 |
 | 1062 | CMsgQualifying | 0x75d5fd | 0x75d686 |
@@ -158,7 +158,7 @@ Note: This table is the 1002–1151 switch/jumptable view. `CNetMsg__ProcessMsg_
 | 1072 | Default (no handler) | - | - |
 | 1073 | Default (no handler) | - | - |
 | 1074 | CMsgInviteTrans | 0x75d874 | 0x75d8fd |
-| 1075 | CMsgRaceTrackProp | 0x715061 | 0x715125 |
+| 1075 | unproven (label `CMsgRaceTrackProp` withdrawn: TU = 2072) | 0x715061 | 0x715125 |
 | 1076 | Default (no handler) | - | - |
 | 1077 | Default (no handler) | - | - |
 | 1078 | Default (no handler) | - | - |
@@ -166,7 +166,7 @@ Note: This table is the 1002–1151 switch/jumptable view. `CNetMsg__ProcessMsg_
 | 1080 | Default (no handler) | - | - |
 | 1081 | CMsgPKStatistic | 0x75d90e | 0x75d9ed |
 | 1082 | Default (no handler) | - | - |
-| 1083 | CMsgWarFlag | 0x714b0b | 0x714c89 |
+| 1083 | unproven (label `CMsgWarFlag` withdrawn: TU = 2224) | 0x714b0b | 0x714c89 |
 | 1084 | Default (no handler) | - | - |
 | 1085 | Default (no handler) | - | - |
 | 1086 | Default (no handler) | - | - |
@@ -185,17 +185,17 @@ Note: This table is the 1002–1151 switch/jumptable view. `CNetMsg__ProcessMsg_
 | 1099 | Default (no handler) | - | - |
 | 1100 | Default (no handler) | - | - |
 | 1101 | CMsgMapItem (former Peerage label withdrawn) | 0x73fda7 | 0x740007 |
-| 1102 | CMsgDetainedItem | 0x74e08a | 0x74e158 |
+| 1102 | **CMsgPackage** ✓TU (label `CMsgDetainedItem` withdrawn) | 0x74e08a | 0x74e158 |
 | 1103 | CMsgMagicEffectSimple | 0x760abc | 0x760b45 |
 | 1104 | CMsgFlushExp | 0x76179a | 0x761823 |
 | 1105 | CMsgMagicEffectEx | 0x760b79 | 0x760c02 |
 | 1106 | CMsgPlayerSetInfo | 0x760886 | 0x76090f |
 | 1107 | CMsgSyn | 0x702520 | 0x7031b9 |
-| 1108 | CMsgStrCheckKey | 0x75f94e | 0x75f9d7 |
-| 1109 | CMsgCrossSwitch | 0x75eeb0 | 0x75ef8f |
+| 1108 | unproven (label `CMsgStrCheckKey` withdrawn: TU = 2520) | 0x75f94e | 0x75f9d7 |
+| 1109 | **CMsgNpcInfoEX** ✓TU (label `CMsgCrossSwitch` withdrawn) | 0x75eeb0 | 0x75ef8f |
 | 1110 | CMsgMapInfo1110 | 0x732a87 | 0x732b10 |
-| 1111 | CMsgBattleEffectiveness | 0x75ed21 | 0x75ee72 |
-| 1112 | CMsgMonsterTransform | 0x75ebfc | 0x75ec85 |
+| 1111 | unproven (label `CMsgBattleEffectiveness` withdrawn: TU = 1032) | 0x75ed21 | 0x75ee72 |
+| 1112 | unproven (label `CMsgMonsterTransform` withdrawn: TU = 1042) | 0x75ebfc | 0x75ec85 |
 | 1113 | CMsgSubPro | 0x75e53b | 0x75e627 |
 | 1114 | CMsgHero | 0x7624e8 | 0x762571 |
 | 1115 | CMsgKickoutNotice | 0x75d785 | 0x75d80e |
@@ -209,7 +209,7 @@ Note: This table is the 1002–1151 switch/jumptable view. `CNetMsg__ProcessMsg_
 | 1123 | Default (no handler) | - | - |
 | 1124 | Default (no handler) | - | - |
 | 1125 | Default (no handler) | - | - |
-| 1126 | CMsgTexasNpcInfo | 0x72c76e | 0x72c843 |
+| 1126 | unproven (label `CMsgTexasNpcInfo` withdrawn: TU = 2172) | 0x72c76e | 0x72c843 |
 | 1127 | CMsgCoach | 0x6ed9f1 | 0x6edac8 |
 | 1128 | CMsgVipTeamConfirm | 0x72a561 | 0x72a623 |
 | 1129 | CMsgTrusteeshipState | 0x75da61 | 0x75daea |
@@ -257,21 +257,21 @@ The dispatch function `CNetMsg__ProcessMsg_Dispatch` handles additional packet t
 | 2069 | 0x0815 | CMsgQuizSignal | 0x75C8FF | 0x75C988 |
 | 2070 | 0x0816 | CMsgTitleVisual | 0x707C29 | 0x707CE4 |
 | 2071 | 0x0817 | CMsgEudemonAttrib | 0x75C7EC | 0x75C875 |
-| 2072 | 0x0818 | CMsgRaceTrackPropSync | 0x74F3E1 | 0x74F55B |
+| 2072 | 0x0818 | **CMsgRaceTrackProp** ✓TU (label `CMsgRaceTrackPropSync` withdrawn) | 0x74F3E1 | 0x74F55B |
 | 2073 | 0x0819 | CMsgRaceTrackEffect | 0x75CB87 | 0x75CC10 |
 | 2077 | 0x081D | CMsgNonSuch | 0x75B05B | 0x75B0E4 |
 | 2078 | 0x081E | CMsgAccountLoginAlert2078 | 0x75AFA0 | 0x75B029 |
 | 2079 | 0x081F | CMsgServerState | 0x75AEED | 0x75AF76 |
 | 2080 | 0x0820 | CMsgChangeName | 0x74B5AE | 0x74B6A1 |
-| 2090 | 0x082A | CMsgShowHandEnter | 0x7513B2 | 0x7514B5 |
-| 2091 | 0x082B | CMsgShowHandDealtCard | 0x75BD80 | 0x75BF92 |
-| 2092 | 0x082C | CMsgShowHandActivePlayer | 0x75C272 | 0x75C2FB |
-| 2093 | 0x082D | CMsgShowHandCallAction | 0x75106F | 0x751180 |
-| 2094 | 0x082E | CMsgShowHandLayCard | 0x75BAAE | 0x75BC60 |
-| 2095 | 0x082F | CMsgShowHandGameResult | 0x75B80F | 0x75B898 |
+| 2090 | 0x082A | **CMsgShowHandEnter** ✓TU | 0x7513B2 | 0x7514B5 |
+| 2091 | 0x082B | **CMsgShowHandDealtCard** ✓TU | 0x75BD80 | 0x75BF92 |
+| 2092 | 0x082C | **CMsgShowHandActivePlayer** ✓TU | 0x75C272 | 0x75C2FB |
+| 2093 | 0x082D | **CMsgShowHandCallAction** ✓TU | 0x75106F | 0x751180 |
+| 2094 | 0x082E | **CMsgShowHandLayCard** ✓TU | 0x75BAAE | 0x75BC60 |
+| 2095 | 0x082F | **CMsgShowHandGameResult** ✓TU | 0x75B80F | 0x75B898 |
 | 2096 | 0x0830 | CMsgShowHandExit | 0x75125E | 0x751326 |
-| 2097 | 0x0831 | CMsgShowHandOnlineStatus | 0x75C471 | 0x75C4FA |
-| 2098 | 0x0832 | CMsgShowHandLostInfo | 0x75B575 | 0x75B5FE |
+| 2097 | 0x0831 | **CMsgShowHandOnlineStatus** ✓TU | 0x75C471 | 0x75C4FA |
+| 2098 | 0x0832 | **CMsgShowHandLostInfo** ✓TU | 0x75B575 | 0x75B5FE |
 | 2210 | 0x08A2 | CMsgArenaChallenge | 0x71C382 | 0x71C40B |
 | 2211 | 0x08A3 | CMsgBattleObserver | 0x6E6CB6 | 0x6E6E4B |
 | 2212 | 0x08A4 | CMsgFamilyArena | 0x704C32 | 0x704D2A |
@@ -286,7 +286,7 @@ The dispatch function `CNetMsg__ProcessMsg_Dispatch` handles additional packet t
 | 2221 | 0x08AD | CMsgServerPKToggle | 0x75A4EF | 0x75A578 |
 | 2222 | 0x08AE | CMsgElitePKChallenge | 0x75A236 | 0x75A2BF |
 | 2223 | 0x08AF | CMsgElitePKPlayerList | 0x72E552 | 0x72E616 |
-| 2224 | 0x08B0 | CMsgWarFlag | 0x74BA9B | 0x74BB60 |
+| 2224 | 0x08B0 | **CMsgWarFlag** ✓TU | 0x74BA9B | 0x74BB60 |
 | 2225 | 0x08B1 | CMsgGuildWarScore | 0x74D26B | 0x74D3E6 |
 | 2226 | 0x08B2 | CMsgGuildWarRoster | 0x74CF8B | 0x74D04A |
 
@@ -297,11 +297,11 @@ These types are dispatched via subtraction/comparison chains in the else-branch 
 | Type | Hex | Name | Create Addr | Process Addr |
 |------|-----|------|-------------|--------------|
 | 1313 | 0x0521 | CMsgFamilyOccupy | 0x7069F1 | 0x706AC6 |
-| 1314 | 0x0522 | CMsgLotteryAward | 0x74DE0F | 0x74DEBF |
+| 1314 | 0x0522 | **CMsgLottery** ✓TU (label `CMsgLotteryAward` withdrawn) | 0x74DE0F | 0x74DEBF |
 | 1350 | 0x0546 | CMsgTextMessage | 0x75D217 | 0x75D2A0 |
-| 2030 | 0x07EE | CMsgNpcInfo | 0x7439E3 | 0x743B32 |
+| 2030 | 0x07EE | **CMsgNpcInfo** ✓TU | 0x7439E3 | 0x743B32 |
 | 2031 | 0x07EF | CMsgNpcAction | 0x72CB79 | 0x72CC60 |
-| 2032 | 0x07F0 | CMsgTaskDialogEx | 0x72BBFF | 0x72BD72 |
+| 2032 | 0x07F0 | **CMsgTaskDialog** ✓TU (label `CMsgTaskDialogEx` withdrawn) | 0x72BBFF | 0x72BD72 |
 | 2033 | 0x07F1 | CMsgBuddyInfoEx | 0x75D2D9 | 0x75D362 |
 | 2034 | 0x07F2 | CMsgNoOp2034 | 0x75D18E | 0x5AD9B1 |
 | 2035 | 0x07F3 | CMsgPetSpawn | 0x75CE78 | 0x75CF01 |
@@ -312,13 +312,13 @@ These types are dispatched via subtraction/comparison chains in the else-branch 
 | 2046 | 0x07FE | CMsgBuddyConfirm | 0x72B454 | 0x72B517 |
 | 2047 | 0x07FF | CMsgBuddyUpdate | 0x75CCA3 | 0x75CD2C |
 | 2075 | 0x081B | CMsgStatusDetail2075 (was CMsgMagicEffect) | 0x75C570 | 0x75C5F9 |
-| 2101 | 0x0835 | CMsgContainerInfo | 0x7022AF | 0x702372 |
+| 2101 | 0x0835 | **CMsgFactionRankInfo** ✓TU (label `CMsgContainerInfo` withdrawn) | 0x7022AF | 0x702372 |
 | 2102 | 0x0836 | CMsgSynMemberTitle | 0x75A834 | 0x75A8F9 |
 | 2103 | 0x0837 | CMsgChiefNameChange | 0x6ECB23 | 0x6ECC0F |
 | 2110 | 0x083E | CMsgSynWarScore | 0x7518E3 | 0x751A49 |
 | 2170 | 0x087A | CMsgLeaveword | 0x72C4CD | 0x72C615 |
 | 2171 | 0x087B | CMsgTexasNpc | 0x744DA5 | 0x744E8B |
-| 2172 | 0x087C | CMsgTexasHoldEm | 0x75AA46 | 0x75AACF |
+| 2172 | 0x087C | **CMsgTexasNpcInfo** ✓TU (label `CMsgTexasHoldEm` withdrawn) | 0x75AA46 | 0x75AACF |
 | 2201 | 0x0899 | CMsgFamilyWarData | 0x75A695 | 0x75A71E |
 | 2202 | 0x089A | CMsgShowHandTable | 0x752EA9 | 0x752F93 |
 | 2203 | 0x089B | CMsgTotemAdd | 0x709F7F | 0x70A063 |
@@ -336,15 +336,95 @@ These types are dispatched via subtraction/comparison chains in the else-branch 
 | 2400 | 0x0960 | CMsgMapInfo (else) | 0x740837 | 0x7408F9 |
 | 2401 | 0x0961 | CMsgEctypeInvite | 0x6F8F5F | 0x6F9094 |
 | 2410 | 0x096A | CMsgArenaAction | 0x74A6FB | 0x74A7D2 |
-| 2420 | 0x0974 | CMsgVerifyCheck | 0x7593D9 | 0x759462 |
-| 2501 | 0x09C5 | CMsgCrossSwitch | 0x759776 | 0x7597FF |
+| 2420 | 0x0974 | **CMsgVerifyCheck** ✓TU | 0x7593D9 | 0x759462 |
+| 2501 | 0x09C5 | **CMsgCrossSwitch** ✓TU | 0x759776 | 0x7597FF |
 | 2502 | 0x09C6 | CMsgCrossInfo | 0x7592FB | 0x759384 |
 | 2504 | 0x09C8 | CMsgCrossFlagWarData | 0x74C15F | 0x74C21A |
 | 2505 | 0x09C9 | CMsgCrossFlagWarStatus | 0x75904E | 0x7590D7 |
 | 2506 | 0x09CA | CMsgWarflagEscort | 0x7531BD | 0x753278 |
 | 2507 | 0x09CB | CMsgCrossFlagWarTeam | 0x74B7ED | 0x74B8A8 |
 | 2510 | 0x09CE | CMsgFactionChiefBase | 0x701EE1 | 0x702071 |
-| 2520 | 0x09D8 | CMsgSilentUpdate | 0x758DF1 | 0x758E57 |
+| 2520 | 0x09D8 | **CMsgStrCheckKey** ✓TU (label `CMsgSilentUpdate` withdrawn) | 0x758DF1 | 0x758E57 |
 | 10005 | 0x2715 | CMsgEntityAction | 0x7403A1 | 0x7405E7 |
-| 10014 | 0x271E | CMsgPlayerSpawn | 0x755E83 | 0x755F64 |
-| 10017 | 0x2721 | CMsgUserAttribEx | 0x7572EB | 0x757374 |
+| 10014 | 0x271E | **CMsgPlayer** ✓TU (label `CMsgPlayerSpawn` withdrawn) | 0x755E83 | 0x755F64 |
+| 10017 | 0x2721 | **CMsgUserAttrib** ✓TU (label `CMsgUserAttribEx` withdrawn) | 0x7572EB | 0x757374 |
+
+## Registry derivation and class proof (CP0.1, 2026-11-05)
+
+Method (repeatable): decompile `CNetMsg__ProcessMsg_Dispatch` `0x6DF3B5` → 183 ctor calls → 182 type→ctor pairs (`evidence/dispatch-registry-2026-11-05/parse_dispatch.py`, `registry.py` over the clean `00_clean/clean/5517/Conquer.exe`).
+Ctor → first `mov [reg], vtable` before `ret` → vtable; **slot 4 = Process** (checked 1008 `0x86D650`→`0x762AC3`).
+All ctor + Process addresses in the tables above agree with the derivation (0 mismatches). Names did not.
+
+Shared no-op Process `0x5AD9B1`: 1002, 1027, 1028, 1038, 2034, 2036. Shared Process `0x75A199`: 2231, 2251.
+Types 1013/1014: no dispatch entry.
+
+**Class-name authority.** Only the 37 `F:\CQ2ClientRelease-42.0.1\3DRole\Network\*.cpp` assert paths prove a class name.
+✓TU = assert path referenced inside that type's Process. Every other name in these tables is a **label** (community/eosource
+origin, unproven). eosource IDs are orientation only (it is far older than 5517).
+
+| TU | Type | Process | Assert site |
+|---|---|---|---|
+| MsgAction | 10010 | `0x6FED1F` | `0x6FF2C4` |
+| MsgBattleEffectiveness | 1032 | `0x75E38D` | `0x75E3DA` |
+| MsgCrossSwitch | 2501 | `0x7597FF` | `0x759988` |
+| MsgFactionRankInfo | 2101 | `0x702372` | `0x7024CB` |
+| MsgInteract | 1022 | `0x6FB1CB` | `0x6FB79F` |
+| Msg1008 | 1009 | `0x6EAEB6` | `0x6EB5EA` |
+| MsgLottery | 1314 | `0x74DEBF` | `0x74DEE9` |
+| MsgMonsterTransform | 1042 | `0x761D5C` | `0x761DB5` |
+| MsgName | 1015 | `0x73EFDF` | `0x73F092` |
+| MsgNpcInfo | 2030 | `0x743B32` | `0x743C01` |
+| MsgNpcInfoEX | 1109 | `0x75EF8F` | `0x75F0C0` |
+| MsgPackage | 1102 | `0x74E158` | `0x74E1FC` |
+| MsgPlayer | 10014 | `0x755F64` | `0x756155` |
+| MsgRaceTrackProp | 2072 | `0x74F55B` | `0x74F5B5` |
+| MsgShowHandActivePlayer | 2092 | `0x75C2FB` | `0x75C323` |
+| MsgShowHandCallAction | 2093 | `0x751180` | `0x75123C` |
+| MsgShowHandDealtCard | 2091 | `0x75BF92` | `0x75BFB4` |
+| MsgShowHandEnter | 2090 | `0x7514B5` | `0x7514E1` |
+| MsgShowHandGameResult | 2095 | `0x75B898` | `0x75B8C0` |
+| MsgShowHandLayCard | 2094 | `0x75BC60` | `0x75BC7E` |
+| MsgShowHandLostInfo | 2098 | `0x75B5FE` | `0x75B627` |
+| MsgShowHandOnlineStatus | 2097 | `0x75C4FA` | `0x75C513` |
+| MsgStrCheckKey | 2520 | `0x758E57` | `0x758ED1` |
+| MsgTaskDialog | 2032 | `0x72BD72` | `0x72C00D` |
+| MsgTeamArena | 2247 | `0x752A2C` | `0x752A4F` |
+| MsgTeamMember | 1026 | `0x761AB1` | `0x761CB5` |
+| MsgTexasNpcInfo | 2172 | `0x75AACF` | `0x75ABCB` |
+| MsgUserAttrib | 10017 | `0x757374` | `0x758561` |
+| MsgUserInfo | 1006 | `0x764276` | `0x764881` |
+| MsgVerifyCheck | 2420 | `0x759462` | `0x7594D6` |
+| MsgWarFlag | 2224 | `0x74BB60` | `0x74BF79` |
+
+TUs not tied to a dispatched Process: `MsgAccount` (asserts in outbound builder `CMsg1121__Create` `0x749333`), `MsgConnect`
+(`CMsgAccountAuthResponse_FormatLoginFailureTraceText` `0x754025`, 1057 transition `0x755726`), `MsgFriend`
+(`CMsgFriend__BuildSubtypeEntityIdFlagName16` `0x74D6E1`), `MsgShowHandTrusteeship` (`0x751853`, helper), `Ping` (`0x767F37`),
+`NetMsg` (`0x6DED5E`, `0x6DF096`, `0x6E138C`).
+
+Withdrawn labels → now: 1008 `CMsgItem`→`CMsg1008`; 1009 `CMsgTick`→`CMsgItem`; 1012 `CMsgPlayer`→`CMsg1012`;
+1033 `CMsgNpcInfoEX`→`CMsg1033`; 1042 `CMsgGuide`→`CMsgMonsterTransform`; 1102 `CMsgAccount1102`/`CMsgDetainedItem`→`CMsgPackage`;
+1112 `CMsgMonsterTransform`→`CMsg1112`; 10014 `CMsgPlayerSpawn`→`CMsgPlayer`; 10017 `CMsgUserAttribEx`→`CMsgUserAttrib`.
+Binja renames applied the same day by address (`.bndb` save pending, Bernie).
+
+### Dispatched types absent from the tables above
+
+| Type | Hex | Class | Ctor | Process |
+|---|---|---|---|---|
+| 1312 | 0x0520 | unproven | 0x703be1 | 0x7041f4 |
+| 2230 | 0x08B6 | unproven | 0x759eca | 0x759f53 |
+| 2231 | 0x08B7 | unproven | 0x75a110 | 0x75a199 |
+| 2232 | 0x08B8 | unproven | 0x6e267e | 0x6e27f8 |
+| 2233 | 0x08B9 | unproven | 0x72e342 | 0x72e406 |
+| 2240 | 0x08C0 | unproven | 0x729704 | 0x7297b3 |
+| 2241 | 0x08C1 | unproven | 0x751c46 | 0x751d24 |
+| 2242 | 0x08C2 | unproven | 0x75272b | 0x7527e1 |
+| 2243 | 0x08C3 | unproven | 0x752250 | 0x7522ff |
+| 2244 | 0x08C4 | unproven | 0x75207e | 0x752120 |
+| 2245 | 0x08C5 | unproven | 0x752487 | 0x752529 |
+| 2246 | 0x08C6 | unproven | 0x752d26 | 0x752daf |
+| 2247 | 0x08C7 | **CMsgTeamArena** ✓TU | 0x75297f | 0x752a2c |
+| 2250 | 0x08CA | unproven | 0x759bfb | 0x759c84 |
+| 2251 | 0x08CB | unproven | 0x759e41 | 0x75a199 |
+| 2252 | 0x08CC | unproven | 0x6e2d6c | 0x6e2ee6 |
+| 2253 | 0x08CD | unproven | 0x72e132 | 0x72e1f6 |
+| 10010 | 0x271A | **CMsgAction** ✓TU | 0x6fe8a3 | 0x6fed1f |

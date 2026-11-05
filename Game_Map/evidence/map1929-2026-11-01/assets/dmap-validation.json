@@ -1,0 +1,3062 @@
+{
+  "payload_sha256": "8ade4316514cd151bfe01ad3be339b1b5982c13e6415bc9a7d68e7fdab4b1de0",
+  "size": 107308,
+  "grid": [
+    100,
+    100
+  ],
+  "checksum_rows": [
+    {
+      "row": 0,
+      "offset": 276,
+      "stored_checksum": 10200,
+      "computed_checksum": 10200,
+      "matches": true
+    },
+    {
+      "row": 1,
+      "offset": 880,
+      "stored_checksum": 10300,
+      "computed_checksum": 10300,
+      "matches": true
+    },
+    {
+      "row": 2,
+      "offset": 1484,
+      "stored_checksum": 10400,
+      "computed_checksum": 10400,
+      "matches": true
+    },
+    {
+      "row": 3,
+      "offset": 2088,
+      "stored_checksum": 10500,
+      "computed_checksum": 10500,
+      "matches": true
+    },
+    {
+      "row": 4,
+      "offset": 2692,
+      "stored_checksum": 10602,
+      "computed_checksum": 10602,
+      "matches": true
+    },
+    {
+      "row": 5,
+      "offset": 3296,
+      "stored_checksum": 10700,
+      "computed_checksum": 10700,
+      "matches": true
+    },
+    {
+      "row": 6,
+      "offset": 3900,
+      "stored_checksum": 10794,
+      "computed_checksum": 10794,
+      "matches": true
+    },
+    {
+      "row": 7,
+      "offset": 4504,
+      "stored_checksum": 10884,
+      "computed_checksum": 10884,
+      "matches": true
+    },
+    {
+      "row": 8,
+      "offset": 5108,
+      "stored_checksum": 10970,
+      "computed_checksum": 10970,
+      "matches": true
+    },
+    {
+      "row": 9,
+      "offset": 5712,
+      "stored_checksum": 11052,
+      "computed_checksum": 11052,
+      "matches": true
+    },
+    {
+      "row": 10,
+      "offset": 6316,
+      "stored_checksum": 11140,
+      "computed_checksum": 11140,
+      "matches": true
+    },
+    {
+      "row": 11,
+      "offset": 6920,
+      "stored_checksum": 11228,
+      "computed_checksum": 11228,
+      "matches": true
+    },
+    {
+      "row": 12,
+      "offset": 7524,
+      "stored_checksum": 11302,
+      "computed_checksum": 11302,
+      "matches": true
+    },
+    {
+      "row": 13,
+      "offset": 8128,
+      "stored_checksum": 11364,
+      "computed_checksum": 11364,
+      "matches": true
+    },
+    {
+      "row": 14,
+      "offset": 8732,
+      "stored_checksum": 11438,
+      "computed_checksum": 11438,
+      "matches": true
+    },
+    {
+      "row": 15,
+      "offset": 9336,
+      "stored_checksum": 11490,
+      "computed_checksum": 11490,
+      "matches": true
+    },
+    {
+      "row": 16,
+      "offset": 9940,
+      "stored_checksum": 11536,
+      "computed_checksum": 11536,
+      "matches": true
+    },
+    {
+      "row": 17,
+      "offset": 10544,
+      "stored_checksum": 11600,
+      "computed_checksum": 11600,
+      "matches": true
+    },
+    {
+      "row": 18,
+      "offset": 11148,
+      "stored_checksum": 11649,
+      "computed_checksum": 11649,
+      "matches": true
+    },
+    {
+      "row": 19,
+      "offset": 11752,
+      "stored_checksum": 11666,
+      "computed_checksum": 11666,
+      "matches": true
+    },
+    {
+      "row": 20,
+      "offset": 12356,
+      "stored_checksum": 11720,
+      "computed_checksum": 11720,
+      "matches": true
+    },
+    {
+      "row": 21,
+      "offset": 12960,
+      "stored_checksum": 11756,
+      "computed_checksum": 11756,
+      "matches": true
+    },
+    {
+      "row": 22,
+      "offset": 13564,
+      "stored_checksum": 11788,
+      "computed_checksum": 11788,
+      "matches": true
+    },
+    {
+      "row": 23,
+      "offset": 14168,
+      "stored_checksum": 11852,
+      "computed_checksum": 11852,
+      "matches": true
+    },
+    {
+      "row": 24,
+      "offset": 14772,
+      "stored_checksum": 11840,
+      "computed_checksum": 11840,
+      "matches": true
+    },
+    {
+      "row": 25,
+      "offset": 15376,
+      "stored_checksum": 11900,
+      "computed_checksum": 11900,
+      "matches": true
+    },
+    {
+      "row": 26,
+      "offset": 15980,
+      "stored_checksum": 11960,
+      "computed_checksum": 11960,
+      "matches": true
+    },
+    {
+      "row": 27,
+      "offset": 16584,
+      "stored_checksum": 11888,
+      "computed_checksum": 11888,
+      "matches": true
+    },
+    {
+      "row": 28,
+      "offset": 17188,
+      "stored_checksum": 11850,
+      "computed_checksum": 11850,
+      "matches": true
+    },
+    {
+      "row": 29,
+      "offset": 17792,
+      "stored_checksum": 11852,
+      "computed_checksum": 11852,
+      "matches": true
+    },
+    {
+      "row": 30,
+      "offset": 18396,
+      "stored_checksum": 11850,
+      "computed_checksum": 11850,
+      "matches": true
+    },
+    {
+      "row": 31,
+      "offset": 19000,
+      "stored_checksum": 11896,
+      "computed_checksum": 11896,
+      "matches": true
+    },
+    {
+      "row": 32,
+      "offset": 19604,
+      "stored_checksum": 11888,
+      "computed_checksum": 11888,
+      "matches": true
+    },
+    {
+      "row": 33,
+      "offset": 20208,
+      "stored_checksum": 11904,
+      "computed_checksum": 11904,
+      "matches": true
+    },
+    {
+      "row": 34,
+      "offset": 20812,
+      "stored_checksum": 11889,
+      "computed_checksum": 11889,
+      "matches": true
+    },
+    {
+      "row": 35,
+      "offset": 21416,
+      "stored_checksum": 11900,
+      "computed_checksum": 11900,
+      "matches": true
+    },
+    {
+      "row": 36,
+      "offset": 22020,
+      "stored_checksum": 11878,
+      "computed_checksum": 11878,
+      "matches": true
+    },
+    {
+      "row": 37,
+      "offset": 22624,
+      "stored_checksum": 11916,
+      "computed_checksum": 11916,
+      "matches": true
+    },
+    {
+      "row": 38,
+      "offset": 23228,
+      "stored_checksum": 11855,
+      "computed_checksum": 11855,
+      "matches": true
+    },
+    {
+      "row": 39,
+      "offset": 23832,
+      "stored_checksum": 11822,
+      "computed_checksum": 11822,
+      "matches": true
+    },
+    {
+      "row": 40,
+      "offset": 24436,
+      "stored_checksum": 11855,
+      "computed_checksum": 11855,
+      "matches": true
+    },
+    {
+      "row": 41,
+      "offset": 25040,
+      "stored_checksum": 11888,
+      "computed_checksum": 11888,
+      "matches": true
+    },
+    {
+      "row": 42,
+      "offset": 25644,
+      "stored_checksum": 11921,
+      "computed_checksum": 11921,
+      "matches": true
+    },
+    {
+      "row": 43,
+      "offset": 26248,
+      "stored_checksum": 12030,
+      "computed_checksum": 12030,
+      "matches": true
+    },
+    {
+      "row": 44,
+      "offset": 26852,
+      "stored_checksum": 12065,
+      "computed_checksum": 12065,
+      "matches": true
+    },
+    {
+      "row": 45,
+      "offset": 27456,
+      "stored_checksum": 12100,
+      "computed_checksum": 12100,
+      "matches": true
+    },
+    {
+      "row": 46,
+      "offset": 28060,
+      "stored_checksum": 12258,
+      "computed_checksum": 12258,
+      "matches": true
+    },
+    {
+      "row": 47,
+      "offset": 28664,
+      "stored_checksum": 12296,
+      "computed_checksum": 12296,
+      "matches": true
+    },
+    {
+      "row": 48,
+      "offset": 29268,
+      "stored_checksum": 12334,
+      "computed_checksum": 12334,
+      "matches": true
+    },
+    {
+      "row": 49,
+      "offset": 29872,
+      "stored_checksum": 12416,
+      "computed_checksum": 12416,
+      "matches": true
+    },
+    {
+      "row": 50,
+      "offset": 30476,
+      "stored_checksum": 12410,
+      "computed_checksum": 12410,
+      "matches": true
+    },
+    {
+      "row": 51,
+      "offset": 31080,
+      "stored_checksum": 12448,
+      "computed_checksum": 12448,
+      "matches": true
+    },
+    {
+      "row": 52,
+      "offset": 31684,
+      "stored_checksum": 12345,
+      "computed_checksum": 12345,
+      "matches": true
+    },
+    {
+      "row": 53,
+      "offset": 32288,
+      "stored_checksum": 12380,
+      "computed_checksum": 12380,
+      "matches": true
+    },
+    {
+      "row": 54,
+      "offset": 32892,
+      "stored_checksum": 12415,
+      "computed_checksum": 12415,
+      "matches": true
+    },
+    {
+      "row": 55,
+      "offset": 33496,
+      "stored_checksum": 12350,
+      "computed_checksum": 12350,
+      "matches": true
+    },
+    {
+      "row": 56,
+      "offset": 34100,
+      "stored_checksum": 12383,
+      "computed_checksum": 12383,
+      "matches": true
+    },
+    {
+      "row": 57,
+      "offset": 34704,
+      "stored_checksum": 12520,
+      "computed_checksum": 12520,
+      "matches": true
+    },
+    {
+      "row": 58,
+      "offset": 35308,
+      "stored_checksum": 12555,
+      "computed_checksum": 12555,
+      "matches": true
+    },
+    {
+      "row": 59,
+      "offset": 35912,
+      "stored_checksum": 12482,
+      "computed_checksum": 12482,
+      "matches": true
+    },
+    {
+      "row": 60,
+      "offset": 36516,
+      "stored_checksum": 12515,
+      "computed_checksum": 12515,
+      "matches": true
+    },
+    {
+      "row": 61,
+      "offset": 37120,
+      "stored_checksum": 12772,
+      "computed_checksum": 12772,
+      "matches": true
+    },
+    {
+      "row": 62,
+      "offset": 37724,
+      "stored_checksum": 12923,
+      "computed_checksum": 12923,
+      "matches": true
+    },
+    {
+      "row": 63,
+      "offset": 38328,
+      "stored_checksum": 13252,
+      "computed_checksum": 13252,
+      "matches": true
+    },
+    {
+      "row": 64,
+      "offset": 38932,
+      "stored_checksum": 13414,
+      "computed_checksum": 13414,
+      "matches": true
+    },
+    {
+      "row": 65,
+      "offset": 39536,
+      "stored_checksum": 13220,
+      "computed_checksum": 13220,
+      "matches": true
+    },
+    {
+      "row": 66,
+      "offset": 40140,
+      "stored_checksum": 13262,
+      "computed_checksum": 13262,
+      "matches": true
+    },
+    {
+      "row": 67,
+      "offset": 40744,
+      "stored_checksum": 13614,
+      "computed_checksum": 13614,
+      "matches": true
+    },
+    {
+      "row": 68,
+      "offset": 41348,
+      "stored_checksum": 13787,
+      "computed_checksum": 13787,
+      "matches": true
+    },
+    {
+      "row": 69,
+      "offset": 41952,
+      "stored_checksum": 13772,
+      "computed_checksum": 13772,
+      "matches": true
+    },
+    {
+      "row": 70,
+      "offset": 42556,
+      "stored_checksum": 13950,
+      "computed_checksum": 13950,
+      "matches": true
+    },
+    {
+      "row": 71,
+      "offset": 43160,
+      "stored_checksum": 14132,
+      "computed_checksum": 14132,
+      "matches": true
+    },
+    {
+      "row": 72,
+      "offset": 43764,
+      "stored_checksum": 14318,
+      "computed_checksum": 14318,
+      "matches": true
+    },
+    {
+      "row": 73,
+      "offset": 44368,
+      "stored_checksum": 14508,
+      "computed_checksum": 14508,
+      "matches": true
+    },
+    {
+      "row": 74,
+      "offset": 44972,
+      "stored_checksum": 14702,
+      "computed_checksum": 14702,
+      "matches": true
+    },
+    {
+      "row": 75,
+      "offset": 45576,
+      "stored_checksum": 14900,
+      "computed_checksum": 14900,
+      "matches": true
+    },
+    {
+      "row": 76,
+      "offset": 46180,
+      "stored_checksum": 15102,
+      "computed_checksum": 15102,
+      "matches": true
+    },
+    {
+      "row": 77,
+      "offset": 46784,
+      "stored_checksum": 15308,
+      "computed_checksum": 15308,
+      "matches": true
+    },
+    {
+      "row": 78,
+      "offset": 47388,
+      "stored_checksum": 15518,
+      "computed_checksum": 15518,
+      "matches": true
+    },
+    {
+      "row": 79,
+      "offset": 47992,
+      "stored_checksum": 15732,
+      "computed_checksum": 15732,
+      "matches": true
+    },
+    {
+      "row": 80,
+      "offset": 48596,
+      "stored_checksum": 16175,
+      "computed_checksum": 16175,
+      "matches": true
+    },
+    {
+      "row": 81,
+      "offset": 49200,
+      "stored_checksum": 16552,
+      "computed_checksum": 16552,
+      "matches": true
+    },
+    {
+      "row": 82,
+      "offset": 49804,
+      "stored_checksum": 16860,
+      "computed_checksum": 16860,
+      "matches": true
+    },
+    {
+      "row": 83,
+      "offset": 50408,
+      "stored_checksum": 17096,
+      "computed_checksum": 17096,
+      "matches": true
+    },
+    {
+      "row": 84,
+      "offset": 51012,
+      "stored_checksum": 17336,
+      "computed_checksum": 17336,
+      "matches": true
+    },
+    {
+      "row": 85,
+      "offset": 51616,
+      "stored_checksum": 17500,
+      "computed_checksum": 17500,
+      "matches": true
+    },
+    {
+      "row": 86,
+      "offset": 52220,
+      "stored_checksum": 17585,
+      "computed_checksum": 17585,
+      "matches": true
+    },
+    {
+      "row": 87,
+      "offset": 52824,
+      "stored_checksum": 17588,
+      "computed_checksum": 17588,
+      "matches": true
+    },
+    {
+      "row": 88,
+      "offset": 53428,
+      "stored_checksum": 17838,
+      "computed_checksum": 17838,
+      "matches": true
+    },
+    {
+      "row": 89,
+      "offset": 54032,
+      "stored_checksum": 18092,
+      "computed_checksum": 18092,
+      "matches": true
+    },
+    {
+      "row": 90,
+      "offset": 54636,
+      "stored_checksum": 18350,
+      "computed_checksum": 18350,
+      "matches": true
+    },
+    {
+      "row": 91,
+      "offset": 55240,
+      "stored_checksum": 18784,
+      "computed_checksum": 18784,
+      "matches": true
+    },
+    {
+      "row": 92,
+      "offset": 55844,
+      "stored_checksum": 19052,
+      "computed_checksum": 19052,
+      "matches": true
+    },
+    {
+      "row": 93,
+      "offset": 56448,
+      "stored_checksum": 19148,
+      "computed_checksum": 19148,
+      "matches": true
+    },
+    {
+      "row": 94,
+      "offset": 57052,
+      "stored_checksum": 19422,
+      "computed_checksum": 19422,
+      "matches": true
+    },
+    {
+      "row": 95,
+      "offset": 57656,
+      "stored_checksum": 19700,
+      "computed_checksum": 19700,
+      "matches": true
+    },
+    {
+      "row": 96,
+      "offset": 58260,
+      "stored_checksum": 19800,
+      "computed_checksum": 19800,
+      "matches": true
+    },
+    {
+      "row": 97,
+      "offset": 58864,
+      "stored_checksum": 19900,
+      "computed_checksum": 19900,
+      "matches": true
+    },
+    {
+      "row": 98,
+      "offset": 59468,
+      "stored_checksum": 20000,
+      "computed_checksum": 20000,
+      "matches": true
+    },
+    {
+      "row": 99,
+      "offset": 60072,
+      "stored_checksum": 20100,
+      "computed_checksum": 20100,
+      "matches": true
+    }
+  ],
+  "passability_counts": {
+    "1": 6277,
+    "0": 3723
+  },
+  "elevation_counts": {
+    "0": 10000
+  },
+  "exit_offset": 60676,
+  "exits": [],
+  "scenery_offset": 60680,
+  "scenery_count": 111,
+  "scenery_type_counts": {
+    "4": 111
+  },
+  "scenery": [
+    {
+      "index": 0,
+      "offset": 60684,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower13.tga",
+      "tile": [
+        45,
+        46
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        26,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 1,
+      "offset": 61104,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower14.tga",
+      "tile": [
+        67,
+        48
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        26,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 2,
+      "offset": 61524,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower21.tga",
+      "tile": [
+        52,
+        28
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        26,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 3,
+      "offset": 61944,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower23.tga",
+      "tile": [
+        36,
+        11
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        26,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 4,
+      "offset": 62364,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower23.tga",
+      "tile": [
+        52,
+        29
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        26,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 5,
+      "offset": 62784,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower31.tga",
+      "tile": [
+        45,
+        47
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        14,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 6,
+      "offset": 63204,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower31.tga",
+      "tile": [
+        67,
+        47
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        14,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 7,
+      "offset": 63624,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower31.tga",
+      "tile": [
+        12,
+        37
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        14,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 8,
+      "offset": 64044,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        10,
+        35
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 9,
+      "offset": 64464,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        61,
+        56
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 10,
+      "offset": 64884,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        51,
+        39
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 11,
+      "offset": 65304,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        35,
+        13
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 12,
+      "offset": 65724,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        12,
+        32
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 13,
+      "offset": 66144,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower39.tga",
+      "tile": [
+        17,
+        33
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        38,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 14,
+      "offset": 66564,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower39.tga",
+      "tile": [
+        65,
+        47
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        38,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 15,
+      "offset": 66984,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower42.tga",
+      "tile": [
+        71,
+        53
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        20,
+        -5
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 16,
+      "offset": 67404,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower42.tga",
+      "tile": [
+        35,
+        12
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        20,
+        -5
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 17,
+      "offset": 67824,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "island09.tga",
+      "tile": [
+        64,
+        49
+      ],
+      "depth_span": [
+        1,
+        2
+      ],
+      "render_offset": [
+        58,
+        134
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 18,
+      "offset": 68244,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np15.tga",
+      "tile": [
+        80,
+        67
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        35,
+        85
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 19,
+      "offset": 68664,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower39.tga",
+      "tile": [
+        41,
+        26
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        38,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 20,
+      "offset": 69084,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower42.tga",
+      "tile": [
+        35,
+        27
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        20,
+        -5
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 21,
+      "offset": 69504,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        35,
+        28
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 22,
+      "offset": 69924,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np30.tga",
+      "tile": [
+        36,
+        12
+      ],
+      "depth_span": [
+        3,
+        3
+      ],
+      "render_offset": [
+        64,
+        85
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 23,
+      "offset": 70344,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        9,
+        30
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 24,
+      "offset": 70764,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        10,
+        31
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 25,
+      "offset": 71184,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "tree04.tga",
+      "tile": [
+        17,
+        31
+      ],
+      "depth_span": [
+        1,
+        2
+      ],
+      "render_offset": [
+        218,
+        387
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 26,
+      "offset": 71604,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        15,
+        33
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 27,
+      "offset": 72024,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        16,
+        34
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 28,
+      "offset": 72444,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "forest09.tga",
+      "tile": [
+        17,
+        34
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        177,
+        449
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 29,
+      "offset": 72864,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        18,
+        35
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 30,
+      "offset": 73284,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np29.tga",
+      "tile": [
+        15,
+        36
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        58,
+        88
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 31,
+      "offset": 73704,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower42.tga",
+      "tile": [
+        21,
+        36
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        20,
+        -5
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 32,
+      "offset": 74124,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower28.tga",
+      "tile": [
+        18,
+        37
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        52,
+        0
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 33,
+      "offset": 74544,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        16,
+        38
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 34,
+      "offset": 74964,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np12.tga",
+      "tile": [
+        34,
+        26
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        185,
+        383
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 35,
+      "offset": 75384,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np11.tga",
+      "tile": [
+        37,
+        27
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        95,
+        292
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 36,
+      "offset": 75804,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "tree04.tga",
+      "tile": [
+        42,
+        24
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        222,
+        395
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 37,
+      "offset": 76224,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower39.tga",
+      "tile": [
+        42,
+        25
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        38,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 38,
+      "offset": 76644,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np07.tga",
+      "tile": [
+        36,
+        21
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        135,
+        431
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 39,
+      "offset": 77064,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np14.tga",
+      "tile": [
+        14,
+        35
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        47,
+        65
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 40,
+      "offset": 77484,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np07.tga",
+      "tile": [
+        8,
+        37
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        135,
+        431
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 41,
+      "offset": 77904,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np15.tga",
+      "tile": [
+        14,
+        37
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        35,
+        85
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 42,
+      "offset": 78324,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower42.tga",
+      "tile": [
+        10,
+        38
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        20,
+        -5
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 43,
+      "offset": 78744,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "tree03.tga",
+      "tile": [
+        14,
+        38
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        222,
+        414
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 44,
+      "offset": 79164,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np08.tga",
+      "tile": [
+        41,
+        11
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        187,
+        458
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 45,
+      "offset": 79584,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np09.tga",
+      "tile": [
+        44,
+        13
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        158,
+        415
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 46,
+      "offset": 80004,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower21.tga",
+      "tile": [
+        46,
+        13
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        26,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 47,
+      "offset": 80424,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower23.tga",
+      "tile": [
+        46,
+        14
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        26,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 48,
+      "offset": 80844,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np02.tga",
+      "tile": [
+        43,
+        15
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        74,
+        95
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 49,
+      "offset": 81264,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np12.tga",
+      "tile": [
+        15,
+        46
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        183,
+        393
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 50,
+      "offset": 81684,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np11.tga",
+      "tile": [
+        53,
+        58
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        91,
+        291
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 51,
+      "offset": 82104,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np12.tga",
+      "tile": [
+        54,
+        63
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        184,
+        387
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 52,
+      "offset": 82524,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np20.tga",
+      "tile": [
+        32,
+        35
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        64,
+        66
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 53,
+      "offset": 82944,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np14.tga",
+      "tile": [
+        54,
+        64
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        45,
+        58
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 54,
+      "offset": 83364,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "forest02.tga",
+      "tile": [
+        53,
+        63
+      ],
+      "depth_span": [
+        2,
+        3
+      ],
+      "render_offset": [
+        67,
+        95
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 55,
+      "offset": 83784,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np08.tga",
+      "tile": [
+        72,
+        65
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        191,
+        456
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 56,
+      "offset": 84204,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np08.tga",
+      "tile": [
+        26,
+        23
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        191,
+        456
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 57,
+      "offset": 84624,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np11.tga",
+      "tile": [
+        26,
+        26
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        98,
+        293
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 58,
+      "offset": 85044,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        19,
+        11
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 59,
+      "offset": 85464,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        20,
+        12
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 60,
+      "offset": 85884,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        22,
+        13
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 61,
+      "offset": 86304,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        25,
+        14
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 62,
+      "offset": 86724,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        20,
+        16
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 63,
+      "offset": 87144,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np14.tga",
+      "tile": [
+        24,
+        16
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        47,
+        65
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 64,
+      "offset": 87564,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np29.tga",
+      "tile": [
+        25,
+        17
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        58,
+        88
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 65,
+      "offset": 87984,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np07.tga",
+      "tile": [
+        18,
+        18
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        135,
+        431
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 66,
+      "offset": 88404,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower31.tga",
+      "tile": [
+        22,
+        18
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        14,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 67,
+      "offset": 88824,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np15.tga",
+      "tile": [
+        24,
+        18
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        35,
+        85
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 68,
+      "offset": 89244,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower42.tga",
+      "tile": [
+        20,
+        19
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        20,
+        -5
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 69,
+      "offset": 89664,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "tree03.tga",
+      "tile": [
+        24,
+        19
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        222,
+        414
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 70,
+      "offset": 90084,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "forest05.tga",
+      "tile": [
+        17,
+        47
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        61,
+        92
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 71,
+      "offset": 90504,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "forest03.tga",
+      "tile": [
+        44,
+        44
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        46,
+        43
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 72,
+      "offset": 90924,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np13.tga",
+      "tile": [
+        26,
+        62
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        158,
+        398
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 73,
+      "offset": 91344,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "tree03.tga",
+      "tile": [
+        31,
+        64
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        225,
+        413
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 74,
+      "offset": 91764,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np08.tga",
+      "tile": [
+        37,
+        64
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        187,
+        458
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 75,
+      "offset": 92184,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower42.tga",
+      "tile": [
+        35,
+        68
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        20,
+        -5
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 76,
+      "offset": 92604,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np02.tga",
+      "tile": [
+        39,
+        68
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        74,
+        95
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 77,
+      "offset": 93024,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np10.tga",
+      "tile": [
+        34,
+        69
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        99,
+        318
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 78,
+      "offset": 93444,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower39.tga",
+      "tile": [
+        48,
+        78
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        38,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 79,
+      "offset": 93864,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower42.tga",
+      "tile": [
+        57,
+        79
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        20,
+        -5
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 80,
+      "offset": 94284,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower35.tga",
+      "tile": [
+        57,
+        80
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        36,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 81,
+      "offset": 94704,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "forest01.tga",
+      "tile": [
+        59,
+        83
+      ],
+      "depth_span": [
+        3,
+        4
+      ],
+      "render_offset": [
+        68,
+        144
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 82,
+      "offset": 95124,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "forest02.tga",
+      "tile": [
+        62,
+        83
+      ],
+      "depth_span": [
+        2,
+        4
+      ],
+      "render_offset": [
+        69,
+        99
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 83,
+      "offset": 95544,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "forest05.tga",
+      "tile": [
+        61,
+        84
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        53,
+        95
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 84,
+      "offset": 95964,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "forest10.tga",
+      "tile": [
+        59,
+        85
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        238,
+        467
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 85,
+      "offset": 96384,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower39.tga",
+      "tile": [
+        70,
+        85
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        38,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 86,
+      "offset": 96804,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np31.tga",
+      "tile": [
+        62,
+        86
+      ],
+      "depth_span": [
+        2,
+        3
+      ],
+      "render_offset": [
+        60,
+        89
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 87,
+      "offset": 97224,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np08.tga",
+      "tile": [
+        53,
+        88
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        187,
+        452
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 88,
+      "offset": 97644,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower28.tga",
+      "tile": [
+        69,
+        89
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        52,
+        0
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 89,
+      "offset": 98064,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np14.tga",
+      "tile": [
+        67,
+        90
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        47,
+        65
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 90,
+      "offset": 98484,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower13.tga",
+      "tile": [
+        69,
+        90
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        26,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 91,
+      "offset": 98904,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower31.tga",
+      "tile": [
+        69,
+        91
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        14,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 92,
+      "offset": 99324,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np07.tga",
+      "tile": [
+        61,
+        92
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        135,
+        431
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 93,
+      "offset": 99744,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np15.tga",
+      "tile": [
+        67,
+        92
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        35,
+        85
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 94,
+      "offset": 100164,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "forest10.tga",
+      "tile": [
+        75,
+        92
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        237,
+        468
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 95,
+      "offset": 100584,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower42.tga",
+      "tile": [
+        63,
+        93
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        20,
+        -5
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 96,
+      "offset": 101004,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "tree03.tga",
+      "tile": [
+        67,
+        93
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        222,
+        414
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 97,
+      "offset": 101424,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "forest14.tga",
+      "tile": [
+        63,
+        97
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        186,
+        431
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 98,
+      "offset": 101844,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np15.tga",
+      "tile": [
+        77,
+        48
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        35,
+        85
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 99,
+      "offset": 102264,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np12.tga",
+      "tile": [
+        77,
+        49
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        185,
+        394
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 100,
+      "offset": 102684,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np07.tga",
+      "tile": [
+        82,
+        50
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        133,
+        436
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 101,
+      "offset": 103104,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np33.tga",
+      "tile": [
+        78,
+        51
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        70,
+        94
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 102,
+      "offset": 103524,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np11.tga",
+      "tile": [
+        86,
+        51
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        91,
+        291
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 103,
+      "offset": 103944,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np31.tga",
+      "tile": [
+        83,
+        52
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        52,
+        79
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 104,
+      "offset": 104364,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np10.tga",
+      "tile": [
+        84,
+        54
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        102,
+        318
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 105,
+      "offset": 104784,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np09.tga",
+      "tile": [
+        95,
+        61
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        158,
+        415
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 106,
+      "offset": 105204,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower21.tga",
+      "tile": [
+        97,
+        61
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        26,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 107,
+      "offset": 105624,
+      "type": 4,
+      "ani": "ani\\MapScene.ani",
+      "section": "flower23.tga",
+      "tile": [
+        97,
+        62
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        26,
+        -10
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 108,
+      "offset": 106044,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np02.tga",
+      "tile": [
+        94,
+        63
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        74,
+        95
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 109,
+      "offset": 106464,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np14.tga",
+      "tile": [
+        83,
+        64
+      ],
+      "depth_span": [
+        1,
+        1
+      ],
+      "render_offset": [
+        47,
+        65
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    },
+    {
+      "index": 110,
+      "offset": 106884,
+      "type": 4,
+      "ani": "ani\\MapScene-snow.ani",
+      "section": "np30.tga",
+      "tile": [
+        96,
+        64
+      ],
+      "depth_span": [
+        2,
+        2
+      ],
+      "render_offset": [
+        60,
+        81
+      ],
+      "frame_interval_ms": 100,
+      "bytes": 420
+    }
+  ],
+  "positioned_offset": 107304,
+  "positioned_records": [],
+  "required_external_files": [],
+  "end_offset": 107308,
+  "all_bytes_consumed": true
+}
