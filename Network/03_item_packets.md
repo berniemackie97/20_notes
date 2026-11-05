@@ -56,7 +56,7 @@ the `+36` enchantment for every such slot except steed slot 12.
 
 Broken-state mutation is also exact: new Msg1008 equipment objects set `CItem+0x1AC` only when
 current durability `+12` is zero; action 3 update-existing writes 0 for positive durability and
-1 for zero. CMsgTick subtype 17 always writes the incoming low word to current durability and
+1 for zero. CMsgItem subtype 17 always writes the incoming low word to current durability and
 sets `+0x1AC` for a non-positive equipment update, but does not clear that byte on its positive
 path.
 

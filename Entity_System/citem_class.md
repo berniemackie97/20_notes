@@ -287,7 +287,7 @@ The exact item contribution consumed by `CHero_GetEffectiveMaxLife` / `MaxMana` 
   enchantment, or refinement values.
 - The broken byte is state, not a pure `durability == 0` derivation. New Msg1008 equipment
   objects initialize it to 1 only at zero durability; Msg1008 update-existing explicitly writes
-  0 for positive durability or 1 for zero. CMsgTick subtype 17 sets it on the non-positive path,
+  0 for positive durability or 1 for zero. CMsgItem subtype 17 sets it on the non-positive path,
   but its positive path updates current durability without clearing an existing 1.
 
 ## Upgrade Experience Tables

@@ -998,8 +998,8 @@ this->offset_967 = mode;  // 0 = main, 1 = alt
 ### CHeroItem__func_003 (0x6DAEB9, size=~350)
 **Purpose**: Sends equipment swap request to server.
 ```
-Mode 0 (main): sends CMsgTick subtype 45 + CMsgAction type 10010/408
-Mode 1 (alt):  sends CMsgTick subtype 44 + CMsgAction type 10010/408
+Mode 0 (main): sends CMsgItem subtype 45 + CMsgAction type 10010/408
+Mode 1 (alt):  sends CMsgItem subtype 44 + CMsgAction type 10010/408
 Asserts on invalid EquipMode values
 ```
 
@@ -1022,7 +1022,7 @@ Validation chain:
    Type 14 -> slot 12     Type 15 -> slot 15
    Type 16,17 -> slot 15  Type 18 -> slot 16
    Type 20 -> slot 17     Type 21 -> slot 18
-6. On success: sends CMsgTick subtype 4 with item UID and slot
+6. On success: sends CMsgItem subtype 4 with item UID and slot
 Error messages: 100049 (wrong slot), 100048 (need magic), StrErrEquipBow
 ```
 
@@ -1065,7 +1065,7 @@ Fields: hero entity ID, equipment UID, gem UID, action type
 1. Validates target item exists and has ID 1088000 (upgrade stone)
 2. Gets source item by UID
 3. Compares ceil(max_durability/100) vs ceil(current_durability/100)
-4. If valid: sends CMsgTick subtype 19 (upgrade request)
+4. If valid: sends CMsgItem subtype 19 (upgrade request)
 ```
 
 ### CHeroItem__func_006 (0x6DC46A, size=~300)
@@ -1074,7 +1074,7 @@ Fields: hero entity ID, equipment UID, gem UID, action type
 1. Validates target item via sub_67D933/sub_67D940
 2. Gets source item by UID
 3. Compares durability values (same formula as func_005)
-4. If valid: sends CMsgTick subtype 20 (repair request)
+4. If valid: sends CMsgItem subtype 20 (repair request)
 ```
 
 ### Container Info Processing (1)

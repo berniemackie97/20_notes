@@ -341,7 +341,7 @@ no status flag5/flag10, candidate level `<= heroLevel - 20`, **`GetCoachSessionS
 Subsystem is confirmed coach/tutor: the writers of `+0x9A4` sit in the same `0x6EDxxx` unit as the
 proven `CHero_SetCoachPointsAndShowPrompt`, and `sub_6ED29E` walks the hero plus a tracked role list
 resetting `+0x9A4` to `0` while re-applying coach points — a periodic reset of a capped counter.
-`CMsgPlayerSpawn` (`10014`) writes it too, so it is remote-player state as well.
+`CMsgPlayer` (`10014`) writes it too, so it is remote-player state as well.
 
 Server contract established: **`+85` carries a value whose low decimal digit is the used
 coach-session count, and must be `< 5` for that role to be selectable as an apprentice.** The
@@ -1355,6 +1355,22 @@ Conservative managed scope note:
   - source-role path (`msg+0x04` resolved role id != hero id): `call [roleVtable+0x80](role,&block)` at `0x6FF940`.
   - action-param role path (`msg+0x10` resolved role id != hero id): `call [roleVtable+0x80](role,&block)` at `0x6FF9CD`.
   - action-param role path (`msg+0x10` resolved role id == hero id): `CHero` `+0x80` dispatch at `0x6FFA24`.
+
+### Subtype `0x51` pose payload (CP1.2, 2026-11-05)
+
+Send: `Role_SendCommandStartPacketsAndSelectAction` `0x74353F` — command type `role+0x1E8 == 6` at progress
+`role+0x1EC == 0` → `CMsgAction__Create(id, x, y, dir = role+0x210, 0x51, data = role+0x228)` (`0x743605..0x74364B`).
+Receive/display: `Role_CommandType06_SelectActionFromCommandPayloadMap` `0x73450B` reads the same `role+0x228`:
+
+| Payload | State `+0x1EC` / action `+0x1A4` |
+|---|---|
+| ≤ 0, unlisted (incl. 18–149, 914) | 6 / 100 standby — not rejected |
+| 1–17, 150, 160, 170, 190, 200, 210, 474, 478 | 2 / payload |
+| 230, 270, 473 | two-stage: 0→(2, p); 2→(3, p+1) |
+| 250 | two-stage: `…PayloadFAFirstStageAction` `0x64F0D5` / `…SecondStageAction` `0x64F102` |
+| 903, 913, 915–917 | 6 / payload |
+
+Displayable pose set = the non-default rows plus 100.
 
 ### Verified subtype `0x9C` command-ingress block build
 
