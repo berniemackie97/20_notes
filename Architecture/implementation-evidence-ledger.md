@@ -1,15 +1,15 @@
-# Implementation evidence ledger — OCC + OCS (CP0.3, 2026-11-05)
+# Implementation evidence ledger — OCC + OCS (CP0.3 2026-11-05; server rows refreshed CP1.7 2026-11-06)
 
 Baseline OCS `6241d61`, OCC `c6c718d5`. Rebuild: scan scripts under `evidence/ledger-2026-11-05/`.
 
 | Level | Meaning | Count |
 |---|---|---|
-| A | repo doc cites native anchor (address / notes / Binja symbol); every cited client address present in 20_notes | 50 |
-| B | anchor exists in 20_notes (keyword-confirmed); doc does not cite it → add citation | 43 |
+| A | repo doc cites native anchor (address / notes / Binja symbol); every cited client address present in 20_notes | 61 |
+| B | anchor exists in 20_notes (keyword-confirmed); doc does not cite it → add citation | 36 |
 | B? | candidate anchor, weak keyword match → confirm while citing | 4 |
 | C | no native anchor found → RE needed | 0 |
-| H | historical anchor only (TQ server / 5095 data); no 5517 client proof | 2 |
-| M | modern/product by design (launcher, ops, persistence, hosting, security policy, own formats) | 42 |
+| H | historical anchor only (TQ server / 5095 data); no 5517 client proof | 1 |
+| M | modern/product by design (launcher, ops, persistence, hosting, security policy, own formats) | 44 |
 
 Code citations: 14/14 native addresses quoted in OCS/OCC `src` comments exist in 20_notes.
 Doc citation `0x66D477` (FLOW-001A) was absent from notes: Binja confirms `Sleep(5000)` in
@@ -49,6 +49,7 @@ Doc citation `0x66D477` (FLOW-001A) was absent from notes: Binja confirms `Sleep
 | `architecture/launcher-managed-installation.md` | M | product/ops (no native counterpart) |
 | `architecture/launcher-play-screen.md` | A | notes + symbols |
 | `architecture/launcher-settings.md` | M | product/ops (no native counterpart) |
+| `architecture/shared-build-baseline.md` | M | product/ops (no native counterpart) |
 | `compatibility/native-graphics.md` | B | Rendering/graphic_dll/08_screen_dimensions_and_internal_resolution.md |
 | `compatibility/native-text.md` | B | Rendering/graphic_dll/04_fonts_and_text.md |
 | `compatibility/server-dat.md` | B | Crypto/02_server_dat_rsa_public_key_5517.md; Architecture/05_startup_data_files_and_native_replacement.md |
@@ -143,25 +144,29 @@ Doc citation `0x66D477` (FLOW-001A) was absent from notes: Binja confirms `Sleep
 | `README.md` | M | product/ops (no native counterpart) |
 | `architecture/README.md` | M | product/ops (no native counterpart) |
 | `architecture/account-registration.md` | M | product/ops (no native counterpart) |
-| `architecture/authentication.md` | B | Server/login-credential-envelope.md; Crypto/01_rc5_credential_field.md |
+| `architecture/authentication.md` | A | 3 addr + notes + symbols |
 | `architecture/authoritative-movement-eligibility.md` | A | notes |
 | `architecture/character-creation-session-primitives.md` | A | notes |
 | `architecture/character-creation.md` | A | 2 addr + notes + symbols |
 | `architecture/connected-portal-transfers.md` | A | 1 addr + notes + symbols |
 | `architecture/durable-character-location.md` | M | product/ops (no native counterpart) |
+| `architecture/exception-handling.md` | M | product/ops (no native counterpart) |
 | `architecture/fenced-character-admission.md` | M | product/ops (no native counterpart) |
 | `architecture/ground-walking.md` | A | 2 addr + notes |
 | `architecture/multi-realm.md` | A | notes |
 | `architecture/native-24-direction-movement.md` | A | 3 addr + notes + symbols |
-| `architecture/native-avatar-actions.md` | A | 2 addr + notes + symbols |
+| `architecture/native-avatar-actions.md` | A | 7 addr + notes + symbols |
 | `architecture/native-chat.md` | A | notes + symbols |
 | `architecture/native-jumping.md` | A | 4 addr + notes + symbols |
 | `architecture/native-portal-preflight.md` | A | 3 addr + notes + symbols |
-| `architecture/networking.md` | B | Network/13_connection_lifecycle.md |
-| `architecture/persistence.md` | M | product/ops (no native counterpart) |
+| `architecture/networking.md` | A | 2 addr + notes + symbols |
+| `architecture/persistence.md` | A | 1 addr + symbols |
 | `architecture/player-visibility.md` | A | 5 addr + notes |
 | `architecture/position-synchronization.md` | A | notes |
 | `architecture/revival-destination-authority.md` | A | notes |
+| `architecture/server-responsibilities.md` | A | notes |
+| `architecture/shared-build-baseline.md` | M | product/ops (no native counterpart) |
+| `architecture/world-command-load.md` | A | 2 addr + notes |
 | `architecture/world-execution.md` | M | partition design (modern) |
 | `architecture/world-transfer-preflight.md` | M | product/ops (no native counterpart) |
 | `architecture/world-transition-catalog-readiness.md` | M | product/ops (no native counterpart) |
@@ -169,12 +174,12 @@ Doc citation `0x66D477` (FLOW-001A) was absent from notes: Binja confirms `Sleep
 | `content/base-terrain-format.md` | M | product/ops (no native counterpart) |
 | `content/collision-format.md` | M | product/ops (no native counterpart) |
 | `content/historical-source-reconciliation.md` | H | Server/historical-reconciliation-5095.md |
-| `content/item-type-catalog-v2.md` | B | Entity_System/citem_class.md (Itemtype.dat seed 0x2537); Server/database-provenance.md |
+| `content/item-type-catalog-v2.md` | A | 1 addr + notes |
 | `content/item-type-native-source.md` | A | notes |
 | `content/map-transitions.md` | A | 1 addr + notes + symbols |
 | `operations/account-server.md` | M | product/ops (no native counterpart) |
 | `operations/character-creation-persistence.md` | M | product/ops (no native counterpart) |
-| `operations/character-creation-starting-state.md` | H | Server/tq-server-15.10-runtime-semantics.md (CUserList__CreateNewUser 0x4AA79A, map 1010 portal0); Server/character-attributes-and-auto-allot.md |
+| `operations/character-creation-starting-state.md` | A | 1 addr + symbols |
 | `operations/database-identities.md` | M | product/ops (no native counterpart) |
 | `operations/database-migrations.md` | M | product/ops (no native counterpart) |
 | `operations/game-realm-binding.md` | M | product/ops (no native counterpart) |
@@ -183,12 +188,12 @@ Doc citation `0x66D477` (FLOW-001A) was absent from notes: Binja confirms `Sleep
 | `operations/realm-bound-tickets.md` | M | product/ops (no native counterpart) |
 | `operations/realm-registry.md` | M | product/ops (no native counterpart) |
 | `operations/realms.md` | M | product/ops (no native counterpart) |
-| `protocol/README.md` | B | Network/13_connection_lifecycle.md; 01_core_packets.md; 00_protocol_overview.md |
+| `protocol/README.md` | A | 1 addr + notes + symbols |
 | `protocol/character-creation.md` | A | 6 addr + notes + symbols |
-| `protocol/framing.md` | B | Crypto/00_tqcipher64.md; Network/13_connection_lifecycle.md |
-| `protocol/text-encoding.md` | B | Network/Native-auth-string-validation-2026-10-18.md |
+| `protocol/framing.md` | A | 2 addr + notes + symbols |
+| `protocol/text-encoding.md` | A | notes |
 | `reviews/PR-171-registration-audit.md` | M | product/ops (no native counterpart) |
-| `status.md` | B | feature table below |
+| `status.md` | A | notes |
 
 ## Gaps → closing checkpoint
 
@@ -196,3 +201,10 @@ Doc citation `0x66D477` (FLOW-001A) was absent from notes: Binja confirms `Sleep
 - **P items (policy on native packets):** document as policy in the repo doc (not native) → CP1.7.
 - **H items:** stay historical; any 5517 behaviour claim built on them needs a client Binja anchor before CP5+ work.
 - **C items:** none found in docs. Unanchored *claims inside* A/B docs are not yet itemised — a per-claim pass happens when each doc is cited (CP1.7/CP2.10).
+
+## Post-baseline ownership work
+
+| Date | Repo document | Level | Checkpoint / authority |
+| --- | --- | --- | --- |
+| 2026-11-06 | OCC `architecture/client-role-ownership.md` | M | CP2.1b role lifetime/host extraction; `Architecture/client-role-ownership.md`. Existing role-flow anchors and pinned transport fixtures reused; no new native behavior claim. |
+| 2026-11-06 | OCC `architecture/client-session-ownership.md` | M | CP2.1c login owner, explicit phases and ordered shutdown; `Architecture/client-session-ownership.md`. Existing native loading/role anchors and pinned encrypted fixtures reused. |

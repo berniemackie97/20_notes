@@ -119,6 +119,11 @@ Verified 2026-10-14 (headless IDA). MsgAction subtype numbers below are **15.10*
 | `0x417CF7` / `0x42B09C` / `0x418D12` | `CUser__EnterMap` / `__IsBeAtkable` / `__ProcessOnAttack` | `m_tLock` (CUser+2372/+2376, TQ `CHGMAP_LOCK_SECS`=10): started by EnterMap and Reborn, blocks being attacked, cleared by ProcessOnMove/ProcessOnAttack |
 | `0x4AA79A` | `CUserList__CreateNewUser` | map 1010 at `cq_map.portal0` (`CMapInfoSet__GetById` `0x4ABB61`; 5095 row: (60,108)). Allot S/A/V/Sp: 10,20 → 5/2/3/0; 40 → 2/7/1/0; 50 → 1/8/1/0; 100 → 0/2/3/5. life = 3·(S+A+Sp+8V); mana = 5·Sp; money 100; hair = 100·rand(7)+310; lookface = body+10000 (male, face 1) / body+2010000 (female, face 201) |
 
+Creation appearance (binary-traced 2026-11-06, `0x4AA79A`): body thousands digit 1 ⇒ `lookface = body%10000 + 10000`
+(face 1); 2 ⇒ `body%10000 + 2010000` (face 201); hair `= 100·rand(7) + 310` with `0x4B2091` = `((rand()<<15)+rand()) % n`
+⇒ color 3–9, style 10. Insert writes `profession` only. Client side: `[Playerface]` counts in
+`Rendering/gamedata_dll/README.md`.
+
 Death record (binary-traced 2026-10-16): `CUser__BeKill` sets the record to the current map's `reborn_mapid` at that
 map's `portal0` via `CGameMap__GetRebornMap` / `CUser__SetRecordPos`; see [death/ghost/revive](death-ghost-revive-5517.md).
 Record position on leave-map (fight-master, not binary-traced): `SetRecordPos(current)` only if `IsStandEnable` ∧

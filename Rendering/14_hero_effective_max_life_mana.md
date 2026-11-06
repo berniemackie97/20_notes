@@ -1,5 +1,10 @@
 # `CHero::GetEffectiveMaxLife` / `GetEffectiveMaxMana`
 
+Current CP2.2 revalidation and modern model boundary:
+[hero-model-cp22.md](hero-model-cp22.md). The legacy managed class names below are
+historical mappings. Native formulas remain authoritative; the current model's
+deferred packet-clamp ordering remains an explicit residual.
+
 `CHero_GetEffectiveMaxLife` `0x65D06D`, `CHero_GetEffectiveMaxMana` `0x65D25A`.
 
 These are the values the HUD's HP and MP gauges are ranged against every frame by
