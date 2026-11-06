@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import re
 import struct
+import sys
 
 here = Path(__file__).resolve().parent
 binary = here.parents[3] / '00_clean/clean/5517-bninja/Conquer.exe'
@@ -39,6 +40,16 @@ for path in sorted(here.glob('*.asm')):
     assert instructions, path
     windows[path.name] = instructions
 assert read(0x6570a9, 10).hex() == 'c7833408000064000000'
+fixture_verification = None
+if len(sys.argv) == 2:
+    fixture = json.loads(Path(sys.argv[1]).read_text())
+    assert fixture['binarySha256'] == digest
+    for window in fixture['nativeCodeWindows']:
+        expected = bytes.fromhex(window['bytes'])
+        assert read(int(window['address'], 16), len(expected)) == expected, window['address']
+    fixture_verification = {'kind': fixture['kind'], 'codeWindows': len(fixture['nativeCodeWindows'])}
+else:
+    assert len(sys.argv) == 1, 'Optional argument: managed native-stats-5517.json fixture path'
 print(json.dumps({'binarySha256': digest, 'kind': 'static-byte-verification',
                   'initialStaminaStore': {'address': '0x6570a9', 'bytes': 'c7833408000064000000'},
-                  'windows': windows}, indent=2))
+                  'fixture': fixture_verification, 'windows': windows}, indent=2))

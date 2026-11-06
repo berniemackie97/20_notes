@@ -134,7 +134,7 @@ Doc citation `0x66D477` (FLOW-001A) was absent from notes: Binja confirms `Sleep
 | `world/WORLD-024-ground-walk-transport.md` | B | Network/15_msgwalk_10005_direction_index_order.md; Server/movement.md |
 | `world/WORLD-025-first-world-hero-attributes.md` | B | Network/11_else_branch_packets.md (MsgUserAttrib 10017); MsgUserInfo1006-semantic-closure-2026-09-17.md |
 | `world/WORLD-026-initial-equipment-state.md` | B | Server/equipment.md; Network/08_system_packets.md (MsgItem 1009); MsgItem1008-domain-contract-5517.md |
-| `world/WORLD-027-first-world-vitals.md` | B | Rendering/14_hero_effective_max_life_mana.md; 13_hud_progress_gauges.md |
+| `world/WORLD-027-first-world-vitals.md` | A | Rendering/14_hero_effective_max_life_mana.md; 13_hud_progress_gauges.md; hero-model-cp22.md. CP2.2 adds per-rule anchors, clamp correction and explicit residuals. |
 | `world/WORLD-028-first-world-experience.md` | B | Entity_System/chero_class.md:444 (LevExp.dat seed 0x4D2) |
 
 ## OpenConquerServer docs
@@ -208,3 +208,4 @@ Doc citation `0x66D477` (FLOW-001A) was absent from notes: Binja confirms `Sleep
 | --- | --- | --- | --- |
 | 2026-11-06 | OCC `architecture/client-role-ownership.md` | M | CP2.1b role lifetime/host extraction; `Architecture/client-role-ownership.md`. Existing role-flow anchors and pinned transport fixtures reused; no new native behavior claim. |
 | 2026-11-06 | OCC `architecture/client-session-ownership.md` | M | CP2.1c login owner, explicit phases and ordered shutdown; `Architecture/client-session-ownership.md`. Existing native loading/role anchors and pinned encrypted fixtures reused. |
+| 2026-11-06 | OCC `world/WORLD-027-first-world-vitals.md` | A | CP2.2 model boundary; `Rendering/hero-model-cp22.md` and byte-verified evidence. Static golden cases; runtime and packet-batch timing parity not claimed. |

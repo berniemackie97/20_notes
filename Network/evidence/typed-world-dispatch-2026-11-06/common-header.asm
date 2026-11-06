@@ -1,0 +1,36 @@
+006df2ae  53               push    ebx
+006df2af  56               push    esi
+006df2b0  57               push    edi
+006df2b1  8b 7c 24 10      mov     edi, dword [esp+0x10]
+006df2b5  85 ff            test    edi, edi
+006df2b7  8b d9            mov     ebx, ecx
+006df2b9  74 20            je      0x6df2db
+006df2bb  8b 74 24 14      mov     esi, dword [esp+0x14]
+006df2bf  56               push    esi
+006df2c0  57               push    edi
+006df2c1  e8 e7 00 00 00   call    CNetMsg__GetSize
+006df2c6  59               pop     ecx
+006df2c7  66 3b f0         cmp     si, ax
+006df2ca  59               pop     ecx
+006df2cb  75 0e            jne     0x6df2db
+006df2cd  56               push    esi
+006df2ce  57               push    edi
+006df2cf  e8 d0 00 00 00   call    CNetMsg__GetType
+006df2d4  59               pop     ecx
+006df2d5  66 85 c0         test    ax, ax
+006df2d8  59               pop     ecx
+006df2d9  75 04            jne     0x6df2df
+006df2db  33 c0            xor     eax, eax
+006df2dd  eb 11            jmp     0x6df2f0
+006df2df  56               push    esi
+006df2e0  83 c3 04         add     ebx, 0x4
+006df2e3  57               push    edi
+006df2e4  53               push    ebx
+006df2e5  e8 d0 83 09 00   call    memcpy
+006df2ea  83 c4 0c         add     esp, 0xc
+006df2ed  6a 01            push    0x1
+006df2ef  58               pop     eax
+006df2f0  5f               pop     edi
+006df2f1  5e               pop     esi
+006df2f2  5b               pop     ebx
+006df2f3  c2 08 00         retn    0x8

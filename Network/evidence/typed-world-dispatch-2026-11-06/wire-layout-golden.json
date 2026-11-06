@@ -1,0 +1,144 @@
+{
+  "kind": "static-disassembly-derived-wire-layout-golden",
+  "binarySha256": "b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62",
+  "nativeRuntimeObserved": false,
+  "packetProvenance": "Manually specified synthetic sentinel fields, encoded little endian independently of managed production codecs. Code-window bytes prove layout only; frames were not captured or executed by the native client.",
+  "nativeCodeWindows": [
+    {
+      "address": "0x6df2c7",
+      "bytes": "663bf0",
+      "meaning": "Common validator compares header size to low16 caller size"
+    },
+    {
+      "address": "0x6feba9",
+      "bytes": "66817e061a27",
+      "meaning": "10010 parser type comparison"
+    },
+    {
+      "address": "0x6fea6a",
+      "bytes": "66894816",
+      "meaning": "Action direction word at packet+22"
+    },
+    {
+      "address": "0x6fea85",
+      "bytes": "89481c",
+      "meaning": "Action Data1 DWORD at packet+28"
+    },
+    {
+      "address": "0x6feab0",
+      "bytes": "894120",
+      "meaning": "Action Data2 DWORD at packet+32"
+    },
+    {
+      "address": "0x6feb17",
+      "bytes": "c6402401",
+      "meaning": "Action flag byte at packet+36"
+    },
+    {
+      "address": "0x6fed46",
+      "bytes": "0fb74814",
+      "meaning": "Action dispatch word at packet+20"
+    },
+    {
+      "address": "0x6ffcec",
+      "bytes": "0fb74618",
+      "meaning": "Correction x word at packet+24"
+    },
+    {
+      "address": "0x6ffcf3",
+      "bytes": "0fb7461a",
+      "meaning": "Correction y word at packet+26"
+    },
+    {
+      "address": "0x7607f4",
+      "bytes": "66817e06f803",
+      "meaning": "1016 parser type comparison"
+    },
+    {
+      "address": "0x76080a",
+      "bytes": "ff7010ff700cff7008ff7004",
+      "meaning": "Weather four DWORD fields at packet+16,+12,+8,+4"
+    },
+    {
+      "address": "0x757367",
+      "bytes": "66817e062127",
+      "meaning": "10017 parser type comparison"
+    },
+    {
+      "address": "0x757469",
+      "bytes": "8d34b6c1e602",
+      "meaning": "Attribute index multiplied by20"
+    },
+    {
+      "address": "0x75746f",
+      "bytes": "8b44160c",
+      "meaning": "Attribute id DWORD at packet+12+20*i"
+    },
+    {
+      "address": "0x7574da",
+      "bytes": "8d740610",
+      "meaning": "Status16-byte payload source at packet+16+20*i"
+    },
+    {
+      "address": "0x7574e3",
+      "bytes": "6a10",
+      "meaning": "Status memcpy length16"
+    }
+  ],
+  "cases": [
+    {
+      "name": "action-all-fields-sentinel",
+      "packetHex": "26001a2778563412896745239a785634ab8967456c00785689679a78efcdab89f0debc9aa500",
+      "expected": {
+        "packetType": 10010,
+        "entityId": "0x12345678",
+        "parameter": "0x23456789",
+        "actionParameter": "0x3456789a",
+        "timestamp": "0x456789ab",
+        "action": 108,
+        "direction": "0x5678",
+        "x": "0x6789",
+        "y": "0x789a",
+        "data1": "0x89abcdef",
+        "data2": "0x9abcdef0",
+        "flag": "0xa5",
+        "stringCount": 0
+      },
+      "policy": "Layout fixture only. Current managed action108 ingress rejects nonzero restricted fields; this does not authorize accepting it."
+    },
+    {
+      "name": "weather-boundaries-and-parameter-sentinel",
+      "packetHex": "1400f80302000000fe0300006701000098badcfe",
+      "expected": {
+        "packetType": 1016,
+        "kind": 2,
+        "intensity": 1022,
+        "direction": 359,
+        "parameter": "0xfedcba98"
+      },
+      "policy": "Typed codec preserves the wire tuple; native-normalized rendering semantics remain outside CP2.3a."
+    },
+    {
+      "name": "attributes-low64-high64-status",
+      "packetHex": "340021277856341202000000050000001032547698badcfe000000000000000019000000efcdab89674523011032547698badcfe",
+      "expected": {
+        "packetType": 10017,
+        "targetId": "0x12345678",
+        "count": 2,
+        "entries": [
+          {
+            "attributeId": 5,
+            "low": "0xfedcba9876543210",
+            "high": "0x0000000000000000"
+          },
+          {
+            "attributeId": 25,
+            "low": "0x0123456789abcdef",
+            "high": "0xfedcba9876543210"
+          }
+        ]
+      },
+      "policy": "Preserve all16 payload bytes. Native usage of high64 is specifically proven for attribute25; do not infer other attribute semantics."
+    }
+  ]
+}

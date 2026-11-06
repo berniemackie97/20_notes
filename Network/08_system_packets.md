@@ -41,7 +41,7 @@ Source: `F:\CQ2ClientRelease-42.0.1\3DRole\Network\`
 - `41`: active-item tip flow for UID `+4`; if item is valid, builds localized `STR_ACTIVE_ITEM_TIP` text and adds a system chat line.
 - `42`: item-timeout delete flow for UID `+4`; removes item, posts `0x3EB/0x4BA` and optional `0xD31`, logs "ItemTimeOut". If UID is already absent, runs fallback timeout cleanup helpers and logs the same notification.
 - `43`: posts `PostMainWndMsg_0x464(0xD33, +8)`.
-- `46`: complete equipment snapshot. It consumes fixed UID fields at `+20,+24,+28,+2C,+30,+34,+38,+3C,+40,+44,+48,+4C,+50`, applies `CHeroItem__SetEquipSlot` for slots `{1,2,3,5,4,6,7,8,9,16,15,17,18}`, applies `CHeroItem__SetEquipMode(+8)`, refreshes equipment-derived stats, clamps current life and its gauge follower to effective max life when required, then posts `0x3EB/0x3FB/0x445/0x446/0x4FE`.
+- `46`: complete equipment snapshot. It consumes fixed UID fields `+0x20..+0x50` mapped ascending to slots 1..9, 15..18 and calls `CHeroItem__SetEquipSlot` in order `{1,2,3,5,4,6,7,8,9,16,15,17,18}` (call order, not offset map; [CP2.3b audit](typed-world-dispatch-cp23.md#cp23b-snapshot-slot-audit)), applies `CHeroItem__SetEquipMode(+8)`, refreshes equipment-derived stats, clamps current life and its gauge follower to effective max life when required, then posts `0x3EB/0x3FB/0x445/0x446/0x4FE`.
 - `47`: force-equip-to-bag text assembly flow; iterates UID list at `+84` for `count_or_value` entries, resolves item names, and shows a message box.
 - `50`: item-transfer flow via subsystem `0x4B178A` using UID `+4` and state `+8`; posts `0xC30(+8)`, `0xC2E(0)`, `0x3EB(0)`.
 - `51`: iterates `count_or_value` dword entries from `+84`, posting `0xD37` for each UID, then posts `0xD38` with `+8`.

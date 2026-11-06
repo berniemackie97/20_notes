@@ -296,8 +296,9 @@ It has nine call sites; five write index 1: `CMsgUserInfo__Process`, `CMsgUserAt
 remaining uncovered writer is the remote-player spawn path described below.
 
 **`CMsgItem__Process` subtype 46 is the complete equipment snapshot plus clamp.** Packet offsets
-`0x20` through `0x50` contain 13 item UIDs mapped in order to slots
-`{1,2,3,5,4,6,7,8,9,16,15,17,18}`. Native resolves each UID with
+`0x20` through `0x50` contain 13 item UIDs mapped ascending to slots 1..9, 15..18 (`+0x2C`→4,
+`+0x30`→5, `+0x44`→15, `+0x48`→16). `{1,2,3,5,4,6,7,8,9,16,15,17,18}` is the **call order**, not
+the offset map (CP2.3b audit, [typed-world-dispatch-cp23.md](../Network/typed-world-dispatch-cp23.md#cp23b-snapshot-slot-audit)). Native resolves each UID with
 `CHeroItem__FindTrackedItemByUid`; zero or missing UIDs clear that slot. After
 `CHero__RefreshEquipmentDerivedStats`, it recomputes `CHero_GetEffectiveMaxLife` and, **only when
 the current index 1 exceeds it under a signed comparison**, writes the maximum into vtable `+0xA4`,

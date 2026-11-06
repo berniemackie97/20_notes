@@ -660,7 +660,7 @@ Extended user attribute update — the second most complex packet handler (~6000
 | +0 | DWORD | Attribute ID |
 | +4 | DWORD | Value (low 32 bits) |
 | +8 | DWORD | Value (high 32 bits, for 64-bit values) |
-| +12 | 8 bytes | Padding / unused |
+| +12 | QWORD | High payload; status 25 copies all 16 bytes +4..+19 (`0x7574E3`). Not universal padding — see [typed-world-dispatch-cp23.md](typed-world-dispatch-cp23.md#10017-attribute-layout-and-status-high64-correction) |
 
 #### Entity Lookup
 

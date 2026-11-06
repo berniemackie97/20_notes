@@ -1,0 +1,26 @@
+{
+  "kind": "static-native-data",
+  "binarySha256": "b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62",
+  "windows": [
+    {
+      "address": "0x86bad8",
+      "bytes": "05e96f0093eb6f00a4f26d0055f36d001fed6f00911c7000",
+      "meaning": "CMsgAction vtable; parser slot+4 and Process slot+16"
+    },
+    {
+      "address": "0x86d4e0",
+      "bytes": "a6067600de077600a4f26d0055f36d0001087600c5087600",
+      "meaning": "CMsgWeatherUpdate vtable; parser slot+4 and Process slot+16"
+    },
+    {
+      "address": "0x86d0b0",
+      "bytes": "2a73750051737500a4f26d0055f36d0074737500308e7500",
+      "meaning": "CMsgUserAttrib vtable; parser slot+4 and Process slot+16"
+    },
+    {
+      "address": "0x758d7d",
+      "bytes": "c5747500",
+      "meaning": "Attribute25 jump-table target0x7574c5"
+    }
+  ]
+}

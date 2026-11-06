@@ -42,12 +42,20 @@ No BNDB save initiated; Bernie retains persistence control.
 
 ## Model boundary and limitations
 
-Target: WorldHeroModel owns hero attributes/equipment/revision, pending equipment
+WorldHeroModel owns hero attributes/equipment/revision, pending equipment
 clamp and followers. WorldInboundState remains the current wire adapter. The model
 returns a world-owned resolved vitals value; ClientWorld only maps it to HUD input
 at the existing guarded draw point after scene.Draw. Keep initial transform-source
 zero guard, neutral life-tier input, catalog-loading point and follower cadence.
 Reuse existing item/max-stat formulas with native citations beside their constants.
+
+`AdvanceVitals(ItemStatCatalog, LevelExperienceTable, ...)` accepts already-parsed
+tables, mutates model vitals and returns a world DTO. No rendering, I/O, tasks or
+HUD dependency. The name describes model work; frame cadence remains a caller
+contract. Rules remain in the client's World layer under the existing assembly
+structure. `WORLD-027` records the responsibility boundary and per-rule anchors.
+
+**Resolved CP2.3b** ([typed-world-dispatch-cp23.md](../Network/typed-world-dispatch-cp23.md#cp23b-snapshot-clamp-order)): clamp now synchronous in the subtype-46 handler; slot map audited ascending. Historical text follows.
 
 Known residual for CP2.3: one deferred snapshot-clamp flag loses inter-packet order
 when a later life update arrives in the same ingress batch. Native clamps inside
@@ -58,3 +66,21 @@ it does not add a queue, reorder ingress/loading or claim full packet-order pari
 Also defer the inconsistent snapshot-slot ordering descriptions in old note 14
 versus the current ascending-slot implementation to the typed 1009 audit. No
 unverified slot-order change is needed for the summed stat calculation here.
+
+## Implementation validation
+
+OCC branch `bernie/hero-vitals-model`: 12 new test cases; static-disassembly-derived
+fixture covers 20 maxima and 8 stamina vectors. The pinned original encoded
+type-50000 row is reused; equipped-armor and experience tables/packets are synthetic
+independent encodings. Provenance is explicit in the fixture README. The byte
+verifier also checks the five code windows embedded in the managed JSON fixture.
+No native runtime execution or running-client smoke is claimed.
+
+Local SDK 10.0.403: locked restore and zero-warning Release build passed;
+Client 1,497, Content 750, Rendering 499, Platform 86 tests passed (2,832 total).
+Final format verification and self-audit passed. OCC #238 at `165e91db` is ready
+for Bernie review. CI run 1002 passed Quality (Linux), Windows and macOS; dependency
+review passed. Private retail-asset gates conditionally skipped as before. Local
+client branch is clean and pushed/synced. No additional task/resource lifetime,
+wire-format or package change. CP2.2 stays current until Bernie review/merge;
+BNDB persistence remains Bernie's action.

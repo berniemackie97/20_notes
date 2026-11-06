@@ -1,0 +1,96 @@
+{
+  "binarySha256": "b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62",
+  "view": 9,
+  "saved": false,
+  "renames": [
+    {
+      "old_name": "sub_7607de",
+      "new_name": "CMsgWeatherUpdate__Parse",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully renamed function from sub_7607de to CMsgWeatherUpdate__Parse\", \"function\": {\"name\": \"sub_7607de\", \"raw_name\": \"sub_7607de\", \"address\": \"0x7607de\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"sub_7607de\"}}}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully renamed function from sub_7607de to CMsgWeatherUpdate__Parse\", \"function\": {\"name\": \"sub_7607de\", \"raw_name\": \"sub_7607de\", \"address\": \"0x7607de\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"sub_7607de\"}}}"
+        },
+        "isError": false
+      }
+    },
+    {
+      "old_name": "CMsgUserAttribEx__Parse",
+      "new_name": "CMsgUserAttrib__Parse",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"success\": true, \"message\": \"Successfully renamed function from CMsgUserAttribEx__Parse to CMsgUserAttrib__Parse\", \"function\": {\"name\": \"CMsgUserAttribEx__Parse\", \"raw_name\": \"CMsgUserAttribEx__Parse\", \"address\": \"0x757351\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CMsgUserAttribEx__Parse\"}}}"
+          }
+        ],
+        "structuredContent": {
+          "result": "{\"success\": true, \"message\": \"Successfully renamed function from CMsgUserAttribEx__Parse to CMsgUserAttrib__Parse\", \"function\": {\"name\": \"CMsgUserAttribEx__Parse\", \"raw_name\": \"CMsgUserAttribEx__Parse\", \"address\": \"0x757351\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CMsgUserAttribEx__Parse\"}}}"
+        },
+        "isError": false
+      }
+    }
+  ],
+  "nameReadbacks": [
+    {
+      "kind": "nameReadback",
+      "name": "CMsgWeatherUpdate__Parse",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"matches\": [{\"name\": \"CMsgWeatherUpdate__Parse\", \"address\": \"0x7607de\", \"raw_name\": \"CMsgWeatherUpdate__Parse\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CMsgWeatherUpdate__Parse\"}}]}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "kind": "nameReadback",
+      "name": "CMsgUserAttrib__Parse",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"matches\": [{\"name\": \"CMsgUserAttrib__Parse\", \"address\": \"0x757351\", \"raw_name\": \"CMsgUserAttrib__Parse\", \"symbol\": {\"type\": \"SymbolType.FunctionSymbol\", \"full_name\": \"CMsgUserAttrib__Parse\"}}]}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ],
+  "functions": [
+    {
+      "function_name": "CMsgWeatherUpdate__Parse",
+      "comment": "CP2.3a VERIFIED STATIC 2026-11-06; clean 5517 SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62. Vtable 0x86D4E0+4 points here; Process slot +0x10 is 0x760801. Calls common ValidateHeaderAndCopy at 0x7607E9 then compares packet type word 0x03F8 at 0x7607F4. No exact 20-byte rule in this wrapper. Process 0x76080A..13 reads four DWORDs at packet+16,+12,+8,+4 for ValidateAndNormalize. Managed exact-length and kind-6 policies are separate from native layout. Notes: 20_notes/Network/typed-world-dispatch-cp23.md.",
+      "readback": {
+        "success": true,
+        "function": "CMsgWeatherUpdate__Parse",
+        "comment": "CP2.3a VERIFIED STATIC 2026-11-06; clean 5517 SHA256 b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62. Vtable 0x86D4E0+4 points here; Process slot +0x10 is 0x760801. Calls common ValidateHeaderAndCopy at 0x7607E9 then compares packet type word 0x03F8 at 0x7607F4. No exact 20-byte rule in this wrapper. Process 0x76080A..13 reads four DWORDs at packet+16,+12,+8,+4 for ValidateAndNormalize. Managed exact-length and kind-6 policies are separate from native layout. Notes: 20_notes/Network/typed-world-dispatch-cp23.md."
+      }
+    },
+    {
+      "function_name": "CMsgUserAttrib__Parse",
+      "comment": "CP2.3a VERIFIED STATIC 2026-11-06. Native header-validator call at 0x75735C then packet type comparison 0x2721 (10017) at 0x757367; SETE at 0x75736D. Vtable 0x86D0B0+4 points here and Process slot +0x10 is 0x757374. CMsgUserAttrib class name proven by MsgUserAttrib.cpp TU anchor 0x758561; obsolete Ex parser label withdrawn to match CP0.1 ctor/process. Process uses packet+4 DWORD target,+8 DWORD count,+12 entries, stride 20. Each entry has DWORD id then 16 data bytes; attribute 25 copies all 16 at 0x7574EA, so entry+12..19 is meaningful status high64, not generic padding. Existing semantic note preserved: discriminator 23 -> role+0x8B8, shared with 1006+44. No exact record-length rule proven in this parser. Notes: 20_notes/Network/typed-world-dispatch-cp23.md.",
+      "readback": {
+        "success": true,
+        "function": "CMsgUserAttrib__Parse",
+        "comment": "CP2.3a VERIFIED STATIC 2026-11-06. Native header-validator call at 0x75735C then packet type comparison 0x2721 (10017) at 0x757367; SETE at 0x75736D. Vtable 0x86D0B0+4 points here and Process slot +0x10 is 0x757374. CMsgUserAttrib class name proven by MsgUserAttrib.cpp TU anchor 0x758561; obsolete Ex parser label withdrawn to match CP0.1 ctor/process. Process uses packet+4 DWORD target,+8 DWORD count,+12 entries, stride 20. Each entry has DWORD id then 16 data bytes; attribute 25 copies all 16 at 0x7574EA, so entry+12..19 is meaningful status high64, not generic padding. Existing semantic note preserved: discriminator 23 -> role+0x8B8, shared with 1006+44. No exact record-length rule proven in this parser. Notes: 20_notes/Network/typed-world-dispatch-cp23.md."
+      }
+    }
+  ],
+  "instruction": {
+    "address": "0x7574ea",
+    "comment": "CP2.3a static byte proof: attribute 25 jump-table slot 0x758D7D points to 0x7574C5. memcpy(dst, packet+12+20*i+4, 16) copies low64 AND high64 status payload; entry+12..19 is not padding for this attribute. Consumer 0x757712 passes the 16-byte local to role vtable+0xD0. No native runtime capture claimed.",
+    "readback": {
+      "success": true,
+      "address": "0x7574ea",
+      "comment": "CP2.3a static byte proof: attribute 25 jump-table slot 0x758D7D points to 0x7574C5. memcpy(dst, packet+12+20*i+4, 16) copies low64 AND high64 status payload; entry+12..19 is not padding for this attribute. Consumer 0x757712 passes the 16-byte local to role vtable+0xD0. No native runtime capture claimed."
+    }
+  }
+}

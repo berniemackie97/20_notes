@@ -5,6 +5,10 @@
     "address": "0x6570a9",
     "bytes": "c7833408000064000000"
   },
+  "fixture": {
+    "kind": "static-disassembly-derived-golden-cases",
+    "codeWindows": 5
+  },
   "windows": {
     "equipment-clamp.asm": [
       {
