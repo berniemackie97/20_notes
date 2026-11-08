@@ -33,7 +33,7 @@ In Conquer.exe view 9, Role_ProcessCommandStateAndCombatPackets obtains the curr
 
 ## Static proof of the 108 reply
 
-In CMsgAction__Process, 108 resolves to the hero at 0x6FFCBF–0x6FFCD0. It reads unsigned tile words from +24/+26 at 0x6FFCEC/0x6FFCF3 and updates role and gate state through 0x6FFD21/0x6FFD31. There is no same-tile comparison or repeat suppression before the 146 builder and send at 0x6FFD80–0x6FFD8F. This is a static branch result. Repeated and same-tile exchanges have no runtime record in the current corpus.
+In CMsgAction__Process, 108 resolves to the hero at 0x6FFCBF–0x6FFCD0. It reads unsigned tile words from +24/+26 at 0x6FFCEC/0x6FFCF3 and updates role and gate state through 0x6FFD21/0x6FFD31. There is no same-tile comparison or repeat suppression before the 146 builder and send at 0x6FFD80–0x6FFD8F. This is a static branch result. The later CP3.2e probe independently observed same-tile, changed-tile and exact-repeat replies, plus silent foreign-target paths. [Correction runtime evidence](../cp32-correction-2026-11-08/README.md)
 
 The push of -1 at 0x6FFD5B survives CGameMap_GetSingletonPtr and CGameMap_GetMapId. Both return with plain RET. It is the tenth argument to CMsgAction_CreateExtended, which ends with RET 0x28. The current map ID is the ninth argument. EBX was zeroed at 0x6FED38 and is used for zero fields. The extended builder clears the buffer, reads the hero ID and facing passed by the caller, and uses a fresh timeGetTime when the timestamp argument is zero.
 

@@ -45,7 +45,7 @@ Native 1009/27 carries the raw client millisecond timer at +16 on the wire. The 
 
 Read-only assembly in the Conquer.exe Binary Ninja view ties the two operations together. The heartbeat caller builds subtype 27 at 0x661B3B and calls CNetMsg__Send at 0x661B4A. The builder XORs at 0x6EACB0 and stores at 0x6EACB4. CNetMsg__Send calls 0x6DF0E0 at 0x6DF39D. The latter compares packet type 1009 at 0x6DF104 and subtype 27 at 0x6DF10C, calls Conquer_GetTimeGetTime at 0x6DF113, and stores the raw result at packet +16 at 0x6DF118 before the buffered send at 0x6DF12A.
 
-This supersedes the on-wire XOR conclusion in the prior bootstrap note. Client main's GameLatencyTick1009 writes milliseconds XOR heroId. The controlled peer's echo agrees with the historical echo behavior, while original 5517 server reply bytes remain unobserved. [Prior bootstrap evidence](../../bootstrap-tolerance-cp24d.md) · [Client writer on main](https://github.com/berniemackie97/OpenConquerClient/blob/main/src/OpenConquer.Networking/Game/World/GameLatencyTick1009.cs)
+This supersedes the on-wire XOR conclusion in the prior bootstrap note. The managed client at capture time wrote milliseconds XOR heroId. OCC #300 corrected it, and OCS #215 pinned byte-preserving echo against the native frame digest. [OCC #299](https://github.com/berniemackie97/OpenConquerClient/issues/299) The controlled peer's echo agrees with the historical echo behavior, while original 5517 server reply bytes remain unobserved. [Prior bootstrap evidence](../../bootstrap-tolerance-cp24d.md) · [Client writer on main](https://github.com/berniemackie97/OpenConquerClient/blob/main/src/OpenConquer.Networking/Game/World/GameLatencyTick1009.cs)
 
 ## Remaining boundaries
 
