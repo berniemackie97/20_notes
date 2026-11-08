@@ -126,7 +126,7 @@ Binja: comments `0x6FF580`, `0x4BDD30`; function comment `CHero_TickHeartbeatAnd
 
 | Item | Native | Address |
 |---|---|---|
-| 1009/27 body | `CMsgTick__Build_SubType(hero, 0, 27)`: size 88, +4 hero, +8 0, +12 27, **+16 = timeGetTime ^ hero** | `0x6EAC51..0x6EACB4`, call `0x661B3B` |
+| 1009/27 body | `CMsgTick__Build_SubType(hero, 0, 27)` builds size 88, +4 hero, +8 zero, +12 subtype 27, and XORs the timer with the hero ID at +16. `GameTransport_SendPacket` overwrites +16 with the raw timer before socket buffering. | Builder `0x6EAC51..0x6EACB4`, send `0x6DF104..0x6DF12A`, [VM capture 1 frames 39–42](evidence/cp32-world-entry-2026-11-08/README.md) |
 | Timer | vtable `0x86D7E0`: +4 interval, +8 start. `CTimerMS_IsTimeOut` `0x6B9C93`: active (start ≠ 0, `0x6B9D56`) and `now >= start+interval` (unsigned vs wrapped sum, `0x6B9CAA`). `CTimerMS_ToNextTime` `0x6B9D8B`: on timeout restart from now, return 1 | |
 | Start | 74-ack handler: Startup(10000) after sending 75 | `0x6FF57A..0x6FF587` |
 | Heartbeat order | timer fires → net state (`0x687190` on `0x96AFC8`) == 2 → send 1009/27 → if `now − hero+0x2F74 >= 1800000`: (if `hero+0x2F78 ≠ 0` send 1037), then `+0x2F74 = now` | `0x661AF0..0x661BB7` |
@@ -150,5 +150,5 @@ Binja: `CTimerMS_ToNextTime`, `CTimerMS_IsTimeOut` named and commented (both wer
 | 1037 | no `CreateMsg` case → null → dropped | `sub_4388F3` |
 | 251 | no `CMsgAction::Process` case (falls to the default assert) — that server predates the 251 rung | `0x4672AE` |
 
-Consequence: OCS must echo client 1009/27 (pre-#209 it ignored it, so the client's latency never updated). OCS #209: `GameLatencyTickPacket`, echo in world loop + ladder reader. The 5517 client sends +16 = time XOR hero and computes latency as time − echoed +16. With an unchanged echo that value is not a round-trip time; what a 5517-era server sent back is unproven. OCS follows the historical echo (tag: historical). 1037 dropped and the 251 ack (client-required) need no change.
+OCS #209 echoes client 1009/27 in the world loop and ladder reader, following the historical server. The retail client sends a raw timer at +16 and computes elapsed time from the echoed field. The November 8 VM capture and the pre-buffer overwrite at `0x6DF118` resolve the earlier inference from the builder alone. Original 5517 server replies remain unobserved. The managed writer still sends the XOR intermediate, tracked in [OpenConquerClient #299](https://github.com/berniemackie97/OpenConquerClient/issues/299). The 1037 drop and client-required 251 acknowledgement are separate behaviors.
 IDA comments saved: `0x487F5E`, `0x4388F3`.

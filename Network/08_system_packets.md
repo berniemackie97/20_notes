@@ -69,7 +69,7 @@ corresponding managed consumer exists; reproducing the MFC message IDs as an oth
 event layer would add no native-visible behavior.
 
 **Verified outbound builders (`MsgItem` send-side helpers)**:
-- `CMsgTick__Build_SubType` (0x6EAC51): fixed-size packet (`size=88`) with fields `+4=a2`, `+8=a3`, `+12=subtype`, `+16=(localHeroId ^ timeGetTime())`.
+- `CMsgTick__Build_SubType` (0x6EAC51): fixed-size packet (`size=88`) with fields `+4=a2`, `+8=a3`, `+12=subtype`, `+16=(localHeroId ^ timeGetTime())`. For subtype 27, `GameTransport_SendPacket` replaces the XOR intermediate with the raw timer at `0x6DF118` before buffering. [Retail runtime capture](evidence/cp32-world-entry-2026-11-08/README.md)
 - `CMsgTick__Build_SubType1_WithCount` (0x6EACBD): `subtype=1`, writes `+20=count`.
 - `CMsgTick__Build_SubType_WithCountAndByte` (0x6EAD32): writes `+12=subtype`, `+20=count`, `+28=byte_flag`.
 - `CMsgTick__Build_SubType40_WithDwordList` (0x6EADB7): `subtype=40`, `size=88+4*N`, `+20=N`, dword list starts at `+84`.
