@@ -73,3 +73,52 @@ TQ MyISAM table `cq2.outenserver` (created 2008-11-26, updated 2011-05-06): `id`
   Gaps: name ≤64 (needs ≤15 ASCII), no selection persistence, 1060 not wired, duplicate names rejected
   (retail aliased). See `client-selection-contract-inventory.csv`.
 - Legacy `10_work`: hardwired `Main World / Local Server / 127.0.0.1:9958`; sends display name as server name.
+
+## CP2.9 server-name boundary (2026-11-07)
+
+Clean `Conquer.exe` SHA-256 `b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62`.
+Binary Ninja `Conquer.exe.bndb`, view 9. Bounded raw evidence is in
+`10_work/docs/evidence/multi-realm-architecture-5517/packet-1060-server-name-2026-11-07.json`.
+
+- **Selected name:** the row query and copy at `0x4AEF63..0x4AEF84` give
+  the string copy a count of `0x21`. Its helper at `0x76A714` calls
+  `strncpy` and clears the last destination byte at `0x76A73C`.
+  Submit passes the resulting buffer at `0x4AF088..0x4AF0A1`. Both
+  1060 call sites push that argument at `0x66D69C` and `0x66DAAB`.
+- **Writer:** `0x749222..0x749233` rejects null and unsigned
+  `strlen > 0x10`. Equality passes. The creator has no minimum-length
+  or alphabet check for this argument. The copy at `0x749266..0x749271`
+  uses `MSVCRT.strncpy` through IAT `0x8447F4`, count `0x10`,
+  frame offset `0x104`. Short names are NUL-padded. An exactly
+  16-byte source string fills the field without a NUL in the frame.
+- **Managed realm policy:** retail catalog identities in the archived
+  corpus fit within 15 bytes. Corpus membership is distinct from the
+  native writer's acceptance rule. OpenConquerServer already requires
+  1–15 ASCII characters in `[A-Za-z0-9_()-]` for registered realms
+  and checks that policy before credential authentication. The signed
+  catalog consumer and publisher enforce the same policy. CP2.9
+  enforces that deployed contract at the managed 1060 writer, leaving
+  the frame layout and case-sensitive identity intact.
+
+Binary Ninja comments record the length branch at `0x74922F` and
+fixed-width copy at `0x749271`. BNDB persistence remains user-controlled.
+
+Local gates passed with 53 focused and 3,785 total client tests,
+locked restore, Release 0/0 and format. Current OpenConquerServer
+protocol and domain suites passed 633 and 352 tests. A cross-repo
+codec probe used a literal 15-byte realm vector and the managed
+credential composer. The server decoder preserved the realm and
+credential, and its domain validator accepted the identity. A
+synthetic 16-byte field survived decode and was rejected by realm
+validation. This was codec interoperability with no live login.
+
+All 67 distinct protocol names across the 94 rows in the archived
+retail identities CSV pass the existing managed alphabet and length
+rule. The longest is 15 ASCII bytes. That corpus check establishes
+compatibility for those identities, separate from the writer's
+16-byte native capacity.
+
+OCC #293 at `9467c181` passed Build Bouncer and first-attempt Linux
+Quality, macOS, Windows, dependency review and CodeQL. Hosted
+checks requiring private retail data were skipped.
+[CI results](https://github.com/berniemackie97/OpenConquerClient/actions/runs/42433262777/attempts/1).

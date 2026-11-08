@@ -95,12 +95,12 @@ loop:
   WaitForMultipleObjects([shutdownEvent, workAvailableEvent])
   if shutdownEvent → exit
   isReady = 0  (busy)
-  EnterCriticalSection
   while pendingQueue.count > 0:
+    EnterCriticalSection
     req = dequeue(pendingQueue)
     req.vtable[+0x04]()        // Execute
     enqueue(completedQueue, req)
-  LeaveCriticalSection
+    LeaveCriticalSection
   isReady = 1  (idle)
   goto loop
 ```

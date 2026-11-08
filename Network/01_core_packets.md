@@ -796,7 +796,7 @@ Accept conditions — all required:
 
 | Field | Range |
 |---|---|
-| kind (`+4`) | `> 0` and `< 0xC` → **1..11** |
+| kind (`+4`) | `> 0` and `< 0xC` → **1..11**, except 6 |
 | intensity (`+8`) | `0..1022` |
 | direction (`+12`) | `0..359` |
 
@@ -811,8 +811,8 @@ a signed `[-180, 180]` (subtract 360 when `> 180`), and the kind is remapped:
  5 -> param + 3 11 -> 0x14
 ```
 
-**Input kind 6 has no case in that switch.** It passes the range check and reaches the rewrite with
-the mapped value never assigned, so 6 must never be sent.
+**Input kind 6 is rejected.** Jump table `0x7607B2` entry 6 = `0x7607A9` (return 0), so the packet is a
+silent no-op like any out-of-range value (corrected CP2.4b 2026-11-06; earlier "unassigned" claim wrong).
 
 `Process` then resolves the map's type-5 component and branches on the **normalised** kind against
 the component's current kind:

@@ -232,7 +232,7 @@ No audio (DXSound init fails in the VM). Captures: `DotNet/Conquer/Evidence/nati
 | name == account | confirm OK → `mcSafe` "To make the Account ID and Character Name identical is very dangerous to your account.Will you proceed ?" Ok/Cancel |
 | Valid (`Probe5517`, Monk, Small) | "Your character has been successfully created!" → "Initializing..." → "Creating maps..." bar ~10 s → world, map 1010. Stored body 1003, profession 60 (small = size 1 → 1003, confirmed) |
 | Back on class stage | black → logo fire-dragon → login screen |
-| After 2101 `ANSWER_OK` | client sends `1134` subtype 3 (968 B, 80 entries), seen after the `0x4A` exchange and before `0x198`; see [Network/08](../Network/08_system_packets.md#msgmissionsystemupdate-type-1134) |
+| After 2101 `ANSWER_OK` | client sends `1134` subtype 3 (968 B, 80 entries), seen after the `0x4A` exchange and before `0x198` (the `0x198` part is contradicted by the CP2.4d2 probe: no 408 on map 1010, see `Network/bootstrap-tolerance-cp24d.md`); see [Network/08](../Network/08_system_packets.md#msgmissionsystemupdate-type-1134) |
 
 ## `characterInAndOut.swf` (`b38d8831…`, 1024×768, 30 fps, 144 root frames)
 
