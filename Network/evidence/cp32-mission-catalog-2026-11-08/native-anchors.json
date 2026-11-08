@@ -1,0 +1,430 @@
+{
+  "executableSha256": "b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62",
+  "instructionCount": 83,
+  "strings": {
+    "0x86b21c": "ini/Questinfo.ini",
+    "0x9421dc": "TotalMission",
+    "0x942190": "MissionId",
+    "0x923410": "%d",
+    "0x938818": "ANSWER_OK",
+    "0x92dd8c": "r",
+    "0x924908": "%x"
+  },
+  "instructions": [
+    {
+      "address": "0x005dcc6e",
+      "bytes": "e8 32 1f 10 00",
+      "instruction": "  call    CNetMsg__ProcessMsg"
+    },
+    {
+      "address": "0x005dcc78",
+      "bytes": "e8 3f 43 15 00",
+      "instruction": "  call    DisconnectMsgQueue_ReadNextString"
+    },
+    {
+      "address": "0x005dcc93",
+      "bytes": "ff d3",
+      "instruction": "           call    ebx"
+    },
+    {
+      "address": "0x005dcc9d",
+      "bytes": "e8 36 c5 fd ff",
+      "instruction": "  call    CMyShellDlg_InitializeShellRegionAndHintSlots"
+    },
+    {
+      "address": "0x005b9b79",
+      "bytes": "e8 1f 15 f1 ff",
+      "instruction": "  call    CQuestTaskTypeMgr_GetOrCreateSingleton"
+    },
+    {
+      "address": "0x005b9b80",
+      "bytes": "e8 87 bc 0e 00",
+      "instruction": "  call    CQuestTaskTypeMgr_SendMissionCatalogOnLogin"
+    },
+    {
+      "address": "0x005dcdf5",
+      "bytes": "e8 ab 1d 10 00",
+      "instruction": "  call    CNetMsg__ProcessMsg"
+    },
+    {
+      "address": "0x005dcdff",
+      "bytes": "e8 b8 41 15 00",
+      "instruction": "  call    DisconnectMsgQueue_ReadNextString"
+    },
+    {
+      "address": "0x005dce14",
+      "bytes": "ff 15 e8 48 84 00",
+      "instruction": "call    dword [_stricmp]"
+    },
+    {
+      "address": "0x005dce90",
+      "bytes": "e8 3b 23 10 00",
+      "instruction": "  call    CConnectionFlow__SendGameSessionBootstrap"
+    },
+    {
+      "address": "0x006df1e0",
+      "bytes": "80 3d 34 ab 96 00 00",
+      "instruction": "cmp     byte [0x96ab34], 0x0"
+    },
+    {
+      "address": "0x006df22c",
+      "bytes": "e8 b7 52 07 00",
+      "instruction": "  call    CMsgLoginBootstrap1052__BuildAndSendGameLoginProof"
+    },
+    {
+      "address": "0x00764867",
+      "bytes": "6a 4a",
+      "instruction": "           push    0x4a"
+    },
+    {
+      "address": "0x007648a3",
+      "bytes": "e8 ad aa f7 ff",
+      "instruction": "  call    CNetMsg__Send"
+    },
+    {
+      "address": "0x007648ad",
+      "bytes": "83 b8 78 01 00 00 02",
+      "instruction": "cmp     dword [eax+0x178], 0x2"
+    },
+    {
+      "address": "0x007648e6",
+      "bytes": "e8 6a aa f7 ff",
+      "instruction": "  call    CNetMsg__Send"
+    },
+    {
+      "address": "0x006a20da",
+      "bytes": "e8 98 3a 00 00",
+      "instruction": "  call    0x6a5b77"
+    },
+    {
+      "address": "0x006a2119",
+      "bytes": "e8 95 07 00 00",
+      "instruction": "  call    CQuestTaskTypeMgr__LoadMissionConfig"
+    },
+    {
+      "address": "0x004cb0a8",
+      "bytes": "a1 1c 60 95 00",
+      "instruction": "  mov     eax, dword [0x95601c]"
+    },
+    {
+      "address": "0x004cb102",
+      "bytes": "e8 97 6f 1d 00",
+      "instruction": "  call    CQuestTaskTypeMgr__Ctor"
+    },
+    {
+      "address": "0x004cb10f",
+      "bytes": "a3 1c 60 95 00",
+      "instruction": "  mov     dword [0x95601c], eax"
+    },
+    {
+      "address": "0x006a2926",
+      "bytes": "be dc 21 94 00",
+      "instruction": "  mov     esi, 0x9421dc"
+    },
+    {
+      "address": "0x006a2979",
+      "bytes": "be 1c b2 86 00",
+      "instruction": "  mov     esi, 0x86b21c"
+    },
+    {
+      "address": "0x006a29af",
+      "bytes": "57",
+      "instruction": "              push    edi"
+    },
+    {
+      "address": "0x006a29b9",
+      "bytes": "e8 a9 ba fc ff",
+      "instruction": "  call    IniReadIntFromResolvedStoreOrDefault"
+    },
+    {
+      "address": "0x006a2ba5",
+      "bytes": "39 85 5c ff ff ff",
+      "instruction": "cmp     dword [ebp-0xa4], eax"
+    },
+    {
+      "address": "0x006a2bae",
+      "bytes": "0f 8c 4a 1e 00 00",
+      "instruction": "jl      0x6a49fe"
+    },
+    {
+      "address": "0x006a2bbd",
+      "bytes": "68 10 34 92 00",
+      "instruction": "  push    0x923410"
+    },
+    {
+      "address": "0x006a2bc5",
+      "bytes": "ff 15 08 48 84 00",
+      "instruction": "call    dword [_snprintf]"
+    },
+    {
+      "address": "0x006a2eee",
+      "bytes": "bf 90 21 94 00",
+      "instruction": "  mov     edi, 0x942190"
+    },
+    {
+      "address": "0x006a2faa",
+      "bytes": "e8 b8 b4 fc ff",
+      "instruction": "  call    IniReadIntFromResolvedStoreOrDefault"
+    },
+    {
+      "address": "0x006a2fb5",
+      "bytes": "89 85 04 fa ff ff",
+      "instruction": "mov     dword [ebp-0x5fc], eax"
+    },
+    {
+      "address": "0x006a49d1",
+      "bytes": "e8 cf 11 00 00",
+      "instruction": "  call    CQuestTaskTypeMgr_MissionMap_FindOrInsert"
+    },
+    {
+      "address": "0x006a49d8",
+      "bytes": "e8 3c 01 00 00",
+      "instruction": "  call    0x6a4b19"
+    },
+    {
+      "address": "0x006a49f8",
+      "bytes": "0f 8e b6 e1 ff ff",
+      "instruction": "jle     0x6a2bb4"
+    },
+    {
+      "address": "0x0066e2b5",
+      "bytes": "ff 15 40 48 84 00",
+      "instruction": "call    dword [tolower]"
+    },
+    {
+      "address": "0x0066e2cd",
+      "bytes": "e8 b2 06 00 00",
+      "instruction": "  call    0x66e984"
+    },
+    {
+      "address": "0x0066e2df",
+      "bytes": "e8 59 15 10 00",
+      "instruction": "  call    0x76f83d"
+    },
+    {
+      "address": "0x0066e3b0",
+      "bytes": "83 26 00",
+      "instruction": "        and     dword [esi], 0x0"
+    },
+    {
+      "address": "0x0076ef60",
+      "bytes": "68 8c dd 92 00",
+      "instruction": "  push    0x92dd8c"
+    },
+    {
+      "address": "0x0076ef68",
+      "bytes": "ff 15 70 47 84 00",
+      "instruction": "call    dword [fopen]"
+    },
+    {
+      "address": "0x0076ef77",
+      "bytes": "32 c0",
+      "instruction": "           xor     al, al"
+    },
+    {
+      "address": "0x0076efd3",
+      "bytes": "ff 15 44 49 84 00",
+      "instruction": "call    dword [fgets]"
+    },
+    {
+      "address": "0x0066e47a",
+      "bytes": "e8 fe fd ff ff",
+      "instruction": "  call    0x66e27d"
+    },
+    {
+      "address": "0x0066e49c",
+      "bytes": "e8 2d 15 10 00",
+      "instruction": "  call    IniStore_ReadIntOrDefault"
+    },
+    {
+      "address": "0x0066e4c8",
+      "bytes": "8b 45 14",
+      "instruction": "        mov     eax, dword [ebp+0x14]"
+    },
+    {
+      "address": "0x0076f9df",
+      "bytes": "e8 5c fc ff ff",
+      "instruction": "  call    IniStore_FindValueCaseInsensitive"
+    },
+    {
+      "address": "0x0076f9ed",
+      "bytes": "74 41",
+      "instruction": "           je      0x76fa30"
+    },
+    {
+      "address": "0x0076fa15",
+      "bytes": "ff 15 f8 47 84 00",
+      "instruction": "call    dword [sscanf]"
+    },
+    {
+      "address": "0x0076fa21",
+      "bytes": "ff 15 c0 47 84 00",
+      "instruction": "call    dword [atoi]"
+    },
+    {
+      "address": "0x006ace69",
+      "bytes": "39 51 10",
+      "instruction": "        cmp     dword [ecx+0x10], edx"
+    },
+    {
+      "address": "0x006ace6c",
+      "bytes": "7c 07",
+      "instruction": "           jl      0x6ace75"
+    },
+    {
+      "address": "0x006a5bcb",
+      "bytes": "3b 48 10",
+      "instruction": "        cmp     ecx, dword [eax+0x10]"
+    },
+    {
+      "address": "0x006a5bce",
+      "bytes": "7d 70",
+      "instruction": "           jge     0x6a5c40"
+    },
+    {
+      "address": "0x006a5c47",
+      "bytes": "83 c0 14",
+      "instruction": "        add     eax, 0x14"
+    },
+    {
+      "address": "0x006a4b23",
+      "bytes": "8b 07",
+      "instruction": "           mov     eax, dword [edi]"
+    },
+    {
+      "address": "0x006a4b28",
+      "bytes": "89 06",
+      "instruction": "           mov     dword [esi], eax"
+    },
+    {
+      "address": "0x006a5865",
+      "bytes": "8b 46 18",
+      "instruction": "        mov     eax, dword [esi+0x18]"
+    },
+    {
+      "address": "0x006a5871",
+      "bytes": "74 49",
+      "instruction": "           je      0x6a58bc"
+    },
+    {
+      "address": "0x006a5874",
+      "bytes": "8b 5f 14",
+      "instruction": "        mov     ebx, dword [edi+0x14]"
+    },
+    {
+      "address": "0x006a5880",
+      "bytes": "e8 ee 7b 08 00",
+      "instruction": "  call    CMsgMissionSystemUpdate__AppendEntry"
+    },
+    {
+      "address": "0x006a588f",
+      "bytes": "e8 c1 9a 03 00",
+      "instruction": "  call    CNetMsg__Send"
+    },
+    {
+      "address": "0x006a589a",
+      "bytes": "e8 ea 7c 08 00",
+      "instruction": "  call    CMsgMissionSystemUpdate__ResetEntries"
+    },
+    {
+      "address": "0x006a58a8",
+      "bytes": "e8 c6 7b 08 00",
+      "instruction": "  call    CMsgMissionSystemUpdate__AppendEntry"
+    },
+    {
+      "address": "0x006a58ae",
+      "bytes": "e8 d6 e8 d5 ff",
+      "instruction": "  call    0x404189"
+    },
+    {
+      "address": "0x006a58cb",
+      "bytes": "7e 0b",
+      "instruction": "           jle     0x6a58d8"
+    },
+    {
+      "address": "0x006a58d3",
+      "bytes": "e8 7d 9a 03 00",
+      "instruction": "  call    CNetMsg__Send"
+    },
+    {
+      "address": "0x0072d485",
+      "bytes": "7e 66",
+      "instruction": "           jle     0x72d4ed"
+    },
+    {
+      "address": "0x0072d487",
+      "bytes": "66 c7 40 02 6e 04",
+      "instruction": "mov     word [eax+0x2], 0x46e"
+    },
+    {
+      "address": "0x0072d49b",
+      "bytes": "66 83 fe 50",
+      "instruction": "     cmp     si, 0x50"
+    },
+    {
+      "address": "0x0072d4aa",
+      "bytes": "73 41",
+      "instruction": "           jae     0x72d4ed"
+    },
+    {
+      "address": "0x0072d4c3",
+      "bytes": "89 5c 90 08",
+      "instruction": "     mov     dword [eax+edx*4+0x8], ebx"
+    },
+    {
+      "address": "0x0072d4d5",
+      "bytes": "66 83 24 82 00",
+      "instruction": "  and     word [edx+eax*4], 0x0"
+    },
+    {
+      "address": "0x0072d4e0",
+      "bytes": "66 ff 40 06",
+      "instruction": "     inc     word [eax+0x6]"
+    },
+    {
+      "address": "0x006df290",
+      "bytes": "e8 9f 83 09 00",
+      "instruction": "  call    memset"
+    },
+    {
+      "address": "0x006df295",
+      "bytes": "66 83 27 00",
+      "instruction": "     and     word [edi], 0x0"
+    },
+    {
+      "address": "0x006df299",
+      "bytes": "66 83 66 06 00",
+      "instruction": "  and     word [esi+0x6], 0x0"
+    },
+    {
+      "address": "0x006e1a3c",
+      "bytes": "0f 8e f0 01 00 00",
+      "instruction": "jle     0x6e1c32"
+    },
+    {
+      "address": "0x006e1a49",
+      "bytes": "0f 8f e3 01 00 00",
+      "instruction": "jg      0x6e1c32"
+    },
+    {
+      "address": "0x006e1abd",
+      "bytes": "e8 9a 06 00 00",
+      "instruction": "  call    CGameSocket_FlushSendBuffer"
+    },
+    {
+      "address": "0x006e1c41",
+      "bytes": "56",
+      "instruction": "              push    esi"
+    },
+    {
+      "address": "0x006dec6b",
+      "bytes": "ff 50 10",
+      "instruction": "        call    dword [eax+0x10]"
+    },
+    {
+      "address": "0x006deda8",
+      "bytes": "e8 af 33 00 00",
+      "instruction": "  call    CGameSocket_FlushSendBuffer"
+    }
+  ]
+}

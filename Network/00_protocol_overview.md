@@ -91,8 +91,8 @@ Note: This table is the 1002–1151 switch/jumptable view. `CNetMsg__ProcessMsg_
 | 1005 | Default (no handler) | - | - |
 | 1006 | **CMsgUserInfo** ✓TU | 0x764197 | 0x764276 |
 | 1007 | Default (no handler) | - | - |
-| 1008 | unproven (label `CMsgItem` withdrawn: TU = 1009) | 0x762a3a | 0x762ac3 |
-| 1009 | **CMsgItem** ✓TU (label `CMsgTick` withdrawn) | 0x6eabeb | 0x6eaeb6 |
+| 1008 | `CMsg1008` (applied label, class declaration unverified) | 0x762a3a | 0x762ac3 |
+| 1009 | `CMsgItem` (applied label), ✓TU `MsgItem.cpp` | 0x6eabeb | 0x6eaeb6 |
 | 1010 | Default (no handler) | - | - |
 | 1011 | Default (no handler) | - | - |
 | 1012 | unproven (label `CMsgPlayer` withdrawn: TU = 10014) | 0x764997 | 0x764a42 |
@@ -349,7 +349,7 @@ These types are dispatched via subtraction/comparison chains in the else-branch 
 | 10014 | 0x271E | **CMsgPlayer** ✓TU (label `CMsgPlayerSpawn` withdrawn) | 0x755E83 | 0x755F64 |
 | 10017 | 0x2721 | **CMsgUserAttrib** ✓TU (label `CMsgUserAttribEx` withdrawn) | 0x7572EB | 0x757374 |
 
-## Registry derivation and class proof (CP0.1, 2026-11-05)
+## Registry derivation and translation-unit evidence (CP0.1, 2026-11-05)
 
 Method (repeatable): decompile `CNetMsg__ProcessMsg_Dispatch` `0x6DF3B5` → 183 ctor calls → 182 type→ctor pairs (`evidence/dispatch-registry-2026-11-05/parse_dispatch.py`, `registry.py` over the clean `00_clean/clean/5517/Conquer.exe`).
 Ctor → first `mov [reg], vtable` before `ret` → vtable; **slot 4 = Process** (checked 1008 `0x86D650`→`0x762AC3`).
@@ -358,9 +358,14 @@ All ctor + Process addresses in the tables above agree with the derivation (0 mi
 Shared no-op Process `0x5AD9B1`: 1002, 1027, 1028, 1038, 2034, 2036. Shared Process `0x75A199`: 2231, 2251.
 Types 1013/1014: no dispatch entry.
 
-**Class-name authority.** Only the 37 `F:\CQ2ClientRelease-42.0.1\3DRole\Network\*.cpp` assert paths prove a class name.
-✓TU = assert path referenced inside that type's Process. Every other name in these tables is a **label** (community/eosource
-origin, unproven). eosource IDs are orientation only (it is far older than 5517).
+**Source-file authority.** ✓TU means the handler references a translation-unit path in an assertion.
+The path establishes the source file. Exact C++ class declarations require independent evidence.
+The displayed names are analysis labels. Historical eosource names and IDs are orientation only.
+
+For 1009, vtable `0x86B8CC` slot 4 points to `0x6EAEB6`. The assertion at `0x6EB5EA` pushes
+`0x945240`, whose on-disk string ends in `Network\MsgItem.cpp`. The original `proven.json` agrees.
+The former `Msg1008` row was a transcription error. Packet 1008 has separate vtable `0x86D650`
+and Process `0x762AC3`. Keep `CMsgItem` and `CMsg1008` as the respective 1009 and 1008 analysis labels.
 
 | TU | Type | Process | Assert site |
 |---|---|---|---|
@@ -369,7 +374,7 @@ origin, unproven). eosource IDs are orientation only (it is far older than 5517)
 | MsgCrossSwitch | 2501 | `0x7597FF` | `0x759988` |
 | MsgFactionRankInfo | 2101 | `0x702372` | `0x7024CB` |
 | MsgInteract | 1022 | `0x6FB1CB` | `0x6FB79F` |
-| Msg1008 | 1009 | `0x6EAEB6` | `0x6EB5EA` |
+| MsgItem.cpp | 1009 | `0x6EAEB6` | `0x6EB5EA` |
 | MsgLottery | 1314 | `0x74DEBF` | `0x74DEE9` |
 | MsgMonsterTransform | 1042 | `0x761D5C` | `0x761DB5` |
 | MsgName | 1015 | `0x73EFDF` | `0x73F092` |

@@ -1,0 +1,30 @@
+{
+  "sourceRows": 230,
+  "uniqueIds": 224,
+  "frames": [
+    {
+      "sequence": 13,
+      "count": 80,
+      "length": 968,
+      "first": 600,
+      "last": 938,
+      "sha256": "45d3167ae09ed03bc9f4d41790a3fdbe4587469b596e5f442ce686521b717001"
+    },
+    {
+      "sequence": 14,
+      "count": 80,
+      "length": 968,
+      "first": 950,
+      "last": 1141,
+      "sha256": "3b9c6170ceed1f07d9bde4c8bd74de175709d698c5fb3edbb451850190f66b80"
+    },
+    {
+      "sequence": 15,
+      "count": 64,
+      "length": 776,
+      "first": 1142,
+      "last": 20001,
+      "sha256": "49cd8b7c3c96dc92dde25c837a7f1002f58c5c1ac05e23dcdf69b41a9eb24a49"
+    }
+  ]
+}

@@ -95,7 +95,7 @@ Binary Ninja changes were made and read back before this note: weather parser re
 
 # CP2.3b — 1008/1009 codecs, snapshot slots, clamp order (2026-11-06)
 
-Registry (CP0.1 `registry.json`): 1008 ctor `0x762A3A`, vtable `0x86D650`, parse `0x762AA0`, process `0x762AC3`, class unproven. 1009 ctor `0x6EABEB`, vtable `0x86B8CC`, parse `0x6EAE56`, process `0x6EAEB6`, class `MsgItem` (assert TU). Field layouts are reused from `03_item_packets.md`, `08_system_packets.md` and `MsgItem1008-domain-contract-5517.md`; no new field semantics.
+Registry (CP0.1 `registry.json`): 1008 ctor `0x762A3A`, vtable `0x86D650`, parse `0x762AA0`, process `0x762AC3`, class unproven. 1009 ctor `0x6EABEB`, vtable `0x86B8CC`, parse `0x6EAE56`, process `0x6EAEB6`, applied label `CMsgItem`, with assert TU `MsgItem.cpp` and unverified C++ class declaration. Field layouts are reused from `03_item_packets.md`, `08_system_packets.md` and `MsgItem1008-domain-contract-5517.md`; no new field semantics.
 
 Managed codec fields (only those consumed today):
 

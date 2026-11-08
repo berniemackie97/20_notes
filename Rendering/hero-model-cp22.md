@@ -42,8 +42,8 @@ No BNDB save initiated; Bernie retains persistence control.
 
 ## Model boundary and limitations
 
-WorldHeroModel owns hero attributes/equipment/revision, pending equipment
-clamp and followers. WorldInboundState remains the current wire adapter. The model
+WorldHeroModel owns hero attributes, equipment, revision and followers. At CP2.2
+it also held the pending equipment clamp. WorldInboundState is the wire adapter. The model
 returns a world-owned resolved vitals value; ClientWorld only maps it to HUD input
 at the existing guarded draw point after scene.Draw. Keep initial transform-source
 zero guard, neutral life-tier input, catalog-loading point and follower cadence.
@@ -55,19 +55,19 @@ HUD dependency. The name describes model work; frame cadence remains a caller
 contract. Rules remain in the client's World layer under the existing assembly
 structure. `WORLD-027` records the responsibility boundary and per-rule anchors.
 
-**Resolved CP2.3b** ([typed-world-dispatch-cp23.md](../Network/typed-world-dispatch-cp23.md#cp23b-snapshot-clamp-order)): clamp now synchronous in the subtype-46 handler; slot map audited ascending. Historical text follows.
+**Current snapshot contract.** CP2.3b moved the signed life clamp into the
+subtype-46 handler after the equipment changes. A later life update in the
+same ingress batch keeps its value. The old CP2.2 pending flag was consumed at
+draw time and could clamp that later write. The snapshot's offset-to-slot map
+is ascending. Native calls slot 5 before 4 and slot 16 before 15. These are
+distinct from the packet's field order. [CP2.3b static audit](../Network/typed-world-dispatch-cp23.md#cp23b-snapshot-slot-audit)
+[Accepted CP2.3b](https://github.com/berniemackie97/OpenConquerClient/pull/260)
 
-Known residual for CP2.3: one deferred snapshot-clamp flag loses inter-packet order
-when a later life update arrives in the same ingress batch. Native clamps inside
-the snapshot handler; managed content tables are unavailable during early loading.
-This slice fixes signed clamp/reset semantics at the existing consumption boundary;
-it does not add a queue, reorder ingress/loading or claim full packet-order parity.
+Two-handed displacement and tracked-item ownership remain separate open work.
+[Displacement #262](https://github.com/berniemackie97/OpenConquerClient/issues/262)
+[Ownership #264](https://github.com/berniemackie97/OpenConquerClient/issues/264)
 
-Also defer the inconsistent snapshot-slot ordering descriptions in old note 14
-versus the current ascending-slot implementation to the typed 1009 audit. No
-unverified slot-order change is needed for the summed stat calculation here.
-
-## Implementation validation
+## CP2.2 implementation validation
 
 OCC branch `bernie/hero-vitals-model`: 12 new test cases; static-disassembly-derived
 fixture covers 20 maxima and 8 stamina vectors. The pinned original encoded
@@ -78,9 +78,8 @@ No native runtime execution or running-client smoke is claimed.
 
 Local SDK 10.0.403: locked restore and zero-warning Release build passed;
 Client 1,497, Content 750, Rendering 499, Platform 86 tests passed (2,832 total).
-Final format verification and self-audit passed. OCC #238 at `165e91db` is ready
-for Bernie review. CI run 1002 passed Quality (Linux), Windows and macOS; dependency
-review passed. Private retail-asset gates conditionally skipped as before. Local
-client branch is clean and pushed/synced. No additional task/resource lifetime,
-wire-format or package change. CP2.2 stays current until Bernie review/merge;
-BNDB persistence remains Bernie's action.
+Final format verification and self-audit passed at `165e91db`. CI run 1002
+passed Quality (Linux), Windows, macOS and dependency review. Private retail-asset
+gates were conditionally skipped. [CP2.2 PR #238](https://github.com/berniemackie97/OpenConquerClient/pull/238)
+merged as `e6f344c4696ef3de8e46cdcf2e97b47e9491ec83` and the later CP2.3b contract
+above supersedes the deferred clamp timing.

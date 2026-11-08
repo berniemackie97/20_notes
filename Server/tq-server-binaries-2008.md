@@ -1,7 +1,7 @@
 # TQ server binaries — CQServer 15.10 (2008-10-21)
 
 Verified 2026-10-12. Raw packages: `50_server/binaries/`. Working set + IDA DBs: `50_server/binaries/_re/`.
-Lead source (≤5095 era). 5517 client binary wins on any conflict. Login protocol differs — ignore.
+Historical server evidence. The exact compatible game-build era is unknown. The 5517 client executable is authoritative for client behavior. This server uses a different login protocol. See [era evidence](#era-cp02-2026-11-05).
 
 ## Canonical set (`_re/`)
 
@@ -104,7 +104,7 @@ Ordinals resolved against bundled `libeay32.dll` exports.
 
 Proven: `__DATE__` `Oct 21 2008`; source root `CQServer-15.10-1021`; walk = 1005, action = 1010 (5517: 10005/10010);
 Blowfish game cipher; client floor `+8 ≥ 0x7B`. **No client patch number in MsgServer or NpcServer** (raw string scan).
-"≤5095" and "~518x" both unproven → era **unknown**. Older than 5517 (protocol IDs). Tag every finding `historical`.
+The exact compatible game-build era is **unknown**. The `≤5095` and `~518x` estimates remain unverified. Tag findings from this binary set `historical`.
 
 ## Thread / timer model (MsgServer, historical, CP0.2 2026-11-05)
 
