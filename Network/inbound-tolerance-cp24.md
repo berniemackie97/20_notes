@@ -75,6 +75,8 @@ Entries past the packet but inside the buffer are zero: 10017 → attribute 0 va
 
 Cross-repo: native replies 146 to every applied 108 (`0x6FFD80`); OCS already accepts 146 as a position report (`GamePositionReport.CorrectionReplyAction`). OCC sends no 146 — parity gap, not tolerance.
 
+The complete native 146 reply is now statically pinned. The extended builder writes corrected X/Y at +8/+10, a fresh timer at +16, the current facing at +22, map ID at +28 and 0xFFFFFFFF at +32. Its +24/+26 fields are zero. The 108 branch contains no same-tile comparison before the reply. Runtime repeat and same-tile probes are still outstanding. [ABI and field proof](evidence/cp32-world-paths-2026-11-08/README.md#static-proof-of-the-108-reply)
+
 ### CP2.4b resumed audit — item object identity
 
 Read-only native/source revalidation at OCC `906e25d3` found three errors in the

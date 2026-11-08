@@ -102,5 +102,7 @@ Verified 2026-10-14, Binja. Inert unless the server starts it.
 | Each walk/jump echo | `CHero_ProcessMovementAcknowledgementTimestamp` (`0x661CC5`): unarmed or pending ⇒ accept. Armed: `now < baseline` ⇒ 1st time resend `0xCE`, later report reason 13 + **reject echo**; else accept iff `now − tick ≥ offset − 8000` |
 
 Walk tick (`10005 +0x10`) = client `timeGetTime()` (`0x65C6AE`). Step period is RoleData-driven per action and scaled
+
+The original 5517 capture now pins 23 native requests and byte-identical controlled echoes. Native ordinary packing uses facing plus 8 times rand modulo 31. Mounted selector 9 uses facing plus 24 times rand modulo 9. The builder writes a byte each at +4 and +12 into zeroed storage. The send wrapper only supplies a fresh tick if the caller's tick was zero. The current corpus has ordinary walk and run only. [Wire proof and hashes](../Network/evidence/cp32-world-paths-2026-11-08/README.md)
 by statuses (×2/3, ×½, speed %): [action translation](../Rendering/roleview_dll/12_action_id_translation_state_machine.md).
 TQ 15.10 server walk/jump rules: [runtime semantics](tq-server-15.10-runtime-semantics.md#movement-visibility-kickback).

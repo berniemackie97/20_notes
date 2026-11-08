@@ -1,0 +1,263 @@
+{
+  "captureFileSha256": "177e7e97fb434090a1716905f6c2fe2ca0752aa61d313a3daaf757e748c6cd0f",
+  "byteBoundary": "24-byte native client logical frame. Controlled peer echo is independently classified.",
+  "selectorCounts": {
+    "1": 12,
+    "0": 11
+  },
+  "frames": [
+    {
+      "capture": 1,
+      "sequence": 44,
+      "echoSequence": 45,
+      "packedDirection": 70,
+      "directionIndex": 6,
+      "selector": 1,
+      "movementTick": 68962812,
+      "mapId": 1010,
+      "sha256": "016e1048209bc8a298feaa17ad3fa4d9524116ee8024025c63403ac53a9bbe97"
+    },
+    {
+      "capture": 1,
+      "sequence": 46,
+      "echoSequence": 47,
+      "packedDirection": 14,
+      "directionIndex": 6,
+      "selector": 1,
+      "movementTick": 68963150,
+      "mapId": 1010,
+      "sha256": "e17df4d4954d80387e69f7495c2a44c1fab665249070c8f6a0b0eeeabef914ce"
+    },
+    {
+      "capture": 1,
+      "sequence": 48,
+      "echoSequence": 49,
+      "packedDirection": 134,
+      "directionIndex": 6,
+      "selector": 1,
+      "movementTick": 68963385,
+      "mapId": 1010,
+      "sha256": "30502e8e52e25b035daf5c5c1521f4a45eb65a7f5f33c84a3d075968194e2ac4"
+    },
+    {
+      "capture": 1,
+      "sequence": 65,
+      "echoSequence": 66,
+      "packedDirection": 138,
+      "directionIndex": 2,
+      "selector": 1,
+      "movementTick": 69024164,
+      "mapId": 1010,
+      "sha256": "fbbe2ea57f1ffd0ac1dd773815fca3b7efeb04735c51bda8e3fc2770c2b40fdb"
+    },
+    {
+      "capture": 1,
+      "sequence": 67,
+      "echoSequence": 68,
+      "packedDirection": 146,
+      "directionIndex": 2,
+      "selector": 1,
+      "movementTick": 69024386,
+      "mapId": 1010,
+      "sha256": "a8d5956280b45bf5be7224fa44944824e9477b1be3a4d84d8482fc14c6829434"
+    },
+    {
+      "capture": 1,
+      "sequence": 69,
+      "echoSequence": 70,
+      "packedDirection": 73,
+      "directionIndex": 1,
+      "selector": 1,
+      "movementTick": 69024714,
+      "mapId": 1010,
+      "sha256": "a86afa009cad253d1d07a507b0c496eef1592a2aa9195fa6cf52b83dd9479d0c"
+    },
+    {
+      "capture": 1,
+      "sequence": 71,
+      "echoSequence": 72,
+      "packedDirection": 76,
+      "directionIndex": 4,
+      "selector": 1,
+      "movementTick": 69027432,
+      "mapId": 1010,
+      "sha256": "1b5ebce9614e3ca3eec9c8db32323a63fab5090637ce716b47ca2bc94aabe1ea"
+    },
+    {
+      "capture": 1,
+      "sequence": 73,
+      "echoSequence": 74,
+      "packedDirection": 100,
+      "directionIndex": 4,
+      "selector": 1,
+      "movementTick": 69027638,
+      "mapId": 1010,
+      "sha256": "3adb7e71432101fc4ad88330d26893c799faaf8a4a92831298583e627ed1fa1b"
+    },
+    {
+      "capture": 1,
+      "sequence": 75,
+      "echoSequence": 76,
+      "packedDirection": 204,
+      "directionIndex": 4,
+      "selector": 1,
+      "movementTick": 69027838,
+      "mapId": 1010,
+      "sha256": "003a8c0e1546e7005283b46b30921a43671b0332d4e4c1706504072d638e8229"
+    },
+    {
+      "capture": 1,
+      "sequence": 77,
+      "echoSequence": 78,
+      "packedDirection": 132,
+      "directionIndex": 4,
+      "selector": 1,
+      "movementTick": 69028043,
+      "mapId": 1010,
+      "sha256": "4b02537cebde0c22e196b499d8d7dc549f8f09097ea5cb4b207c4d7937a4be88"
+    },
+    {
+      "capture": 1,
+      "sequence": 79,
+      "echoSequence": 80,
+      "packedDirection": 148,
+      "directionIndex": 4,
+      "selector": 1,
+      "movementTick": 69028242,
+      "mapId": 1010,
+      "sha256": "71ac8a2cb31ffffdec79dc7d8e70c5ac6b24664595cc803059730c2b2ebe0c6f"
+    },
+    {
+      "capture": 1,
+      "sequence": 81,
+      "echoSequence": 82,
+      "packedDirection": 10,
+      "directionIndex": 2,
+      "selector": 1,
+      "movementTick": 69028442,
+      "mapId": 1010,
+      "sha256": "81f33e35d4c35a7f3d4ac532d531940bf2f84feccce68f694b5da449d98416de"
+    },
+    {
+      "capture": 2,
+      "sequence": 46,
+      "echoSequence": 47,
+      "packedDirection": 22,
+      "directionIndex": 6,
+      "selector": 0,
+      "movementTick": 69368258,
+      "mapId": 1010,
+      "sha256": "ec206cb0d7f807e2407ec8709a2371a4e923b1985cf2f2738095b07182399d27"
+    },
+    {
+      "capture": 2,
+      "sequence": 48,
+      "echoSequence": 49,
+      "packedDirection": 182,
+      "directionIndex": 6,
+      "selector": 0,
+      "movementTick": 69368781,
+      "mapId": 1010,
+      "sha256": "9a36c958ec235d9f78b47fb0b1e7dec9599d424d7add343aa0589b24f6b03665"
+    },
+    {
+      "capture": 2,
+      "sequence": 50,
+      "echoSequence": 51,
+      "packedDirection": 118,
+      "directionIndex": 6,
+      "selector": 0,
+      "movementTick": 69369284,
+      "mapId": 1010,
+      "sha256": "994877c765028d0df0ac8d47bd874283308ea59a7c72ac0a2f4aa267549853b0"
+    },
+    {
+      "capture": 2,
+      "sequence": 52,
+      "echoSequence": 53,
+      "packedDirection": 241,
+      "directionIndex": 1,
+      "selector": 0,
+      "movementTick": 69369801,
+      "mapId": 1010,
+      "sha256": "0efd0544859c5670f616b9d530b03f77220df6c68475c854abc9d512948cfb42"
+    },
+    {
+      "capture": 2,
+      "sequence": 54,
+      "echoSequence": 55,
+      "packedDirection": 209,
+      "directionIndex": 1,
+      "selector": 0,
+      "movementTick": 69370318,
+      "mapId": 1010,
+      "sha256": "efc4289a1f5da576313d3bcb18ce099254e1b9f5f739aaa7da7ab8d93814da9e"
+    },
+    {
+      "capture": 2,
+      "sequence": 56,
+      "echoSequence": 57,
+      "packedDirection": 60,
+      "directionIndex": 4,
+      "selector": 0,
+      "movementTick": 69371822,
+      "mapId": 1010,
+      "sha256": "1cb2da9f29d788c233451a529fa98a51fc9f9816164e1bebf9fe56ad9626bf1b"
+    },
+    {
+      "capture": 2,
+      "sequence": 60,
+      "echoSequence": 61,
+      "packedDirection": 108,
+      "directionIndex": 4,
+      "selector": 0,
+      "movementTick": 69372334,
+      "mapId": 1010,
+      "sha256": "c4719b256c216edec7496e53b6c898d470b2aced7546dbe2f2a602808d545490"
+    },
+    {
+      "capture": 2,
+      "sequence": 62,
+      "echoSequence": 63,
+      "packedDirection": 180,
+      "directionIndex": 4,
+      "selector": 0,
+      "movementTick": 69372849,
+      "mapId": 1010,
+      "sha256": "e5615d647235074f3bb230794fca2942e0b5a05e7aec40f2fc3445410852a97c"
+    },
+    {
+      "capture": 2,
+      "sequence": 64,
+      "echoSequence": 65,
+      "packedDirection": 52,
+      "directionIndex": 4,
+      "selector": 0,
+      "movementTick": 69373368,
+      "mapId": 1010,
+      "sha256": "40b6553492b2c85e2b20e145712c91cbebc2517896e530d86a64e61fea4afa8f"
+    },
+    {
+      "capture": 2,
+      "sequence": 66,
+      "echoSequence": 67,
+      "packedDirection": 185,
+      "directionIndex": 1,
+      "selector": 0,
+      "movementTick": 69373886,
+      "mapId": 1010,
+      "sha256": "651a37e5595fcee6150e9cd23d82d2b828862b00d186948a8c824e57ec1bcfdb"
+    },
+    {
+      "capture": 2,
+      "sequence": 68,
+      "echoSequence": 69,
+      "packedDirection": 217,
+      "directionIndex": 1,
+      "selector": 0,
+      "movementTick": 69374384,
+      "mapId": 1010,
+      "sha256": "84be80366fbf88bfaf1407159c8b6eb1616cdd8ece69f675263326aec01d1726"
+    }
+  ]
+}
