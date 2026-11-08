@@ -1,0 +1,44 @@
+{
+  "captureSha256": "177e7e97fb434090a1716905f6c2fe2ca0752aa61d313a3daaf757e748c6cd0f",
+  "serverFixtureSha256": "9b331400acc06c56fde8ba33f0b7ed39d6e4223f7daf4fac76bf7d12452b3e8f",
+  "matchedFrames": [
+    {
+      "sequence": 13,
+      "length": 968,
+      "count": 80,
+      "first": 600,
+      "last": 938,
+      "sha256": "45d3167ae09ed03bc9f4d41790a3fdbe4587469b596e5f442ce686521b717001"
+    },
+    {
+      "sequence": 14,
+      "length": 968,
+      "count": 80,
+      "first": 950,
+      "last": 1141,
+      "sha256": "3b9c6170ceed1f07d9bde4c8bd74de175709d698c5fb3edbb451850190f66b80"
+    },
+    {
+      "sequence": 15,
+      "length": 776,
+      "count": 64,
+      "first": 1142,
+      "last": 20001,
+      "sha256": "49cd8b7c3c96dc92dde25c837a7f1002f58c5c1ac05e23dcdf69b41a9eb24a49"
+    }
+  ],
+  "assetVariants": [
+    {
+      "tree": "5517",
+      "fileSha256": "98d92e41bb092f406e601a6e728f1a4758561b82523fd8d7001daaa112185bad",
+      "missionRows": 230,
+      "distinctMissionIds": 224
+    },
+    {
+      "tree": "5517-loader",
+      "fileSha256": "b96b7f3007b1a95839e336666765b4d7ced7920f34dba91013fa9e81ebf8c06e",
+      "missionRows": 230,
+      "distinctMissionIds": 224
+    }
+  ]
+}

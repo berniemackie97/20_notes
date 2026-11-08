@@ -228,6 +228,7 @@ Subtype 3 burst:
 - no other client send between frames. Every send appends to one 0x2000 B buffer (`CGameSocket_SendBufferedPacket` `0x6E1A07`, flushes first when full) → FIFO; flushed at end of `CNetMsg__ProcessMsg`.
 - wire position: `1006` handler sends `0x4A` inside `ProcessMsg`; `ANSWER_OK` is drained after it → burst follows `0x4A` when `1004` and `1006` arrive in one `ProcessMsg`, precedes it when `1006` arrives later. `0x198` comes from processing the `0x4A` reply (`1110`), always a later `ProcessMsg` → burst always before `0x198`.
 - retail run: after the `0x4A` exchange, before `0x198`; first frame 968 B, count 80, ids 600, 601, 602… (`C8036E04 0300 5000 58020000 …`).
+- November 8 VM runs show both legal burst placements. Run 1 followed native 74 and 1151/2. Run 2 preceded both. Both completed before native 75. Run 2 retained the complete 80/80/64 burst, which matches all three existing OCS test frames byte for byte. The clean and loader asset trees have different Questinfo.ini digests but the same 224 unique MissionIds. The reused packet body stays intact when ResetEntries at 0x72D589 clears count +6 and resets length to 4. [Runtime and source audit](evidence/cp32-bootstrap-paths-2026-11-08/README.md)
 - `0x6A580C` first resets the timed list (`mgr+0xC`, `CQuestTaskTypeMgr_ClearTimedMissionIds` `0x6A52B3`).
 
 Subtype 4: timed list filled only by `CQuestTaskTypeMgr_AppendTimedMissionId` `0x6A52A3`, callers only S->C `Process` subtypes 1/3 with value ≠ 0 → no subtype 4 unless the server sent such a 1134.
