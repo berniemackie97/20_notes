@@ -100,3 +100,7 @@ clip end. An initial loose-only harness could not read packaged meshes. The
 normal packaged source resolved all six tested appearances. This establishes
 managed asset and clock behavior. GPU playback and live peer/native comparison
 remain open under OCC #250.
+
+The [November 9 GPU probe and archive reconciliation](../Rendering/evidence/peer-world-verification-2026-11-09/README.md) verifies walk/run drawing and records the constructed selector-width discrepancy on the merged client.
+
+The [connected managed peer run and retail GPU replay](evidence/cp42-managed-peer-2026-11-09/README.md) verifies canonical 0/1 across current OCC and OCS mains. The retained OCS relay frames are classified separately from original 5517 packets.
