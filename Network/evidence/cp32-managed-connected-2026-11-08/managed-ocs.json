@@ -1,0 +1,55 @@
+[
+  {
+    "step": "created-character-admitted",
+    "MapId": 1010,
+    "X": 60,
+    "Y": 108
+  },
+  {
+    "step": "managed-ocs-correction",
+    "direction": "server-to-client",
+    "provenance": "managed-ocs",
+    "capturePoint": "OCC after CAST5-CFB decryption and TQServer validation",
+    "length": 38,
+    "hex": "26001a2740420f0000000000000000001d66d3026c0000003c006c0000000000000000000000",
+    "sha256": "8fbbdbcd9ab6414548f7a446962d3cf8a8684903ac3554128ef7817fad51f2f4"
+  },
+  {
+    "step": "correction-reply-and-live-heartbeat",
+    "replyCount": 1,
+    "X": 60,
+    "Y": 108
+  },
+  {
+    "step": "managed-ocs-peer-spawn",
+    "direction": "server-to-client",
+    "provenance": "managed-ocs",
+    "capturePoint": "OCC after CAST5-CFB decryption and TQServer validation",
+    "length": 233,
+    "hex": "e9001e27fb2a000041420f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005d00000062023c006c000064000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a000a000a000000000000040a41756469744f74686572000000",
+    "sha256": "49c2ec831e4e06a62f8214495b670849da835011b0657fa66c4a58561923bb53"
+  },
+  {
+    "step": "managed-ocs-peer-removal",
+    "direction": "server-to-client",
+    "provenance": "managed-ocs",
+    "capturePoint": "OCC after CAST5-CFB decryption and TQServer validation",
+    "length": 38,
+    "hex": "26001a2741420f0000000000000000003967d302870000000000000000000000000000000000",
+    "sha256": "5954d19f86691c8467d533e3ed33caca8ab992aec2ad6810abada613c1dbad0e"
+  },
+  {
+    "step": "existing-character-admitted",
+    "MapId": 1010,
+    "X": 60,
+    "Y": 108
+  },
+  {
+    "step": "missing-asset",
+    "status": "Unavailable"
+  },
+  {
+    "step": "malformed-asset",
+    "status": "Unavailable"
+  }
+]

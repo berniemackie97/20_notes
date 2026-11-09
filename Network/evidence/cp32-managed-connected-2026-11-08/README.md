@@ -1,0 +1,27 @@
+# Managed connected verification, 2026-11-08
+
+OCC `89ca6e8a2fc2e878889169cbd201065deb95835f` and OCS `e69aaf8d0db18e50952ce4ae587cdf20a4a031d7` were the GitHub main tips when verified. Release builds on macOS arm64 passed with zero errors and warnings. The connected check ran the production OCC admission, secure transport and world handlers from a temporary test harness against the two production OCS processes and an isolated MySQL 8.4.11 database. It used the account and game schemas migrated from empty databases and separate runtime principals with production grants. Identities and keys were disposable.
+
+## Observed behavior
+
+- Mission admission (OCC #306). A new account followed NEW_ROLE, real character creation, repeated proof, accepted login control and activation at map 1010, tile (60, 108). The same character reconnected and activated at the same tile. The verified content snapshot supplied 224 distinct mission IDs. Both routes traversed the existing secured 1134/3 send path. Missing and malformed mission content independently returned Unavailable without handing over a world session. The game server observed disconnects before EnterMap in both cases. The three-frame original-client byte comparison is documented in [mission catalog evidence](../cp32-mission-catalog-2026-11-08/README.md). The controlled connected test did not capture mission frames a second time or exercise desktop creation controls.
+- Position correction (OCC #263). Three deliberate divergent position reports triggered a real server 10010/108 correction for the admitted character. The client processed it through WorldInboundState and wrote one action 146 through the live secured egress even though the correction restated the current tile. A subsequent real server heartbeat reply confirmed the session remained active. Exact client-origin byte comparison, repeated/changed cases and foreign-target silence come from the independent [native capture and managed replay](../cp32-correction-2026-11-08/README.md).
+- Peer identity (OCC #249). Two independent authenticated OCC sessions entered the same OCS map. The first consumed an actual OCS 10014 and owned the other role in its world registry. After the second session disconnected, an actual OCS 10010/135 removed the role. This exercised state and transport. Remote rendering, appearance, depth, graphics cleanup and original-client visual comparison remain open.
+
+`managed-ocs.json` preserves the exact three OCS-produced logical frames from this check. Capture point was after CAST5-CFB decryption and validation of the TQServer seal in the receiving client. The test character identities and coordinates are synthetic. All other rows summarize behavior. These frames are **managed OCS output**. Original 5517 client and original server provenance must remain separate.
+
+## Shared fixtures and private content
+
+All twelve files in the two pinned `tests/Fixtures/WireGolden` directories, eleven cases plus the manifest, compared byte for byte. The common manifest SHA-256 is `60ca8ca1abe38bece22d57a7f329de60952efc3139008940919029f48c392361`. OCC #323 and OCS #226 had merged. Original-server output and withheld source-client variants remain outstanding under OCC #248.
+
+The previously installed local set failed current content closure because it lacked `ini/Questinfo.ini`. A separate import included the verified retail source, SHA-256 `b96b7f3007b1a95839e336666765b4d7ced7920f34dba91013fa9e81ebf8c06e`. Its map 1010 set passed verification (3,945 files, 393,781,425 payload bytes). Two independent compiles of map-data ID 1010 produced identical bytes, SHA-256 `71399a7e2d8cb2fcdb1fe650e03c61dc578c2a80288a7eca681d684ced4d0097`. The protected hosted runner and release composition remain separate gates under OCC #256.
+
+Local published-content verification on macOS arm64 passed on the same 3,945-file set. The CI-equivalent local release steps used an ephemeral ECDSA P-256 publisher, created a signed `osx-arm64` release and catalog, and staged a managed installation with one active generation. Manifest and signature matched the staged generation exactly. The catalog's 215,566,416-byte package length and SHA-256 matched the produced ZIP. The manifest SHA-256 was `b636e2a5acf892ee1ca692b82fa9fc3b01a467860af5e67ab06f585a44cf7b39`; the signed package SHA-256 was `dc3afcb6fc81f088d37b754394322bfd30825f8db57fdda5ce9db2b5b80611e1`. The package has no release/publication authority. Protected hosted Linux execution remains outstanding.
+
+## Desktop confirmation
+
+A fresh launch of the exact OCC Release build in a temporary macOS app bundle authenticated to the isolated OCS realm, reached the character creation screen, created a disposable character and rendered it on map 1010 with the gameplay HUD. The game connection remained established and the isolated database held the new role for that account. This completed the graphical post-creation acceptance for OCC #306. The earlier stalled desktop attempt led to a separately reproduced [login retry defect](desktop-login-retry.md), OCC #326.
+
+## Local test matrix
+
+OCC solution: 3,856 passed. OCS solution: 3,552 passed and 87 failed on the first pass, all errors in the Docker-backed infrastructure project. The infrastructure rerun with at most two concurrent collections passed all 824 tests. Across these runs all 3,639 OCS cases passed. Both server database models reported no pending EF migration changes. Hosted PR checks are independent of these local runs.

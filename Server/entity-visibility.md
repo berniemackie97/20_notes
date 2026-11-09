@@ -56,7 +56,7 @@ departure removal was always required. That was wrong: it was written from a sin
 |---|---|---|
 | S→C | MsgPlayer (`10014`) | `0x755F64` — materialises another entity; a self-spawn is discarded by the id guard at `0x755F8A` |
 | S→C | MsgAction (`10010`) subtype `0x87` (135) | `0x70051A` — reads only the entity id at `+4`, then `EntityManager_RemoveEntityById(&g_objPlayerSet, id, 1)` at `0x7005AC` |
-| S→C | MsgEntityAction (`10005`) relayed verbatim | `0x7407B4` — the remote branch applies the same direction delta to the named entity that the local branch applies to the hero |
+| S→C | MsgEntityAction (`10005`) relayed verbatim | `0x7407B4` — the remote branch uses the same direction decode, then submits a role command or updates the hero-owned pet tile pair; see [the resolved-entity gates](../Network/15_msgwalk_10005_direction_index_order.md#remote-movement-dispatch) |
 | C→S | MsgAction subtype `0x66` (102) | `0x740730` — the client asks for an entity a movement packet named that it cannot resolve |
 
 Subtype `0x87` is safe to send for an entity the client has already culled: the branch resolves the

@@ -52,3 +52,7 @@ After decryption and trailer validation, the peer received three logical frames.
 Focused client tests used the local retail fixture. On both `84e651ed735eee50e6ba9632982a4021bac2e080` and the head above, 147 passed and one failed, with zero skips. The secured replay passed. `CorrectionBacklogIsBoundedWithoutDroppingAcceptedReplies` still expected `InvalidDataException` after the queue began throwing `WorldCorrectionQueueFullException`. Changing only the expected exception in the isolated test copy yielded 148 passed and zero skips. The existing FIFO assertions remained enabled. The current OCS focused protocol (19) and gameplay/worker (23) tests passed, 42 total. [Review evidence](https://github.com/berniemackie97/OpenConquerClient/pull/310#issuecomment-6727796986)
 
 Follow-up head `518dc21e892802785e019de703d63b54463548fc` applies the identical one-line expectation change. Its only delta from `08cdfa1` is that test assertion. Both changed tracked test files were byte-compared against the passing isolated snapshot. The 148-test result therefore applies to that head plus the isolated replay diagnostic.
+
+## Managed connected verification
+
+The pinned OCC and OCS builds were exercised together in the [managed connected verification](../cp32-managed-connected-2026-11-08/README.md). That run preserves managed-server output separately from the original-client evidence in this directory.

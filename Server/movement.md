@@ -23,8 +23,9 @@ Wire layout verified against `CMsgEntityAction_CreateWithMoveTickAndMapState` (`
 
 Inbound handling (`0x7405E7`):
 
-- Selector dword compared to exactly `9` → 24-direction table; anything else → 8-direction. Only the
-  low byte of the packed direction is normalised.
+- The selector is stored as a dword. The receive branch compares its low byte to `9` at
+  `0x740606` (`80 79 0C 09`). Low byte `9` selects the 24-direction table; other values select
+  the 8-direction table. Only the low byte of the packed direction is normalized.
 - Delta tables: 8-dir at `0x86C7C4`/`0x86C7E4`, 24-dir at `0x86C804`/`0x86C864`.
 - Entity resolved by id at `+8`. **If it is the local hero**:
   `CHero_ProcessMovementAcknowledgementTimestamp(pkt+0x10)` then
@@ -33,6 +34,8 @@ Inbound handling (`0x7405E7`):
 
 **The delta is relative to the client's current tile**, so the acknowledgement is the request echoed
 verbatim. Echoing a modified position would double-apply.
+
+See [remote movement dispatch](../Network/15_msgwalk_10005_direction_index_order.md#remote-movement-dispatch) for the resolved entity paths.
 
 ## Jump — MsgAction (10010) subtype 0x89 / 137
 

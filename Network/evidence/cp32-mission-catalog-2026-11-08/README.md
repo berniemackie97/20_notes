@@ -40,3 +40,7 @@ Using the unmodified assemblies built from the two main revisions below, an isol
 - Treat invalid installed content as a bounded local validation error before any catalog write. That is managed policy. The native empty-map behavior and zero-length fault remain separate evidence. Cover missing/empty/malformed source, numbered sections outside the count, duplicate IDs, exact-full frames, the 240-ID bound, a write failure or cancellation mid-burst, and both admitted routes. Use the exact three captured native vectors for comparison. Keep created-character runtime verification and the complete corpus gate open.
 
 Focused tests on isolated archives of the pinned mains passed with .NET SDK 10.0.403 on macOS arm64. OCC client 85, OCC content 108, OCS protocol 33, OCS login 442. Total 668 passed, zero failed or skipped.
+
+## Managed connected verification
+
+The pinned OCC and OCS builds were exercised together in the [managed connected verification](../cp32-managed-connected-2026-11-08/README.md). That run preserves managed-server output separately from the original-client evidence in this directory.
