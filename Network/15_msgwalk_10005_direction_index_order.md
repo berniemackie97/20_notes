@@ -87,6 +87,47 @@ bytes agree across the clean, loader and Binary Ninja input copies. Analysis vie
   The observed 0/1 frames pin ordinary direction examples. The low-byte canary
   is instruction-derived and does not authorize broadening server ingress.
 
+### Remote step presentation
+
+Verified November 20, 2026, `Conquer.exe.bndb` (9) and `RoleView.dll.bndb` (126).
+Remote players use role class vtable `0x86AEEC`.
+
+| Stage | Native behaviour | Anchor |
+|---|---|---|
+| Ingress | vtable+0x80 = `Role_HandleIncomingActionStateBatch`. For types 0x0F..0x18: erase queued types 4..0xB/0xD/0xE/0x19, then, if the effective command is idle-class, commit the motion in progress (frame:=count, cursor:=end, tile from cursor), then `push_back` the block. Not applied here. | `0x6720EE`, label `0x672276` |
+| Commit | `Role_RecomputeCoordinateGateCacheFromProjectedPosition`: `+0x1A8=+0x1AC`, `+0x350/+0x354=+0x19C/+0x1A0`, tile `+0x318/+0x334` from cursor. | `0x64E9A5` |
+| Snap on arrival | `Role_CommandType16/17` set progress `+0x1EC=6` when the step starts; effective command then reads 5 (`0x64DDF8`). The next arriving step therefore snaps an unfinished step to its end. | `0x7365D8`, `0x736ACB` |
+| Tick | `Role_TickCommandStateAndDispatchPlayback`: when vtable+0x58 reports the current motion complete, pop one queued block, apply it, run +0x84, dispatch. While a motion runs, queued walks wait. | `0x672662..0x6726E0` |
+| Step staging | `Role_ApplyGroundMoveActionAndPoseFromPathCursor`: start `+0x194/+0x198` = current cursor `+0x350/+0x354`; end `+0x19C/+0x1A0` = projection of (cursor tile + `g_RoleMoveDirection8TileDelta[dir]`). | `0x73631C` |
+| Action | 0x16: last physical action `+0x398` ∈ {110,120} → 111, else 110. 0x17: `+0x398`==121 → 120; ==120 → 121; else 120. `+0x398` init −1 (`0x64D307`); updated only for physical-set actions (`0x64E870`). | `0x736329`, `0x736AEC` |
+| Timing | `+0x1AC` = RoleView+0x0C return (clip frames); `+0x1B4` = now; `+0x1B8` = `Role_ComputeFrameIntervalFromAction` = 25 ms for 110/111/120/121 ([13](../Rendering/roleview_dll/13_role_compute_frame_interval.md)). `+0x24` overrides when >0; init 0 (`0x64D2D1`), not written by 0x16/0x17. | `0x64E665`, `0x64E6ED..0x64E6FD` |
+| Frame | `+0x1A8 = (now − start + interval/2) / interval` (unsigned, rounded), capped at count. | `0x64EB0C`, `0x64EB70` |
+| Position | Easing key = RoleView key 0x1E = body composite of current action; low four digits = action id (`PlayerRoleView_BuildCurrentBodyMotionLookupKey`, RoleView `0x10002D35`). ActionCtrl.ini records end in 0340/0342/0344/0346/0370/0915/0916/0917/0919; lookup transforms keep the low four digits or force 9999 ([easing](../Rendering/gamedata_dll/01_action_control_motion_easing.md)). Ground walk/run: no record → linear: `start + roundHalfStep(delta·min(now−start,total)/total)` (`0x768AA1`, see [easing](../Rendering/gamedata_dll/01_action_control_motion_easing.md)), `total = max(frames·interval,1)`. Snap to end when `+0x1A8 ≥ +0x1AC`. | `0x64EE59..0x64EED4` |
+| Queue drain | Motion done, queue empty: `Role_CommandType05` sets action 100, copies cursor into both endpoints. | `0x7335BA..0x7335D6` |
+| Depth tile | Mid-step (action ∈ {110,111,120,121}) registers at tile of start point if `+0x17C ≤ 3`, else end point. | `0x672784` |
+
+Open: which frame index the renderer draws (`Role_TickAndRender` tail is split in BN); `+0x24` writers outside init and 0x16/0x17 not enumerated; native 10014 replacement of a role mid-step not traced.
+
+### Remote jump presentation
+
+Verified November 20, 2026, `Conquer.exe.bndb` (9), `RoleView.dll.bndb` (126); constants read from PE bytes.
+
+| Stage | Native behaviour | Anchor |
+|---|---|---|
+| Ingress | MsgAction 137, remote role: command `0x14 + (pkt+0x24 != 0)`, block `+0x20/+0x24` = u16 target X/Y from `pkt+8/+0xA`; vtable+0x80 queues it like a walk (types 0x0F..0x18). | `0x700352..0x7003DE` |
+| Staging | 0x14: action `0x82` (`0x1FE` with status 0x1B). 0x15: `0x2C9` with status 0x32, else `0x82`. Direction `Role_SelectDirectionIndexTowardTile`; start = cursor; end = projected target tile. Progress 6. | `0x73597B`, `0x7358DB` |
+| Direction | `Role_SelectDirectionIndexTowardTile` = v of `Direction_Select8WayFromDelta(target − tile)`: dx=0 → dy>0?0:4; dy=0 → dx>0?6:2; else `sign(dx)·dy·100` in `[−241,−41,41,241]·\|dx\|` buckets → 5/6/7 (dx>0) or 1/2/3 (dx<0), none → dy>0?0:4. Standing facing after landing uses it. | `0x61E478`, `0x6E4ACC` |
+| Interval | `_ftol(base·dist·(1/300) + 1.0)`, unsigned floor 33; `dist` = start/end screen distance; base 33 for 0x82 ([13](../Rendering/roleview_dll/13_role_compute_frame_interval.md)). | `0x64DEF4..0x64DF50` |
+| Stretch | Clip frames < cap (20; mounted `0x86A9FC` table) and `+0xEC` untransformed: interval = `_ftol(ceil(I·(cap−0.5)/(frames−0.5)))`. | `0x64E727..0x64E7E2` |
+| Position | Linear (ActionCtrl has no 0130 record); completes on the rounded frame like walks. | `0x64EE59` |
+| Facing | `role+0x1C == −1`: `−270 − _ftol(atan2(endY−startY, endX−startX)·57.29578)` degrees. | `0x64F6FB..0x64F749` |
+| Arc | `Map_ComputeMotionArcScreenHeightOffsetFromProjectedPoints`: peak = first max tail elevation on the rounded line (source excluded); `adj(t)` = tail − base; `apex = _ftol(dist/3 + adjPeak) + 20`; apex point = midpoint (peak projection is overwritten, dead); nearer half: `_ftol(sin(dCur·π/max'(dMid)·0.5)·(apex − adjEnd) + adjEnd)`. Null start/end/peak entry → 0. | `0x6505B3` |
+| Line | Dominant axis k = 1..max(\|dx\|,\|dy\|), ties Y-dominant: minor = `minor0 + trunc((2·dMinor·k + sMinor·aDom)/(2·aDom))`; `s = d>0 ? 1 : −1`. | `0x620171` |
+| Tail | Base = cell elevation (`int16`). Per terrain-object group in map order, per object (anchor = group anchor + object offset), per cell (x,y), index `w·y+x`: tile = anchor − (x,y); tail = `int16(tail + delta)`. Out-of-grid entries null; null tail = 0. | `0x635FC5`, `0x63F4D3`, `0x644856`, `0x61D9C8` |
+| Transform | `terrainDelta = adj(cursorTile) − arc`; RoleView+0x10 `(projX, projY − terrainDelta − arc, terrainDelta, facing, scale)`; non-project camera stores `2·terrainDelta`: `Scale · Translate(0,0,elev) · RotZ`. Status 0x1B skips the arc. | `0x64F6BB`, `0x64F811`, RoleView `0x1000329A` |
+
+Correction: the previous arc comment placed the apex at the peak tile when `adjPeak > adjStart`; the instructions always use the midpoint.
+
 ### Managed gait verification
 
 On November 9, 2026, OCC main `08396ebef644ff61fb0e82b0b6c99cf50aba7c41`

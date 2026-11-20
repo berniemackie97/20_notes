@@ -78,8 +78,8 @@ This 2KB function is the heart of hero rendering. It:
        - inverse-project start/end and walk the rounded tile line excluding the source;
        - choose the resolved tile with the greatest tail-link elevation;
        - use `adjustedElevation = tailLinkElevation - baseTileElevation`;
-       - `apexHeight = peakAdjusted + trunc(screenDistance / 3) + 20`;
-       - place the apex at the projected peak tile only when `peakAdjusted > startAdjusted`, otherwise at the screen midpoint;
+       - `apexHeight = _ftol(screenDistance / 3 + peakAdjusted) + 20`;
+       - place the apex at the start/end screen midpoint (the peak-tile projection is written then overwritten at `0x650799`/`0x6507C5`; corrected 2026-11-20);
        - interpolate endpoint-adjusted elevation to the apex with a half-sine on each side.
      - the terrain delta passed to RoleView is `currentAdjusted - arcAnchor`; the standard
        non-project setter doubles it. The direct screen-Y terms subtract that delta and the arc,
