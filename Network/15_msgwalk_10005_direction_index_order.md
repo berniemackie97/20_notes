@@ -106,7 +106,10 @@ Remote players use role class vtable `0x86AEEC`.
 | Queue drain | Motion done, queue empty: `Role_CommandType05` sets action 100, copies cursor into both endpoints. | `0x7335BA..0x7335D6` |
 | Depth tile | Mid-step (action ∈ {110,111,120,121}) registers at tile of start point if `+0x17C ≤ 3`, else end point. | `0x672784` |
 
-Open: which frame index the renderer draws (`Role_TickAndRender` tail is split in BN); `+0x24` writers outside init and 0x16/0x17 not enumerated; native 10014 replacement of a role mid-step not traced.
+| Rendered frame | `RoleView+0x04(0x0A, role+0x1C ≥ 0 ? role+0x1C : +0x1A8)`; `+0x1C` init −1 → rounded `+0x1A8`. Forwarded unchanged to `I3DRole+0x50` → mesh `+0x4C`; C3 sampler clamps. No action cross-fade (`ActionTransition.ini` empty). | `0x64FA33..0x64FA4B`, RoleView `0x10002756` |
+| Standby loop | Drain dispatches 100 from frame 0; interval 66 ms (100..103 fallback); same rounded frame; completion → `+0x84` → `Role_CommandType05` re-dispatches 100 from frame 0. | `0x73351E`, `0x672662` |
+
+Open: `+0x24` writers outside init and 0x16/0x17 not enumerated; native 10014 replacement of a role mid-step not traced.
 
 ### Remote jump presentation
 
