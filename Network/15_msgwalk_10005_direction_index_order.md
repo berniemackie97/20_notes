@@ -108,6 +108,7 @@ Remote players use role class vtable `0x86AEEC`.
 
 | Rendered frame | `RoleView+0x04(0x0A, role+0x1C ≥ 0 ? role+0x1C : +0x1A8)`; `+0x1C` init −1 → rounded `+0x1A8`. Forwarded unchanged to `I3DRole+0x50` → mesh `+0x4C`; C3 sampler clamps. No action cross-fade (`ActionTransition.ini` empty). | `0x64FA33..0x64FA4B`, RoleView `0x10002756` |
 | Standby loop | Drain dispatches 100 from frame 0; interval 66 ms (100..103 fallback); same rounded frame; completion → `+0x84` → `Role_CommandType05` re-dispatches 100 from frame 0. | `0x73351E`, `0x672662` |
+| Idle variants | Each Type05 dispatch while command type `+0x1E8 == 5` (never commanded): `rand()%10 == 1` → `101 + rand()%3` (`Conquer_GetRandomModuloWithOptionalTimeReseed`, no reseed). Then `+0x30C ≠ 0` → 0x1F5 (0x1F6 in window) or window `now − +0x37C < 10000` → 0x12C. Interval 66 ms. | `0x73350D..0x7335A4`, `0x769250`, `0x6E4FA1` |
 
 Open: `+0x24` writers outside init and 0x16/0x17 not enumerated; native 10014 replacement of a role mid-step not traced.
 
