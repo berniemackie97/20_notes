@@ -71,6 +71,10 @@ normalized away.
 
 ## Interpolation contract
 
+`roundHalfStep(v)` is `Math_RoundDoubleByHalfStepCompare` (`0x768AA1`): `t = _ftol(v)`, `u = _ftol(v + 0.5)`,
+result `u > t ? t + 1 : t` (round-half-up for `v ≥ 0`; negative `v` can move up by one, e.g. −6.4 → −5).
+Corrected 2026-11-20; the cursor offsets were previously recorded as truncation.
+
 The executable starts with unsigned 32-bit timing:
 
 ```text
@@ -84,7 +88,7 @@ The multiplies are native 32-bit operations and wrap before unsigned division.
 If the lookup is null or `sectionCount <= 0`, each axis uses the linear fallback:
 
 ```text
-start + truncate_toward_zero(delta * elapsedMs / totalDurationMs)
+start + roundHalfStep(delta * elapsedMs / totalDurationMs)
 ```
 
 Otherwise the eased branch:
@@ -105,7 +109,7 @@ Otherwise the eased branch:
 8. Computes distance percentage with signed 32-bit integer arithmetic:
    `previousMove + ((nextMove - previousMove) * segmentProgress) / 100`.
 9. Writes each cursor axis as
-   `start + truncate_toward_zero(delta * distancePercent * 0.01)`.
+   `start + roundHalfStep(delta * distancePercent * 0.01)`.
 
 After interpolation, a completed frame-step count also snaps the cursor to the exact end. The
 routine then inverse-projects the cursor into the XTEA-protected tile pair and refreshes the
