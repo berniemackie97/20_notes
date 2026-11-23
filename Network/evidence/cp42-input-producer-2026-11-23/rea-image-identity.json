@@ -1,0 +1,66 @@
+{
+  "evidence_id": "ev_4b894f1202b81d845957e5c4521e0968aa14b1a38e005a9f6c7b4d79fbcc0cbe",
+  "subject": {
+    "name": "Conquer.exe",
+    "digest": {
+      "sha256": "b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62"
+    },
+    "local_path": "/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517/Conquer.exe",
+    "format": "unknown",
+    "architecture": null
+  },
+  "provider": {
+    "id": "gnu.objdump",
+    "name": "GNU objdump",
+    "version": null
+  },
+  "analysis_profile": null,
+  "predicate_type": "rea.reverse-engineering.command-observation",
+  "operation": "inspect_with_objdump",
+  "parameters": {
+    "path": "/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517/Conquer.exe",
+    "operation": "file_headers",
+    "follow_debug_links": false,
+    "provider_executable": "objdump",
+    "command_arguments": [
+      "-f",
+      "/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517/Conquer.exe"
+    ]
+  },
+  "raw_result": {
+    "stdout": "\n/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517/Conquer.exe:\tfile format coff-i386\narchitecture: i386\nstart address: 0x00377aae\n",
+    "stderr": "",
+    "exit_code": 0,
+    "signal": null,
+    "output_truncated": false,
+    "completion_status": "complete",
+    "artifact_sha256_after": "b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62",
+    "artifact_changed": false
+  },
+  "normalized_result": {
+    "stdout": "\n/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517/Conquer.exe:\tfile format coff-i386\narchitecture: i386\nstart address: 0x00377aae\n",
+    "stderr": "",
+    "exit_code": 0,
+    "signal": null,
+    "output_truncated": false,
+    "completion_status": "complete",
+    "artifact_sha256_after": "b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62",
+    "artifact_changed": false
+  },
+  "confidence": "observed",
+  "authority": "shipped-artifact",
+  "environment": null,
+  "limitations": [
+    "The executable version and supported formats are reported as unknown because no reliable version probe was performed.",
+    "A non-zero process exit is preserved as an observed command result.",
+    "When both are available, pre-run and post-run digests detect artifact changes across the provider call but cannot prove the exact bytes consumed during the call."
+  ],
+  "relationship_coverage": null,
+  "locations": [
+    {
+      "kind": "artifact-path",
+      "path": "/Volumes/EnderChest/Development/Repos/GameDev/Conquer/client-5517/00_clean/clean/5517/Conquer.exe"
+    }
+  ],
+  "evidence_links": []
+}
