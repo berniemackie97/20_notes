@@ -178,3 +178,24 @@ writes vtable `0x86AD08` at `0x655730`; its +0x80 slot points to `0x65C079`,
 This supplements the partial input trace; it does not close OCC #341 or establish
 a new interactive capture. Server pace limits remain application policy, not
 an observed original-server contract.
+
+### Pointer interception follow-up
+
+**Proven (static instructions; November 23, 2026).** Viewport input at
+`0x6F0E17` consumes a found table entry even with a null payload or negative
+configured message code. A nonnegative payload code posts the configured
+window message. Only lookup miss reaches the panel-bound fallback at
+`0x6F0DD1`; release there clears/stamps/toggles viewport state according to
+the panel bounds. This resolves the immediate consumer above, not the complete
+downstream release behavior.
+
+The thread mouse hook `0x5B9047` records hero activity on changed mouse
+coordinates and left/right down or double-click, then forwards the hook.
+The activity helper `0x65CDA2` refreshes the activity timestamp and exits idle
+when needed. Its old analysis name implied unconditional autorun cancellation;
+that implication is unsupported. Its corrected name is
+`CHero_RecordActivityAndExitIdle`.
+
+[Hook, viewport, byte verification and VM observation boundary](evidence/cp42-input-producer-2026-11-23/input-interception-followup.md).
+Held input, downstream command consumers, focus/transfer interruption and
+client/server pacing comparison remain open. No new runtime capture occurred.
