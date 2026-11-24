@@ -149,3 +149,32 @@ remain open under OCC #250.
 The [November 9 GPU probe and archive reconciliation](../Rendering/evidence/peer-world-verification-2026-11-09/README.md) verifies walk/run drawing and records the constructed selector-width discrepancy on the merged client.
 
 The [connected managed peer run and retail GPU replay](evidence/cp42-managed-peer-2026-11-09/README.md) verifies canonical 0/1 across current OCC and OCS mains. The retained OCS relay frames are classified separately from original 5517 packets.
+
+## Local hero command and sender contract
+
+**Proven (static instructions; November 23, 2026 follow-up).** The generic-role
+sender at `0x74353F` is not the hero's virtual callback. The hero constructor
+writes vtable `0x86AD08` at `0x655730`; its +0x80 slot points to `0x65C079`,
++0x84 to `0x65C0F5`, and +0x58 to `0x64EAB2`.
+
+- Hero +0x80 applies the supplied command through `0x64DD38` after coordinate
+  bookkeeping. The accepted 0x11C-byte block is copied to hero+0x1E8.
+  **Do not generalize the remote-role queue to local input.**
+- Hero +0x84 selects the action, then its ordinary movement branch constructs
+  packet 10005 with packed direction `direction + 8*(rand()%31)`,
+  actor ID, selector 0 for actions 110/111 or 1 for 120/121,
+  a sampled client timestamp, and the map object's +0xE0 identity field.
+- The hero calls the builder at `0x740457`, which writes packed direction and
+  selector as bytes into reset storage, actor/timestamp/map identity as dwords.
+  The earlier generic-role builder at `0x740407` omits the latter two inputs.
+- The role tick calls +0x84 and restarts presentation after the +0x58 completion
+  path, or after the separately gated due-action path. This establishes the
+  scheduling boundary; it does not establish a complete held-input cadence.
+- The release helper at `0x76A7AB` only stores three globals (input value and
+  coordinates). It is not itself a movement-stop routine. Its viewport
+  consumer and all repeated-input/focus/transfer paths remain unresolved.
+
+[Instruction evidence, verification and exact resume boundary](evidence/cp42-input-producer-2026-11-23/hero-command-followup.md).
+This supplements the partial input trace; it does not close OCC #341 or establish
+a new interactive capture. Server pace limits remain application policy, not
+an observed original-server contract.

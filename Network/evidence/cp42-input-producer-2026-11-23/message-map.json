@@ -18,6 +18,21 @@
       "hex": "02020000000000000000000000000000310000001eb65d00",
       "message": "0x202",
       "handler": "0x5db61e"
+    },
+    {
+      "kind": "hero-vtable-slot",
+      "address": "0x86ad60",
+      "hex": "b2ea6400"
+    },
+    {
+      "kind": "hero-vtable-slot",
+      "address": "0x86ad88",
+      "hex": "79c06500"
+    },
+    {
+      "kind": "hero-vtable-slot",
+      "address": "0x86ad8c",
+      "hex": "f5c06500"
     }
   ]
 }
