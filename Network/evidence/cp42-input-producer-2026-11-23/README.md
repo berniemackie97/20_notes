@@ -2,13 +2,13 @@
 
 Verified November 23, 2026. Contributes to [OCC #341](https://github.com/berniemackie97/OpenConquerClient/issues/341); does not close it or authorize a production movement controller.
 
-The [hero command follow-up](hero-command-followup.md) corrects the generic-versus-hero sender scope and local command ownership. Its proven/candidate/unresolved ledger is the current resume boundary.
+The [hero command follow-up](hero-command-followup.md) corrects the generic-versus-hero sender scope and local command ownership. The subsequent [pointer interception follow-up](input-interception-followup.md) resolves immediate viewport handling and corrects the idle helper name; its ledger is the current resume boundary.
 
 ## Authority and validation
 
 Source executable SHA-256: `b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62`. Binary Ninja target: `Conquer.exe.bndb`, view 9. REA independently inspected the unmodified PE image with objdump; [identity evidence](rea-image-identity.json). This is static instruction evidence, not a new interactive or wire capture.
 
-[Retained instructions](instructions.json) contain the original 13 full-function or explicitly filtered instruction transcripts plus 17 raw objdump ranges. The button-down excerpt omits unrelated interaction branches. Existing analysis names identify locations; their names are not independent proof of semantics. Shared exception-prologue lifting makes some pseudocode misleading, so conclusions below use instructions.
+[Retained instructions](instructions.json) contain the original 13 full-function or explicitly filtered instruction transcripts, 17 raw objdump ranges, six hook/viewport functions and a hook-installation excerpt. The button-down excerpt omits unrelated interaction branches. Existing analysis names identify locations; their names are not independent proof of semantics. Shared exception-prologue lifting makes some pseudocode misleading, so conclusions below use instructions.
 
 Run:
 
@@ -53,7 +53,7 @@ At `0x5B23EA–0x5B242E`, status 0x3C selects an additional screen-coordinate re
 
 The shell message-map entry at `0x8685A0` has message 0x201 and handler `0x5AFEDF`; entry `0x8686C0` has message 0x202 and handler `0x5DB61E`. Message 0x200 at `0x868600` points to `0x5B9BEE`.
 
-The down handler takes capture and passes an input code 1 plus coordinates to the viewport handler `0x6F0E17` before the later movement branches. Its complete interception contract remains untraced.
+The down handler takes capture and passes an input code 1 plus coordinates to the viewport handler `0x6F0E17` before the later movement branches. The immediate lookup, configured-message posting and panel fallback are now traced in input-interception-followup.md; downstream command consumers remain open.
 
 In the ground-target tail, after prior gates:
 
@@ -66,7 +66,7 @@ In the ground-target tail, after prior gates:
 
 The helper at `0x5D91A2` calls GetKeyboardState and tests array byte 0x12 bit 0x80 (Alt). This identifies the tested key; it does not establish mounted eligibility or authorize mounted input.
 
-Release handler `0x5DB61E` calls ReleaseCapture, `0x76A7AB(x,y,0)`, then `0x6F0E17(0,x,y)`; it calls the window default if the latter returns false. **No conclusion that releasing the pointer immediately cancels movement is supported.** The first helper's side effects and the held-command scheduler remain open.
+Release handler `0x5DB61E` calls ReleaseCapture, `0x76A7AB(x,y,0)`, then `0x6F0E17(0,x,y)`; it calls the window default if the latter returns false. **No conclusion that releasing the pointer immediately cancels movement is supported.** The first helper only stores three globals, as established in hero-command-followup.md. The held-command scheduler remains open.
 
 Type 0x11 and 0x12 target request functions pass a 0x11C-byte command block via role vtable+0x80 after their gates. They can redirect into each other or jumping under statuses; they do not directly construct a 10005 packet. The hero applies accepted blocks immediately through its own +0x80 callback; the remote-role queue is a different path. See the follow-up below.
 
@@ -90,7 +90,7 @@ Audit the player flow in order: startup services and presentation → admission/
 
 World ambience is still absent from OCC. Existing Sound/02_map_sound_path.md identifies the target build's load-once looping Type0F scenery sound; eosource's interval-driven MapSound class has different behavior. Do not import its timer model. First-world ambience can be scoped separately from full map transfer, but any such slice must own failed activation, disconnect and shutdown cleanup.
 
-For movement, the next static trace must cover 0x6F0E17 interception, 0x76A7AB release/held state, queue dispatch through vtable+0x80, completion/interrupt scheduling, final +20 production, and focus/transfer teardown. Then use a controlled original-client session on map 1010: single click, hold stationary, drag while held, release mid-step, Shift/control/Alt branches, blocked tile, HUD click, focus loss, correction and transfer. Record screen/tile coordinates, actor states, ordered decrypted C→S logical frame hex, timestamps and per-frame hashes. Exclude authentication material. Pair with two OCC clients against the same OCS head before accepting the interactive slice.
+For movement, the follow-ups establish immediate interception, release sample writes, hero +0x80 command acceptance, +0x84 packet production including +20, and the completion dispatch boundary. Local hero acceptance is distinct from the remote-role queue. The next static trace must cover repeated/held input, posted command consumers, remaining viewport field readers and focus/transfer teardown. Then use a controlled original-client session on map 1010: single click, hold stationary, drag while held, release mid-step, Shift/control/Alt branches, blocked tile, HUD click, focus loss, correction and transfer. Record screen/tile coordinates, actor states, ordered decrypted C→S logical frame hex, timestamps and per-frame hashes. Exclude authentication material. Pair with two OCC clients against the same OCS head before accepting the interactive slice.
 
 The controlled runtime experiment was **not executed in this slice**. Do not close #341 or its implementation dependents from this evidence.
 
@@ -98,4 +98,4 @@ The controlled runtime experiment was **not executed in this slice**. Do not clo
 
 The locally available eosource MyShellDlg.cpp shows a timer-driven ProcessMouseHold and different left-button release bookkeeping. It is historical orientation only. Preservation-CO-Client/docs/movement.md documents action and sound choices in another implementation; it does not prove 5517 pointer semantics. Existing 20_notes instructions and the source executable remain authoritative for this trace.
 
-Two function comments were added or extended in the active Binary Ninja analysis to record the packed producer and release-handler boundary. No database save was requested.
+The first trace added or extended two function comments for the packed producer and release-handler boundary. The interception follow-up also applied and read back six narrow names and comments; its transcript records them. No database save was requested or performed.
