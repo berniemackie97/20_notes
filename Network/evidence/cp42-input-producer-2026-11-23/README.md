@@ -2,11 +2,13 @@
 
 Verified November 23, 2026. Contributes to [OCC #341](https://github.com/berniemackie97/OpenConquerClient/issues/341); does not close it or authorize a production movement controller.
 
+The [hero command follow-up](hero-command-followup.md) corrects the generic-versus-hero sender scope and local command ownership. Its proven/candidate/unresolved ledger is the current resume boundary.
+
 ## Authority and validation
 
 Source executable SHA-256: `b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62`. Binary Ninja target: `Conquer.exe.bndb`, view 9. REA independently inspected the unmodified PE image with objdump; [identity evidence](rea-image-identity.json). This is static instruction evidence, not a new interactive or wire capture.
 
-[Retained instructions](instructions.json) contain 13 full-function or explicitly filtered instruction transcripts. The button-down excerpt omits unrelated interaction branches. Existing analysis names identify locations; their names are not independent proof of semantics. Shared exception-prologue lifting makes some pseudocode misleading, so conclusions below use instructions.
+[Retained instructions](instructions.json) contain the original 13 full-function or explicitly filtered instruction transcripts plus 17 raw objdump ranges. The button-down excerpt omits unrelated interaction branches. Existing analysis names identify locations; their names are not independent proof of semantics. Shared exception-prologue lifting makes some pseudocode misleading, so conclusions below use instructions.
 
 Run:
 
@@ -14,9 +16,9 @@ Run:
 python3 verify.py /absolute/path/to/Conquer.exe
 ```
 
-The run checked **957 instruction records with zero mismatches** against the source image, checked three [message-map entries](message-map.json), and verified SHA-256 and producer-range consistency for **23 existing original-client 10005 emissions** in the November 8 corpus. These frames already existed; their input sequences were not recaptured or expanded. Results are retained in [verification.json](verification.json). Instruction agreement proves byte identity, not branch reachability, runtime timing or complete semantic correctness.
+The initial run checked **957 instruction records with zero mismatches**. The follow-up expands the retained instruction and data checks; current counts are in [verification.json](verification.json). It also verified SHA-256 and producer-range consistency for **23 existing original-client 10005 emissions** in the November 8 corpus. These frames already existed; their input sequences were not recaptured or expanded. Results are retained in [verification.json](verification.json). Instruction agreement proves byte identity, not branch reachability, runtime timing or complete semantic correctness.
 
-## Ordinary movement producer
+## Generic-role ordinary movement producer
 
 `Role_SendCommandStartPacketsAndSelectAction` at `0x74353F` selects the current action before its movement branches:
 
@@ -30,7 +32,7 @@ For an eight-way direction 0..7, the producer yields 0..247. The random portion 
 
 `CMsgEntityAction_CreateWithMoveModeFlag` at `0x740407` resets the packet, writes length 24 and type 10005, stores actor ID as a dword at +8 and packed direction as a dword at +4, and writes a boolean selector byte at +12. Reset clears the packet storage; the remaining selector bytes are initially zero. `CMsgEntityAction_Send` at `0x7404E1` fills a zero +16 timestamp with `Conquer_GetTimeGetTime` before forwarding to the generic sender.
 
-This does **not** establish the final +20 map-state producer or generic sender mutations. It also does not prove the timing at which input reaches this function. Do not replace unknown command pacing with a fixed packet timer.
+This generic path does **not** establish the hero packet fields. The [hero follow-up](hero-command-followup.md) identifies the separate hero builder, its +20 field source and dispatch gate. Neither trace establishes a complete held-input cadence; do not substitute a fixed packet timer.
 
 ## Pointer projection
 
@@ -66,7 +68,7 @@ The helper at `0x5D91A2` calls GetKeyboardState and tests array byte 0x12 bit 0x
 
 Release handler `0x5DB61E` calls ReleaseCapture, `0x76A7AB(x,y,0)`, then `0x6F0E17(0,x,y)`; it calls the window default if the latter returns false. **No conclusion that releasing the pointer immediately cancels movement is supported.** The first helper's side effects and the held-command scheduler remain open.
 
-Type 0x11 and 0x12 target request functions queue a 0x11C-byte command block via role vtable+0x80 after their gates. They can redirect into each other or jumping under statuses; they do not directly construct a 10005 packet. Complete queue ownership and command-start timing remain untraced.
+Type 0x11 and 0x12 target request functions pass a 0x11C-byte command block via role vtable+0x80 after their gates. They can redirect into each other or jumping under statuses; they do not directly construct a 10005 packet. The hero applies accepted blocks immediately through its own +0x80 callback; the remote-role queue is a different path. See the follow-up below.
 
 ## Cross-repository boundary
 

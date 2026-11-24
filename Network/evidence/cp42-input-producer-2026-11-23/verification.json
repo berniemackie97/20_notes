@@ -1,8 +1,8 @@
 {
   "image_sha256": "b6ba5ab8573ec073ea271f57b16fa14de1c67bfb44efd5aa7cfbfc0d3b488a62",
-  "instruction_records_checked": 957,
+  "instruction_records_checked": 1543,
   "instruction_mismatches": 0,
-  "message_map_entries_checked": 3,
+  "message_map_entries_checked": 6,
   "existing_capture_frames": [
     {
       "capture": 1,
